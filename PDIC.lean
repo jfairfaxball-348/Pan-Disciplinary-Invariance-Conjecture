@@ -561,12 +561,52 @@ end PDIC
 
 namespace PDIC
 
-/- S003R4: a COMPUTABLE finite count of genuine mixed-MIS witnesses.
-   This is defined through the criterion, not through a substitute
-   matrix census. The Boolean decision is propositionally exact. -/
+/- S003R4 constructive, executable pairwise criterion; no classical
+   proposition-decider is hidden in a Boolean finite census. -/
+def allSides : List Side := [0, 1, 2, 3]
+
+private theorem allSides_complete (i : Side) : i ∈ allSides := by
+  fin_cases i <;> decide
+
+def leftDominationBool (adj : Side → Side → Bool)
+    (X Y : Finset Side) : Bool :=
+  allSides.all (fun i => decide (i ∈ X) ||
+    allSides.any (fun j => decide (j ∈ Y) && adj i j))
+
+private theorem leftDominationBool_iff (adj : Side → Side → Bool)
+    (X Y : Finset Side) :
+    leftDominationBool adj X Y = true ↔
+      (∀ i : Side, i ∉ X → ∃ j ∈ Y, adj i j = true) := by
+  simp only [leftDominationBool, List.all_eq_true, List.any_eq_true,
+    Bool.or_eq_true, Bool.and_eq_true, decide_eq_true_eq]
+  constructor
+  · intro h i hi
+    rcases h i (allSides_complete i) with hx | he
+    · exact False.elim (hi hx)
+    · rcases he with ⟨j, _, hj, hv⟩
+      exact ⟨j, hj, hv⟩
+  · intro h i _
+    by_cases hi : i ∈ X
+    · exact Or.inl hi
+    · rcases h i hi with ⟨j, hj, hv⟩
+      exact Or.inr ⟨j, allSides_complete j, hj, hv⟩
+
+def mixedPairCriterionBool (adj : Side → Side → Bool)
+    (X : Finset Side) : Bool :=
+  decide (X.card = 2) &&
+    decide ((Finset.univ \ sideNeighbours adj X).card = 2) &&
+    leftDominationBool adj X (Finset.univ \ sideNeighbours adj X)
+
+theorem mixedPairCriterionBool_iff (adj : Side → Side → Bool)
+    (X : Finset Side) :
+    mixedPairCriterionBool adj X = true ↔
+      mixedPairCriterion adj X := by
+  simp [mixedPairCriterionBool, mixedPairCriterion,
+    Bool.and_eq_true, decide_eq_true_eq, leftDominationBool_iff]
+
 def computableMixedLeftPairCount (adj : Side → Side → Bool) : ℕ :=
   ((Finset.univ : Finset (Finset Side)).filter
-    (fun X => decide (mixedPairCriterion adj X))).card
+    (fun X => mixedPairCriterionBool adj X = true)).card
 
 theorem computableMixedLeftPairCount_eq_actual
     (adj : Side → Side → Bool) :
@@ -575,7 +615,8 @@ theorem computableMixedLeftPairCount_eq_actual
   unfold computableMixedLeftPairCount actualMixedLeftPairCount
   apply congrArg Finset.card
   ext X
-  simp only [Finset.mem_filter, Finset.mem_univ, true_and, decide_eq_true_eq]
+  simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+  rw [mixedPairCriterionBool_iff]
   exact (exists_mixed_iff_criterion adj X).symm
 
 #print axioms PDIC.computableMixedLeftPairCount_eq_actual
