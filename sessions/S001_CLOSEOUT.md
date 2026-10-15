@@ -8,6 +8,8 @@
 - Exact profile **(1,0,0,0,4,0,0,0,1)**; four zero-sum quartets Qij=Ai union Bj, nerve C4 with abstract H1=Z and no triple sunflower. Do not invoke a nerve lemma for a geometric union of discrete sets.
 - **Strengthening:** under a random bijection, the probability two fixed four-sets both sum to zero at intersection size t=0,1,2,3,4 is respectively **(2/35,0,1/315,0,2/35)**. Derived the corresponding exact variance law for any size-four graph-witness family. This is stronger than the single-witness mixture; originality **not yet established**.
 
+Further **sharp cross-domain theorem**: any connected graph on eight vertices has at most **three** zero-sum independent four-sets under an admissible cap labelling, and an explicit eight-vertex tree has three such sets that are all maximal independent sets. This is a proved graph-connectivity obstruction, not merely a probability-conditioning identity; publication priority remains unresolved.
+
 See research/S001_CAP_RIGIDITY_PROOF.md.
 
 ## Verification executed
