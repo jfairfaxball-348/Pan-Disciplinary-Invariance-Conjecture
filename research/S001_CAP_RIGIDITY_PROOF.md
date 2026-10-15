@@ -84,6 +84,17 @@ No distinct pairs overlap in 4 elements. A graph's family of size-four maximal i
 
 This new **derived** pair law has not passed a specialist novelty audit; it is **not** being claimed as a publishable new result at S001.
 
+
+## Sharp connected-graph obstruction (further cross-domain theorem)
+
+Let G be any **connected** simple graph on eight vertices, and lambda any bijection of its vertices to an admissible U. Let N0^ind count four-vertex independent sets S in G whose label sum is zero. Then
+
+    N0^ind <= 3.
+
+Proof: if all four quartets Qij were independent, no edge could join a vertex labelled in A1 union A2 to a vertex labelled in B1 union B2: any such cross-pair occurs together in the unique Qij selecting the two atoms. These two parts each contain four vertices, so G would be disconnected. Every zero-sum four-set is one of Q11,Q12,Q21,Q22, hence the bound.
+
+**Sharp even among trees and maximal independent sets.** Regard each atom A1,A2,B1,B2 as two vertices. Place a four-vertex path with alternating A1/A2 vertices (edges a1-a3, a3-a2, a2-a4), a second four-vertex path with alternating B1/B2 vertices (b1-b3, b3-b2, b2-b4), and a single bridge a3-b3 between A2 and B2. This graph has eight vertices and seven edges, is connected and is a tree. Q11=A1 union B1, Q12=A1 union B2, Q21=A2 union B1 are independent; each is maximal because its complement's two atoms are dominated by the corresponding alternating paths. The fourth quartet Q22 is not independent because it contains both bridge endpoints. Thus exactly **three** zero-sum four-element *maximal independent sets* occur. The sharp connected-graph inequality is a deterministic graph–zero-sum statement, not a conditioning identity. Literature priority still requires audit.
+
 ## Proof boundary and reproducibility
 
 The conceptual proof relies on the cited classical nine-cap classification, not on finite enumeration. Original S000 enumeration and S001 independent quadratic-orbit checker both pass locally, but neither is Lean or a peer-reviewed proof. This result concerns the abstract hypergraph nerve, not a nerve lemma for discrete sets. Source status and unresolved originality are in S001_PRIOR_ART_AUDIT.md.
