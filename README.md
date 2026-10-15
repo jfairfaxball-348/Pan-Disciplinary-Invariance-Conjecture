@@ -1,24 +1,23 @@
 # Pan-Disciplinary Invariance Conjecture (PDIC)
 
-**Mission:** combine finite-group zero-sum geometry, random graph algorithms, conserved tree-pebbling residues, and witness-hypergraph topology into substantive new-looking *fully proved* finite theorems; formalise in Lean 4 and write an honest manuscript on the accelerated four-session roadmap.
+**Mission:** combine finite-group zero-sum geometry, greedy independent sets and signed pebbling invariants into precisely scoped proved theorems, formalise the genuine graph–quartet flagship in Lean 4, then consider a manuscript only after a source-level priority audit.
 
-**Status (2026-10-15): S002 complete.** Using the cited classical classification of nine-caps in AG(3,3), S001 established a 702-cap orbit, its four-quartet C4 witness geometry, and a joint-overlap law. S002 proved a **complete exact distribution for the number of zero-charge size-four maximal independent sets** in connected eight-vertex graphs and the **sharp bound Pr(N0=3)<=1/105, with equality iff the spider S(2,2,2,1)**. S002 also proved the greedy zero-charge law (for graphs with at least one edge) and three signed pebbling-channel invariants. The mathematical proof and an independent exact-rational local verifier are available. **PDIC Lean and specialist novelty/priority checks remain open.**
+**Status (2026-10-15): S003 executed, Lean flagship partially formalised; S003R next.** S001 proved the canonical cap geometry and classical-input all-caps extension. S002 wrote the complete exact zero-four-MIS distribution and the unique sharp spider bound Pr(N0=3)≤1/105 with equality precisely at S(2,2,2,1), supported by independent exhaustive finite checks. S003 installed a pinned Lean project and targeted kernel proofs of the four-quartet incidence, concrete canonical cap certificate, labelled spider count, and four-point moment inversion. **The general graph extremiser and the permutation-fibre probability distribution have NOT been proved in Lean.** The finite package **passed hosted Lean kernel CI** on source commit `6501e38c` (Actions run [38788657458](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38788657458)), with only standard axioms reported and all three Python checks PASS. This is still not a universal Lean proof of the graph flagship.
 
-## Four-session roadmap
+## Accelerated roadmap
 
-| Session | Milestone | State |
+| Session | Result | State |
 | --- | --- | --- |
-| S001 | Prove classical-input cap geometry, C4 nerve, quartet pair law and connected-graph obstruction. | **DONE** |
-| S002 | Compose greedy and charge transfer; prove exact 4-MIS witness-count law and sharp spider triple-saturation theorem. | **DONE** |
-| S003 | Formalise genuine theorem core in Lean 4 with no unproved placeholders or unapproved axioms; build/test, hosted CI. | **NEXT** |
-| S004 | Source-level novelty/significance review, publication-quality manuscript with precise scope, TeX/PDF if feasible. | **CONDITIONAL** |
+| S001 | Nine-cap-classification-dependent eight-cap rigidity; C4 quartet geometry and sharp connected-graph obstruction | DONE |
+| S002 | Exact four-MIS zero-witness distribution, spider saturation equality theorem, greedy and pebbling transfer | DONE, written proof and independent finite checks |
+| S003 | Lean project, finite quartet/canonical cap/spider certificates and moment inversion | PARTIAL, universal flagship remains |
+| S003R | Certify full connected-graph triple bound, equality iff spider, and exact distribution in Lean | NEXT |
+| S004 | Specialist novelty audit and publication-quality manuscript | CONDITIONAL |
 
-Four sessions is an aggressive target, not a promise of formalisation/novelty. The umbrella name PDIC remains aspirational; no all-dimensional pan-disciplinary invariance conjecture, sunflower, Collatz, Davenport, HHA or TreeStack theorem is claimed resolved.
+**Next session:** [S003R proof-completion handoff](research/NEXT_SESSION_PROMPT.md). Owner saying "run next session" authorises exactly this named session and does not advance automatically.
 
-**Next session:** [Full runnable S003 Lean handoff](research/NEXT_SESSION_PROMPT.md). Execution: owner's "run next session" authorises exactly the named next session, with no additional confirmation, and never automatically advances another session.
+**Sources:** [S002 proof](research/S002_GREEDY_CHARGE_SPIDER_PROOF.md), [S003 closeout](sessions/S003_CLOSEOUT.md), [S003 Lean module](PDIC.lean), [Claims](research/CLAIMS.md), [Sources](research/PROVENANCE_AND_SOURCES.md).
 
-**Primary S002 results:** [Written structural proof](research/S002_GREEDY_CHARGE_SPIDER_PROOF.md) · [Frozen target](research/FLAGSHIP_THEOREM.md) · [Claim register](research/CLAIMS.md) · [S002 closeout](sessions/S002_CLOSEOUT.md) · [Provenance and literature](research/PROVENANCE_AND_SOURCES.md).
+**Reproduction:** use `lake build` with committed `lean-toolchain`, `lakefile.toml`, `lake-manifest.json`; three independent Python checks are `scripts/verify_s000.py`, `scripts/verify_s001_independent.py`, `scripts/verify_s002.py`. Do not confuse finite checks with Lean verification or priority.
 
-**Reproduce:** `python3 scripts/verify_s000.py`, `python3 scripts/verify_s001_independent.py`, `python3 scripts/verify_s002.py`. These are finite checks, not Lean verification or novelty certificates. The GitHub Actions workflow runs all three; consult the actual hosted run conclusion before claiming hosted PASS.
-
-The routine random-bijection mixture is supporting arithmetic, not the claimed originality target. The first-paper tentative title is *Zero-sum quartet witnesses and sharp saturation on eight-vertex graphs*.
+The PDIC umbrella name remains aspirational. No general pan-disciplinary invariance conjecture, major open problem, TreeStack reachability result or publication novelty is certified.
