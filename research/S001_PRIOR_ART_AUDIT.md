@@ -19,6 +19,6 @@ Bounded search for equivalent "702 8-caps", "nine-cap zero-sum quartets", "C4 fo
 
 ## Priority and significance gate
 
-**CLASSICAL INPUT:** nine-cap maximum size, affine equivalence and total sum. **PROVED WITH CLASSICAL INPUT:** our 702 count, stabiliser 16 and canonical quartet/nerve picture. **PROVED CONDITIONAL ON THOSE:** exact pair-zero witness overlap law and graph-family variance identity. **ELEMENTARY BASELINE:** random-bijection one-witness conditioning.
+**CLASSICAL INPUT:** nine-cap maximum size, affine equivalence and total sum. **PROVED WITH CLASSICAL INPUT:** our 702 count, stabiliser 16 and canonical quartet/nerve picture. **PROVED CONDITIONAL ON THOSE:** exact pair-zero witness overlap law, graph-family variance identity, and sharp connected-graph maximum of three zero-charge independent 4-sets (attained by a tree with three maximal ones). **ELEMENTARY BASELINE:** random-bijection one-witness conditioning.
 
 The pair law might be an unrecorded but elementary reformulation of known affine design incidences. **Novelty and substantive publishability remain OPEN**, with graph-theoretic sharp consequences and comparison against combinatorial designs assigned to S002. No general-dimensional PDIC, sunflower conjecture, Davenport conjecture, HHA target or stackability claim is asserted here.
