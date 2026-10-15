@@ -31,6 +31,7 @@ for mask in range(1 << 16):
     row_spider = hub_form(rows)
     col_spider = hub_form(cols)
     assert e < 6 or b <= 3, mask
+    assert e < 8 or b <= 2, mask
     assert not (row_spider and col_spider), mask
     assert (e == 7 and b == 3) == (row_spider or col_spider), mask
     counts[e, b] += 1
