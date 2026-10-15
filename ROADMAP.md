@@ -1,18 +1,18 @@
 # PDIC: short proof-first roadmap
 
-Four sessions from bootstrap to an honest manuscript draft. **S001 is complete (2026-10-15); S002 is the next authorised target on the owner's next invocation:**
+**S002 complete 2026-10-15; next is exactly S003.** Mathematical core is frozen subject to actual specialist prior-art checking. An aggressive four-session objective, not a guarantee.
 
 | Session | Work | Exit |
 | --- | --- | --- |
-| S001 — DONE | Nine-cap reduction, structural orbit/count proof, quartets/C4 nerve; exact joint-charge law and sharp connected-graph 3-witness obstruction; bounded prior-art audit. | Proved using cited classical cap classification, two local checker PASS; novelty open. |
-| S002 | Prove the graph-greedy charge transfer law and three-channel pebbling conservation; seek a substantive strengthening beyond elementary conditioning. | Frozen theorem package with all hypotheses and mathematical proofs. |
-| S003 | Formalise the frozen core in Lean 4; audit axioms and proof gaps; run CI. | Green CI for only the advertised declarations. |
-| S004 | Final source-level novelty audit, draft full article in paper/main.tex, bibliography, proof/formal correspondence and compiled PDF if feasible. | Complete, honest research manuscript draft, conditional on a significant theorem. |
+| S001 — DONE | Classical-input 9-cap rigidity, 702 eight-caps; four-quartet C4 incidence, pair-zero law and sharp connected-graph three-independent-witness cap. | Structural proof and two finite checkers. |
+| S002 — DONE | Exact random greedy/ternary-channel transfer, **full distribution of number of zero-four-MIS**, sharp **Pr(N0=3)<=1/105 iff S(2,2,2,1)**. | Structural proof independent of enumeration, dedicated rational checker, claims frozen. |
+| S003 — NEXT | Formalise one precise graph–quartet incidence theorem and its sharp spider corollary, plus greedy/charge lemmas, in Lean 4. Do not replace geometric classification with unapproved axioms or opaque computed output. | Kernel-proved declarations, axiom scan, hosted CI; list any uncertified parts explicitly. |
+| S004 — CONDITIONAL | Specialist novelty and source audit, write paper/main.tex with proofs/references and proof–Lean correspondence, compile PDF if feasible. | Honest manuscript draft or research note if significance gate fails. |
 
-This is an aggressive target, not a promise that novel mathematics will appear. A routine consequence of random labelling is not a publishable flagship. If a result is classical or false, correct it and pivot immediately. A negative S004 significance verdict produces a research note, not a forced publication.
+**Important boundary:** the greedy law Pr(sum lambda(I)=0)=(2/35)Pr(|I|=4) needs at least one graph edge; edgeless G is a counterexample. Uniform distribution of nonzero charges additionally needs the random GL-invariant cap, not a fixed cap. Three-channel charge conservation does not imply reachability or stackability.
 
-Core mathematical chain: 24-term inverse zero-sum classification -> eight-cap geometry and quartets -> exact greedy maximal-independent-set size distribution -> conserved ternary tree-pebbling charge -> hypergraph nerve and homology.
+Core chain: Inverse Zero-Sum CAND-03 context -> classical AG(3,3) cap geometry -> C4 quartet incidence -> exact random 4-MIS count distribution and unique sharp spider -> random greedy law -> tree pebbling conserved mod-three residues. The novel-looking piece is the exact **triple-saturation extremal theorem**, not the arithmetic mixture.
 
-Supporting tools from TreeForge, ProbStack, Pascal valuations and sunflower machinery are used only when they add valid theorem content. No open problem (Collatz, Davenport, sunflower, HHA flagship, Almost Stacked) is claimed solved.
+S002 mathematical proof: [research/S002_GREEDY_CHARGE_SPIDER_PROOF.md](research/S002_GREEDY_CHARGE_SPIDER_PROOF.md). Next executable session: [research/NEXT_SESSION_PROMPT.md](research/NEXT_SESSION_PROMPT.md). Originality remains open; no large open problem is claimed solved.
 
-Execution: a pasted prompt or 'run next session' authorises exactly the named session; no additional confirmation. Each session closes with the entire runnable next prompt, links and source/proof status.
+Execution policy: "run next session" invokes exactly the named session directly, and stops at its closeout.
