@@ -136,8 +136,38 @@ private theorem maximal_check_iff
 theorem isMIS4Bool_iff_IsMIS4
     (adj : Vertex → Vertex → Bool) (s : Finset Vertex) :
     isMIS4Bool adj s = true ↔ IsMIS4 adj s := by
-  simp [isMIS4Bool, IsMIS4, allVertices_complete,
-    independent_check_iff, maximal_check_iff, List.all_eq_true]
+  simp only [isMIS4Bool, IsMIS4, Bool.and_eq_true, List.all_eq_true,
+    allVertices_complete, true_implies, Bool.or_eq_true, Bool.not_eq_true,
+    decide_eq_true_eq, beq_iff_eq]
+  constructor
+  · rintro ⟨⟨hc, hi⟩, hm⟩
+    refine ⟨hc, ?_, ?_⟩
+    · intro u hu v hv
+      have h := hi u v
+      rcases h with h | h
+      · rcases h with h | h
+        · exact False.elim (h hu)
+        · exact False.elim (h hv)
+      · exact h
+    · intro v hv
+      rcases hm v with hv' | h
+      · exact False.elim (hv hv')
+      · rcases h with ⟨u, hu, hed⟩
+        exact ⟨u, hu, hed⟩
+  · rintro ⟨hc, hi, hm⟩
+    constructor
+    · constructor
+      · exact hc
+      · intro u v
+        by_cases hu : u ∈ s
+        · by_cases hv : v ∈ s
+          · exact Or.inr (hi u hu v hv)
+          · exact Or.inl (Or.inr hv)
+        · exact Or.inl (Or.inl hu)
+    · intro v
+      by_cases hv : v ∈ s
+      · exact Or.inl hv
+      · exact Or.inr (hm v hv)
 
 
 def mis4Count (adj : Vertex → Vertex → Bool) : ℕ :=
