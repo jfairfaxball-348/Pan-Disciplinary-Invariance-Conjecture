@@ -188,12 +188,14 @@ theorem spider_mixed_mis_count : mixedMisCount spiderAdj = 3 := by
 theorem spider_prop_mis4_count :
     ((Finset.univ : Finset (Finset Vertex)).filter
       (fun s => IsMIS4 spiderAdj s)).card = 9 := by
+  classical
   simpa [mis4Count, isMIS4Bool_iff_IsMIS4] using spider_mis4_count
 
 theorem spider_prop_mixed_mis_count :
     ((Finset.univ : Finset (Finset Vertex)).filter
       (fun s => IsMIS4 spiderAdj s ∧
         (s.filter (fun v : Vertex => v.val < 4)).card = 2)).card = 3 := by
+  classical
   simpa [mixedMisCount, isMIS4Bool_iff_IsMIS4] using spider_mixed_mis_count
 
 /-- A conditional arithmetic bridge. The nontrivial hypothesis h ≤ 3
