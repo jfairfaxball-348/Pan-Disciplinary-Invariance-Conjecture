@@ -334,7 +334,7 @@ theorem mixed_iff_complement_criterion
       have hnot : j ∉ sideNeighbours adj X := by
         simpa using hjC
       cases he : adj i j with
-      | false => exact he
+      | false => rfl
       | true =>
           exact False.elim (hnot ((mem_sideNeighbours_iff adj X j).mpr
             ⟨i, hi, he⟩))
@@ -354,5 +354,50 @@ theorem mixed_left_pair_injective
 #print axioms PDIC.mixed_opposite_unique
 #print axioms PDIC.mixed_iff_complement_criterion
 #print axioms PDIC.mixed_left_pair_injective
+
+/- A bitvector presentation of ALL 4×4 Boolean matrices: the four BitVec 4
+   inputs are exactly their rows. Its six pair tests use the above unique
+   complement criterion. A checked SAT/LRAT certificate, rather than a Python
+   enumeration, is sought for the six-edge extremal theorem. -/
+def twoNeighboursBV (v : BitVec 4) : Bool :=
+  (v == 3) || (v == 5) || (v == 6) ||
+  (v == 9) || (v == 10) || (v == 12)
+
+def goodLeftPairBV (x y z w : BitVec 4) : Bool :=
+  let n := x ||| y
+  twoNeighboursBV n &&
+    ((z &&& (~~~n)) != 0) &&
+    ((w &&& (~~~n)) != 0)
+
+def fourRowMixedCountBV (a b c d : BitVec 4) : BitVec 3 :=
+  (if goodLeftPairBV a b c d then 1 else 0) +
+  (if goodLeftPairBV a c b d then 1 else 0) +
+  (if goodLeftPairBV a d b c then 1 else 0) +
+  (if goodLeftPairBV b c a d then 1 else 0) +
+  (if goodLeftPairBV b d a c then 1 else 0) +
+  (if goodLeftPairBV c d a b then 1 else 0)
+
+def fourBitPopCount5 (v : BitVec 4) : BitVec 5 :=
+  (if v.getLsbD 0 then 1 else 0) +
+  (if v.getLsbD 1 then 1 else 0) +
+  (if v.getLsbD 2 then 1 else 0) +
+  (if v.getLsbD 3 then 1 else 0)
+
+def fourRowEdgeCountBV (a b c d : BitVec 4) : BitVec 5 :=
+  fourBitPopCount5 a + fourBitPopCount5 b +
+  fourBitPopCount5 c + fourBitPopCount5 d
+
+/-- A universal 16-Boolean-variable, verified-bitblasting formulation:
+    four or more qualifying mixed pairs force at most five edges. -/
+theorem four_by_four_six_edge_threshold_BV
+    (a b c d : BitVec 4) :
+    (4 : BitVec 3) ≤ fourRowMixedCountBV a b c d →
+      fourRowEdgeCountBV a b c d ≤ (5 : BitVec 5) := by
+  intro h
+  unfold fourRowMixedCountBV goodLeftPairBV twoNeighboursBV
+    fourRowEdgeCountBV fourBitPopCount5 at *
+  bv_decide
+
+#print axioms PDIC.four_by_four_six_edge_threshold_BV
 
 end PDIC
