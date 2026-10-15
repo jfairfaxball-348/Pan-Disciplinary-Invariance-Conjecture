@@ -1,4 +1,4 @@
-# PDIC claim register — S003R2 (2026-10-15)
+# PDIC claim register — S003R3 (2026-10-15)
 
 | Claim | Status | Boundary |
 | --- | --- | --- |
@@ -8,6 +8,11 @@
 | Generic 4×4 left-pair ↔ unique complementary right-pair criterion | LEAN_KERNEL_CHECKED_S003R2 | `mixed_opposite_unique`, `mixed_iff_complement_criterion` |
 | 4×4 matrix b≥4⇒e≤5 | **LEAN_KERNEL_CHECKED_S003R2** | Four row BitVec 4 inputs; `four_by_four_six_edge_threshold_BV`, `[propext, Quot.sound]`. Abstract MIS count bridge still open |
 | 4×4 matrix e=7 and b=3 iff row- or column-centred spider | **LEAN_KERNEL_CHECKED_S003R2** | `seven_edge_three_iff_spider_BV`, `[propext, Quot.sound]`. Formal `SimpleGraph` isomorphism bridge open |
+| Lossless Boolean adjacency → 4 BitVec rows and inverse/injective | **LEAN_KERNEL_CHECKED_S003R3** | `adjOfRows_rowsOfAdj`, `rowsOfAdj_injective`, arbitrary Bool adjacency; approved hosted CI |
+| Mixed-MIS left-pair existential and criterion **cardinality** equality | **LEAN_KERNEL_CHECKED_S003R3** | `actualMixedLeftPairCount_eqCriterion`; unique opposite-side criterion; numerical BV counting identity remains OPEN |
+| Matrix e≥8⇒b≤2 | **LEAN_KERNEL_CHECKED_S003R3** | `eight_edges_at_most_two_mixed_BV`, exact universal 4×4 BitVec statement; passed strict CI 38812570517 |
+| Numerical BV-count ↔ actual mixed-MIS witness cardinality | **OPEN** | `fourRowMixedCountBV.toNat = actualMixedLeftPairCount` not proved |
+| Numerical BV-edge-count ↔ actual graph edge cardinality | **OPEN** | Exact `fourRowEdgeCountBV.toNat` bridge not proved |
 | Exactly 192 labelled equality matrices = 96+96 | PROVED_WRITTEN_S003R2, FINITE_CHECKED | Direct 2·4·4·3! count; count not in Lean |
 | 2,520 ordered atom assignments; triple fibre 8/2520=1/315 | PROVED_WRITTEN_S003R2 | Genuine counting proof; no random-bijection Lean semantics yet |
 | Complete N0 law and sharp Pr(N0=3)≤1/105 spider iff | PROVED_WRITTEN_WITH_CLASSICAL_INPUT, NOT_FULLY_LEAN | Still needs graph/bipartition bridge + actual probability moments |
@@ -15,8 +20,8 @@
 | Conditional h≤3⇒h/315≤1/105 and moment inversion | LEAN_KERNEL_CHECKED | Pure arithmetic, not full random law |
 | Greedy zero charge and pebble residue conservation | PROVED_WRITTEN_WITH_CLASSICAL_INPUT / ELEMENTARY | Edge and bipartiteness qualifications remain |
 | Compiler-assisted `bv_decide` SAT attempt | **REJECTED_FOR_STRICT_LEAN** | Added native evaluation axiom; replaced by `decide +kernel` |
-| Universal SimpleGraph 8-vertex h=b and unique graph extremiser in Lean | OPEN | S003R3 |
-| Complete random-cap/2,520-fibre moment law in Lean | OPEN | S003R3 |
+| Universal SimpleGraph 8-vertex h=b and unique graph extremiser in Lean | OPEN | S003R4 |
+| Complete random-cap/2,520-fibre moment law in Lean | OPEN | S003R4 |
 | Manuscript / priority / peer review | NOT_STARTED / OPEN | S004 conditional; no submissions |
 
-See [session closeout](../sessions/S003R2_CLOSEOUT.md), [new equality proof](S003R2_SPIDER_CLASSIFICATION_AND_FIBRES.md), [Lean source](../PDIC.lean), and [next prompt](NEXT_SESSION_PROMPT.md).
+See [session closeout](../sessions/S003R3_CLOSEOUT.md), [new eight-edge and semantic proof](S003R3_GRAPH_SEMANTICS_AND_EIGHT_EDGE_BOUND.md), [Lean source](../PDIC.lean), and [next prompt](NEXT_SESSION_PROMPT.md).

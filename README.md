@@ -2,7 +2,7 @@
 
 **Mission:** join finite-group zero-sum quartet geometry, maximal independent sets, graph extremal combinatorics, random greedy dynamics and signed pebbling invariants in a precise, formally certified first paper. The project name is aspirational, not a proven universal invariance conjecture.
 
-**Status 2026-10-15:** S003R2 executed; **two substantial universal 4×4 matrix claims are now Lean-verified without native axioms**. Full eight-vertex graph and stochastic witness-count formalisation remains in S003R3. No publication/prior-art priority claim.
+**Status 2026-10-15:** S003R3 complete as a **partial formalisation session**. The matrix semantic lossless encoder, existential mixed-MIS count criterion, and eight-edge exclusion now have hosted strict kernel verification. Full numerical BV-to-Prop counting, connected SimpleGraph/h=b isomorphism and actual finite probability semantics remain unformalised. No priority or publication claim.
 
 ## Written flagship (classical cap input required)
 
@@ -26,9 +26,9 @@ Pr(N0=0)=1−M1+M2−M3; Pr(N0=1)=M1−2M2+3M3; Pr(N0=2)=M2−3M3; Pr(N0=3)=M3�
 | S001–S002 | Cap geometry and written graph/probability flagship, explicit classical input |
 | S003–S003R | Concrete Lean certificates and generic MIS semantics |
 | **S003R2** | **COMPLETE** kernel-only 4×4 matrix threshold and spider iff; direct 192/fibre proof |
-| **S003R3** | **NEXT** certify matrix semantics, connected graph bipartition, 2520-fibre random law |
-| S004 | Conditional novelty audit and TeX manuscript |
+| **S003R3** | **DONE, partial** — lossless row representation, actual existential witness criterion/count, e≥8⇒b≤2 in strict Lean; not yet full graph/measure bridge |
+| **S003R4** | **NEXT** — numerical BV/Prop-count bridge, connected SimpleGraph, 2520 probability semantics |\n| S004 | Conditional novelty audit and TeX manuscript |
 
-[Session S003R2 closeout](sessions/S003R2_CLOSEOUT.md) · [Proof](research/S003R2_SPIDER_CLASSIFICATION_AND_FIBRES.md) · [Claims](research/CLAIMS.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md)
+[Session S003R3 closeout](sessions/S003R3_CLOSEOUT.md) · [New direct proof](research/S003R3_GRAPH_SEMANTICS_AND_EIGHT_EDGE_BOUND.md) · [Claims](research/CLAIMS.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md)
 
 Reproduce with pinned `lake build`, strict `#print axioms` audit and all five checkers in `scripts/`. A `bv_decide` trial was rejected because of its compiler-native axiom; the accepted theorems use `decide +kernel`. No Palomar/arXiv/journal submission authorised.

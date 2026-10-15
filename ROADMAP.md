@@ -1,17 +1,15 @@
-# PDIC proof-first accelerated roadmap — S003R2 closeout (2026-10-15)
+# PDIC short proof-first roadmap — S003R3 closeout (2026-10-15)
 
-**S003R2 executed, not fully closed:** the universal 4×4 Boolean-matrix six-edge bound and seven-edge spider iff have **strict kernel-only Lean certificates** using `decide +kernel`, plus an axioms-clean generic maximality/complement lemma. Full abstract connected-graph semantics and the actual 2,520-assignment probability law remain to formalise. Keep S004 CONDITIONAL.
+**S003R3 executed, partial Lean closure.** Strict hosted kernel CI PASS at [run 38812570517](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38812570517), commit `aaf21059ffb6a6df66db59755817e5ea5176a917`, covering lossless adjacency rows, existential/count witness criterion and the extra `e≥8⇒b≤2` theorem. Independently checked all 65,536 matrices. No compiler-native axiom, sorry, admit or new custom axiom.
 
 | Session | Deliverable | State |
 | --- | --- | --- |
-| S001 | Eight-cap orbit and C4 quartet profile | Written, external nine-cap classification |
-| S002 | Full exact N0 law and sharp spider extremiser, pebble/greedy safeguards | Written proof with classical cap input |
-| S003 | Concrete cap/quartet/spider and moment inversion in pinned Lean | Partial, kernel verified |
-| S003R | Universal Boolean MIS ↔ Prop and stronger six-edge written theorem | Done |
-| **S003R2** | Matrix unique-complement criterion; universal 4×4 e≥6⇒b≤3; e=7,b=3 iff spider; strict axiom audit; direct 192 proof | **DONE at matrix level**; graph/law incomplete |
-| **S003R3** | Lean bridge BitVec rows ↔ mixed four-MIS ↔ SimpleGraph/connected bipartition; 2,520-fibre real probability semantics | **NEXT, targeted one-session proof closure** |
-| S004 | Specialist source-level novelty check and manuscript | **CONDITIONAL**, no publication claims |
+| S001–S002 | Eight-cap C4 incidence; written full graph/probability/spider theorem with classical nine-cap input | Written/conditional on cited classification |
+| S003–S003R2 | Concrete certificates, generic MIS semantics, complete kernel-only 4×4 threshold and seven-edge spider iff | DONE |
+| **S003R3** | Prove lossless rows encoding, exact existential mixed-MIS left-pair count, e≥8⇒b≤2, direct graph reduction | **DONE as partial formalisation** |
+| **S003R4** | Actual BV predicate-count equation, true graph/connected balanced bipartition/h=b, full finite 2520-labelling moments | **NEXT; priority** |
+| S004 | Source-level prior-art novelty audit and TeX manuscript | **CONDITIONAL on a defensible completed formal theorem** |
 
-Only `propext`, `Classical.choice`, and `Quot.sound` are accepted. The two new matrix theorems report only `[propext, Quot.sound]`. A previous `bv_decide` build was discarded as compiler-axiom-dependent, despite compiling. CI must use `set -euo pipefail` and reject `_native`, `sorryAx`, custom axioms, and proof holes. A matrix encoding proof is NOT a completed mathematical-probability semantics bridge.
+The current Lean proof **does not** identify `fourRowMixedCountBV.toNat` with the existential/cardinality witness count; and the 8-vertex `SimpleGraph` graph-isomorphism reduction and random-labelling law are NOT kernel checked. Keep these precise boundaries in claims and manuscript. Do not substitute rational identities or standalone finite checks for real measure semantics. Existing classical nine-cap input remains explicitly external.
 
-[Closeout](sessions/S003R2_CLOSEOUT.md) · [Next session](research/NEXT_SESSION_PROMPT.md) · [Claims](research/CLAIMS.md).
+[New proof](research/S003R3_GRAPH_SEMANTICS_AND_EIGHT_EDGE_BOUND.md) · [Closeout](sessions/S003R3_CLOSEOUT.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md).
