@@ -1,17 +1,17 @@
 # Formal candidate: cap–charge–nerve transfer
 
-## Finite geometric input (S001 proof target)
+## Finite geometric input (S001 proved with classical nine-cap classification)
 
-Let A=(F_3)^3, and C the eight-element subsets U of A\\{0} having no nonempty zero-sum subset of cardinality at most three. Prior locally checked evidence suggests:
+Let A=(F_3)^3, and C the eight-element subsets U of A\\{0} having no nonempty zero-sum subset of cardinality at most three. S001 proves the following using Follett et al. (2014), Proposition 2.2 (classical nine-cap classification), plus explicit quadratic normal form and group stabiliser proof:
 
 - |C| = 702.
 - GL(3,3) acts transitively on C with stabiliser 16.
 - For k=0,...,8, the numbers c_U(k) of zero-sum k-subsets of U are (1,0,0,0,4,0,0,0,1).
 - The four zero-sum quartets form a hypergraph with two disjoint pairs of edges, four intersections of size two, no triple intersection and nerve the four-cycle C4. Hence the abstract nerve has reduced integral H_1=Z; it has no three-edge sunflower.
 
-The finite results require a human-readable proof or accurately described machine certificate and a source-level novelty comparison.
+S001 proof: [S001_CAP_RIGIDITY_PROOF.md](S001_CAP_RIGIDITY_PROOF.md). Numerical checks independently confirm it; bounded [prior-art audit](S001_PRIOR_ART_AUDIT.md) marks novelty unresolved. S001 additionally proves exact pair-zero probabilities for overlap 0..4 equal to (2/35,0,1/315,0,2/35), and a sharp connected-graph upper bound of three zero-charge four-element independent sets, attained by a tree with three maximal such sets.
 
-## Stitched exact-law target (S002)
+## Stitched exact-law target (S002, future)
 
 For graph T with eight vertices and at least one edge: choose U uniformly from C, label V(T) by U through an independent uniformly random bijection lambda, and independently produce maximal independent set I by scanning vertices in a uniformly random order and accepting a vertex unless a previous accepted neighbour blocks it.
 
