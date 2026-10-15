@@ -53,7 +53,7 @@ theorem quartet_triple_joint_incidence :
   decide
 
 /- An actual labelled eight-point quadratic cap over F_3. -/
-def canonicalCap (v : Vertex) : Fin 3 → ZMod 3 :=
+def canonicalCap (v : Vertex) : Fin 3 → ℕ :=
   match v.val with
   | 0 => ![1, 0, 1]
   | 1 => ![2, 0, 1]
@@ -66,7 +66,7 @@ def canonicalCap (v : Vertex) : Fin 3 → ZMod 3 :=
   | _ => ![0, 0, 0]
 
 def chargeZero (s : Finset Vertex) : Prop :=
-  ∀ c : Fin 3, (∑ v ∈ s, canonicalCap v c) = 0
+  ∀ c : Fin 3, ((∑ v ∈ s, canonicalCap v c) % 3) = 0
 
 theorem canonical_quartets_zero :
     ∀ i : QuartetIndex, chargeZero (quartet i) := by
@@ -91,12 +91,22 @@ def IsMIS4 (adj : Vertex → Vertex → Bool) (s : Finset Vertex) : Prop :=
   (∀ u ∈ s, ∀ v ∈ s, adj u v = false) ∧
   (∀ v : Vertex, v ∉ s → ∃ u ∈ s, adj v u = true)
 
+/- A computable Boolean implementation, deliberately distinct from the
+   paper-level Prop specification IsMIS4 until correspondence is proved. -/
+def isMIS4Bool (adj : Vertex → Vertex → Bool) (s : Finset Vertex) : Bool :=
+  (s.card == 4) &&
+  s.toList.all (fun u => s.toList.all (fun v => !(adj u v))) &&
+  (Finset.univ : Finset Vertex).toList.all
+    (fun v => decide (v ∈ s) || s.toList.any (fun u => adj v u))
+
 def mis4Count (adj : Vertex → Vertex → Bool) : ℕ :=
-  ((Finset.univ : Finset (Finset Vertex)).filter (IsMIS4 adj)).card
+  ((Finset.univ : Finset (Finset Vertex)).filter
+    (fun s => isMIS4Bool adj s = true)).card
 
 def mixedMisCount (adj : Vertex → Vertex → Bool) : ℕ :=
   ((Finset.univ : Finset (Finset Vertex)).filter
-    (fun s => IsMIS4 adj s ∧ (s.filter (fun v => v.val < 4)).card = 2)).card
+    (fun s => isMIS4Bool adj s = true ∧
+      (s.filter (fun (v : Vertex) => v.val < 4)).card = 2)).card
 
 theorem spider_mis4_count : mis4Count spiderAdj = 9 := by
   decide
