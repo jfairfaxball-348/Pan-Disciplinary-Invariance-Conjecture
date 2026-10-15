@@ -1,15 +1,16 @@
-# PDIC short proof-first roadmap — S003R3 closeout (2026-10-15)
+# PDIC short proof-first roadmap — S003R4 partial closeout (2026-10-15)
 
-**S003R3 executed, partial Lean closure.** Strict hosted kernel CI PASS at [run 38812570517](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38812570517), commit `aaf21059ffb6a6df66db59755817e5ea5176a917`, covering lossless adjacency rows, existential/count witness criterion and the extra `e≥8⇒b≤2` theorem. Independently checked all 65,536 matrices. No compiler-native axiom, sorry, admit or new custom axiom.
+**S003R4 executed, proof-level count bridge written; proposed new Lean source in unmerged [PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), not yet kernel verified.** The first PR Lean run failed on a missing constructive decidability instance; the fix was attempted on the branch, with final verification outstanding at closeout. Finite lead check PASS is **not** a Lean PASS. Last proven main kernel claims remain S003R3.
 
 | Session | Deliverable | State |
 | --- | --- | --- |
-| S001–S002 | Eight-cap C4 incidence; written full graph/probability/spider theorem with classical nine-cap input | Written/conditional on cited classification |
-| S003–S003R2 | Concrete certificates, generic MIS semantics, complete kernel-only 4×4 threshold and seven-edge spider iff | DONE |
-| **S003R3** | Prove lossless rows encoding, exact existential mixed-MIS left-pair count, e≥8⇒b≤2, direct graph reduction | **DONE as partial formalisation** |
-| **S003R4** | Actual BV predicate-count equation, true graph/connected balanced bipartition/h=b, full finite 2520-labelling moments | **NEXT; priority** |
-| S004 | Source-level prior-art novelty audit and TeX manuscript | **CONDITIONAL on a defensible completed formal theorem** |
+| S001–S002 | Eight-cap C4 geometry; full graph/probability written theorem with classical nine-cap input | Written, conditional on cited classification |
+| S003–S003R2 | Generic MIS semantics, 4×4 matrix 6-edge bound and 7-edge spider equality | Host-verified Lean |
+| S003R3 | Lossless row encoding, exact Prop existential witness criterion, e≥8⇒b≤2 BitVec theorem | Host-verified Lean |
+| **S003R4** | Direct numeric no-overflow six-pair witness bridge; attempted universal Lean matrix counts and generic bounds | **WRITTEN + FINITE CHECKED; Lean unverified, PR #3 open** |
+| **S003R5** | Repair and kernel-check PR #3, exact all-matrix count bridge; then transfer 7-edge spider and graph/probability theorem as possible | **NEXT** |
+| S004 | Specialist prior-art audit and TeX manuscript | **CONDITIONAL on defensible full theorem** |
 
-The current Lean proof **does not** identify `fourRowMixedCountBV.toNat` with the existential/cardinality witness count; and the 8-vertex `SimpleGraph` graph-isomorphism reduction and random-labelling law are NOT kernel checked. Keep these precise boundaries in claims and manuscript. Do not substitute rational identities or standalone finite checks for real measure semantics. Existing classical nine-cap input remains explicitly external.
+Before claiming a finished result: (i) exact numerical count ↔ Prop witnesses, (ii) connected eight-vertex SimpleGraph h=b and graph-isomorphism, and (iii) actual finite cap-randomisation probability moments all need Lean proofs. No Palomar, arXiv, journal or outreach is authorised here.
 
-[New proof](research/S003R3_GRAPH_SEMANTICS_AND_EIGHT_EDGE_BOUND.md) · [Closeout](sessions/S003R3_CLOSEOUT.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md).
+[S003R4 closeout](sessions/S003R4_CLOSEOUT.md) · [New full prompt](research/NEXT_SESSION_PROMPT.md) · [Claims](research/CLAIMS.md).
