@@ -632,3 +632,87 @@ theorem fourRowMixedCountBV_eq_actual
 #print axioms PDIC.fourRowMixedCountBV_eq_actual
 
 end PDIC
+
+namespace PDIC
+
+/-- The four explicit encoded rows are exactly the row function of an
+    arbitrary Boolean adjacency. -/
+theorem fourRowsMatrix_eq_rowsOfAdj (adj : Side → Side → Bool) :
+    (![rowsOfAdj adj 0, rowsOfAdj adj 1,
+        rowsOfAdj adj 2, rowsOfAdj adj 3] : Side → BitVec 4) =
+      rowsOfAdj adj := by
+  funext i
+  fin_cases i <;> rfl
+
+theorem actualMatrixEdgeCount_encoded (adj : Side → Side → Bool) :
+    (fourRowEdgeCountBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+      (rowsOfAdj adj 2) (rowsOfAdj adj 3)).toNat =
+      actualMatrixEdgeCount adj := by
+  have h := fourRowEdgeCountBV_eq_actualMatrixEdgeCount
+    (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+    (rowsOfAdj adj 2) (rowsOfAdj adj 3)
+  rw [fourRowsMatrix_eq_rowsOfAdj, adjOfRows_rowsOfAdj] at h
+  exact h
+
+theorem actualMixedLeftPairCount_encoded (adj : Side → Side → Bool) :
+    (fourRowMixedCountBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+      (rowsOfAdj adj 2) (rowsOfAdj adj 3)).toNat =
+      actualMixedLeftPairCount adj := by
+  have h := fourRowMixedCountBV_eq_actual
+    (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+    (rowsOfAdj adj 2) (rowsOfAdj adj 3)
+  rw [fourRowsMatrix_eq_rowsOfAdj, adjOfRows_rowsOfAdj] at h
+  exact h
+
+/-- The eight-edge obstruction is now expressed in actual mathematical
+    edge and mixed-MIS witness cardinalities for ANY Boolean adjacency. -/
+theorem actual_eight_edges_at_most_two_mixed
+    (adj : Side → Side → Bool)
+    (hedge : 8 ≤ actualMatrixEdgeCount adj) :
+    actualMixedLeftPairCount adj ≤ 2 := by
+  have he := actualMatrixEdgeCount_encoded adj
+  have hm := actualMixedLeftPairCount_encoded adj
+  have heBV : (8 : BitVec 5) ≤
+      fourRowEdgeCountBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3) := by
+    change 8 ≤ (fourRowEdgeCountBV (rowsOfAdj adj 0)
+      (rowsOfAdj adj 1) (rowsOfAdj adj 2) (rowsOfAdj adj 3)).toNat
+    rw [he]
+    exact hedge
+  have hb := eight_edges_at_most_two_mixed_BV
+    (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+    (rowsOfAdj adj 2) (rowsOfAdj adj 3) heBV
+  change (fourRowMixedCountBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+    (rowsOfAdj adj 2) (rowsOfAdj adj 3)).toNat ≤ 2 at hb
+  rw [hm] at hb
+  exact hb
+
+/-- Four or more actual mixed maximal independent sets imply no more
+    than five actual left-right edges; universal in the adjacency. -/
+theorem actual_four_mixed_implies_at_most_five_edges
+    (adj : Side → Side → Bool)
+    (hmixed : 4 ≤ actualMixedLeftPairCount adj) :
+    actualMatrixEdgeCount adj ≤ 5 := by
+  have he := actualMatrixEdgeCount_encoded adj
+  have hm := actualMixedLeftPairCount_encoded adj
+  have hmBV : (4 : BitVec 3) ≤
+      fourRowMixedCountBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3) := by
+    change 4 ≤ (fourRowMixedCountBV (rowsOfAdj adj 0)
+      (rowsOfAdj adj 1) (rowsOfAdj adj 2) (rowsOfAdj adj 3)).toNat
+    rw [hm]
+    exact hmixed
+  have hb := four_by_four_six_edge_threshold_BV
+    (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+    (rowsOfAdj adj 2) (rowsOfAdj adj 3) hmBV
+  change (fourRowEdgeCountBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+    (rowsOfAdj adj 2) (rowsOfAdj adj 3)).toNat ≤ 5 at hb
+  rw [he] at hb
+  exact hb
+
+#print axioms PDIC.actualMatrixEdgeCount_encoded
+#print axioms PDIC.actualMixedLeftPairCount_encoded
+#print axioms PDIC.actual_eight_edges_at_most_two_mixed
+#print axioms PDIC.actual_four_mixed_implies_at_most_five_edges
+
+end PDIC
