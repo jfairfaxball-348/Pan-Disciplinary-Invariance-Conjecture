@@ -184,19 +184,39 @@ theorem spider_mis4_count : mis4Count spiderAdj = 9 := by
 theorem spider_mixed_mis_count : mixedMisCount spiderAdj = 3 := by
   decide
 
-/- The executable spider witnesses now count the mathematical predicate. -/
-theorem spider_prop_mis4_count :
-    ((Finset.univ : Finset (Finset Vertex)).filter
-      (fun s => IsMIS4 spiderAdj s)).card = 9 := by
+/- Classical finite-set presentation of the paper-level predicate.  The
+   Boolean implementation below remains the computable witness certificate. -/
+noncomputable def propMis4Count (adj : Vertex → Vertex → Bool) : ℕ := by
   classical
-  simpa [mis4Count, isMIS4Bool_iff_IsMIS4] using spider_mis4_count
+  exact ((Finset.univ : Finset (Finset Vertex)).filter
+    (fun s => IsMIS4 adj s)).card
+
+noncomputable def propMixedMis4Count (adj : Vertex → Vertex → Bool) : ℕ := by
+  classical
+  exact ((Finset.univ : Finset (Finset Vertex)).filter
+    (fun s => IsMIS4 adj s ∧
+      (s.filter (fun v : Vertex => v.val < 4)).card = 2)).card
+
+theorem propMis4Count_eq_mis4Count
+    (adj : Vertex → Vertex → Bool) :
+    propMis4Count adj = mis4Count adj := by
+  classical
+  simp [propMis4Count, mis4Count, isMIS4Bool_iff_IsMIS4]
+
+theorem propMixedMis4Count_eq_mixedMisCount
+    (adj : Vertex → Vertex → Bool) :
+    propMixedMis4Count adj = mixedMisCount adj := by
+  classical
+  simp [propMixedMis4Count, mixedMisCount, isMIS4Bool_iff_IsMIS4]
+
+theorem spider_prop_mis4_count : propMis4Count spiderAdj = 9 := by
+  rw [propMis4Count_eq_mis4Count]
+  exact spider_mis4_count
 
 theorem spider_prop_mixed_mis_count :
-    ((Finset.univ : Finset (Finset Vertex)).filter
-      (fun s => IsMIS4 spiderAdj s ∧
-        (s.filter (fun v : Vertex => v.val < 4)).card = 2)).card = 3 := by
-  classical
-  simpa [mixedMisCount, isMIS4Bool_iff_IsMIS4] using spider_mixed_mis_count
+    propMixedMis4Count spiderAdj = 3 := by
+  rw [propMixedMis4Count_eq_mixedMisCount]
+  exact spider_mixed_mis_count
 
 /-- A conditional arithmetic bridge. The nontrivial hypothesis h ≤ 3
     must still be supplied by a separate universal graph theorem. -/
@@ -238,6 +258,8 @@ theorem spider_sharp_rational_identity :
   norm_num
 
 #print axioms PDIC.isMIS4Bool_iff_IsMIS4
+#print axioms PDIC.propMis4Count_eq_mis4Count
+#print axioms PDIC.propMixedMis4Count_eq_mixedMisCount
 #print axioms PDIC.spider_prop_mis4_count
 #print axioms PDIC.spider_prop_mixed_mis_count
 #print axioms PDIC.sharp_probability_from_h
