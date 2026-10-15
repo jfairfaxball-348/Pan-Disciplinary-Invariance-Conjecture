@@ -387,10 +387,10 @@ def fourRowEdgeCountBV (a b c d : BitVec 4) : BitVec 5 :=
   fourBitPopCount5 a + fourBitPopCount5 b +
   fourBitPopCount5 c + fourBitPopCount5 d
 
-/-- A universal 16-Boolean-variable, verified-bitblasting formulation:
-    four or more qualifying mixed pairs force at most five edges. -/
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 0 in
+/-- A universal 16-Boolean-variable, verified-bitblasting formulation:
+    four or more qualifying mixed pairs force at most five edges. -/
 theorem four_by_four_six_edge_threshold_BV
     (a b c d : BitVec 4) :
     (4 : BitVec 3) ≤ fourRowMixedCountBV a b c d →
