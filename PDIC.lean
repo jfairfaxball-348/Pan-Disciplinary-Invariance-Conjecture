@@ -136,9 +136,8 @@ private theorem maximal_check_iff
 theorem isMIS4Bool_iff_IsMIS4
     (adj : Vertex → Vertex → Bool) (s : Finset Vertex) :
     isMIS4Bool adj s = true ↔ IsMIS4 adj s := by
-  simp only [isMIS4Bool, IsMIS4, Bool.and_eq_true, List.all_eq_true,
-    allVertices_complete, true_implies, Bool.or_eq_true, Bool.not_eq_true,
-    decide_eq_true_eq, beq_iff_eq]
+  simp [isMIS4Bool, IsMIS4, allVertices_complete,
+    independent_check_iff, maximal_check_iff, List.all_eq_true]
   constructor
   · rintro ⟨⟨hc, hi⟩, hm⟩
     refine ⟨hc, ?_, ?_⟩
