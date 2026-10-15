@@ -73,12 +73,12 @@ def chargeZeroBool (s : Finset Vertex) : Bool :=
 def chargeZero (s : Finset Vertex) : Prop := chargeZeroBool s = true
 
 theorem canonical_quartets_zero :
-    ∀ i : QuartetIndex, chargeZero (quartet i) := by
+    ∀ i : QuartetIndex, chargeZeroBool (quartet i) = true := by
   decide
 
 theorem canonical_four_zero_iff :
     ∀ s : Finset Vertex, s.card = 4 →
-      (chargeZero s ↔ ∃ i : QuartetIndex, quartet i = s) := by
+      (chargeZeroBool s = true ↔ ∃ i : QuartetIndex, quartet i = s) := by
   decide
 
 /- The spider S(2,2,2,1): hub 0, neighbours 4,5,6,7,
