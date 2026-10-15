@@ -13,3 +13,5 @@ jobs:
         run: python3 scripts/verify_s000.py
       - name: Independently check S001 cap orbit and joint witness law
         run: python3 scripts/verify_s001_independent.py
+      - name: Independently check S002 sharp spider and exact rational law
+        run: python3 scripts/verify_s002.py
