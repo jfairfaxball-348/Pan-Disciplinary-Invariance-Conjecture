@@ -17,7 +17,7 @@
   "new_theorem_claimed": false,
   "new_mathematics": "balanced_4x4_bipartite_b>=4_implies_edges<=5_proved_written__not_lean",
   "novelty_gate": "OPEN_specialist_finite_design_and_extremal_MIS_audit",
-  "lean": "GENERIC_MIS_EQUIVALENCE_VERIFIED_RUN_38794729250__SPIDER_PROP_AND_SHARP_BRIDGE_AWAIT_FINAL_CI__UNIVERSAL_GRAPH_AND_MOMENTS_OPEN",
+  "lean": "S003R_KERNEL_VERIFIED_GENERIC_MIS_EQUIVALENCE_PROP_SPIDER_COUNTS_SHARP_CONDITIONAL_BRIDGE__UNIVERSAL_GRAPH_AND_MOMENTS_OPEN",
   "publication": "NOT_STARTED",
   "palomar": "NOT_REQUESTED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
@@ -26,5 +26,6 @@
   "s002_proof": "research/S002_GREEDY_CHARGE_SPIDER_PROOF.md",
   "source": "PDIC.lean",
   "last_verified_generic_ci": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38794729250",
-  "further_ci": "REQUIRE_COMPLETED_SUCCESS_ON_FINAL_SOURCE"
+  "hosted_ci": "PASS_run_38796134274_head_01a9fd5cbf523fff77415804f2ca3d52436a57d4",
+  "hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38796134274"
 }

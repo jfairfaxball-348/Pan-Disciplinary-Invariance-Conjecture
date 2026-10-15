@@ -21,7 +21,7 @@ This is an S002 written result **dependent on the explicitly cited classical nin
 
 ## Formalisation status
 
-The pinned Lean module [PDIC.lean](PDIC.lean) now adds the arbitrary-adjacency equivalence of executable and propositional four-MIS predicates, proposition-level spider count lemmas, and the **conditional** sharp rational inequality bridge. The generic equivalence passed [hosted kernel CI at d5963646](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38794729250), standard axioms only; the final S003R corollaries must also pass a completed CI run before receiving a kernel-checked claim.
+The pinned Lean module [PDIC.lean](PDIC.lean) now adds the arbitrary-adjacency equivalence of executable and propositional four-MIS predicates, proposition-level spider count lemmas, and the **conditional** sharp rational inequality bridge. The generic equivalence and final S003R proposition-level spider corollaries passed [hosted kernel CI run 38796134274](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38796134274) on source commit `01a9fd5c`. All listed proof closures report only standard Lean axioms, no `sorryAx`; the entire build, proof-hole scan and four finite scripts succeeded.
 
 **Still missing in Lean:** the universal edge-threshold/connected-graph extremiser, isomorphism equality statement, connected-bipartition correspondence, and the 2,520-fibre joint-label moment theorem. These are not implied by spider example counts or moment inversion alone.
 
