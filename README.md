@@ -15,6 +15,7 @@ Pr(N0=0)=1−M1+M2−M3; Pr(N0=1)=M1−2M2+3M3; Pr(N0=2)=M2−3M3; Pr(N0=3)=M3�
 - For every Boolean 4×4 bipartite adjacency, a mixed maximal independent four-set has a uniquely determined opposite two-set, given by the complement of its neighbourhood. A full iff pair criterion is formalised.
 - Encoding a matrix by four `BitVec 4` rows, Lean proves **b≥4 ⇒ |E|≤5** by `decide +kernel`: `four_by_four_six_edge_threshold_BV`.
 - For these same matrix predicates, **(|E|=7 and b=3) iff the row/column spider pattern**: `seven_edge_three_iff_spider_BV`. Both quantified finite theorems depend only on `propext` and `Quot.sound`; no native axiom.
+- S003R3 supplies a **proved lossless arbitrary-Boolean-adjacency row encoder**, an exact existential mixed-MIS left-pair cardinality criterion, and the new **e≥8 ⇒ b≤2** universal kernel-checked matrix theorem.
 - Written direct proof plus independent check splits exactly 192 labelled spider matrices into two sets of 96. The exact 2520-atom, eight-favourable-assignments combinatorics is written.
 
 **Boundary:** the formal BitVec count has not yet been linked by a proved theorem to the cardinality of arbitrary `IsMixedMIS` sets, or to all connected `SimpleGraph (Fin 8)` and their random-cap labelling law. Concrete spider counts, the matrix certificates and conditional moment inversion do NOT yet constitute a fully Lean-formalised flagship.
@@ -27,7 +28,8 @@ Pr(N0=0)=1−M1+M2−M3; Pr(N0=1)=M1−2M2+3M3; Pr(N0=2)=M2−3M3; Pr(N0=3)=M3�
 | S003–S003R | Concrete Lean certificates and generic MIS semantics |
 | **S003R2** | **COMPLETE** kernel-only 4×4 matrix threshold and spider iff; direct 192/fibre proof |
 | **S003R3** | **DONE, partial** — lossless row representation, actual existential witness criterion/count, e≥8⇒b≤2 in strict Lean; not yet full graph/measure bridge |
-| **S003R4** | **NEXT** — numerical BV/Prop-count bridge, connected SimpleGraph, 2520 probability semantics |\n| S004 | Conditional novelty audit and TeX manuscript |
+| **S003R4** | **NEXT** — numerical BV/Prop-count bridge, connected SimpleGraph, 2520 probability semantics |
+| S004 | Conditional novelty audit and TeX manuscript |
 
 [Session S003R3 closeout](sessions/S003R3_CLOSEOUT.md) · [New direct proof](research/S003R3_GRAPH_SEMANTICS_AND_EIGHT_EDGE_BOUND.md) · [Claims](research/CLAIMS.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md)
 
