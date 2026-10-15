@@ -184,6 +184,35 @@ theorem spider_mis4_count : mis4Count spiderAdj = 9 := by
 theorem spider_mixed_mis_count : mixedMisCount spiderAdj = 3 := by
   decide
 
+/- The executable spider witnesses now count the mathematical predicate. -/
+theorem spider_prop_mis4_count :
+    ((Finset.univ : Finset (Finset Vertex)).filter
+      (fun s => IsMIS4 spiderAdj s)).card = 9 := by
+  simpa [mis4Count, isMIS4Bool_iff_IsMIS4] using spider_mis4_count
+
+theorem spider_prop_mixed_mis_count :
+    ((Finset.univ : Finset (Finset Vertex)).filter
+      (fun s => IsMIS4 spiderAdj s ∧
+        (s.filter (fun v : Vertex => v.val < 4)).card = 2)).card = 3 := by
+  simpa [mixedMisCount, isMIS4Bool_iff_IsMIS4] using spider_mixed_mis_count
+
+/-- A conditional arithmetic bridge. The nontrivial hypothesis h ≤ 3
+    must still be supplied by a separate universal graph theorem. -/
+theorem sharp_probability_from_h (h : ℕ) (hh : h ≤ 3) :
+    (h : ℚ) / 315 ≤ 1 / 105 ∧
+      ((h : ℚ) / 315 = 1 / 105 ↔ h = 3) := by
+  have hq : (h : ℚ) ≤ 3 := by
+    exact_mod_cast hh
+  constructor
+  · linarith
+  · constructor
+    · intro he
+      have hx : (h : ℚ) = 3 := by linarith
+      exact_mod_cast hx
+    · intro he
+      subst h
+      norm_num
+
 /- Exact binomial-moment inversion when N_0 is supported in {0,1,2,3}. -/
 theorem four_point_moment_inversion
     (p0 p1 p2 p3 M1 M2 M3 : ℚ)
@@ -207,6 +236,9 @@ theorem spider_sharp_rational_identity :
   norm_num
 
 #print axioms PDIC.isMIS4Bool_iff_IsMIS4
+#print axioms PDIC.spider_prop_mis4_count
+#print axioms PDIC.spider_prop_mixed_mis_count
+#print axioms PDIC.sharp_probability_from_h
 #print axioms PDIC.quartet_triple_joint_incidence
 #print axioms PDIC.canonical_four_zero_iff
 #print axioms PDIC.spider_mixed_mis_count
