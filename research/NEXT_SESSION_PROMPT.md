@@ -1,26 +1,31 @@
-# PDIC-S003R — COMPLETE THE GRAPH–QUARTET FLAGSHIP LEAN PROOF
+# PDIC-S003R2 — KERNEL-CLOSE THE UNIVERSAL GRAPH–QUARTET FLAGSHIP
 
-**STATUS: PREPARED, NOT EXECUTED.** Next owner's "run next session" authorises exactly S003R. **Do not start S004 until the graph bound and exact witness law are kernel checked.**
+**STATUS: PREPARED; NOT EXECUTED.** The owner's next "run next session" authorises exactly S003R2. The roadmap is intentionally short: do not drift to S004 manuscript before the major bound and exact distribution are formalised.
 
 Repository: https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture
 
 ## Starting state
 
-S001 and S002 contain complete written mathematical proofs (S001 dependent on Follett et al. 2014, Prop. 2.2, nine-cap classification). S003 built a pinned Lean 4/Mathlib project and an initial explicit finite **canonical** cap/quartet/spider/moment package in `PDIC.lean`. Read **sessions/S003_CLOSEOUT.md** and its *actual hosted CI run conclusion* before treating these files as checked. A finite computational certificate is not a general graph proof or a source-level novelty audit.
+Read AGENTS.md; README.md; ROADMAP.md; authoritative/STATE.json; sessions/S003R_CLOSEOUT.md; research/FLAGSHIP_THEOREM.md; research/S002_GREEDY_CHARGE_SPIDER_PROOF.md; research/S003R_EDGE_THRESHOLD_PROOF.md; research/CLAIMS.md; research/PROVENANCE_AND_SOURCES.md; PDIC.lean; scripts/verify_s003r.py. Inspect the latest completed Lean CI (not merely a pending build) and the `#print axioms` results.
 
-## Primary objective — prove one mathematically complete exact theorem, no substitutes
+S003R added a general Boolean/propositional four-MIS equivalence and a stronger written *six-edge threshold*:
 
-1. **Truthful graph definition.** Prove the `isMIS4Bool` implementation corresponds iff to `IsMIS4` (size-four, independent, maximal) for an arbitrary symmetric simple adjacency matrix. Distinguish full `SimpleGraph` and 4×4 bipartite encodings; document a certified equivalence.
-2. **Universal sharp bound.** Formalise connected 8-vertex graphs: `h(G) ≤ 3` and `h(G) = 3 ↔ G` is isomorphic to spider `S(2,2,2,1)`. The S002 graph-degree proof covers ℓ≤2, ℓ=3, and ℓ=4 (7/8 edges); you may instead kernel-check an exhaustive **all 65,536** 4×4 bipartite matrix certificate and a connected-bipartition uniqueness reduction. Merely proving the labelled spider has `mixedMisCount=3` is insufficient. `bv_decide`, `decide`, or trusted tactics producing kernel proof terms are permitted; `native_decide`, `sorry`, unapproved axioms and opaque Python-generated conclusions are not.
-3. **Joint zero-witness law.** Formalise canonical `U0` with four exact zero quartets and the cardinality of labelled atom assignments/permutation fibres (including the 8/2520=1/315 triple event). Prove the exact N0 distribution for any connected 8-vertex graph from `m,n0,n2,h`; `four_point_moment_inversion` is already a supporting algebraic lemma. The graph max-three bound and moment identities must be proved, not assumptions disguised as the flagship.
-4. **Sharp probability corollary.** Derive `Pr(N0=3) ≤ 1/105` with equality iff spider, using exact finite cardinality statements; do not assert all arbitrary admissible caps classified in Lean unless the classical classification input itself is formalised or explicitly a hypothesis.
-5. **Optional once core passes:** greedy law under at-least-one-edge hypothesis; signed mod-three three-channel pebble conservation. Edgeless graph and fixed-cap nonzero-charge uniformity counterexamples are mandatory guards.
+    b(G) >= 4  =>  |E(G)| <= 5
 
-## Execution and exit
+for every balanced 4+4 bipartite graph. The 65,536-matrix two-implementation census corroborates this but is not itself the kernel theorem. The classical AG(3,3) nine-cap classification remains an explicitly cited outside input.
 
-- Inspect `AGENTS.md`, `ROADMAP.md`, `authoritative/STATE.json`, `research/FLAGSHIP_THEOREM.md`, `research/S002_GREEDY_CHARGE_SPIDER_PROOF.md`, `research/S001_CAP_RIGIDITY_PROOF.md`, `research/CLAIMS.md`, `PDIC.lean`, `lakefile.toml`, `lake-manifest.json`, `.github/workflows/lean.yml`, and `scripts/verify_s002.py`.
-- Run `lake build`; inspect completed GitHub Actions jobs, their actual conclusion and failure logs; run three finite scripts. Check all relevant `#print axioms`, explicitly rejecting `sorryAx` and other unapproved axioms.
-- If the full flagship succeeds, update claims, state, README, roadmap, closeout and the S004 paper prompt. If it fails, report exact checked subclaims and remaining obligations, and prepare a focused proof-completion session rather than silently publishing.
-- Stop after **one** S003R session. No Palomar/arXiv/journal correspondence.
+## Primary deliverable: full truth, not conditional placeholders
 
-Mathematics is in `research/S002_GREEDY_CHARGE_SPIDER_PROOF.md`; classical classification source is Follett et al. (2014), DOI 10.1016/j.disc.2014.08.002. Source commits are pinned in `research/PROVENANCE_AND_SOURCES.md`.
+1. **Reduce 4×4 mixed MIS to six A-pairs.** Lean-formalise arbitrary Boolean 4×4 matrices, `N(X)`, and the iff criterion: two A-vertices `X` extend to a mixed MIS exactly when `|N(X)|=2` and both unselected A-vertices meet `B\\N(X)`; `Y=B\\N(X)` is unique. Link to the now-kernel-checked `isMIS4Bool_iff_IsMIS4`.
+2. **Prove universal sharp combinatorics.** Formalise the S003R degree-case proof b≤3 for all 4+4 bipartite matrices with at least six edges; then the equality characterisation for the seven-edge connected case `S(2,2,2,1)`. No unproved enumeration oracle. Exhaustive `decide` is acceptable if kernel-reduced and CI passes, but do not substitute Python output for a proof.
+3. **Lift to any connected 8-vertex simple graph.** A compatible disjoint pair of four-MIS gives a balanced bipartition; connectedness implies at least seven edges and bipartition uniqueness. Hence the triple-compatible count h equals b and h≤3, with h=3 iff graph is isomorphic to the spider. Prove the bridge at `SimpleGraph (Fin 8)` level (or an explicitly justified equivalent representation).
+4. **Prove the complete random labelling law.** For a fixed canonical cap U0, verify the actual 2,520 unordered-atom assignment fibres and joint 8/2,520=1/315 triple event. Derive M1=2m/35, M2=2n0/35+n2/315 and M3=h/315 and apply the already proven moment inversion, rather than postulating the moments. For arbitrary admissible caps, label the external nine-cap classification as a hypothesis if not formalised.
+5. **Conclude** Pr(N0=3)≤1/105 with spider iff from the **actual formalised h bound and moments**. The purely conditional rational bridge is not sufficient on its own.
+
+Prioritise graph theorem and full distribution. If the complete package cannot be certified this session, deliver the strongest genuinely complete kernel-checked subclaims plus exact unresolved lemmas; do not falsely declare S004 ready.
+
+## Verification and closeout
+
+Run pinned `lake build`, all four scripts (`verify_s000.py`, `verify_s001_independent.py`, `verify_s002.py`, `verify_s003r.py`), and `#print axioms`. Check hosted Actions final conclusions against the latest source commit. Reject `sorryAx`, `admit`, `native_decide` and unapproved axioms. Commit all sources, update claims/state/roadmap/README, write the actual session report and complete next prompt. Stop after **one** session. No Palomar, arXiv or journal submission without owner instruction.
+
+**Primary source:** Follett et al. (2014), DOI 10.1016/j.disc.2014.08.002, classical nine-cap classification. Research-commit pins are in PROVENANCE_AND_SOURCES.md.

@@ -1,17 +1,16 @@
-# PDIC proof-first roadmap
+# PDIC proof-first roadmap (2026-10-15)
 
-**2026-10-15: S003 executed; next exactly S003R.** S002 is a complete written mathematical proof conditional on the classical nine-cap classification. Lean formalisation is a separate verification obligation.
+S003R executed: a new written six-edge threshold was proved for balanced bipartite graphs, an independent all-matrix audit was installed, and the first general Boolean/Prop four-MIS correspondence was kernel checked. Full flagship Lean verification remains open. **Next: S003R2**; do not start S004 while major graph/moment statements are missing.
 
-| Session | Milestone | Status |
+| Stage | Deliverable | Status |
 | --- | --- | --- |
-| S001 | 702-cap orbit from classical 9-cap classification, C4 quartet incidence and joint overlap law | DONE written |
-| S002 | Complete N0 zero-four-MIS count law, sharp 1/105 spider theorem, greedy zero charge and 3-channel residues | DONE written, finite corroboration |
-| S003 | Pin Lean toolchain/Mathlib, create explicit finite cap/quartet/spider/conditional moment module, CI | PARTIAL: finite package kernel verified on Actions run 38788657458; full graph theorem not in Lean |
-| S003R | Prove Boolean MIS correspondence, connected 4+4 bipartition reduction, universal h≤3 and equality iff spider, permutation-fibre law, full probability distribution | NEXT |
-| S004 | Novelty and primary-source audit, proof/Lean comparison and TeX manuscript | CONDITIONAL |
+| S001 | 702-cap orbit from classical classification; C4 quartet incidences | DONE written, classical input |
+| S002 | Exact N0 law; sharp 1/105 spider iff; greedy/pebble safeguards | DONE written, classical input |
+| S003 | Pinned Lean, concrete cap/quartet/spider and conditional moment certificates | PARTIAL Lean kernel verified |
+| S003R | All-adjacency Boolean MIS equivalence; conditional sharp arithmetic; stronger b≥4⇒e≤5 theorem | Executed, Lean PARTIAL |
+| S003R2 | Kernel proof of 4×4 pair criterion, b≤3 at e≥6, seven-edge spider equality, graph bipartition reduction, and exact 2,520-atom-fibre N0 law | NEXT |
+| S004 | Specialist novelty audit, source comparison and publishable manuscript | CONDITIONAL |
 
-**Separation:** A labelled spider enumeration does not prove the universal connected-graph bound. An algebraic moment inversion does not prove the random labelling moments. The concrete quadratic cap does not, by itself, certify classical classification of every admissible cap. No `sorry`, `admit`, `native_decide`, custom axiom or hidden computed oracle is acceptable in the theorem's proof closure. GitHub hosted PASS must be evidenced by a completed successful run for the relevant source commit.
+**Separation of statuses.** The S003R six-edge theorem has a genuine written degree-case proof plus two-method enumeration; it is not a Lean theorem. Existing Lean spider counts do not imply the universal sharp bound. Rational inversion and the conditional h≤3 arithmetic bridge do not imply actual probability moments. Classical nine-cap classification is not formalised; all abstract-cap theorems must retain that input visibly.
 
-**Guards:** greedy 2/35 identity requires ≥1 graph edge; fixed cap does not have uniformly distributed nonzero charges; pebbling residues do not imply stackability. Novelty is open.
-
-[Lean source](PDIC.lean) · [S003 closeout](sessions/S003_CLOSEOUT.md) · [S003R next](research/NEXT_SESSION_PROMPT.md) · [S002 proof](research/S002_GREEDY_CHARGE_SPIDER_PROOF.md).
+No `sorry`, `admit`, `native_decide` or custom axioms; review `#print axioms` and completed GitHub Actions run on the **actual source commit**. [Session report](sessions/S003R_CLOSEOUT.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md).
