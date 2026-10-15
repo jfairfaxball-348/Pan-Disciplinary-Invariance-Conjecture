@@ -110,6 +110,36 @@ def isMIS4Bool (adj : Vertex → Vertex → Bool) (s : Finset Vertex) : Bool :=
     (fun v => decide (v ∈ s) ||
       allVertices.any (fun u => decide (u ∈ s) && adj v u))
 
+
+/- Every element of Fin 8 appears in the executable vertex list. -/
+private theorem allVertices_complete (v : Vertex) : v ∈ allVertices := by
+  fin_cases v <;> decide
+
+private theorem independent_check_iff
+    (adj : Vertex → Vertex → Bool) (s : Finset Vertex) (u v : Vertex) :
+    (!(decide (u ∈ s) && decide (v ∈ s)) || !(adj u v)) = true ↔
+      (u ∈ s → v ∈ s → adj u v = false) := by
+  by_cases hu : u ∈ s <;> by_cases hv : v ∈ s <;>
+    cases he : adj u v <;> simp [hu, hv, he]
+
+private theorem maximal_check_iff
+    (adj : Vertex → Vertex → Bool) (s : Finset Vertex) (v : Vertex) :
+    (decide (v ∈ s) ||
+      allVertices.any (fun u => decide (u ∈ s) && adj v u)) = true ↔
+      (v ∉ s → ∃ u ∈ s, adj v u = true) := by
+  by_cases hv : v ∈ s
+  · simp [hv]
+  · simp [hv, List.any_eq_true, allVertices_complete]
+
+/-- The executable MIS test has exactly the paper-level semantics for every
+    adjacency function, even without assuming symmetry or irreflexivity. -/
+theorem isMIS4Bool_iff_IsMIS4
+    (adj : Vertex → Vertex → Bool) (s : Finset Vertex) :
+    isMIS4Bool adj s = true ↔ IsMIS4 adj s := by
+  simp [isMIS4Bool, IsMIS4, allVertices_complete,
+    independent_check_iff, maximal_check_iff, List.all_eq_true]
+
+
 def mis4Count (adj : Vertex → Vertex → Bool) : ℕ :=
   ((Finset.univ : Finset (Finset Vertex)).filter
     (fun s => isMIS4Bool adj s = true)).card
@@ -147,6 +177,7 @@ theorem spider_sharp_rational_identity :
     (3 : ℚ) / 315 = 1 / 105 := by
   norm_num
 
+#print axioms PDIC.isMIS4Bool_iff_IsMIS4
 #print axioms PDIC.quartet_triple_joint_incidence
 #print axioms PDIC.canonical_four_zero_iff
 #print axioms PDIC.spider_mixed_mis_count
