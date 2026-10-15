@@ -76,6 +76,8 @@ theorem canonical_quartets_zero :
     ∀ i : QuartetIndex, chargeZeroBool (quartet i) = true := by
   decide
 
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
 theorem canonical_four_zero_iff :
     ∀ s : Finset Vertex, s.card = 4 →
       (chargeZeroBool s = true ↔ ∃ i : QuartetIndex, quartet i = s) := by
