@@ -19,7 +19,12 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get
       - name: Kernel-check PDIC declarations
-        run: lake build
+        run: |
+          lake build 2>&1 | tee pdic-lean-build.log
+          if grep -E 'sorryAx|_native\\.|Lean.trustCompiler' pdic-lean-build.log; then
+            echo "Rejected nonstandard axiom in Lean proof declarations"
+            exit 1
+          fi
       - name: Reject unapproved proof holes
         run: |
           if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' PDIC.lean; then
