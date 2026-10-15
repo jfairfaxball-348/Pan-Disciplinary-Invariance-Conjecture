@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | S001 | 702-cap orbit from classical 9-cap classification, C4 quartet incidence and joint overlap law | DONE written |
 | S002 | Complete N0 zero-four-MIS count law, sharp 1/105 spider theorem, greedy zero charge and 3-channel residues | DONE written, finite corroboration |
-| S003 | Pin Lean toolchain/Mathlib, create explicit finite cap/quartet/spider/conditional moment module, CI | PARTIAL: limited kernel package; full graph theorem not in Lean |
+| S003 | Pin Lean toolchain/Mathlib, create explicit finite cap/quartet/spider/conditional moment module, CI | PARTIAL: finite package kernel verified on Actions run 38788657458; full graph theorem not in Lean |
 | S003R | Prove Boolean MIS correspondence, connected 4+4 bipartition reduction, universal h≤3 and equality iff spider, permutation-fibre law, full probability distribution | NEXT |
 | S004 | Novelty and primary-source audit, proof/Lean comparison and TeX manuscript | CONDITIONAL |
 

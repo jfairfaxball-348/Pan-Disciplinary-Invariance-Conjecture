@@ -16,12 +16,13 @@
   "new_theorem_claimed": false,
   "theorem_candidate": "connected 8-vertex graph N0 exact distribution and unique S(2,2,2,1) extremizer",
   "novelty_gate": "OPEN_specialist_finite_design_and_extremal_MIS_audit",
-  "lean": "S003_PARTIAL__source_PDIC.lean__universal_connected_graph_bound_and_full_random_distribution_NOT_FORMALISED",
+  "lean": "S003_PARTIAL_BUT_KERNEL_VERIFIED__canonical_quartets_spider_counts_moment_inversion__universal_graph_bound_and_distribution_OPEN",
   "publication": "NOT_STARTED",
   "palomar": "NOT_REQUESTED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "s002_proof": "research/S002_GREEDY_CHARGE_SPIDER_PROOF.md",
   "s003_closeout": "sessions/S003_CLOSEOUT.md",
   "s003_lean_source": "PDIC.lean",
-  "hosted_ci": "RECHECK_LATEST_S003_BRANCH_RUN_BEFORE_CLAIMING_PASS"
+  "hosted_ci": "PASS_lean_and_three_finite_scripts_run_38788657458_head_6501e38cb6c941e9d50dfb196c37a900787c227a",
+  "hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38788657458"
 }
