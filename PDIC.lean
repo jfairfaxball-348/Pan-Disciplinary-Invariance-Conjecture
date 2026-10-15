@@ -604,3 +604,31 @@ theorem fourRowEdgeCountBV_eq_actualMatrixEdgeCount
 #print axioms PDIC.fourRowEdgeCountBV_eq_actualMatrixEdgeCount
 
 end PDIC
+
+namespace PDIC
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 0 in
+/-- The computational six left-pair tests count EXACTLY the mixed
+    maximal-independent-set witnesses for every 4x4 adjacency.
+    No fixed spider instance or finite sample is substituted. -/
+theorem fourRowMixedCountBV_eq_computable
+    (a b c d : BitVec 4) :
+    (fourRowMixedCountBV a b c d).toNat =
+      computableMixedLeftPairCount (adjOfRows ![a, b, c, d]) := by
+  revert a b c d
+  decide +kernel
+
+/-- Consequently the same finite certificate counts the mathematical
+    existential mixed-MIS witnesses. -/
+theorem fourRowMixedCountBV_eq_actual
+    (a b c d : BitVec 4) :
+    (fourRowMixedCountBV a b c d).toNat =
+      actualMixedLeftPairCount (adjOfRows ![a, b, c, d]) := by
+  rw [← computableMixedLeftPairCount_eq_actual]
+  exact fourRowMixedCountBV_eq_computable a b c d
+
+#print axioms PDIC.fourRowMixedCountBV_eq_computable
+#print axioms PDIC.fourRowMixedCountBV_eq_actual
+
+end PDIC
