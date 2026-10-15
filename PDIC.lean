@@ -557,3 +557,27 @@ theorem eight_edges_at_most_two_mixed_BV (a b c d : BitVec 4) :
 #print axioms PDIC.eight_edges_at_most_two_mixed_BV
 
 end PDIC
+
+
+namespace PDIC
+
+/- S003R4: a COMPUTABLE finite count of genuine mixed-MIS witnesses.
+   This is defined through the criterion, not through a substitute
+   matrix census. The Boolean decision is propositionally exact. -/
+def computableMixedLeftPairCount (adj : Side → Side → Bool) : ℕ :=
+  ((Finset.univ : Finset (Finset Side)).filter
+    (fun X => decide (mixedPairCriterion adj X))).card
+
+theorem computableMixedLeftPairCount_eq_actual
+    (adj : Side → Side → Bool) :
+    computableMixedLeftPairCount adj = actualMixedLeftPairCount adj := by
+  classical
+  unfold computableMixedLeftPairCount actualMixedLeftPairCount
+  apply congrArg Finset.card
+  ext X
+  simp only [Finset.mem_filter, Finset.mem_univ, true_and, decide_eq_true_eq]
+  exact (exists_mixed_iff_criterion adj X).symm
+
+#print axioms PDIC.computableMixedLeftPairCount_eq_actual
+
+end PDIC
