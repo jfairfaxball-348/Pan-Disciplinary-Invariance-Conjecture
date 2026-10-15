@@ -400,4 +400,48 @@ theorem four_by_four_six_edge_threshold_BV
 
 #print axioms PDIC.four_by_four_six_edge_threshold_BV
 
+/- S003R2 seven-edge equality certificate: a spider matrix is a row-hub
+   with three different unit rows, or its transpose. Both orientations
+   are included explicitly; connectivity is not assumed. -/
+def oneNeighbourBV (v : BitVec 4) : Bool :=
+  (v == 1) || (v == 2) || (v == 4) || (v == 8)
+
+def threeDistinctLeavesBV (x y z : BitVec 4) : Bool :=
+  oneNeighbourBV x && oneNeighbourBV y && oneNeighbourBV z &&
+  (x != y) && (x != z) && (y != z)
+
+def spiderHubRowsBV (a b c d : BitVec 4) : Bool :=
+  ((a == 15) && threeDistinctLeavesBV b c d) ||
+  ((b == 15) && threeDistinctLeavesBV a c d) ||
+  ((c == 15) && threeDistinctLeavesBV a b d) ||
+  ((d == 15) && threeDistinctLeavesBV a b c)
+
+def columnOfRowsBV (a b c d : BitVec 4) (j : Nat) : BitVec 4 :=
+  (if a.getLsbD j then 1 else 0) +
+  (if b.getLsbD j then 2 else 0) +
+  (if c.getLsbD j then 4 else 0) +
+  (if d.getLsbD j then 8 else 0)
+
+def spiderMatrixBV (a b c d : BitVec 4) : Bool :=
+  spiderHubRowsBV a b c d ||
+  spiderHubRowsBV
+    (columnOfRowsBV a b c d 0)
+    (columnOfRowsBV a b c d 1)
+    (columnOfRowsBV a b c d 2)
+    (columnOfRowsBV a b c d 3)
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 0 in
+/-- Exactly seven edges and exactly three mixed-MIS left-pair witnesses
+    hold iff the matrix is a spider in one of the two orientations.
+    Kernel reduction certifies the COMPLETE 16-bit finite theorem. -/
+theorem seven_edge_three_iff_spider_BV (a b c d : BitVec 4) :
+    (fourRowEdgeCountBV a b c d = (7 : BitVec 5) ∧
+      fourRowMixedCountBV a b c d = (3 : BitVec 3)) ↔
+        spiderMatrixBV a b c d = true := by
+  revert a b c d
+  decide +kernel
+
+#print axioms PDIC.seven_edge_three_iff_spider_BV
+
 end PDIC
