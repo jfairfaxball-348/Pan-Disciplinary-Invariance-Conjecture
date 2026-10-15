@@ -444,4 +444,102 @@ theorem seven_edge_three_iff_spider_BV (a b c d : BitVec 4) :
 
 #print axioms PDIC.seven_edge_three_iff_spider_BV
 
+
+/- S003R3: a lossless encoding for EVERY 4×4 Boolean adjacency, without
+   appealing to an unchecked assignment of BitVec rows. -/
+def encodeFourBools (p q r s : Bool) : BitVec 4 :=
+  (if p then 1 else 0) ||| (if q then 2 else 0) |||
+    (if r then 4 else 0) ||| (if s then 8 else 0)
+
+set_option maxRecDepth 4096 in
+theorem encodeFourBools_get (p q r s : Bool) (j : Side) :
+    (encodeFourBools p q r s).getLsbD j.val =
+      (if j = 0 then p else if j = 1 then q else if j = 2 then r else s) := by
+  revert p q r s j
+  decide +kernel
+
+def rowsOfAdj (adj : Side → Side → Bool) (i : Side) : BitVec 4 :=
+  encodeFourBools (adj i 0) (adj i 1) (adj i 2) (adj i 3)
+
+def adjOfRows (rows : Side → BitVec 4) (i j : Side) : Bool :=
+  (rows i).getLsbD j.val
+
+theorem rowsOfAdj_get (adj : Side → Side → Bool) (i j : Side) :
+    (rowsOfAdj adj i).getLsbD j.val = adj i j := by
+  unfold rowsOfAdj
+  rw [encodeFourBools_get]
+  fin_cases j <;> rfl
+
+/-- The row encoder has a *proved* left inverse: no 4×4 adjacency data
+    are lost or introduced by the BitVec representation. -/
+theorem adjOfRows_rowsOfAdj (adj : Side → Side → Bool) :
+    adjOfRows (rowsOfAdj adj) = adj := by
+  funext i j
+  exact rowsOfAdj_get adj i j
+
+theorem rowsOfAdj_injective :
+    Function.Injective rowsOfAdj := by
+  intro adj₁ adj₂ h
+  have hh := congrArg adjOfRows h
+  simpa [adjOfRows_rowsOfAdj] using hh
+
+/- This is the *actual* existential mixed-MIS left-pair predicate.
+   The earlier unique-opposite-side theorem turns it into a
+   quantifier-free-in-Y cardinality formula for arbitrary adjacency. -/
+def mixedPairCriterion (adj : Side → Side → Bool) (X : Finset Side) : Prop :=
+  X.card = 2 ∧
+  (Finset.univ \ sideNeighbours adj X).card = 2 ∧
+  (∀ i : Side, i ∉ X →
+    ∃ j ∈ (Finset.univ \ sideNeighbours adj X), adj i j = true)
+
+theorem exists_mixed_iff_criterion (adj : Side → Side → Bool)
+    (X : Finset Side) :
+    (∃ Y : Finset Side, IsMixedMIS adj X Y) ↔
+      mixedPairCriterion adj X := by
+  constructor
+  · rintro ⟨Y, h⟩
+    obtain ⟨hx, hy, hEq, hDom⟩ :=
+      (mixed_iff_complement_criterion adj X Y).mp h
+    refine ⟨hx, ?_, ?_⟩
+    · simpa only [← hEq] using hy
+    · simpa only [← hEq] using hDom
+  · rintro ⟨hx, hy, hDom⟩
+    exact ⟨Finset.univ \ sideNeighbours adj X,
+      (mixed_iff_complement_criterion adj X _).mpr ⟨hx, hy, rfl, hDom⟩⟩
+
+noncomputable def actualMixedLeftPairCount (adj : Side → Side → Bool) : ℕ := by
+  classical
+  exact ((Finset.univ : Finset (Finset Side)).filter
+    (fun X => ∃ Y : Finset Side, IsMixedMIS adj X Y)).card
+
+noncomputable def mixedCriterionCount (adj : Side → Side → Bool) : ℕ := by
+  classical
+  exact ((Finset.univ : Finset (Finset Side)).filter
+    (fun X => mixedPairCriterion adj X)).card
+
+/-- Cardinality-level, rather than merely pointwise, witness bridge.
+    Each eligible left pair corresponds to exactly one mixed MIS (by
+    mixed_left_pair_injective), and this count is its exact criterion count. -/
+theorem actualMixedLeftPairCount_eqCriterion (adj : Side → Side → Bool) :
+    actualMixedLeftPairCount adj = mixedCriterionCount adj := by
+  classical
+  unfold actualMixedLeftPairCount mixedCriterionCount
+  apply congrArg Finset.card
+  ext X
+  simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+  exact exists_mixed_iff_criterion adj X
+
+theorem encoded_mixed_left_count (adj : Side → Side → Bool) :
+    actualMixedLeftPairCount (adjOfRows (rowsOfAdj adj)) =
+      mixedCriterionCount adj := by
+  rw [adjOfRows_rowsOfAdj]
+  exact actualMixedLeftPairCount_eqCriterion adj
+
+#print axioms PDIC.encodeFourBools_get
+#print axioms PDIC.adjOfRows_rowsOfAdj
+#print axioms PDIC.rowsOfAdj_injective
+#print axioms PDIC.exists_mixed_iff_criterion
+#print axioms PDIC.actualMixedLeftPairCount_eqCriterion
+#print axioms PDIC.encoded_mixed_left_count
+
 end PDIC
