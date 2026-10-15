@@ -20,6 +20,7 @@ jobs:
         run: lake exe cache get
       - name: Kernel-check PDIC declarations
         run: |
+          set -euo pipefail
           lake build 2>&1 | tee pdic-lean-build.log
           if grep -E 'sorryAx|_native\\.|Lean.trustCompiler' pdic-lean-build.log; then
             echo "Rejected nonstandard axiom in Lean proof declarations"
