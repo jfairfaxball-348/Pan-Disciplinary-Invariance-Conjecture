@@ -581,3 +581,26 @@ theorem computableMixedLeftPairCount_eq_actual
 #print axioms PDIC.computableMixedLeftPairCount_eq_actual
 
 end PDIC
+
+namespace PDIC
+
+/- The actual matrix edge cardinality (one oriented edge per ordered
+   left-right vertex pair), without using the BitVec arithmetic count. -/
+def actualMatrixEdgeCount (adj : Side → Side → Bool) : ℕ :=
+  ((Finset.univ : Finset (Side × Side)).filter
+    (fun ij => adj ij.1 ij.2 = true)).card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 0 in
+/-- A complete 16-bit kernel-only certificate for the numerical edge
+    count of a general Boolean four-by-four bipartite adjacency. -/
+theorem fourRowEdgeCountBV_eq_actualMatrixEdgeCount
+    (a b c d : BitVec 4) :
+    (fourRowEdgeCountBV a b c d).toNat =
+      actualMatrixEdgeCount (adjOfRows ![a, b, c, d]) := by
+  revert a b c d
+  decide +kernel
+
+#print axioms PDIC.fourRowEdgeCountBV_eq_actualMatrixEdgeCount
+
+end PDIC
