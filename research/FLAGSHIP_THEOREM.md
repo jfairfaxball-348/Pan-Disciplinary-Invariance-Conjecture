@@ -1,46 +1,47 @@
-# Formal candidate: cap–charge–nerve transfer
+# Frozen PDIC mathematical target after S002
 
-## Finite geometric input (S001 proved with classical nine-cap classification)
+**S002 PROVED, conditional only on explicit classical nine-cap classification. Novelty remains OPEN.** Exact written proof: [S002_GREEDY_CHARGE_SPIDER_PROOF.md](S002_GREEDY_CHARGE_SPIDER_PROOF.md). S001 finite geometry: [S001_CAP_RIGIDITY_PROOF.md](S001_CAP_RIGIDITY_PROOF.md).
 
-Let A=(F_3)^3, and C the eight-element subsets U of A\\{0} having no nonempty zero-sum subset of cardinality at most three. S001 proves the following using Follett et al. (2014), Proposition 2.2 (classical nine-cap classification), plus explicit quadratic normal form and group stabiliser proof:
+## Classical cap input and provenance
 
-- |C| = 702.
-- GL(3,3) acts transitively on C with stabiliser 16.
-- For k=0,...,8, the numbers c_U(k) of zero-sum k-subsets of U are (1,0,0,0,4,0,0,0,1).
-- The four zero-sum quartets form a hypergraph with two disjoint pairs of edges, four intersections of size two, no triple intersection and nerve the four-cycle C4. Hence the abstract nerve has reduced integral H_1=Z; it has no three-edge sunflower.
+Let A=F3^3, and U range over eight-point subsets of A\{0} without zero-sum subsets of size 1,2,3. Classical nine-cap affine classification (Follett et al. 2014, Prop. 2.2) plus S001 gives 702 such U, one GL(3,3) orbit, stabiliser 16; zero-sum subset profile (1,0,0,0,4,0,0,0,1). The four zero-sum quartets Qij=Ai union Bj (four 2-point atoms) have intersection nerve C4 and abstract H1=Z.
 
-S001 proof: [S001_CAP_RIGIDITY_PROOF.md](S001_CAP_RIGIDITY_PROOF.md). Numerical checks independently confirm it; bounded [prior-art audit](S001_PRIOR_ART_AUDIT.md) marks novelty unresolved. S001 additionally proves exact pair-zero probabilities for overlap 0..4 equal to (2/35,0,1/315,0,2/35), and a sharp connected-graph upper bound of three zero-charge four-element independent sets, attained by a tree with three maximal such sets.
+## Principal graph–geometry flagship: entire count law and unique sharp extremiser
 
-## Stitched exact-law target (S002, future)
+Let G be **connected** on eight vertices, lambda a uniformly random bijection to any fixed admissible cap U, and F its family of size-four **maximal independent sets**. Let m=|F|, n_t the number of unordered pairs of different members of F with overlap t, and h the number of unordered triples consisting of a disjoint complementary pair and a third member meeting each in exactly 2 vertices.
 
-For graph T with eight vertices and at least one edge: choose U uniformly from C, label V(T) by U through an independent uniformly random bijection lambda, and independently produce maximal independent set I by scanning vertices in a uniformly random order and accepting a vertex unless a previous accepted neighbour blocks it.
+For N0 = number of members of F with label sum 0, N0<=3. Put M1=2m/35, M2=2n0/35+n2/315, M3=h/315. **Fully proved**:
+    
+    Pr(N0=0)=1-M1+M2-M3
+    Pr(N0=1)=M1-2M2+3M3
+    Pr(N0=2)=M2-3M3
+    Pr(N0=3)=M3 <= 1/105.
 
-Write P_T(z)=sum_k Pr(|I|=k) z^k. The target exact law is
+Equality Pr(N0=3)=1/105 holds **iff G is the tree spider S(2,2,2,1)**, three length-two legs and one length-one leg. This is a theorem involving the quartet C4 design and an independent non-enumerative graph structural proof (with exhaustive finite corroboration). We do not assert original literature priority.
 
-    Pr(sum_{v in I} lambda(v) = 0) = (2/35) * [z^4]P_T(z),
+## Greedy–pebbling transfer package
 
-    Pr(sum_{v in I} lambda(v) = a)
-       = (1 - (2/35)*[z^4]P_T(z))/26
-       for every a != 0 in A.
+If G has **at least one edge**, sample random-order greedy MIS I independently of U and labelling:
 
-The second line **requires** the GL-invariant random cap: do not claim it for an arbitrary fixed U. The first line needs only the fixed U's profile and the uniform bijection.
+    Pr(sum lambda(I)=0)=(2/35)*Pr(|I|=4).
 
-For a tree T, choose root r and epsilon(v)=(-1)^distance(r,v). Put three pebble channels C_j(v) congruent to epsilon(v)*lambda(v)_j modulo 3 on selected vertices and 0 elsewhere (nonnegative representatives). A pebbling move uses two pebbles from v to neighbour w and adds one at w. Its change in signed channel charge is -2epsilon(v)+epsilon(w)=-3epsilon(v)=0 modulo 3. Thus the law is also the distribution of three genuine conserved pebbling charges.
+If U is uniform from the 702 admissible caps as well, then, for each nonzero a in F3^3:
 
-Exact rational checks inherited from the synthesis:
-- Path P8: P_T=(11/45)z^3+(34/45)z^4; charge-zero probability 68/1575.
-- Star K1,7: P_T=(1/8)z+(7/8)z^7; charge-zero probability 0.
-- Double-star with three leaves at each centre: P_T=(7/16)z^4+(9/16)z^6; charge-zero probability 1/40.
+    Pr(sum lambda(I)=a)=(1-(2/35)*Pr(|I|=4))/26.
 
-## Necessary originality advance
+The edgeless G counterexample forces the edge hypothesis. The second claim is not valid for arbitrary fixed U.
 
-The fully general identity
+For a rooted tree T and epsilon(v)=(-1)^dist(root,v), each of three nonnegative channel pebble configurations C_j(v) has conserved residue Q_j=sum_v epsilon(v) C_j(v) mod 3 under legal same-channel moves (2 at v -> 1 at a neighbour), since delta=-3 epsilon(v). On chosen I initialise C_j(v) congruent epsilon(v)*lambda(v)_j mod 3 so Q equals the label sum. This is not a reachability or stackability result.
 
-    Pr(sum lambda(I)=0)
-      = sum_k Pr(|I|=k) c_U(k)/binom(n,k)
+Exact examples:
 
-follows immediately from conditioning under a random bijection. It is a **baseline, not the conjecture**. The first-paper flagship needs genuinely nontrivial witness classification, topology, a sharp graph-theoretic inequality or a significant broader generalisation, with clear prior-art boundaries.
+- P8: Pr(|I|=4)=34/45, Pr(Q=0)=68/1575, Pr(N0=3)=1/315.
+- Star K1,7: Pr(|I|=4)=0, Pr(Q=0)=0, Pr(N0=3)=0.
+- Balanced double-star K1,3--K1,3: Pr(|I|=4)=7/16, Pr(Q=0)=1/40, Pr(N0=3)=0.
+- Spider S(2,2,2,1): every maximal independent set has four vertices, so Pr(|I|=4)=1, Pr(Q=0)=2/35, Pr(N0=3)=1/105.
 
-Broader exploratory PDIC conjecture (NOT ASSERTED TRUE): in well-specified families of *extremal* short-zero-sum-free sets in (F_3)^d, the zero-sum witness profile and the nerve homotopy type may be independent of the extremiser. Test and falsify in higher dimension before freezing an all-d statement; if false identify its exact validity range.
+The elementary general random-bijection mixture and charge invariant are *supporting lemmas*, not the originality target. The sharp spider and complete witness-count law are the first plausible flagship; existing design/MIS literature might subsume them. Do NOT extrapolate to higher d, all extremisers, Collatz, Davenport, sunflower, HHA, or stackability.
 
-Neither this finite identity nor the abstract C4 nerve resolves the Erdős–Rado sunflower, full rank-three Davenport, Collatz, Almost Stacked or HHA headline problem.
+## S003 Lean target
+
+Proof first is complete for this *fixed-size* package. S003 should formalise minimal trusted interfaces in this order: (1) finite 4-subset quartets and pair/triple incidence certificate; (2) exact 4-MIS moment/distribution theorem conditional on that incidence; (3) combinatorial degree lemma b<=3 plus spider equality, or a kernel-proved exhaustive Fin 8 instance if that path is smaller and genuinely complete; (4) greedy law and channel invariance. Lean 4 build, axiom/placeholder audit, hosted CI required before a formalisation claim. S004 is paper + novelty audit.
