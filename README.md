@@ -1,24 +1,24 @@
 # Pan-Disciplinary Invariance Conjecture (PDIC)
 
-**Mission:** find and prove a mathematically substantive connection between finite-group zero-sum geometry, random graph algorithms, conserved graph-pebbling charges, and witness-hypergraph topology; formalise the first defensible theorem in Lean and write a manuscript **within four mathematical sessions after bootstrap**.
+**Mission:** combine finite-group zero-sum geometry, random graph algorithms, conserved tree-pebbling residues, and witness-hypergraph topology into substantive new-looking *fully proved* finite theorems; formalise in Lean 4 and write an honest manuscript on the accelerated four-session roadmap.
 
-**Status (2026-10-15): S001 complete. The 702-cap rigidity, C4 quartet nerve, exact joint four-witness law, and a sharp connected-graph three-witness bound are proved with a clearly cited classical nine-cap classification input; two independent finite checkers pass locally. PDIC Lean and novelty audits remain open.** The general random-bijection averaging formula is an elementary baseline, **not** the conjecture and not a novelty claim.
+**Status (2026-10-15): S002 complete.** Using the cited classical classification of nine-caps in AG(3,3), S001 established a 702-cap orbit, its four-quartet C4 witness geometry, and a joint-overlap law. S002 proved a **complete exact distribution for the number of zero-charge size-four maximal independent sets** in connected eight-vertex graphs and the **sharp bound Pr(N0=3)<=1/105, with equality iff the spider S(2,2,2,1)**. S002 also proved the greedy zero-charge law (for graphs with at least one edge) and three signed pebbling-channel invariants. The mathematical proof and an independent exact-rational local verifier are available. **PDIC Lean and specialist novelty/priority checks remain open.**
 
-## Fast route
+## Four-session roadmap
 
-| Session | Deliverable |
-| --- | --- |
-| **S001 — DONE** | Rigorous classical-input cap rigidity: 702 sets; 16 stabiliser; four quartets and C4 nerve; joint witness correlations; connected graph sharp bound 3. |
-| **S002** | Compose the exact greedy-size transfer law, the 3-channel pebbling invariant and at least one sharp/nonroutine consequence. Freeze only fully proved statements. |
-| **S003** | Lean 4 formalisation of the frozen mathematical core, axiom/placeholder audit and hosted CI. |
-| **S004** | Source-level novelty audit, paper in `paper/main.tex`, buildable PDF, proof/Lean correspondence and explicit scope of originality. |
+| Session | Milestone | State |
+| --- | --- | --- |
+| S001 | Prove classical-input cap geometry, C4 nerve, quartet pair law and connected-graph obstruction. | **DONE** |
+| S002 | Compose greedy and charge transfer; prove exact 4-MIS witness-count law and sharp spider triple-saturation theorem. | **DONE** |
+| S003 | Formalise genuine theorem core in Lean 4 with no unproved placeholders or unapproved axioms; build/test, hosted CI. | **NEXT** |
+| S004 | Source-level novelty/significance review, publication-quality manuscript with precise scope, TeX/PDF if feasible. | **CONDITIONAL** |
 
-The schedule is an **aggressive objective, not a guarantee**. Do not promote computation to proof, elementary averaging to an original theorem, or a preprint to peer review. If S001-S002 uncover prior art or a false claim, document the failure and take the fastest genuine alternative within the same programme.
+Four sessions is an aggressive target, not a promise of formalisation/novelty. The umbrella name PDIC remains aspirational; no all-dimensional pan-disciplinary invariance conjecture, sunflower, Collatz, Davenport, HHA or TreeStack theorem is claimed resolved.
 
-**Next:** [Full runnable S002 prompt](research/NEXT_SESSION_PROMPT.md) · [Short roadmap](ROADMAP.md) · [Mathematical target](research/FLAGSHIP_THEOREM.md) · [Claim ledger](research/CLAIMS.md) · [Sources](research/PROVENANCE_AND_SOURCES.md)
+**Next session:** [Full runnable S003 Lean handoff](research/NEXT_SESSION_PROMPT.md). Execution: owner's "run next session" authorises exactly the named next session, with no additional confirmation, and never automatically advances another session.
 
-**Execution:** When the owner says “run next session” or pastes the session prompt, execute exactly the named next session immediately. A future prompt is a handoff, not a request for a second confirmation. Never automatically execute a later session.
+**Primary S002 results:** [Written structural proof](research/S002_GREEDY_CHARGE_SPIDER_PROOF.md) · [Frozen target](research/FLAGSHIP_THEOREM.md) · [Claim register](research/CLAIMS.md) · [S002 closeout](sessions/S002_CLOSEOUT.md) · [Provenance and literature](research/PROVENANCE_AND_SOURCES.md).
 
-[S001 proof](research/S001_CAP_RIGIDITY_PROOF.md) · [S001 source audit](research/S001_PRIOR_ART_AUDIT.md) · [S001 closeout](sessions/S001_CLOSEOUT.md).
+**Reproduce:** `python3 scripts/verify_s000.py`, `python3 scripts/verify_s001_independent.py`, `python3 scripts/verify_s002.py`. These are finite checks, not Lean verification or novelty certificates. The GitHub Actions workflow runs all three; consult the actual hosted run conclusion before claiming hosted PASS.
 
-The umbrella name PDIC is aspirational. The first paper will carry a more precise mathematical title, tentatively *Zero-sum cap witnesses and conserved charges of random greedy independent sets*.
+The routine random-bijection mixture is supporting arithmetic, not the claimed originality target. The first-paper tentative title is *Zero-sum quartet witnesses and sharp saturation on eight-vertex graphs*.
