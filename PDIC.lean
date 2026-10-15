@@ -268,4 +268,91 @@ theorem spider_sharp_rational_identity :
 #print axioms PDIC.spider_mixed_mis_count
 #print axioms PDIC.four_point_moment_inversion
 
+/- S003R2: universal 4+4 bipartite neighbourhood/complement semantics.
+   This result holds for ANY rectangular Boolean adjacency function;
+   no degree assumptions, 65,536-matrix enumeration or special spider
+   are used in its proof. -/
+abbrev Side := Fin 4
+
+def sideNeighbours (adj : Side → Side → Bool) (X : Finset Side) : Finset Side :=
+  Finset.univ.filter (fun j => ∃ i ∈ X, adj i j = true)
+
+theorem mem_sideNeighbours_iff
+    (adj : Side → Side → Bool) (X : Finset Side) (j : Side) :
+    j ∈ sideNeighbours adj X ↔ ∃ i ∈ X, adj i j = true := by
+  simp [sideNeighbours]
+
+def IsMixedMIS (adj : Side → Side → Bool)
+    (X Y : Finset Side) : Prop :=
+  X.card = 2 ∧ Y.card = 2 ∧
+  (∀ i ∈ X, ∀ j ∈ Y, adj i j = false) ∧
+  (∀ i : Side, i ∉ X → ∃ j ∈ Y, adj i j = true) ∧
+  (∀ j : Side, j ∉ Y → ∃ i ∈ X, adj i j = true)
+
+/-- Any mixed maximal independent set has a UNIQUE opposite-side pair,
+    namely the complement of the full neighbourhood of its left pair.
+    No finite case checking or graph connectivity is used. -/
+theorem mixed_opposite_unique
+    (adj : Side → Side → Bool) (X Y : Finset Side)
+    (h : IsMixedMIS adj X Y) :
+    Y = Finset.univ \ sideNeighbours adj X := by
+  rcases h with ⟨_, _, hInd, _, hDomB⟩
+  apply Finset.ext
+  intro j
+  simp only [Finset.mem_sdiff, Finset.mem_univ, true_and]
+  constructor
+  · intro hj hn
+    rcases (mem_sideNeighbours_iff adj X j).mp hn with ⟨i, hi, he⟩
+    have hf := hInd i hi j hj
+    simp [hf] at he
+  · intro hn
+    by_contra hnot
+    rcases hDomB j hnot with ⟨i, hi, he⟩
+    exact hn ((mem_sideNeighbours_iff adj X j).mpr ⟨i, hi, he⟩)
+
+/-- Four-by-four pair test, without any unproved enumeration oracle:
+    each mixed four-MIS is determined by its left two-set, and the
+    remaining domination condition is precisely the condition below. -/
+theorem mixed_iff_complement_criterion
+    (adj : Side → Side → Bool) (X Y : Finset Side) :
+    IsMixedMIS adj X Y ↔
+      X.card = 2 ∧ Y.card = 2 ∧
+      Y = Finset.univ \ sideNeighbours adj X ∧
+      (∀ i : Side, i ∉ X → ∃ j ∈ Y, adj i j = true) := by
+  constructor
+  · intro h
+    rcases h with ⟨hX, hY, hInd, hDomA, hDomB⟩
+    exact ⟨hX, hY,
+      mixed_opposite_unique adj X Y ⟨hX, hY, hInd, hDomA, hDomB⟩,
+      hDomA⟩
+  · rintro ⟨hX, hY, hEq, hDomA⟩
+    refine ⟨hX, hY, ?_, hDomA, ?_⟩
+    · intro i hi j hj
+      have hjC : j ∈ Finset.univ \ sideNeighbours adj X := by
+        rw [← hEq]
+        exact hj
+      have hnot : j ∉ sideNeighbours adj X := by
+        simpa using hjC
+      cases he : adj i j with
+      | false => exact he
+      | true =>
+          exact False.elim (hnot ((mem_sideNeighbours_iff adj X j).mpr
+            ⟨i, hi, he⟩))
+    · intro j hj
+      have hn : j ∈ sideNeighbours adj X := by
+        by_contra hnot
+        apply hj
+        rw [hEq]
+        simp [hnot]
+      exact (mem_sideNeighbours_iff adj X j).mp hn
+
+theorem mixed_left_pair_injective
+    (adj : Side → Side → Bool) (X Y Z : Finset Side)
+    (hY : IsMixedMIS adj X Y) (hZ : IsMixedMIS adj X Z) : Y = Z := by
+  rw [mixed_opposite_unique adj X Y hY, mixed_opposite_unique adj X Z hZ]
+
+#print axioms PDIC.mixed_opposite_unique
+#print axioms PDIC.mixed_iff_complement_criterion
+#print axioms PDIC.mixed_left_pair_injective
+
 end PDIC
