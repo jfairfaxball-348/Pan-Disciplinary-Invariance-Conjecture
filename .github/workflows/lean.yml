@@ -31,3 +31,4 @@ jobs:
           python3 scripts/verify_s000.py
           python3 scripts/verify_s001_independent.py
           python3 scripts/verify_s002.py
+          python3 scripts/verify_s003r.py
