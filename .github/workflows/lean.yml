@@ -22,7 +22,7 @@ jobs:
         run: |
           set -euo pipefail
           lake build 2>&1 | tee pdic-lean-build.log
-          if grep -E 'sorryAx|_native\\.|Lean.trustCompiler' pdic-lean-build.log; then
+          if grep -E 'sorryAx|_native|Lean.trustCompiler' pdic-lean-build.log; then
             echo "Rejected nonstandard axiom in Lean proof declarations"
             exit 1
           fi
@@ -32,9 +32,10 @@ jobs:
             echo "Forbidden proof hole or custom axiom in Lean source"
             exit 1
           fi
-      - name: Run pre-existing finite checks
+      - name: Run all five independent finite checkers
         run: |
           python3 scripts/verify_s000.py
           python3 scripts/verify_s001_independent.py
           python3 scripts/verify_s002.py
           python3 scripts/verify_s003r.py
+          python3 scripts/verify_s003r2.py

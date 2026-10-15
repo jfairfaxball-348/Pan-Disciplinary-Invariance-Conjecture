@@ -1,16 +1,17 @@
-# PDIC proof-first roadmap (2026-10-15)
+# PDIC proof-first accelerated roadmap — S003R2 closeout (2026-10-15)
 
-S003R executed: a new written six-edge threshold was proved for balanced bipartite graphs, an independent all-matrix audit was installed, and the first general Boolean/Prop four-MIS correspondence was kernel checked. Full flagship Lean verification remains open. **Next: S003R2**; do not start S004 while major graph/moment statements are missing.
+**S003R2 executed, not fully closed:** the universal 4×4 Boolean-matrix six-edge bound and seven-edge spider iff have **strict kernel-only Lean certificates** using `decide +kernel`, plus an axioms-clean generic maximality/complement lemma. Full abstract connected-graph semantics and the actual 2,520-assignment probability law remain to formalise. Keep S004 CONDITIONAL.
 
-| Stage | Deliverable | Status |
+| Session | Deliverable | State |
 | --- | --- | --- |
-| S001 | 702-cap orbit from classical classification; C4 quartet incidences | DONE written, classical input |
-| S002 | Exact N0 law; sharp 1/105 spider iff; greedy/pebble safeguards | DONE written, classical input |
-| S003 | Pinned Lean, concrete cap/quartet/spider and conditional moment certificates | PARTIAL Lean kernel verified |
-| S003R | All-adjacency Boolean MIS equivalence; conditional sharp arithmetic; stronger b≥4⇒e≤5 theorem | Executed, Lean PARTIAL |
-| S003R2 | Kernel proof of 4×4 pair criterion, b≤3 at e≥6, seven-edge spider equality, graph bipartition reduction, and exact 2,520-atom-fibre N0 law | NEXT |
-| S004 | Specialist novelty audit, source comparison and publishable manuscript | CONDITIONAL |
+| S001 | Eight-cap orbit and C4 quartet profile | Written, external nine-cap classification |
+| S002 | Full exact N0 law and sharp spider extremiser, pebble/greedy safeguards | Written proof with classical cap input |
+| S003 | Concrete cap/quartet/spider and moment inversion in pinned Lean | Partial, kernel verified |
+| S003R | Universal Boolean MIS ↔ Prop and stronger six-edge written theorem | Done |
+| **S003R2** | Matrix unique-complement criterion; universal 4×4 e≥6⇒b≤3; e=7,b=3 iff spider; strict axiom audit; direct 192 proof | **DONE at matrix level**; graph/law incomplete |
+| **S003R3** | Lean bridge BitVec rows ↔ mixed four-MIS ↔ SimpleGraph/connected bipartition; 2,520-fibre real probability semantics | **NEXT, targeted one-session proof closure** |
+| S004 | Specialist source-level novelty check and manuscript | **CONDITIONAL**, no publication claims |
 
-**Separation of statuses.** The S003R six-edge theorem has a genuine written degree-case proof plus two-method enumeration; it is not a Lean theorem. Existing Lean spider counts do not imply the universal sharp bound. Rational inversion and the conditional h≤3 arithmetic bridge do not imply actual probability moments. Classical nine-cap classification is not formalised; all abstract-cap theorems must retain that input visibly.
+Only `propext`, `Classical.choice`, and `Quot.sound` are accepted. The two new matrix theorems report only `[propext, Quot.sound]`. A previous `bv_decide` build was discarded as compiler-axiom-dependent, despite compiling. CI must use `set -euo pipefail` and reject `_native`, `sorryAx`, custom axioms, and proof holes. A matrix encoding proof is NOT a completed mathematical-probability semantics bridge.
 
-No `sorry`, `admit`, `native_decide` or custom axioms; review `#print axioms` and completed GitHub Actions run on the **actual source commit**. [Session report](sessions/S003R_CLOSEOUT.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md).
+[Closeout](sessions/S003R2_CLOSEOUT.md) · [Next session](research/NEXT_SESSION_PROMPT.md) · [Claims](research/CLAIMS.md).

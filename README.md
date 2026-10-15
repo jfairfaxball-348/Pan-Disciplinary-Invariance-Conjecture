@@ -1,43 +1,34 @@
 # Pan-Disciplinary Invariance Conjecture (PDIC)
 
-**Mission:** combine finite-group zero-sum geometry, maximal-independent-set structure, random greedy graph dynamics and signed pebbling residues in precisely stated results; formalise the graph–quartet flagship before a primary-source novelty audit and manuscript.
+**Mission:** join finite-group zero-sum quartet geometry, maximal independent sets, graph extremal combinatorics, random greedy dynamics and signed pebbling invariants in a precise, formally certified first paper. The project name is aspirational, not a proven universal invariance conjecture.
 
-**Status (2026-10-15): S003R executed, PARTIAL Lean completion; S003R2 next.** The name is an aspirational umbrella, not a proved universal pan-disciplinary conjecture.
+**Status 2026-10-15:** S003R2 executed; **two substantial universal 4×4 matrix claims are now Lean-verified without native axioms**. Full eight-vertex graph and stochastic witness-count formalisation remains in S003R3. No publication/prior-art priority claim.
 
-## Main result (written proof, classical cap input)
+## Written flagship (classical cap input required)
 
-For a connected eight-vertex graph G, a uniformly random labelling by a fixed admissible eight-cap U, and N0 the number of zero-charge maximal independent four-sets: write m for the four-MIS count, n0 and n2 for overlap-0 and overlap-2 unordered pair counts, and h for the compatible triple count. With M1=2m/35, M2=2n0/35+n2/315, M3=h/315, the exact law is
+For any connected simple eight-vertex graph G, let N0 count size-four maximal independent sets whose labels sum to zero under a uniformly random bijection to a fixed admissible eight-cap. Write m for the number of four-MIS, n0/n2 for pair overlaps 0 and 2, h for compatible triples, and M1=2m/35, M2=2n0/35+n2/315, M3=h/315. The written result (depending on Follett et al.'s classical nine-cap classification) gives
 
-- Pr(N0=0)=1−M1+M2−M3
-- Pr(N0=1)=M1−2M2+3M3
-- Pr(N0=2)=M2−3M3
-- Pr(N0=3)=M3≤1/105, equality iff the spider S(2,2,2,1).
+Pr(N0=0)=1−M1+M2−M3; Pr(N0=1)=M1−2M2+3M3; Pr(N0=2)=M2−3M3; Pr(N0=3)=M3≤1/105, with equality iff G is the spider S(2,2,2,1).
 
-This is an S002 written result **dependent on the explicitly cited classical nine-cap classification**, not yet a fully verified Lean flagship; novelty remains OPEN.
+## What is now strictly proved in Lean
 
-## S003R mathematical improvement
+- For every Boolean 4×4 bipartite adjacency, a mixed maximal independent four-set has a uniquely determined opposite two-set, given by the complement of its neighbourhood. A full iff pair criterion is formalised.
+- Encoding a matrix by four `BitVec 4` rows, Lean proves **b≥4 ⇒ |E|≤5** by `decide +kernel`: `four_by_four_six_edge_threshold_BV`.
+- For these same matrix predicates, **(|E|=7 and b=3) iff the row/column spider pattern**: `seven_edge_three_iff_spider_BV`. Both quantified finite theorems depend only on `propext` and `Quot.sound`; no native axiom.
+- Written direct proof plus independent check splits exactly 192 labelled spider matrices into two sets of 96. The exact 2520-atom, eight-favourable-assignments combinatorics is written.
 
-**New six-edge threshold, written proof:** for any balanced 4+4 bipartite graph (even disconnected), if it has at least six edges, its number b of mixed four-vertex maximal independent sets is at most three. Equivalently b≥4 forces at most five edges. Independently enumerating all 65,536 4×4 matrices gives exactly 192 labelled seven-edge equality spiders, with two distinct counting methods agreeing. See [proof](research/S003R_EDGE_THRESHOLD_PROOF.md) and [checker](scripts/verify_s003r.py). Finite enumeration is **not** a Lean proof.
+**Boundary:** the formal BitVec count has not yet been linked by a proved theorem to the cardinality of arbitrary `IsMixedMIS` sets, or to all connected `SimpleGraph (Fin 8)` and their random-cap labelling law. Concrete spider counts, the matrix certificates and conditional moment inversion do NOT yet constitute a fully Lean-formalised flagship.
 
-## Formalisation status
+## Short route
 
-The pinned Lean module [PDIC.lean](PDIC.lean) now adds the arbitrary-adjacency equivalence of executable and propositional four-MIS predicates, proposition-level spider count lemmas, and the **conditional** sharp rational inequality bridge. The generic equivalence and final S003R proposition-level spider corollaries passed [hosted kernel CI run 38796134274](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38796134274) on source commit `01a9fd5c`. All listed proof closures report only standard Lean axioms, no `sorryAx`; the entire build, proof-hole scan and four finite scripts succeeded.
+| Session | State |
+| --- | --- |
+| S001–S002 | Cap geometry and written graph/probability flagship, explicit classical input |
+| S003–S003R | Concrete Lean certificates and generic MIS semantics |
+| **S003R2** | **COMPLETE** kernel-only 4×4 matrix threshold and spider iff; direct 192/fibre proof |
+| **S003R3** | **NEXT** certify matrix semantics, connected graph bipartition, 2520-fibre random law |
+| S004 | Conditional novelty audit and TeX manuscript |
 
-**Still missing in Lean:** the universal edge-threshold/connected-graph extremiser, isomorphism equality statement, connected-bipartition correspondence, and the 2,520-fibre joint-label moment theorem. These are not implied by spider example counts or moment inversion alone.
+[Session S003R2 closeout](sessions/S003R2_CLOSEOUT.md) · [Proof](research/S003R2_SPIDER_CLASSIFICATION_AND_FIBRES.md) · [Claims](research/CLAIMS.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md)
 
-## Short accelerated roadmap
-
-| Session | Milestone | Status |
-| --- | --- | --- |
-| S001 | Cap orbit / C4 quartet geometry from classical nine-cap theorem | Written DONE |
-| S002 | Full zero-witness law and unique spider extremiser | Written DONE |
-| S003 | Pinned Lean + finite quartet/spider/moment package | PARTIAL Lean verified |
-| S003R | Generic MIS semantics + stronger six-edge threshold | DONE, flagship Lean PARTIAL |
-| S003R2 | Kernel-prove graph universal bound and exact random-label law | NEXT |
-| S004 | Actual-source novelty audit and TeX manuscript | CONDITIONAL |
-
-**Next:** [S003R2 complete proof prompt](research/NEXT_SESSION_PROMPT.md). A single "run next session" authorises exactly S003R2. No Palomar, arXiv or journal submission is authorised.
-
-Sources: [S002 proof](research/S002_GREEDY_CHARGE_SPIDER_PROOF.md) · [S003R proof](research/S003R_EDGE_THRESHOLD_PROOF.md) · [S003R closeout](sessions/S003R_CLOSEOUT.md) · [claims](research/CLAIMS.md) · [provenance](research/PROVENANCE_AND_SOURCES.md).
-
-Reproduce with pinned `lake build` and the Python verifiers in `scripts/`. Neither CI nor exhaustive finite testing establishes literature priority.
+Reproduce with pinned `lake build`, strict `#print axioms` audit and all five checkers in `scripts/`. A `bv_decide` trial was rejected because of its compiler-native axiom; the accepted theorems use `decide +kernel`. No Palomar/arXiv/journal submission authorised.

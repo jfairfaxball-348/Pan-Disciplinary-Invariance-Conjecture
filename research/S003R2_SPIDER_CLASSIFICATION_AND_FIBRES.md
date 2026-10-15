@@ -94,11 +94,14 @@ This reproduces the checked census with a different spider test.
 
 ## Remaining formalisation boundary
 
-Lean S003R2 adds a universal arbitrary-Boolean-matrix unique-complement
-criterion, and attempts an axiom-free verified six-edge matrix bound.
-The latter must pass a **strict** `#print axioms` audit before promotion:
-a `bv_decide` run may compile successfully while depending on a
-native-evaluation axiom. Neither that axiom nor Python enumerations
-count as the stricter project-standard Lean closure. Full 8-vertex
+Lean S003R2 proves a universal arbitrary-Boolean-matrix unique-complement
+criterion and two axiom-free complete finite bitvector matrix results:
+`four_by_four_six_edge_threshold_BV` and `seven_edge_three_iff_spider_BV`.
+Both theorems passed the strict hosted `decide +kernel` audit: their
+`#print axioms` output is exactly [propext, Quot.sound]. An earlier
+`bv_decide` trial was explicitly rejected because it introduced a
+native-computation axiom. The complete bridge from this bitvector
+representation to arbitrary SimpleGraph four-MIS and the full random
+labelling semantics remains OPEN. Full 8-vertex
 connected graph isomorphism and 2,520-atom random-labelling moment
 formalisation are still separate obligations.
