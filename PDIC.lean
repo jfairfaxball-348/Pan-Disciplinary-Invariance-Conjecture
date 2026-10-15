@@ -65,8 +65,12 @@ def canonicalCap (v : Vertex) : Fin 3 → ℕ :=
   | 7 => ![2, 1, 2]
   | _ => ![0, 0, 0]
 
-def chargeZero (s : Finset Vertex) : Prop :=
-  ∀ c : Fin 3, ((∑ v ∈ s, canonicalCap v c) % 3) = 0
+def chargeZeroBool (s : Finset Vertex) : Bool :=
+  decide (((∑ v ∈ s, canonicalCap v 0) % 3) = 0) &&
+  decide (((∑ v ∈ s, canonicalCap v 1) % 3) = 0) &&
+  decide (((∑ v ∈ s, canonicalCap v 2) % 3) = 0)
+
+def chargeZero (s : Finset Vertex) : Prop := chargeZeroBool s = true
 
 theorem canonical_quartets_zero :
     ∀ i : QuartetIndex, chargeZero (quartet i) := by
@@ -93,11 +97,16 @@ def IsMIS4 (adj : Vertex → Vertex → Bool) (s : Finset Vertex) : Prop :=
 
 /- A computable Boolean implementation, deliberately distinct from the
    paper-level Prop specification IsMIS4 until correspondence is proved. -/
+def allVertices : List Vertex := [0, 1, 2, 3, 4, 5, 6, 7]
+
 def isMIS4Bool (adj : Vertex → Vertex → Bool) (s : Finset Vertex) : Bool :=
   (s.card == 4) &&
-  s.toList.all (fun u => s.toList.all (fun v => !(adj u v))) &&
-  (Finset.univ : Finset Vertex).toList.all
-    (fun v => decide (v ∈ s) || s.toList.any (fun u => adj v u))
+  allVertices.all
+    (fun u => allVertices.all
+      (fun v => !(decide (u ∈ s) && decide (v ∈ s)) || !(adj u v))) &&
+  allVertices.all
+    (fun v => decide (v ∈ s) ||
+      allVertices.any (fun u => decide (u ∈ s) && adj v u))
 
 def mis4Count (adj : Vertex → Vertex → Bool) : ℕ :=
   ((Finset.univ : Finset (Finset Vertex)).filter
