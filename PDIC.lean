@@ -542,4 +542,18 @@ theorem encoded_mixed_left_count (adj : Side → Side → Bool) :
 #print axioms PDIC.actualMixedLeftPairCount_eqCriterion
 #print axioms PDIC.encoded_mixed_left_count
 
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 0 in
+/-- An extra universal extremal exclusion needed to pass from the
+    seven-edge equality theorem to arbitrary connected balanced graphs.
+    At least eight bipartite edges leave at most two mixed-MIS pairs. -/
+theorem eight_edges_at_most_two_mixed_BV (a b c d : BitVec 4) :
+    (8 : BitVec 5) ≤ fourRowEdgeCountBV a b c d →
+      fourRowMixedCountBV a b c d ≤ (2 : BitVec 3) := by
+  revert a b c d
+  decide +kernel
+
+#print axioms PDIC.eight_edges_at_most_two_mixed_BV
+
 end PDIC
