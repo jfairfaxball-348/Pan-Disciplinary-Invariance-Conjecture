@@ -42,7 +42,7 @@ PDICSubmission.connected_mixed_equality :
 | Module-system headers | `PDIC.lean`, `Challenge.lean`, `Solution.lean` ported | PREPARED_NOT_BUILT |
 | Frozen 40-character Mathlib dependency | Lakefile and manifest pinned to `065356127b1dc0016f66b7283ce0ce2c4055aa55`; Lean `v4.35.0-rc2` | SOURCE_PINNED_NOT_REBUILT |
 | Solution proof holes, Lean kernel axioms | Prior source strict checks only; Solution aliases checked theorem names and includes `#print axioms` | S006_BUILD_NOT_YET_VERIFIED |
-| Independent six Python checkers | Preserved from repository | S006_NOT_RERUN |
+| Earlier six Python checkers | Preserved from repository | S006_NOT_RERUN |\n| S006 new independent exhaustive graph check | All 65,536 matrices scanned; 36,317 connected, 192 equality-pattern cases; no failures | LOCAL_FINITE_PASS_ONLY; reproducible by `python3 scripts/verify_s006_palomar_graph.py` |
 | Official full-mode PalomarSubmission report at final SHA | Reusable workflow added separately; report must show Comparator and NanoDa/con-ron verification | **NO_VERIFIED_FULL_PASS_AT_CLOSEOUT** |
 | Public title = verified statement | Narrow title accurately matches two selected graph/matrix theorems, not paper headline | PROPOSED; publication would require official verification |
 | Historical priority and journal significance | S004 read primary sources but did not establish priority | UNRESOLVED |
