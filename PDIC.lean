@@ -970,3 +970,51 @@ theorem fixedPair23Criterion (a b c d : BitVec 4) :
 #print axioms PDIC.fixedPair23Criterion
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S003R7: six-pair filtered cardinality via the standard sum_boole
+    lemma, rather than the previously failed recursive simp/card_filter. -/
+
+set_option maxRecDepth 8192
+
+theorem sixPairsBoolCardinality_by_sum (p : Finset Side → Bool)
+    (h : ∀ X, p X = true → X.card = 2) :
+    ((Finset.univ : Finset (Finset Side)).filter
+      (fun X => p X = true)).card =
+      (if p {0,1} then (1 : ℕ) else 0) +
+      (if p {0,2} then (1 : ℕ) else 0) +
+      (if p {0,3} then (1 : ℕ) else 0) +
+      (if p {1,2} then (1 : ℕ) else 0) +
+      (if p {1,3} then (1 : ℕ) else 0) +
+      (if p {2,3} then (1 : ℕ) else 0) := by
+  classical
+  have hf :
+      ((Finset.univ : Finset (Finset Side)).filter (fun X => p X = true)) =
+      sidePairsSix.filter (fun X => p X = true) := by
+    rw [sidePairsSix_eq_filter]
+    ext X
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+    exact ⟨fun hp => ⟨h X hp, hp⟩, fun hp => hp.2⟩
+  rw [hf, ← Finset.sum_boole]
+  simp [sidePairsSix, add_assoc]
+
+theorem computableMixedLeftPairCount_eq_sixCriterion
+    (adj : Side → Side → Bool) :
+    computableMixedLeftPairCount adj =
+      (if mixedPairCriterionBool adj {0,1} then (1 : ℕ) else 0) +
+      (if mixedPairCriterionBool adj {0,2} then (1 : ℕ) else 0) +
+      (if mixedPairCriterionBool adj {0,3} then (1 : ℕ) else 0) +
+      (if mixedPairCriterionBool adj {1,2} then (1 : ℕ) else 0) +
+      (if mixedPairCriterionBool adj {1,3} then (1 : ℕ) else 0) +
+      (if mixedPairCriterionBool adj {2,3} then (1 : ℕ) else 0) := by
+  unfold computableMixedLeftPairCount
+  apply sixPairsBoolCardinality_by_sum
+  intro X hp
+  exact ((mixedPairCriterionBool_iff adj X).mp hp).1
+
+#print axioms PDIC.sixPairsBoolCardinality_by_sum
+#print axioms PDIC.computableMixedLeftPairCount_eq_sixCriterion
+
+end PDIC
