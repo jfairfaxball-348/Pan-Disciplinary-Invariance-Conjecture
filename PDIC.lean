@@ -3643,3 +3643,54 @@ theorem arbitraryFourset_to_anyQuartet_fibre_card
 #print axioms PDIC.arbitraryFourset_to_anyQuartet_fibre_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S015: numerical 2304-event theorem for genuine uniformly permuted cap sums. -/
+
+/-- Every fixed four-subset is cap-zero under precisely 2304 of the actual
+40320 label permutations. The four distinct target quartets contribute 576
+disjoint permutations apiece. -/
+theorem canonicalCapF3_perm_singleton_event_card
+    (s : Finset Vertex) (hs : s.card = 4) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      capSum (fun v => canonicalCapF3 (e v)) s = 0} = 2304 := by
+  classical
+  let f :
+      (Σ i : QuartetIndex,
+        {e : Equiv.Perm Vertex // s.image e = quartet i}) →
+      {e : Equiv.Perm Vertex //
+        capSum (fun v => canonicalCapF3 (e v)) s = 0} :=
+    fun x => ⟨x.2.1,
+      (canonicalCapF3_perm_four_zero_iff x.2.1 s hs).mpr
+        ⟨x.1, x.2.2.symm⟩⟩
+  have hf : Function.Bijective f := by
+    constructor
+    · intro x y hxy
+      rcases x with ⟨i, ⟨e, he⟩⟩
+      rcases y with ⟨j, ⟨e', he'⟩⟩
+      have heq : e = e' := congrArg Subtype.val hxy
+      subst e'
+      have hij : i = j := quartet_injective (he.symm.trans he')
+      subst j
+      rfl
+    · intro e
+      obtain ⟨i, hi⟩ :=
+        (canonicalCapF3_perm_four_zero_iff e.val s hs).mp e.property
+      refine ⟨⟨i, ⟨e.val, hi.symm⟩⟩, ?_⟩
+      apply Subtype.ext
+      rfl
+  calc
+    Fintype.card {e : Equiv.Perm Vertex //
+      capSum (fun v => canonicalCapF3 (e v)) s = 0} =
+      Fintype.card (Σ i : QuartetIndex,
+        {e : Equiv.Perm Vertex // s.image e = quartet i}) :=
+          (Fintype.card_congr (Equiv.ofBijective f hf)).symm
+    _ = 2304 := by
+      simp [Fintype.card_sigma, arbitraryFourset_to_anyQuartet_fibre_card,
+        QuartetIndex]
+
+#print axioms PDIC.canonicalCapF3_perm_singleton_event_card
+
+end PDIC
