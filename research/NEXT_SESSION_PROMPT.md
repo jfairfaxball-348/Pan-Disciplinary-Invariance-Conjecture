@@ -1,26 +1,19 @@
-# PDIC-S003R8 — TRANSFER SHARP 4×4 MATRIX RESULTS TO GRAPH SEMANTICS; FREEZE FIRST PAPER
+# PDIC S003R9 — FINISH GRAPH/PARTITION LEAN BRIDGE AND FIRST-PAPER PROBABILITY SEMANTICS
 
-**PREPARED, NOT EXECUTED.** Execute only on the owner's next explicit “Run next session.” Do not automatically start S004; do not contact authors, Palomar, arXiv or journals without explicit owner instruction.
+**PREPARED, NOT EXECUTED.** Run only on the owner's next explicit “Run next session.” Stop after S003R9. Do not start S004 automatically and do not submit to authors, Palomar, arXiv or journals.
 
-## Exact verified foundation — DO NOT REOPEN THE TWO NUMERIC COUNT BRIDGES
+## Verified foundation and required opening audit
 
-Read AGENTS.md, authoritative/STATE.json, research/CLAIMS.md, sessions/S003R7_CLOSEOUT.md, research/S003R7_SYMBOLIC_SEMANTIC_BRIDGE.md and current [PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3). Pin live HEAD and check strict CI. The source `e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca` passed [Lean run 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311) and separate [finite run 38883050344](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050344). It now contains full, kernel-verified:
-```lean
-(fourRowMixedCountBV a b c d).toNat =
-  actualMixedLeftPairCount (adjOfRows (fourRows a b c d))
-(fourRowEdgeCountBV a b c d).toNat =
-  actualMatrixEdgeCount (adjOfRows (fourRows a b c d))
-```
-plus the six individual pair iff, six-pair cardinality and exact edge row sum. Do not repeat failed monolithic 65,536-matrix Finset simplification.
+Read AGENTS.md, authoritative/STATE.json, research/CLAIMS.md, sessions/S003R8_CLOSEOUT.md, research/S003R8_GRAPH_BRIDGE_AND_NOVELTY.md, paper/PDIC_S003R8_DRAFT.tex and PR #3 (branch `session/s003r4-numerical-semantic`). Inspect current PR SHA and hosted Lean+finite workflow conclusions. S003R7's two strict numeric-to-semantic count identities passed at `e1253ef`, Lean run 38883050311. S003R8 attempted the full Boolean-adjacency semantic transfers in `PDIC.lean`; **require exact-head PASS before inheriting any new S003R8 Lean claims**. If the latest S003R8 commit failed CI, fix it first and do not promote it.
 
-## Main S003R8 proof mission
+## Main mathematical and formalisation target (one ambitious, bounded session)
 
-1. **Complete actual adjacency transfer** from the already kernel-verified BV theorems (a) mixed left-pair count ≥4 ⇒ at most 5 edges, (b) ≥8 edges ⇒ at most 2 mixed pairs, and (c) 7 edges and exactly 3 mixed pairs iff the BV row/column spider matrix. Use `rowsOfAdj` and its proven left inverse `adjOfRows_rowsOfAdj`; establish `fourRows (rowsOfAdj adj 0) ... = rowsOfAdj adj` by `funext`, `fin_cases`; use explicit BitVec/Nat bounds rather than opaque numerical coercion. Each new theorem must #print axioms and pass exact SHA hosted Lean CI.
-2. **Attack connected balanced 8-vertex graph semantics**: construct `SimpleGraph (Fin 8)` from a 4+4 bipartition, identify every size-four MIS as 4+0/0+4 or a genuine 2+2 mixed pair, and prove for connected graphs the relevant h=b/counting reduction. Explicitly handle disconnected and 3+1 patterns as potential counterexamples rather than silently assuming they vanish.
-3. **Spider isomorphism**: show any connected graph saturating the seven-edge/three-pair threshold is the 8-vertex spider S(2,2,2,1) up to vertex isomorphism. The BV row/column hub recognition is already certified; the graph isomorphism is not.
-4. **Paper-first choice**: perform targeted primary source comparison against extremal enumeration of maximal independent sets in bipartite graphs and spider extremisers. If the full cap-probability flagship is not tractable in this session, freeze the **narrowest rigorously novel or clearly interesting and fully verified** 4×4 matrix / balanced graph theorem as the first-paper candidate and prepare a full TeX outline. Do not manufacture an originality claim.
-5. **Cap probability model** (only if time allows after 1–4): define an actual equiprobable 2520 atom-labelling assignment space, prove the 8/2520=1/315 triple fibre law and moment inversion; preserve classical nine-cap classification as explicit external input until formalised.
+1. **Freeze all three actual matrix theorems** if not already strictly certified: `b≥4 ⇒ e≤5`; `e≥8 ⇒ b≤2`; `(e=7∧b=3) iff spiderMatrixBV`, each quantified over `Side → Side → Bool`. Must transfer through `adjOfRows_rowsOfAdj`, `actualCounts_eq_encoded`; no monolithic 65536 semantic proof; `#print axioms`, zero `sorry`/native axioms.
+2. **Formal graph-level h=b bridge**: construct the balanced 4+4 bipartite graph as `SimpleGraph (Fin 8)` or an equally exact finite graph predicate interface. Prove a mixed MIS iff its 2+2 pair criterion, and for *connected* eight-vertex graphs, any disjoint complementary pair of four-MIS determines the unique balanced bipartition. Prove the compatible triple count `h` equals the matrix mixed witness count `b`. For graphs not admitting such a pair show `h=0`. Explicitly do not assert that every size-four MIS is pure or 2+2: the spider has genuine 3+1 and 1+3 examples already identified.
+3. **Spider extremiser**: derive `h≤3` and `h=3 iff graph ≃ S(2,2,2,1)` in the actual graph representation, using connected minimum-seven-edge bound and the certified matrix theorem; avoid unfounded “graph isomorphism” shortcuts.
+4. **Probability model / 2520 assignments**: if 2–3 are completed, formalise a finite uniform labelling model whose ordered triple fibres have 8 favourable among 2520, connect it to four-quartet C4 incidence, and obtain `Pr(N₀=3)=h/315≤1/105`. Then moment inversion for the complete N₀ law. Cite classical nine-cap equivalence as an explicit external theorem assumption.
+5. **Paper readiness**: strengthen the actual LaTeX draft (paper/PDIC_S003R8_DRAFT.tex), pinpoint what is formal vs written/classical, compare Jiuqiang Liu 1993 and related connected bipartite/tree MIS extremal source theorems against the exact mixed statistic and cap interaction. Do not assert priority from absence of an obvious title match.
 
-## Gate and closeout
+## Bounded fallback / decisive closeout
 
-At one precise PR SHA run pinned `lake build`, verify no forbidden `sorry`/`admit`/`native_decide` or custom/native axioms, review `#print axioms`, and all five Python scripts. Preserve all previous kernel results and no change to other repositories. Update claims, authoritative state, roadmap, README if needed, S003R8 closeout, exact CI URLs and next prompt. The conditional graph/probability flagship is not fully formalised merely because the arbitrary four-by-four matrix count bridge now passes. PR #3 unmerged until review/owner merge decision.
+If 2–4 cannot be completed reliably, freeze the **strictly verified Boolean 4×4 theorem** as a separate formal appendix, preserve the written graph/probability proof as qualified manuscript text, and give a precise minimal remaining kernel proof interface. No more loops of unproductive finite brute force or renaming the theorem; deliver a defensible paper-level mathematical package. Verify exact committed SHA hosted `lake build` with standard axioms only and all five Python checkers. Update exact claims/state/roadmap, closeout, manuscript, and prepare S004 as a final novelty/editing/publication-preparation gate (but no submissions without owner request). Keep PR #3 unmerged absent owner/review decision.
