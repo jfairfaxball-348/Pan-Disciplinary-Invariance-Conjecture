@@ -3483,12 +3483,11 @@ theorem exists_perm_fourset_image (s t : Finset Vertex)
     change eT (eS.symm w) ∈ t
     cases h : eS.symm w with
     | inl a =>
-      rw [h]
       exact hTL a
     | inr b =>
       have hback : eS (Sum.inr b) = w := by
         calc
-          eS (Sum.inr b) = eS (eS.symm w) := by rw [h]
+          eS (Sum.inr b) = eS (eS.symm w) := by simp [h]
           _ = w := eS.apply_symm_apply w
       exact False.elim (hSR b (hback.symm ▸ hw))
   refine ⟨p, Finset.eq_of_subset_of_card_le hpSub ?_⟩
