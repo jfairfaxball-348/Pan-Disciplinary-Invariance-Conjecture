@@ -2280,3 +2280,109 @@ theorem connected_partition_h_eq_matrix (G : SimpleGraph Vertex)
 #print axioms PDIC.connected_partition_h_eq_matrix
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S008: the named, labelled spider and its concrete connected matrix model.
+    The difficult converse (all equality matrices admit a normalising
+    permutation) is deliberately NOT taken as an axiom. -/
+
+/-- The actual simple graph with edges 04, 05, 06, 07, 16, 25, 34. -/
+def namedSpider : SimpleGraph Vertex where
+  Adj u v := spiderAdj u v = true
+  symm.symm := by
+    intro u v
+    fin_cases u <;> fin_cases v <;> decide
+  loopless.irrefl := by
+    intro u
+    fin_cases u <;> decide
+
+/-- A labelled four-by-four presentation, with row zero the hub. -/
+def canonicalSpiderMatrix (i j : Side) : Bool :=
+  decide (i = 0 ∨ (i = 1 ∧ j = 2) ∨
+    (i = 2 ∧ j = 1) ∨ (i = 3 ∧ j = 0))
+
+/-- The explicit map identifies the split vertex sides with labels 0..3
+    and 4..7, without quotienting or forgetting nonedges. -/
+def spiderSplitEquiv : SplitVertex ≃ Vertex where
+  toFun v := match v with
+    | .inl i => ⟨i.val, by omega⟩
+    | .inr j => ⟨j.val + 4, by omega⟩
+  invFun v :=
+    if h : v.val < 4 then .inl ⟨v.val, h⟩
+    else .inr ⟨v.val - 4, by omega⟩
+  left_inv := by
+    intro v
+    cases v with
+    | inl i => fin_cases i <;> decide
+    | inr j => fin_cases j <;> decide
+  right_inv := by
+    intro v
+    fin_cases v <;> decide
+
+/-- This is an actual SimpleGraph isomorphism, not merely row-shape data. -/
+def canonicalSpiderIso : matrixGraph canonicalSpiderMatrix ≃g namedSpider where
+  toEquiv := spiderSplitEquiv
+  map_rel_iff' := by
+    intro u v
+    cases u with
+    | inl i =>
+      cases v with
+      | inl j => fin_cases i <;> fin_cases j <;> decide
+      | inr j => fin_cases i <;> fin_cases j <;> decide
+    | inr i =>
+      cases v with
+      | inl j => fin_cases i <;> fin_cases j <;> decide
+      | inr j => fin_cases i <;> fin_cases j <;> decide
+
+/-- Each left vertex has an explicitly chosen right neighbour. -/
+def spiderSpoke (i : Side) : Side :=
+  if i = 1 then 2 else if i = 2 then 1 else 0
+
+/-- Every vertex has a walk from the hub, using at most two edges. -/
+theorem canonicalSpider_root_reachable (u : SplitVertex) :
+    (matrixGraph canonicalSpiderMatrix).Reachable (Sum.inl (0 : Side)) u := by
+  cases u with
+  | inl i =>
+    have h1 : (matrixGraph canonicalSpiderMatrix).Adj
+        (Sum.inl (0 : Side)) (Sum.inr (spiderSpoke i)) := by
+      fin_cases i <;> decide
+    have h2 : (matrixGraph canonicalSpiderMatrix).Adj
+        (Sum.inr (spiderSpoke i)) (Sum.inl i) := by
+      fin_cases i <;> decide
+    exact ⟨.cons h1 (.cons h2 .nil)⟩
+  | inr j =>
+    have h : (matrixGraph canonicalSpiderMatrix).Adj
+        (Sum.inl (0 : Side)) (Sum.inr j) := by
+      fin_cases j <;> decide
+    exact ⟨.cons h .nil⟩
+
+theorem canonicalSpider_connected :
+    (matrixGraph canonicalSpiderMatrix).Connected := by
+  apply (SimpleGraph.connected_iff_exists_forall_reachable _).mpr
+  exact ⟨Sum.inl (0 : Side), canonicalSpider_root_reachable⟩
+
+/-- The exact h=3 claim for the concrete named spider; no global
+    equality-case classification is being smuggled into this proof. -/
+theorem namedSpider_unorderedCompatibleTripleCount_three :
+    unorderedCompatibleTripleCount namedSpider = 3 := by
+  have hm : graphMixedCount canonicalSpiderMatrix = 3 := by
+    rw [graphMixedCount_eq_actual]
+    exact ((seven_edges_three_mixed_iff_spider canonicalSpiderMatrix).mpr
+      (by decide)).2
+  calc
+    unorderedCompatibleTripleCount namedSpider =
+        compatibleTripleCount namedSpider :=
+      (compatibleTripleCount_eq_unordered namedSpider).symm
+    _ = compatibleTripleCount (matrixGraph canonicalSpiderMatrix) :=
+      (compatibleTripleCount_iso canonicalSpiderIso).symm
+    _ = graphMixedCount canonicalSpiderMatrix :=
+      connected_compatibleTripleCount_matrix canonicalSpiderMatrix canonicalSpider_connected
+    _ = 3 := hm
+
+#print axioms PDIC.canonicalSpiderIso
+#print axioms PDIC.canonicalSpider_connected
+#print axioms PDIC.namedSpider_unorderedCompatibleTripleCount_three
+
+end PDIC
