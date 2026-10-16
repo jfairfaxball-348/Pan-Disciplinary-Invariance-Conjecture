@@ -9,6 +9,13 @@ permissions:
   contents: read
 
 jobs:
+  independent-finite-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check all 4x4 matrices against the actual-graph bound
+        run: python3 scripts/verify_s006_palomar_graph.py
+
   palomar-full:
     uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@d4e41c1d5b0d114c4859e6e5831dc6d3ad1d0d44
     with:
