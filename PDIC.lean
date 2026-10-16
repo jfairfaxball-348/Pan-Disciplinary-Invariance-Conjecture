@@ -3170,3 +3170,58 @@ theorem canonicalCapF3_perm_distinct_pair_overlap_cases
 #print axioms PDIC.canonicalCapF3_perm_distinct_pair_overlap_cases
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S014: the third real cap-zero event has an unavoidable complementary pair. -/
+
+/-- Every three different canonical zero-sum quartets contain a disjoint
+pair. This small finite statement is checked directly by the Lean kernel. -/
+theorem quartet_three_distinct_has_disjoint_pair :
+    ∀ i j k : QuartetIndex, i ≠ j → i ≠ k → j ≠ k →
+      (quartet i ∩ quartet j).card = 0 ∨
+      (quartet i ∩ quartet k).card = 0 ∨
+      (quartet j ∩ quartet k).card = 0 := by
+  decide
+
+/-- For three distinct *actual* zero-sum four-sets under any permutation,
+some two sets are disjoint; no graph surrogate is used. -/
+theorem canonicalCapF3_perm_three_zero_has_disjoint_pair
+    (e : Equiv.Perm Vertex) (s t u : Finset Vertex)
+    (hs : s.card = 4) (ht : t.card = 4) (hu : u.card = 4)
+    (hst : s ≠ t) (hsu : s ≠ u) (htu : t ≠ u)
+    (hzs : capSum (fun v => canonicalCapF3 (e v)) s = 0)
+    (hzt : capSum (fun v => canonicalCapF3 (e v)) t = 0)
+    (hzu : capSum (fun v => canonicalCapF3 (e v)) u = 0) :
+    (s ∩ t).card = 0 ∨ (s ∩ u).card = 0 ∨
+    (t ∩ u).card = 0 := by
+  obtain ⟨i, hi⟩ := (canonicalCapF3_perm_four_zero_iff_pulled e s hs).mp hzs
+  obtain ⟨j, hj⟩ := (canonicalCapF3_perm_four_zero_iff_pulled e t ht).mp hzt
+  obtain ⟨k, hk⟩ := (canonicalCapF3_perm_four_zero_iff_pulled e u hu).mp hzu
+  have hij : i ≠ j := by
+    intro h
+    exact hst (hi.symm.trans (by simpa [h] using hj))
+  have hik : i ≠ k := by
+    intro h
+    exact hsu (hi.symm.trans (by simpa [h] using hk))
+  have hjk : j ≠ k := by
+    intro h
+    exact htu (hj.symm.trans (by simpa [h] using hk))
+  rcases quartet_three_distinct_has_disjoint_pair i j k hij hik hjk with hh | hh | hh
+  · left
+    rw [← hi, ← hj, pulledQuartet_inter_card]
+    exact hh
+  · right
+    left
+    rw [← hi, ← hk, pulledQuartet_inter_card]
+    exact hh
+  · right
+    right
+    rw [← hj, ← hk, pulledQuartet_inter_card]
+    exact hh
+
+#print axioms PDIC.quartet_three_distinct_has_disjoint_pair
+#print axioms PDIC.canonicalCapF3_perm_three_zero_has_disjoint_pair
+
+end PDIC
