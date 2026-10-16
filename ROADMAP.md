@@ -1,6 +1,6 @@
 # PDIC short proof-first roadmap — S003R6 partial closeout (2026-10-16)
 
-**S003R6 has executed.** Exact [PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3) commit `2bfb3164` has [strict hosted Lean CI PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871115121) plus all five finite verifiers. This proves the local mask semantic lemma and no-wrap arithmetic, **not** the full numerical↔mixed-MIS semantic bridge or the eight-vertex flagship. Main retains the previously certified S003R3 source. The later six-pair count extension on the PR is not to be advertised until its exact commit is certified.
+**S003R6 has executed.** Exact [PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3) commit `2bfb3164` has [strict hosted Lean CI PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871115121) plus all five finite verifiers. This proves the local mask semantic lemma and no-wrap arithmetic, **not** the full numerical↔mixed-MIS semantic bridge or the eight-vertex flagship. Main retains the previously certified S003R3 source. The later six-pair filtered-cardinality extension failed twice due to recursive simplification and was withdrawn at PR SHA `30ac30c0`; it is still OPEN_IN_LEAN.
 
 | Stage | Result | State |
 | --- | --- | --- |
