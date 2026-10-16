@@ -1414,3 +1414,86 @@ theorem graphMixedCount_three_iff_spider (adj : Side → Side → Bool)
 #print axioms PDIC.graphMixedCount_three_iff_spider
 
 end PDIC
+
+
+namespace PDIC
+
+/-- A proper two-colouring, with no balance or maximality assumed. -/
+def ProperBoolColouring {V : Type*} (G : SimpleGraph V) (c : V → Bool) : Prop :=
+  ∀ ⦃u v⦄, G.Adj u v → c u ≠ c v
+
+theorem walk_colour_agreement {V : Type*} {G : SimpleGraph V}
+    (c d : V → Bool) (hc : ProperBoolColouring G c)
+    (hd : ProperBoolColouring G d) {u v : V} (p : G.Walk u v) :
+    (c u = d u ↔ c v = d v) := by
+  induction p with
+  | nil => rfl
+  | @cons u v w he p ih =>
+    have hstep : c u = d u ↔ c v = d v := by
+      have hc' := hc he
+      have hd' := hd he
+      cases hcu : c u <;> cases hcv : c v <;>
+        cases hdu : d u <;> cases hdv : d v <;> simp_all
+    exact hstep.trans ih
+
+/-- Connectedness supplies the UNIQUE bipartition up to global swap. -/
+theorem connected_bool_colouring_unique {V : Type*} {G : SimpleGraph V}
+    (hconn : G.Connected) (r : V) (c d : V → Bool)
+    (hc : ProperBoolColouring G c) (hd : ProperBoolColouring G d) :
+    c = d ∨ c = fun v => !(d v) := by
+  have hagree (v : V) : c r = d r ↔ c v = d v := by
+    obtain ⟨p⟩ := hconn.preconnected r v
+    exact walk_colour_agreement c d hc hd p
+  by_cases hroot : c r = d r
+  · exact Or.inl (funext fun v => (hagree v).mp hroot)
+  · right
+    funext v
+    have hne : c v ≠ d v := fun he => hroot ((hagree v).mpr he)
+    cases hcv : c v <;> cases hdv : d v <;> simp_all
+
+noncomputable def membershipColour {V : Type*} (s : Finset V) (v : V) : Bool :=
+  @decide (v ∈ s) (Classical.propDecidable _)
+
+theorem independent_complement_proper {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) (s : Finset V)
+    (hi : ∀ u ∈ s, ∀ v ∈ s, ¬ G.Adj u v)
+    (hj : ∀ u ∈ (Finset.univ \ s), ∀ v ∈ (Finset.univ \ s), ¬ G.Adj u v) :
+    ProperBoolColouring G (membershipColour s) := by
+  classical
+  intro u v he hcol
+  by_cases hu : u ∈ s <;> by_cases hv : v ∈ s
+  · exact hi u hu v hv he
+  · simpa [membershipColour, hu, hv] using hcol
+  · simpa [membershipColour, hu, hv] using hcol
+  · exact hj u (by simp [hu]) v (by simp [hv]) he
+
+/-- Any two complementary independent decompositions of a connected finite
+    graph agree up to exchanging the two parts. Cardinalities are irrelevant. -/
+theorem connected_independent_partition_unique
+    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+    (hconn : G.Connected) (r : V) (s t : Finset V)
+    (hs : ∀ u ∈ s, ∀ v ∈ s, ¬ G.Adj u v)
+    (hsc : ∀ u ∈ (Finset.univ \ s), ∀ v ∈ (Finset.univ \ s), ¬ G.Adj u v)
+    (ht : ∀ u ∈ t, ∀ v ∈ t, ¬ G.Adj u v)
+    (htc : ∀ u ∈ (Finset.univ \ t), ∀ v ∈ (Finset.univ \ t), ¬ G.Adj u v) :
+    s = t ∨ s = Finset.univ \ t := by
+  classical
+  obtain he | he := connected_bool_colouring_unique hconn r
+    (membershipColour s) (membershipColour t)
+    (independent_complement_proper G s hs hsc)
+    (independent_complement_proper G t ht htc)
+  · left
+    ext v
+    have hv := congrFun he v
+    simpa [membershipColour] using congrArg (fun b : Bool => b = true) hv
+  · right
+    ext v
+    have hv := congrFun he v
+    simpa [membershipColour] using congrArg (fun b : Bool => b = true) hv
+
+#print axioms PDIC.walk_colour_agreement
+#print axioms PDIC.connected_bool_colouring_unique
+#print axioms PDIC.independent_complement_proper
+#print axioms PDIC.connected_independent_partition_unique
+
+end PDIC
