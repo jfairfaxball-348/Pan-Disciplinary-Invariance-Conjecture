@@ -1069,3 +1069,27 @@ theorem fourRowEdgeCountBV_eq_actual
 #print axioms PDIC.fourRowEdgeCountBV_eq_actual
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S003R7: compose six individually proven iff witnesses, the six-pair
+    Boolean cardinality identity and the exact 3-bit no-overflow sum. -/
+
+theorem fourRowMixedCountBV_eq_actual
+    (a b c d : BitVec 4) :
+    (fourRowMixedCountBV a b c d).toNat =
+      actualMixedLeftPairCount (adjOfRows (fourRows a b c d)) := by
+  rw [fourRowMixedCountBV_eq_sixNat,
+    ← computableMixedLeftPairCount_eq_actual,
+    computableMixedLeftPairCount_eq_sixCriterion]
+  simp only [← fixedPair01Criterion a b c d,
+    ← fixedPair02Criterion a b c d,
+    ← fixedPair03Criterion a b c d,
+    ← fixedPair12Criterion a b c d,
+    ← fixedPair13Criterion a b c d,
+    ← fixedPair23Criterion a b c d]
+
+#print axioms PDIC.fourRowMixedCountBV_eq_actual
+
+end PDIC
