@@ -1062,8 +1062,8 @@ theorem fourRowEdgeCountBV_eq_actual
   rw [fourRowEdgeCountBV_eq_fourPopNat, actualMatrixEdgeCount_eq_sum_rows,
     Fin.sum_univ_four]
   simp only [adjOfRows]
-  repeat rw [← fourBitPopCount5_eq_rowCard]
   simp [fourRows]
+  simp only [← fourBitPopCount5_eq_rowCard]
 
 #print axioms PDIC.actualMatrixEdgeCount_eq_sum_rows
 #print axioms PDIC.fourRowEdgeCountBV_eq_actual
