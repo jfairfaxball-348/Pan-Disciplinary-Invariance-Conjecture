@@ -82,3 +82,33 @@ permutations; the arbitrary-cap normal form remains an **explicit
 classical hypothesis**, never an axiom. Mathematical priority remains
 unresolved. No Palomar registration, PR merge, arXiv or journal
 submission is authorised by this session.
+
+
+## Strict S018 first-moment kernel certificate and spider audit
+
+The first proof-bearing source `31a7cbb3de72944b5cb99994132060795cd7184f`
+has [strict hosted Lean PASS, run 38970442172](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38970442172),
+and [independent finite PASS, run 38970442337](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38970442337).
+The public declarations `labellingZeroMISCount_eq_family_filter`
+and `graphMIS_first_moment_numerator` print only
+`propext`, `Classical.choice`, `Quot.sound`.
+Thus the *genuine* graph-derived first-moment numerator is **LEAN_KERNEL_VERIFIED**.
+S018 continued with the rational `graphMIS_first_moment_eq` candidate
+and the unique disjoint-four-partner incidence lemmas at
+`fe5d119af9a270a82fb7a854b9c004d5a4e041c6`; these require
+separate exact-source CI before kernel-verified promotion.
+
+The new independent `scripts/verify_s018_spider_distribution.py`
+exhaustively visits all 40320 permutations against `namedSpider`'s
+exact vertex-labelled edges 04,05,06,07,16,25,34 and the four canonical
+quartets. It verifies the real four-MIS invariants
+`(m,n0,n2,h)=(9,1,15,3)`, histogram
+`(N0=0,1,2,3)=(23424,13440,3072,384)`, and therefore
+\[
+  (P_0,P_1,P_2,P_3)=(61/105,1/3,8/105,1/105).
+\]
+The enumeration also checks equality with all three moment expressions.
+This is **FINITE_CHECKED** for one concrete graph, not a universal proof.
+The S018 script is included in both finite and Lean check workflows
+on the canonical proof branch; the final combined workflow status must
+be checked against its *exact* head SHA before a finished run is claimed.
