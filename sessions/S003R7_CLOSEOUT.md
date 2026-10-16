@@ -1,6 +1,6 @@
 # PDIC S003R7 — session closeout (2026-10-16)
 
-**EXECUTED. The new arbitrary-row OR-neighbourhood and two-column complement adapters are kernel verified. The full four-row numerical↔mixed-MIS semantic bridge remains OPEN_IN_LEAN pending exact-HEAD verification of the later candidate and aggregation.**
+**EXECUTED. The generic OR neighbourhood, outside-witness, and all six fixed-pair mask↔semantic-criterion correspondences are strict-Lean-certified on unmerged PR #3. Numerical six-summand aggregation and the full mixed/edge count equalities remain OPEN_IN_LEAN unless subsequent exact-head CI proves them.**
 
 ## Newly certified theorem slice
 
@@ -14,11 +14,11 @@ These proofs have no forbidden native axioms or holes. They were independently v
 
 ## Further proof engineering during S003R7
 
-The symbolic outside-witness proof `twoRow_outsideWitness_iff`, generic `goodPair_iff_mixedPairCriterion`, six individual `fixedPairXXCriterion` lemmas, and alternative `Finset.sum_boole` cardinality proof were attempted on unmerged PR #3. The first failing attempts are **NOT** certificates:
+**Further certified result:** at commit [`df53e200`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/df53e200188cf185c1398929143f5b0456fbadd2), [strict Lean run 38880618519](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38880618519) PASSED with all five Python checks and no forbidden axioms. This certifies `twoRow_outsideWitness_iff`, generic `goodPair_iff_mixedPairCriterion`, and all six `fixedPairXXCriterion` correspondences for arbitrary row data. Further aggregation was attempted on unmerged PR #3. The first failing attempts are **NOT** certificates:
 - `2f9b0344` failed due to local Boolean equality and substitution issues;
 - `8be9b762` failed due to a direction mismatch on the OR-bit iff;
-- a revised candidate `df53e200` corrects the local mismatch;
-- the later candidate `a8df4a89` adds `sixPairsBoolCardinality_by_sum` and `computableMixedLeftPairCount_eq_sixCriterion` without the formerly failing nested `card_filter` simplification.
+- revised `df53e200` PASSED all strict checks and certified the complete six fixed pairs;
+- `a8df4a89` attempted the `Finset.sum_boole` adapter but FAILED strict Lean run 38880747155 due to a Nat-cast rewrite mismatch; the subsequent `8e76088b` attempt uses explicit `R := ℕ` and requires its own CI verification.
 
 **Exact-HEAD strict CI must be checked before promoting ANY follow-on lemma.** In particular, a failing or pending run is not a theorem. This is not a completed proof of the mixed or edge numeric bridge.
 
@@ -28,7 +28,7 @@ The existing [`verify_s003r.py`](../scripts/verify_s003r.py) independently enume
 
 ## Remaining mathematical obligations
 
-1. Certify the six scalar pair criteria at an exact PR SHA, and the cardinality decomposition into six indicators. Use `Finset.sum_boole` / explicit small sums rather than the already failed recursive `simp [Finset.card_filter]`.
+1. **Six scalar pair criteria CERTIFIED** at `df53e200`. Complete and certify the cardinality decomposition into six indicators. Use `Finset.sum_boole` / explicit small sums rather than the already failed recursive `simp [Finset.card_filter]`.
 2. Prove `fourRowMixedCountBV.toNat = actualMixedLeftPairCount` for all four rows.
 3. Prove the independent product/row cardinality sum `fourRowEdgeCountBV.toNat = actualMatrixEdgeCount`, without a 65,536×Finset reduction.
 4. Transfer BV extremal inequalities and seven-edge spider iff to actual matrices.
