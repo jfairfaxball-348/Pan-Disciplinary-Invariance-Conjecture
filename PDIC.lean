@@ -2961,6 +2961,11 @@ theorem pulledQuartet_eq_image (e : Equiv.Perm Vertex) (i : QuartetIndex) :
   classical
   ext v
   simp only [pulledQuartet, Finset.mem_map, Finset.mem_image]
+  constructor
+  · rintro ⟨a, ha, hav⟩
+    exact ⟨a, ha, hav⟩
+  · rintro ⟨a, ha, hav⟩
+    exact ⟨a, ha, hav⟩
 
 /-- Reindexing by an equivalence and its inverse preserves every finite set. -/
 theorem perm_finset_image_roundtrip
@@ -3011,7 +3016,7 @@ theorem connected_labellingZeroMISCount_le_three
     have hm : pulledQuartet e i ∈ T :=
       Finset.mem_image.mpr ⟨i, Finset.mem_univ _, rfl⟩
     rw [← heq] at hm
-    exact (Finset.mem_filter.mp hm).2.2.1
+    exact (Finset.mem_filter.mp hm).2.2.1.1
   have hstrict : S ⊂ T :=
     Finset.ssubset_iff_subset_ne.mpr ⟨hsub, hne⟩
   have hlt : S.card < T.card := Finset.card_lt_card hstrict
