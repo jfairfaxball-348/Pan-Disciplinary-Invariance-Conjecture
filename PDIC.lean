@@ -3687,8 +3687,15 @@ theorem canonicalCapF3_perm_singleton_event_card
         {e : Equiv.Perm Vertex // s.image e = quartet i}) :=
           (Fintype.card_congr (Equiv.ofBijective f hf)).symm
     _ = 2304 := by
-      simp [Fintype.card_sigma, arbitraryFourset_to_anyQuartet_fibre_card,
-        QuartetIndex]
+      rw [Fintype.card_sigma]
+      calc
+        (∑ i : QuartetIndex,
+          Fintype.card {e : Equiv.Perm Vertex // s.image e = quartet i}) =
+          ∑ _i : QuartetIndex, (576 : ℕ) := by
+            apply Finset.sum_congr rfl
+            intro i _
+            exact arbitraryFourset_to_anyQuartet_fibre_card s hs i
+        _ = 2304 := by norm_num [QuartetIndex]
 
 #print axioms PDIC.canonicalCapF3_perm_singleton_event_card
 
