@@ -2845,3 +2845,49 @@ def ClassicalCapNormalForm : Prop :=
 #print axioms PDIC.linearPermCanonicalCap_four_zero_iff
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S012: an obstruction to simultaneous quartet independence in any
+    connected graph; this also applies before maximality is imposed. -/
+
+/-- Each opposite pair of the four canonical quartets partitions Fin 8. -/
+theorem quartet_zero_complement_three :
+    Finset.univ \ quartet (0 : QuartetIndex) =
+      quartet (3 : QuartetIndex) := by
+  decide
+
+theorem quartet_one_complement_two :
+    Finset.univ \ quartet (1 : QuartetIndex) =
+      quartet (2 : QuartetIndex) := by
+  decide
+
+/-- Connectedness rules out all four canonical zero-sum quartets being
+    graph-independent: the two resulting bipartitions would be distinct.
+    This is a universal graph theorem, not a finite enumeration of graphs. -/
+theorem connected_not_all_four_quartets_independent
+    (G : SimpleGraph Vertex) (hc : G.Connected) :
+    ¬ ∀ i : QuartetIndex,
+        (∀ u ∈ quartet i, ∀ v ∈ quartet i, ¬ G.Adj u v) := by
+  intro hi
+  have hsc : ∀ u ∈ (Finset.univ \ quartet (0 : QuartetIndex)),
+      ∀ v ∈ (Finset.univ \ quartet (0 : QuartetIndex)), ¬ G.Adj u v := by
+    simpa only [quartet_zero_complement_three] using hi 3
+  have htc : ∀ u ∈ (Finset.univ \ quartet (1 : QuartetIndex)),
+      ∀ v ∈ (Finset.univ \ quartet (1 : QuartetIndex)), ¬ G.Adj u v := by
+    simpa only [quartet_one_complement_two] using hi 2
+  obtain heq | hswap :=
+    connected_independent_partition_unique G hc (0 : Vertex)
+      (quartet 0) (quartet 1) (hi 0) hsc (hi 1) htc
+  · have hne : quartet (0 : QuartetIndex) ≠ quartet (1 : QuartetIndex) := by
+      decide
+    exact hne heq
+  · have hne : quartet (0 : QuartetIndex) ≠
+        Finset.univ \ quartet (1 : QuartetIndex) := by
+      decide
+    exact hne hswap
+
+#print axioms PDIC.connected_not_all_four_quartets_independent
+
+end PDIC
