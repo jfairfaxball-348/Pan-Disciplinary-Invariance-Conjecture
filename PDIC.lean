@@ -1749,10 +1749,12 @@ theorem mixedFourMIS_ne_sides {V : Type*} [DecidableEq V]
   · intro he
     have hh := h.2.2.1
     rw [← he, Finset.inter_self] at hh
+    have hc := h.1
     omega
   · intro he
     have hh := h.2.2.2
     rw [← he, Finset.inter_self] at hh
+    have hc := h.1
     omega
 
 theorem compatibleTriple_card {V : Type*} [Fintype V] [DecidableEq V]
@@ -1869,7 +1871,7 @@ namespace PDIC
 theorem anchoredMixedThird_card (G : SimpleGraph Vertex) (s r : Finset Vertex)
     (h : IsAnchoredMixedThird G s r) : r.card = 4 := by
   classical
-  have he : r ∩ (Finset.univ \ s) = r \ s := by ext v; simp; tauto
+  have he : r ∩ (Finset.univ \ s) = r \ s := by ext v; simp
   have hh := Finset.card_inter_add_card_sdiff r s
   rw [h.2.1, ← he, h.2.2] at hh
   omega
@@ -1921,7 +1923,7 @@ theorem unorderedCompatibleTripleCount_eq_anchored
     unorderedCompatibleTripleCount G = anchoredMixedThirdCount G s := by
   classical
   have hcard : (Finset.univ \ s).card = 4 := by
-    rw [Finset.card_sdiff (Finset.subset_univ s)]
+    rw [Finset.card_sdiff_of_subset (Finset.subset_univ s)]
     simp [hs.1]
   have hp : ComplementaryFourMIS G s (Finset.univ \ s) :=
     ⟨hs.1, hcard, hs.2.1, hs.2.2, rfl⟩
@@ -1941,5 +1943,257 @@ theorem unorderedCompatibleTripleCount_eq_anchored
 #print axioms PDIC.compatibleTriple_iff_unordered
 #print axioms PDIC.compatibleTripleCount_eq_unordered
 #print axioms PDIC.unorderedCompatibleTripleCount_eq_anchored
+
+end PDIC
+
+namespace PDIC
+
+def splitLeft : Finset SplitVertex := (Finset.univ : Finset Side).disjSum ∅
+def splitRight : Finset SplitVertex := (∅ : Finset Side).disjSum Finset.univ
+
+theorem splitRight_eq_complement : splitRight = Finset.univ \ splitLeft := by
+  ext v
+  cases v <;> simp [splitLeft, splitRight]
+
+theorem split_inter_card (r : Finset SplitVertex) :
+    (r ∩ splitLeft).card = r.toLeft.card ∧
+      (r ∩ splitRight).card = r.toRight.card := by
+  have hl : r ∩ splitLeft = r.toLeft.disjSum ∅ := by
+    ext v
+    cases v <;> simp [splitLeft]
+  have hr : r ∩ splitRight = (∅ : Finset Side).disjSum r.toRight := by
+    ext v
+    cases v <;> simp [splitRight]
+  simp [hl, hr]
+
+/-- Connectedness forces both pure sides to dominate the other side. -/
+theorem connected_matrixGraph_pure_MIS (adj : Side → Side → Bool)
+    (hc : (matrixGraph adj).Connected) :
+    GraphMIS (matrixGraph adj) splitLeft ∧ GraphMIS (matrixGraph adj) splitRight := by
+  constructor
+  · constructor
+    · intro u hu v hv
+      cases u <;> cases v <;> simp_all [splitLeft, matrixGraph]
+    · intro v hv
+      cases v with
+      | inl i => simp [splitLeft] at hv
+      | inr j =>
+        obtain ⟨u, he⟩ := hc.preconnected.exists_adj_of_nontrivial (Sum.inr j)
+        cases u with
+        | inl i => exact ⟨Sum.inl i, by simp [splitLeft], he⟩
+        | inr k => exact False.elim he
+  · constructor
+    · intro u hu v hv
+      cases u <;> cases v <;> simp_all [splitRight, matrixGraph]
+    · intro v hv
+      cases v with
+      | inr j => simp [splitRight] at hv
+      | inl i =>
+        obtain ⟨u, he⟩ := hc.preconnected.exists_adj_of_nontrivial (Sum.inl i)
+        cases u with
+        | inr j => exact ⟨Sum.inr j, by simp [splitRight], he⟩
+        | inl k => exact False.elim he
+
+theorem connected_matrixGraph_complementaryFourMIS (adj : Side → Side → Bool)
+    (hc : (matrixGraph adj).Connected) :
+    ComplementaryFourMIS (matrixGraph adj) splitLeft splitRight := by
+  obtain ⟨hl, hr⟩ := connected_matrixGraph_pure_MIS adj hc
+  exact ⟨by decide, by decide, hl, hr, splitRight_eq_complement⟩
+
+theorem mixedFourMIS_iff_split (adj : Side → Side → Bool) (r : Finset SplitVertex) :
+    MixedFourMIS (matrixGraph adj) splitLeft splitRight r ↔
+      r.toLeft.card = 2 ∧ r.toRight.card = 2 ∧ GraphMIS (matrixGraph adj) r := by
+  obtain ⟨hl, hr⟩ := split_inter_card r
+  constructor
+  · rintro ⟨_, hm, hs, ht⟩
+    exact ⟨hl ▸ hs, hr ▸ ht, hm⟩
+  · rintro ⟨hs, ht, hm⟩
+    have hc := Finset.card_disjSum r.toLeft r.toRight
+    rw [Finset.toLeft_disjSum_toRight, hs, ht] at hc
+    exact ⟨hc, hm, hl.trans hs, hr.trans ht⟩
+
+/-- The full unordered h count of a connected matrix graph is the certified B(A). -/
+theorem connected_compatibleTripleCount_matrix (adj : Side → Side → Bool)
+    (hc : (matrixGraph adj).Connected) :
+    compatibleTripleCount (matrixGraph adj) = graphMixedCount adj := by
+  classical
+  rw [connected_compatibleTripleCount_eq_partitionMixedCount (matrixGraph adj) hc
+    (Sum.inl (0 : Side)) (connected_matrixGraph_complementaryFourMIS adj hc)]
+  exact Fintype.card_congr (Equiv.subtypeEquivRight (mixedFourMIS_iff_split adj))
+
+theorem connected_compatibleTripleCount_matrix_le_three (adj : Side → Side → Bool)
+    (hc : (matrixGraph adj).Connected) :
+    compatibleTripleCount (matrixGraph adj) ≤ 3 := by
+  rw [connected_compatibleTripleCount_matrix adj hc]
+  exact connected_graphMixedCount_le_three adj hc
+
+#print axioms PDIC.splitRight_eq_complement
+#print axioms PDIC.split_inter_card
+#print axioms PDIC.connected_matrixGraph_pure_MIS
+#print axioms PDIC.connected_matrixGraph_complementaryFourMIS
+#print axioms PDIC.mixedFourMIS_iff_split
+#print axioms PDIC.connected_compatibleTripleCount_matrix
+#print axioms PDIC.connected_compatibleTripleCount_matrix_le_three
+
+end PDIC
+
+namespace PDIC
+
+theorem graphMIS_map_iff {V W : Type*} [DecidableEq V] [DecidableEq W]
+    {G : SimpleGraph V} {H : SimpleGraph W} (e : G ≃g H) (s : Finset V) :
+    GraphMIS H (s.map e.toEquiv.toEmbedding) ↔ GraphMIS G s := by
+  classical
+  constructor
+  · rintro ⟨hi, hd⟩
+    constructor
+    · intro u hu v hv he
+      exact hi (e u) (Finset.mem_map.mpr ⟨u, hu, rfl⟩)
+        (e v) (Finset.mem_map.mpr ⟨v, hv, rfl⟩) (e.map_rel_iff.mpr he)
+    · intro v hv
+      have hn : e v ∉ s.map e.toEquiv.toEmbedding := by simpa using hv
+      obtain ⟨w, hw, he⟩ := hd (e v) hn
+      obtain ⟨u, hu, rfl⟩ := Finset.mem_map.mp hw
+      exact ⟨u, hu, e.map_rel_iff.mp he⟩
+  · rintro ⟨hi, hd⟩
+    constructor
+    · intro u hu v hv he
+      obtain ⟨a, ha, rfl⟩ := Finset.mem_map.mp hu
+      obtain ⟨b, hb, rfl⟩ := Finset.mem_map.mp hv
+      exact hi a ha b hb (e.map_rel_iff.mp he)
+    · intro v hv
+      have hn : e.symm v ∉ s := by
+        intro hm
+        exact hv (Finset.mem_map.mpr ⟨e.symm v, hm, e.apply_symm_apply v⟩)
+      obtain ⟨u, hu, he⟩ := hd (e.symm v) hn
+      exact ⟨e u, Finset.mem_map.mpr ⟨u, hu, rfl⟩,
+        by simpa using e.map_rel_iff.mpr he⟩
+
+theorem complementaryFourMIS_map_iff
+    {V W : Type*} [Fintype V] [Fintype W] [DecidableEq V] [DecidableEq W]
+    {G : SimpleGraph V} {H : SimpleGraph W} (e : G ≃g H) (s t : Finset V) :
+    ComplementaryFourMIS H (s.map e.toEquiv.toEmbedding) (t.map e.toEquiv.toEmbedding) ↔
+      ComplementaryFourMIS G s t := by
+  classical
+  have he : (Finset.univ \ s).map e.toEquiv.toEmbedding =
+      Finset.univ \ s.map e.toEquiv.toEmbedding := by
+    rw [Finset.map_sdiff, Finset.map_univ_equiv]
+  simp only [ComplementaryFourMIS, Finset.card_map, graphMIS_map_iff, ← he,
+    Finset.map_inj]
+
+theorem mixedFourMIS_map_iff
+    {V W : Type*} [DecidableEq V] [DecidableEq W]
+    {G : SimpleGraph V} {H : SimpleGraph W} (e : G ≃g H) (s t r : Finset V) :
+    MixedFourMIS H (s.map e.toEquiv.toEmbedding) (t.map e.toEquiv.toEmbedding)
+      (r.map e.toEquiv.toEmbedding) ↔ MixedFourMIS G s t r := by
+  classical
+  simp only [MixedFourMIS, Finset.card_map, graphMIS_map_iff, ← Finset.map_inter]
+
+/-- Relabelling vertices transports genuine unordered compatible triples. -/
+theorem compatibleTriple_map
+    {V W : Type*} [Fintype V] [Fintype W] [DecidableEq V] [DecidableEq W]
+    {G : SimpleGraph V} {H : SimpleGraph W} (e : G ≃g H)
+    (q : Finset (Finset V)) (hq : CompatibleTriple G q) :
+    CompatibleTriple H ((Equiv.finsetCongr (Equiv.finsetCongr e.toEquiv)) q) := by
+  classical
+  obtain ⟨s, t, r, hp, hm, rfl⟩ := hq
+  refine ⟨s.map e.toEquiv.toEmbedding, t.map e.toEquiv.toEmbedding,
+    r.map e.toEquiv.toEmbedding, (complementaryFourMIS_map_iff e s t).mpr hp,
+    (mixedFourMIS_map_iff e s t r).mpr hm, ?_⟩
+  simp [Equiv.finsetCongr_apply]
+
+theorem compatibleTriple_map_iff
+    {V W : Type*} [Fintype V] [Fintype W] [DecidableEq V] [DecidableEq W]
+    {G : SimpleGraph V} {H : SimpleGraph W} (e : G ≃g H) (q : Finset (Finset V)) :
+    CompatibleTriple G q ↔
+      CompatibleTriple H ((Equiv.finsetCongr (Equiv.finsetCongr e.toEquiv)) q) := by
+  constructor
+  · exact compatibleTriple_map e q
+  · intro h
+    have hh := compatibleTriple_map e.symm _ h
+    simpa only [← Equiv.finsetCongr_symm, Equiv.symm_apply_apply] using hh
+
+/-- The set-of-sets count is a graph isomorphism invariant, not a labelling statistic. -/
+theorem compatibleTripleCount_iso
+    {V W : Type*} [Fintype V] [Fintype W] [DecidableEq V] [DecidableEq W]
+    {G : SimpleGraph V} {H : SimpleGraph W} (e : G ≃g H) :
+    compatibleTripleCount G = compatibleTripleCount H := by
+  classical
+  exact Fintype.card_congr (Equiv.subtypeEquiv
+    (Equiv.finsetCongr (Equiv.finsetCongr e.toEquiv)) (compatibleTriple_map_iff e))
+
+#print axioms PDIC.graphMIS_map_iff
+#print axioms PDIC.complementaryFourMIS_map_iff
+#print axioms PDIC.mixedFourMIS_map_iff
+#print axioms PDIC.compatibleTriple_map
+#print axioms PDIC.compatibleTriple_map_iff
+#print axioms PDIC.compatibleTripleCount_iso
+
+end PDIC
+
+namespace PDIC
+
+/-- A four-element side and its four-element complement admit an actual
+bijection from Fin 4 + Fin 4, with the two side membership laws. -/
+theorem exists_balancedSplitEquiv (s : Finset Vertex)
+    (hs : s.card = 4) (ht : (Finset.univ \ s).card = 4) :
+    ∃ e : SplitVertex ≃ Vertex,
+      (∀ i : Side, e (Sum.inl i) ∈ s) ∧
+      (∀ j : Side, e (Sum.inr j) ∉ s) := by
+  classical
+  let l : Side ≃ {v // v ∈ s} := (s.equivFinOfCardEq hs).symm
+  let r0 : Side ≃ {v // v ∈ (Finset.univ \ s)} :=
+    ((Finset.univ \ s).equivFinOfCardEq ht).symm
+  let r : Side ≃ {v // v ∉ s} := r0.trans
+    (Equiv.subtypeEquivRight (fun v => by simp))
+  let e : SplitVertex ≃ Vertex := (Equiv.sumCongr l r).trans
+    (Equiv.sumCompl (fun v => v ∈ s))
+  refine ⟨e, ?_, ?_⟩
+  · intro i
+    exact (l i).property
+  · intro j
+    exact (r j).property
+
+/-- An arbitrary balanced independent partition transfers all adjacency,
+including absent within-side edges, to a Boolean matrix graph. -/
+theorem exists_matrixGraph_iso (G : SimpleGraph Vertex) (s : Finset Vertex)
+    (hs : FourMISPartition G s) :
+    ∃ adj : Side → Side → Bool, Nonempty (matrixGraph adj ≃g G) := by
+  classical
+  have ht : (Finset.univ \ s).card = 4 := by
+    rw [Finset.card_sdiff_of_subset (Finset.subset_univ s)]
+    simp [hs.1]
+  obtain ⟨e, hl, hr⟩ := exists_balancedSplitEquiv s hs.1 ht
+  let adj : Side → Side → Bool := fun i j => decide (G.Adj (e (Sum.inl i)) (e (Sum.inr j)))
+  refine ⟨adj, ⟨{ toEquiv := e, map_rel_iff' := ?_ }⟩⟩
+  intro u v
+  cases u with
+  | inl i =>
+    cases v with
+    | inl k =>
+      exact iff_false_intro (hs.2.1.1 _ (hl i) _ (hl k))
+    | inr j => simp [matrixGraph, adj]
+  | inr j =>
+    cases v with
+    | inl i => simpa [matrixGraph, adj] using (G.adj_comm (e (Sum.inr j)) (e (Sum.inl i)))
+    | inr k =>
+      exact iff_false_intro (hs.2.2.1 _ (by simp [hr j]) _ (by simp [hr k]))
+
+/-- General eight-vertex graph bound: a genuine unordered triple count,
+with no balanced-partition, matrix, edge-count or count-equality hypothesis. -/
+theorem connected_unorderedCompatibleTripleCount_le_three
+    (G : SimpleGraph Vertex) (hc : G.Connected) :
+    unorderedCompatibleTripleCount G ≤ 3 := by
+  classical
+  by_cases hp : ∃ s, FourMISPartition G s
+  · obtain ⟨s, hs⟩ := hp
+    obtain ⟨adj, ⟨e⟩⟩ := exists_matrixGraph_iso G s hs
+    rw [← compatibleTripleCount_eq_unordered, ← compatibleTripleCount_iso e]
+    exact connected_compatibleTripleCount_matrix_le_three adj (e.connected_iff.mpr hc)
+  · rw [unorderedCompatibleTripleCount_zero_of_no_partition G hp]
+    omega
+
+#print axioms PDIC.exists_balancedSplitEquiv
+#print axioms PDIC.exists_matrixGraph_iso
+#print axioms PDIC.connected_unorderedCompatibleTripleCount_le_three
 
 end PDIC
