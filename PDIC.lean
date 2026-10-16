@@ -4497,7 +4497,7 @@ theorem canonicalCapF3_perm_distinct_pair_event_card_by_overlap
       exact canonicalCapF3_perm_distinct_pair_event_zero_of_other_overlap
         s t hs ht hne hzero htwo
 
-/-- If three distinct size-four sources admit a simultaneous zero event,
+/-- If three distinct size-four sources have a simultaneous zero event,
 at least one pair is complementary. This rules out every triangle of
 only overlapping 2+2 pairs, including when all sets happen to be MIS. -/
 theorem canonicalCapF3_perm_distinct_triple_event_zero_of_no_disjoint
