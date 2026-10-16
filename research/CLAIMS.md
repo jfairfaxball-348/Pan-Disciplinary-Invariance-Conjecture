@@ -36,7 +36,7 @@ See [S003R5 closeout](../sessions/S003R5_CLOSEOUT.md), [S003R5 decomposed proof]
 | OR-mask bit correspondence; six distinct two-subsets of `Fin 4` | **LEAN_KERNEL_CHECKED_ON_PR3_2bfb316** | `orMask_getLsbD_iff`, `sidePairsSix_eq_filter`, `sidePairsSix_card` |
 | Three-bit six-indicator sum equals exact natural sum | **LEAN_KERNEL_CHECKED_ON_PR3_2bfb316** | `sixBooleanIndicatorCount`, `fourRowMixedCountBV_eq_sixNat`; at most six, no wrap |
 | Four five-bit row popcounts sum to exact natural sum | **LEAN_KERNEL_CHECKED_ON_PR3_2bfb316** | `fourSmallBVSum_noOverflow`, `fourRowEdgeCountBV_eq_fourPopNat`; each at most four |
-| Arbitrary Boolean predicate's six two-subset filtered-cardinality identity | **PENDING_STRICT_CI_ON_PR3** | `sixPairsBoolCardinality`; earlier recursion-depth failure, revision needs exact-head verification |
+| Arbitrary Boolean predicate's six two-subset filtered-cardinality identity | **OPEN_IN_LEAN / FAILED_TRIAL_WITHDRAWN** | `sixPairsBoolCardinality` simplifier exceeded recursion limit on commits `25f4c628` and `540e1329`; neither is certified, both withdrawn from PR HEAD `30ac30c0` |
 | Exact `fourRowMixedCountBV.toNat = actualMixedLeftPairCount` | **OPEN_IN_LEAN** | Six scalar `goodLeftPairBV`↔`mixedPairCriterionBool` equivalences still required |
 | Exact `fourRowEdgeCountBV.toNat = actualMatrixEdgeCount` | **OPEN_IN_LEAN** | Four-row filtered edge-cardinality sum adapter still required |
 | General Boolean matrix transferred edge/mixed bounds and spider iff | **OPEN_IN_LEAN** | Both semantic numerical count adapters prerequisite |
