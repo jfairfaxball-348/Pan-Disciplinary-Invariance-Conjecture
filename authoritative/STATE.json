@@ -16,7 +16,7 @@
   "lean": "PR3_8199e6bc41dc9801a95b1f19ece0c186c1791995_STRICT_PASS_15_S003R9_DECLARATIONS__MAIN_S003R3_BASELINE",
   "publication": "REVISED_FIVE_PAGE_TEX_DRAFT_NOT_SUBMITTED_NOVELTY_OPEN",
   "palomar": "NOT_REQUESTED",
-  "next_prompt": null,
+  "next_prompt": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "PR3_402465f2330a275e04108169a6bfbb65e94e10b8_LEAN_PASS_38890367785_ALL_SIX_FINITE_PASS_STANDARD_AXIOMS_ONLY",
   "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785",
@@ -105,9 +105,9 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": null,
-  "next_session_status": "AWAITING_OWNER_TARGET",
-  "next_session_target_installed": false,
+  "next_session_target": "PRIOR_ART_AND_NOVELTY_AUDIT",
+  "next_session_status": "INSTALLED_NOT_EXECUTED",
+  "next_session_target_installed": true,
   "session_control": "research/NEXT_SESSION_PROMPT.md",
   "session_process": {
     "mode": "OWNER_DIRECTED_PER_SESSION",
@@ -124,5 +124,8 @@
     "former_title": "FINAL NOVELTY, MANUSCRIPT AND PUBLICATION-PREPARATION GATE",
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
-  }
+  },
+  "next_session_target_file": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
+  "next_session_target_installed_date": "2026-10-16",
+  "next_session_target_source": "EXPLICIT_OWNER_INSTRUCTION"
 }

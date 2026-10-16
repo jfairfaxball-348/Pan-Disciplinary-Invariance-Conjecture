@@ -1,9 +1,9 @@
-# PDIC session control — awaiting owner target
+# PDIC owner-installed session target
 
-**No active next-session prompt. S004 target: UNASSIGNED.**
+**S004: PRIOR-ART AND NOVELTY AUDIT — INSTALLED, NOT EXECUTED.**
 
-Owner directive, 16 October 2026: the owner will steer each session and supply its target. At the end of a session, close out the actual work and verification normally, without suggesting the next step, proposing a target, or writing a next-session prompt. Then wait for the owner's direction.
+The owner explicitly selected this target on 16 October 2026. The current brief is [S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md](S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md). Installation does not execute the audit; await the owner's instruction to run it.
 
-The previously prepared S004 novelty/manuscript/publication-preparation brief is withdrawn as an active target. It must not be executed or treated as the default. S004 has not been installed or executed. The next owner instruction will specify what target to install; installation alone does not authorise execution.
+The former combined novelty/manuscript/publication-preparation brief remains withdrawn. The installed scope is a prior-art and novelty audit of the existing mathematical package.
 
-This file remains at its existing path for compatibility with repository references; it records session-control status and is not an executable research brief. Historical prompts in earlier notes do not override this owner directive. See AGENTS.md and authoritative/STATE.json.
+The owner-directed process remains in force: close out each executed session with actual work, verification and status, without suggesting the next step or generating a subsequent session prompt. This compatibility file points to the current owner-installed target; it is not an automatically selected future plan.

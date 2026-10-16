@@ -1,6 +1,6 @@
 # PDIC S003R9 — completed, 16 October 2026
 
-**EXECUTED; bounded formal-appendix fallback used for the remaining full flagship. S004 TARGET UNASSIGNED; NOT INSTALLED OR EXECUTED.**
+**EXECUTED; bounded formal-appendix fallback used for the remaining full flagship. S004 PRIOR-ART/NOVELTY AUDIT SUBSEQUENTLY OWNER-INSTALLED; NOT EXECUTED.**
 
 ## Verified result
 
@@ -35,8 +35,8 @@ The **full written h≤3/spider/probability theorem is not end-to-end formalised
 
 ## Owner-directed process update — 16 October 2026
 
-The owner withdrew the previously prepared S004 brief and retired automatic next-step suggestions and next-session prompt generation. S003R9 remains closed with the results and certificates above. S004 is unassigned and will receive its target from the owner. Historical versions preserve the earlier proposed brief; it is not active authorisation.
+The owner withdrew the previously prepared S004 brief and retired automatic next-step suggestions and next-session prompt generation. S003R9 remains closed with the results and certificates above. The owner subsequently installed S004 as a prior-art and novelty audit; it has not been executed. Historical versions preserve the earlier proposed brief; it is not active authorisation.
 
 ## FINAL EXACT-HEAD CERTIFICATE
 
-PR #3 final head [`402465f2330a275e04108169a6bfbb65e94e10b8`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/402465f2330a275e04108169a6bfbb65e94e10b8) passed [strict Lean 38890367785](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785) and [separate finite 38890368126](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890368126). All SIX finite checkers passed in the strict workflow, as did the kernel build and standard-axiom/proof-hole audits. The Lean source is byte-for-byte identical to source certificate `8199e6bc41dc9801a95b1f19ece0c186c1791995`. Final manuscript includes the nonempty zero-sum hypothesis and the direct canonical-nine-cap argument; its final five-page rendering was rechecked. Working tree clean; PR open, unmerged. The owner has since withdrawn the prepared S004 brief; its target is unassigned and it has not been installed or executed.
+PR #3 final head [`402465f2330a275e04108169a6bfbb65e94e10b8`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/402465f2330a275e04108169a6bfbb65e94e10b8) passed [strict Lean 38890367785](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785) and [separate finite 38890368126](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890368126). All SIX finite checkers passed in the strict workflow, as did the kernel build and standard-axiom/proof-hole audits. The Lean source is byte-for-byte identical to source certificate `8199e6bc41dc9801a95b1f19ece0c186c1791995`. Final manuscript includes the nonempty zero-sum hypothesis and the direct canonical-nine-cap argument; its final five-page rendering was rechecked. Working tree clean; PR open, unmerged. The owner withdrew the combined prepared S004 brief and subsequently installed a prior-art and novelty audit target. S004 has not been executed.

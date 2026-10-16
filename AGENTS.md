@@ -11,4 +11,4 @@
 
 ## Owner-directed session control — effective 16 October 2026
 
-The owner now steers the project hands-on, one session at a time. The previous automatic next-session/roadmap process is retired. S003R9 remains completed. S004 is only the next available session number: its previous prepared brief is withdrawn and its target is unassigned. Await the owner's instructions for installing the S004 target; do not infer a replacement from open obligations or prior plans. This directive supersedes conflicting handoffs in historical session notes.
+The owner now steers the project hands-on, one session at a time. The previous automatic next-session/roadmap process is retired. S003R9 remains completed. The previous combined S004 brief is withdrawn. Current owner-installed targets and their execution status are recorded in authoritative/STATE.json and the referenced target file; do not infer a replacement from open obligations or prior plans. Installing a target does not execute it. This directive supersedes conflicting handoffs in historical session notes.
