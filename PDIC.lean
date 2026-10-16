@@ -2285,8 +2285,8 @@ end PDIC
 namespace PDIC
 
 /-! S008: the named, labelled spider and its concrete connected matrix model.
-    The difficult converse (all equality matrices admit a normalising
-    permutation) is deliberately NOT taken as an axiom. -/
+    The difficult converse (a normalising permutation for every equality
+    matrix) is deliberately NOT taken as an axiom. -/
 
 /-- The actual simple graph with edges 04, 05, 06, 07, 16, 25, 34. -/
 def namedSpider : SimpleGraph Vertex where
