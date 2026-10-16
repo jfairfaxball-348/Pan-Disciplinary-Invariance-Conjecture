@@ -56,4 +56,4 @@ The session freezes the certified matrix/graph appendix and general connected-pa
 3. Construct a graph isomorphism from each row/column spider pattern to the named eight-vertex spider. A Boolean pattern is not by itself a declared graph isomorphism.
 4. Build uniform finite labellings or atom assignments, prove the 16-to-one push-forward and eight favourable fibres, connect the quartet design, and sum moments to obtain the complete law. The nine-cap classification stays an explicit external input.
 
-S004 is a final source-comparison, mathematical editing and publication-preparation decision on this qualified package. Do not create another automatic S003R retry chain. No PR merge or external submission has been performed.
+The S003R9 proposal to make S004 a final source-comparison/editing gate was withdrawn by the owner's process change on 16 October 2026. S004 currently has no installed target. The obligations above record the mathematical/formalisation boundary only; the owner will choose the session target. No PR merge or external submission has been performed.

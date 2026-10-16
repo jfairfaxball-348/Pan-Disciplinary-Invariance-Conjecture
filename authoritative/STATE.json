@@ -8,8 +8,7 @@
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
-    "S003R9 strict actual SimpleGraph/count/connectedness appendix and general unique partition theorem; revised manuscript and primary-source comparison",
-    "S004 final novelty/editing/publication-preparation gate; no automatic external submission"
+    "S003R9 strict actual SimpleGraph/count/connectedness appendix and general unique partition theorem; revised manuscript and primary-source comparison"
   ],
   "mathematics": "WRITTEN_GRAPH_PROBABILITY_FLAGSHIP_WITH_CLASSICAL_INPUT__FORMAL_GRAPH_MATRIX_APPENDIX_STRICT_PASS",
   "new_theorem_claimed": false,
@@ -17,7 +16,7 @@
   "lean": "PR3_8199e6bc41dc9801a95b1f19ece0c186c1791995_STRICT_PASS_15_S003R9_DECLARATIONS__MAIN_S003R3_BASELINE",
   "publication": "REVISED_FIVE_PAGE_TEX_DRAFT_NOT_SUBMITTED_NOVELTY_OPEN",
   "palomar": "NOT_REQUESTED",
-  "next_prompt": "research/NEXT_SESSION_PROMPT.md",
+  "next_prompt": null,
   "source": "PDIC.lean",
   "strict_hosted_ci": "PR3_402465f2330a275e04108169a6bfbb65e94e10b8_LEAN_PASS_38890367785_ALL_SIX_FINITE_PASS_STANDARD_AXIOMS_ONLY",
   "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785",
@@ -105,5 +104,25 @@
   "s003r9_final_head_sha": "402465f2330a275e04108169a6bfbb65e94e10b8",
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
-  "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY"
+  "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
+  "next_session_target": null,
+  "next_session_status": "AWAITING_OWNER_TARGET",
+  "next_session_target_installed": false,
+  "session_control": "research/NEXT_SESSION_PROMPT.md",
+  "session_process": {
+    "mode": "OWNER_DIRECTED_PER_SESSION",
+    "effective_date": "2026-10-16",
+    "closeout": "ACTUAL_WORK_AND_VERIFICATION_ONLY",
+    "suggest_next_step": false,
+    "generate_next_session_prompt": false,
+    "automatically_install_next_target": false,
+    "owner_supplies_each_target": true,
+    "installation_is_execution_authorisation": false
+  },
+  "withdrawn_prepared_target": {
+    "session": "S004",
+    "former_title": "FINAL NOVELTY, MANUSCRIPT AND PUBLICATION-PREPARATION GATE",
+    "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
+    "date": "2026-10-16"
+  }
 }
