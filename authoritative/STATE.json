@@ -1,25 +1,25 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-16",
-  "last_completed_session": "S012",
-  "next_session": "S013",
+  "last_completed_session": "S013",
+  "next_session": "S014",
   "next_session_executed": false,
-  "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION_S012_SOURCE_FORMALIZED_CI_UNVERIFIED_S013_INSTALLED",
+  "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION_S013_ACTUAL_N0_LE_THREE_STRICT_PASS_S014_TRUE_FIBRES_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
     "S003R9 strict actual SimpleGraph/count/connectedness appendix and general unique partition theorem; revised manuscript and primary-source comparison"
   ],
-  "mathematics": "S010_GRAPH_EXTREMISER_AND_S011_CANONICAL_CAP_KERNEL_VERIFIED__S012_TRANSPORT_AND_CONNECTED_QUARTET_LEMMAS_SOURCE_CANDIDATE__FULL_N0_MOMENTS_OPEN",
+  "mathematics": "S010_GRAPH_IFF_AND_S011_CAP_AND_S012_PERMUTATION_AND_S013_ACTUAL_N0_BOUND_KERNEL_VERIFIED__GENERAL_2304_128_FIBRES_AND_MOMENTS_FULL_LAW_OPEN",
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
-  "lean": "S011_CANONICAL_CAP_LINEAR_TRANSFER_CARD40320_PASS_e302e5f82434b3d8790c81506fe55062700e7a53_RUN_38934564596__FULL_FOUR_TERM_PROBABILITY_OPEN",
+  "lean": "S013_CONNECTED_LABELLING_ZERO_MIS_COUNT_LE_THREE_KERNEL_VERIFIED_2a808e53cb7a763b54c53c4f06d12f7f64d3b113_RUN_38945169850_STANDARD_AXIOMS_ONLY__FULL_FOUR_TERM_PROBABILITY_OPEN",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
-  "next_prompt": "research/S013_PROOF_COMPLETION_TARGET.md",
+  "next_prompt": "research/S014_TRUE_FIBRES_AND_MOMENTS_TARGET.md",
   "source": "PDIC.lean",
-  "strict_hosted_ci": "S011_7f7e32dda87983c3df619481693af5a4baff5bfd_STRICT_PASS_STANDARD_AXIOMS_AND_NINE_CHECKERS_38935115211",
-  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38935115211",
+  "strict_hosted_ci": "S013_2a808e53cb7a763b54c53c4f06d12f7f64d3b113_STRICT_LEAN_PASS_STANDARD_AXIOMS_AND_NINE_CHECKERS_38945169850",
+  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169850",
   "all_five_verifier_run": "ALL_SIX_PASS_LOCAL_AND_HOSTED_38890367785",
   "native_axioms_approved": false,
   "s003r3_closeout": "sessions/S003R3_CLOSEOUT.md",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S013_CERTIFY_S012_AND_FINISH_ACTUAL_N0_SUPPORT_EVENT_FIBRES_UNORDERED_MOMENTS_DISTRIBUTION",
+  "next_session_target": "S014_PROVE_TRUE_576_AND_16_PERMUTATION_FIBRES_2304_AND_128_EVENTS_UNORDERED_MOMENTS_COMPLETE_DISTRIBUTION",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,9 +167,9 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S013_PROOF_COMPLETION_TARGET.md",
+  "next_session_target_file": "research/S014_TRUE_FIBRES_AND_MOMENTS_TARGET.md",
   "next_session_target_installed_date": "2026-10-16",
-  "next_session_target_source": "S012_UNVERIFIED_PROOF_CANDIDATE_4c68728834570cb436944c407d700487c6448002",
+  "next_session_target_source": "2a808e53cb7a763b54c53c4f06d12f7f64d3b113",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -407,5 +407,33 @@
     "four-term complete probability and iff named spider",
     "conditional all-cap probability transfer"
   ],
-  "s013_status": "INSTALLED_NOT_EXECUTED"
+  "s013_status": "COMPLETED_STRICT_LEAN_PASS_ACTUAL_ZERO_MIS_N0_LE_THREE",
+  "s012_certification_update": {
+    "status": "STRICT_LEAN_PASS_RETROSPECTIVE_VERIFICATION_AFTER_CLOSEOUT",
+    "verified_sha": "4c68728834570cb436944c407d700487c6448002",
+    "lean_run": 38938608949,
+    "finite_run": 38938609119
+  },
+  "s013_proof_sha": "2a808e53cb7a763b54c53c4f06d12f7f64d3b113",
+  "s013_lean_run": 38945169850,
+  "s013_finite_run": 38945169844,
+  "s013_job": 117122352499,
+  "s013_axioms": "PROPEXT_CLASSICAL_CHOICE_QUOT_SOUND_ONLY",
+  "s013_declarations": [
+    "pulledQuartet_eq_image",
+    "perm_finset_image_roundtrip",
+    "canonicalCapF3_perm_four_zero_iff_pulled",
+    "connected_labellingZeroMISCount_le_three"
+  ],
+  "s013_closeout": "sessions/S013_CLOSEOUT.md",
+  "s013_proof_note": "research/S013_ACTUAL_N0_AND_EVENT_FIBRES.md",
+  "s013_unclosed": [
+    "GENUINE_576_16_REGULAR_PERMUTATION_FIBRES_KERNEL",
+    "GENERAL_2304_128_EVENT_CARDINALITIES",
+    "UNORDERED_GRAPH_MIS_FACTORIAL_MOMENTS",
+    "SINGLE_FULL_FOUR_PROBABILITY_THEOREM",
+    "CONDITIONAL_ALL_ADMISSIBLE_CAP_FORM"
+  ],
+  "s014_status": "INSTALLED_NOT_EXECUTED",
+  "s014_target": "research/S014_TRUE_FIBRES_AND_MOMENTS_TARGET.md"
 }
