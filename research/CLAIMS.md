@@ -28,4 +28,4 @@ Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessi
 | Manuscript | REVISED_LATEX_DRAFT | Compiled and visually reviewed; not submitted |
 | Native/compiler axioms, proof holes or custom axioms | NOT_APPROVED | Strict CI rejects them |
 
-S004 has no installed target and has not been executed. The previous prepared brief was withdrawn by the owner's 16 October 2026 process change. Sessions now close out without suggested next steps or next-session prompts. No correspondence, merge or external submission.
+The owner has installed S004 as a prior-art and novelty audit; it has not been executed and no novelty verdict has changed as a result of installation. The previous combined brief remains withdrawn. Sessions now close out without suggested next steps or next-session prompts. No correspondence, merge or external submission.

@@ -2,7 +2,7 @@
 
 **Mission:** connect finite-group zero-sum quartet geometry and graph maximal-independent-set statistics in a precise first paper. The project name is aspirational.
 
-**S003R9 COMPLETED. Owner-directed sessions: S004 target unassigned.** The source is on [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), branch `session/s003r4-numerical-semantic`. Main retains the earlier S003R3 Lean baseline; documentation on main describes the separately certified PR source. Read the [S003R9 closeout](sessions/S003R9_CLOSEOUT.md) for exact final SHA and workflow evidence.
+**S003R9 COMPLETED. Owner-directed sessions: S004 prior-art/novelty audit installed, not executed.** The source is on [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), branch `session/s003r4-numerical-semantic`. Main retains the earlier S003R3 Lean baseline; documentation on main describes the separately certified PR source. Read the [S003R9 closeout](sessions/S003R9_CLOSEOUT.md) for exact final SHA and workflow evidence.
 
 ## Strictly certified foundation
 
@@ -30,6 +30,6 @@ The [revised manuscript](paper/PDIC_S003R8_DRAFT.tex) supplies the zero-fixing l
 
 [Claims](research/CLAIMS.md) · [Roadmap](ROADMAP.md) · [S003R9 proof/scope](research/S003R9_GRAPH_WITNESSES_AND_SCOPE.md) · [Session control](research/NEXT_SESSION_PROMPT.md).
 
-Reproduce the pinned `lake build`, strict `#print axioms` audit and six Python checkers in `scripts/`. The sixth checks the prior-art separation examples and all 2520 atom assignments. No PR merge, author correspondence, Palomar/arXiv/journal submission has occurred. The owner supplies each session target. Closeouts report completed work and verification without suggesting a next step or generating a next-session prompt. The former S004 brief is withdrawn; S004 awaits the owner's target.
+Reproduce the pinned `lake build`, strict `#print axioms` audit and six Python checkers in `scripts/`. The sixth checks the prior-art separation examples and all 2520 atom assignments. No PR merge, author correspondence, Palomar/arXiv/journal submission has occurred. The owner supplies each session target. Closeouts report completed work and verification without suggesting a next step or generating a next-session prompt. The former combined S004 brief is withdrawn. The owner has installed [S004: prior-art and novelty audit](research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md), not yet executed.
 
 **S003R9 final exact-head PASS:** [`402465f2330a275e04108169a6bfbb65e94e10b8`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/402465f2330a275e04108169a6bfbb65e94e10b8), [strict Lean 38890367785](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785), all six checkers PASS. [Final closeout](sessions/S003R9_CLOSEOUT.md).
