@@ -39,3 +39,7 @@ At unmerged PR #3 commit [`df53e200`](https://github.com/jfairfaxball-348/Pan-Di
 | S003R9 | Graph/partition theorem, spider isomorphism, 2520 uniform labelling and final prior art | PREPARED, NOT EXECUTED |
 
 Proof gates still open: actual `SimpleGraph (Fin 8)` connectedness/spider theorem, genuine labelling law in Lean, externally sourced nine-cap equivalence, priority. See [full S003R8 closeout](sessions/S003R8_CLOSEOUT.md) and [prepared next prompt](research/NEXT_SESSION_PROMPT.md). PR #3 remains unmerged.
+
+### S003R8 FINAL STRICT PASS (supersedes candidate above)
+
+The three **general Boolean matrix** transferred extremal theorems, exact row encoder count correspondence, and both skew spider `IsMIS4` counterexamples are **kernel-verified** at PR #3 [SHA `1e4cadd580b385e0d8e69e836f3211129e705839`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/1e4cadd580b385e0d8e69e836f3211129e705839), [Lean run 38887318919](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38887318919), all five finite checkers PASS. No unapproved axioms. **S003R9 next** for `SimpleGraph` connected bipartition h=b/isomorphism and genuine cap-labelling random law. The manuscript is written, not submitted; originality still OPEN.
