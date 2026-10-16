@@ -1,8 +1,8 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-16",
-  "last_completed_session": "S018",
-  "next_session": "S019",
+  "last_completed_session": "S019",
+  "next_session": "S020",
   "next_session_executed": false,
   "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION_S018_GENERAL_UNORDERED_K_MOMENT_BRIDGE_KERNEL_CERTIFIED",
   "first_paper_roadmap": [
@@ -16,7 +16,7 @@
   "lean": "S018_EXTENSION_EXACT_SOURCE_6eb67aa8cb7ae08151fe3074166b7a206f844cd7_STRICT_LEAN_PASS_38976368670_FINITE_PASS_38976368661_STANDARD_AXIOMS_ONLY",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
-  "next_prompt": "research/S019_UNORDERED_PAIR_TRIPLE_MOMENTS_TARGET.md",
+  "next_prompt": "research/S020_FULL_UNORDERED_MOMENTS_AND_FLAGSHIP_TARGET.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S018_EXTENSION_6eb67aa8cb7ae08151fe3074166b7a206f844cd7_STRICT_KERNEL_AND_TEN_FINITE_CHECKERS_PASS_38976368670",
   "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38976368670",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S019_KERNEL_VERIFIED_UNORDERED_K_DOUBLE_COUNT_READY__CLOSE_INNER_PAIR_TRIPLE_EVENT_FIBRES_AND_FULL_FLAGSHIP",
+  "next_session_target": "S020_UNORDERED_PAIR_CLASS_FILTER_AGGREGATION_TRIPLE_128_H_AND_FULL_FOUR_TERM_LAW",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,9 +167,9 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S019_UNORDERED_PAIR_TRIPLE_MOMENTS_TARGET.md",
+  "next_session_target_file": "research/S020_FULL_UNORDERED_MOMENTS_AND_FLAGSHIP_TARGET.md",
   "next_session_target_installed_date": "2026-10-16",
-  "next_session_target_source": "26a5f3b6c953872a459a457d593fb6cef620954c",
+  "next_session_target_source": "e981acac25b8106e4b4df782340217ed948445bb",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -228,7 +228,7 @@
   "s007_proof_branch": "session/s007-full-lean-flagship",
   "s007_start_proof_source": "402465f2330a275e04108169a6bfbb65e94e10b8",
   "s007_core_problem": "CONNECTED_EIGHT_VERTEX_UNORDERED_COMPATIBLE_TRIPLES_TO_MATRIX_GRAPH_COUNT_AND_NAMED_SPIDER_ISOMORPHISM",
-  "flagship_kernel_status": "INCOMPLETE_S018_GENUINE_GRAPH_M1_AND_GENERIC_UNORDERED_K_MOMENT_INCIDENCE_STRICT_LEAN_VERIFIED__M2_M3_NUMERICAL_AGGREGATION_AND_ALL_FOUR_PROBABILITIES_OPEN",
+  "flagship_kernel_status": "INCOMPLETE_S019_PAIR_EVENT_CLASSIFIER_AND_UNORDERED_PAIR_FAMILY_BRIDGE_CANDIDATE__GLOBAL_M2_M3_AND_FOUR_PROBABILITIES_OPEN",
   "flagship_required_interfaces": [
     "admissible 8-cap typed zero-sum quartet incidence and explicitly conditional classical GL(3,3) cap transfer",
     "genuine uniform 8! labellings, regular fibres, moments, N0<=3 and all four probabilities",
@@ -570,7 +570,7 @@
   "s018_closeout": "sessions/S018_CLOSEOUT.md",
   "s018_proof_note": "research/S018_GRAPH_MOMENT_ASSEMBLY.md",
   "s019_target_path": "research/S019_UNORDERED_PAIR_TRIPLE_MOMENTS_TARGET.md",
-  "s019_status": "INSTALLED_NOT_EXECUTED",
+  "s019_status": "EXECUTED_PARTIAL_REAL_UNORDERED_PAIR_EVENT_CLASSIFICATION__FULL_FLAGSHIP_OPEN",
   "s018_extension": {
     "status": "COMPLETED_STRICT_LEAN_PASS",
     "source_sha": "6eb67aa8cb7ae08151fe3074166b7a206f844cd7",
@@ -591,5 +591,25 @@
     "remaining": "NUMERIC_UNORDERED_PAIR_AND_TRIPLE_FIBRES__M2_M3__FOUR_TERM_DISTRIBUTION_AND_SPIDER_IFF",
     "session_reentered": false,
     "next_session_executed": false
-  }
+  },
+  "s019_branch": "session/s007-full-lean-flagship",
+  "s019_pr": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4",
+  "s019_proof_sha": "e981acac25b8106e4b4df782340217ed948445bb",
+  "s019_lean_run": "38978027666",
+  "s019_finite_run": "38978027657",
+  "s019_finite_status": "SUCCESS_EXACT_SHA_ALL_TEN_CHECKERS",
+  "s019_lean_status": "PENDING_EXACT_SOURCE_STRICT_HOSTED_VERIFICATION",
+  "s019_new_declarations": [
+    "canonicalCapF3_perm_distinct_pair_event_zero_of_other_overlap",
+    "canonicalCapF3_perm_distinct_pair_event_card_by_overlap",
+    "canonicalCapF3_perm_distinct_triple_event_zero_of_no_disjoint",
+    "graphMIS_unordered_pair_family_event_card"
+  ],
+  "s019_second_moment_aggregate_kernel_verified": false,
+  "s019_third_moment_aggregate_kernel_verified": false,
+  "s019_complete_flagship_kernel_verified": false,
+  "s019_closeout": "sessions/S019_CLOSEOUT.md",
+  "s019_proof_note": "research/S019_PAIR_SUBFAMILY_BRIDGE.md",
+  "s020_target": "research/S020_FULL_UNORDERED_MOMENTS_AND_FLAGSHIP_TARGET.md",
+  "s020_status": "INSTALLED_NOT_EXECUTED"
 }
