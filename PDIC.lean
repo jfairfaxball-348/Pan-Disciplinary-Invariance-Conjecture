@@ -2403,11 +2403,12 @@ separately, for all vertex pairs including nonedges. -/
     one 3-leaf kernel certificate, four explicit row-hub relabellings,
     and a transpose identity.  No theorem assumes the desired isomorphism. -/
 
+set_option maxRecDepth 16384
+set_option maxHeartbeats 0
+
 /-- For a fixed hub in row zero only the three other row masks vary.
 The six choices of ordered distinct singleton neighbours are checked by
 a small finite, kernel-reduced certificate rather than global search. -/
-set_option maxRecDepth 16384 in
-set_option maxHeartbeats 0 in
 private theorem spiderHubZero_leaves (b c d : BitVec 4)
     (h : threeDistinctLeavesBV b c d = true) :
     ∃ q : Side ≃ Side, ∀ i j : Side,
@@ -2448,11 +2449,11 @@ private theorem spiderHubRows_permutations (a b c d : BitVec 4)
       (adjOfRows (fourRows a b c d) i j = true) ↔
         canonicalSpiderMatrix (p i) (q j) = true := by
   have hcases :
-      (((a = 15 ∧ threeDistinctLeavesBV b c d = true) ∨
-        (b = 15 ∧ threeDistinctLeavesBV a c d = true)) ∨
-        (c = 15 ∧ threeDistinctLeavesBV a b d = true)) ∨
-        (d = 15 ∧ threeDistinctLeavesBV a b c = true) := by
-    simpa [spiderHubRowsBV, Bool.or_eq_true, Bool.and_eq_true] using hs
+      (a = 15 ∧ threeDistinctLeavesBV b c d = true) ∨
+      (b = 15 ∧ threeDistinctLeavesBV a c d = true) ∨
+      (c = 15 ∧ threeDistinctLeavesBV a b d = true) ∨
+      (d = 15 ∧ threeDistinctLeavesBV a b c = true) := by
+    simpa [spiderHubRowsBV, Bool.or_eq_true, Bool.and_eq_true, or_assoc] using hs
   rcases hcases with ⟨ha, hleaf⟩ | ⟨hb, hleaf⟩ |
     ⟨hc, hleaf⟩ | ⟨hd, hleaf⟩
   · subst a
@@ -2567,10 +2568,10 @@ private def spiderColumnPermutationIso
     | inl i =>
       cases v with
       | inl j => simp [matrixGraph, spiderSideSwap]
-      | inr j => exact h i j
+      | inr j => simpa [matrixGraph, spiderSideSwap] using (h i j).symm
     | inr i =>
       cases v with
-      | inl j => exact h j i
+      | inl j => simpa [matrixGraph, spiderSideSwap] using (h j i).symm
       | inr j => simp [matrixGraph, spiderSideSwap]
 
 /-- Universal spider-pattern to named labelled graph isomorphism. -/
