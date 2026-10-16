@@ -1,6 +1,18 @@
-# PDIC claim register — S014 regular-fibre kernel certificate; complete probability law still open
+# PDIC claim register — S018 real graph first-moment kernel certified; full law incomplete
 
 Certified universal graph equality: [S010 source `c8c64e5a2a98ee359c79430293ca0738211b4215`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/c8c64e5a2a98ee359c79430293ca0738211b4215), [hosted Lean `38928965168`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168) and [all eight finite checkers `38928965172`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965172) on unmerged PR #4. Main's older `PDIC.lean` is not the proof branch. See [S010 proof note](S010_EQUALITY_KERNEL_CERTIFICATE.md).
+
+
+**S018 authoritative new milestone (16 October 2026):** `labellingZeroMISCount_eq_family_filter` and `graphMIS_first_moment_numerator` show for every `SimpleGraph (Fin 8)` that the real zero-sum graph MIS count summed over actual 40320 label permutations is `2304 * (fourGraphMISFamily G).card`. [Exact proof `31a7cbb3de72944b5cb99994132060795cd7184f`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/31a7cbb3de72944b5cb99994132060795cd7184f) · [strict Lean PASS 38970442172](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38970442172) · [finite PASS 38970442337](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38970442337). A further strict source [`fe5d119af9a270a82fb7a854b9c004d5a4e041c6`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/fe5d119af9a270a82fb7a854b9c004d5a4e041c6) has [Lean PASS 38970965466](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38970965466), [finite PASS 38970965502](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38970965502) and kernel-certified rational `graphMIS_first_moment_eq`, unique disjoint-four partner, and no two disjoint pairs sharing a member of a distinct triple. Only standard `propext`, `Classical.choice`, `Quot.sound` occur in printed axioms. S018's latest script/workflow head is 26a5f3b6c953872a459a457d593fb6cef620954c; verify that later exact head independently before promoting a **whole-branch** PASS.
+
+| S018 new claim | Status | Scope |
+| --- | --- | --- |
+| Real four-vertex graph-MIS family and true zero-event filter equivalence | **LEAN_KERNEL_VERIFIED** | `31a7cbb3`, strict Lean 38970442172 |
+| Actual graph first factorial moment \(M_1=2m/35\) in rational expectation form | **LEAN_KERNEL_VERIFIED** | `fe5d119a`, strict Lean 38970965466; actual 8! labelling space |
+| Unique disjoint four-subset partner; distinct triple has no two complementary pairs sharing a member | **LEAN_KERNEL_VERIFIED** | `fe5d119a`, strict Lean 38970965466 |
+| Exhaustive named-spider probability law over all 40320 real permutations | **FINITE_CHECKED** | \(m=9,n_0=1,n_2=15,h=3\); \((P_0,P_1,P_2,P_3)=(61/105,1/3,8/105,1/105)\). [Checker](../scripts/verify_s018_spider_distribution.py) on proof branch |
+| Genuine unordered graph pair/triple factorial moments, all four probabilities and sharp equality as single universal Lean theorem | **OPEN_IN_LEAN** | Mandatory S019 target; no paper-only substitute |
+
 
 | Claim | Status | Precise boundary |
 | --- | --- | --- |
