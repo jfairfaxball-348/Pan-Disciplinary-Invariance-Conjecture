@@ -1,0 +1,13 @@
+# PDIC S011 closeout — typed cap and linear-transport theorem certified
+
+**Executed 16 October 2026.** Continuing strictly from S010 on `session/s007-full-lean-flagship` (PR #4).
+
+**New exact-source Lean certificate:** [e302e5f82434b3d8790c81506fe55062700e7a53](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e302e5f82434b3d8790c81506fe55062700e7a53); [hosted kernel check 38934564596](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38934564596) — SUCCESS. Existing eight finite checkers and proof-hole scan passed with the Lean build. The named-spider universal equality from S010 remains strictly certified.
+
+**Substantive result:** Define typed canonical eight-cap in `(ZMod 3)^3`, prove injection, absence of short nonempty zero-sum subsets of sizes 1–3, exact four zero-sum quartets, preservation of cap admissibility and quartet zero-sums by any supplied origin-fixing invertible linear equivalence, and `Fintype.card (Equiv.Perm (Fin 8))=40320`. Details: [S011 proof note](../research/S011_CAP_LABELLING_PROOF.md).
+
+**Independent full 8! verification:** Added `scripts/verify_s011.py` to the proof branch and strict hosted Lean workflow as the ninth checker. Directly checked 40320 labels, singleton/complement probabilities 2/35 and overlap-two/compatible triple probabilities 1/315. The checker independently verifies **each of 2520 event image configurations** has exactly 16 preimages, plus the full N₀ histograms for the spider and P8. Local check PASS. Hosted integration at the latest checker-source revision is independently tracked; the strict **Lean certificate is already PASS at e302e5f** and is not contingent on that subsequent checker-only integration.
+
+**Proof-status boundary:** the general labelled probability law, event fibre counts in Lean, connected N₀≤3, moments and all-cap classical-transfer conclusion are still OPEN_IN_LEAN. The nine-cap orbit existence claim is only a cited classical input, not claimed as a verified formalisation. No publication/Palomar/PR merge; priority unresolved.
+
+**Automatic handoff:** [S012 executable target](../research/S012_UNIFORM_PROBABILITY_LEAN_TARGET.md) is installed and **NOT EXECUTED**. Its priority is the actual 16-to-1 fibres, permutation push-forward moments, connected N₀≤3 and integrated probability law, not packaging.
