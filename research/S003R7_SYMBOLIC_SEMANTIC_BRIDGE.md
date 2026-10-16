@@ -9,7 +9,7 @@ For arbitrary four 4-bit rows `a,b,c,d` let `rows = fourRows a b c d` and `A = a
 (fourRowEdgeCountBV a b c d).toNat = actualMatrixEdgeCount A
 ```
 
-These equations are mathematical consequences of the lemmas below, but they must **not** be promoted as Lean-certified unless separately checked.
+**BOTH equations are now Lean-kernel-certified** at PR #3 SHA `e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca`, [strict CI 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311). They are the theorems `fourRowMixedCountBV_eq_actual` and `fourRowEdgeCountBV_eq_actual`. This does not imply the full connected-graph probability flagship.
 
 ## Symbolic proof (no global matrix enumeration)
 
@@ -43,13 +43,13 @@ The right side is exactly the witness certified by `outsideMask_nonzero_iff`. If
 23 | c d | a b
 ```
 
-The previously kernel-checked `sidePairsSix_eq_filter` supplies completeness, `fourRowMixedCountBV_eq_sixNat` removes three-bit wrap, and `computableMixedLeftPairCount_eq_actual` links the semantic Boolean criterion to the existential maximal-independent-set count. The **only necessary aggregation step** is to turn a cardinality of a predicate supported on these six distinct pairs into their six ordinary-natural-number Boolean indicators. A prior `simp [sidePairsSix, Finset.card_filter]` attempt failed twice by recursion-depth exhaustion and was withdrawn, so **do not use it as established**.
+The previously kernel-checked `sidePairsSix_eq_filter` supplies completeness, `fourRowMixedCountBV_eq_sixNat` removes three-bit wrap, and `computableMixedLeftPairCount_eq_actual` links the semantic Boolean criterion to the existential maximal-independent-set count. The six characteristic indicators have now been formally aggregated by `sixPairsBoolCardinality_by_sum`, using `Finset.sum_boole (R := ℕ)` and five explicit `Finset.sum_insert` rewrites. Earlier `simp [sidePairsSix, Finset.card_filter]` attempts failed and were withdrawn; the replacement and the final mixed-count equality have now passed strict Lean CI.
 
 **Edges.** Separately, `actualMatrixEdgeCount` is the cardinality of the subset of `Side × Side` occupied by edges, which partitions disjointly by the first coordinate. Thus
 ```
 e(A) = ∑ i : Side, |{j : Side | A i j = true}|.
 ```
-`fourBitPopCount5_eq_rowCard` equates each four-bit row popcount with its row cardinality; `fourRowEdgeCountBV_eq_fourPopNat` establishes no overflow. The missing Lean proof is the four-row finite-cardinality decomposition, not a new combinatorial theorem.
+`fourBitPopCount5_eq_rowCard` equates each four-bit row popcount with its row cardinality; `fourRowEdgeCountBV_eq_fourPopNat` establishes no overflow. That four-row finite-cardinality decomposition is now kernel checked as `actualMatrixEdgeCount_eq_sum_rows`, and the full edge-count identity is certified as `fourRowEdgeCountBV_eq_actual`.
 
 ## Independent finite corroboration (not a Lean proof of the full bridge)
 
@@ -75,3 +75,9 @@ There are exactly 192 matrices with seven edges and three qualifying left pairs,
 - The full global two-count equalities, transferred matrix extremal theorem, SimpleGraph/spider isomorphism, and 2520-bijection probability theorem are OPEN_IN_LEAN unless later evidence is linked here.
 
 No priority claim, Palomar request, manuscript submission, or merge of PR #3 is authorised by this note.
+
+## S003R7 final exact-head verification (supersedes candidate notes above)
+
+Unmerged PR #3 HEAD [`e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca) passed [Lean strict CI 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311), plus separate finite workflow 38883050344, **including every one of the five independent Python checkers**. New main identities `fourRowMixedCountBV_eq_actual` and `fourRowEdgeCountBV_eq_actual` are genuine general-four-row Lean theorems. All `#print axioms` entries for the two identities and the pair/edge cardinality adapters are exactly `[propext, Classical.choice, Quot.sound]`. Earlier failed trial citations document repair history, not the current status.
+
+Remaining open are the *derived* general-Boolean-matrix extremal declarations, eight-vertex `SimpleGraph` isomorphism and genuine 2520-label probability formalisation, nine-cap literature dependency integration and novelty audit.
