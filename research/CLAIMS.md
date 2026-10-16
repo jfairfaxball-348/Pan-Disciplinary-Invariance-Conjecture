@@ -59,3 +59,7 @@ This was a **read-only Palomar procedure and public-record audit**, not a new pr
 | Priority and significance | S004 PRIORITY_UNRESOLVED (unchanged); no new theorem claim |
 
 The paper title and formula may appear in a **proposed full-claim record only if the same theorem is genuinely selected, proved and mechanically verified in the eventual Palomar Challenge/Solution**. Narrower certified statements must instead be titled and described as such. No next target automatically installed.
+
+## S006 Palomar scope and certificate status (16 October 2026)
+
+The S006 candidate branch contains a separated, narrow actual-graph mixed-MIS Challenge/Solution package. Claims selected: `PDICSubmission.connected_mixed_bound` (`Connected → B(A) ≤ 3`) and `PDICSubmission.connected_mixed_equality` (`Connected → (B(A)=3 ↔ row-or-column spider matrix pattern)`). The source theorems were strictly Lean checked in S003R9, but the Lean-module port, Comparator and independent kernel replay are **not declared verified** without an official successful full report at the final commit. Hence S006 status is **NOT_READY_FOR_OWNER_SUBMISSION**, **FULL_FLAGSHIP_NOT_FORMALISED**, **PARTIAL_PAPER_ALIGNMENT**. Full eight-cap random-bijection probability law, named spider-graph isomorphism and literature priority remain outside the certificate. No Palomar submission was made. See [S006 release audit](S006_PALOMAR_RELEASE_AUDIT.md).
