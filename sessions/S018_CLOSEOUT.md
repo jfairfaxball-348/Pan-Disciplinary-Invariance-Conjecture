@@ -55,3 +55,23 @@ These would establish `M₂=2n₀/35+n₂/315` and `M₃=h/315`, and then via al
 ## Session governance and next prompt
 
 Main's `README.md`, `ROADMAP.md`, `research/CLAIMS.md`, `research/S018_GRAPH_MOMENT_ASSEMBLY.md`, `authoritative/STATE.json` and `research/NEXT_SESSION_PROMPT.md` record this boundary. The executable [S019 prompt](../research/S019_UNORDERED_PAIR_TRIPLE_MOMENTS_TARGET.md) is **installed** to attack the remaining genuine unordered moments, the full four-term law and spider iff, not executed. Following owner process, generate/install S020 only when S019 is actually run. No PR merge, Palomar public registration, arXiv or journal submission took place.
+
+
+## S018 continuation — additional kernel-certified unordered moment interface
+
+S018 extension: **STRICT LEAN KERNEL PASS** at [6eb67aa8cb](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/6eb67aa8cb7ae08151fe3074166b7a206f844cd7), [Lean 38976368670](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38976368670), [finite 38976368661](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38976368661); full pinned `lake build`, 10 independent checkers and proof-hole scan PASS. `#print axioms` for `zeroFourGraphMISFamily_card`, `zeroGraphMIS_subfamily_card_choose`, `zeroGraphMIS_subfamilies_eq_filter`, `graphMIS_unordered_moment_double_count` prints only `propext`, `Classical.choice`, `Quot.sound`.
+
+The new Lean declarations define the honest surviving family of graph maximal-independent four-sets, prove its cardinal equals the real `labellingZeroMISCount`, identify its unordered `k`-subfamily count with `Nat.choose N₀ k`, prove an exact `powersetCard`-filter equality, and exchange the actual permutation/family sums. The fully verified public theorem is:
+
+```lean
+theorem graphMIS_unordered_moment_double_count (G : SimpleGraph Vertex) (k : ℕ) :
+    (∑ e : Equiv.Perm Vertex, Nat.choose (labellingZeroMISCount G e) k) =
+    ∑ T ∈ (fourGraphMISFamily G).powersetCard k,
+      ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+        (fun e => ∀ s ∈ T,
+          capSum (fun v => canonicalCapF3 (e v)) s = 0)).card
+```
+
+This is **for every k and every eight-vertex graph**, not a symbolic moment stand-in, nor an ordered pair/triple overcount. It closes the *general incidence double-counting* bridge; the remaining work is the **value** of the event fibre attached to each honest unordered pair/triple, and its aggregation to `n₀,n₂,h`. Therefore universal numerical M₂, M₃, all four P-values and spider iff remain OPEN_IN_LEAN. Independently enumerated P8's 40320 label permutations: (m,n₀,n₂,h)=(5,1,3,1), frequencies (31360,6528,2304,128), probabilities (7/9,17/105,2/35,1/315); **FINITE_CHECKED_LOCALLY**, not a certified general theorem. Full argument: [extension proof note](../research/S018_UNORDERED_MOMENT_EXTENSION.md).
+
+S019 remains installed, **NOT executed**; update it to invoke the verified `graphMIS_unordered_moment_double_count` instead of rebuilding the double count. No PR merge or public submission.
