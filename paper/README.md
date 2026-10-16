@@ -1,7 +1,7 @@
-# Article target: S004, NOT STARTED
+# PDIC research manuscript
 
-Tentative precise title: *Zero-sum cap witnesses and conserved charges of random greedy independent sets*.
+The current working source is [PDIC_S003R8_DRAFT.tex](PDIC_S003R8_DRAFT.tex), revised in S003R9. It is a qualified research draft, not a submission or priority claim.
 
-Draft an actual research manuscript only once S001-S002 supply a complete theorem and meaningful novelty/significance. Include primary attribution, proof of finite witness geometry or clearly stated certificate, graph-probability and charge laws, abstract hypergraph nerve, examples, limits, rigorous references, and correspondence with S003 Lean statements.
+S003R9 supplies the zero-fixing linear cap transfer, regular 16-to-one probability fibres, the two classical extremal trees with the same total MIS count and different h, and an explicitly scoped actual-SimpleGraph formal appendix. Exact source verification and remaining kernel links are in [S003R9 closeout](../sessions/S003R9_CLOSEOUT.md).
 
-S004 should create paper/main.tex and a buildable PDF where feasible. This bootstrap makes no paper, arXiv, peer-review or novelty claim.
+Build twice with `pdflatex -interaction=nonstopmode -halt-on-error PDIC_S003R8_DRAFT.tex`. S003R9 compiled a five-page PDF twice without undefined references, overfull boxes or other LaTeX warnings, and inspected all pages visually. The compiled PDF was an intermediate layout check; the maintained deliverable is the TeX source. S004 prepares the edited source, PDF, theorem-to-Lean map and source-level novelty decision.

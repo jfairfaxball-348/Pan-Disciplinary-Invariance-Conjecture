@@ -17,3 +17,4 @@ jobs:
           python3 scripts/verify_s002.py
           python3 scripts/verify_s003r.py
           python3 scripts/verify_s003r2.py
+          python3 scripts/verify_s003r9.py
