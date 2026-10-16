@@ -1022,3 +1022,45 @@ theorem computableMixedLeftPairCount_eq_sixCriterion
 #print axioms PDIC.computableMixedLeftPairCount_eq_sixCriterion
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S003R7 edge semantics: a product cardinality splits into four
+    independent row cardinalities. No census of matrix assignments. -/
+
+theorem actualMatrixEdgeCount_eq_sum_rows
+    (adj : Side → Side → Bool) :
+    actualMatrixEdgeCount adj =
+      ∑ i : Side, ((Finset.univ : Finset Side).filter
+        (fun j => adj i j = true)).card := by
+  classical
+  unfold actualMatrixEdgeCount
+  calc
+    _ = ∑ ij : Side × Side,
+          if adj ij.1 ij.2 = true then (1 : ℕ) else 0 := by
+      exact (Finset.sum_boole (R := ℕ)
+        (fun ij : Side × Side => adj ij.1 ij.2 = true) Finset.univ).symm
+    _ = ∑ i : Side, ∑ j : Side,
+          if adj i j = true then (1 : ℕ) else 0 := by
+      rw [← Finset.univ_product_univ, Finset.sum_product]
+    _ = _ := by
+      apply Finset.sum_congr rfl
+      intro i _
+      exact Finset.sum_boole (R := ℕ)
+        (fun j : Side => adj i j = true) Finset.univ
+
+theorem fourRowEdgeCountBV_eq_actual
+    (a b c d : BitVec 4) :
+    (fourRowEdgeCountBV a b c d).toNat =
+      actualMatrixEdgeCount (adjOfRows (fourRows a b c d)) := by
+  rw [fourRowEdgeCountBV_eq_fourPopNat, actualMatrixEdgeCount_eq_sum_rows,
+    Fin.sum_univ_four]
+  simp only [adjOfRows]
+  repeat rw [← fourBitPopCount5_eq_rowCard]
+  simp [fourRows]
+
+#print axioms PDIC.actualMatrixEdgeCount_eq_sum_rows
+#print axioms PDIC.fourRowEdgeCountBV_eq_actual
+
+end PDIC
