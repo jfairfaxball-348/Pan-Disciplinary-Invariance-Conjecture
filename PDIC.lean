@@ -4442,3 +4442,90 @@ theorem graphMIS_unordered_moment_double_count
 #print axioms PDIC.graphMIS_unordered_moment_double_count
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S019: eliminate impossible genuine two- and three-source events
+before summing over unordered subfamilies of graph maximal-independent sets. -/
+
+/-- Two distinct four-subsets whose overlap is neither 0 nor 2 cannot
+simultaneously have zero cap sum under any of the 40320 permutations. -/
+theorem canonicalCapF3_perm_distinct_pair_event_zero_of_other_overlap
+    (s t : Finset Vertex) (hs : s.card = 4) (ht : t.card = 4)
+    (hne : s ≠ t)
+    (hzero : (s ∩ t).card ≠ 0)
+    (htwo : (s ∩ t).card ≠ 2) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+      capSum (fun v => canonicalCapF3 (e v)) t = 0} = 0 := by
+  classical
+  have hnone (e : Equiv.Perm Vertex) :
+      ¬(capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) t = 0) := by
+    rintro ⟨hzs, hzt⟩
+    rcases canonicalCapF3_perm_distinct_pair_overlap_cases e s t
+        hs ht hne hzs hzt with h0 | h2
+    · exact hzero h0
+    · exact htwo h2
+  rw [Fintype.card_subtype]
+  simp [hnone]
+
+/-- The exact pair event fibre classification for arbitrary ordered inputs
+with distinct four-subsets. It is independent of the graph, and will
+be applied once to each genuine unordered two-MIS family. -/
+theorem canonicalCapF3_perm_distinct_pair_event_card_by_overlap
+    (s t : Finset Vertex) (hs : s.card = 4) (ht : t.card = 4)
+    (hne : s ≠ t) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+      capSum (fun v => canonicalCapF3 (e v)) t = 0} =
+      if (s ∩ t).card = 0 then 2304
+      else if (s ∩ t).card = 2 then 128 else 0 := by
+  classical
+  by_cases hzero : (s ∩ t).card = 0
+  · rw [if_pos hzero]
+    have hd : Disjoint s t := by
+      rw [Finset.disjoint_iff_inter_eq_empty]
+      exact Finset.card_eq_zero.mp hzero
+    exact canonicalCapF3_perm_complementary_pair_event_card s t hs ht hd
+  · rw [if_neg hzero]
+    by_cases htwo : (s ∩ t).card = 2
+    · rw [if_pos htwo]
+      exact canonicalCapF3_perm_overlap_two_pair_event_card s t hs ht htwo
+    · rw [if_neg htwo]
+      exact canonicalCapF3_perm_distinct_pair_event_zero_of_other_overlap
+        s t hs ht hne hzero htwo
+
+/-- If three distinct size-four sources admit a simultaneous zero event,
+at least one pair is complementary. This rules out every triangle of
+only overlapping 2+2 pairs, including when all sets happen to be MIS. -/
+theorem canonicalCapF3_perm_distinct_triple_event_zero_of_no_disjoint
+    (s t u : Finset Vertex) (hs : s.card = 4) (ht : t.card = 4)
+    (hu : u.card = 4) (hst : s ≠ t) (hsu : s ≠ u) (htu : t ≠ u)
+    (hst0 : (s ∩ t).card ≠ 0)
+    (hsu0 : (s ∩ u).card ≠ 0)
+    (htu0 : (t ∩ u).card ≠ 0) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+      capSum (fun v => canonicalCapF3 (e v)) t = 0 ∧
+      capSum (fun v => canonicalCapF3 (e v)) u = 0} = 0 := by
+  classical
+  have hnone (e : Equiv.Perm Vertex) :
+      ¬(capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) t = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) u = 0) := by
+    rintro ⟨hzs, hzt, hzu⟩
+    rcases canonicalCapF3_perm_three_zero_has_disjoint_pair e s t u
+        hs ht hu hst hsu htu hzs hzt hzu with h0 | h0 | h0
+    · exact hst0 h0
+    · exact hsu0 h0
+    · exact htu0 h0
+  rw [Fintype.card_subtype]
+  simp [hnone]
+
+#print axioms PDIC.canonicalCapF3_perm_distinct_pair_event_zero_of_other_overlap
+#print axioms PDIC.canonicalCapF3_perm_distinct_pair_event_card_by_overlap
+#print axioms PDIC.canonicalCapF3_perm_distinct_triple_event_zero_of_no_disjoint
+
+end PDIC
