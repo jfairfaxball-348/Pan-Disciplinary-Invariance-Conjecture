@@ -44,9 +44,9 @@ The [claim-by-claim audit](research/S004_PRIOR_ART_NOVELTY_AUDIT.md) read the fu
 
 Palomar **NOT READY**: missing Challenge, Solution, comparator.json, formalization.yaml, root licence and required Lean module headers. No Palomar preflight, Comparator, NanoDa, registration or publication was executed. All S003R9 proof evidence and S004 novelty qualifications remain unchanged. [S005 closeout](sessions/S005_CLOSEOUT.md). The owner has now installed S006, not yet executed; owner-directed session control continues.
 
-## Owner-installed S006 — Palomar submission-ready commit
+## S006 — Palomar package preparation executed (verification gate closed)
 
-[S006's full target and release criteria](research/S006_PALOMAR_SUBMISSION_READY_PREPARATION_TARGET.md) have been installed on 16 October 2026, **NOT EXECUTED**. The session's explicit ambition is one public complete 40-character SHA with genuinely matching Challenge/Solution/Comparator, truthful v0.4 metadata and licence, and a successful **official full-mode PalomarSubmission mechanical verification at that exact SHA**. Prioritise the complete manuscript law; if that cannot be kernel-proved within the session, prepare a truthfully narrower named graph/matrix theorem without misrepresenting the paper. Any unresolved full-run failure means NOT_READY. Actual Palomar submission/review/registration remain owner-controlled and are not authorised by installation or S006 preparation.
+[S006's full target and release criteria](research/S006_PALOMAR_SUBMISSION_READY_PREPARATION_TARGET.md) were executed on 16 October 2026 on a separate S006 branch, with files and candidate snapshot prepared but without a verified matching official full-mode PASS. The session's original ambition was one fully verified, submission-ready SHA; the actual outcome is a public candidate commit **without an inspected full-mode PalomarSubmission PASS**. The narrower named graph/matrix theorem is the package's sole Comparator target. The complete manuscript law was not end-to-end kernel-proved. The current S006 verdict is NOT_READY until a concluded matching full-mode report is available. Actual Palomar submission/review/registration remain owner-controlled and are not authorised by installation or S006 preparation.
 
 ## S006 package preparation — 16 October 2026
 
