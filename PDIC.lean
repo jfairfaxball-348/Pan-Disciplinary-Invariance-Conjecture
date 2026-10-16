@@ -1245,8 +1245,8 @@ def matrixGraph (adj : Side → Side → Bool) : SimpleGraph SplitVertex where
     | .inl i, .inr j => adj i j = true
     | .inr j, .inl i => adj i j = true
     | _, _ => False
-  symm := by intro u v; cases u <;> cases v <;> simp_all
-  loopless := by intro u; cases u <;> simp
+  symm.symm := by intro u v; cases u <;> cases v <;> simp_all
+  loopless.irrefl := by intro u; cases u <;> simp
 
 /-- Independence and domination are the usual exact finite MIS criterion. -/
 def GraphMIS {V : Type*} (G : SimpleGraph V) (s : Finset V) : Prop :=
@@ -1282,9 +1282,9 @@ theorem graphMIS_iff_maximal {V : Type*} [DecidableEq V]
       intro a ha b hb
       simp only [Finset.mem_insert] at ha hb
       rcases ha with rfl | ha <;> rcases hb with rfl | hb
-      · exact G.loopless v
+      · exact G.irrefl
       · exact hno b hb
-      · exact fun he => hno a ha (G.symm he)
+      · exact fun he => hno a ha (G.adj_symm he)
       · exact hi a ha b hb
     have heq := hm (insert v s) (Finset.subset_insert v s) hind
     exact hv (heq ▸ Finset.mem_insert_self v s)
@@ -1372,7 +1372,7 @@ noncomputable def graphMixedEquiv (adj : Side → Side → Bool) :
     rw [← mixed_opposite_unique adj _ _ h, Finset.toLeft_disjSum_toRight]
   right_inv X := by
     apply Subtype.ext
-    exact Finset.toLeft_disjSum _ _
+    exact Finset.toLeft_disjSum
 
 theorem graphMixedCount_eq_actual (adj : Side → Side → Bool) :
     graphMixedCount adj = actualMixedLeftPairCount adj := by
@@ -1485,11 +1485,13 @@ theorem connected_independent_partition_unique
   · left
     ext v
     have hv := congrFun he v
-    simpa [membershipColour] using congrArg (fun b : Bool => b = true) hv
+    have hm : membershipColour s v = true ↔ membershipColour t v = true := by rw [hv]
+    simpa [membershipColour] using hm
   · right
     ext v
     have hv := congrFun he v
-    simpa [membershipColour] using congrArg (fun b : Bool => b = true) hv
+    have hm : membershipColour s v = true ↔ (!(membershipColour t v)) = true := by rw [hv]
+    simpa [membershipColour] using hm
 
 #print axioms PDIC.walk_colour_agreement
 #print axioms PDIC.connected_bool_colouring_unique
