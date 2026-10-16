@@ -1,55 +1,33 @@
 # Pan-Disciplinary Invariance Conjecture (PDIC)
 
-**Mission:** join finite-group zero-sum quartet geometry, maximal independent sets, graph extremal combinatorics, random greedy dynamics and signed pebbling invariants in a precise, formally certified first paper. The project name is aspirational, not a proven universal invariance conjecture.
+**Mission:** connect finite-group zero-sum quartet geometry and graph maximal-independent-set statistics in a precise first paper. The project name is aspirational.
 
-**Status 2026-10-16:** **S003R7 COMPLETED and BOTH arbitrary 4×4 numerical-to-semantic count identities are strictly kernel-verified** on unmerged PR #3 commit [`e1253ef`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca), [Lean CI 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311). The six individual mask-to-genuine-mixed-MIS pair iff lemmas, six-indicator filtered-cardinality sum, and exact matrix edge cardinality are certified with only standard axioms, alongside all five independent finite tests. Main retains the earlier S003R3 Lean baseline pending review/merge. The derived general Boolean-matrix extremal declarations, connected eight-vertex graph/spider isomorphism, genuine finite probability law and literature novelty remain open; no paper or priority claim is made.
+**S003R9 COMPLETED. Next: S004, prepared, not executed.** The source is on [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), branch `session/s003r4-numerical-semantic`. Main retains the earlier S003R3 Lean baseline; documentation on main describes the separately certified PR source. Read the [S003R9 closeout](sessions/S003R9_CLOSEOUT.md) for exact final SHA and workflow evidence.
 
-## Written flagship (classical cap input required)
+## Strictly certified foundation
 
-For any connected simple eight-vertex graph G, let N0 count size-four maximal independent sets whose labels sum to zero under a uniformly random bijection to a fixed admissible eight-cap. Write m for the number of four-MIS, n0/n2 for pair overlaps 0 and 2, h for compatible triples, and M1=2m/35, M2=2n0/35+n2/315, M3=h/315. The written result (depending on Follett et al.'s classical nine-cap classification) gives
+S003R8 at `1e4cadd580b385e0d8e69e836f3211129e705839`, [Lean 38887318919](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38887318919), proved all three arbitrary Boolean 4×4 matrix extremal statements and exact numerical/semantic counts.
 
-Pr(N0=0)=1−M1+M2−M3; Pr(N0=1)=M1−2M2+3M3; Pr(N0=2)=M2−3M3; Pr(N0=3)=M3≤1/105, with equality iff G is the spider S(2,2,2,1).
+S003R9 at `86869bb09872be9c9edae27bd0bc05a0b0398079`, [Lean 38889060304](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38889060304), further certifies:
 
-## What is now strictly proved in Lean
+- A genuine `SimpleGraph (Fin 4 ⊕ Fin 4)` and exact maximal-independent-vertex-set semantics.
+- A proved equivalence between mixed graph MIS vertex sets and matrix left-pair witnesses, giving exact cardinality equality.
+- At least six edges imply at most three mixed graph MIS; under at least seven edges, equality is exactly the certified row/column spider matrix pattern.
+- Proper Boolean colourings, hence complementary independent partitions, of any connected finite graph are unique up to exchanging sides.
 
-- For every Boolean 4×4 bipartite adjacency, a mixed maximal independent four-set has a uniquely determined opposite two-set, given by the complement of its neighbourhood. A full iff pair criterion is formalised.
-- Encoding a matrix by four `BitVec 4` rows, Lean proves **b≥4 ⇒ |E|≤5** by `decide +kernel`: `four_by_four_six_edge_threshold_BV`.
-- For these same matrix predicates, **(|E|=7 and b=3) iff the row/column spider pattern**: `seven_edge_three_iff_spider_BV`. Both quantified finite theorems depend only on `propext` and `Quot.sound`; no native axiom.
-- S003R3 supplies a **proved lossless arbitrary-Boolean-adjacency row encoder**, an exact existential mixed-MIS left-pair cardinality criterion, and the new **e≥8 ⇒ b≤2** universal kernel-checked matrix theorem.
-- Written direct proof plus independent check splits exactly 192 labelled spider matrices into two sets of 96. The exact 2520-atom, eight-favourable-assignments combinatorics is written.
+At exact source `8199e6bc41dc9801a95b1f19ece0c186c1791995`, [Lean 38889327092](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38889327092) also **PASS** certifies the actual graph edge count, the connected seven-edge lower bound, and **connected B≤3 with equality iff the certified spider matrix pattern**. Only standard axioms are accepted. The full arbitrary-graph unordered-triple h=b equivalence, named graph-isomorphism and uniform probability semantics remain separate obligations.
 
-**Boundary:** the formal BitVec count has not yet been linked by a proved theorem to the cardinality of arbitrary `IsMixedMIS` sets, or to all connected `SimpleGraph (Fin 8)` and their random-cap labelling law. Concrete spider counts, the matrix certificates and conditional moment inversion do NOT yet constitute a fully Lean-formalised flagship.
+## Written first-paper result
 
-## Short route
+For a connected eight-vertex graph G, label its vertices uniformly by a fixed admissible eight-cap. Let N0 count zero-sum four-MIS, m count four-MIS, n0/n2 count pairs with overlaps 0/2, and h count compatible unordered triples. With M1=2m/35, M2=2n0/35+n2/315 and M3=h/315,
 
-| Session | State |
-| --- | --- |
-| S001–S002 | Cap geometry and written graph/probability flagship, explicit classical input |
-| S003–S003R | Concrete Lean certificates and generic MIS semantics |
-| **S003R2** | **COMPLETE** kernel-only 4×4 matrix threshold and spider iff; direct 192/fibre proof |
-| **S003R3** | **DONE, partial** — lossless row representation, actual existential witness criterion/count, e≥8⇒b≤2 in strict Lean; not yet full graph/measure bridge |
-| **S003R4–S003R5** | Written numerical bridge, verified small Boolean and row-mask semantic lemmas on PR #3 |
-| **S003R6** | **DONE, partial** — exact single-pair Boolean mask specification, six-pair enumeration, and no-overflow 3-bit/5-bit arithmetic certified at [CI 38871115121](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871115121) |
-| **S003R7** | **DONE, strict full numerical bridge** — all six pair semantics, exact six-indicator and row-edge sums, both arbitrary-matrix natural-number count identities [PASS 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311) |
-| **S003R8** | **NEXT** — transfer three extremal matrix statements and eight-vertex graph/spider semantics; paper-positioning source audit |
-| **S003R8** | **NEXT** — six-pair Nat count aggregation, edge product decomposition, full matrix theorem transfers or narrow paper fallback |
-| S004 | Conditional novelty audit and TeX manuscript |
+    Pr(N0=0)=1−M1+M2−M3;  Pr(N0=1)=M1−2M2+3M3;
+    Pr(N0=2)=M2−3M3;     Pr(N0=3)=M3≤1/105.
 
-[S003R6 closeout](sessions/S003R6_CLOSEOUT.md) · [Compositional proof notes](research/S003R6_COMPOSITIONAL_COUNTS.md) · [Claims](research/CLAIMS.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md)
+Equality in the final bound holds precisely at the spider S(2,2,2,1), as a written theorem using an explicitly external classical nine-cap classification. This complete flagship is **not** yet an end-to-end Lean theorem.
 
-Reproduce with pinned `lake build`, strict `#print axioms` audit and all five checkers in `scripts/`. A `bv_decide` trial was rejected because of its compiler-native axiom; the accepted theorems use `decide +kernel`. No Palomar/arXiv/journal submission authorised.
+The [revised manuscript](paper/PDIC_S003R8_DRAFT.tex) supplies the zero-fixing linear cap transfer, equal 16-element labelling fibres, and a concrete comparison: two classical nine-MIS trees have h=3 and h=1. This distinguishes the statistic from total MIS count, and does not establish novelty.
 
-[S003R7 closeout](sessions/S003R7_CLOSEOUT.md) · [S003R7 proof notes](research/S003R7_SYMBOLIC_SEMANTIC_BRIDGE.md) · [Prepared S003R8](research/NEXT_SESSION_PROMPT.md)
+[Claims](research/CLAIMS.md) · [Roadmap](ROADMAP.md) · [S003R9 proof/scope](research/S003R9_GRAPH_WITNESSES_AND_SCOPE.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md).
 
-**S003R7 final proof certificate:** [commit `e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca), [Lean workflow 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311), separate finite workflow 38883050344 PASS. See [full closeout](sessions/S003R7_CLOSEOUT.md) and [next S003R8 handoff](research/NEXT_SESSION_PROMPT.md).
-
-
-## Current status: S003R8 completed (16 October 2026; supersedes stale NEXT S003R8 rows above)
-
-The connected-graph **written proof** of the sharp compatible-triple witness bound `h(G)≤3`, equality iff `G≃S(2,2,2,1)`, is in [S003R8 research note](research/S003R8_GRAPH_BRIDGE_AND_NOVELTY.md). An explicit 3+1/1+3 maximal-independent-set audit prevents a false exhaustive 2+2 split claim. A [full initial manuscript draft](paper/PDIC_S003R8_DRAFT.tex) now exists, but source-level priority and end-to-end formalisation are not established.
-
-On [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), S003R8 adds arbitrary Boolean 4×4 matrix semantic inequalities and equality case statements, strictly dependent on the already certified S003R7 numerical bridges. **The S003R8 Lean exact-SHA CI verdict is pending** ([run 38886710499](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38886710499)); do not quote these new declarations as passed before a passing result. Main remains at the earlier Lean source baseline. The actual connected `SimpleGraph`, unlabelled spider isomorphism and 2520-atom probability law stay unformalised. [Closeout](sessions/S003R8_CLOSEOUT.md); [S003R9 prepared, not executed](research/NEXT_SESSION_PROMPT.md). No external submission or PR merge.
-
-### S003R8 FINAL VERIFIED LEAN RESULT
-
-On unmerged PR #3 [exact commit `1e4cadd580b385e0d8e69e836f3211129e705839`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/1e4cadd580b385e0d8e69e836f3211129e705839), [hosted strict Lean run 38887318919](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38887318919) **PASS**, and [finite run 38887318971](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38887318971) **PASS**. **All three arbitrary 4×4 Boolean-matrix semantic extremal theorems** plus exact numeric encoding and skew-MIS spider witnesses are Lean kernel-verified, with only `propext`, `Classical.choice`, `Quot.sound` and no proof holes or native axioms. This supersedes the provisional CI-pending text above. The connected eight-vertex graph h=b/spider proof is **written**, not yet a `SimpleGraph` theorem, and genuine random 2520-cap-labelling semantics remain unformalised. [Full S003R8 closeout](sessions/S003R8_CLOSEOUT.md); [S003R9 prepared](research/NEXT_SESSION_PROMPT.md), not executed. Draft paper is not ready for submission/priority claims.
+Reproduce the pinned `lake build`, strict `#print axioms` audit and six Python checkers in `scripts/`. The sixth checks the prior-art separation examples and all 2520 atom assignments. No PR merge, author correspondence, Palomar/arXiv/journal submission has occurred. S004 is the final source-comparison, editing and publication-preparation gate.
