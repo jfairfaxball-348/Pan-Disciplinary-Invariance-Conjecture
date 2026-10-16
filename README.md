@@ -2,7 +2,7 @@
 
 **Mission:** connect finite-group zero-sum quartet geometry and graph maximal-independent-set statistics in a precise first paper. The project name is aspirational.
 
-**S004 PRIOR-ART/NOVELTY AUDIT COMPLETED 16 OCTOBER 2026. Novelty and priority remain unresolved. Owner-directed sessions: no later target installed.** The source is on [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), branch `session/s003r4-numerical-semantic`. Main retains the earlier S003R3 Lean baseline; documentation on main describes the separately certified PR source. Read the [S003R9 closeout](sessions/S003R9_CLOSEOUT.md) for exact final SHA and workflow evidence.
+**S004 PRIOR-ART/NOVELTY AUDIT COMPLETED 16 OCTOBER 2026. Novelty and priority remain unresolved. Owner-directed S005 Palomar preflight and public-registry reconnaissance INSTALLED; NOT EXECUTED.** The source is on [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), branch `session/s003r4-numerical-semantic`. Main retains the earlier S003R3 Lean baseline; documentation on main describes the separately certified PR source. Read the [S003R9 closeout](sessions/S003R9_CLOSEOUT.md) for exact final SHA and workflow evidence.
 
 ## Strictly certified foundation
 
@@ -37,3 +37,7 @@ Reproduce the pinned `lake build`, strict `#print axioms` audit and six Python c
 ## S004 literature verdict (16 October 2026)
 
 The [claim-by-claim audit](research/S004_PRIOR_ART_NOVELTY_AUDIT.md) read the full Follett et al. cap paper, Li–Zhang–Zhang's 2013 graph paper, Nielsen's fixed-k MIS theorem and He–Nie–Spiro's later fixed-k results, and distinguished them from abstract-only Liu (1993), Jou–Chang (1997), and Byskov (2004) access. Cap classification is **classical**, various supporting transformations/counts are **routine**, and the known total-MIS spider extremiser does **not** imply PDIC's exact h statistic by its stated theorem. **Potentially original combination, unresolved historical priority** is the calibrated verdict. The existing strict Lean certificate is unchanged, and the written full probability flagship is not end-to-end kernel-verified. This session did not merge PR #3 or make any submission.
+
+## Owner-installed S005 — registration recon only
+
+The next session is [S005: Palomar registration / preflight CL/CI and public-record reconnaissance](research/S005_PALOMAR_REGISTRATION_RECON_TARGET.md). It was installed at the owner's request on 16 October 2026 **but has not been run**. Its main requirement is alignment between the first paper title, an exact "We prove…" formula, the permanent Palomar public title/description, and the Comparator/Challenge declaration actually certified; it will inspect [the owner's TreeStack register example](https://palomar-registry.org/entry?id=PALOMAR-2026-09-25-000010&version=1). It is a planning/audit session, **not** approval to run Palomar preflight, submit a registration, merge PR #3 or expand the formalised result. The S004 novelty verdict and existing CI certificates remain unchanged.
