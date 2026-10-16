@@ -1,0 +1,21 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "PDICSubmission.connected_mixed_bound",
+    "PDICSubmission.connected_mixed_equality"
+  ],
+  "definition_names": [
+    "PDIC.matrixGraph",
+    "PDIC.GraphMIS",
+    "PDIC.graphMixedCount",
+    "PDIC.spiderMatrixBV",
+    "PDIC.rowsOfAdj"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
