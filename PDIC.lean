@@ -858,8 +858,7 @@ theorem twoRow_outsideWitness_iff
     · exact Finset.mem_univ j
     · intro hm
       have ht := (Finset.mem_filter.mp hm).2
-      have hor : (rows i ||| rows k).getLsbD j.val = true :=
-        (orMask_getLsbD_iff (rows i) (rows k) j).mpr ht
+      have hor : (rows i ||| rows k).getLsbD j.val = true := ht
       rw [hn] at hor
       cases hor
 
