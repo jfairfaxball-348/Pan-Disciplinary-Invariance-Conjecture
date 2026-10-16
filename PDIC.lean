@@ -3422,10 +3422,10 @@ theorem canonicalTwoQuartetColour_comp_iff_images_fixed
     apply Prod.ext
     · change decide (e v ∈ quartet (0 : QuartetIndex)) =
         decide (v ∈ quartet (0 : QuartetIndex))
-      exact congrArg decide (propext (h.1 v).symm)
+      simp only [← (h.1 v)]
     · change decide (e v ∈ quartet (1 : QuartetIndex)) =
         decide (v ∈ quartet (1 : QuartetIndex))
-      exact congrArg decide (propext (h.2 v).symm)
+      simp only [← (h.2 v)]
 
 /-- Exactly sixteen *actual* permutations fix both overlapping canonical
 quartet images. This verifies the two-set image-stabilizer predicate. -/
