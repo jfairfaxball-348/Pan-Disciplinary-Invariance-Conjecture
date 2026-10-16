@@ -1,10 +1,10 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-16",
-  "last_completed_session": "S003R9",
-  "next_session": "S004",
-  "next_session_executed": false,
-  "phase": "S003R9_ACTUAL_SIMPLEGRAPH_MIS_EQUIVALENCE_CONNECTED_PARTITION_UNIQUENESS_AND_CONNECTED_MIXED_BOUND_STRICT_PASS__FULL_H_ISOMORPHISM_PROBABILITY_OPEN",
+  "last_completed_session": "S004",
+  "next_session": null,
+  "next_session_executed": null,
+  "phase": "S004_PRIOR_ART_AUDIT_COMPLETE__NOVELTY_PRIORITY_UNRESOLVED__CERTIFIED_S003R9_GRAPH_APPENDIX_UNCHANGED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -12,11 +12,11 @@
   ],
   "mathematics": "WRITTEN_GRAPH_PROBABILITY_FLAGSHIP_WITH_CLASSICAL_INPUT__FORMAL_GRAPH_MATRIX_APPENDIX_STRICT_PASS",
   "new_theorem_claimed": false,
-  "novelty_gate": "OPEN__CLASSICAL_BATON_EXTREMISERS_EXPLICITLY_COMPARED__SAME_TOTAL_MIS_DIFFERENT_H_FINITE_CHECKED__FULL_LIU_THEOREMS_NOT_ACCESSED",
+  "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "PR3_8199e6bc41dc9801a95b1f19ece0c186c1791995_STRICT_PASS_15_S003R9_DECLARATIONS__MAIN_S003R3_BASELINE",
-  "publication": "REVISED_FIVE_PAGE_TEX_DRAFT_NOT_SUBMITTED_NOVELTY_OPEN",
+  "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "NOT_REQUESTED",
-  "next_prompt": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
+  "next_prompt": null,
   "source": "PDIC.lean",
   "strict_hosted_ci": "PR3_402465f2330a275e04108169a6bfbb65e94e10b8_LEAN_PASS_38890367785_ALL_SIX_FINITE_PASS_STANDARD_AXIOMS_ONLY",
   "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785",
@@ -105,9 +105,9 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "PRIOR_ART_AND_NOVELTY_AUDIT",
-  "next_session_status": "INSTALLED_NOT_EXECUTED",
-  "next_session_target_installed": true,
+  "next_session_target": null,
+  "next_session_status": "NONE_INSTALLED_OWNER_DIRECTED",
+  "next_session_target_installed": false,
   "session_control": "research/NEXT_SESSION_PROMPT.md",
   "session_process": {
     "mode": "OWNER_DIRECTED_PER_SESSION",
@@ -125,7 +125,29 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
-  "next_session_target_installed_date": "2026-10-16",
-  "next_session_target_source": "EXPLICIT_OWNER_INSTRUCTION"
+  "next_session_target_file": null,
+  "next_session_target_installed_date": null,
+  "next_session_target_source": null,
+  "s004_status": "COMPLETED_2026_10_16",
+  "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
+  "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
+  "s004_closeout_path": "sessions/S004_CLOSEOUT.md",
+  "s004_opening_main_sha": "cc725e443d39685fc901669bb28c26b58a574783",
+  "s004_opening_pr3_head_sha": "da6e148f56dae2d67c872518a136faf801978c42",
+  "s004_novelty_verdict": "TARGETED_PRIMARY_SOURCE_AUDIT_COMPLETE__POTENTIALLY_ORIGINAL_COMBINATION_BUT_PRIORITY_UNRESOLVED__NO_NEW_THEOREM_CLAIMED",
+  "s004_sources_full_text": [
+    "Follett et al 2014 Proposition 2.2",
+    "Li Zhang Zhang 2013 Lemma 3 and Theorem 2(i)",
+    "Nielsen 2002 Theorem 2",
+    "He Nie Spiro 2022 Theorems 1.3 and 1.6"
+  ],
+  "s004_sources_abstract_only": [
+    "Liu 1993 full theorem unavailable",
+    "Jou Chang 1997 full theorem unavailable",
+    "Byskov 2004 full theorem unavailable"
+  ],
+  "s004_proof_changes": false,
+  "s004_fresh_ci_run": false,
+  "s004_publication_or_pr_merge": false,
+  "s004_followup_automatically_installed": false
 }
