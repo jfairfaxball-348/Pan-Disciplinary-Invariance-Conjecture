@@ -3034,3 +3034,71 @@ theorem connected_labellingZeroMISCount_le_three
 #print axioms PDIC.connected_labellingZeroMISCount_le_three
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S014: genuine one-to-one indexing of cap-zero size-four graph MIS. -/
+
+/-- The four zero-sum quartets form four different sets. -/
+theorem quartet_injective : Function.Injective quartet := by
+  decide
+
+/-- Pulling quartets back through a true permutation keeps them distinct. -/
+theorem pulledQuartet_injective (e : Equiv.Perm Vertex) :
+    Function.Injective (pulledQuartet e) := by
+  intro i j hij
+  apply quartet_injective
+  exact Finset.map_inj.mp hij
+
+/-- Every pulled-back quartet retains its four-element cardinality. -/
+theorem pulledQuartet_card (e : Equiv.Perm Vertex) (i : QuartetIndex) :
+    (pulledQuartet e i).card = 4 := by
+  simp only [pulledQuartet, Finset.card_map]
+  exact quartet_card i
+
+/-- True MIS counting, not a symbolic stand-in: N₀ is exactly the number
+of the four pulled-back quartets that are maximal independent sets. -/
+theorem labellingZeroMISCount_eq_quartetIndex_filter
+    (G : SimpleGraph Vertex) (e : Equiv.Perm Vertex) :
+    labellingZeroMISCount G e =
+      ((Finset.univ : Finset QuartetIndex).filter
+        (fun i => GraphMIS G (pulledQuartet e i))).card := by
+  classical
+  let I : Finset QuartetIndex :=
+    (Finset.univ : Finset QuartetIndex).filter
+      (fun i => GraphMIS G (pulledQuartet e i))
+  let S : Finset (Finset Vertex) :=
+    (Finset.univ : Finset (Finset Vertex)).filter
+      (fun s => s.card = 4 ∧ GraphMIS G s ∧
+        capSum (fun v => canonicalCapF3 (e v)) s = 0)
+  have hSI : S = I.image (pulledQuartet e) := by
+    ext s
+    constructor
+    · intro hs
+      obtain ⟨_, hcard, hmis, hzero⟩ := Finset.mem_filter.mp hs
+      obtain ⟨i, hi⟩ :=
+        (canonicalCapF3_perm_four_zero_iff_pulled e s hcard).mp hzero
+      refine Finset.mem_image.mpr ⟨i, ?_, hi⟩
+      exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, hi ▸ hmis⟩
+    · intro hs
+      obtain ⟨i, hi, rfl⟩ := Finset.mem_image.mp hs
+      have hmis : GraphMIS G (pulledQuartet e i) :=
+        (Finset.mem_filter.mp hi).2
+      have hzero :
+          capSum (fun v => canonicalCapF3 (e v)) (pulledQuartet e i) = 0 :=
+        (canonicalCapF3_perm_four_zero_iff_pulled e
+          (pulledQuartet e i) (pulledQuartet_card e i)).mpr ⟨i, rfl⟩
+      exact Finset.mem_filter.mpr
+        ⟨Finset.mem_univ _, pulledQuartet_card e i, hmis, hzero⟩
+  change S.card = I.card
+  calc
+    S.card = (I.image (pulledQuartet e)).card := congrArg Finset.card hSI
+    _ = I.card := Finset.card_image_of_injective I (pulledQuartet_injective e)
+
+#print axioms PDIC.quartet_injective
+#print axioms PDIC.pulledQuartet_injective
+#print axioms PDIC.pulledQuartet_card
+#print axioms PDIC.labellingZeroMISCount_eq_quartetIndex_filter
+
+end PDIC
