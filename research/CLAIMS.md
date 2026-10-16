@@ -43,3 +43,14 @@ See [S003R5 closeout](../sessions/S003R5_CLOSEOUT.md), [S003R5 decomposed proof]
 | Complete graph probability law / originality | **PROVED_WRITTEN_WITH_CLASSICAL_INPUT / OPEN_IN_LEAN / NOVELTY_OPEN** | Graph isomorphism, h=b, 2520-assignments and specialist source audit remain |
 
 This addendum is authoritative for S003R6 and supersedes older 'NEXT S003R4/S003R5' wording elsewhere. Do not claim an unverified PR candidate was kernel checked.
+
+## S003R7 strict theorem addendum (2026-10-16)
+
+| Claim | Certification | Exact boundary |
+| --- | --- | --- |
+| Generic two-row neighbourhood equals bitwise OR support and its two-column complement criterion | **LEAN_KERNEL_CHECKED_PR3_b7d55232** | [Strict CI 38879098667](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38879098667), arbitrary row map |
+| Generic outside-complement witness equivalence and `goodPair_iff_mixedPairCriterion` | **LEAN_KERNEL_CHECKED_PR3_df53e200** | [Strict CI 38880618519](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38880618519), no finite 65536 case computation |
+| **All six `fixedPairXXCriterion` tests** correspond exactly to semantic mixed-MIS pair criterion | **LEAN_KERNEL_CHECKED_PR3_df53e200** | [Strict CI 38880618519](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38880618519); global filtered cardinality not implied by scalar iff alone |
+| Six-pair filtered-cardinality `sum_boole` aggregator | **OPEN_IN_LEAN** | `a8df4a89` failed Nat rewrite CI 38880747155; `8e76088b` repaired candidate pending exact CI; cannot promote until success |
+| Full mixed-count and edge-count BV↔semantic natural-number identities | **OPEN_IN_LEAN** | Requires certified summation and edge product row decomposition; independent exhaustive Python agreement is not a Lean proof |
+| Whole connected graph/probability flagship, originality, publication | **NOT_FULLY_FORMALISED / OPEN** | Graph isomorphism, 2520-bijection random law and targeted prior art remain |
