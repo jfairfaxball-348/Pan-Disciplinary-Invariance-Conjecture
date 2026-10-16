@@ -772,3 +772,56 @@ theorem fourRowEdgeCountBV_eq_fourPopNat (a b c d : BitVec 4) :
 #print axioms PDIC.fourRowEdgeCountBV_eq_fourPopNat
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S003R7: the arbitrary-row pair-neighbourhood bridge.  This is
+    symbolic in the row map; the only finite computation below concerns
+    a single four-bit mask, not 65,536 matrices. -/
+
+/-- The neighbourhood of a two-element left set is exactly the bitwise OR
+    of its row masks, for every row function and both (possibly equal) indices. -/
+theorem twoRowNeighbours_eq_orMask
+    (rows : Side → BitVec 4) (i k : Side) :
+    sideNeighbours (adjOfRows rows) ({i, k} : Finset Side) =
+      ((Finset.univ : Finset Side).filter
+        (fun j => (rows i ||| rows k).getLsbD j.val = true)) := by
+  ext j
+  simp only [sideNeighbours, Finset.mem_filter, Finset.mem_univ, true_and,
+    adjOfRows, Finset.mem_insert, Finset.mem_singleton]
+  rw [orMask_getLsbD_iff]
+  constructor
+  · rintro ⟨v, hv, he⟩
+    rcases hv with rfl | rfl
+    · exact Or.inl he
+    · exact Or.inr he
+  · rintro (he | he)
+    · exact ⟨i, Or.inl rfl, he⟩
+    · exact ⟨k, Or.inr rfl, he⟩
+
+/-- Local four-bit complement fact: two absent columns iff two present
+    columns.  This checks 16 masks, independently of the adjacency space. -/
+theorem fourMask_complement_card_two_iff (n : BitVec 4) :
+    (((Finset.univ : Finset Side) \
+        ((Finset.univ : Finset Side).filter
+          (fun j => n.getLsbD j.val = true))).card = 2 ↔
+      ((Finset.univ : Finset Side).filter
+        (fun j => n.getLsbD j.val = true)).card = 2) := by
+  revert n
+  decide +kernel
+
+/-- Numerical part of the mixed-pair semantic bridge is now generic in rows. -/
+theorem twoRow_complement_card_two_iff
+    (rows : Side → BitVec 4) (i k : Side) :
+    ((Finset.univ \ sideNeighbours (adjOfRows rows) ({i, k} : Finset Side)).card = 2) ↔
+    ((Finset.univ : Finset Side).filter
+      (fun j => (rows i ||| rows k).getLsbD j.val = true)).card = 2 := by
+  rw [twoRowNeighbours_eq_orMask]
+  exact fourMask_complement_card_two_iff _
+
+#print axioms PDIC.twoRowNeighbours_eq_orMask
+#print axioms PDIC.fourMask_complement_card_two_iff
+#print axioms PDIC.twoRow_complement_card_two_iff
+
+end PDIC
