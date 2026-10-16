@@ -1,0 +1,223 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\cF}{\mathcal{F}}
+\title{Zero-Sum Quartet Incidence and Sharp Maximal-Independent-Set Witnesses on Eight Vertices}
+\author{John Fairfax-Ball}
+\date{Research draft, 16 October 2026 --- NOT FOR SUBMISSION}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We combine the four-quartet incidence pattern of an eight-point cap in
+$\FF_3^3$ with maximal independent sets of connected graphs on eight
+vertices. Assuming the classical affine equivalence classification of
+nine-caps, we derive the complete distribution of the number of zero-sum
+four-vertex maximal independent sets under a uniform cap labelling.
+Its three-witness probability is at most $1/105$, with equality precisely
+for the spider tree with leg lengths $(2,2,2,1)$. The finite $4\times4$
+mixed-maximal-independent-set extremal component has a
+Lean-verified bit-vector foundation; its three arbitrary Boolean-matrix semantic extremal transfers
+have been strictly Lean-kernel-verified on research pull request \#3
+at commit \texttt{1e4cadd580b385e0d8e69e836f3211129e705839}. This draft
+makes no claim of literature priority or a complete end-to-end
+formalisation.
+\end{abstract}
+
+\section{Introduction and scope}
+Our central statistic is not the total number of maximal independent sets
+of a graph. Instead it counts the maximal independent sets of cardinality
+four that coincide with zero-sum quartets of an algebraic eight-cap.
+We separate the algebraic cap input from the independent finite graph
+argument and from the random-labelling probability model.
+Relevant maximal-independent-set extremal work includes Liu
+\cite{Liu1993}; our novelty relative to that literature remains to be
+determined by source-level comparison.
+
+\section{Classical cap input and quartet incidence}
+Let $U\subset\FF_3^3\setminus\{0\}$ be an eight-point admissible cap, i.e.,
+one with no zero-sum subsets of cardinality at most three. We use the
+classical equivalence of nine-caps in $AG(3,3)$ from
+Follett--Kalail--McMahon--Pelland--Won \cite[Proposition 2.2]{Follett2014}
+as an explicitly cited external input.
+
+\begin{lemma}[Quartet pattern; cap-classification input]
+There are four four-element zero-sum subsets of $U$. Their unordered
+incidence pattern is a four-cycle: two disjoint complementary pairs, and
+every other pair overlaps in two points. Every triple of distinct quartets
+contains a unique disjoint pair.
+\end{lemma}
+\begin{proof}[Proof sketch]
+Choose canonical coordinates via the classical cap classification and
+check the quartet list directly; invariance under affine linear changes
+of coordinates transports the incidence.
+The canonical finite certificate is present in the PDIC Lean sources.
+\end{proof}
+
+\section{The exact mixed-witness invariant}
+Fix a Boolean matrix $A=(A_{ij})_{i,j\in[4]}$, viewed as the edges of a
+bipartite graph with four vertices on each side. Let
+\[
+e(A)=\#\{(i,j):A_{ij}=1\},\qquad
+b(A)=\#\{X\subseteq[4]:|X|=2,\
+  \exists Y\subseteq[4],\ |Y|=2,\ X\cup Y
+  \text{ is a maximal independent set}\}.
+\]
+For $X\subseteq[4]$, let $N(X)$ be its opposite-side neighbourhood.
+
+\begin{lemma}[Unique opposite-side partner]
+For any mixed $2+2$ maximal independent set $X\cup Y$,
+\[
+Y=[4]\setminus N(X).
+\]
+Moreover $X$ is counted by $b(A)$ if and only if
+\[
+|N(X)|=2,\quad
+\text{and}\quad
+\forall i\notin X\ \exists j\in[4]\setminus N(X):A_{ij}=1.
+\]
+\end{lemma}
+\begin{proof}
+Independence makes $Y$ disjoint from $N(X)$; maximality forces
+every vertex outside $Y$ on the right to lie in $N(X)$. The remaining
+maximality conditions give the displayed criterion.
+\end{proof}
+
+\begin{theorem}[Sharp finite mixed-witness bounds]
+For every Boolean $4\times4$ matrix $A$,
+\[
+ b(A)\ge4\ \Longrightarrow\ e(A)\le5,\qquad
+ e(A)\ge8\ \Longrightarrow\ b(A)\le2.
+\]
+Furthermore,
+\[
+ e(A)=7,\quad b(A)=3
+ \quad\Longleftrightarrow\quad
+ A\text{ is a row- or column-centred spider matrix}.
+\]
+\end{theorem}
+\begin{proof}[Proof outline]
+Encode each row as four bits. Exhaustive \emph{kernel-checked}
+finite-proposition proofs establish the three BitVec implications,
+while independent symbolic left-pair/edge cardinality bridges show
+the encoding gives exactly $b(A)$ and $e(A)$. The semantic transfer
+statements passed the exact-SHA S003R8 hosted Lean workflow
+38887318919, with only standard axioms. The connected graph and
+probability theorems have not yet received an end-to-end Lean proof.
+\end{proof}
+
+\section{From complementary sets to the spider}
+For a connected simple eight-vertex graph $G$, define
+$\cF(G)$ to be its size-four maximal independent sets. Let $h(G)$
+count unordered triples $\{S,T,R\}\subseteq\cF(G)$ for which
+$S\cap T=\varnothing$ and $|R\cap S|=|R\cap T|=2$.
+
+\begin{theorem}[Sharp graph extremiser]
+For every connected simple eight-vertex graph,
+\[
+h(G)\le3,\qquad
+h(G)=3\ \Longleftrightarrow\
+G\cong S(2,2,2,1).
+\]
+\end{theorem}
+\begin{proof}
+If $h(G)>0$, the complementary disjoint independent sets $S,T$
+form a balanced bipartition. By connectedness it is the unique
+bipartition up to swap and both classes are maximal independent.
+Every contributing third set has a $2+2$ split, so $h(G)=b(A)$ for
+the associated $4\times4$ adjacency. Connectivity gives at least
+seven edges; the finite theorem forces $h\le3$ and equality only for
+a seven-edge spider matrix, hence the named tree. Conversely the
+spider has three contributing mixed maximal independent sets.
+\end{proof}
+
+\paragraph{An essential non-exhaustion warning.}
+The spider has nine size-four maximal independent sets.
+They are not exhausted by the two pure classes and three mixed
+$2+2$ sets. With the canonical bipartition, the sets
+$\{1,2,3,7\}$ and $\{2,4,6,7\}$ are respectively $3+1$ and
+$1+3$ maximal independent four-sets. They do not contribute to
+$h(G)$, and their existence does not invalidate the equality
+$h(G)=b(A)$.
+
+\section{The complete random cap-labelling law}
+Fix an admissible eight-cap $U$, let $\lambda:V(G)\to U$ be a uniformly
+chosen bijection, and write
+\[
+N_0=\#\left\{S\in\cF(G):\sum_{v\in S}\lambda(v)=0\right\}.
+\]
+Write $m=|\cF(G)|$, and for $t=0,2$ write $n_t$ for the
+number of unordered pairs of distinct members of $\cF(G)$
+whose intersection has cardinality $t$. Define
+\[
+M_1=\frac{2m}{35},\qquad
+M_2=\frac{2n_0}{35}+\frac{n_2}{315},\qquad
+M_3=\frac{h(G)}{315}.
+\]
+
+\begin{theorem}[Full witness-count law]
+For connected $G$, the random variable $N_0$ has support
+$\{0,1,2,3\}$ and
+\[
+\begin{aligned}
+\Pr(N_0=0)&=1-M_1+M_2-M_3,\\
+\Pr(N_0=1)&=M_1-2M_2+3M_3,\\
+\Pr(N_0=2)&=M_2-3M_3,\\
+\Pr(N_0=3)&=M_3\le\frac1{105}.
+\end{aligned}
+\]
+The last inequality is sharp exactly at $S(2,2,2,1)$.
+\end{theorem}
+\begin{proof}
+The cap's four-quartet $C_4$ pattern gives a single-set zero
+probability $2/35$, an overlap-zero pair probability $2/35$,
+and an overlap-two pair probability $1/315$. For a prescribed
+compatible third set, there are
+$\binom84\binom42^2=2520$ ordered abstract triples of the
+relevant shape, with eight zero-quartet image triples; hence
+the compatible triple probability is $8/2520=1/315$.
+Thus $\mathbb E\binom{N_0}i=M_i$ for $i=1,2,3$.
+Connectedness excludes the simultaneous appearance of all four
+zero quartets. Binomial moment inversion yields the displayed
+probabilities. The extremal probability follows from $h\le3$.
+\end{proof}
+
+\section{Optional greedy dynamics and signed pebbling residues}
+For any graph with at least one edge, independently run the
+random-order greedy maximal-independent-set algorithm and sample a
+uniform admissible-cap bijection. By symmetry, its zero-charge
+probability is $\frac2{35}\Pr(|I|=4)$.
+For rooted trees, three channel-wise residues
+$\sum_v(-1)^{d(r,v)}C_j(v)\bmod 3$
+are conserved by the $2\to1$ adjacent-vertex pebbling move.
+These supporting transfers are not claimed to imply a
+reachability/stackability result.
+
+\section{Formal verification and publication gate}
+The exact Lean proofs for arbitrary matrices and the concrete
+spider witnesses are kernel-verified on PDIC PR \#3, commit
+\texttt{1e4cadd580b385e0d8e69e836f3211129e705839}, hosted
+workflow 38887318919 (passed). The missing end-to-end
+Lean milestones are: the connected \texttt{SimpleGraph (Fin 8)}
+bridge, the graph isomorphism statement, an actual uniform
+$2520$-labelling probability model, and the cited cap input.
+The present article is a working draft only: priority, journal
+fit, and complete certification remain unresolved.
+
+\begin{thebibliography}{9}
+\bibitem{Follett2014}
+M.~Follett, K.~Kalail, E.~McMahon, C.~Pelland and R.~Won,
+\emph{Partitions of $AG(4,3)$ into maximal caps},
+Discrete Mathematics \textbf{337} (2014), 1--8.
+\href{https://doi.org/10.1016/j.disc.2014.08.002}{doi:10.1016/j.disc.2014.08.002}.
+\bibitem{Liu1993}
+J.~Liu, \emph{Maximal independent sets in bipartite graphs},
+Journal of Graph Theory \textbf{17} (1993), 495--507.
+\href{https://doi.org/10.1002/jgt.3190170407}{doi:10.1002/jgt.3190170407}.
+\end{thebibliography}
+\end{document}

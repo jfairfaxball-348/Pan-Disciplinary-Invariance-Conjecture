@@ -1232,3 +1232,185 @@ theorem spider_has_one_three_mis :
 #print axioms PDIC.spider_has_one_three_mis
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S003R9: actual simple-graph semantics on the exact eight-element
+    type Fin 4 ⊕ Fin 4. No connectivity or isomorphism is assumed here. -/
+abbrev SplitVertex := Side ⊕ Side
+
+def matrixGraph (adj : Side → Side → Bool) : SimpleGraph SplitVertex where
+  Adj u v := match u, v with
+    | .inl i, .inr j => adj i j = true
+    | .inr j, .inl i => adj i j = true
+    | _, _ => False
+  symm := by intro u v; cases u <;> cases v <;> simp_all
+  loopless := by intro u; cases u <;> simp
+
+/-- Independence and domination are the usual exact finite MIS criterion. -/
+def GraphMIS {V : Type*} (G : SimpleGraph V) (s : Finset V) : Prop :=
+  (∀ u ∈ s, ∀ v ∈ s, ¬ G.Adj u v) ∧
+    (∀ v, v ∉ s → ∃ u ∈ s, G.Adj v u)
+
+/-- This predicate really is maximality under inclusion, not maximum size. -/
+theorem graphMIS_iff_maximal {V : Type*} [DecidableEq V]
+    (G : SimpleGraph V) (s : Finset V) :
+    GraphMIS G s ↔
+      (∀ u ∈ s, ∀ v ∈ s, ¬ G.Adj u v) ∧
+      ∀ t : Finset V, s ⊆ t →
+        (∀ u ∈ t, ∀ v ∈ t, ¬ G.Adj u v) → t = s := by
+  classical
+  constructor
+  · rintro ⟨hi, hd⟩
+    refine ⟨hi, ?_⟩
+    intro t hst ht
+    apply Finset.Subset.antisymm
+    · intro v hv
+      by_contra hvs
+      obtain ⟨u, hu, he⟩ := hd v hvs
+      exact ht v hv u (hst hu) he
+    · exact hst
+  · rintro ⟨hi, hm⟩
+    refine ⟨hi, ?_⟩
+    intro v hv
+    by_contra hn
+    have hno : ∀ u ∈ s, ¬ G.Adj v u := by
+      intro u hu he
+      exact hn ⟨u, hu, he⟩
+    have hind : ∀ a ∈ insert v s, ∀ b ∈ insert v s, ¬ G.Adj a b := by
+      intro a ha b hb
+      simp only [Finset.mem_insert] at ha hb
+      rcases ha with rfl | ha <;> rcases hb with rfl | hb
+      · exact G.loopless v
+      · exact hno b hb
+      · exact fun he => hno a ha (G.symm he)
+      · exact hi a ha b hb
+    have heq := hm (insert v s) (Finset.subset_insert v s) hind
+    exact hv (heq ▸ Finset.mem_insert_self v s)
+
+theorem mixed_iff_graphMIS (adj : Side → Side → Bool)
+    (X Y : Finset Side) :
+    IsMixedMIS adj X Y ↔
+      X.card = 2 ∧ Y.card = 2 ∧
+        GraphMIS (matrixGraph adj) (X.disjSum Y) := by
+  constructor
+  · rintro ⟨hx, hy, hi, hl, hr⟩
+    refine ⟨hx, hy, ?_, ?_⟩
+    · intro u hu v hv
+      cases u with
+      | inl i =>
+        cases v with
+        | inl k => exact id
+        | inr j =>
+          have hf := hi i (by simpa using hu) j (by simpa using hv)
+          simpa [matrixGraph, hf]
+      | inr j =>
+        cases v with
+        | inl i =>
+          have hf := hi i (by simpa using hv) j (by simpa using hu)
+          simpa [matrixGraph, hf]
+        | inr k => exact id
+    · intro v hv
+      cases v with
+      | inl i =>
+        obtain ⟨j, hj, he⟩ := hl i (by simpa using hv)
+        exact ⟨.inr j, by simpa using hj, he⟩
+      | inr j =>
+        obtain ⟨i, hi, he⟩ := hr j (by simpa using hv)
+        exact ⟨.inl i, by simpa using hi, he⟩
+  · rintro ⟨hx, hy, hi, hd⟩
+    refine ⟨hx, hy, ?_, ?_, ?_⟩
+    · intro i hiX j hjY
+      have hn := hi (.inl i) (by simpa using hiX)
+        (.inr j) (by simpa using hjY)
+      cases he : adj i j with
+      | false => rfl
+      | true => exact False.elim (hn he)
+    · intro i hiX
+      obtain ⟨u, hu, he⟩ := hd (.inl i) (by simpa using hiX)
+      cases u with
+      | inl k => exact False.elim he
+      | inr j => exact ⟨j, by simpa using hu, he⟩
+    · intro j hjY
+      obtain ⟨u, hu, he⟩ := hd (.inr j) (by simpa using hjY)
+      cases u with
+      | inl i => exact ⟨i, by simpa using hu, he⟩
+      | inr k => exact False.elim he
+
+/-- Actual graph witnesses, represented as vertex sets rather than row pairs. -/
+noncomputable def graphMixedCount (adj : Side → Side → Bool) : ℕ := by
+  classical
+  exact Fintype.card {s : Finset SplitVertex //
+    s.toLeft.card = 2 ∧ s.toRight.card = 2 ∧ GraphMIS (matrixGraph adj) s}
+
+/-- Lossless bijection between actual mixed graph MIS and eligible left pairs. -/
+noncomputable def graphMixedEquiv (adj : Side → Side → Bool) :
+    {s : Finset SplitVertex //
+      s.toLeft.card = 2 ∧ s.toRight.card = 2 ∧ GraphMIS (matrixGraph adj) s} ≃
+    {X : Finset Side // ∃ Y : Finset Side, IsMixedMIS adj X Y} where
+  toFun s := ⟨s.val.toLeft, s.val.toRight,
+    (mixed_iff_graphMIS adj _ _).mpr
+      ⟨s.property.1, s.property.2.1,
+        by simpa only [Finset.toLeft_disjSum_toRight] using s.property.2.2⟩⟩
+  invFun X := by
+    let Y := Finset.univ \ sideNeighbours adj X.val
+    have h : IsMixedMIS adj X.val Y := by
+      obtain ⟨Z, hz⟩ := X.property
+      have he := mixed_opposite_unique adj X.val Z hz
+      simpa only [he] using hz
+    exact ⟨X.val.disjSum Y, by
+      simpa only [Finset.toLeft_disjSum, Finset.toRight_disjSum] using
+        (mixed_iff_graphMIS adj X.val Y).mp h⟩
+  left_inv s := by
+    apply Subtype.ext
+    have h := (mixed_iff_graphMIS adj s.val.toLeft s.val.toRight).mpr
+      ⟨s.property.1, s.property.2.1,
+        by simpa only [Finset.toLeft_disjSum_toRight] using s.property.2.2⟩
+    change s.val.toLeft.disjSum
+      (Finset.univ \ sideNeighbours adj s.val.toLeft) = s.val
+    rw [← mixed_opposite_unique adj _ _ h, Finset.toLeft_disjSum_toRight]
+  right_inv X := by
+    apply Subtype.ext
+    exact Finset.toLeft_disjSum _ _
+
+theorem graphMixedCount_eq_actual (adj : Side → Side → Bool) :
+    graphMixedCount adj = actualMixedLeftPairCount adj := by
+  classical
+  rw [graphMixedCount, Fintype.card_congr (graphMixedEquiv adj)]
+  simp [actualMixedLeftPairCount, Fintype.card_subtype]
+
+/-- An edge-threshold graph theorem; connectivity-to-edge-count is separate. -/
+theorem graphMixedCount_le_three (adj : Side → Side → Bool)
+    (he : 6 ≤ actualMatrixEdgeCount adj) : graphMixedCount adj ≤ 3 := by
+  rw [graphMixedCount_eq_actual]
+  by_contra hn
+  have hm : 4 ≤ actualMixedLeftPairCount adj := by omega
+  have hh := four_mixed_implies_at_most_five_edges adj hm
+  omega
+
+theorem graphMixedCount_three_iff_spider (adj : Side → Side → Bool)
+    (he : 7 ≤ actualMatrixEdgeCount adj) :
+    graphMixedCount adj = 3 ↔
+      spiderMatrixBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3) = true := by
+  rw [graphMixedCount_eq_actual]
+  constructor
+  · intro hm
+    have heq : actualMatrixEdgeCount adj = 7 := by
+      by_contra hn
+      have he8 : 8 ≤ actualMatrixEdgeCount adj := by omega
+      have hb := eight_edges_implies_at_most_two_mixed adj he8
+      omega
+    exact (seven_edges_three_mixed_iff_spider adj).mp ⟨heq, hm⟩
+  · intro hs
+    exact ((seven_edges_three_mixed_iff_spider adj).mpr hs).2
+
+#print axioms PDIC.graphMIS_iff_maximal
+#print axioms PDIC.mixed_iff_graphMIS
+#print axioms PDIC.graphMixedEquiv
+#print axioms PDIC.graphMixedCount_eq_actual
+#print axioms PDIC.graphMixedCount_le_three
+#print axioms PDIC.graphMixedCount_three_iff_spider
+
+end PDIC
