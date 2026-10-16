@@ -3455,3 +3455,47 @@ theorem canonicalTwoQuartetImageStabilizer_card :
 #print axioms PDIC.canonicalTwoQuartetImageStabilizer_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S015: honest transitivity of the permutation action on balanced four-sets. -/
+
+/-- Any two four-element subsets of the actual eight vertices are related
+by a genuine permutation; its construction matches their four/four splits. -/
+theorem exists_perm_fourset_image (s t : Finset Vertex)
+    (hs : s.card = 4) (ht : t.card = 4) :
+    ∃ p : Equiv.Perm Vertex, s.image p = t := by
+  classical
+  have hsc : (Finset.univ \ s).card = 4 := by
+    rw [Finset.card_sdiff_of_subset (Finset.subset_univ s)]
+    simp [hs, Vertex]
+  have htc : (Finset.univ \ t).card = 4 := by
+    rw [Finset.card_sdiff_of_subset (Finset.subset_univ t)]
+    simp [ht, Vertex]
+  obtain ⟨eS, hSL, hSR⟩ := exists_balancedSplitEquiv s hs hsc
+  obtain ⟨eT, hTL, hTR⟩ := exists_balancedSplitEquiv t ht htc
+  let p : Equiv.Perm Vertex := eS.symm.trans eT
+  have hpSub : s.image p ⊆ t := by
+    intro v hv
+    obtain ⟨w, hw, hwe⟩ := Finset.mem_image.mp hv
+    subst v
+    change eT (eS.symm w) ∈ t
+    cases h : eS.symm w with
+    | inl a =>
+      rw [h]
+      exact hTL a
+    | inr b =>
+      have hback : eS (Sum.inr b) = w := by
+        calc
+          eS (Sum.inr b) = eS (eS.symm w) := by rw [h]
+          _ = w := eS.apply_symm_apply w
+      exact False.elim (hSR b (hback.symm ▸ hw))
+  refine ⟨p, Finset.eq_of_subset_of_card_le hpSub ?_⟩
+  have hcard : (s.image p).card = 4 := by
+    simpa only [Finset.card_image_of_injective s p.injective] using hs
+  omega
+
+#print axioms PDIC.exists_perm_fourset_image
+
+end PDIC
