@@ -2,7 +2,8 @@
 
 Connect finite-group zero-sum quartet geometry and maximal-independent-set statistics in a precise first paper. The project name is aspirational; literature priority remains unresolved.
 
-**Current stage: S014 STRICT LEAN PASS** for the real quartet-index counting bridge and 576/16 regular stabilizers, including the genuine fixed-quartet-image fibre. [Exact source](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/95ef8f4886868f66edfbde90b34cc9e12fe6b463) · [Lean PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38949894336) · [finite PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38949894242). **S015 installed, not executed.** Genuine 2304/128 event totals, MIS factorial moments and the full first-paper probability law remain OPEN_IN_LEAN.
+**Current stage: S018 graph-derived first-moment kernel PASS; remaining genuine unordered second/third moments and complete flagship OPEN_IN_LEAN.** The real \(\sum_{e\in S_8}N_0(e,G)=2304m(G)\) theorem `graphMIS_first_moment_numerator`, over genuine four-vertex graph maximal-independent sets and all 40320 permutations, passed [strict Lean CI 38970442172](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38970442172) and [finite CI 38970442337](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38970442337) at [exact SHA `31a7cbb3`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/31a7cbb3de72944b5cb99994132060795cd7184f); printed axioms only `propext`, `Classical.choice`, `Quot.sound`. The S018 rational M1 equality and unique complementary partner are additional proof candidates on the same canonical branch, subject to their own exact-source CI status. The independent [S018 spider checker](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/blob/session/s007-full-lean-flagship/scripts/verify_s018_spider_distribution.py) exhausts all 40320 labellings and corroborates `(P0,P1,P2,P3)=(61/105,1/3,8/105,1/105)` on the named spider; this is **finite corroboration**, not the universal Lean theorem. **S019 is installed but not executed.** [S018 mathematics](research/S018_GRAPH_MOMENT_ASSEMBLY.md) · [S019 prompt](research/NEXT_SESSION_PROMPT.md) · [draft PR #4](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4).
+
 
 ## What is now strictly verified
 
@@ -18,20 +19,11 @@ Here h counts genuine **unordered sets of three** size-four maximal independent 
 
 ## Remaining mandatory Lean gate
 
-The manuscript's entire theorem remains the target. For a connected eight-vertex graph labelled uniformly by an admissible eight-cap, write m for the four-MIS count, n₀/n₂ for unordered pair overlap counts and h for compatible triples. Put M₁=2m/35, M₂=2n₀/35+n₂/315, M₃=h/315. The written theorem is
-
-    Pr(N₀=0)=1−M₁+M₂−M₃;  Pr(N₀=1)=M₁−2M₂+3M₃;
-    Pr(N₀=2)=M₂−3M₃;     Pr(N₀=3)=M₃≤1/105,
-
-with equality precisely at the named spider S(2,2,2,1). The classical nine-cap classification is an explicitly cited external input to the written proof.
-
-**Still open in Lean:** general cap-classification existence (to be supplied as an external hypothesis), permutation-event fibre counting and uniform event probabilities (despite a certified 40320 sample-space cardinality), moments, N₀≤3 and the single integrated four-term distribution. The canonical cap and invariance under a supplied invertible linear map are now Lean-verified. The **graph equality is now certified**, not an open candidate. Conditional rational moment inversion does not replace the probability model. The named spider retains legitimate 3+1 and 1+3 four-MIS.
+The manuscript's **complete** theorem remains the target. For a connected eight-vertex graph labelled uniformly by a fixed admissible cap, define \(m\) as the real four-MIS cardinal, \(n_0,n_2\) as unordered distinct pairs by overlap and \(h\) as unordered compatible triples. The first moment \(M_1=2m/35\) has now crossed the **actual graph-to-probability kernel gate** at S018. The remaining end-to-end Lean obligation is the genuine *unordered* double count proving \(M_2=2n_0/35+n_2/315\) and \(M_3=h/315\); binomial inversion then gives \((P_0,P_1,P_2,P_3)=(1-M_1+M_2-M_3,M_1-2M_2+3M_3,M_2-3M_3,M_3)\), with \(P_3\le1/105\) and equality iff the named spider. The graph equality theorem and connected support bound are already certified, not missing premises. Arbitrary-cap classification is supplied only under an explicit classical hypothesis. No substitution of a narrow graph theorem or paper-only assertion for the full law.
 
 ## Next session and process
 
-[S013 executable prompt](research/NEXT_SESSION_PROMPT.md): certify the S012 candidate and prove actual permutation-event fibres, moments, connected `N₀≤3` and the integrated four-term law. [S011 closeout](sessions/S011_CLOSEOUT.md), [proof note](research/S011_CAP_LABELLING_PROOF.md). S013 is installed automatically; its execution requires a new owner instruction.
-
-The full probability theorem and uniquely sharp named extremiser must both pass strict Lean before returning to Palomar preparation, unless the owner redirects. A narrower certificate is not project completion.
+[S019 executable prompt](research/NEXT_SESSION_PROMPT.md) is automatically installed and **not executed**: prove honest unordered graph-MIS second and third factorial moments, the four-probability theorem and sharp spider equality, with exact-SHA strict Lean CI. The canonical proof branch remains `session/s007-full-lean-flagship`, not main's historical Lean baseline. At every closeout generate and install the next prompt; never execute it without a subsequent user instruction. Novelty is unresolved; Palomar and publication remain owner-controlled and paused for the complete Lean theorem.
 
 ## Evidence and history
 
