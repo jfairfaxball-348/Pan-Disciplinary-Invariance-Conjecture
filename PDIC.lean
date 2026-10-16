@@ -3807,10 +3807,10 @@ def quartetDihedralPerm (k : Vertex) : Equiv.Perm Vertex :=
   else quartetSwapAxesAtoms.trans
     (quartetSwapFirstAtoms.trans quartetSwapLastAtoms)
 
+set_option maxRecDepth 16384
+set_option maxHeartbeats 2000000
 /-- Explicit orbit certificate for all eight ordered overlapping canonical
 quartet pairs, using just the eight constructed symmetries. -/
-set_option maxRecDepth 16384 in
-set_option maxHeartbeats 2000000 in
 theorem quartet_ordered_overlap_two_orbit
     (i j : QuartetIndex) (hij : (quartet i ∩ quartet j).card = 2) :
     ∃ p : Equiv.Perm Vertex,
