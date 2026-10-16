@@ -42,3 +42,10 @@ Reproduce with pinned `lake build`, strict `#print axioms` audit and all five ch
 [S003R7 closeout](sessions/S003R7_CLOSEOUT.md) · [S003R7 proof notes](research/S003R7_SYMBOLIC_SEMANTIC_BRIDGE.md) · [Prepared S003R8](research/NEXT_SESSION_PROMPT.md)
 
 **S003R7 final proof certificate:** [commit `e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca), [Lean workflow 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311), separate finite workflow 38883050344 PASS. See [full closeout](sessions/S003R7_CLOSEOUT.md) and [next S003R8 handoff](research/NEXT_SESSION_PROMPT.md).
+
+
+## Current status: S003R8 completed (16 October 2026; supersedes stale NEXT S003R8 rows above)
+
+The connected-graph **written proof** of the sharp compatible-triple witness bound `h(G)≤3`, equality iff `G≃S(2,2,2,1)`, is in [S003R8 research note](research/S003R8_GRAPH_BRIDGE_AND_NOVELTY.md). An explicit 3+1/1+3 maximal-independent-set audit prevents a false exhaustive 2+2 split claim. A [full initial manuscript draft](paper/PDIC_S003R8_DRAFT.tex) now exists, but source-level priority and end-to-end formalisation are not established.
+
+On [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), S003R8 adds arbitrary Boolean 4×4 matrix semantic inequalities and equality case statements, strictly dependent on the already certified S003R7 numerical bridges. **The S003R8 Lean exact-SHA CI verdict is pending** ([run 38886710499](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38886710499)); do not quote these new declarations as passed before a passing result. Main remains at the earlier Lean source baseline. The actual connected `SimpleGraph`, unlabelled spider isomorphism and 2520-atom probability law stay unformalised. [Closeout](sessions/S003R8_CLOSEOUT.md); [S003R9 prepared, not executed](research/NEXT_SESSION_PROMPT.md). No external submission or PR merge.
