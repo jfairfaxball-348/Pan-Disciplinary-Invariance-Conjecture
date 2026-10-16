@@ -2,6 +2,8 @@
 
 **Executed 16 October 2026**, canonical proof branch `session/s007-full-lean-flagship` / draft PR #4. **S015 automatically installed, NOT executed**.
 
+**Final strict verification update — 16 October 2026:** Lean source [`95ef8f4886868f66edfbde90b34cc9e12fe6b463`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/95ef8f4886868f66edfbde90b34cc9e12fe6b463) has [kernel workflow PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38949894336) and [finite evidence PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38949894242) at that exact SHA. The hosted kernel job succeeded at `lake build`, forbidden proof-hole scan, and all nine independent checkers. `#print axioms` reports only `propext`, `Classical.choice`, and `Quot.sound` for S014 declarations. The repaired `perm_finset_image_fixed_iff`, `canonicalFourBlockColour_comp_iff_image_fixed`, `canonicalQuartetImageStabilizer_card = 576`, and `canonicalTwoQuartetStabilizer_card = 16` are now **LEAN_KERNEL_VERIFIED**. Previous statements about these declarations' CI being pending describe an earlier checkpoint, not the final result. **2304/128 full events, moments and four-term law remain OPEN_IN_LEAN.**
+
 ## Verified proof increment
 
 - The actual quartet-index/MIS cardinal equivalence, zero-sum pair overlap classification and triple disjoint-pair condition passed strict [Lean run 38947974155](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38947974155) at [466d0ac](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/466d0ac74d335e7f905dc4f9fc8ce3bec15129cd).
