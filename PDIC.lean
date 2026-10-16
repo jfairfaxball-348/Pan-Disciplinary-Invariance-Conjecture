@@ -1740,10 +1740,12 @@ private theorem anchoredThird_ne_sides
     have hh : (r ∩ s).card = 4 := by
       rw [he, Finset.inter_self]
       exact hs.1
+    have hx := hr.2.1
     omega
   · intro he
     have hh : (r ∩ s).card = 0 := by
       simp [he]
+    have hx := hr.2.1
     omega
 
 private theorem partition_ne_complement
@@ -1764,6 +1766,8 @@ private theorem anchoredThird_card_four
     ext v
     simp
   rw [he] at hh
+  have hx := hr.2.1
+  have hy := hr.2.2
   omega
 
 private theorem complementary_four_card
@@ -1772,6 +1776,7 @@ private theorem complementary_four_card
     (Finset.univ \ s).card = 4 := by
   have hh : (Finset.univ \ s).card + s.card = 8 := by
     simpa using (Finset.card_sdiff_add_card_eq_card (Finset.subset_univ s))
+  have hsc := hs.1
   omega
 
 theorem tripleOfThird_card
@@ -1803,10 +1808,13 @@ theorem tripleOfThird_compatible
     hc, Ne.symm hn.1, Ne.symm hn.2, rfl, hr.2.1, hr.2.2⟩
   intro q hq
   simp only [tripleOfThird, Finset.mem_insert, Finset.mem_singleton] at hq
-  rcases hq with rfl | rfl | rfl
-  · exact ⟨hs.1, hs.2.1⟩
-  · exact ⟨complementary_four_card G s hs, hs.2.2⟩
-  · exact ⟨anchoredThird_card_four G s r hr, hr.1⟩
+  rcases hq with he | he | he
+  · subst q
+    exact ⟨hs.1, hs.2.1⟩
+  · subst q
+    exact ⟨complementary_four_card G s hs, hs.2.2⟩
+  · subst q
+    exact ⟨anchoredThird_card_four G s r hr, hr.1⟩
 
 /-- Every actual unordered compatible triple is exactly the set constructed
 from its anchored 2+2 third element; the complementary pair is forced by
