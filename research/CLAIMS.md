@@ -54,3 +54,20 @@ This addendum is authoritative for S003R6 and supersedes older 'NEXT S003R4/S003
 | Six-pair filtered-cardinality `sum_boole` aggregator | **OPEN_IN_LEAN** | `a8df4a89` failed Nat rewrite CI 38880747155; `8e76088b` repaired candidate pending exact CI; cannot promote until success |
 | Full mixed-count and edge-count BV↔semantic natural-number identities | **OPEN_IN_LEAN** | Requires certified summation and edge product row decomposition; independent exhaustive Python agreement is not a Lean proof |
 | Whole connected graph/probability flagship, originality, publication | **NOT_FULLY_FORMALISED / OPEN** | Graph isomorphism, 2520-bijection random law and targeted prior art remain |
+
+## S003R7 FINAL CLAIM AUDIT — EXACT HEAD `e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca` (2026-10-16)
+
+**THIS FINAL AUDIT SUPERSEDES PREVIOUS S003R6 AND EARLIER S003R7 OPEN-LABELS FOR THE TWO COUNT IDENTITIES.** Source: [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3) [strict hosted kernel PASS 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311); separate finite 38883050344 PASS; no forbidden axioms.
+
+| Statement | Verified status | Boundary |
+| --- | --- | --- |
+| Two-row neighbourhood/OR and opposite-side witness, all six fixed left pairs | **LEAN_KERNEL_VERIFIED** | Arbitrary four-row Boolean adjacency, no global enumeration |
+| `sixPairsBoolCardinality_by_sum` and `computableMixedLeftPairCount_eq_sixCriterion` | **LEAN_KERNEL_VERIFIED** | Any Boolean predicate supported on six two-subsets of `Fin 4`; five explicit sum-insert rewrites |
+| `actualMatrixEdgeCount_eq_sum_rows` | **LEAN_KERNEL_VERIFIED** | Arbitrary 4×4 Boolean adjacency, Finset product/row summation |
+| `fourRowMixedCountBV_eq_actual` | **LEAN_KERNEL_VERIFIED** | **All four BitVec 4 rows**; `BV.toNat` equals actual existential mixed maximal-independent-pair cardinality |
+| `fourRowEdgeCountBV_eq_actual` | **LEAN_KERNEL_VERIFIED** | **All four BitVec 4 rows**; `BV.toNat` equals actual matrix edge cardinality |
+| BV threshold, eight-edge exclusion and spider iff | **ALREADY_LEAN_VERIFIED_AS_BV_THEOREMS** | General Boolean-matrix statement transfer not yet separately declared and certified |
+| Connected arbitrary `SimpleGraph (Fin 8)` h=b, unlabelled spider iff, genuine 2520-labelling cap probability | **OPEN_IN_LEAN** | Earlier written/finite results do not bridge full graph probability semantics |
+| Prior-art novelty and paper | **OPEN / NOT SUBMITTED** | No originality claim follows from kernel verification |
+
+All five independent finite verifiers PASS on the same PR HEAD; `#print axioms` for new count identities reports only `[propext, Classical.choice, Quot.sound]`.
