@@ -1,6 +1,6 @@
 # PDIC S005 — Palomar registration reconnaissance: preflight CL/CI and public statement
 
-**OWNER-INSTALLED TARGET — NOT EXECUTED.** Owner selected this on 16 October 2026. Installing a prompt is not authorisation to execute it. Execute only on a later explicit "run next session". This session is **reconnaissance and public-record design only**, not submission, registration, fresh formalisation, PR merge, journal submission, or S006 planning.
+**HISTORICAL OWNER-INSTALLED TARGET — EXECUTED AND CLOSED ON 16 OCTOBER 2026.** Original owner scope preserved below as provenance. See [S005 closeout](../sessions/S005_CLOSEOUT.md). This session was **reconnaissance and public-record design only**; it did not submit, register, run preflight, merge PR #3, formalise new results, or plan S006.
 
 ## Owner's purpose and editorial standard
 
@@ -76,11 +76,11 @@ The **actual proven Lean appendix on PR #3** concerns arbitrary Boolean 4x4 matr
 
 Make a mock-up of **what an ordinary reader would see** on the Palomar page, including public title, exact plain-English "We prove" description, displayed/formatted formal statement surface, source/commit, author/source provenance, review wording and citation; clearly label this PREVIEW, not a registered record. Explain how to keep manuscript title, public metadata, formal source and BibTeX consistent when the final paper is frozen.
 
-## Deliverables for the future execution of S005
+## Required deliverables (S005 completed)
 
 1. research/S005_PALOMAR_RECON.md — current official procedure, precise preflight CI/CL and full mode recipe, public-entry field map from actual records, status and any site access limitations.
 2. research/S005_PUBLIC_RECORD_PROPOSAL.md — preferred title and "We prove…" description with **the real theorem/formula**, paper-to-Lean-to-Comparator field mapping, realistic *observed-vs-proposed* entry preview and truthful narrowly verified fallback.
 3. sessions/S005_CLOSEOUT.md — actual inspection, proof/CI status unchanged or verified changes, exact source links, definitive registration-readiness blockers and all checks actually run vs not run.
 4. Update research/CLAIMS.md and authoritative/STATE.json at completion to reflect factual reconnaissance only; do not overwrite existing proof or novel-priority qualifiers.
 
-**No Palomar submission, preflight job, PR merge, submission to arXiv/journal, correspondent contact, or new mathematical theorem/formalisation campaign is authorised by this reconnaissance target.** Nothing after S005 is selected: close the future session without suggesting or installing another target and return control to the owner.
+**No Palomar submission, preflight job, PR merge, submission to arXiv/journal, correspondent contact, or new mathematical theorem/formalisation campaign is authorised by this reconnaissance target.** Nothing after S005 was selected; the executed session closed without suggesting or installing another target and returned control to the owner.
