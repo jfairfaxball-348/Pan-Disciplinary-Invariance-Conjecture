@@ -2,7 +2,7 @@
 
 Connect finite-group zero-sum quartet geometry and maximal-independent-set statistics in a precise first paper. The project name is aspirational; literature priority remains unresolved.
 
-**Current stage: full flagship Lean formalisation. S007 has strictly proved the general connected eight-vertex h(G)≤3 bound. S008 named-spider equality is installed and not executed.**
+**Current stage: complete first-paper Lean formalisation. S010 has strictly kernel-certified the genuine connected eight-vertex graph equality `h(G)=3 ↔ G ≃g namedSpider` at [`c8c64e5a2a98`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/c8c64e5a2a98ee359c79430293ca0738211b4215), [Lean PASS 38928965168](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168), eight finite checkers PASS. S011 cap-incidence and uniform-label probability bridge is installed, not executed.**
 
 ## What is now strictly verified
 
@@ -14,7 +14,7 @@ Here h counts genuine **unordered sets of three** size-four maximal independent 
 
 [Proof scope and dependency chain](research/S007_UNORDERED_GRAPH_BRIDGE.md) · [S007 continuation closeout](sessions/S007_EXTENSION_CLOSEOUT.md) · [draft PR #4](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4).
 
-**Canonical proof branch:** `session/s007-full-lean-flagship`. Main retains its historical S003R3 `PDIC.lean`; read the certified branch/commit, not main's old source. The temporary `session/s008-full-h-bridge` scaffold and its former target are superseded; S008 has not been executed.
+**Canonical proof branch:** `session/s007-full-lean-flagship`. Main retains its historical S003R3 `PDIC.lean`; read the certified branch/commit, not main's old source. The temporary `session/s008-full-h-bridge` scaffold is superseded. S008 was executed on this canonical proof branch; its partial scope and current CI are documented below.
 
 ## Remaining mandatory Lean gate
 
@@ -25,11 +25,11 @@ The manuscript's entire theorem remains the target. For a connected eight-vertex
 
 with equality precisely at the named spider S(2,2,2,1). The classical nine-cap classification is an explicitly cited external input to the written proof.
 
-**Still open in Lean:** equality iff an actual isomorphism to the named spider; honest cap/classical-input transfer; the genuine uniform 8! bijection model and regular 16-element fibres; moments, N₀≤3 and the single integrated four-term theorem. Conditional rational moment inversion is already certified, but does not replace a probability-space proof. The spider has valid 3+1 and 1+3 four-MIS; the mixed family does not exhaust its MIS.
+**Still open in Lean:** cap/classical-input transfer (with explicit mathematical premise), genuine uniform 8! bijections and their regular 16-element fibres, moments, N₀≤3, and the single integrated four-term distribution. The **graph equality is now certified**, not an open candidate. Conditional rational moment inversion does not replace the probability model. The named spider retains legitimate 3+1 and 1+3 four-MIS.
 
 ## Next session and process
 
-[S008 executable prompt](research/S008_NAMED_SPIDER_ISOMORPHISM_TARGET.md): prove h=3 iff the **named spider graph isomorphism**, using the S007 graph-count bridge and certified matrix pattern. Say **“run next session”** to execute it. At every closeout, automatically write, install and commit the next numbered prompt; do not run it without a new owner instruction.
+[S011 executable prompt](research/S011_CAP_INCIDENCE_UNIFORM_LABELLING_TARGET.md): formalise a genuine admissible cap over `(ZMod 3)^3`, honest classical linear-transfer hypothesis, 8! uniform labels, 16-element fibres and probability moments. [S010 strict closeout](sessions/S010_CLOSEOUT.md). Prompt installed automatically; execution requires another owner instruction.
 
 The full probability theorem and uniquely sharp named extremiser must both pass strict Lean before returning to Palomar preparation, unless the owner redirects. A narrower certificate is not project completion.
 
@@ -44,7 +44,14 @@ The full probability theorem and uniquely sharp named extremiser must both pass 
 | S005–S006 | Palomar reconnaissance and separate narrow package; no official full-mode verification or registration |
 | S007 initial | Unordered-triple structure; `d05fe1e71d054fe74a52a664112b6de436e999da`, run 38912238607 |
 | S007 continuation | Exact unordered count, constructed arbitrary-graph transport and h≤3; `ff864170834954ef2a286afe6a6b6577ec02f986`, run 38914271558 |
+| S008 partial | Actual named `SimpleGraph`, canonical 4×4 graph isomorphism, connectedness, and named h=3; STRICT LEAN PASS with all eight independent checkers; exact source `fc8581d0bd117cd66c4497fa16209e3480c65ec7`, [run 38918496261](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38918496261). Written arbitrary-pattern normalisation and 192 finite cases, **not** universal Lean iff. |
+| S009 source candidate | Unverified universal equality proof, runner exit 143; finite count not a Lean certificate |
+| **S010** | **Strict Lean PASS: h=3 iff named spider actual graph isomorphism**, source [`c8c64e5a2a98`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/c8c64e5a2a98ee359c79430293ca0738211b4215); [Lean 38928965168](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168); [finite 38928965172](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965172) |
 
 [Claims](research/CLAIMS.md) · [Roadmap](ROADMAP.md) · [Flagship statement](research/FLAGSHIP_THEOREM.md) · [Manuscript](paper/PDIC_S003R8_DRAFT.tex) · [Session control](research/NEXT_SESSION_PROMPT.md).
 
 No publication submission, Palomar registration, correspondence or PR merge has been performed. The manuscript is a research draft; its older formalisation-scope paragraphs must be updated at the manuscript stage. The full flagship is not yet end-to-end Lean verified.
+
+## S009 attempt and S010 closure (16 October 2026)
+
+S009's universal equality source remained unverified following runner shutdown. S010 replaced the expensive search by a small kernel-checked leaf certificate, explicit hub-row permutations, and kernel-checked matrix transpose. The public `connected_h_three_iff_namedSpider` is now **LEAN_KERNEL_VERIFIED**, exact source [`c8c64e5a2a98ee359c79430293ca0738211b4215`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/c8c64e5a2a98ee359c79430293ca0738211b4215), [Lean PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168), [independent finite PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965172). See [full S010 proof note](research/S010_EQUALITY_KERNEL_CERTIFICATE.md). The *cap-labelled four-term probability law* and its all-cap transfer remain **OPEN_IN_LEAN**. [S011 is installed](research/NEXT_SESSION_PROMPT.md), not executed; no external submission or PR merge.
