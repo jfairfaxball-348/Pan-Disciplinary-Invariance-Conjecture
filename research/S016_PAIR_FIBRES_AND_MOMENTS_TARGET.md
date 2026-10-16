@@ -5,8 +5,8 @@
 ## Exact opening gate
 
 1. Read `sessions/S015_CLOSEOUT.md`, `research/S015_SINGLETON_EVENT_PROOF.md`, current proof-branch `PDIC.lean`, `research/FLAGSHIP_THEOREM.md`, `research/CLAIMS.md`, `authoritative/STATE.json`, `ROADMAP.md` and manuscript.
-2. Check hosted **exact commit SHA** Lean run before promoting any S015 theorem; finite-check PASS is not Lean-kernel PASS. The S015 candidate package includes `canonicalTwoQuartetImageStabilizer_card=16`, transitivity of permutation action on 4-subsets, general 576 four-set→quartet image fibres and candidate `canonicalCapF3_perm_singleton_event_card=2304`. Early S015 commits failed elaboration; repairs were pushed, and verification status must be determined from actual hosted workflow evidence.
-3. If strict Lean fails, fix the earliest compiler diagnostic, rerun kernel, source-hole and standard-axiom audit, and **do not skip** this proof gate for moment formalisation.
+2. **S015 CERTIFIED, do not repeat it:** exact source [`69de0c9e9963016ff5324545d55710619e8b8ead`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/69de0c9e9963016ff5324545d55710619e8b8ead) passed [strict hosted Lean, hole-scan and all nine checkers: 38959901730](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38959901730) and [finite check 38959901752](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38959901752). It verifies the **actual 2304/40320=2/35 singleton event**, both 576 and 16 real quartet-image stabilizer counts, arbitrary four-set transport and general fixed-target 576-image fibres. All newly printed axioms are only `propext`, `Classical.choice`, `Quot.sound`.
+3. Confirm current branch retains exactly this theorem-bearing `PDIC.lean` blob and check for any newer failing math changes. Start **directly with the open complementary pair and 128 overlap-two event fibres**. Do not spend S016 re-proving the already certified 2304 singleton count.
 
 ## Binding mathematical target
 
