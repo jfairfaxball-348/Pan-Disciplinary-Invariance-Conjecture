@@ -3381,3 +3381,77 @@ theorem canonicalQuartetImageStabilizer_card :
 #print axioms PDIC.canonicalQuartetImageStabilizer_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S015: the genuine ordered two-quartet image fibre, not merely its
+colour-preserving abstract stabilizer. -/
+
+/-- Fixing both actual canonical quartet images is equivalent to preserving
+their two-bit incidence colouring. -/
+theorem canonicalTwoQuartetColour_comp_iff_images_fixed
+    (e : Equiv.Perm Vertex) :
+    canonicalTwoQuartetColour ∘ e = canonicalTwoQuartetColour ↔
+      (quartet (0 : QuartetIndex)).image e = quartet (0 : QuartetIndex) ∧
+      (quartet (1 : QuartetIndex)).image e = quartet (1 : QuartetIndex) := by
+  rw [perm_finset_image_fixed_iff, perm_finset_image_fixed_iff]
+  constructor
+  · intro h
+    constructor
+    · intro v
+      have hp := congrArg Prod.fst (congrFun h v)
+      have hb : decide (e v ∈ quartet (0 : QuartetIndex)) =
+          decide (v ∈ quartet (0 : QuartetIndex)) := by
+        simpa only [canonicalTwoQuartetColour, Function.comp_apply] using hp
+      have hh : (e v ∈ quartet (0 : QuartetIndex)) ↔
+          (v ∈ quartet (0 : QuartetIndex)) := by
+        simpa using congrArg (fun b : Bool => b = true) hb
+      exact hh.symm
+    · intro v
+      have hp := congrArg Prod.snd (congrFun h v)
+      have hb : decide (e v ∈ quartet (1 : QuartetIndex)) =
+          decide (v ∈ quartet (1 : QuartetIndex)) := by
+        simpa only [canonicalTwoQuartetColour, Function.comp_apply] using hp
+      have hh : (e v ∈ quartet (1 : QuartetIndex)) ↔
+          (v ∈ quartet (1 : QuartetIndex)) := by
+        simpa using congrArg (fun b : Bool => b = true) hb
+      exact hh.symm
+  · intro h
+    funext v
+    apply Prod.ext
+    · change decide (e v ∈ quartet (0 : QuartetIndex)) =
+        decide (v ∈ quartet (0 : QuartetIndex))
+      exact congrArg decide (propext (h.1 v).symm)
+    · change decide (e v ∈ quartet (1 : QuartetIndex)) =
+        decide (v ∈ quartet (1 : QuartetIndex))
+      exact congrArg decide (propext (h.2 v).symm)
+
+/-- Exactly sixteen *actual* permutations fix both overlapping canonical
+quartet images. This verifies the two-set image-stabilizer predicate. -/
+theorem canonicalTwoQuartetImageStabilizer_card :
+    Fintype.card {e : Equiv.Perm Vertex //
+      (quartet (0 : QuartetIndex)).image e = quartet (0 : QuartetIndex) ∧
+      (quartet (1 : QuartetIndex)).image e = quartet (1 : QuartetIndex)} = 16 := by
+  classical
+  let E :
+      {e : Equiv.Perm Vertex //
+        (quartet (0 : QuartetIndex)).image e = quartet (0 : QuartetIndex) ∧
+        (quartet (1 : QuartetIndex)).image e = quartet (1 : QuartetIndex)} ≃
+      {e : Equiv.Perm Vertex //
+        canonicalTwoQuartetColour ∘ e = canonicalTwoQuartetColour} :=
+    Equiv.subtypeEquiv (Equiv.refl _) (fun e =>
+      (canonicalTwoQuartetColour_comp_iff_images_fixed e).symm)
+  calc
+    Fintype.card {e : Equiv.Perm Vertex //
+      (quartet (0 : QuartetIndex)).image e = quartet (0 : QuartetIndex) ∧
+      (quartet (1 : QuartetIndex)).image e = quartet (1 : QuartetIndex)} =
+      Fintype.card {e : Equiv.Perm Vertex //
+        canonicalTwoQuartetColour ∘ e = canonicalTwoQuartetColour} :=
+          Fintype.card_congr E
+    _ = 16 := canonicalTwoQuartetStabilizer_card
+
+#print axioms PDIC.canonicalTwoQuartetColour_comp_iff_images_fixed
+#print axioms PDIC.canonicalTwoQuartetImageStabilizer_card
+
+end PDIC
