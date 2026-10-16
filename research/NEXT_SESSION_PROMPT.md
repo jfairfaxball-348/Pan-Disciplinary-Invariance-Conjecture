@@ -1,12 +1,13 @@
-# PDIC — owner-directed session control
+# PDIC — current owner-installed session target
 
-**No next session target is installed.** S005 (Palomar preflight and public-record reconnaissance) was executed and closed on 16 October 2026 on explicit owner instruction.
+**S006: Palomar preparation to a submission-ready immutable commit — INSTALLED, NOT EXECUTED.**
 
-- Historical [owner-installed S005 scope](S005_PALOMAR_REGISTRATION_RECON_TARGET.md).
-- [Actual S005 research and official CI/public-field audit](S005_PALOMAR_RECON.md).
-- [Paper-matched public record proposal](S005_PUBLIC_RECORD_PROPOSAL.md).
-- [Verified scope and closeout](../sessions/S005_CLOSEOUT.md).
+The owner explicitly selected this target on 16 October 2026. The binding instructions are [S006_PALOMAR_SUBMISSION_READY_PREPARATION_TARGET.md](S006_PALOMAR_SUBMISSION_READY_PREPARATION_TARGET.md). Installation authorises **nothing to run yet**: execution begins only on a subsequent explicit “run next session”.
 
-**S005 was reconnaissance only.** No Palomar CI preflight, Comparator run, registration, PR merge, arXiv or journal submission occurred. Novelty and full-theorem Lean formalisation remain unresolved as separately recorded.
+## Success criterion when S006 is executed
 
-The owner steers one session at a time. An installed target is not an instruction to execute; a completed session must not suggest, invent, or automatically install a subsequent target. Await a new explicit owner-selected target.
+Deliver a publicly accessible, complete, exact **40-character Git commit SHA** with Challenge/Solution/Comparator/v0.4 metadata/licence/toolchain/module-system compliance and an **official full-mode PalomarSubmission mechanical PASS at the identical SHA**, plus report links and copyable owner submission fields. Prioritise complete first-paper formalisation; if genuinely unachievable, a truthfully titled narrower graph/matrix paper theorem may be registerable, but **must not be marketed as the full probability flagship**. If the official full verifier did not pass at the final SHA, report NOT_READY, not success.
+
+The owner alone authorises actual Palomar submission, editorial review and registration. S006 preparation may run the public **reusable CI preflight and full mechanical workflow** on execution but may not contact/dispatch the live Palomar submission server.
+
+S005 [reconnaissance](S005_PALOMAR_RECON.md) and [paper-to-public-record proposal](S005_PUBLIC_RECORD_PROPOSAL.md) are completed prior evidence. Its [closeout](../sessions/S005_CLOSEOUT.md) records no full preflight or submission. The user's owner-directed protocol remains: close an executed session without suggesting or installing a subsequent target, and return control to the owner.
