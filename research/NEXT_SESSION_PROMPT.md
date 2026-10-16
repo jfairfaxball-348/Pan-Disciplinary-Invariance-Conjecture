@@ -1,22 +1,33 @@
-# PDIC-S003R7 — CLOSE THE ARBITRARY MATRIX SEMANTIC COUNT BRIDGE
+# PDIC-S003R8 — FINISH BOTH NUMERIC SEMANTIC BRIDGES OR FREEZE A FIRST-PAPER THEOREM
 
-**PREPARED, NOT EXECUTED.** Execute S003R7 only on the next owner's instruction. Do not automatically begin S004, contact anyone, seek Palomar, or submit any manuscript.
+**PREPARED, NOT EXECUTED.** Start only when the owner says “run next session”; do not execute S004 automatically. No Palomar, external outreach, arXiv or journal submission without explicit owner request.
 
-## Required exact-head checks
+## Exact state and integrity first
 
-Read `AGENTS.md`, `authoritative/STATE.json`, `research/CLAIMS.md`, `research/FLAGSHIP_THEOREM.md`, `research/S003R6_COMPOSITIONAL_COUNTS.md`, `sessions/S003R6_CLOSEOUT.md` and [PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3). Determine PR HEAD live and check BOTH `PDIC Lean kernel verification` and `PDIC finite lead check` at that exact SHA. If the newest local lemma candidate failed, repair it before relying on it, and repeat exact-HEAD strict CI. The verified S003R6 baseline is commit `2bfb3164d9dbc73c830ea9cac24667a66b11a8f1`, [run 38871115121](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871115121).
+Read AGENTS.md, authoritative/STATE.json, research/CLAIMS.md, sessions/S003R7_CLOSEOUT.md and research/S003R7_SYMBOLIC_SEMANTIC_BRIDGE.md. Look up [PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3) live, record exact HEAD SHA and both GitHub Actions checks. **Never use the passing `b7d55232` local-lemma CI as evidence that later `df53e200` or `a8df4a89` kernels passed.** On any failed latest candidate inspect full Lean job logs and repair or *withdraw* the candidate. The strict passing S003R7 baseline is [`b7d55232`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/b7d5523207675fe9c9b15df1a67ba469528f86f5), [CI 38879098667](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38879098667).
 
-## Singular proof mission
+## Singular core task — do not re-run a giant matrix enumeration
 
-Complete and kernel-certify `(fourRowMixedCountBV a b c d).toNat = actualMixedLeftPairCount (adjOfRows (fourRows a b c d))` for all `a b c d : BitVec 4`, and `(fourRowEdgeCountBV a b c d).toNat = actualMatrixEdgeCount (...)`; then transfer both extremal theorems. No monolithic `decide +kernel` over all 65,536 matrices with nested Finsets.
+For all `a b c d : BitVec 4`, establish and kernel-check:
 
-1. Preserve the verified symbolic lemmas `goodLeftPairBV_spec`, `orMask_getLsbD_iff`, `sidePairsSix_eq_filter`, `sixBooleanIndicatorCount`, `fourRowMixedCountBV_eq_sixNat`, `fourSmallBVSum_noOverflow`, and `fourRowEdgeCountBV_eq_fourPopNat`.
-2. Finish `sixPairsBoolCardinality` and `computableMixedLeftPairCount_eq_sixCriterion` if not already strict-CI-verified. Prefer local `Finset.card_filter` and `Finset.sum_insert` simplifications; simplify the **six fixed pairs**, never the matrix space. Be wary of recursive `simp [sidePairsSix]` at low recursion budgets.
-3. Prove a general pair-neighbourhood row identity via `Finset.ext` and `orMask_getLsbD_iff`, and show complement cardinality two iff the union-neighbour count is two. Isolate the latter as a 16-mask lemma if that simplifies the code.
-4. Prove the two right-column witness correspondences with `outsideMask_nonzero_iff`. For pair `{i,j}`, pass the remaining indices `k,l` and prove `∀v, v∉{i,j} ↔ (v=k ∨ v=l)` by a **16-case index computation**, then instantiate the six pair permutations. This is the one outstanding symbolic link between `goodLeftPairBV` and `mixedPairCriterionBool`.
-5. Use six scalar iff lemmas, `computableMixedLeftPairCount_eq_actual`, and the two six-term Nat-sum lemmas to obtain the exact general mixed-count equation. Do the analogous row-wise sum decomposition for `actualMatrixEdgeCount` using `Finset.card_filter` and `Finset.sum_product`; existing `fourBitPopCount5_eq_rowCard` completes the proof.
-6. Transfer `eight_edges_at_most_two_mixed_BV`, `four_by_four_six_edge_threshold_BV`, and `seven_edge_three_iff_spider_BV` to all Boolean matrices. Once both numerical bridges are *kernel checked*, begin balanced connected eight-vertex `SimpleGraph` and spider isomorphism; actual 2520-assignment sample-space probability follows later.
+```lean
+(fourRowMixedCountBV a b c d).toNat =
+  actualMixedLeftPairCount (adjOfRows (fourRows a b c d))
 
-## Closeout policy
+(fourRowEdgeCountBV a b c d).toNat =
+  actualMatrixEdgeCount (adjOfRows (fourRows a b c d))
+```
 
-Require on an **exact SHA**: `lake build`, all five independent Python scripts, forbidden-axiom guard, and `#print axioms` for every new theorem (only standard axioms). Do not merge PR #3 or promote the flagship while its global semantic theorem is absent. Classify any unfinished proof as OPEN_IN_LEAN and name the missing lemma precisely. Update research note, claims, authoritative state, roadmap, closeout, next prompt and README as appropriate. Keep all other research repositories untouched. S004 novelty source audit and TeX manuscript are conditional on a defensible theorem and the required bridges.
+1. Finalise exact six pair iff proofs from `twoRowNeighbours_eq_orMask`, `twoRow_outsideWitness_iff`, `goodPair_iff_mixedPairCriterion`, and `fixedPairXXCriterion`, checking exact CI.
+2. Finish `sixPairsBoolCardinality_by_sum` and `computableMixedLeftPairCount_eq_sixCriterion` using `Finset.sum_boole`, six explicit fixed-pair summands and `Finset.sum_insert` or small cases. Do **not** repeat the twice-failed `simp [sidePairsSix, Finset.card_filter]` recursion explosion.
+3. Combine `fourRowMixedCountBV_eq_sixNat`, all six `fixedPairXXCriterion`, the semantic cardinality result and `computableMixedLeftPairCount_eq_actual`. This is a composition of small verified equalities; do not invoke `decide` over a 65,536 × nested-Finset global theorem.
+4. For edges, apply `Finset.sum_boole` to the edge-filter cardinality, `Finset.univ_product_univ` and `Finset.sum_product` (check exact Mathlib signatures) to decompose by rows. Combine `fourBitPopCount5_eq_rowCard` and `fourRowEdgeCountBV_eq_fourPopNat`.
+5. Transfer all three BV results—`four_by_four_six_edge_threshold_BV`, `eight_edges_at_most_two_mixed_BV`, `seven_edge_three_iff_spider_BV`—into arbitrary Boolean matrices. Verify and print axioms. Do not yet call this the eight-vertex SimpleGraph isomorphism or full probability theorem.
+
+## Aggressive publication-first fallback
+
+If a bridge still fails, stop looping on simplifier settings. Freeze the strongest strict-CI-verified **self-contained 4×4 matrix theorem** with explicit definitions and assumptions, complete the *written* proof and source comparison, and prepare a narrow TeX-first-paper outline. Be candid if novelty is not established. The global flagship probability paper remains a separate later project until graph isomorphism, connectedness semantics, 2520-label probability, and the cited nine-cap classification have been properly integrated.
+
+## Closeout
+
+At an exact SHA require `lake build`, no `sorry`, `admit`, native proof oracle or custom axioms, explicit `#print axioms`, and all five existing Python scripts. Keep PR #3 unmerged until its promised equalities pass. Update claim register, state, README/ROADMAP as needed, one S003R8 closeout, exact links and the full S003R9 or S004 handoff. Do not alter any other repository.
