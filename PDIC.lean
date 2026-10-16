@@ -1862,3 +1862,84 @@ theorem connected_compatibleTripleCount_eq_partitionMixedCount
 #print axioms PDIC.connected_compatibleTripleCount_eq_partitionMixedCount
 
 end PDIC
+
+namespace PDIC
+
+/-- The anchored 2+2 conditions themselves force size four. -/
+theorem anchoredMixedThird_card (G : SimpleGraph Vertex) (s r : Finset Vertex)
+    (h : IsAnchoredMixedThird G s r) : r.card = 4 := by
+  classical
+  have he : r ∩ (Finset.univ \ s) = r \ s := by ext v; simp; tauto
+  have hh := Finset.card_inter_add_card_sdiff r s
+  rw [h.2.1, ← he, h.2.2] at hh
+  omega
+
+/-- The generic set-of-sets predicate exactly matches the paper-facing
+S007 predicate, which explicitly asks for three distinct four-MIS. -/
+theorem compatibleTriple_iff_unordered (G : SimpleGraph Vertex)
+    (q : Finset (Finset Vertex)) :
+    CompatibleTriple G q ↔ IsUnorderedCompatibleTriple G q := by
+  classical
+  constructor
+  · intro h
+    have hc := compatibleTriple_card h
+    obtain ⟨s, t, r, hp, hm, rfl⟩ := h
+    have hst := complementaryFourMIS_ne hp
+    obtain ⟨hrs, hrt⟩ := mixedFourMIS_ne_sides hm
+    refine ⟨hc, ?_, s, by simp, t, by simp, r, by simp,
+      hst, Ne.symm hrs, Ne.symm hrt, hp.2.2.2.2, hm.2.2.1, hm.2.2.2⟩
+    intro a ha
+    simp only [Finset.mem_insert, Finset.mem_singleton] at ha
+    rcases ha with rfl | rfl | rfl
+    · exact ⟨hp.1, hp.2.2.1⟩
+    · exact ⟨hp.2.1, hp.2.2.2.1⟩
+    · exact ⟨hm.1, hm.2.1⟩
+  · rintro ⟨hc, hall, s, hs, t, ht, r, hr, hst, hsr, htr, hcomp, h1, h2⟩
+    refine ⟨s, t, r, ⟨(hall s hs).1, (hall t ht).1,
+      (hall s hs).2, (hall t ht).2, hcomp⟩,
+      ⟨(hall r hr).1, (hall r hr).2, h1, h2⟩, ?_⟩
+    have hsub : ({s, t, r} : Finset (Finset Vertex)) ⊆ q := by
+      intro x hx
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+      rcases hx with rfl | rfl | rfl <;> assumption
+    have hcard : ({s, t, r} : Finset (Finset Vertex)).card = 3 := by
+      simp [hst, hsr, htr]
+    exact (Finset.eq_of_subset_of_card_le hsub (by omega)).symm
+
+/-- The generic subtype cardinality and the paper's finite-filter count agree. -/
+theorem compatibleTripleCount_eq_unordered (G : SimpleGraph Vertex) :
+    compatibleTripleCount G = unorderedCompatibleTripleCount G := by
+  classical
+  simp only [compatibleTripleCount, unorderedCompatibleTripleCount,
+    Fintype.card_subtype, compatibleTriple_iff_unordered]
+
+/-- This closes the unordered h(G) -> anchored third-set count bridge.
+The graph remains arbitrary: no matrix representation is assumed. -/
+theorem unorderedCompatibleTripleCount_eq_anchored
+    (G : SimpleGraph Vertex) (hc : G.Connected) (s : Finset Vertex)
+    (hs : FourMISPartition G s) :
+    unorderedCompatibleTripleCount G = anchoredMixedThirdCount G s := by
+  classical
+  have hcard : (Finset.univ \ s).card = 4 := by
+    rw [Finset.card_sdiff (Finset.subset_univ s)]
+    simp [hs.1]
+  have hp : ComplementaryFourMIS G s (Finset.univ \ s) :=
+    ⟨hs.1, hcard, hs.2.1, hs.2.2, rfl⟩
+  rw [← compatibleTripleCount_eq_unordered,
+    connected_compatibleTripleCount_eq_partitionMixedCount G hc (0 : Vertex) hp]
+  unfold partitionMixedCount anchoredMixedThirdCount
+  rw [Fintype.card_subtype]
+  congr 1
+  ext r
+  simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+  change MixedFourMIS G s (Finset.univ \ s) r ↔ IsAnchoredMixedThird G s r
+  constructor
+  · exact fun h => h.2
+  · exact fun h => ⟨anchoredMixedThird_card G s r h, h⟩
+
+#print axioms PDIC.anchoredMixedThird_card
+#print axioms PDIC.compatibleTriple_iff_unordered
+#print axioms PDIC.compatibleTripleCount_eq_unordered
+#print axioms PDIC.unorderedCompatibleTripleCount_eq_anchored
+
+end PDIC
