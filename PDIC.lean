@@ -3225,3 +3225,34 @@ theorem canonicalCapF3_perm_three_zero_has_disjoint_pair
 #print axioms PDIC.canonicalCapF3_perm_three_zero_has_disjoint_pair
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S014: numerical regular fibres via the standard permutation-stabilizer
+equivalence. This is an exact finite-group proof, not a 40320-case enumeration. -/
+
+/-- The colour records which side of the fixed four/four partition a
+vertex belongs to. -/
+def canonicalFourBlockColour (v : Vertex) : Bool :=
+  decide (v ∈ quartet (0 : QuartetIndex))
+
+/-- Both actual colour classes contain four labelled vertices. -/
+theorem canonicalFourBlockColour_fibre_card (b : Bool) :
+    Fintype.card {v : Vertex // canonicalFourBlockColour v = b} = 4 := by
+  cases b <;> decide
+
+/-- 4!·4! = 576 genuine permutations preserve a fixed four/four
+partition. The proof uses the stabilizer's product-of-factorials formula. -/
+theorem canonicalFourBlockStabilizer_card :
+    Fintype.card {e : Equiv.Perm Vertex //
+      canonicalFourBlockColour ∘ e = canonicalFourBlockColour} = 576 := by
+  classical
+  rw [DomMulAct.stabilizer_card]
+  simp only [canonicalFourBlockColour_fibre_card]
+  decide
+
+#print axioms PDIC.canonicalFourBlockColour_fibre_card
+#print axioms PDIC.canonicalFourBlockStabilizer_card
+
+end PDIC
