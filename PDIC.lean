@@ -2390,3 +2390,139 @@ theorem namedSpider_unorderedCompatibleTripleCount_three :
 #print axioms PDIC.namedSpider_unorderedCompatibleTripleCount_three
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S009: a *genuine* graph-isomorphism certificate for every equality
+matrix.  The finite certificate only chooses 4-by-4 side permutations and
+whether to exchange the two sides.  Graph adjacency is transported
+separately, for all vertex pairs including nonedges. -/
+
+/-- All spider-pattern matrices admit a row/column permutation to the
+canonical labelled matrix. This is a finite statement about the sixteen
+Boolean cells and the two symmetric groups on four elements. -/
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 0 in
+theorem spiderBitRows_permutation_certificate (a b c d : BitVec 4)
+    (hs : spiderMatrixBV a b c d = true) :
+    ∃ swapSides : Bool, ∃ p q : Side ≃ Side,
+      ∀ i j : Side,
+        (adjOfRows (fourRows a b c d) i j = true) ↔
+          (if swapSides then canonicalSpiderMatrix (p j) (q i)
+           else canonicalSpiderMatrix (p i) (q j)) = true := by
+  revert a b c d
+  decide +kernel
+
+/-- Exchange the two four-vertex sides without making any assumption
+about the edge relation. -/
+private def spiderSideSwap : SplitVertex ≃ SplitVertex where
+  toFun
+    | .inl i => .inr i
+    | .inr j => .inl j
+  invFun
+    | .inl i => .inr i
+    | .inr j => .inl j
+  left_inv := by intro v; cases v <;> rfl
+  right_inv := by intro v; cases v <;> rfl
+
+/-- Each row/column relabelling respecting all 16 entries gives an actual
+graph isomorphism, including both pure-side nonedge classes. -/
+private def spiderRowPermutationIso
+    (adj : Side → Side → Bool) (p q : Side ≃ Side)
+    (h : ∀ i j, adj i j = true ↔ canonicalSpiderMatrix (p i) (q j) = true) :
+    matrixGraph adj ≃g matrixGraph canonicalSpiderMatrix where
+  toEquiv := Equiv.sumCongr p q
+  map_rel_iff' := by
+    intro u v
+    cases u with
+    | inl i =>
+      cases v with
+      | inl j => simp [matrixGraph]
+      | inr j => exact h i j
+    | inr i =>
+      cases v with
+      | inl j => exact h j i
+      | inr j => simp [matrixGraph]
+
+/-- The transposed alternative is treated by a genuine swap of the graph
+sides, not by assuming the matrix is row-centred. -/
+private def spiderColumnPermutationIso
+    (adj : Side → Side → Bool) (p q : Side ≃ Side)
+    (h : ∀ i j, adj i j = true ↔ canonicalSpiderMatrix (p j) (q i) = true) :
+    matrixGraph adj ≃g matrixGraph canonicalSpiderMatrix where
+  toEquiv := spiderSideSwap.trans (Equiv.sumCongr p q)
+  map_rel_iff' := by
+    intro u v
+    cases u with
+    | inl i =>
+      cases v with
+      | inl j => simp [matrixGraph, spiderSideSwap]
+      | inr j => exact h i j
+    | inr i =>
+      cases v with
+      | inl j => exact h j i
+      | inr j => simp [matrixGraph, spiderSideSwap]
+
+/-- Universal spider-pattern to named labelled graph isomorphism. -/
+theorem spiderPattern_matrixGraph_iso (adj : Side → Side → Bool)
+    (hs : spiderMatrixBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+      (rowsOfAdj adj 2) (rowsOfAdj adj 3) = true) :
+    Nonempty (matrixGraph adj ≃g namedSpider) := by
+  let a := rowsOfAdj adj 0
+  let b := rowsOfAdj adj 1
+  let c := rowsOfAdj adj 2
+  let d := rowsOfAdj adj 3
+  obtain ⟨swapSides, p, q, hnorm⟩ :=
+    spiderBitRows_permutation_certificate a b c d hs
+  have hadj : adjOfRows (fourRows a b c d) = adj := by
+    dsimp [a, b, c, d]
+    rw [fourRows_rowsOfAdj, adjOfRows_rowsOfAdj]
+  have h : ∀ i j : Side,
+      (adj i j = true) ↔
+        (if swapSides then canonicalSpiderMatrix (p j) (q i)
+         else canonicalSpiderMatrix (p i) (q j)) = true := by
+    intro i j
+    simpa only [hadj] using hnorm i j
+  cases swapSides with
+  | false =>
+    refine ⟨(spiderRowPermutationIso adj p q ?_).trans canonicalSpiderIso⟩
+    intro i j
+    simpa using h i j
+  | true =>
+    refine ⟨(spiderColumnPermutationIso adj p q ?_).trans canonicalSpiderIso⟩
+    intro i j
+    simpa using h i j
+
+/-- The equality case for the genuine unordered triple count, for every
+connected eight-vertex simple graph, is precisely the named spider. -/
+theorem connected_h_three_iff_namedSpider (G : SimpleGraph Vertex)
+    (hconn : G.Connected) :
+    unorderedCompatibleTripleCount G = 3 ↔ Nonempty (G ≃g namedSpider) := by
+  constructor
+  · intro hh
+    have hp : ∃ s : Finset Vertex, FourMISPartition G s := by
+      by_contra hn
+      have hz := unorderedCompatibleTripleCount_zero_of_no_partition G hn
+      omega
+    obtain ⟨s, hs⟩ := hp
+    obtain ⟨adj, hm, ⟨e⟩, heq⟩ := connected_partition_h_eq_matrix G hconn s hs
+    have hpatt : spiderMatrixBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3) = true :=
+      (connected_graphMixedCount_three_iff_pattern adj hm).mp (by omega)
+    obtain ⟨f⟩ := spiderPattern_matrixGraph_iso adj hpatt
+    exact ⟨e.symm.trans f⟩
+  · rintro ⟨e⟩
+    calc
+      unorderedCompatibleTripleCount G = compatibleTripleCount G :=
+        (compatibleTripleCount_eq_unordered G).symm
+      _ = compatibleTripleCount namedSpider := compatibleTripleCount_iso e
+      _ = unorderedCompatibleTripleCount namedSpider :=
+        compatibleTripleCount_eq_unordered namedSpider
+      _ = 3 := namedSpider_unorderedCompatibleTripleCount_three
+
+#print axioms PDIC.spiderBitRows_permutation_certificate
+#print axioms PDIC.spiderPattern_matrixGraph_iso
+#print axioms PDIC.connected_h_three_iff_namedSpider
+
+end PDIC
