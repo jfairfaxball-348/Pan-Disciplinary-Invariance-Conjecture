@@ -9,7 +9,7 @@ Verdict: **NOT_READY_FOR_OWNER_SUBMISSION** (strict full mechanical verification
 - Restored the exact graph/matrix mathematical source that was strictly checked at S003R9 `402465f2330a275e04108169a6bfbb65e94e10b8`, and ported it to the Lean module header/public import scheme. That module-system port is **not** certified simply because the previous content passed.
 - Added ordinary mathematical Challenge/Solution for the two connected mixed-MIS graph conclusions: at most three actual 2+2 mixed maximal independent vertex sets and equality iff the row/column spider *matrix* pattern. This is **not** the flagship eight-cap probability result, nor a named graph-isomorphism theorem.
 - Added `comparator.json`, `formalization.yaml` v0.4, root MIT licence and 40-character pinned Mathlib revision, plus an exact-sha reusable official full-workflow invocation.
-- Preserved full manuscripts, prior-art caveats, earlier strict CI and independent checker sources. This was packaging work, not a new mathematical discovery.
+- Preserved full manuscripts, prior-art caveats, earlier strict CI and independent checker sources. Added `scripts/verify_s006_palomar_graph.py` as an independent exhaustive finite cross-check: 65,536 Boolean matrices, 36,317 connected graphs, 192 spider-pattern equality cases, no bound or equivalence failures. This is **FINITE_CHECKED** only, not an official Palomar or newly hosted Lean pass. This session was packaging work, not a new mathematical discovery.
 
 ## Immutable SHA and Palomar verification
 
