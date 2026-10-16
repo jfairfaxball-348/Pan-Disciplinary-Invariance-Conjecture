@@ -3892,3 +3892,106 @@ theorem canonical_ordered_overlap_pair_image_fibre_card
 #print axioms PDIC.canonical_ordered_overlap_pair_image_fibre_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S016: an actual 128/40320 joint cap-zero event for the fixed ordered
+canonical Q0/Q1 source. This is a genuine event-fibre theorem; extension to
+arbitrary two-overlap source sets remains a separate obligation. -/
+
+abbrev CanonicalOrderedOverlapPair :=
+  {p : QuartetIndex × QuartetIndex // (quartet p.1 ∩ quartet p.2).card = 2}
+
+theorem canonicalOrderedOverlapPair_card :
+    Fintype.card CanonicalOrderedOverlapPair = 8 := by
+  decide +kernel
+
+/-- The two specific overlapping source quartets are simultaneously
+zero-sum under exactly 128 real label permutations. The proof partitions
+by eight canonical target pairs, each with the certified 16-image fibre. -/
+theorem canonicalCapF3_perm_canonical_overlap_pair_event_card :
+    Fintype.card {e : Equiv.Perm Vertex //
+      capSum (fun v => canonicalCapF3 (e v)) (quartet (0 : QuartetIndex)) = 0 ∧
+      capSum (fun v => canonicalCapF3 (e v)) (quartet (1 : QuartetIndex)) = 0} =
+        128 := by
+  classical
+  let F :
+      (Σ p : CanonicalOrderedOverlapPair,
+        {e : Equiv.Perm Vertex //
+          (quartet (0 : QuartetIndex)).image e = quartet p.val.1 ∧
+          (quartet (1 : QuartetIndex)).image e = quartet p.val.2}) →
+      {e : Equiv.Perm Vertex //
+        capSum (fun v => canonicalCapF3 (e v)) (quartet (0 : QuartetIndex)) = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) (quartet (1 : QuartetIndex)) = 0} :=
+    fun x => ⟨x.2.1,
+      ⟨(canonicalCapF3_perm_four_zero_iff x.2.1
+          (quartet (0 : QuartetIndex)) (quartet_card 0)).mpr
+          ⟨x.1.val.1, x.2.2.1.symm⟩,
+        (canonicalCapF3_perm_four_zero_iff x.2.1
+          (quartet (1 : QuartetIndex)) (quartet_card 1)).mpr
+          ⟨x.1.val.2, x.2.2.2.symm⟩⟩⟩
+  have hF : Function.Bijective F := by
+    constructor
+    · intro x y hxy
+      rcases x with ⟨p, ⟨e, he⟩⟩
+      rcases y with ⟨q, ⟨e', he'⟩⟩
+      have heq : e = e' := congrArg Subtype.val hxy
+      subst e'
+      have hfirst : p.val.1 = q.val.1 :=
+        quartet_injective (he.1.symm.trans he'.1)
+      have hsecond : p.val.2 = q.val.2 :=
+        quartet_injective (he.2.symm.trans he'.2)
+      have hpq : p = q := by
+        apply Subtype.ext
+        exact Prod.ext hfirst hsecond
+      subst q
+      rfl
+    · intro x
+      obtain ⟨i, hi⟩ :=
+        (canonicalCapF3_perm_four_zero_iff x.val
+          (quartet (0 : QuartetIndex)) (quartet_card 0)).mp x.property.1
+      obtain ⟨j, hj⟩ :=
+        (canonicalCapF3_perm_four_zero_iff x.val
+          (quartet (1 : QuartetIndex)) (quartet_card 1)).mp x.property.2
+      have hbase :
+          (quartet (0 : QuartetIndex) ∩ quartet (1 : QuartetIndex)).card = 2 := by
+        decide
+      have htransport :=
+        pulledQuartet_inter_card x.val.symm
+          (0 : QuartetIndex) (1 : QuartetIndex)
+      rw [hbase] at htransport
+      have hoverlap : (quartet i ∩ quartet j).card = 2 := by
+        rw [hi, hj]
+        simpa [pulledQuartet_eq_image] using htransport
+      refine ⟨⟨⟨i, j⟩, hoverlap⟩,
+        ⟨x.val, hi.symm, hj.symm⟩, ?_⟩
+      apply Subtype.ext
+      rfl
+  calc
+    Fintype.card {e : Equiv.Perm Vertex //
+      capSum (fun v => canonicalCapF3 (e v)) (quartet (0 : QuartetIndex)) = 0 ∧
+      capSum (fun v => canonicalCapF3 (e v)) (quartet (1 : QuartetIndex)) = 0} =
+      Fintype.card (Σ p : CanonicalOrderedOverlapPair,
+        {e : Equiv.Perm Vertex //
+          (quartet (0 : QuartetIndex)).image e = quartet p.val.1 ∧
+          (quartet (1 : QuartetIndex)).image e = quartet p.val.2}) :=
+        (Fintype.card_congr (Equiv.ofBijective F hF)).symm
+    _ = 128 := by
+      rw [Fintype.card_sigma]
+      calc
+        (∑ p : CanonicalOrderedOverlapPair,
+          Fintype.card {e : Equiv.Perm Vertex //
+            (quartet (0 : QuartetIndex)).image e = quartet p.val.1 ∧
+            (quartet (1 : QuartetIndex)).image e = quartet p.val.2}) =
+          ∑ _p : CanonicalOrderedOverlapPair, (16 : ℕ) := by
+            apply Finset.sum_congr rfl
+            intro p _
+            exact canonical_ordered_overlap_pair_image_fibre_card
+              p.val.1 p.val.2 p.property
+        _ = 128 := by simp [canonicalOrderedOverlapPair_card]
+
+#print axioms PDIC.canonicalOrderedOverlapPair_card
+#print axioms PDIC.canonicalCapF3_perm_canonical_overlap_pair_event_card
+
+end PDIC
