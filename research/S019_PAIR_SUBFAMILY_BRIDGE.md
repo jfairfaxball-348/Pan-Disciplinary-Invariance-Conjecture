@@ -35,7 +35,7 @@ Lean declarations on the proof branch:
 - `canonicalCapF3_perm_distinct_triple_event_zero_of_no_disjoint`
 - `graphMIS_unordered_pair_family_event_card`
 
-The final proof candidate is source commit `e981acac25b8106e4b4df782340217ed948445bb`. Certification requires the exact-source hosted strict Lean run `38978027666` and independent finite run `38978027657`; check their completed conclusions before promoting the declarations to LEAN_KERNEL_VERIFIED. An earlier attempt `932ea8ff` built Lean and printed only standard axioms, but failed the repository's naive forbidden-token grep because a prose comment used the English verb *admit*. The comment was replaced at `e981acac`. This earlier run is **not** a strict PASS. An intermediate `de445163` included the graph two-family bridge but still carried that comment. Retain separate exact proof and check SHA evidence.
+The final proof candidate is source commit `e981acac25b8106e4b4df782340217ed948445bb`. The final exact-source hosted strict Lean run `38978027666` and independent finite run `38978027657` both completed **SUCCESS**; all four declarations are **LEAN_KERNEL_VERIFIED**. An earlier attempt `932ea8ff` built Lean and printed only standard axioms, but failed the repository's naive forbidden-token grep because a prose comment used the English verb *admit*. The comment was replaced at `e981acac`. This earlier run is **not** a strict PASS. An intermediate `de445163` included the graph two-family bridge and built successfully with only standard printed axioms, but still carried that comment. Retain separate exact proof and check SHA evidence.
 
 ## Remaining mathematical obstruction
 
