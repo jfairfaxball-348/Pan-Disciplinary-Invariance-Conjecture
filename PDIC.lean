@@ -825,3 +825,67 @@ theorem twoRow_complement_card_two_iff
 #print axioms PDIC.twoRow_complement_card_two_iff
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S003R7: the remaining semantic witness is local in the row map. -/
+
+/-- A vertex in the complement of the two-row neighbourhood is the
+    same thing as a set bit of a third row outside their OR-mask. -/
+theorem twoRow_outsideWitness_iff
+    (rows : Side → BitVec 4) (i k v : Side) :
+    (∃ j ∈ (Finset.univ \ sideNeighbours (adjOfRows rows)
+        ({i, k} : Finset Side)), adjOfRows rows v j = true) ↔
+      (∃ j : Side, (rows v).getLsbD j.val = true ∧
+        (rows i ||| rows k).getLsbD j.val = false) := by
+  rw [twoRowNeighbours_eq_orMask]
+  constructor
+  · rintro ⟨j, hj, he⟩
+    have hn : (rows i ||| rows k).getLsbD j.val = false := by
+      have hnot : (rows i ||| rows k).getLsbD j.val ≠ true := by
+        intro ht
+        exact (Finset.mem_sdiff.mp hj).2
+          (Finset.mem_filter.mpr ⟨Finset.mem_univ j, ht⟩)
+      cases hb : (rows i ||| rows k).getLsbD j.val with
+      | false => exact hb
+      | true => exact False.elim (hnot hb)
+    exact ⟨j, he, hn⟩
+  · rintro ⟨j, he, hn⟩
+    refine ⟨j, ?_, he⟩
+    apply Finset.mem_sdiff.mpr
+    constructor
+    · exact Finset.mem_univ j
+    · intro hm
+      have ht := (Finset.mem_filter.mp hm).2
+      simp [hn] at ht
+
+/-- One *generic* mixed-pair correspondence, assuming the two remaining
+    indices are z,w. The six concrete pairs will instantiate this once. -/
+theorem goodPair_iff_mixedPairCriterion
+    (rows : Side → BitVec 4) (i k z w : Side)
+    (hpair : ({i, k} : Finset Side).card = 2)
+    (hrest : ∀ v : Side, v ∉ ({i, k} : Finset Side) ↔ v = z ∨ v = w) :
+    goodLeftPairBV (rows i) (rows k) (rows z) (rows w) = true ↔
+      mixedPairCriterion (adjOfRows rows) ({i, k} : Finset Side) := by
+  rw [goodLeftPairBV_spec]
+  unfold mixedPairCriterion
+  rw [twoRow_complement_card_two_iff]
+  constructor
+  · rintro ⟨hcard, hz, hw⟩
+    refine ⟨hpair, hcard, ?_⟩
+    intro v hv
+    rcases (hrest v).mp hv with rfl | rfl
+    · exact (twoRow_outsideWitness_iff rows i k z).mpr hz
+    · exact (twoRow_outsideWitness_iff rows i k w).mpr hw
+  · rintro ⟨_, hcard, hdom⟩
+    refine ⟨hcard, ?_, ?_⟩
+    · exact (twoRow_outsideWitness_iff rows i k z).mp
+        (hdom z ((hrest z).mpr (Or.inl rfl)))
+    · exact (twoRow_outsideWitness_iff rows i k w).mp
+        (hdom w ((hrest w).mpr (Or.inr rfl)))
+
+#print axioms PDIC.twoRow_outsideWitness_iff
+#print axioms PDIC.goodPair_iff_mixedPairCriterion
+
+end PDIC
