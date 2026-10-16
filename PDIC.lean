@@ -3102,3 +3102,65 @@ theorem labellingZeroMISCount_eq_quartetIndex_filter
 #print axioms PDIC.labellingZeroMISCount_eq_quartetIndex_filter
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S014: actual two-event overlap obstruction before factorial moments. -/
+
+/-- The canonical four-quartet intersection matrix is exact: overlap four
+occurs only for the same quartet. -/
+theorem quartet_inter_card_four_iff :
+    ∀ i j : QuartetIndex,
+      (quartet i ∩ quartet j).card = 4 ↔ i = j := by
+  decide
+
+/-- A genuine relabelling preserves the two-quartet intersection count. -/
+theorem pulledQuartet_inter_card
+    (e : Equiv.Perm Vertex) (i j : QuartetIndex) :
+    (pulledQuartet e i ∩ pulledQuartet e j).card =
+      (quartet i ∩ quartet j).card := by
+  classical
+  simp only [pulledQuartet, ← Finset.map_inter, Finset.card_map]
+
+/-- Two true cap-zero size-four events can intersect in only 0, 2 or 4
+vertices, independently of the graph and uniformly in the labelling. -/
+theorem canonicalCapF3_perm_pair_overlap_cases
+    (e : Equiv.Perm Vertex) (s t : Finset Vertex)
+    (hs : s.card = 4) (ht : t.card = 4)
+    (hzs : capSum (fun v => canonicalCapF3 (e v)) s = 0)
+    (hzt : capSum (fun v => canonicalCapF3 (e v)) t = 0) :
+    (s ∩ t).card = 0 ∨ (s ∩ t).card = 2 ∨ (s ∩ t).card = 4 := by
+  obtain ⟨i, hi⟩ := (canonicalCapF3_perm_four_zero_iff_pulled e s hs).mp hzs
+  obtain ⟨j, hj⟩ := (canonicalCapF3_perm_four_zero_iff_pulled e t ht).mp hzt
+  rw [← hi, ← hj, pulledQuartet_inter_card]
+  exact quartet_pair_intersections i j
+
+/-- In particular, *distinct* simultaneous cap-zero four-sets have
+intersection cardinality precisely zero or two. -/
+theorem canonicalCapF3_perm_distinct_pair_overlap_cases
+    (e : Equiv.Perm Vertex) (s t : Finset Vertex)
+    (hs : s.card = 4) (ht : t.card = 4)
+    (hst : s ≠ t)
+    (hzs : capSum (fun v => canonicalCapF3 (e v)) s = 0)
+    (hzt : capSum (fun v => canonicalCapF3 (e v)) t = 0) :
+    (s ∩ t).card = 0 ∨ (s ∩ t).card = 2 := by
+  obtain ⟨i, hi⟩ := (canonicalCapF3_perm_four_zero_iff_pulled e s hs).mp hzs
+  obtain ⟨j, hj⟩ := (canonicalCapF3_perm_four_zero_iff_pulled e t ht).mp hzt
+  have hij : i ≠ j := by
+    intro h
+    exact hst (hi.symm.trans (h ▸ hj))
+  have hc := quartet_pair_intersections i j
+  rcases hc with hc | hc | hc
+  · left
+    simpa [← hi, ← hj, pulledQuartet_inter_card] using hc
+  · right
+    simpa [← hi, ← hj, pulledQuartet_inter_card] using hc
+  · exact False.elim (hij ((quartet_inter_card_four_iff i j).mp hc))
+
+#print axioms PDIC.quartet_inter_card_four_iff
+#print axioms PDIC.pulledQuartet_inter_card
+#print axioms PDIC.canonicalCapF3_perm_pair_overlap_cases
+#print axioms PDIC.canonicalCapF3_perm_distinct_pair_overlap_cases
+
+end PDIC
