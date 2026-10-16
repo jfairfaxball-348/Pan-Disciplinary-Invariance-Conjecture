@@ -3057,13 +3057,19 @@ theorem pulledQuartet_card (e : Equiv.Perm Vertex) (i : QuartetIndex) :
   simp only [pulledQuartet, Finset.card_map]
   exact quartet_card i
 
+/-- Noncomputable count of genuine MIS among the four distinct pulled-back
+canonical cap quartets. Explicitly scoped classical decidability. -/
+noncomputable def quartetMISIndexCount
+    (G : SimpleGraph Vertex) (e : Equiv.Perm Vertex) : ℕ := by
+  classical
+  exact ((Finset.univ : Finset QuartetIndex).filter
+    (fun i => GraphMIS G (pulledQuartet e i))).card
+
 /-- True MIS counting, not a symbolic stand-in: N₀ is exactly the number
 of the four pulled-back quartets that are maximal independent sets. -/
 theorem labellingZeroMISCount_eq_quartetIndex_filter
     (G : SimpleGraph Vertex) (e : Equiv.Perm Vertex) :
-    labellingZeroMISCount G e =
-      ((Finset.univ : Finset QuartetIndex).filter
-        (fun i => GraphMIS G (pulledQuartet e i))).card := by
+    labellingZeroMISCount G e = quartetMISIndexCount G e := by
   classical
   let I : Finset QuartetIndex :=
     (Finset.univ : Finset QuartetIndex).filter
