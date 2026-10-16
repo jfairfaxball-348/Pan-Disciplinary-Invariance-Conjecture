@@ -2949,3 +2949,83 @@ theorem connected_not_all_permuted_quartets_independent
 #print axioms PDIC.connected_not_all_permuted_quartets_independent
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S013: actual permutation-labelled quartet support and the N₀ ≤ 3 gate. -/
+
+/-- The Finset.map pullback agrees with direct finite-set image. -/
+theorem pulledQuartet_eq_image (e : Equiv.Perm Vertex) (i : QuartetIndex) :
+    pulledQuartet e i = (quartet i).image e.symm := by
+  classical
+  ext v
+  simp only [pulledQuartet, Finset.mem_map, Finset.mem_image]
+
+/-- Reindexing by an equivalence and its inverse preserves every finite set. -/
+theorem perm_finset_image_roundtrip
+    (e : Equiv.Perm Vertex) (s : Finset Vertex) :
+    (s.image e).image e.symm = s := by
+  classical
+  ext v
+  simp
+
+/-- Real zero-sum four-sets are exactly the four pulled-back cap quartets. -/
+theorem canonicalCapF3_perm_four_zero_iff_pulled
+    (e : Equiv.Perm Vertex) (s : Finset Vertex) (hs : s.card = 4) :
+    (capSum (fun v => canonicalCapF3 (e v)) s = 0 ↔
+      ∃ i : QuartetIndex, pulledQuartet e i = s) := by
+  rw [canonicalCapF3_perm_four_zero_iff e s hs]
+  constructor
+  · rintro ⟨i, hi⟩
+    refine ⟨i, ?_⟩
+    rw [pulledQuartet_eq_image, hi, perm_finset_image_roundtrip]
+  · rintro ⟨i, hi⟩
+    refine ⟨i, ?_⟩
+    rw [← hi, pulledQuartet_eq_image]
+    simpa using (perm_finset_image_roundtrip e.symm (quartet i)).symm
+
+/-- Connectedness bounds the manuscript's genuine maximal-independent,
+zero-sum quartet count for every one of the 40320 labellings. -/
+theorem connected_labellingZeroMISCount_le_three
+    (G : SimpleGraph Vertex) (hc : G.Connected)
+    (e : Equiv.Perm Vertex) :
+    labellingZeroMISCount G e ≤ 3 := by
+  classical
+  let S : Finset (Finset Vertex) :=
+    (Finset.univ : Finset (Finset Vertex)).filter
+      (fun s => s.card = 4 ∧ GraphMIS G s ∧
+        capSum (fun v => canonicalCapF3 (e v)) s = 0)
+  let T : Finset (Finset Vertex) :=
+    (Finset.univ : Finset QuartetIndex).image (pulledQuartet e)
+  have hsub : S ⊆ T := by
+    intro s hs
+    obtain ⟨_, hcard, _, hzero⟩ := Finset.mem_filter.mp hs
+    obtain ⟨i, hi⟩ :=
+      (canonicalCapF3_perm_four_zero_iff_pulled e s hcard).mp hzero
+    exact Finset.mem_image.mpr ⟨i, Finset.mem_univ _, hi⟩
+  have hne : S ≠ T := by
+    intro heq
+    apply connected_not_all_permuted_quartets_independent G hc e
+    intro i
+    have hm : pulledQuartet e i ∈ T :=
+      Finset.mem_image.mpr ⟨i, Finset.mem_univ _, rfl⟩
+    rw [← heq] at hm
+    exact (Finset.mem_filter.mp hm).2.2.1
+  have hstrict : S ⊂ T :=
+    Finset.ssubset_iff_subset_ne.mpr ⟨hsub, hne⟩
+  have hlt : S.card < T.card := Finset.card_lt_card hstrict
+  have ht : T.card ≤ 4 := by
+    calc
+      T.card ≤ (Finset.univ : Finset QuartetIndex).card :=
+        Finset.card_image_le
+      _ = 4 := by decide
+  change S.card ≤ 3
+  omega
+
+#print axioms PDIC.pulledQuartet_eq_image
+#print axioms PDIC.perm_finset_image_roundtrip
+#print axioms PDIC.canonicalCapF3_perm_four_zero_iff_pulled
+#print axioms PDIC.connected_labellingZeroMISCount_le_three
+
+end PDIC
