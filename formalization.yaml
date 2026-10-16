@@ -1,0 +1,121 @@
+version: "v0.4"
+project:
+  name: "Sharp Mixed Maximal-Independent-Set Bounds for Connected Four-by-Four Bipartite Graphs"
+  description: >-
+    We prove that for every connected simple bipartite graph represented by a
+    Boolean four-by-four adjacency matrix A, the number B(A) of distinct
+    inclusion-maximal independent vertex sets containing two vertices on each
+    side is at most three: B(A) <= 3. Moreover, B(A) = 3 if and only if A has
+    the explicitly defined row- or column-centred seven-edge spider matrix
+    pattern. This Lean certificate covers a graph-theoretic component of
+    the manuscript "Zero-Sum Quartet Incidence and Sharp Maximal-Independent-Set
+    Witnesses on Eight Vertices"; it does not certify the full eight-cap
+    zero-sum quartet probability distribution or a named spider graph
+    isomorphism. Literature priority is unresolved.
+authors:
+  - "John Fairfax-Ball"
+license: "MIT"
+responsible_maintainers:
+  - "John Fairfax-Ball"
+classification:
+  arxiv: ["math.CO"]
+  msc2020: ["05C35", "05C69"]
+sources:
+  - title: "Sharp Mixed Maximal-Independent-Set Bounds for Connected Four-by-Four Bipartite Graphs"
+    type: original-proof
+    relationship: other
+    note: >-
+      Original finite graph/matrix calculation developed as the formally
+      verified appendix to the PDIC research draft, 16 October 2026.
+      Novelty and literature priority have not been established.
+  - title: "Maximal independent sets in bipartite graphs"
+    authors: ["J. Liu"]
+    type: article
+    id: "https://doi.org/10.1002/jgt.3190170407"
+    relationship: background
+    note: >-
+      Earlier graph MIS extremal literature; its full theorem-level
+      coverage has not been exhaustively checked against this finite statistic.
+  - title: "Maximal independent sets in bipartite graphs with at least one cycle"
+    authors: ["S. Li", "H. Zhang", "X. Zhang"]
+    type: article
+    id: "https://dmtcs.episciences.org/607/pdf"
+    relationship: background
+    note: "Classical extremal tree families provide context, not novelty certification."
+  - title: "Partitions of AG(4,3) into maximal caps"
+    authors: ["M. Follett", "K. Kalail", "E. McMahon", "C. Pelland", "R. Won"]
+    type: article
+    id: "https://doi.org/10.1016/j.disc.2014.08.002"
+    relationship: background
+    note: "External classical input to the larger manuscript only; not used in the compared graph theorem."
+related_formalizations: []
+status:
+  scope: >-
+    Exactly two named graph/matrix theorems are selected: the bound B(A)<=3
+    under connectedness of matrixGraph A, and the if-and-only-if
+    seven-edge row/column spider MATRIX pattern for equality. B(A) counts
+    actual maximal independent vertex sets of 2+2 split. The manuscript's
+    eight-cap quartet classification, arbitrary connected-graph compatible
+    triple transport, complete probability law, and spider graph isomorphism
+    are NOT compared or end-to-end formalized. The proof source is PDIC.lean,
+    based on strictly checked S003R9 commit
+    402465f2330a275e04108169a6bfbb65e94e10b8.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Quot.sound", "Classical.choice"]
+  main_results:
+    - "A connected four-by-four bipartite matrix graph has at most three mixed maximal independent sets."
+    - "Equality is equivalent to the defined row/column spider matrix pattern."
+automation:
+  methods:
+    - method: agent
+      models: ["GPT-6"]
+      framework: "ChatGPT"
+      tool_setup: "AI-assisted proof development, GitHub editing and proof-packaging."
+      cost:
+        wall_time: "not tracked"
+        spend_usd: "subscription-based; not tracked"
+        hardware: "cloud research assistant and GitHub Actions"
+      prompting_notes: "Owner-steered theorem development, counterexample and formal-axiom audits; S006 Palomar preparation."
+    - method: manual
+      models: []
+      framework: "Lean 4 and Mathlib"
+      tool_setup: "Human-owned mathematical programme with Lean kernel and finite-checker CI."
+      cost:
+        wall_time: "not tracked"
+        spend_usd: "not tracked"
+        hardware: "GitHub-hosted CI"
+      prompting_notes: "Manuscript edits and review steering by project owner."
+  spend_usd: "not tracked"
+  notes: >-
+    S003R9 source previously passed strict hosted Lean checks. The S006
+    Palomar Comparator/NanoDa workflow outcome is reported separately
+    in the release audit; earlier CI is not a substitute for it.
+fidelity:
+  divergences: >-
+    The public first-paper flagship is the full cap-labelled probability
+    distribution and spider extremiser, but this Comparator package certifies
+    only its genuine four-by-four bipartite mixed-MIS graph appendix.
+    The equality predicate denotes the matrix spider pattern, NOT a proved
+    named-graph isomorphism. Challenge.lean's intentional theorem sorry
+    placeholders are not proof holes in the compared Solution.lean.
+review:
+  status: "self-assessed"
+  reviewers: []
+  notes: >-
+    No external reviewer endorsement, journal acceptance, or Palomar review.
+    A source-backed S004 novelty comparison found unresolved priority.
+alignment:
+  namespace: "PDICSubmission"
+  statements:
+    - source: "PDIC manuscript, Sharp finite mixed-witness bounds and connected bipartite graph appendix"
+      lean: "PDICSubmission.connected_mixed_bound"
+      module: "Solution"
+      status: "proved in source at S003R9; S006 Palomar full verification not yet established"
+      note: "Actual graph vertex-set bound; four left plus four right vertices."
+    - source: "PDIC manuscript, connected four-by-four spider-pattern equality criterion"
+      lean: "PDICSubmission.connected_mixed_equality"
+      module: "Solution"
+      status: "proved in source at S003R9; S006 Palomar full verification not yet established"
+      note: "Equality iff matrix row/column spider predicate, not named graph isomorphism."
+acknowledgements: "Lean and Mathlib contributors; background cap and graph literature as cited."
