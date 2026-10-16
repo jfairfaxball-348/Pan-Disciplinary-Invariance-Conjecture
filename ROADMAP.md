@@ -9,7 +9,8 @@
 | S003R4 | Full written count semantics and no-overflow; giant global Lean reduction rejected | Written / finite checked, not fully Lean |
 | S003R5 | Bool criterion and local row cardinality/outside-mask correspondence | Strict Lean PASS on PR #3 |
 | **S003R6** | OR-bit witness, one-pair `goodLeftPairBV_spec`, exact six two-subsets, 3-bit/5-bit no-wrap sums | **Strict Lean PASS at `2bfb3164`; global semantic adapters OPEN** |
-| **S003R7** | Finish six individual pair↔criterion equivalences, filter cardinality, actual edge count adapter, transfer matrix theorems | **NEXT** |
+| **S003R7** | Six individual iff, six-indicator cardinality, BOTH global mixed/edge numerical bridges | **DONE, STRICT LEAN PASS `e1253ef`** |
+| **S003R8** | Transfer extremal BV results into arbitrary Boolean matrix, then connected SimpleGraph/spider bridge | **NEXT** |
 | S004 | Literature/novelty audit and TeX manuscript | CONDITIONAL |
 
 Connected `SimpleGraph (Fin 8)` h=b and isomorphism, the genuine 2520-assignment probability model, and prior-art positioning remain unresolved. Do not treat checked finite instances as a complete theorem or original priority. Do not merge PR #3 merely because its smaller decomposed lemmas passed.
@@ -21,3 +22,7 @@ Connected `SimpleGraph (Fin 8)` h=b and isomorphism, the genuine 2520-assignment
 At unmerged PR #3 commit [`df53e200`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/df53e200188cf185c1398929143f5b0456fbadd2), [strict Lean CI 38880618519](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38880618519) **PASS** establishes arbitrary-row pair neighbourhood = OR-mask support, two-column complement size, generic outside-witness ↔ mask, and **each of the six** mask tests iff its genuine mixed-MIS pair criterion. Finite verification also passed. The six-indicator cardinality adapter, the two full mixed/edge natural-number semantic equality theorems and their general-matrix transfers still require a separate successful kernel check. The earlier S003R6 recursion-depth cardinality attempt remains withdrawn; an S003R7 `Finset.sum_boole` replacement is being checked. **S003R8 is the next prepared session**, S004 paper/priority remains conditional.
 
 [Closeout](sessions/S003R7_CLOSEOUT.md) · [Mathematical bridge](research/S003R7_SYMBOLIC_SEMANTIC_BRIDGE.md) · [S003R8 prompt](research/NEXT_SESSION_PROMPT.md).
+
+## S003R7 FINAL STRICT CHECK (supersedes earlier partial text)
+
+[PR #3 exact HEAD `e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca) and [Lean CI 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311) both verify `fourRowMixedCountBV_eq_actual`, `fourRowEdgeCountBV_eq_actual`, the six-characteristic-indicator cardinality theorem, and the matrix-product edge-cardinality adapter, **for every four 4-bit row masks**. All five separate Python verifiers passed; no forbidden native or custom axioms. The arbitrary Boolean-matrix extremal corollaries, connected eight-vertex graph isomorphism, random cap probability law, and novelty check are still outstanding. [S003R7 closeout](sessions/S003R7_CLOSEOUT.md). **S003R8 is next.**
