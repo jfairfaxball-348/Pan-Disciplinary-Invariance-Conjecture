@@ -1,17 +1,17 @@
-# PDIC short proof-first roadmap — S003R5 partial but verified closeout (2026-10-16)
+# PDIC short proof-first roadmap — S003R6 partial closeout (2026-10-16)
 
-**S003R5 executed.** The revised Boolean criterion and three local BitVec mask identities are **Lean-kernel verified on unmerged PR #3** at commit `ad39aec`, [strict Lean workflow PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38862718980). All five finite checkers PASS. The full six-pair numerical count bridge and graph-level flagship are **not yet kernel-verified**; main retains the S003R3 Lean baseline.
+**S003R6 has executed.** Exact [PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3) commit `2bfb3164` has [strict hosted Lean CI PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871115121) plus all five finite verifiers. This proves the local mask semantic lemma and no-wrap arithmetic, **not** the full numerical↔mixed-MIS semantic bridge or the eight-vertex flagship. Main retains the previously certified S003R3 source. The later six-pair count extension on the PR is not to be advertised until its exact commit is certified.
 
-| Session | Deliverable | State |
+| Stage | Result | State |
 | --- | --- | --- |
-| S001–S002 | Cap C4 geometry; graph/probability written flagship with classical nine-cap input | Written / conditional on cited classification |
-| S003–S003R2 | Generic MIS and 4×4 BitVec six-edge threshold and 7-edge spider iff | Host-verified Lean |
-| S003R3 | Injective row encoding, existential mixed-witness criterion, 8-edge exclusion on BitVec | Host-verified Lean on main |
-| S003R4 | Exact written 6-pair count and no-overflow, attempted global Lean reduction | **Written / finite checked; global Lean unverified** |
-| **S003R5** | Repair CI; constructive Boolean count↔actual existential MIS count; local popcount, size-two and outside-mask witness bridge | **Kernel PASS on PR #3, not merged; [run 38862718980](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38862718980)** |
-| **S003R6** | Symbolic six-pair BitVec sum↔actual mixed-MIS count, edge sum and no-overflow; then generic matrix bounds | **NEXT** |
-| S004 | Specialist novelty audit and TeX manuscript | **CONDITIONAL on defensible theorem** |
+| S001–S002 | Cap geometry and written sharp graph/probability law (external nine-cap input) | Written / conditional |
+| S003–S003R3 | Generic mixed-MIS criterion, 4×4 BitVec extremal bounds and spider iff, lossless matrix rows | Strict Lean PASS |
+| S003R4 | Full written count semantics and no-overflow; giant global Lean reduction rejected | Written / finite checked, not fully Lean |
+| S003R5 | Bool criterion and local row cardinality/outside-mask correspondence | Strict Lean PASS on PR #3 |
+| **S003R6** | OR-bit witness, one-pair `goodLeftPairBV_spec`, exact six two-subsets, 3-bit/5-bit no-wrap sums | **Strict Lean PASS at `2bfb3164`; global semantic adapters OPEN** |
+| **S003R7** | Finish six individual pair↔criterion equivalences, filter cardinality, actual edge count adapter, transfer matrix theorems | **NEXT** |
+| S004 | Literature/novelty audit and TeX manuscript | CONDITIONAL |
 
-Full connected eight-vertex `SimpleGraph` uniqueness/h=b and genuinely formalised finite cap labellings (2520 atom assignments) remain open. Do not claim original priority or finished flagship, and do not merge the branch just for the partial mask result.
+Connected `SimpleGraph (Fin 8)` h=b and isomorphism, the genuine 2520-assignment probability model, and prior-art positioning remain unresolved. Do not treat checked finite instances as a complete theorem or original priority. Do not merge PR #3 merely because its smaller decomposed lemmas passed.
 
-[S003R5 closeout](sessions/S003R5_CLOSEOUT.md) · [Compositional research proof](research/S003R5_PROOF_DECOMPOSITION.md) · [S003R6 prompt](research/NEXT_SESSION_PROMPT.md) · [Claims](research/CLAIMS.md).
+[Session note](research/S003R6_COMPOSITIONAL_COUNTS.md) · [S003R6 closeout](sessions/S003R6_CLOSEOUT.md) · [Next session](research/NEXT_SESSION_PROMPT.md) · [Claims](research/CLAIMS.md).
