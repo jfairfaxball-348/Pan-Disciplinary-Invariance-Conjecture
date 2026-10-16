@@ -18,7 +18,7 @@ Full proof explanation: [S019 note](../research/S019_PAIR_SUBFAMILY_BRIDGE.md).
 
 ## Verification evidence and boundaries
 
-Proof-bearing source candidate: [e981acac25b8106e4b4df782340217ed948445bb](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e981acac25b8106e4b4df782340217ed948445bb). The independent finite workflow [38978027657](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38978027657) completed **SUCCESS**. The final strict hosted Lean workflow [38978027666](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38978027666) must be checked for final conclusion before promoting the new declarations beyond SOURCE_FORMALIZED.
+Proof-bearing source candidate: [e981acac25b8106e4b4df782340217ed948445bb](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e981acac25b8106e4b4df782340217ed948445bb). The independent finite workflow [38978027657](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38978027657) completed **SUCCESS**. The final strict hosted Lean workflow [38978027666](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38978027666) completed **SUCCESS** at exact source SHA; all four new declarations are **LEAN_KERNEL_VERIFIED**.
 
 An earlier source 932ea8ff successfully **compiled** its three new Lean theorems with printed axioms restricted to propext, Classical.choice and Quot.sound, but its overall workflow **FAILED** a text scanner because a comment contained the normal English word 'admit'. The comment was corrected at e981acac. Do not present that previous run as a strict PASS.
 
@@ -30,4 +30,4 @@ Prior strict certificates remain intact: all-k graphMIS_unordered_moment_double_
 
 ## Automatic next-session handoff
 
-The executable [S020 target](../research/S020_FULL_UNORDERED_MOMENTS_AND_FLAGSHIP_TARGET.md) is installed, not executed. Its priority is to **sum invariant unordered overlap classes** to close M2, then classify genuine unordered three-families to close M3, and finish the four-term probability law and spider sharpness. If S019 hosted strict certification fails, repair the exact proof candidate before pursuing S020. The owner can override the next target. S020 must install an executable S021 at closeout.
+The executable [S020 target](../research/S020_FULL_UNORDERED_MOMENTS_AND_FLAGSHIP_TARGET.md) is installed, not executed. Its priority is to **sum invariant unordered overlap classes** to close M2, then classify genuine unordered three-families to close M3, and finish the four-term probability law and spider sharpness. S019 hosted strict verification **PASSED**; S020 should immediately pursue the remaining global aggregate proofs. The owner can override the next target. S020 must install an executable S021 at closeout.
