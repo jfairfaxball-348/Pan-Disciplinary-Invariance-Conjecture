@@ -1720,3 +1720,151 @@ theorem unorderedTriple_has_anchored_third
 #print axioms PDIC.anchoredMixedThirdCount_partition_independent
 
 end PDIC
+
+
+/-! S008: the genuine unordered-three-set cardinality bridge. -/
+namespace PDIC
+
+/-- The unordered triple determined by a fixed complementary pair and a
+genuine 2+2 third set. -/
+def tripleOfThird (s r : Finset Vertex) : Finset (Finset Vertex) :=
+  {s, Finset.univ \ s, r}
+
+private theorem anchoredThird_ne_sides
+    (G : SimpleGraph Vertex) (s r : Finset Vertex)
+    (hs : FourMISPartition G s)
+    (hr : IsAnchoredMixedThird G s r) :
+    r ≠ s ∧ r ≠ Finset.univ \ s := by
+  constructor
+  · intro he
+    have hh : (r ∩ s).card = 4 := by
+      rw [he, Finset.inter_self]
+      exact hs.1
+    omega
+  · intro he
+    have hh : (r ∩ s).card = 0 := by
+      simp [he]
+    omega
+
+private theorem partition_ne_complement
+    (G : SimpleGraph Vertex) (s : Finset Vertex)
+    (hs : FourMISPartition G s) : s ≠ Finset.univ \ s := by
+  intro he
+  have hh : (s ∩ (Finset.univ \ s)).card = 4 := by
+    rw [← he, Finset.inter_self]
+    exact hs.1
+  have hz : (s ∩ (Finset.univ \ s)).card = 0 := by simp
+  omega
+
+private theorem anchoredThird_card_four
+    (G : SimpleGraph Vertex) (s r : Finset Vertex)
+    (hr : IsAnchoredMixedThird G s r) : r.card = 4 := by
+  have hh := Finset.card_inter_add_card_sdiff r s
+  have he : r \ s = r ∩ (Finset.univ \ s) := by
+    ext v
+    simp
+  rw [he] at hh
+  omega
+
+private theorem complementary_four_card
+    (G : SimpleGraph Vertex) (s : Finset Vertex)
+    (hs : FourMISPartition G s) :
+    (Finset.univ \ s).card = 4 := by
+  have hh : (Finset.univ \ s).card + s.card = 8 := by
+    simpa using (Finset.card_sdiff_add_card_eq_card (Finset.subset_univ s))
+  omega
+
+theorem tripleOfThird_card
+    (G : SimpleGraph Vertex) (s r : Finset Vertex)
+    (hs : FourMISPartition G s)
+    (hr : IsAnchoredMixedThird G s r) :
+    (tripleOfThird s r).card = 3 := by
+  have hn := anchoredThird_ne_sides G s r hs hr
+  have hc := partition_ne_complement G s hs
+  have h1 : s ∉ ({Finset.univ \ s, r} : Finset (Finset Vertex)) := by
+    simp [hc, Ne.symm hn.1]
+  have h2 : (Finset.univ \ s) ∉ ({r} : Finset (Finset Vertex)) := by
+    simpa using (Ne.symm hn.2)
+  simp [tripleOfThird, h1, h2]
+
+/-- The reverse implication omitted from S007: every anchored mixed third
+is a genuine unordered compatible triple. Skew 3+1 sets do not qualify. -/
+theorem tripleOfThird_compatible
+    (G : SimpleGraph Vertex) (s r : Finset Vertex)
+    (hs : FourMISPartition G s)
+    (hr : IsAnchoredMixedThird G s r) :
+    IsUnorderedCompatibleTriple G (tripleOfThird s r) := by
+  have hn := anchoredThird_ne_sides G s r hs hr
+  have hc := partition_ne_complement G s hs
+  refine ⟨tripleOfThird_card G s r hs hr, ?_,
+    s, by simp [tripleOfThird],
+    Finset.univ \ s, by simp [tripleOfThird],
+    r, by simp [tripleOfThird],
+    hc, Ne.symm hn.1, Ne.symm hn.2, rfl, hr.2.1, hr.2.2⟩
+  intro q hq
+  simp only [tripleOfThird, Finset.mem_insert, Finset.mem_singleton] at hq
+  rcases hq with rfl | rfl | rfl
+  · exact ⟨hs.1, hs.2.1⟩
+  · exact ⟨complementary_four_card G s hs, hs.2.2⟩
+  · exact ⟨anchoredThird_card_four G s r hr, hr.1⟩
+
+/-- Every actual unordered compatible triple is exactly the set constructed
+from its anchored 2+2 third element; the complementary pair is forced by
+connectedness rather than assumed in the definition of h. -/
+theorem compatibleTriple_eq_tripleOfThird
+    (G : SimpleGraph Vertex) (hc : G.Connected)
+    (s : Finset Vertex) (hs : FourMISPartition G s)
+    (T : Finset (Finset Vertex)) (hT : IsUnorderedCompatibleTriple G T)
+    (r : Finset Vertex) (hrt : r ∈ T)
+    (hr : IsAnchoredMixedThird G s r) :
+    T = tripleOfThird s r := by
+  have hsT : s ∈ T ∧ (Finset.univ \ s) ∈ T := by
+    rcases hT with ⟨_, hall, a, ha, b, hb, q, hq, _, _, _, hab, _, _⟩
+    have hp : FourMISPartition G a := by
+      refine ⟨(hall a ha).1, (hall a ha).2, ?_⟩
+      simpa only [← hab] using (hall b hb).2
+    rcases fourMISPartition_unique_up_to_swap G hc a s hp hs with he | he
+    · subst a
+      refine ⟨ha, ?_⟩
+      simpa only [hab] using hb
+    · constructor
+      · have hbs : b = s := by
+          rw [hab, he]
+          simp
+        simpa only [hbs] using hb
+      · simpa only [he] using ha
+  have hsub : tripleOfThird s r ⊆ T := by
+    intro q hq
+    simp only [tripleOfThird, Finset.mem_insert, Finset.mem_singleton] at hq
+    rcases hq with rfl | rfl | rfl
+    · exact hsT.1
+    · exact hsT.2
+    · exact hrt
+  have heq : tripleOfThird s r = T :=
+    Finset.eq_of_subset_of_card_le hsub (by
+      rw [hT.1, tripleOfThird_card G s r hs hr])
+  exact heq.symm
+
+/-- Two admissible third sets cannot determine the same unordered triple. -/
+theorem tripleOfThird_injective_on_mixed
+    (G : SimpleGraph Vertex) (s : Finset Vertex)
+    (hs : FourMISPartition G s)
+    (r t : Finset Vertex)
+    (hr : IsAnchoredMixedThird G s r)
+    (ht : IsAnchoredMixedThird G s t)
+    (he : tripleOfThird s r = tripleOfThird s t) : r = t := by
+  have hm : r ∈ tripleOfThird s t := by
+    rw [← he]
+    simp [tripleOfThird]
+  simp only [tripleOfThird, Finset.mem_insert, Finset.mem_singleton] at hm
+  rcases hm with heq | heq | heq
+  · exact False.elim ((anchoredThird_ne_sides G s r hs hr).1 heq)
+  · exact False.elim ((anchoredThird_ne_sides G s r hs hr).2 heq)
+  · exact heq
+
+#print axioms PDIC.tripleOfThird_card
+#print axioms PDIC.tripleOfThird_compatible
+#print axioms PDIC.compatibleTriple_eq_tripleOfThird
+#print axioms PDIC.tripleOfThird_injective_on_mixed
+
+end PDIC
