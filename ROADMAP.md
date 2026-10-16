@@ -7,6 +7,7 @@
 | S003R9 | Actual SimpleGraph MIS/count equivalence and general connected partition uniqueness; explicit uniform written fibres and prior-art separation | STRICT_LEAN_PASS including actual graph edges and connected B≤3/pattern iff |
 | S004 | Source-backed primary prior-art / novelty audit, claim verdicts and closeout | COMPLETED; PRIORITY_UNRESOLVED |
 | S005 | Palomar preflight CL/CI and public record / first-paper theorem-statement reconnaissance | COMPLETED_READ_ONLY_RECON; NOT_PALOMAR_READY |
+| S006 | Assemble verified owner-registerable immutable Palomar source commit and official full-mode mechanical preflight | OWNER_INSTALLED; NOT EXECUTED |
 
 The current certified formal package is a genuine graph/matrix appendix. It is not the complete arbitrary connected-eight-vertex compatible-triple/isomorphism/probability theorem. The exact remaining kernel interface is in [S003R9 research note](research/S003R9_GRAPH_WITNESSES_AND_SCOPE.md). Open obligations are status information, not automatically selected targets. The owner now directs each session; do not propose or install a subsequent target at closeout.
 
@@ -16,4 +17,6 @@ The manuscript is a five-page working draft. Two trees with nine total MIS have 
 
 The former prepared S004 novelty/manuscript brief was withdrawn on 16 October 2026. Completed results and their proof certificates remain recorded above.
 
-The owner subsequently installed and explicitly executed [S004 prior-art/novelty audit](research/S004_PRIOR_ART_NOVELTY_AUDIT.md). [S004 closeout](sessions/S004_CLOSEOUT.md). S005 was [owner-installed](research/S005_PALOMAR_REGISTRATION_RECON_TARGET.md), then **executed as a read-only reconnaissance**; see the [S005 report](research/S005_PALOMAR_RECON.md), [paper-matched record proposal](research/S005_PUBLIC_RECORD_PROPOSAL.md) and [closeout](sessions/S005_CLOSEOUT.md). There is **no Palomar preflight or registered claim**. Future execution remains owner-directed; nothing after S005 is assigned.
+The owner subsequently installed and explicitly executed [S004 prior-art/novelty audit](research/S004_PRIOR_ART_NOVELTY_AUDIT.md). [S004 closeout](sessions/S004_CLOSEOUT.md). S005 was [owner-installed](research/S005_PALOMAR_REGISTRATION_RECON_TARGET.md), then **executed as a read-only reconnaissance**; see the [S005 report](research/S005_PALOMAR_RECON.md), [paper-matched record proposal](research/S005_PUBLIC_RECORD_PROPOSAL.md) and [closeout](sessions/S005_CLOSEOUT.md). There is **no Palomar preflight or registered claim**. Future execution remains owner-directed. S006 has subsequently been installed (not executed); nothing after S006 is assigned.
+
+S006 is the next owner-selected target: [Palomar source preparation and same-SHA full mechanical verification](research/S006_PALOMAR_SUBMISSION_READY_PREPARATION_TARGET.md). This is an execution ambition, **not** a claim that a registerable commit or official Palomar full-mode certificate exists today. Actual registry submission and registration remain with the owner.
