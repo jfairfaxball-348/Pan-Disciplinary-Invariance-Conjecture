@@ -1,22 +1,29 @@
-# PDIC historical short roadmap — through S004 audit closeout
+# PDIC — full headline theorem formalisation roadmap (active 16 October 2026)
 
-| Stage | Result | State |
+**Gate:** finish complete flagship Lean formalisation of [the first-paper theorem](research/FLAGSHIP_THEOREM.md) before returning to Palomar preparation. The **four-term cap-labelled probability distribution AND uniquely sharp named spider graph** are the required output, not the S006 narrower graph/matrix appendix. The nine-cap classification may remain a clearly explicit, mathematically legitimate classical input.
+
+## Verified/historical milestones
+
+| Session | Mathematical result or administrative step | Actual status |
 | --- | --- | --- |
-| S001–S002 | Cap quartet geometry, graph/probability law and spider equality | PROVED_WRITTEN_WITH_EXPLICIT_CLASSICAL_INPUT |
-| S003–S003R8 | Exact Boolean matrix semantics, count encodings and three extremal statements | STRICT_LEAN_PASS_ON_PR3 |
-| S003R9 | Actual SimpleGraph MIS/count equivalence and general connected partition uniqueness; explicit uniform written fibres and prior-art separation | STRICT_LEAN_PASS including actual graph edges and connected B≤3/pattern iff |
-| S004 | Source-backed primary prior-art / novelty audit, claim verdicts and closeout | COMPLETED; PRIORITY_UNRESOLVED |
-| S005 | Palomar preflight CL/CI and public record / first-paper theorem-statement reconnaissance | COMPLETED_READ_ONLY_RECON; NOT_PALOMAR_READY |
-| S006 | Assemble verified owner-registerable immutable Palomar source commit and official full-mode mechanical preflight | OWNER_INSTALLED; NOT EXECUTED |
+| S001–S002 | Canonical eight-cap quartet design; written exact cap-labelled probability and spider theorem | PROVED_WRITTEN_WITH_CLASSICAL_INPUT |
+| S003–S003R8 | Four-by-four matrix graph semantics, numerical bridges, sharp finite bound | STRICT_LEAN_VERIFIED at S003R8 proof commits |
+| S003R9 | Genuine SimpleGraph maximal independent set counts, connected partition uniqueness, actual edges and connected mixed B≤3/spider matrix pattern | STRICT_LEAN_VERIFIED at [402465f...](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/402465f2330a275e04108169a6bfbb65e94e10b8), [hosted run 38890367785](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785) |
+| S004 | Primary-source prior art audit | COMPLETE; PRIORITY_UNRESOLVED |
+| S005 | Palomar procedure and registry display reconnaissance | COMPLETE; READ_ONLY |
+| S006 | Preparation of narrower matrix/MIS Palomar package | COMPLETE_ON_SEPARATE_BRANCH; **NOT** official full-mode verified and **NOT** full-paper formalisation |
+| **S007** | **Resume full Lean**: arbitrary connected eight-vertex unordered h(G), balanced bipartition and matrix-count transfer; h≤3, seek named spider iff | **NEXT: INSTALLED, NOT EXECUTED** |
 
-The current certified formal package is a genuine graph/matrix appendix. It is not the complete arbitrary connected-eight-vertex compatible-triple/isomorphism/probability theorem. The exact remaining kernel interface is in [S003R9 research note](research/S003R9_GRAPH_WITNESSES_AND_SCOPE.md). Open obligations are status information, not automatically selected targets. The owner now directs each session; do not propose or install a subsequent target at closeout.
+## Outstanding strict Lean interfaces, in proof order
 
-The manuscript is a five-page working draft. Two trees with nine total MIS have distinct h=3 versus h=1, so total-MIS cardinality alone does not recover the statistic. S004 completed a bounded [primary-source comparison](research/S004_PRIOR_ART_NOVELTY_AUDIT.md); **priority and publication-level significance remain unresolved**. Liu's full theorem text, plus Jou–Chang and Byskov full theorem texts, were not accessed. Classical cap classification remains external. No submission or PR merge.
+1. Construct genuine unordered compatible-triple invariant `h(G)` over all four-element maximal independent sets of arbitrary connected eight-vertex `SimpleGraph` and prove `h(G)=B(A)` after canonical balanced bipartition to 4×4 `matrixGraph` transport, or `h(G)=0` where no such partition exists.
+2. Prove `h(G)≤3` and `h(G)=3 ↔ G ≃g S(2,2,2,1)`, including row/column spider-pattern to **actual** named graph isomorphism. Respect skew-split MIS.
+3. Formalise canonical eight-cap zero-sum quartet incidence and transport for any admissible eight-cap, with the classical nine-cap classification **explicitly stated as external mathematical hypothesis** if needed.
+4. Formalise uniform bijections 8! and the 2520 four-atom assignments, exact 16 labelling fibres, first three binomial moments, N₀≤3 and all four exact probability expressions.
+5. Compose into a single Lean-kernel-checked theorem matching the full paper, and strict-hosted CI and axiom audit. Only then prepare Palomar for **this same headline theorem**, unless owner expressly changes target.
 
-[Exact closeout](sessions/S003R9_CLOSEOUT.md) · [Current claims](research/CLAIMS.md) · [Session control](research/NEXT_SESSION_PROMPT.md).
+## Restored closeout automation
 
-The former prepared S004 novelty/manuscript brief was withdrawn on 16 October 2026. Completed results and their proof certificates remain recorded above.
+Every executed session must: (i) produce substantive mathematical work and an exact-SHA Lean evidence report, (ii) update claims/state, (iii) identify the strongest still-open obligation from the full-theorem chain, (iv) **write, install and commit the next numbered executable session prompt automatically** in `research/NEXT_SESSION_PROMPT.md` with its authoritative target file. Do not ask the owner to re-specify the stage or choose an administrative fallback. The user triggers each session by saying “run next session”; prompt generation alone never launches research in the background.
 
-The owner subsequently installed and explicitly executed [S004 prior-art/novelty audit](research/S004_PRIOR_ART_NOVELTY_AUDIT.md). [S004 closeout](sessions/S004_CLOSEOUT.md). S005 was [owner-installed](research/S005_PALOMAR_REGISTRATION_RECON_TARGET.md), then **executed as a read-only reconnaissance**; see the [S005 report](research/S005_PALOMAR_RECON.md), [paper-matched record proposal](research/S005_PUBLIC_RECORD_PROPOSAL.md) and [closeout](sessions/S005_CLOSEOUT.md). There is **no Palomar preflight or registered claim**. Future execution remains owner-directed. S006 has subsequently been installed (not executed); nothing after S006 is assigned.
-
-S006 is the next owner-selected target: [Palomar source preparation and same-SHA full mechanical verification](research/S006_PALOMAR_SUBMISSION_READY_PREPARATION_TARGET.md). This is an execution ambition, **not** a claim that a registerable commit or official Palomar full-mode certificate exists today. Actual registry submission and registration remain with the owner.
+Current binding session target: [S007 full flagship Lean bridge](research/S007_FULL_FLAGSHIP_LEAN_BRIDGE_TARGET.md). Work branch: [session/s007-full-lean-flagship](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/session/s007-full-lean-flagship). Historical S006 package remains preserved [here](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/session/s006-palomar-prepare), not merged or treated as full verification.
