@@ -30,11 +30,9 @@ The last equality invokes the S015 strictly certified **actual** permutation sin
 \[
 M_1=\mathbb E[N_0]=\frac{2m}{35}.
 \]
-An S018 Lean source candidate adds `fourGraphMISFamily`,
+The S018 Lean source introduces `fourGraphMISFamily`,
 `labellingZeroMISCount_eq_family_filter` and
-`graphMIS_first_moment_numerator`. Its status must be assigned by the
-exact-source strict hosted CI: source text alone is **SOURCE_FORMALIZED**,
-not a kernel certificate.
+`graphMIS_first_moment_numerator`. These declarations are **LEAN_KERNEL_VERIFIED** at `31a7cbb3de72944b5cb99994132060795cd7184f`, hosted Lean run `38970442172`, with standard axioms only. A subsequent exact-source `fe5d119af9a270a82fb7a854b9c004d5a4e041c6`, Lean run `38970965466`, additionally kernel-proved rational `graphMIS_first_moment_eq` and the unique disjoint-four-partner lemmas.
 
 ## Remaining second/third moment incidence obligation
 
@@ -93,10 +91,9 @@ The public declarations `labellingZeroMISCount_eq_family_filter`
 and `graphMIS_first_moment_numerator` print only
 `propext`, `Classical.choice`, `Quot.sound`.
 Thus the *genuine* graph-derived first-moment numerator is **LEAN_KERNEL_VERIFIED**.
-S018 continued with the rational `graphMIS_first_moment_eq` candidate
-and the unique disjoint-four-partner incidence lemmas at
-`fe5d119af9a270a82fb7a854b9c004d5a4e041c6`; these require
-separate exact-source CI before kernel-verified promotion.
+S018 continued with the rational `graphMIS_first_moment_eq`
+and unique disjoint-four-partner incidence lemmas at
+`fe5d119af9a270a82fb7a854b9c004d5a4e041c6`, **exact-source strict Lean PASS 38970965466** and **finite PASS 38970965502**, with only standard printed axioms.
 
 The new independent `scripts/verify_s018_spider_distribution.py`
 exhaustively visits all 40320 permutations against `namedSpider`'s
@@ -110,5 +107,5 @@ quartets. It verifies the real four-MIS invariants
 The enumeration also checks equality with all three moment expressions.
 This is **FINITE_CHECKED** for one concrete graph, not a universal proof.
 The S018 script is included in both finite and Lean check workflows
-on the canonical proof branch; the final combined workflow status must
-be checked against its *exact* head SHA before a finished run is claimed.
+on the canonical proof branch. The final exact workflow source head
+`26a5f3b6c953872a459a457d593fb6cef620954c` has **Lean PASS 38971146819** and **independent finite PASS 38971147020** with ten configured independent finite checkers. These pass results certify the whole updated proof branch, but not the as-yet unproved graph-derived universal second and third moment statements.
