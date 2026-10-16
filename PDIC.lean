@@ -668,3 +668,107 @@ theorem outsideMask_nonzero_iff (n z : BitVec 4) :
 #print axioms PDIC.outsideMask_nonzero_iff
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S003R6: compositional local witnesses and bounded arithmetic.
+    All local test domains below are at most 1024 cases, rather than
+    the full 65536 adjacency matrices with nested finite-set semantics. -/
+
+/-- A bit of an OR-mask is set exactly when it is set in either operand. -/
+set_option maxRecDepth 4096 in
+theorem orMask_getLsbD_iff (x y : BitVec 4) (j : Side) :
+    (x ||| y).getLsbD j.val = true ↔
+      x.getLsbD j.val = true ∨ y.getLsbD j.val = true := by
+  revert x y j
+  decide +kernel
+
+/-- One good-left-pair test has exact neighbourhood, size and
+    outside-neighbour witness semantics; this is not a global census. -/
+theorem goodLeftPairBV_spec (x y z w : BitVec 4) :
+    goodLeftPairBV x y z w = true ↔
+      ((Finset.univ : Finset Side).filter
+        (fun j => (x ||| y).getLsbD j.val = true)).card = 2 ∧
+      (∃ j : Side, z.getLsbD j.val = true ∧
+        (x ||| y).getLsbD j.val = false) ∧
+      (∃ j : Side, w.getLsbD j.val = true ∧
+        (x ||| y).getLsbD j.val = false) := by
+  simp only [goodLeftPairBV, Bool.and_eq_true,
+    twoNeighboursBV_eq_rowCard_two, outsideMask_nonzero_iff, and_assoc]
+
+/-- Every two-subset of Fin 4 appears exactly once in the explicit six. -/
+def sidePairsSix : Finset (Finset Side) :=
+  {({0,1} : Finset Side), ({0,2} : Finset Side),
+   ({0,3} : Finset Side), ({1,2} : Finset Side),
+   ({1,3} : Finset Side), ({2,3} : Finset Side)}
+
+theorem sidePairsSix_eq_filter :
+    sidePairsSix =
+      ((Finset.univ : Finset (Finset Side)).filter (fun X => X.card = 2)) := by
+  decide
+
+theorem sidePairsSix_card : sidePairsSix.card = 6 := by
+  decide
+
+/-- Six zero-one summands fit exactly in three bits. -/
+set_option maxRecDepth 4096 in
+theorem sixBooleanIndicatorCount (p q r s t u : Bool) :
+    ((if p then (1 : BitVec 3) else 0) +
+      (if q then (1 : BitVec 3) else 0) +
+      (if r then (1 : BitVec 3) else 0) +
+      (if s then (1 : BitVec 3) else 0) +
+      (if t then (1 : BitVec 3) else 0) +
+      (if u then (1 : BitVec 3) else 0)).toNat =
+      (if p then (1 : ℕ) else 0) +
+      (if q then (1 : ℕ) else 0) +
+      (if r then (1 : ℕ) else 0) +
+      (if s then (1 : ℕ) else 0) +
+      (if t then (1 : ℕ) else 0) +
+      (if u then (1 : ℕ) else 0) := by
+  revert p q r s t u
+  decide +kernel
+
+theorem fourRowMixedCountBV_eq_sixNat (a b c d : BitVec 4) :
+    (fourRowMixedCountBV a b c d).toNat =
+      (if goodLeftPairBV a b c d then (1 : ℕ) else 0) +
+      (if goodLeftPairBV a c b d then (1 : ℕ) else 0) +
+      (if goodLeftPairBV a d b c then (1 : ℕ) else 0) +
+      (if goodLeftPairBV b c a d then (1 : ℕ) else 0) +
+      (if goodLeftPairBV b d a c then (1 : ℕ) else 0) +
+      (if goodLeftPairBV c d a b then (1 : ℕ) else 0) := by
+  unfold fourRowMixedCountBV
+  exact sixBooleanIndicatorCount _ _ _ _ _ _
+
+/-- Each row popcount is at most four. -/
+set_option maxRecDepth 4096 in
+theorem fourBitPopCount5_le_four (v : BitVec 4) :
+    (fourBitPopCount5 v).toNat ≤ 4 := by
+  revert v
+  decide +kernel
+
+/-- Adding four 0..4 counts in five bits cannot overflow. -/
+theorem fourSmallBVSum_noOverflow (a b c d : BitVec 5)
+    (ha : a.toNat ≤ 4) (hb : b.toNat ≤ 4)
+    (hc : c.toNat ≤ 4) (hd : d.toNat ≤ 4) :
+    (a + b + c + d).toNat = a.toNat + b.toNat + c.toNat + d.toNat := by
+  omega
+
+theorem fourRowEdgeCountBV_eq_fourPopNat (a b c d : BitVec 4) :
+    (fourRowEdgeCountBV a b c d).toNat =
+      (fourBitPopCount5 a).toNat + (fourBitPopCount5 b).toNat +
+      (fourBitPopCount5 c).toNat + (fourBitPopCount5 d).toNat := by
+  unfold fourRowEdgeCountBV
+  exact fourSmallBVSum_noOverflow _ _ _ _
+    (fourBitPopCount5_le_four a) (fourBitPopCount5_le_four b)
+    (fourBitPopCount5_le_four c) (fourBitPopCount5_le_four d)
+
+#print axioms PDIC.orMask_getLsbD_iff
+#print axioms PDIC.goodLeftPairBV_spec
+#print axioms PDIC.sidePairsSix_eq_filter
+#print axioms PDIC.sixBooleanIndicatorCount
+#print axioms PDIC.fourRowMixedCountBV_eq_sixNat
+#print axioms PDIC.fourSmallBVSum_noOverflow
+#print axioms PDIC.fourRowEdgeCountBV_eq_fourPopNat
+
+end PDIC
