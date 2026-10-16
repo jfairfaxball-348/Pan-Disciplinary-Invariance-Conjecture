@@ -1190,11 +1190,9 @@ theorem seven_edges_three_mixed_iff_spider
     constructor
     · apply (BitVec.toNat_eq).2
       norm_num
-      dsimp only [a, b, c, d]
       omega
     · apply (BitVec.toNat_eq).2
       norm_num
-      dsimp only [a, b, c, d]
       omega
   · intro hspider
     rcases hbv.mpr hspider with ⟨hedges, hmixed⟩
