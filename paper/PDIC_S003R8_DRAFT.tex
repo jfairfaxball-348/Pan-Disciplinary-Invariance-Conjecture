@@ -22,8 +22,9 @@ four-vertex maximal independent sets under a uniform cap labelling.
 Its three-witness probability is at most $1/105$, with equality precisely
 for the spider tree with leg lengths $(2,2,2,1)$. The finite $4\times4$
 mixed-maximal-independent-set extremal component has a
-Lean-verified bit-vector foundation; its semantic Boolean-matrix transfer
-is being separately checked on the research pull request. This draft
+Lean-verified bit-vector foundation; its three arbitrary Boolean-matrix semantic extremal transfers
+have been strictly Lean-kernel-verified on research pull request \#3
+at commit \texttt{1e4cadd580b385e0d8e69e836f3211129e705839}. This draft
 makes no claim of literature priority or a complete end-to-end
 formalisation.
 \end{abstract}
@@ -105,8 +106,9 @@ Encode each row as four bits. Exhaustive \emph{kernel-checked}
 finite-proposition proofs establish the three BitVec implications,
 while independent symbolic left-pair/edge cardinality bridges show
 the encoding gives exactly $b(A)$ and $e(A)$. The semantic transfer
-statements must be referenced to an exact passing S003R8 Lean
-workflow before the manuscript is promoted.
+statements passed the exact-SHA S003R8 hosted Lean workflow
+38887318919, with only standard axioms. The connected graph and
+probability theorems have not yet received an end-to-end Lean proof.
 \end{proof}
 
 \section{From complementary sets to the spider}
@@ -198,7 +200,9 @@ reachability/stackability result.
 
 \section{Formal verification and publication gate}
 The exact Lean proofs for arbitrary matrices and the concrete
-spider witnesses are tracked on PDIC PR \#3. The missing end-to-end
+spider witnesses are kernel-verified on PDIC PR \#3, commit
+\texttt{1e4cadd580b385e0d8e69e836f3211129e705839}, hosted
+workflow 38887318919 (passed). The missing end-to-end
 Lean milestones are: the connected \texttt{SimpleGraph (Fin 8)}
 bridge, the graph isomorphism statement, an actual uniform
 $2520$-labelling probability model, and the cited cap input.
