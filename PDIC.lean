@@ -1097,3 +1097,110 @@ theorem fourRowMixedCountBV_eq_actual
 #print axioms PDIC.fourRowMixedCountBV_eq_actual
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S003R8: promote the strict-kernel S003R7 BitVec-to-actual-count bridges
+    to semantic theorems quantified over arbitrary Boolean 4 × 4 matrices.
+    No 65,536-input semantic reduction is performed here. -/
+
+theorem fourRows_rowsOfAdj (adj : Side → Side → Bool) :
+    fourRows (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+      (rowsOfAdj adj 2) (rowsOfAdj adj 3) = rowsOfAdj adj := by
+  funext i
+  fin_cases i <;> rfl
+
+theorem actualCounts_eq_encoded (adj : Side → Side → Bool) :
+    actualMixedLeftPairCount adj =
+      (fourRowMixedCountBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3)).toNat ∧
+    actualMatrixEdgeCount adj =
+      (fourRowEdgeCountBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3)).toNat := by
+  have hrow : adjOfRows
+      (fourRows (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3)) = adj := by
+    rw [fourRows_rowsOfAdj, adjOfRows_rowsOfAdj]
+  constructor
+  · rw [fourRowMixedCountBV_eq_actual, hrow]
+  · rw [fourRowEdgeCountBV_eq_actual, hrow]
+
+/-- For every Boolean 4 × 4 bipartite adjacency, four mixed maximal
+    independent left pairs force at most five edges. -/
+theorem four_mixed_implies_at_most_five_edges
+    (adj : Side → Side → Bool)
+    (h : 4 ≤ actualMixedLeftPairCount adj) :
+    actualMatrixEdgeCount adj ≤ 5 := by
+  obtain ⟨hm, he⟩ := actualCounts_eq_encoded adj
+  let a := rowsOfAdj adj 0
+  let b := rowsOfAdj adj 1
+  let c := rowsOfAdj adj 2
+  let d := rowsOfAdj adj 3
+  have hb : (4 : BitVec 3) ≤ fourRowMixedCountBV a b c d := by
+    omega
+  have ht := four_by_four_six_edge_threshold_BV a b c d hb
+  omega
+
+/-- At least eight bipartite edges leave at most two mixed MIS witnesses. -/
+theorem eight_edges_implies_at_most_two_mixed
+    (adj : Side → Side → Bool)
+    (h : 8 ≤ actualMatrixEdgeCount adj) :
+    actualMixedLeftPairCount adj ≤ 2 := by
+  obtain ⟨hm, he⟩ := actualCounts_eq_encoded adj
+  let a := rowsOfAdj adj 0
+  let b := rowsOfAdj adj 1
+  let c := rowsOfAdj adj 2
+  let d := rowsOfAdj adj 3
+  have hb : (8 : BitVec 5) ≤ fourRowEdgeCountBV a b c d := by
+    omega
+  have ht := eight_edges_at_most_two_mixed_BV a b c d hb
+  omega
+
+/-- The seven-edge/three-mixed-witness semantic equality case is EXACTLY
+    the previously certified row- or column-hub spider pattern. -/
+theorem seven_edges_three_mixed_iff_spider
+    (adj : Side → Side → Bool) :
+    (actualMatrixEdgeCount adj = 7 ∧
+      actualMixedLeftPairCount adj = 3) ↔
+    spiderMatrixBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+      (rowsOfAdj adj 2) (rowsOfAdj adj 3) = true := by
+  obtain ⟨hm, he⟩ := actualCounts_eq_encoded adj
+  let a := rowsOfAdj adj 0
+  let b := rowsOfAdj adj 1
+  let c := rowsOfAdj adj 2
+  let d := rowsOfAdj adj 3
+  have hbv := seven_edge_three_iff_spider_BV a b c d
+  constructor
+  · rintro ⟨hedges, hmixed⟩
+    apply hbv.mp
+    constructor <;> omega
+  · intro hspider
+    rcases hbv.mpr hspider with ⟨hedges, hmixed⟩
+    constructor <;> omega
+
+/-- Hostile sanity check: the 8-vertex spider has a maximal independent
+    four-set with a 3+1 split, so its MIS family is NOT exhausted by the
+    two pure sides and the 2+2 mixed MIS family. -/
+theorem spider_has_three_one_mis :
+    IsMIS4 spiderAdj ({1, 2, 3, 7} : Finset Vertex) ∧
+      (({1, 2, 3, 7} : Finset Vertex).filter
+        (fun v => v.val < 4)).card = 3 := by
+  decide
+
+/-- Likewise the spider contains a 1+3 maximal independent four-set. -/
+theorem spider_has_one_three_mis :
+    IsMIS4 spiderAdj ({2, 4, 6, 7} : Finset Vertex) ∧
+      (({2, 4, 6, 7} : Finset Vertex).filter
+        (fun v => v.val < 4)).card = 1 := by
+  decide
+
+#print axioms PDIC.fourRows_rowsOfAdj
+#print axioms PDIC.actualCounts_eq_encoded
+#print axioms PDIC.four_mixed_implies_at_most_five_edges
+#print axioms PDIC.eight_edges_implies_at_most_two_mixed
+#print axioms PDIC.seven_edges_three_mixed_iff_spider
+#print axioms PDIC.spider_has_three_one_mis
+#print axioms PDIC.spider_has_one_three_mis
+
+end PDIC
