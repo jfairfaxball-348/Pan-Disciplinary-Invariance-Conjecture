@@ -3777,3 +3777,118 @@ theorem canonicalCapF3_perm_complementary_pair_event_card
 #print axioms PDIC.canonicalCapF3_perm_complementary_pair_event_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S016: constructive dihedral transport of the eight ordered overlapping
+canonical two-quartet configurations. Only eight explicit permutations are
+checked; there is NO 40320-permutation decision procedure in this proof. -/
+
+def quartetSwapFirstAtoms : Equiv.Perm Vertex :=
+  (Equiv.swap (0 : Vertex) 2).trans (Equiv.swap (1 : Vertex) 3)
+
+def quartetSwapLastAtoms : Equiv.Perm Vertex :=
+  (Equiv.swap (4 : Vertex) 6).trans (Equiv.swap (5 : Vertex) 7)
+
+def quartetSwapAxesAtoms : Equiv.Perm Vertex :=
+  ((Equiv.swap (0 : Vertex) 4).trans (Equiv.swap (1 : Vertex) 5)).trans
+    ((Equiv.swap (2 : Vertex) 6).trans (Equiv.swap (3 : Vertex) 7))
+
+/-- The eight explicit axis/swap symmetries of the four-quartet C4 design. -/
+def quartetDihedralPerm (k : Vertex) : Equiv.Perm Vertex :=
+  if k = 0 then Equiv.refl Vertex
+  else if k = 1 then quartetSwapLastAtoms
+  else if k = 2 then quartetSwapFirstAtoms
+  else if k = 3 then quartetSwapFirstAtoms.trans quartetSwapLastAtoms
+  else if k = 4 then quartetSwapAxesAtoms
+  else if k = 5 then quartetSwapAxesAtoms.trans quartetSwapFirstAtoms
+  else if k = 6 then quartetSwapAxesAtoms.trans quartetSwapLastAtoms
+  else quartetSwapAxesAtoms.trans
+    (quartetSwapFirstAtoms.trans quartetSwapLastAtoms)
+
+/-- Explicit orbit certificate for all eight ordered overlapping canonical
+quartet pairs, using just the eight constructed symmetries. -/
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+theorem quartet_ordered_overlap_two_orbit
+    (i j : QuartetIndex) (hij : (quartet i ∩ quartet j).card = 2) :
+    ∃ p : Equiv.Perm Vertex,
+      (quartet (0 : QuartetIndex)).image p = quartet i ∧
+      (quartet (1 : QuartetIndex)).image p = quartet j := by
+  have hfinite : ∀ a b : QuartetIndex,
+      (quartet a ∩ quartet b).card = 2 →
+      ∃ k : Vertex,
+        (quartet (0 : QuartetIndex)).image (quartetDihedralPerm k) = quartet a ∧
+        (quartet (1 : QuartetIndex)).image (quartetDihedralPerm k) = quartet b := by
+    decide +kernel
+  obtain ⟨k, hk⟩ := hfinite i j hij
+  exact ⟨quartetDihedralPerm k, hk⟩
+
+/-- Right-translation by a known orbit permutation identifies an arbitrary
+fixed ordered pair-image fibre with the image stabilizer of the source pair. -/
+theorem perm_pair_image_fibre_card_eq_stabilizer
+    (s t u v : Finset Vertex) (p : Equiv.Perm Vertex)
+    (hps : s.image p = u) (hpt : t.image p = v) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      s.image e = u ∧ t.image e = v} =
+    Fintype.card {e : Equiv.Perm Vertex //
+      s.image e = s ∧ t.image e = t} := by
+  classical
+  let F : Equiv.Perm Vertex ≃ Equiv.Perm Vertex :=
+    { toFun := fun e => e.trans p.symm
+      invFun := fun e => e.trans p
+      left_inv := by intro e; ext x; simp
+      right_inv := by intro e; ext x; simp }
+  have hpred (e : Equiv.Perm Vertex) :
+      (s.image e = u ∧ t.image e = v) ↔
+      (s.image (F e) = s ∧ t.image (F e) = t) := by
+    have hleft (a : Finset Vertex) :
+        a.image (F e) = (a.image e).image p.symm :=
+      (finset_image_perm_trans a e p.symm).symm
+    have hinv : (F e).trans p = e := F.left_inv e
+    constructor
+    · rintro ⟨heS, heT⟩
+      constructor
+      · rw [hleft s, heS, ← hps]
+        exact perm_finset_image_roundtrip p s
+      · rw [hleft t, heT, ← hpt]
+        exact perm_finset_image_roundtrip p t
+    · rintro ⟨heS, heT⟩
+      constructor
+      · calc
+          s.image e = s.image ((F e).trans p) := by rw [hinv]
+          _ = (s.image (F e)).image p :=
+            (finset_image_perm_trans s (F e) p).symm
+          _ = s.image p := by rw [heS]
+          _ = u := hps
+      · calc
+          t.image e = t.image ((F e).trans p) := by rw [hinv]
+          _ = (t.image (F e)).image p :=
+            (finset_image_perm_trans t (F e) p).symm
+          _ = t.image p := by rw [heT]
+          _ = v := hpt
+  let E :
+      {e : Equiv.Perm Vertex // s.image e = u ∧ t.image e = v} ≃
+      {e : Equiv.Perm Vertex // s.image e = s ∧ t.image e = t} :=
+    Equiv.subtypeEquiv F (fun e => hpred e)
+  exact Fintype.card_congr E
+
+/-- For each of the eight canonical ordered overlapping targets, exactly
+16 genuine permutations carry the fixed (Q0,Q1) source onto that target. -/
+theorem canonical_ordered_overlap_pair_image_fibre_card
+    (i j : QuartetIndex) (hij : (quartet i ∩ quartet j).card = 2) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      (quartet (0 : QuartetIndex)).image e = quartet i ∧
+      (quartet (1 : QuartetIndex)).image e = quartet j} = 16 := by
+  obtain ⟨p, hp⟩ := quartet_ordered_overlap_two_orbit i j hij
+  rw [perm_pair_image_fibre_card_eq_stabilizer
+    (quartet (0 : QuartetIndex)) (quartet (1 : QuartetIndex))
+    (quartet i) (quartet j) p hp.1 hp.2]
+  exact canonicalTwoQuartetImageStabilizer_card
+
+#print axioms PDIC.quartet_ordered_overlap_two_orbit
+#print axioms PDIC.perm_pair_image_fibre_card_eq_stabilizer
+#print axioms PDIC.canonical_ordered_overlap_pair_image_fibre_card
+
+end PDIC
