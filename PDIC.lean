@@ -1137,7 +1137,6 @@ theorem four_mixed_implies_at_most_five_edges
   let b := rowsOfAdj adj 1
   let c := rowsOfAdj adj 2
   let d := rowsOfAdj adj 3
-  dsimp only [a, b, c, d] at *
   have hb : (4 : BitVec 3) ≤ fourRowMixedCountBV a b c d := by
     rw [BitVec.le_def]
     norm_num
@@ -1159,7 +1158,6 @@ theorem eight_edges_implies_at_most_two_mixed
   let b := rowsOfAdj adj 1
   let c := rowsOfAdj adj 2
   let d := rowsOfAdj adj 3
-  dsimp only [a, b, c, d] at *
   have hb : (8 : BitVec 5) ≤ fourRowEdgeCountBV a b c d := by
     rw [BitVec.le_def]
     norm_num
@@ -1184,7 +1182,6 @@ theorem seven_edges_three_mixed_iff_spider
   let b := rowsOfAdj adj 1
   let c := rowsOfAdj adj 2
   let d := rowsOfAdj adj 3
-  dsimp only [a, b, c, d] at *
   have hbv := seven_edge_three_iff_spider_BV a b c d
   dsimp only [a, b, c, d] at hbv
   constructor
