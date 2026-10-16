@@ -1,6 +1,6 @@
 # PDIC — full first-paper Lean roadmap
 
-**Active gate:** finish the entire [flagship theorem](research/FLAGSHIP_THEOREM.md) before Palomar preparation. This includes the four-term probability law and equality iff the named spider, with an honestly scoped classical nine-cap input.
+**Latest certified gate:** S013 actual `N₀(e,G)≤3` STRICT LEAN PASS at [`2a808e53cb7a`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/2a808e53cb7a763b54c53c4f06d12f7f64d3b113), [run 38945169850](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169850). **Active gate:** finish the entire [flagship theorem](research/FLAGSHIP_THEOREM.md) before Palomar preparation. This includes the four-term probability law and equality iff the named spider, with an honestly scoped classical nine-cap input.
 
 | Stage | Actual status |
 | --- | --- |
@@ -17,6 +17,9 @@
 | Canonical cap incidence and preservation under supplied GL(3,3) | LEAN_KERNEL_VERIFIED_S011; existence of arbitrary-cap orbit is external classical premise, not proved |
 | Genuine 8! sample-space cardinal | LEAN_KERNEL_VERIFIED_S011 |
 | 16-element event fibres, moments, N₀≤3 and complete distribution | FINITE_CHECKED for canonical event fibres and spider/P8; OPEN_IN_LEAN universally |
+| S012 typed permutation transport and four-quartet independence obstruction | **STRICT LEAN PASS**, exact source `4c68728834570cb436944c407d700487c6448002`, [run 38938608949](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38938608949) |
+| **S013 genuine labelled zero-MIS support bound `N₀(e,G)≤3`** | **STRICT LEAN PASS** at `2a808e53cb7a763b54c53c4f06d12f7f64d3b113`, [run 38945169850](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169850), nine checkers; [finite 38945169844](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169844) |
+| **S014 true 576/16 fibre counts → 2304/128 events → moments** | **INSTALLED, NOT EXECUTED** — [S014 prompt](research/NEXT_SESSION_PROMPT.md) |
 | Single end-to-end headline theorem and strict hosted certification | OPEN; mandatory gate |
 | Full-theorem-aligned Palomar preparation | PAUSED until full gate closes or owner redirects |
 
@@ -28,3 +31,6 @@ S011 proof detail: [typed cap and independent exhaustive check](research/S011_CA
 
 
 S012 verified-status clarification: S011 exact-source 7f7e32d / run 38935115211 remains the **last strict Lean PASS**. Candidate S012 appendix defines the genuine labelled count and proves (subject to CI) connectedness cannot admit all four pulled-back quartets independent. A fresh S012 CI result was not yet returned; no new Lean claim is promoted. [S012 proof note](research/S012_PERMUTATION_AND_SUPPORT_PROOF.md). S013 must compile/repair this source first, then prove the actual support bound, fibre counts and single flagship theorem.
+
+
+S013 strict proof note: [actual N₀ and event fibres](research/S013_ACTUAL_N0_AND_EVENT_FIBRES.md); [S013 closeout](sessions/S013_CLOSEOUT.md). The **general** 2304/128 numerical event fibres and graph-derived moments remain OPEN_IN_LEAN despite independent enumeration. Complete manuscript four-probability theorem is not kernel certified. The historical S011/S012 pending status paragraphs above reflect earlier closeout times, superseded by exact-source S012/S013 PASS evidence.
