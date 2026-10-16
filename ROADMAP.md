@@ -15,3 +15,9 @@
 Connected `SimpleGraph (Fin 8)` h=b and isomorphism, the genuine 2520-assignment probability model, and prior-art positioning remain unresolved. Do not treat checked finite instances as a complete theorem or original priority. Do not merge PR #3 merely because its smaller decomposed lemmas passed.
 
 [Session note](research/S003R6_COMPOSITIONAL_COUNTS.md) · [S003R6 closeout](sessions/S003R6_CLOSEOUT.md) · [Next session](research/NEXT_SESSION_PROMPT.md) · [Claims](research/CLAIMS.md).
+
+## S003R7 verified progression (2026-10-16)
+
+At unmerged PR #3 commit [`df53e200`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/df53e200188cf185c1398929143f5b0456fbadd2), [strict Lean CI 38880618519](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38880618519) **PASS** establishes arbitrary-row pair neighbourhood = OR-mask support, two-column complement size, generic outside-witness ↔ mask, and **each of the six** mask tests iff its genuine mixed-MIS pair criterion. Finite verification also passed. The six-indicator cardinality adapter, the two full mixed/edge natural-number semantic equality theorems and their general-matrix transfers still require a separate successful kernel check. The earlier S003R6 recursion-depth cardinality attempt remains withdrawn; an S003R7 `Finset.sum_boole` replacement is being checked. **S003R8 is the next prepared session**, S004 paper/priority remains conditional.
+
+[Closeout](sessions/S003R7_CLOSEOUT.md) · [Mathematical bridge](research/S003R7_SYMBOLIC_SEMANTIC_BRIDGE.md) · [S003R8 prompt](research/NEXT_SESSION_PROMPT.md).
