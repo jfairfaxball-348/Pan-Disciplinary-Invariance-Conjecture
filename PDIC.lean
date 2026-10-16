@@ -3964,10 +3964,13 @@ theorem canonicalCapF3_perm_canonical_overlap_pair_event_card :
       have hoverlap : (quartet i ∩ quartet j).card = 2 := by
         rw [hi, hj]
         simpa [pulledQuartet_eq_image] using htransport
-      refine ⟨⟨⟨i, j⟩, hoverlap⟩,
-        ⟨x.val, hi.symm, hj.symm⟩, ?_⟩
-      apply Subtype.ext
-      rfl
+      let target : CanonicalOrderedOverlapPair := ⟨(i, j), hoverlap⟩
+      have hfiber :
+          (quartet (0 : QuartetIndex)).image x.val = quartet target.val.1 ∧
+          (quartet (1 : QuartetIndex)).image x.val = quartet target.val.2 :=
+        ⟨hi.symm, hj.symm⟩
+      refine ⟨⟨target, ⟨x.val, hfiber⟩⟩, ?_⟩
+      exact Subtype.ext rfl
   calc
     Fintype.card {e : Equiv.Perm Vertex //
       capSum (fun v => canonicalCapF3 (e v)) (quartet (0 : QuartetIndex)) = 0 ∧
