@@ -3564,3 +3564,82 @@ theorem arbitraryFourset_to_canonicalQuartet_fibre_card
 #print axioms PDIC.arbitraryFourset_to_canonicalQuartet_fibre_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S015: the 576 stabilizer uniformly for all four canonical quartets. -/
+
+def indexedQuartetBlockColour (i : QuartetIndex) (v : Vertex) : Bool :=
+  decide (v ∈ quartet i)
+
+theorem indexedQuartetBlockColour_fibre_card
+    (i : QuartetIndex) (b : Bool) :
+    Fintype.card {v : Vertex // indexedQuartetBlockColour i v = b} = 4 := by
+  fin_cases i <;> cases b <;> decide
+
+theorem indexedQuartetBlockStabilizer_card (i : QuartetIndex) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      indexedQuartetBlockColour i ∘ e = indexedQuartetBlockColour i} = 576 := by
+  classical
+  rw [DomMulAct.stabilizer_card]
+  simp only [indexedQuartetBlockColour_fibre_card]
+  decide
+
+theorem indexedQuartetBlockColour_comp_iff_image_fixed
+    (i : QuartetIndex) (e : Equiv.Perm Vertex) :
+    indexedQuartetBlockColour i ∘ e = indexedQuartetBlockColour i ↔
+      (quartet i).image e = quartet i := by
+  rw [perm_finset_image_fixed_iff]
+  constructor
+  · intro h v
+    have hb : decide (e v ∈ quartet i) = decide (v ∈ quartet i) := by
+      simpa [indexedQuartetBlockColour, Function.comp_apply] using congrFun h v
+    have hh : (e v ∈ quartet i) ↔ (v ∈ quartet i) := by
+      simpa using congrArg (fun b : Bool => b = true) hb
+    exact hh.symm
+  · intro h
+    funext v
+    by_cases hv : v ∈ quartet i
+    · have he : e v ∈ quartet i := (h v).mp hv
+      simp [indexedQuartetBlockColour, Function.comp_apply, hv, he]
+    · have he : e v ∉ quartet i := fun hh => hv ((h v).mpr hh)
+      simp [indexedQuartetBlockColour, Function.comp_apply, hv, he]
+
+theorem indexedQuartetImageStabilizer_card (i : QuartetIndex) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      (quartet i).image e = quartet i} = 576 := by
+  classical
+  let E :
+      {e : Equiv.Perm Vertex // (quartet i).image e = quartet i} ≃
+      {e : Equiv.Perm Vertex //
+        indexedQuartetBlockColour i ∘ e = indexedQuartetBlockColour i} :=
+    Equiv.subtypeEquiv (Equiv.refl _) (fun e =>
+      (indexedQuartetBlockColour_comp_iff_image_fixed i e).symm)
+  calc
+    Fintype.card {e : Equiv.Perm Vertex //
+      (quartet i).image e = quartet i} =
+      Fintype.card {e : Equiv.Perm Vertex //
+        indexedQuartetBlockColour i ∘ e = indexedQuartetBlockColour i} :=
+          Fintype.card_congr E
+    _ = 576 := indexedQuartetBlockStabilizer_card i
+
+/-- Universal numerical singleton-image fibre: all four canonical targets
+have exactly 576 genuine permutation witnesses for any source four-set. -/
+theorem arbitraryFourset_to_anyQuartet_fibre_card
+    (s : Finset Vertex) (hs : s.card = 4) (i : QuartetIndex) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      s.image e = quartet i} = 576 := by
+  classical
+  obtain ⟨p, hp⟩ :=
+    exists_perm_fourset_image s (quartet i) hs (quartet_card i)
+  rw [perm_image_fibre_card_eq_stabilizer s (quartet i) p hp]
+  exact indexedQuartetImageStabilizer_card i
+
+#print axioms PDIC.indexedQuartetBlockColour_fibre_card
+#print axioms PDIC.indexedQuartetBlockStabilizer_card
+#print axioms PDIC.indexedQuartetBlockColour_comp_iff_image_fixed
+#print axioms PDIC.indexedQuartetImageStabilizer_card
+#print axioms PDIC.arbitraryFourset_to_anyQuartet_fibre_card
+
+end PDIC
