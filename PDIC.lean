@@ -672,12 +672,13 @@ end PDIC
 
 namespace PDIC
 
+set_option maxRecDepth 4096
+
 /-! S003R6: compositional local witnesses and bounded arithmetic.
     All local test domains below are at most 1024 cases, rather than
     the full 65536 adjacency matrices with nested finite-set semantics. -/
 
 /-- A bit of an OR-mask is set exactly when it is set in either operand. -/
-set_option maxRecDepth 4096 in
 theorem orMask_getLsbD_iff (x y : BitVec 4) (j : Side) :
     (x ||| y).getLsbD j.val = true ↔
       x.getLsbD j.val = true ∨ y.getLsbD j.val = true := by
@@ -712,7 +713,6 @@ theorem sidePairsSix_card : sidePairsSix.card = 6 := by
   decide
 
 /-- Six zero-one summands fit exactly in three bits. -/
-set_option maxRecDepth 4096 in
 theorem sixBooleanIndicatorCount (p q r s t u : Bool) :
     ((if p then (1 : BitVec 3) else 0) +
       (if q then (1 : BitVec 3) else 0) +
@@ -741,7 +741,6 @@ theorem fourRowMixedCountBV_eq_sixNat (a b c d : BitVec 4) :
   exact sixBooleanIndicatorCount _ _ _ _ _ _
 
 /-- Each row popcount is at most four. -/
-set_option maxRecDepth 4096 in
 theorem fourBitPopCount5_le_four (v : BitVec 4) :
     (fourBitPopCount5 v).toNat ≤ 4 := by
   revert v
@@ -752,6 +751,7 @@ theorem fourSmallBVSum_noOverflow (a b c d : BitVec 5)
     (ha : a.toNat ≤ 4) (hb : b.toNat ≤ 4)
     (hc : c.toNat ≤ 4) (hd : d.toNat ≤ 4) :
     (a + b + c + d).toNat = a.toNat + b.toNat + c.toNat + d.toNat := by
+  simp only [BitVec.toNat_add]
   omega
 
 theorem fourRowEdgeCountBV_eq_fourPopNat (a b c d : BitVec 4) :
