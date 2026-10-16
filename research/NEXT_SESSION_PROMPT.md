@@ -1,15 +1,25 @@
-# PDIC — NEXT SESSION: S007 full Lean flagship bridge
+# PDIC S008 — strict Lean equality iff the named spider
 
-**S007 INSTALLED, NOT EXECUTED** (16 October 2026). The authoritative executable prompt is [S007_FULL_FLAGSHIP_LEAN_BRIDGE_TARGET.md](S007_FULL_FLAGSHIP_LEAN_BRIDGE_TARGET.md).
+**INSTALLED, NOT EXECUTED.** Run this session when the owner says “run next session”. Continue on `session/s007-full-lean-flagship`; preserve all certified S003R9 and S007 source. Read `AGENTS.md`, `README.md`, `ROADMAP.md`, `authoritative/STATE.json`, `research/CLAIMS.md`, `research/S007_UNORDERED_GRAPH_BRIDGE.md`, `sessions/S007_CLOSEOUT.md`, the flagship theorem and the manuscript.
 
-**Execution:** when the owner says **“run next session,”** immediately execute S007 on the `session/s007-full-lean-flagship` proof branch.
+## Objective
 
-**Stage:** RETURNED TO FULL FIRST-PAPER LEAN FORMALISATION. S006's graph-only Palomar package is historical and not a valid substitute for the complete theorem.
+Complete the next missing graph theorem in Lean:
 
-**S007 critical proof goal:** Define genuine compatible unordered triples of four-vertex maximal independent sets for arbitrary connected eight-vertex simple graphs, prove the required unique balanced bipartition and 4×4 matrix witness-count equivalence `h(G)=B(A)`, derive `h(G)≤3`, and if achievable prove equality iff the named spider graph `S(2,2,2,1)`. Reuse exact strictly checked S003R9 source, with new strict hosted CI.
+    For every connected SimpleGraph (Fin 8),
+    unorderedCompatibleTripleCount G = 3 ↔ Nonempty (G ≃g namedSpider).
 
-**Ultimate non-negotiable completion gate:** Full end-to-end Lean proof of the manuscript's entire zero-sum quartet probability distribution and sharp spider extremiser, with the classical nine-cap classification explicitly formalised or clearly stated as a genuine sourced hypothesis. No administrative or narrower registration substitute.
+`namedSpider` must be the genuine simple graph S(2,2,2,1), with explicit edges `04,05,06,07,16,25,34`, or a proved isomorphic labelling. The equality is graph isomorphism, not only a Boolean matrix pattern.
 
-**Automatic closeout prompting is ACTIVE:** at the end of S007 create and install the complete **S008 executable prompt** targeting the highest-impact still-open Lean obligation, commit `research/NEXT_SESSION_PROMPT.md`, `authoritative/STATE.json` and session closeout. Repeat at every later session until the entire flagship is formalised. Do **not** execute S008 until the owner asks.
+## Required mathematical work
 
-No Palomar submission, external correspondence or publication is authorised by this prompt.
+1. Recheck the exact S007 certificate. Reuse its genuine unordered count, no-partition zero theorem, h-to-mixed-witness equivalence, graph-isomorphism invariance, constructed balanced matrix representation and general connected h≤3. Do not repeat these proofs or replace the count with ordered triples.
+2. From h=3 obtain a complementary four-MIS pair, then use `connected_partition_h_eq_matrix` and `connected_graphMixedCount_three_iff_pattern`. Prove that each certified row- or column-centred spider pattern gives an **actual graph isomorphism** to `namedSpider`. Construct the required row/column permutations and possible side swap; transport adjacency, including all nonedges. The pattern-to-isomorphism implication must not be an assumption.
+3. Prove the converse for the named graph via its actual matrix count and transport under graph isomorphism. Avoid evaluating all sets of sets: use the certified h=B equivalence and explicit three mixed witnesses. Preserve the spider's valid 3+1 and 1+3 MIS; do not assert every four-MIS is pure or 2+2.
+4. Compose the unconditional connected-eight-vertex bound and named equality case into public Lean declarations. No proof holes, native compiler trust or custom axioms. Run `lake build`, strict `#print axioms`, all seven independent checkers and hosted CI for the exact changed commit. Record exact SHAs, runs and limitations.
+
+## Completion and handoff
+
+Update claims, state, README and session closeout with actual proved scope. If equality is unfinished, identify the smallest remaining isomorphism lemma and make it the next target. Automatically write, install and commit the full S009 executable prompt; do not execute it yet. If equality closes, target the greatest remaining cap-incidence / genuine uniform-bijection probability obligation.
+
+The complete four-term cap-labelled probability law and unique spider extremiser remain the mandatory end-to-end Lean gate. Palomar preparation resumes only after that entire theorem passes strict checking or the owner redirects. Novelty remains unresolved. No merge to main, correspondence, public registration or publication submission is authorised by this session.

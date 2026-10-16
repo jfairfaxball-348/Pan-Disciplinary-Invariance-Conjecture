@@ -1,29 +1,19 @@
-# PDIC — full headline theorem formalisation roadmap (active 16 October 2026)
+# PDIC — full first-paper Lean roadmap
 
-**Gate:** finish complete flagship Lean formalisation of [the first-paper theorem](research/FLAGSHIP_THEOREM.md) before returning to Palomar preparation. The **four-term cap-labelled probability distribution AND uniquely sharp named spider graph** are the required output, not the S006 narrower graph/matrix appendix. The nine-cap classification may remain a clearly explicit, mathematically legitimate classical input.
+**Active gate:** finish the entire [flagship theorem](research/FLAGSHIP_THEOREM.md) before Palomar preparation. This includes the four-term probability law and equality iff the named spider, with an honestly scoped classical nine-cap input.
 
-## Verified/historical milestones
+| Stage | Actual status |
+| --- | --- |
+| Written cap/graph/probability theorem | PROVED_WRITTEN_WITH_CLASSICAL_INPUT; novelty unresolved |
+| Matrix/MIS semantics and connected mixed bound | Strict S003R9 certificate, source 402465f2330a275e04108169a6bfbb65e94e10b8 |
+| Genuine unordered triples, no-pair zero and pair uniqueness | Strict S007 initial certificate, source d05fe1e71d054fe74a52a664112b6de436e999da |
+| Exact unordered h cardinality, actual arbitrary-graph matrix transport, h=B and connected h≤3 | **STRICT LEAN PASS** at `ff864170834954ef2a286afe6a6b6577ec02f986`; [run 38914271558](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38914271558) |
+| **S008: h=3 iff named spider graph isomorphism** | **INSTALLED, NOT EXECUTED**; [executable target](research/S008_NAMED_SPIDER_ISOMORPHISM_TARGET.md) |
+| Cap transfer and classical-input interface | OPEN_IN_LEAN |
+| Genuine uniform bijections, regular fibres, moments, N₀≤3 and complete distribution | OPEN_IN_LEAN |
+| Single end-to-end headline theorem and strict hosted certification | OPEN; mandatory gate |
+| Full-theorem-aligned Palomar preparation | PAUSED until full gate closes or owner redirects |
 
-| Session | Mathematical result or administrative step | Actual status |
-| --- | --- | --- |
-| S001–S002 | Canonical eight-cap quartet design; written exact cap-labelled probability and spider theorem | PROVED_WRITTEN_WITH_CLASSICAL_INPUT |
-| S003–S003R8 | Four-by-four matrix graph semantics, numerical bridges, sharp finite bound | STRICT_LEAN_VERIFIED at S003R8 proof commits |
-| S003R9 | Genuine SimpleGraph maximal independent set counts, connected partition uniqueness, actual edges and connected mixed B≤3/spider matrix pattern | STRICT_LEAN_VERIFIED at [402465f...](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/402465f2330a275e04108169a6bfbb65e94e10b8), [hosted run 38890367785](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785) |
-| S004 | Primary-source prior art audit | COMPLETE; PRIORITY_UNRESOLVED |
-| S005 | Palomar procedure and registry display reconnaissance | COMPLETE; READ_ONLY |
-| S006 | Preparation of narrower matrix/MIS Palomar package | COMPLETE_ON_SEPARATE_BRANCH; **NOT** official full-mode verified and **NOT** full-paper formalisation |
-| **S007** | **Resume full Lean**: arbitrary connected eight-vertex unordered h(G), balanced bipartition and matrix-count transfer; h≤3, seek named spider iff | **NEXT: INSTALLED, NOT EXECUTED** |
+Continue from `session/s007-full-lean-flagship`, whose exact certificate is above. Main's older Lean and the former `session/s008-full-h-bridge` scaffold are not the current source. The previous S008 h-count brief is superseded because S007 continuation closes its principal obligations; no S008 execution is claimed. [Proof note](research/S007_UNORDERED_GRAPH_BRIDGE.md); [closeout](sessions/S007_EXTENSION_CLOSEOUT.md).
 
-## Outstanding strict Lean interfaces, in proof order
-
-1. Construct genuine unordered compatible-triple invariant `h(G)` over all four-element maximal independent sets of arbitrary connected eight-vertex `SimpleGraph` and prove `h(G)=B(A)` after canonical balanced bipartition to 4×4 `matrixGraph` transport, or `h(G)=0` where no such partition exists.
-2. Prove `h(G)≤3` and `h(G)=3 ↔ G ≃g S(2,2,2,1)`, including row/column spider-pattern to **actual** named graph isomorphism. Respect skew-split MIS.
-3. Formalise canonical eight-cap zero-sum quartet incidence and transport for any admissible eight-cap, with the classical nine-cap classification **explicitly stated as external mathematical hypothesis** if needed.
-4. Formalise uniform bijections 8! and the 2520 four-atom assignments, exact 16 labelling fibres, first three binomial moments, N₀≤3 and all four exact probability expressions.
-5. Compose into a single Lean-kernel-checked theorem matching the full paper, and strict-hosted CI and axiom audit. Only then prepare Palomar for **this same headline theorem**, unless owner expressly changes target.
-
-## Restored closeout automation
-
-Every executed session must: (i) produce substantive mathematical work and an exact-SHA Lean evidence report, (ii) update claims/state, (iii) identify the strongest still-open obligation from the full-theorem chain, (iv) **write, install and commit the next numbered executable session prompt automatically** in `research/NEXT_SESSION_PROMPT.md` with its authoritative target file. Do not ask the owner to re-specify the stage or choose an administrative fallback. The user triggers each session by saying “run next session”; prompt generation alone never launches research in the background.
-
-Current binding session target: [S007 full flagship Lean bridge](research/S007_FULL_FLAGSHIP_LEAN_BRIDGE_TARGET.md). Work branch: [session/s007-full-lean-flagship](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/session/s007-full-lean-flagship). Historical S006 package remains preserved [here](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/session/s006-palomar-prepare), not merged or treated as full verification.
+Every executed session must produce actual proof work, exact-SHA hosted evidence and truthful scope updates. Automatically select the greatest remaining mathematical obligation toward the complete flagship, write/install/commit the next numbered executable prompt, and stop. “Run next session” triggers execution; prompt generation is not an unattended run. Preserve strict standard-axiom checking and independent corroboration. Do not substitute a narrower graph certificate or packaging session for completion.
