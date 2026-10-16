@@ -2429,8 +2429,7 @@ private theorem spiderTransposeCells (a b c d : BitVec 4) (i j : Side) :
       (columnOfRowsBV a b c d 3)) i j =
     adjOfRows (fourRows a b c d) j i := by
   fin_cases i <;> fin_cases j <;>
-    simp only [adjOfRows, fourRows, columnOfRowsBV,
-      ↓reduceIte, Fin.isValue] <;> bv_decide
+    simp [adjOfRows, fourRows, columnOfRowsBV] <;> bv_decide
 
 /-- Hub-on-the-left normalisation. The only finite search occurs in
 spiderHubZero_leaves: row placements are explicit swaps. -/
@@ -2506,7 +2505,7 @@ theorem spiderBitRows_permutation_certificate (a b c d : BitVec 4)
     refine ⟨true, p, q, ?_⟩
     intro i j
     simpa only [ite_true, ite_false] using
-      ((spiderTransposeCells a b c d j i).symm ▸ h j i)
+      (spiderTransposeCells a b c d j i ▸ h j i)
 
 #print axioms PDIC.spiderHubZero_leaves
 #print axioms PDIC.spiderHubRows_permutations
