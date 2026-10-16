@@ -1,3 +1,5 @@
+> **Superseded scope notice:** the later [S007 continuation](S007_EXTENSION_CLOSEOUT.md) closes the h-count cardinality/matrix transport and proves general connected h≤3. The partial certificate below is retained as history. The active S008 target is now named-spider isomorphism.
+
 # PDIC S007 closeout — completed partial graph-triple Lean bridge
 
 **Date:** 16 October 2026

@@ -1,3 +1,5 @@
+> **Historical partial certificate.** The later [S007 graph bridge](S007_UNORDERED_GRAPH_BRIDGE.md) closes the cardinality and arbitrary-graph h≤3 gaps described here.
+
 # PDIC S007 — unordered connected graph triple bridge: exact proof scope
 
 **Executed 16 October 2026. Strict Lean PASS.** Exact proof commit: [`d05fe1e71d054fe74a52a664112b6de436e999da`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/d05fe1e71d054fe74a52a664112b6de436e999da) on `session/s007-full-lean-flagship`. Hosted [Lean and all six finite checkers 38912238607 — SUCCESS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38912238607). [Draft PR #4](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4) is unmerged.

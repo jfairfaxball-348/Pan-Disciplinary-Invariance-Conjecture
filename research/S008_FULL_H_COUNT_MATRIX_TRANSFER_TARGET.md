@@ -1,3 +1,5 @@
+> **SUPERSEDED, NOT EXECUTED:** S007 continuation closed the h-count and matrix-transport obligations. The installed S008 target is [named-spider isomorphism](S008_NAMED_SPIDER_ISOMORPHISM_TARGET.md). The old scaffold branch is not the current proof source.
+
 # PDIC S008 — prove genuine h(G) = mixed MIS count and connected h ≤ 3
 
 **INSTALLED 16 October 2026, NOT EXECUTED.** Continue full first-paper Lean formalisation; no Palomar preparation, manuscript substitution or administrative pivot.

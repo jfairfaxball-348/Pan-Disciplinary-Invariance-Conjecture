@@ -26,7 +26,8 @@ Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessi
 | Exactly 192 labelled spider equality matrices | PROVED_WRITTEN / FINITE_CHECKED | Count not Lean |
 | Two nine-total-MIS trees have h=3 and h=1 | FINITE_CHECKED_S003R9; explicit lists written | Distinguishes total MIS statistic, not priority |
 | Uniform 2520 images with 16 bijections each, eight favourable triple images | PROVED_WRITTEN / FINITE_CHECKED | Actual finite probability semantics remain OPEN_IN_LEAN |
-| Arbitrary connected eight-vertex h≤3 and graph≃spider iff h=3 | PROVED_WRITTEN | h=b cardinality/relabel transport and graph isomorphism not kernel-closed |
+| Arbitrary connected eight-vertex h≤3, genuine unordered count and h=B transport | LEAN_KERNEL_VERIFIED_S007 | Exact source ff864170834954ef2a286afe6a6b6577ec02f986; run 38914271558; actual graph isomorphism and MIS/triple transport |
+| h=3 iff G is isomorphic to named spider | PROVED_WRITTEN; OPEN_IN_LEAN | Matrix-pattern to named graph-isomorphism remains the next obligation |
 | Full N0 law and sharp probability ≤1/105 | PROVED_WRITTEN_WITH_CLASSICAL_INPUT | Genuine graph/labelling probability Lean interface OPEN |
 | Conditional moment inversion and rational bound | LEAN_KERNEL_VERIFIED | Arithmetic is not a probability-model proof |
 | Greedy charge mixture / signed pebbling residues | PROVED_WRITTEN_ELEMENTARY | Does not prove reachability or stackability |
@@ -77,3 +78,9 @@ The paper title and formula may appear in a **proposed full-claim record only if
 ## S007 strict proof increment (16 October 2026)
 
 Exact proof SHA [`d05fe1e71d054fe74a52a664112b6de436e999da`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/d05fe1e71d054fe74a52a664112b6de436e999da) on draft [PR #4](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4) passed [strict hosted Lean + all six Python checks 38912238607](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38912238607). This status applies to those six new *structural* declarations, not to the unproved h=B equality, h≤3, spider graph isomorphism, cap classification or full distribution. [Proof scope](S007_UNORDERED_TRIPLE_BRIDGE.md). S008 target is installed automatically; no submission authorised.
+
+## S007 continuation: full arbitrary-graph count bridge and bound
+
+**LEAN_KERNEL_VERIFIED** at [`ff864170834954ef2a286afe6a6b6577ec02f986`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/ff864170834954ef2a286afe6a6b6577ec02f986), [strict run 38914271558: PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38914271558). The earlier d05fe1e certificate remains valid but its missing count/graph interfaces are now closed. Genuine unordered triples are in a proved bijection with anchored mixed third sets; disjoint four-sets are proved complementary on eight vertices; actual balanced vertex enumeration and graph isomorphism transfer adjacency, MIS and triple counts. The public theorem `connected_unorderedCompatibleTripleCount_le_three` assumes only a connected `SimpleGraph (Fin 8)`. Its graph/matrix representation and h=B equality are constructed conclusions. All seven finite checkers pass. [Detailed scope](S007_UNORDERED_GRAPH_BRIDGE.md).
+
+**OPEN_IN_LEAN:** equality iff named spider, cap transfer/classical input, actual uniform bijection probability model and complete four-term theorem. No novelty or publication-status upgrade. S008 named-spider prompt is installed, not executed; the older h-count prompt/scaffold is superseded.
