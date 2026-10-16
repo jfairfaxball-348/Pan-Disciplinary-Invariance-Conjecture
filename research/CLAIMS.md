@@ -85,3 +85,17 @@ All five independent finite verifiers PASS on the same PR HEAD; `#print axioms` 
 | First full TeX research draft | **DRAFT_CREATED, NOT_SUBMITTED, NOVELTY_OPEN** | [paper/PDIC_S003R8_DRAFT.tex](../paper/PDIC_S003R8_DRAFT.tex), Liu 1993 and cap primary source checked, detailed originality comparison outstanding |
 
 Independent 65,536-matrix check including all 36,317 connected fixed bipartition instances and 192 sharp spider matrices is **FINITE_CHECKED, not Lean**. See [S003R8 closeout](../sessions/S003R8_CLOSEOUT.md), [mathematical research note](S003R8_GRAPH_BRIDGE_AND_NOVELTY.md), [next S003R9 handoff](NEXT_SESSION_PROMPT.md). Any later exact Lean PASS certificate supersedes this candidate-status row.
+
+## S003R8 FINAL STRICT KERNEL VERDICT — 16 October 2026 (supersedes CI_PENDING above)
+
+**Exact [PR #3 commit `1e4cadd580b385e0d8e69e836f3211129e705839`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/1e4cadd580b385e0d8e69e836f3211129e705839)**, [strict Lean 38887318919 PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38887318919), [separate finite 38887318971 PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38887318971). `lake build`, banned-hole/native-axiom checks, and all five independent checkers passed. New seven `#print axioms` = `[propext, Classical.choice, Quot.sound]`, with no `sorryAx`.
+
+| Newly proved declaration | Final state | Statement scope |
+| --- | --- | --- |
+| `fourRows_rowsOfAdj`, `actualCounts_eq_encoded` | **LEAN_KERNEL_VERIFIED** | Every Boolean 4×4 matrix; exact reconstruction and semantic counts |
+| `four_mixed_implies_at_most_five_edges` | **LEAN_KERNEL_VERIFIED** | b(A)≥4⇒e(A)≤5 for arbitrary adjacency |
+| `eight_edges_implies_at_most_two_mixed` | **LEAN_KERNEL_VERIFIED** | e(A)≥8⇒b(A)≤2 for arbitrary adjacency |
+| `seven_edges_three_mixed_iff_spider` | **LEAN_KERNEL_VERIFIED** | e(A)=7 ∧ b(A)=3 iff row/column spider matrix for arbitrary adjacency |
+| `spider_has_three_one_mis`, `spider_has_one_three_mis` | **LEAN_KERNEL_VERIFIED** | Actual skew 3+1 and 1+3 maximal independent four-sets on labelled spider |
+| Graph `SimpleGraph(Fin8)` h=b and unlabelled spider extremiser | **PROVED_WRITTEN; OPEN_IN_LEAN** | Formal graph/connected/isomorphism interface not implemented |
+| Genuine uniform-2520 cap probability law, originality | **OPEN_IN_LEAN / NOVELTY_OPEN** | Draft paper exists, external cap classification, no submission |
