@@ -2,7 +2,7 @@
 
 **Mission:** join finite-group zero-sum quartet geometry, maximal independent sets, graph extremal combinatorics, random greedy dynamics and signed pebbling invariants in a precise, formally certified first paper. The project name is aspirational, not a proven universal invariance conjecture.
 
-**Status 2026-10-15:** S003R3 complete as a **partial formalisation session**. The matrix semantic lossless encoder, existential mixed-MIS count criterion, and eight-edge exclusion now have hosted strict kernel verification. Full numerical BV-to-Prop counting, connected SimpleGraph/h=b isomorphism and actual finite probability semantics remain unformalised. No priority or publication claim.
+**Status 2026-10-16:** **S003R6 completed with new strict-Lean-certified compositional mask and bounded-arithmetic lemmas on unmerged PR #3.** The exact individual pair mask criterion, all six two-subsets, and three-bit/five-bit natural-number no-overflow identities have passed hosted Lean checks. The crucial *six individual mask-pair↔semantic-criterion equivalences*, full numerical↔actual-MIS and edge cardinality adapters, connected graph classification and true finite probability semantics remain open. Main retains the already certified S003R3 Lean baseline; no paper or original-priority claim is made.
 
 ## Written flagship (classical cap input required)
 
@@ -28,9 +28,11 @@ Pr(N0=0)=1−M1+M2−M3; Pr(N0=1)=M1−2M2+3M3; Pr(N0=2)=M2−3M3; Pr(N0=3)=M3�
 | S003–S003R | Concrete Lean certificates and generic MIS semantics |
 | **S003R2** | **COMPLETE** kernel-only 4×4 matrix threshold and spider iff; direct 192/fibre proof |
 | **S003R3** | **DONE, partial** — lossless row representation, actual existential witness criterion/count, e≥8⇒b≤2 in strict Lean; not yet full graph/measure bridge |
-| **S003R4** | **NEXT** — numerical BV/Prop-count bridge, connected SimpleGraph, 2520 probability semantics |
+| **S003R4–S003R5** | Written numerical bridge, verified small Boolean and row-mask semantic lemmas on PR #3 |
+| **S003R6** | **DONE, partial** — exact single-pair Boolean mask specification, six-pair enumeration, and no-overflow 3-bit/5-bit arithmetic certified at [CI 38871115121](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871115121) |
+| **S003R7** | **NEXT** — six scalar mask↔mixed-MIS criterion proofs, actual matrix count adapters, then connected graph bridge |
 | S004 | Conditional novelty audit and TeX manuscript |
 
-[Session S003R3 closeout](sessions/S003R3_CLOSEOUT.md) · [New direct proof](research/S003R3_GRAPH_SEMANTICS_AND_EIGHT_EDGE_BOUND.md) · [Claims](research/CLAIMS.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md)
+[S003R6 closeout](sessions/S003R6_CLOSEOUT.md) · [Compositional proof notes](research/S003R6_COMPOSITIONAL_COUNTS.md) · [Claims](research/CLAIMS.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md)
 
 Reproduce with pinned `lake build`, strict `#print axioms` audit and all five checkers in `scripts/`. A `bv_decide` trial was rejected because of its compiler-native axiom; the accepted theorems use `decide +kernel`. No Palomar/arXiv/journal submission authorised.
