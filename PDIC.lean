@@ -2781,3 +2781,67 @@ theorem uniformLabellings_card :
 #print axioms PDIC.uniformLabellings_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S012: move the typed cap sum through a *genuine permutation* of vertices.
+    This is independent of the classical nine-cap classification. -/
+
+/-- Reindex the typed F₃³ cap sum by a permutation of all eight vertices. -/
+theorem capSum_perm_reindex (e : Equiv.Perm Vertex) (s : Finset Vertex) :
+    capSum (fun v => canonicalCapF3 (e v)) s =
+      capSum canonicalCapF3 (s.image e) := by
+  classical
+  unfold capSum
+  exact (Finset.sum_image (s := s) (g := e)
+    (f := canonicalCapF3) (fun _ _ _ _ h => e.injective h)).symm
+
+/-- The exact canonical quartet condition after *any* label permutation. -/
+theorem canonicalCapF3_perm_four_zero_iff
+    (e : Equiv.Perm Vertex) (s : Finset Vertex) (hs : s.card = 4) :
+    (capSum (fun v => canonicalCapF3 (e v)) s = 0 ↔
+      ∃ i : QuartetIndex, quartet i = s.image e) := by
+  rw [capSum_perm_reindex]
+  apply canonicalCapF3_four_zero_iff
+  simpa only [Finset.card_image_of_injective s e.injective] using hs
+
+/-- A supplied invertible linear transformation cannot alter which labelled
+    four-sets have zero sum; affine translations are *not* included. -/
+theorem linearPermCanonicalCap_four_zero_iff
+    (L : CapPoint ≃ₗ[ZMod 3] CapPoint)
+    (e : Equiv.Perm Vertex) (s : Finset Vertex) (hs : s.card = 4) :
+    (capSum (fun v => L (canonicalCapF3 (e v))) s = 0 ↔
+      ∃ i : QuartetIndex, quartet i = s.image e) := by
+  rw [capSum_zero_linear_iff]
+  exact canonicalCapF3_perm_four_zero_iff e s hs
+
+/-- Actual uniform finite probability: count *permutations*, not abstract
+    moments, in the denominator certified as 8! by S011. -/
+noncomputable def uniformPermEventProbability
+    (P : Equiv.Perm Vertex → Prop) : ℚ := by
+  classical
+  exact (((Finset.univ : Finset (Equiv.Perm Vertex)).filter P).card : ℚ) /
+    (Fintype.card (Equiv.Perm Vertex) : ℚ)
+
+/-- The random variable in the manuscript, defined on actual eight-vertex
+    graph maximal-independent four-sets under the typed canonical cap. -/
+noncomputable def labellingZeroMISCount
+    (G : SimpleGraph Vertex) (e : Equiv.Perm Vertex) : ℕ := by
+  classical
+  exact ((Finset.univ : Finset (Finset Vertex)).filter
+    (fun s => s.card = 4 ∧ GraphMIS G s ∧
+      capSum (fun v => canonicalCapF3 (e v)) s = 0)).card
+
+/-- The classical cap normal form is a *named proposition*, not an axiom or
+    silently imported theorem.  Any use must supply its proof as a hypothesis. -/
+def ClassicalCapNormalForm : Prop :=
+  ∀ f : Vertex → CapPoint, IsAdmissibleCap f →
+    ∃ (L : CapPoint ≃ₗ[ZMod 3] CapPoint) (p : Equiv.Perm Vertex),
+      ∀ v, f v = L (canonicalCapF3 (p v))
+
+#print axioms PDIC.capSum_perm_reindex
+#print axioms PDIC.canonicalCapF3_perm_four_zero_iff
+#print axioms PDIC.linearPermCanonicalCap_four_zero_iff
+
+end PDIC
