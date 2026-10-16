@@ -1574,3 +1574,123 @@ theorem connected_graphMixedCount_three_iff_pattern (adj : Side → Side → Boo
 #print axioms PDIC.connected_graphMixedCount_three_iff_pattern
 
 end PDIC
+
+/-! S007: direct connected-graph interfaces for unordered h(G).
+
+    The count below uses genuine *sets of three four-MIS vertex sets*, not
+    ordered triples and not a six-fold inflated proxy.  The bridge from
+    unordered triples to the anchored third-set count is a subsequent theorem
+    obligation, so no count equality is assumed here. -/
+namespace PDIC
+
+/-- An anchored balanced bipartition consisting of two genuine 4-MIS. -/
+def FourMISPartition (G : SimpleGraph Vertex) (s : Finset Vertex) : Prop :=
+  s.card = 4 ∧ GraphMIS G s ∧ GraphMIS G (Finset.univ \ s)
+
+/-- A connected graph has at most one complementary independent partition
+    up to exchanging sides, even though its MIS family may contain skew sets. -/
+theorem fourMISPartition_unique_up_to_swap
+    (G : SimpleGraph Vertex) (hc : G.Connected)
+    (s t : Finset Vertex)
+    (hs : FourMISPartition G s) (ht : FourMISPartition G t) :
+    s = t ∨ s = Finset.univ \ t := by
+  exact connected_independent_partition_unique G hc (0 : Vertex)
+    s t hs.2.1.1 hs.2.2.1 ht.2.1.1 ht.2.2.1
+
+/-- A third four-MIS compatible with an anchored complementary pair. -/
+def IsAnchoredMixedThird (G : SimpleGraph Vertex)
+    (s r : Finset Vertex) : Prop :=
+  GraphMIS G r ∧ (r ∩ s).card = 2 ∧
+    (r ∩ (Finset.univ \ s)).card = 2
+
+/-- A genuine unordered triple of distinct four-MIS, including a
+    complementary disjoint pair and one 2+2 mixed third set.
+    The three members are encoded by a Finset, not a list/tuple. -/
+def IsUnorderedCompatibleTriple (G : SimpleGraph Vertex)
+    (T : Finset (Finset Vertex)) : Prop :=
+  T.card = 3 ∧
+  (∀ r ∈ T, r.card = 4 ∧ GraphMIS G r) ∧
+  ∃ s ∈ T, ∃ t ∈ T, ∃ r ∈ T,
+    s ≠ t ∧ s ≠ r ∧ t ≠ r ∧
+      t = Finset.univ \ s ∧
+      (r ∩ s).card = 2 ∧ (r ∩ t).card = 2
+
+/-- The cardinality counts unordered triples, not ordered witnesses. -/
+noncomputable def unorderedCompatibleTripleCount
+    (G : SimpleGraph Vertex) : ℕ := by
+  classical
+  exact ((Finset.univ : Finset (Finset (Finset Vertex))).filter
+    (IsUnorderedCompatibleTriple G)).card
+
+/-- Any actual unordered compatible triple contains a balanced pair of
+    four-vertex maximal independent sets. -/
+theorem unorderedTriple_has_partition
+    (G : SimpleGraph Vertex) (T : Finset (Finset Vertex))
+    (hT : IsUnorderedCompatibleTriple G T) :
+    ∃ s : Finset Vertex, FourMISPartition G s := by
+  rcases hT with ⟨_, hall, s, hs, t, ht, r, hr, _, _, _, hcomp, _, _⟩
+  refine ⟨s, (hall s hs).1, (hall s hs).2, ?_⟩
+  simpa only [hcomp] using (hall t ht).2
+
+/-- In the absence of a balanced complementary four-MIS pair the genuine
+    unordered triple count vanishes. -/
+theorem unorderedCompatibleTripleCount_zero_of_no_partition
+    (G : SimpleGraph Vertex)
+    (hnone : ¬ ∃ s : Finset Vertex, FourMISPartition G s) :
+    unorderedCompatibleTripleCount G = 0 := by
+  classical
+  have hno : ∀ T : Finset (Finset Vertex),
+      ¬ IsUnorderedCompatibleTriple G T := by
+    intro T hT
+    exact hnone (unorderedTriple_has_partition G T hT)
+  simp [unorderedCompatibleTripleCount, hno]
+
+/-- This candidate count deliberately counts mixed *third sets*.
+    It is not definitionally the paper's unordered triple count: proving
+    their equivalence using the connected uniqueness theorem is required. -/
+noncomputable def anchoredMixedThirdCount
+    (G : SimpleGraph Vertex) (s : Finset Vertex) : ℕ := by
+  classical
+  exact ((Finset.univ : Finset (Finset Vertex)).filter
+    (IsAnchoredMixedThird G s)).card
+
+/-- Side-swapping preserves the exact candidate third-set count. -/
+theorem anchoredMixedThirdCount_swap
+    (G : SimpleGraph Vertex) (s : Finset Vertex) :
+    anchoredMixedThirdCount G (Finset.univ \ s) =
+      anchoredMixedThirdCount G s := by
+  classical
+  have hcomp :
+      (Finset.univ : Finset Vertex) \ (Finset.univ \ s) = s := by
+    ext v
+    simp
+  unfold anchoredMixedThirdCount
+  apply congrArg Finset.card
+  ext r
+  simp only [Finset.mem_filter, Finset.mem_univ, true_and,
+    IsAnchoredMixedThird, hcomp]
+  constructor
+  · rintro ⟨hm, ha, hb⟩
+    exact ⟨hm, hb, ha⟩
+  · rintro ⟨hm, ha, hb⟩
+    exact ⟨hm, hb, ha⟩
+
+/-- Connectedness makes the anchored count independent of the choice
+    of complementary pair: it is an intrinsic graph statistic. -/
+theorem anchoredMixedThirdCount_partition_independent
+    (G : SimpleGraph Vertex) (hc : G.Connected)
+    (s t : Finset Vertex)
+    (hs : FourMISPartition G s) (ht : FourMISPartition G t) :
+    anchoredMixedThirdCount G s = anchoredMixedThirdCount G t := by
+  rcases fourMISPartition_unique_up_to_swap G hc s t hs ht with he | he
+  · rw [he]
+  · rw [he]
+    exact anchoredMixedThirdCount_swap G t
+
+#print axioms PDIC.fourMISPartition_unique_up_to_swap
+#print axioms PDIC.unorderedTriple_has_partition
+#print axioms PDIC.unorderedCompatibleTripleCount_zero_of_no_partition
+#print axioms PDIC.anchoredMixedThirdCount_swap
+#print axioms PDIC.anchoredMixedThirdCount_partition_independent
+
+end PDIC
