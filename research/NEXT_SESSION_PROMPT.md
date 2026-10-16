@@ -1,40 +1,48 @@
-# PDIC S013 — kernel-close permutation transport, N₀≤3 and genuine event fibres
+# PDIC S014 — kernel-prove true 8! event fibres and full MIS probability moments
 
-**INSTALLED AFTER EXECUTED S012; NOT EXECUTED.** Owner's next "run next session" executes S013 on canonical Lean branch `session/s007-full-lean-flagship` (draft PR #4). Maintain automatic executable-prompt installation at closeout but do not run S014 without further owner direction. Follow `AGENTS.md`.
+**INSTALLED AFTER S013; NOT EXECUTED.** The owner's next "run next session" directly executes S014. Follow AGENTS.md; automatic next-session prompt installation remains active. Work on the canonical Lean proof branch `session/s007-full-lean-flagship`, draft PR #4, **not** the historical main-branch PDIC.lean. Do not merge, prepare a narrower Palomar record, or submit the paper.
 
-## Exact opening evidence and immediate verification gate
+## Required preflight and current evidence
 
-- S011 last genuinely STRICT LEAN PASS: [7f7e32dda87983c3df619481693af5a4baff5bfd](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/7f7e32dda87983c3df619481693af5a4baff5bfd), [run 38935115211](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38935115211) with nine independent checkers.
-- S012 new `PDIC.lean` source candidate [4c68728834570cb436944c407d700487c6448002](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/4c68728834570cb436944c407d700487c6448002). At S012 closeout there was **no exposed fresh hosted CI result**. Treat all S012 additions as **SOURCE_FORMALIZED / UNVERIFIED**, not Lean verified, until a real exact-SHA run compiles.
-- Read [S012 proof note](S012_PERMUTATION_AND_SUPPORT_PROOF.md), [closeout](../sessions/S012_CLOSEOUT.md), the full manuscript `paper/PDIC_S003R8_DRAFT.tex`, `research/FLAGSHIP_THEOREM.md`, `research/CLAIMS.md`, `ROADMAP.md`, `authoritative/STATE.json`.
-- **First action:** inspect current branch and GitHub Actions, obtain `lake build` and `#print axioms` against exact S012 or latest source. Resolve any elaboration/tactic errors in `capSum_perm_reindex`, image-card transport, `Finset.map` and quartet-complement rewriting. Never claim an unverified S012 lemma was certified.
+1. Read [S013 actual support and fibre proof note](S013_ACTUAL_N0_AND_EVENT_FIBRES.md), [S013 closeout](../sessions/S013_CLOSEOUT.md), `research/FLAGSHIP_THEOREM.md`, manuscript `paper/PDIC_S003R8_DRAFT.tex`, CLAIMS, ROADMAP, STATE and latest source. Inspect GitHub CI on the **exact current proof branch head**; do not infer kernel verification from a finite checker.
+2. S012 has an exact-source hosted strict Lean **PASS** at `4c68728834570cb436944c407d700487c6448002`, [38938608949](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38938608949), and finite [38938609119](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38938609119).
+3. S013's proof candidate introduces `pulledQuartet_eq_image`, `perm_finset_image_roundtrip`, `canonicalCapF3_perm_four_zero_iff_pulled` and `connected_labellingZeroMISCount_le_three` on branch commit `2a808e53cb7a763b54c53c4f06d12f7f64d3b113`; inspect [run 38945169850](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169850) before using it. If strict CI did not finish successfully, repair **this actual theorem first**, rerun strict Lean and axiom checks, then proceed.
+4. S010 strictly certifies universal connected `h(G)=3 iff Nonempty (G ≃g namedSpider)`, [run 38928965168](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168). S011 strictly certifies the genuine canonical F₃³ cap and `card (Equiv.Perm Vertex)=40320`, [run 38935115211](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38935115211).
 
-## Central theorem obligation, not further scaffolding
+## Binding mathematical target
 
-For each connected `G : SimpleGraph (Fin 8)`, let `N₀(e,G)` count the actual size-four `GraphMIS G` sets satisfying `capSum (canonicalCapF3 ∘ e) s=0`, where `e` runs uniformly over the genuine 40320 permutations. Prove the manuscript's *full* formula in Lean, from actual finite sample-space event counts:
+Close the **largest remaining mathematical obligation** of the complete first-paper flagship: convert the **real permutation-labelled zero-sum maximal-independent-four-set events** into honest kernel-checked 2304/128 finite-fibre equalities and graph-derived factorial moments, then (if possible in the same run) the *entire* four-term law:
 
-```
-M₁ = 2*m/35
-M₂ = 2*n₀/35 + n₂/315
-M₃ = h/315
-Pr(N₀=0) = 1-M₁+M₂-M₃
-Pr(N₀=1) = M₁-2*M₂+3*M₃
-Pr(N₀=2) = M₂-3*M₃
-Pr(N₀=3) = M₃ ≤ 1/105,
-with equality iff Nonempty (G ≃g namedSpider).
-```
+\[
+\begin{aligned}
+M_1 &= 2m/35,\\
+M_2 &= 2n_0/35+n_2/315,\\
+M_3 &= h/315;\\
+\Pr(N_0=0)&=1-M_1+M_2-M_3,\\
+\Pr(N_0=1)&=M_1-2M_2+3M_3,\\
+\Pr(N_0=2)&=M_2-3M_3,\\
+\Pr(N_0=3)&=M_3\leq1/105,
+\end{aligned}
+\]
+with equality in the final inequality **iff** the actual connected graph is isomorphic to the named spider. The graph invariants `m,n₀,n₂,h` must count genuine unordered graph-MIS sets/pairs/triples, not invented symbolic parameters.
 
-Here m = number of genuine size-four GraphMIS, n₀ and n₂ = **unordered** distinct pairs with 0 and 2 intersection, h = genuine **unordered** compatible triples, the already-verified `unorderedCompatibleTripleCount`.
+## Ordered obligations (proof first, no administrative detours)
 
-## Ordered proof-critical work
+1. Prove the four pulled-back quartets `pulledQuartet e i` are **pairwise distinct** for every permutation, and turn the S013 support inclusion into an **actual cardinal equivalence** between zero-sum GraphMIS sets and the filtered 4-index family. Preserve `N₀≤3` as a public theorem without any graph enumeration.
+2. Construct explicit **bijections** of 8! permutations with (a) the 70 four-subset images and their 576-element within/block fibres and (b) the 2520 ordered 2/2/2/2 block-image configurations and their 16-element within-cell fibres. In Lean show, for every fixed qualifying configuration, exactly 576 or 16 distinct permutations. No gigantic `decide` call over 40320 permutations as a substitute for proof.
+3. Prove **actual fixed-event cardinalities**: singleton 2304; complementary pair 2304; prescribed 2-overlap pair 128; prescribed compatible triple 128. Derive event incompatibility for 1- and 3-overlap pairs, and noncompatible triples. All events are predicates on actual `Equiv.Perm Vertex` and cap sums of actual size-four vertex Finsets.
+4. Prove the **genuine binomial/factorial moment identities** using the real GraphMIS family:
+   `E[N₀]=2m/35`,
+   `E[choose(N₀,2)]=2n₀/35+n₂/315`,
+   `E[choose(N₀,3)]=h/315`.
+   Account for unordered, distinct pairs and triples correctly; do not confuse 8 ordered quartet-image assignments with eight unordered graph triples.
+5. Combine the true moment identities with the now established `N₀≤3` and the existing moment-inversion proof to state **one exported Lean flagship probability law**, with spider sharpness via `connected_h_three_iff_namedSpider`. If attempting arbitrary admissible caps, require a supplied proof of `ClassicalCapNormalForm` and use only zero-fixing `LinearEquiv`; do not declare cap classification as an axiom.
+6. Run strict pinned `lake build`, `#print axioms` of every new public declaration, grep for `sorry`, `admit`, `native_decide`, `sorryAx`, compiler trust and custom axioms, all nine independent scripts including `verify_s011.py`, plus hosted exact-SHA CI. No status upgrade from compilation-only or finite-only evidence.
 
-1. **Complete the *actual* count support bound.** Prove each zero-sum labelled four-MIS corresponds *bijectively* to a unique pulled-back quartet `pulledQuartet e i`; prove four quartets are distinct for any permutation and `N₀(e,G)` equals the number of the four that are GraphMIS. Combine with S012's `connected_not_all_permuted_quartets_independent` to give **`labellingZeroMISCount G e ≤ 3` for every connected G and e**, not merely a statement that all four are not independent.
-2. **Proof of uniform event fibres** over `Finset.univ : Finset (Equiv.Perm Vertex)`: singleton 2304; complementary disjoint pair 2304; prescribed overlap-two pair 128; prescribed compatible triple 128. Introduce an explicit bijection between permutations and (image configuration, 16-element within-cell permutation fibre) rather than doing an untrusted 40320-case truth table. Show 2520 admissible *ordered* image configurations and eight favourable images; don't mistake them for unordered graph triples.
-3. Prove occurrence intersections incompatible with 1 or 3 overlap, and classify all *unordered* pair events by overlap 0/2. Derive exact first/second/third **factorial moments** from the real graph MIS family and the true permutation probability function, with no symbolic-probability shortcut.
-4. Compose genuine moments plus N₀≤3 using the already-certified moment-inversion theorem. The final named-spider iff must invoke the kernel-verified `connected_h_three_iff_namedSpider`.
-5. Give the arbitrary cap orbit classification only as a theorem **hypothesis** `ClassicalCapNormalForm`; use S011 linear transfer and permutation-sample-space bijections to prove the conditional all-admissible-cap probability statement. Do not treat arbitrary affine translations as origin-fixing.
-6. Run pinned exact `lake build`, inspect `#print axioms` for each public declaration, scan for `sorry`/`admit`/`native_decide`/custom axioms, and run all nine independent checkers including `scripts/verify_s011.py`. Require hosted exact-head CI PASS before status upgrade. If resources prevent full closure, **get at least the actual N₀≤3 count theorem kernel checked and one nontrivial event-fibre theorem**, name the smallest missing obligation and install S014 to target it directly. Do not divert to Palomar or paper packaging.
+## If full closure remains open
+
+Do not retreat to another graph-only theorem, Palomar packaging or manuscript polish. At minimum get a nontrivial **numerical fixed-event fibre** theorem (preferably the 576-preimage and 2304-singleton count) strictly kernel checked, plus the true quartet-index cardinal equivalence. Document the exact smallest unresolved Lean interface and make S015 attack it directly.
 
 ## Closeout
 
-Commit the new substantive Lean source and exact CI evidence to PR #4; update `sessions/S013_CLOSEOUT.md`, proof note, README, ROADMAP, CLAIMS, STATE and `research/NEXT_SESSION_PROMPT.md` with S014's greatest outstanding proof obligation. Keep statuses differentiated LEAN_KERNEL_VERIFIED / FINITE_CHECKED / CLASSICAL_INPUT / SOURCE_FORMALIZED / OPEN. Automatically install, **do not execute**, S014. Do not merge PR, register Palomar or submit a paper without explicit authorisation. Novelty/priority unresolved.
+Commit mathematical proof source to the designated PR #4 branch, pinned hosted CI evidence and exact status to the main project claim register, `sessions/S014_CLOSEOUT.md`, README, ROADMAP, STATE and a substantive proof note. Automatically install an executable S015 prompt; **do not execute S015** without a later owner message. Keep the full probability theorem gate active, novelty/priority unresolved, and all external submissions paused without explicit owner authorisation.
