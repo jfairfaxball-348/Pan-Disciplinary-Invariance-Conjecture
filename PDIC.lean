@@ -1061,9 +1061,13 @@ theorem fourRowEdgeCountBV_eq_actual
       actualMatrixEdgeCount (adjOfRows (fourRows a b c d)) := by
   rw [fourRowEdgeCountBV_eq_fourPopNat, actualMatrixEdgeCount_eq_sum_rows,
     Fin.sum_univ_four]
-  simp only [adjOfRows]
+  have hrow (i : Side) :
+      ((Finset.univ : Finset Side).filter
+        (fun j => adjOfRows (fourRows a b c d) i j = true)).card =
+        (fourBitPopCount5 (fourRows a b c d i)).toNat := by
+    exact (fourBitPopCount5_eq_rowCard (fourRows a b c d i)).symm
+  rw [hrow 0, hrow 1, hrow 2, hrow 3]
   simp [fourRows]
-  simp only [← fourBitPopCount5_eq_rowCard]
 
 #print axioms PDIC.actualMatrixEdgeCount_eq_sum_rows
 #print axioms PDIC.fourRowEdgeCountBV_eq_actual
