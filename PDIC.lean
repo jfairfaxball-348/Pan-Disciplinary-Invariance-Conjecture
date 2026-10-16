@@ -1141,10 +1141,12 @@ theorem four_mixed_implies_at_most_five_edges
   have hb : (4 : BitVec 3) ≤ fourRowMixedCountBV a b c d := by
     rw [BitVec.le_def]
     norm_num
+    dsimp only [a, b, c, d]
     omega
   have ht := four_by_four_six_edge_threshold_BV a b c d hb
   have htNat := (BitVec.le_def).mp ht
   norm_num at htNat
+  dsimp only [a, b, c, d] at htNat
   omega
 
 /-- At least eight bipartite edges leave at most two mixed MIS witnesses. -/
@@ -1161,10 +1163,12 @@ theorem eight_edges_implies_at_most_two_mixed
   have hb : (8 : BitVec 5) ≤ fourRowEdgeCountBV a b c d := by
     rw [BitVec.le_def]
     norm_num
+    dsimp only [a, b, c, d]
     omega
   have ht := eight_edges_at_most_two_mixed_BV a b c d hb
   have htNat := (BitVec.le_def).mp ht
   norm_num at htNat
+  dsimp only [a, b, c, d] at htNat
   omega
 
 /-- The seven-edge/three-mixed-witness semantic equality case is EXACTLY
@@ -1182,15 +1186,18 @@ theorem seven_edges_three_mixed_iff_spider
   let d := rowsOfAdj adj 3
   dsimp only [a, b, c, d] at *
   have hbv := seven_edge_three_iff_spider_BV a b c d
+  dsimp only [a, b, c, d] at hbv
   constructor
   · rintro ⟨hedges, hmixed⟩
     apply hbv.mp
     constructor
     · apply (BitVec.toNat_eq).2
       norm_num
+      dsimp only [a, b, c, d]
       omega
     · apply (BitVec.toNat_eq).2
       norm_num
+      dsimp only [a, b, c, d]
       omega
   · intro hspider
     rcases hbv.mpr hspider with ⟨hedges, hmixed⟩
