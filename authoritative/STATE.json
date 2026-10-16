@@ -18,8 +18,8 @@
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
   "next_prompt": "research/S012_UNIFORM_PROBABILITY_LEAN_TARGET.md",
   "source": "PDIC.lean",
-  "strict_hosted_ci": "S010_c8c64e5a2a98ee359c79430293ca0738211b4215_STRICT_PASS_STANDARD_AXIOMS_EIGHT_CHECKERS_38928965168",
-  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168",
+  "strict_hosted_ci": "S011_7f7e32dda87983c3df619481693af5a4baff5bfd_STRICT_PASS_STANDARD_AXIOMS_AND_NINE_CHECKERS_38935115211",
+  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38935115211",
   "all_five_verifier_run": "ALL_SIX_PASS_LOCAL_AND_HOSTED_38890367785",
   "native_axioms_approved": false,
   "s003r3_closeout": "sessions/S003R3_CLOSEOUT.md",
@@ -334,8 +334,11 @@
   "s011_new_checker": "scripts/verify_s011.py",
   "s011_checker_last_edit_sha": "7f7e32dda87983c3df619481693af5a4baff5bfd",
   "s011_checker_local_status": "PASS_EXHAUSTIVE_40320_PERMUTATIONS_2520_IMAGE_CONFIGURATIONS_EACH_FIBRE16",
-  "s011_checker_hosted_status": "PENDING_LAST_SOURCE_RUN_38935115211",
+  "s011_checker_hosted_status": "SUCCESS_PINNED_LEAN_BUILD_HOLE_SCAN_ALL_NINE_CHECKERS_ON_7f7e32dda87983c3df619481693af5a4baff5bfd",
   "s011_closeout": "sessions/S011_CLOSEOUT.md",
   "s011_proof_note": "research/S011_CAP_LABELLING_PROOF.md",
-  "s012_target": "research/S012_UNIFORM_PROBABILITY_LEAN_TARGET.md"
+  "s012_target": "research/S012_UNIFORM_PROBABILITY_LEAN_TARGET.md",
+  "s011_latest_verified_proof_branch_sha": "7f7e32dda87983c3df619481693af5a4baff5bfd",
+  "s011_latest_strict_run": "38935115211",
+  "s011_latest_finite_run": "38935115324"
 }
