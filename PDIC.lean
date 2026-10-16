@@ -3289,3 +3289,93 @@ theorem canonicalTwoQuartetStabilizer_card :
 #print axioms PDIC.canonicalTwoQuartetStabilizer_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S014: relate factorial stabilizers to events on actual vertex sets. -/
+
+/-- For a true permutation, preservation of a finite set is the same as
+membership preservation in both directions. -/
+theorem perm_finset_image_fixed_iff
+    (e : Equiv.Perm Vertex) (s : Finset Vertex) :
+    s.image e = s ↔ ∀ v, (v ∈ s ↔ e v ∈ s) := by
+  classical
+  constructor
+  · intro h v
+    constructor
+    · intro hv
+      have he : e v ∈ s.image e :=
+        Finset.mem_image.mpr ⟨v, hv, rfl⟩
+      simpa [h] using he
+    · intro hev
+      have he : e v ∈ s.image e := by simpa [h] using hev
+      obtain ⟨w, hw, hwe⟩ := Finset.mem_image.mp he
+      have hwv : w = v := e.injective hwe
+      simpa [hwv] using hw
+  · intro h
+    ext v
+    constructor
+    · rintro ⟨w, hw, rfl⟩
+      exact (h w).mp hw
+    · intro hv
+      have hmem : e (e.symm v) ∈ s := by simpa using hv
+      have hs : e.symm v ∈ s := (h (e.symm v)).mpr hmem
+      exact Finset.mem_image.mpr ⟨e.symm v, hs, e.apply_symm_apply v⟩
+
+/-- Stabilising the canonical four/four colouring is literally the same
+as fixing its actual canonical four-vertex subset. -/
+theorem canonicalFourBlockColour_comp_iff_image_fixed
+    (e : Equiv.Perm Vertex) :
+    canonicalFourBlockColour ∘ e = canonicalFourBlockColour ↔
+      (quartet (0 : QuartetIndex)).image e = quartet (0 : QuartetIndex) := by
+  rw [perm_finset_image_fixed_iff]
+  constructor
+  · intro h v
+    have hb :
+        decide (e v ∈ quartet (0 : QuartetIndex)) =
+          decide (v ∈ quartet (0 : QuartetIndex)) := by
+      simpa [canonicalFourBlockColour, Function.comp_apply]
+        using congrFun h v
+    have hh : (e v ∈ quartet (0 : QuartetIndex)) ↔
+        (v ∈ quartet (0 : QuartetIndex)) := by
+      simpa using congrArg (fun b : Bool => b = true) hb
+    exact hh.symm
+  · intro h
+    funext v
+    by_cases hv : v ∈ quartet (0 : QuartetIndex)
+    · have he : e v ∈ quartet (0 : QuartetIndex) := (h v).mp hv
+      simp [canonicalFourBlockColour, Function.comp_apply, hv, he]
+    · have he : e v ∉ quartet (0 : QuartetIndex) :=
+        fun hh => hv ((h v).mpr hh)
+      simp [canonicalFourBlockColour, Function.comp_apply, hv, he]
+
+/-- The actual fixed-image singleton quartet fibre has 576 permutations,
+using the colour stabilizer equivalence rather than brute-force search. -/
+theorem canonicalQuartetImageStabilizer_card :
+    Fintype.card {e : Equiv.Perm Vertex //
+      (quartet (0 : QuartetIndex)).image e =
+        quartet (0 : QuartetIndex)} = 576 := by
+  classical
+  let E :
+      {e : Equiv.Perm Vertex //
+        (quartet (0 : QuartetIndex)).image e =
+          quartet (0 : QuartetIndex)} ≃
+      {e : Equiv.Perm Vertex //
+        canonicalFourBlockColour ∘ e = canonicalFourBlockColour} :=
+    Equiv.subtypeEquiv (Equiv.refl _) (fun e =>
+      (canonicalFourBlockColour_comp_iff_image_fixed e).symm)
+  calc
+    Fintype.card {e : Equiv.Perm Vertex //
+      (quartet (0 : QuartetIndex)).image e =
+        quartet (0 : QuartetIndex)} =
+      Fintype.card {e : Equiv.Perm Vertex //
+        canonicalFourBlockColour ∘ e = canonicalFourBlockColour} :=
+          Fintype.card_congr E
+    _ = 576 := canonicalFourBlockStabilizer_card
+
+#print axioms PDIC.perm_finset_image_fixed_iff
+#print axioms PDIC.canonicalFourBlockColour_comp_iff_image_fixed
+#print axioms PDIC.canonicalQuartetImageStabilizer_card
+
+end PDIC
