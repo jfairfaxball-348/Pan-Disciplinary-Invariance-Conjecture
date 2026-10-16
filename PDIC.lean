@@ -3700,3 +3700,80 @@ theorem canonicalCapF3_perm_singleton_event_card
 #print axioms PDIC.canonicalCapF3_perm_singleton_event_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S016: the actual uniform complementary-pair event, built from the
+certified singleton 2304 fibre and the zero sum of all eight cap points. -/
+
+/-- The complete canonical eight-point cap has zero vector sum. -/
+theorem canonicalCapF3_total_zero :
+    capSum canonicalCapF3 (Finset.univ : Finset Vertex) = 0 := by
+  decide +kernel
+
+/-- A permutation of the eight labels leaves the total cap sum zero. -/
+theorem canonicalCapF3_perm_total_zero (e : Equiv.Perm Vertex) :
+    capSum (fun v => canonicalCapF3 (e v))
+      (Finset.univ : Finset Vertex) = 0 := by
+  rw [capSum_perm_reindex]
+  have himage : (Finset.univ : Finset Vertex).image e = Finset.univ := by
+    ext v
+    simp
+  rw [himage]
+  exact canonicalCapF3_total_zero
+
+/-- The two labelled cap sums of disjoint prescribed four-subsets add to zero,
+for every actual labelling permutation. -/
+theorem canonicalCapF3_perm_disjoint_pair_sum_zero
+    (s t : Finset Vertex) (hs : s.card = 4) (ht : t.card = 4)
+    (hd : Disjoint s t) (e : Equiv.Perm Vertex) :
+    capSum (fun v => canonicalCapF3 (e v)) s +
+      capSum (fun v => canonicalCapF3 (e v)) t = 0 := by
+  classical
+  have hun : s ∪ t = (Finset.univ : Finset Vertex) :=
+    Finset.eq_of_subset_of_card_le (Finset.subset_univ _) (by
+      rw [Finset.card_union_of_disjoint hd, hs, ht]
+      decide)
+  change (∑ v ∈ s, canonicalCapF3 (e v)) +
+    (∑ v ∈ t, canonicalCapF3 (e v)) = 0
+  rw [← Finset.sum_union hd, hun]
+  exact canonicalCapF3_perm_total_zero e
+
+/-- Exactly 2304 of the 40320 actual permutations make BOTH disjoint
+prescribed four-subsets zero-sum. This is a genuine pair event. -/
+theorem canonicalCapF3_perm_complementary_pair_event_card
+    (s t : Finset Vertex) (hs : s.card = 4) (ht : t.card = 4)
+    (hd : Disjoint s t) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+      capSum (fun v => canonicalCapF3 (e v)) t = 0} = 2304 := by
+  classical
+  have hevent (e : Equiv.Perm Vertex) :
+      (capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) t = 0) ↔
+      capSum (fun v => canonicalCapF3 (e v)) s = 0 := by
+    constructor
+    · intro h
+      exact h.1
+    · intro hs0
+      have htotal :=
+        canonicalCapF3_perm_disjoint_pair_sum_zero s t hs ht hd e
+      rw [hs0, zero_add] at htotal
+      exact ⟨hs0, htotal⟩
+  let E :
+      {e : Equiv.Perm Vertex //
+        capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) t = 0} ≃
+      {e : Equiv.Perm Vertex //
+        capSum (fun v => canonicalCapF3 (e v)) s = 0} :=
+    Equiv.subtypeEquiv (Equiv.refl _) (fun e => hevent e)
+  exact (Fintype.card_congr E).trans
+    (canonicalCapF3_perm_singleton_event_card s hs)
+
+#print axioms PDIC.canonicalCapF3_total_zero
+#print axioms PDIC.canonicalCapF3_perm_total_zero
+#print axioms PDIC.canonicalCapF3_perm_disjoint_pair_sum_zero
+#print axioms PDIC.canonicalCapF3_perm_complementary_pair_event_card
+
+end PDIC
