@@ -4351,3 +4351,94 @@ theorem three_distinct_four_sets_no_two_disjoint_pairs
 #print axioms PDIC.three_distinct_four_sets_no_two_disjoint_pairs
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S018 continuation: honest unordered subfamilies of actual four-MIS.
+These are sets of distinct vertex sets, not ordered lists or quartet indices. -/
+
+noncomputable def zeroFourGraphMISFamily
+    (G : SimpleGraph Vertex) (e : Equiv.Perm Vertex) :
+    Finset (Finset Vertex) := by
+  classical
+  exact (fourGraphMISFamily G).filter
+    (fun s => capSum (fun v => canonicalCapF3 (e v)) s = 0)
+
+theorem zeroFourGraphMISFamily_card
+    (G : SimpleGraph Vertex) (e : Equiv.Perm Vertex) :
+    (zeroFourGraphMISFamily G e).card = labellingZeroMISCount G e := by
+  classical
+  exact (labellingZeroMISCount_eq_family_filter G e).symm
+
+/-- The surviving unordered k-subfamilies count is precisely choose(N0,k).
+Unlike an ordered tuple, each distinct subfamily is counted once. -/
+theorem zeroGraphMIS_subfamily_card_choose
+    (G : SimpleGraph Vertex) (e : Equiv.Perm Vertex) (k : ℕ) :
+    ((zeroFourGraphMISFamily G e).powersetCard k).card =
+      Nat.choose (labellingZeroMISCount G e) k := by
+  rw [Finset.card_powersetCard, zeroFourGraphMISFamily_card]
+
+/-- Every zero-sum unordered k-subfamily is exactly a size-k subfamily of
+the real graph MIS family on which all constituent cap sums vanish. -/
+theorem zeroGraphMIS_subfamilies_eq_filter
+    (G : SimpleGraph Vertex) (e : Equiv.Perm Vertex) (k : ℕ) :
+    (zeroFourGraphMISFamily G e).powersetCard k =
+      ((fourGraphMISFamily G).powersetCard k).filter
+        (fun T => ∀ s ∈ T, capSum (fun v => canonicalCapF3 (e v)) s = 0) := by
+  classical
+  ext T
+  simp only [Finset.mem_powersetCard, Finset.mem_filter]
+  constructor
+  · rintro ⟨hsub, hc⟩
+    refine ⟨⟨?_, hc⟩, ?_⟩
+    · exact hsub.trans (Finset.filter_subset _ _)
+    · intro s hs
+      exact (Finset.mem_filter.mp (hsub hs)).2
+  · rintro ⟨⟨hsub, hc⟩, hz⟩
+    refine ⟨?_, hc⟩
+    intro s hs
+    exact Finset.mem_filter.mpr ⟨hsub hs, hz s hs⟩
+
+/-- A genuine uniform-labelling/binomial-moment double-counting identity
+for EVERY k, with arbitrary graph and real unordered k-subsets of MIS.
+This supplies the graph-probability combinatorial interface for M2/M3. -/
+theorem graphMIS_unordered_moment_double_count
+    (G : SimpleGraph Vertex) (k : ℕ) :
+    (∑ e : Equiv.Perm Vertex,
+      Nat.choose (labellingZeroMISCount G e) k) =
+    ∑ T ∈ (fourGraphMISFamily G).powersetCard k,
+      ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+        (fun e => ∀ s ∈ T,
+          capSum (fun v => canonicalCapF3 (e v)) s = 0)).card := by
+  classical
+  calc
+    (∑ e : Equiv.Perm Vertex,
+      Nat.choose (labellingZeroMISCount G e) k) =
+        ∑ e : Equiv.Perm Vertex,
+          (((fourGraphMISFamily G).powersetCard k).filter
+            (fun T => ∀ s ∈ T,
+              capSum (fun v => canonicalCapF3 (e v)) s = 0)).card := by
+          apply Finset.sum_congr rfl
+          intro e _
+          rw [← zeroGraphMIS_subfamily_card_choose G e k,
+            zeroGraphMIS_subfamilies_eq_filter]
+    _ = ∑ e : Equiv.Perm Vertex,
+          ∑ T ∈ (fourGraphMISFamily G).powersetCard k,
+            if (∀ s ∈ T, capSum (fun v => canonicalCapF3 (e v)) s = 0)
+            then (1 : ℕ) else 0 := by simp
+    _ = ∑ T ∈ (fourGraphMISFamily G).powersetCard k,
+          ∑ e : Equiv.Perm Vertex,
+            if (∀ s ∈ T, capSum (fun v => canonicalCapF3 (e v)) s = 0)
+            then (1 : ℕ) else 0 := by rw [Finset.sum_comm]
+    _ = ∑ T ∈ (fourGraphMISFamily G).powersetCard k,
+          ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+            (fun e => ∀ s ∈ T,
+              capSum (fun v => canonicalCapF3 (e v)) s = 0)).card := by simp
+
+#print axioms PDIC.zeroFourGraphMISFamily_card
+#print axioms PDIC.zeroGraphMIS_subfamily_card_choose
+#print axioms PDIC.zeroGraphMIS_subfamilies_eq_filter
+#print axioms PDIC.graphMIS_unordered_moment_double_count
+
+end PDIC
