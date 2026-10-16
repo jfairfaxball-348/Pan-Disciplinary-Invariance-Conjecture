@@ -52,10 +52,7 @@ def check():
             assert edges == EXPECTED, (mask, orientation, edges)
             # Every nonedge is also preserved, not just the seven edges.
             for u, v in combinations(range(8), 2):
-                original = ((u < 4) != (v < 4)) and (
-                    bool((mask >> (4*min(u,v)+(max(u,v)-4))) & 1)
-                    if u < 4 or v < 4 else False)
-                # More direct orientation-independent adjacency test:
+                # Direct orientation-independent adjacency test:
                 if u < 4 and v >= 4:
                     original = bool((mask >> (4*u+v-4)) & 1)
                 elif v < 4 and u >= 4:
