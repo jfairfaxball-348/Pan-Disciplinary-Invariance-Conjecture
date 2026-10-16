@@ -31,3 +31,5 @@ The [revised manuscript](paper/PDIC_S003R8_DRAFT.tex) supplies the zero-fixing l
 [Claims](research/CLAIMS.md) · [Roadmap](ROADMAP.md) · [S003R9 proof/scope](research/S003R9_GRAPH_WITNESSES_AND_SCOPE.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md).
 
 Reproduce the pinned `lake build`, strict `#print axioms` audit and six Python checkers in `scripts/`. The sixth checks the prior-art separation examples and all 2520 atom assignments. No PR merge, author correspondence, Palomar/arXiv/journal submission has occurred. S004 is the final source-comparison, editing and publication-preparation gate.
+
+**S003R9 final exact-head PASS:** [`402465f2330a275e04108169a6bfbb65e94e10b8`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/402465f2330a275e04108169a6bfbb65e94e10b8), [strict Lean 38890367785](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785), all six checkers PASS. [Final closeout](sessions/S003R9_CLOSEOUT.md).

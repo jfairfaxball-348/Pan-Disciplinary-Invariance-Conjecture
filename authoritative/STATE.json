@@ -19,9 +19,9 @@
   "palomar": "NOT_REQUESTED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
-  "strict_hosted_ci": "PR3_8199e6bc41dc9801a95b1f19ece0c186c1791995_LEAN_PASS_38889327092_ALL_FIVE_ORIGINAL_FINITE_PASS_STANDARD_AXIOMS_ONLY",
-  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38889327092",
-  "all_five_verifier_run": "PASS_LOCAL_AND_HOSTED_38889327092__SIXTH_NEW_BATON_CHECK_PASS_LOCAL",
+  "strict_hosted_ci": "PR3_402465f2330a275e04108169a6bfbb65e94e10b8_LEAN_PASS_38890367785_ALL_SIX_FINITE_PASS_STANDARD_AXIOMS_ONLY",
+  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785",
+  "all_five_verifier_run": "ALL_SIX_PASS_LOCAL_AND_HOSTED_38890367785",
   "native_axioms_approved": false,
   "s003r3_closeout": "sessions/S003R3_CLOSEOUT.md",
   "s003r3_proof": "research/S003R3_GRAPH_SEMANTICS_AND_EIGHT_EDGE_BOUND.md",
@@ -101,5 +101,9 @@
     "connected_matrixGraph_seven_edges",
     "connected_graphMixedCount_le_three",
     "connected_graphMixedCount_three_iff_pattern"
-  ]
+  ],
+  "s003r9_final_head_sha": "402465f2330a275e04108169a6bfbb65e94e10b8",
+  "s003r9_final_head_lean_run": "38890367785",
+  "s003r9_final_head_finite_run": "38890368126",
+  "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY"
 }
