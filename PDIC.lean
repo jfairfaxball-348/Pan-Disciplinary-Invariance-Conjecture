@@ -4173,3 +4173,50 @@ theorem canonicalCapF3_perm_overlap_two_pair_event_card
 #print axioms PDIC.canonicalCapF3_perm_overlap_two_pair_event_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S017: a genuine three-source cap-zero fibre using complementary pairs. -/
+
+/-- A specified compatible triple of actual four-subsets is simultaneously
+zero-sum under exactly 128 of the 40320 permutations. The complementary
+second set imposes no new zero-sum condition beyond the first. -/
+theorem canonicalCapF3_perm_compatible_triple_event_card
+    (s t u : Finset Vertex) (hs : s.card = 4) (ht : t.card = 4)
+    (hu : u.card = 4) (hd : Disjoint s t)
+    (hsu : (s ∩ u).card = 2) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+      capSum (fun v => canonicalCapF3 (e v)) t = 0 ∧
+      capSum (fun v => canonicalCapF3 (e v)) u = 0} = 128 := by
+  classical
+  have hevent (e : Equiv.Perm Vertex) :
+      (capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+       capSum (fun v => canonicalCapF3 (e v)) t = 0 ∧
+       capSum (fun v => canonicalCapF3 (e v)) u = 0) ↔
+      (capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+       capSum (fun v => canonicalCapF3 (e v)) u = 0) := by
+    constructor
+    · rintro ⟨hzs, hzt, hzu⟩
+      exact ⟨hzs, hzu⟩
+    · rintro ⟨hzs, hzu⟩
+      have htotal :=
+        canonicalCapF3_perm_disjoint_pair_sum_zero s t hs ht hd e
+      rw [hzs, zero_add] at htotal
+      exact ⟨hzs, htotal, hzu⟩
+  let E :
+      {e : Equiv.Perm Vertex //
+        capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) t = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) u = 0} ≃
+      {e : Equiv.Perm Vertex //
+        capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) u = 0} :=
+    Equiv.subtypeEquiv (Equiv.refl _) (fun e => hevent e)
+  exact (Fintype.card_congr E).trans
+    (canonicalCapF3_perm_overlap_two_pair_event_card s u hs hu hsu)
+
+#print axioms PDIC.canonicalCapF3_perm_compatible_triple_event_card
+
+end PDIC
