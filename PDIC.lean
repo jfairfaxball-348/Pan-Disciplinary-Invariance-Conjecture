@@ -2402,8 +2402,84 @@ separately, for all vertex pairs including nonedges. -/
 /-- All spider-pattern matrices admit a row/column permutation to the
 canonical labelled matrix. This is a finite statement about the sixteen
 Boolean cells and the two symmetric groups on four elements. -/
+/-! S010: break the former 65,536-matrix × permutation proof into
+    one 3-leaf kernel certificate, four explicit row-hub relabellings,
+    and a transpose identity.  No theorem assumes the desired isomorphism. -/
+
+/-- For a fixed hub in row zero only the three other row masks vary.
+The six choices of ordered distinct singleton neighbours are checked by
+a small finite, kernel-reduced certificate rather than global search. -/
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 0 in
+private theorem spiderHubZero_leaves (b c d : BitVec 4)
+    (h : threeDistinctLeavesBV b c d = true) :
+    ∃ q : Side ≃ Side, ∀ i j : Side,
+      (adjOfRows (fourRows (15 : BitVec 4) b c d) i j = true) ↔
+        canonicalSpiderMatrix i (q j) = true := by
+  revert b c d
+  decide +kernel
+
+/-- A column mask is exactly the transposed row adjacency. This local
+bitvector identity is separate from the combinatorial permutation search. -/
+private theorem spiderTransposeCells (a b c d : BitVec 4) (i j : Side) :
+    adjOfRows (fourRows
+      (columnOfRowsBV a b c d 0)
+      (columnOfRowsBV a b c d 1)
+      (columnOfRowsBV a b c d 2)
+      (columnOfRowsBV a b c d 3)) i j =
+    adjOfRows (fourRows a b c d) j i := by
+  fin_cases i <;> fin_cases j <;>
+    simp only [adjOfRows, fourRows, columnOfRowsBV,
+      ↓reduceIte, Fin.isValue] <;> bv_decide
+
+/-- Hub-on-the-left normalisation. The only finite search occurs in
+spiderHubZero_leaves: row placements are explicit swaps. -/
+private theorem spiderHubRows_permutations (a b c d : BitVec 4)
+    (hs : spiderHubRowsBV a b c d = true) :
+    ∃ p q : Side ≃ Side, ∀ i j : Side,
+      (adjOfRows (fourRows a b c d) i j = true) ↔
+        canonicalSpiderMatrix (p i) (q j) = true := by
+  have hcases :
+      (a = 15 ∧ threeDistinctLeavesBV b c d = true) ∨
+      (b = 15 ∧ threeDistinctLeavesBV a c d = true) ∨
+      (c = 15 ∧ threeDistinctLeavesBV a b d = true) ∨
+      (d = 15 ∧ threeDistinctLeavesBV a b c = true) := by
+    simpa [spiderHubRowsBV, Bool.or_eq_true, Bool.and_eq_true] using hs
+  rcases hcases with ⟨ha, hleaf⟩ | ⟨hb, hleaf⟩ |
+    ⟨hc, hleaf⟩ | ⟨hd, hleaf⟩
+  · subst a
+    obtain ⟨q, hq⟩ := spiderHubZero_leaves b c d hleaf
+    exact ⟨Equiv.refl Side, q, by intro i j; simpa using hq i j⟩
+  · subst b
+    obtain ⟨q, hq⟩ := spiderHubZero_leaves a c d hleaf
+    refine ⟨Equiv.swap (0 : Side) (1 : Side), q, ?_⟩
+    intro i j
+    fin_cases i
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (1 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (0 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (2 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (3 : Side) j
+  · subst c
+    obtain ⟨q, hq⟩ := spiderHubZero_leaves b a d hleaf
+    refine ⟨Equiv.swap (0 : Side) (2 : Side), q, ?_⟩
+    intro i j
+    fin_cases i
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (2 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (1 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (0 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (3 : Side) j
+  · subst d
+    obtain ⟨q, hq⟩ := spiderHubZero_leaves b c a hleaf
+    refine ⟨Equiv.swap (0 : Side) (3 : Side), q, ?_⟩
+    intro i j
+    fin_cases i
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (3 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (1 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (2 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (0 : Side) j
+
+/-- Universal orientation certificate, now factoring out the transpose
+and normalising only the three leaves of a fixed hub. -/
 theorem spiderBitRows_permutation_certificate (a b c d : BitVec 4)
     (hs : spiderMatrixBV a b c d = true) :
     ∃ swapSides : Bool, ∃ p q : Side ≃ Side,
@@ -2411,8 +2487,30 @@ theorem spiderBitRows_permutation_certificate (a b c d : BitVec 4)
         (adjOfRows (fourRows a b c d) i j = true) ↔
           (if swapSides then canonicalSpiderMatrix (p j) (q i)
            else canonicalSpiderMatrix (p i) (q j)) = true := by
-  revert a b c d
-  decide +kernel
+  have hor :
+      spiderHubRowsBV a b c d = true ∨
+      spiderHubRowsBV
+        (columnOfRowsBV a b c d 0)
+        (columnOfRowsBV a b c d 1)
+        (columnOfRowsBV a b c d 2)
+        (columnOfRowsBV a b c d 3) = true := by
+    simpa only [spiderMatrixBV, Bool.or_eq_true] using hs
+  rcases hor with hrow | hcol
+  · obtain ⟨p, q, h⟩ := spiderHubRows_permutations a b c d hrow
+    exact ⟨false, p, q, by intro i j; simpa using h i j⟩
+  · obtain ⟨p, q, h⟩ := spiderHubRows_permutations
+        (columnOfRowsBV a b c d 0)
+        (columnOfRowsBV a b c d 1)
+        (columnOfRowsBV a b c d 2)
+        (columnOfRowsBV a b c d 3) hcol
+    refine ⟨true, p, q, ?_⟩
+    intro i j
+    simpa only [ite_true, ite_false] using
+      ((spiderTransposeCells a b c d j i).symm ▸ h j i)
+
+#print axioms PDIC.spiderHubZero_leaves
+#print axioms PDIC.spiderHubRows_permutations
+#print axioms PDIC.spiderBitRows_permutation_certificate
 
 /-- Exchange the two four-vertex sides without making any assumption
 about the edge relation. -/
