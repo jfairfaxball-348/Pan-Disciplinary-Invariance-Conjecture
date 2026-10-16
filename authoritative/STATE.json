@@ -228,7 +228,7 @@
   "s007_proof_branch": "session/s007-full-lean-flagship",
   "s007_start_proof_source": "402465f2330a275e04108169a6bfbb65e94e10b8",
   "s007_core_problem": "CONNECTED_EIGHT_VERTEX_UNORDERED_COMPATIBLE_TRIPLES_TO_MATRIX_GRAPH_COUNT_AND_NAMED_SPIDER_ISOMORPHISM",
-  "flagship_kernel_status": "INCOMPLETE_S019_PAIR_EVENT_CLASSIFIER_AND_UNORDERED_PAIR_FAMILY_BRIDGE_CANDIDATE__GLOBAL_M2_M3_AND_FOUR_PROBABILITIES_OPEN",
+  "flagship_kernel_status": "INCOMPLETE_S019_PAIR_EVENT_CLASSIFICATION_AND_GENUINE_UNORDERED_TWO_MIS_SUBFAMILY_BRIDGE_STRICT_LEAN_VERIFIED__GLOBAL_M2_M3_AND_FOUR_PROBABILITIES_OPEN",
   "flagship_required_interfaces": [
     "admissible 8-cap typed zero-sum quartet incidence and explicitly conditional classical GL(3,3) cap transfer",
     "genuine uniform 8! labellings, regular fibres, moments, N0<=3 and all four probabilities",
@@ -570,7 +570,7 @@
   "s018_closeout": "sessions/S018_CLOSEOUT.md",
   "s018_proof_note": "research/S018_GRAPH_MOMENT_ASSEMBLY.md",
   "s019_target_path": "research/S019_UNORDERED_PAIR_TRIPLE_MOMENTS_TARGET.md",
-  "s019_status": "EXECUTED_PARTIAL_REAL_UNORDERED_PAIR_EVENT_CLASSIFICATION__FULL_FLAGSHIP_OPEN",
+  "s019_status": "EXECUTED_PARTIAL_PAIR_EVENT_CLASSIFICATION_AND_UNORDERED_GRAPH_MIS_TWO_FAMILY_STRICT_LEAN_PASS__FULL_FLAGSHIP_OPEN",
   "s018_extension": {
     "status": "COMPLETED_STRICT_LEAN_PASS",
     "source_sha": "6eb67aa8cb7ae08151fe3074166b7a206f844cd7",
@@ -598,7 +598,7 @@
   "s019_lean_run": "38978027666",
   "s019_finite_run": "38978027657",
   "s019_finite_status": "SUCCESS_EXACT_SHA_ALL_TEN_CHECKERS",
-  "s019_lean_status": "PENDING_EXACT_SOURCE_STRICT_HOSTED_VERIFICATION",
+  "s019_lean_status": "SUCCESS_EXACT_SHA_PINNED_BUILD_HOLE_SCAN_STANDARD_AXIOMS_AND_ALL_TEN_CHECKERS",
   "s019_new_declarations": [
     "canonicalCapF3_perm_distinct_pair_event_zero_of_other_overlap",
     "canonicalCapF3_perm_distinct_pair_event_card_by_overlap",
@@ -611,5 +611,12 @@
   "s019_closeout": "sessions/S019_CLOSEOUT.md",
   "s019_proof_note": "research/S019_PAIR_SUBFAMILY_BRIDGE.md",
   "s020_target": "research/S020_FULL_UNORDERED_MOMENTS_AND_FLAGSHIP_TARGET.md",
-  "s020_status": "INSTALLED_NOT_EXECUTED"
+  "s020_status": "INSTALLED_NOT_EXECUTED",
+  "s019_source_verified": true,
+  "s019_new_declarations_kernel_verified": true,
+  "s019_verified_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ]
 }
