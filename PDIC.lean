@@ -3499,3 +3499,68 @@ theorem exists_perm_fourset_image (s t : Finset Vertex)
 #print axioms PDIC.exists_perm_fourset_image
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S015: transport the genuine permutation fibres by composition. -/
+
+/-- Mapping a finite set by two genuine permutations composes their images. -/
+theorem finset_image_perm_trans
+    (s : Finset Vertex) (p q : Equiv.Perm Vertex) :
+    (s.image p).image q = s.image (p.trans q) := by
+  classical
+  ext v
+  simp only [Finset.mem_image]
+  constructor
+  · rintro ⟨w, ⟨u, hu, rfl⟩, hw⟩
+    exact ⟨u, hu, hw⟩
+  · rintro ⟨u, hu, hw⟩
+    exact ⟨p u, ⟨u, hu, rfl⟩, hw⟩
+
+/-- Every nonempty fixed-image fibre is equivariant to the target
+stabilizer; this is a bijection of actual permutations, not just counting. -/
+theorem perm_image_fibre_card_eq_stabilizer
+    (s t : Finset Vertex) (p : Equiv.Perm Vertex)
+    (hp : s.image p = t) :
+    Fintype.card {e : Equiv.Perm Vertex // s.image e = t} =
+      Fintype.card {e : Equiv.Perm Vertex // t.image e = t} := by
+  classical
+  let F : Equiv.Perm Vertex ≃ Equiv.Perm Vertex :=
+    { toFun := fun e => p.symm.trans e
+      invFun := fun e => p.trans e
+      left_inv := by intro e; ext v; simp
+      right_inv := by intro e; ext v; simp }
+  have hpred (e : Equiv.Perm Vertex) :
+      s.image e = t ↔ t.image (F e) = t := by
+    have hid : p.trans (F e) = e := F.left_inv e
+    have ht : t.image (F e) = s.image e := by
+      calc
+        t.image (F e) = (s.image p).image (F e) := by rw [hp]
+        _ = s.image (p.trans (F e)) := finset_image_perm_trans s p (F e)
+        _ = s.image e := by rw [hid]
+    rw [ht]
+  let E :
+      {e : Equiv.Perm Vertex // s.image e = t} ≃
+      {e : Equiv.Perm Vertex // t.image e = t} :=
+    Equiv.subtypeEquiv F (fun e => hpred e)
+  exact Fintype.card_congr E
+
+/-- The fibre of permutations sending *any* four-subset onto the actual
+canonical zero-sum quartet Q0 has precisely 576 members. -/
+theorem arbitraryFourset_to_canonicalQuartet_fibre_card
+    (s : Finset Vertex) (hs : s.card = 4) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      s.image e = quartet (0 : QuartetIndex)} = 576 := by
+  classical
+  obtain ⟨p, hp⟩ :=
+    exists_perm_fourset_image s (quartet (0 : QuartetIndex))
+      hs (quartet_card (0 : QuartetIndex))
+  rw [perm_image_fibre_card_eq_stabilizer s (quartet 0) p hp]
+  exact canonicalQuartetImageStabilizer_card
+
+#print axioms PDIC.finset_image_perm_trans
+#print axioms PDIC.perm_image_fibre_card_eq_stabilizer
+#print axioms PDIC.arbitraryFourset_to_canonicalQuartet_fibre_card
+
+end PDIC
