@@ -1,4 +1,4 @@
-# PDIC claim register — S008 concrete spider h=3 increment; universal equality iff pending S009
+# PDIC claim register — S009 universal spider equality source candidate unverified
 
 Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessions/S003R9_CLOSEOUT.md). Certified new Lean source remains on unmerged PR #3; main source is the earlier S003R3 baseline.
 
@@ -11,7 +11,7 @@ Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessi
 | Anchored mixed third-set count independent of partition choice | LEAN_KERNEL_VERIFIED_S007 | Count over actual graph MIS, not yet proven bijective to unordered h(G) |
 | Genuine unordered h(G)=4×4 matrix count, connected h≤3 | LEAN_KERNEL_VERIFIED_S007 | Exact S007 graph transport and h=B theorem; source ff864170..., run 38914271558 |
 | Named spider concrete graph, matrixGraph isomorphism, connectedness, h=3 | LEAN_KERNEL_VERIFIED_S008 | Source fc8581d0bd117cd66c4497fa16209e3480c65ec7; run 38918496261; STRICT LEAN PASS with all eight independent checkers |
-| Universal h=3 iff G is isomorphic to named spider | PROVED_WRITTEN / FINITE_CHECKED; OPEN_IN_LEAN | Missing actual row/column matrix-pattern-to-graph-isomorphism proof; S009 target |
+| Universal h=3 iff G is isomorphic to named spider | LEAN_SOURCE_CANDIDATE_S009; OPEN_IN_LEAN | Proposed at 59d34387; strict run 38922840797 failed with runner shutdown exit 143 during lake build. All 192 patterns finite verified, NOT a Lean kernel proof |
 | Admissible eight-cap classification, 702 caps and linear orbit | PROVED_WITH_CLASSICAL_INPUT / FINITE_CHECKED | Nine-cap equivalence externally cited; not all-caps Lean |
 | Canonical four zero quartets and C4 incidence | LEAN_KERNEL_VERIFIED | Concrete canonical cap |
 | Executable IsMIS4 iff Prop MIS | LEAN_KERNEL_VERIFIED | Every Bool adjacency |
@@ -93,3 +93,7 @@ Exact proof SHA [`d05fe1e71d054fe74a52a664112b6de436e999da`](https://github.com/
 Named `SimpleGraph (Fin 8)` with edges 04,05,06,07,16,25,34, explicit canonical 4×4 `matrixGraph` isomorphism, connectedness via hub walks, and the theorem `namedSpider_unorderedCompatibleTripleCount_three` have Lean source at [fc8581d0bd117cd66c4497fa16209e3480c65ec7](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/fc8581d0bd117cd66c4497fa16209e3480c65ec7). `#print axioms` for these concrete declarations reports only propext, Classical.choice and Quot.sound in a successful compile at 191f2b5. Latest exact-source strict run: [38918496261](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38918496261) — STRICT LEAN PASS with all eight independent checkers. The initial failed run merely lacked reduction of named adjacency; the second compiled but source-guard rejected an innocuous comment token, which has been removed.
 
 An explicit constructive proof normalising **every** 96 row-centred and 96 column-centred matrix to the named graph is written at [S008 note](S008_NAMED_SPIDER_NORMALISATION.md); [independent checker](../scripts/verify_s008.py) covers all 65,536 matrices and all 28 unordered adjacency/nonadjacency pairs per witness. That evidence is PROVED_WRITTEN / FINITE_CHECKED; the quantified pattern-to-actual-graph-isomorphism remains OPEN_IN_LEAN. No completed equality iff and no full cap-labelled probability law are claimed. S009 is automatically installed but unexecuted. No submissions or PR merge.
+
+## S009 strict evidence boundary — 16 October 2026
+
+Proposed source 59d34387 constructs row/column graph-isomorphism and public connected h=3 iff namedSpider statements. Strict source workflow head 0a9961f92c69027bda803c9e805349943079856b: [run 38922840797](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38922840797) **FAILED** with runner SIGTERM/143 during lake build after six minutes, without Lean compiler diagnostics. Full eight checkers and axiom check skipped. Earlier S007/S008 certificates remain valid. Unverified new declarations may not be labelled proved. Independent enumeration: 96 row + 96 column qualifying matrices all admit correct permutations, FINITE_CHECKED only. [S010 constructive repair installed](S010_SPIDER_KERNEL_CLOSURE_TARGET.md); no external submission.

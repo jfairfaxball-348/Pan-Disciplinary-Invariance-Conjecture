@@ -2,7 +2,7 @@
 
 Connect finite-group zero-sum quartet geometry and maximal-independent-set statistics in a precise first paper. The project name is aspirational; literature priority remains unresolved.
 
-**Current stage: full flagship Lean formalisation. S008 executed: the concrete named-spider isomorphism and h=3 witness compile with standard axioms; complete equality iff a named spider remains OPEN_IN_LEAN. S009 universal spider normalisation is now installed, not executed.**
+**Current stage: full flagship Lean formalisation. S009 proposed universal h=3 iff named-spider graph-isomorphism Lean code but did NOT attain strict kernel certification (runner terminated, exit 143, during `lake build`). S010 structural repair is installed; S007/S008 previously certified facts remain valid.**
 
 ## What is now strictly verified
 
@@ -25,11 +25,11 @@ The manuscript's entire theorem remains the target. For a connected eight-vertex
 
 with equality precisely at the named spider S(2,2,2,1). The classical nine-cap classification is an explicitly cited external input to the written proof.
 
-**Still open in Lean:** the universal implication from an arbitrary spider-pattern matrix to an actual named-spider graph isomorphism, hence the completed equality iff statement; honest cap/classical-input transfer; the genuine uniform 8! bijection model and regular 16-element fibres; moments, N₀≤3 and the single integrated four-term theorem. Conditional rational moment inversion is already certified, but does not replace a probability-space proof. The spider has valid 3+1 and 1+3 four-MIS; the mixed family does not exhaust its MIS.
+**Still open in Lean:** strict certification of S009's candidate matrix spider-pattern to named-spider graph isomorphism and hence the equality iff theorem; honest cap/classical-input transfer; the genuine uniform 8! bijection model and regular 16-element fibres; moments, N₀≤3 and the single integrated four-term theorem. Conditional rational moment inversion is already certified, but does not replace a probability-space proof. The spider has valid 3+1 and 1+3 four-MIS; the mixed family does not exhaust its MIS.
 
 ## Next session and process
 
-[S009 executable prompt](research/S009_SPIDER_PATTERN_ISOMORPHISM_LEAN_TARGET.md): finish the explicit arbitrary row/column-pattern to actual graph-isomorphism proof and compose `h(G)=3 ↔ G ≃g namedSpider`. S008's concrete spider and written constructive normalisation are already in [the S008 proof note](research/S008_NAMED_SPIDER_NORMALISATION.md) and [closeout](sessions/S008_CLOSEOUT.md). Say **“run next session”** to execute it. At every closeout, automatically write, install and commit the next numbered prompt; do not run it without a new owner instruction.
+[S010 executable prompt](research/S010_SPIDER_KERNEL_CLOSURE_TARGET.md): replace S009's expensive global permutation search by a constructive eight-case hub normalisation and obtain strict kernel PASS for the universal equality theorem. [S009 proof note](research/S009_SPIDER_MATRIX_PERMUTATION_CANDIDATE.md) and [closeout](sessions/S009_CLOSEOUT.md) record exact limitations.
 
 The full probability theorem and uniquely sharp named extremiser must both pass strict Lean before returning to Palomar preparation, unless the owner redirects. A narrower certificate is not project completion.
 
@@ -49,3 +49,7 @@ The full probability theorem and uniquely sharp named extremiser must both pass 
 [Claims](research/CLAIMS.md) · [Roadmap](ROADMAP.md) · [Flagship statement](research/FLAGSHIP_THEOREM.md) · [Manuscript](paper/PDIC_S003R8_DRAFT.tex) · [Session control](research/NEXT_SESSION_PROMPT.md).
 
 No publication submission, Palomar registration, correspondence or PR merge has been performed. The manuscript is a research draft; its older formalisation-scope paragraphs must be updated at the manuscript stage. The full flagship is not yet end-to-end Lean verified.
+
+## S009 attempted universal equality (16 October 2026)
+
+[Proof source 59d34387](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/59d34387f4a8bd299a37034d4ed878cba7be3e8d) proposes actual row/column graph isomorphisms and the universal equality iff theorem. Independent enumeration validates all 192 spider-pattern permutations, but [strict CI run 38922840797](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38922840797) failed at `lake build` due to runner shutdown (143), without a compiler diagnosis. Full checks skipped: **NOT LEAN_KERNEL_VERIFIED**. [S010](research/S010_SPIDER_KERNEL_CLOSURE_TARGET.md) is installed to repair this specific proof bottleneck. First-paper cap transfer and four-term probability formalisation remain mandatory. No submission or merge.

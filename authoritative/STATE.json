@@ -1,10 +1,10 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-16",
-  "last_completed_session": "S008",
-  "next_session": "S009",
+  "last_completed_session": "S009",
+  "next_session": "S010",
   "next_session_executed": false,
-  "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION__S008_CONCRETE_SPIDER_H3_PROOF__UNIVERSAL_EQUALITY_OPEN__S009_INSTALLED",
+  "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION_S009_CANDIDATE_UNVERIFIED_S010_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -13,10 +13,10 @@
   "mathematics": "FULL_FLAGSHIP_PROVED_WRITTEN_WITH_CLASSICAL_INPUT__CONNECTED_H_LE_THREE_STRICT_LEAN_VERIFIED__CONCRETE_SPIDER_H_EQ_THREE_COMPILES__GENERAL_EQUALITY_AND_PROBABILITY_OPEN",
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
-  "lean": "S007_H_BOUND_STRICT_PASS_ff864170..._RUN_38914271558__S008_CONCRETE_H3_STRICT_PASS_fc8581..._RUN_38918496261__FULL_FLAGSHIP_OPEN",
+  "lean": "S007_S008_STRICT_PASS_S009_PROOF_CANDIDATE_UNVERIFIED_RUN_38922840797_FAILED_EXIT143",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
-  "next_prompt": "research/S009_SPIDER_PATTERN_ISOMORPHISM_LEAN_TARGET.md",
+  "next_prompt": "research/S010_SPIDER_KERNEL_CLOSURE_TARGET.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S008_fc8581d0bd117cd66c4497fa16209e3480c65ec7_STRICT_PASS_STANDARD_AXIOMS_AND_EIGHT_FINITE_CHECKERS_RUN_38918496261",
   "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38918496261",
@@ -105,8 +105,8 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "UNIVERSAL_SPIDER_MATRIX_PATTERN_TO_NAMED_GRAPH_ISOMORPHISM_AND_CONNECTED_H_THREE_IFF",
-  "next_session_status": "AUTOMATICALLY_INSTALLED_NOT_EXECUTED",
+  "next_session_target": "S010_STRUCTURAL_ROW_COLUMN_SPIDER_NORMALISATION_STRICT_LEAN_CERTIFICATION",
+  "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": "research/NEXT_SESSION_PROMPT.md",
   "session_process": {
@@ -130,7 +130,7 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S009_SPIDER_PATTERN_ISOMORPHISM_LEAN_TARGET.md",
+  "next_session_target_file": "research/S010_SPIDER_KERNEL_CLOSURE_TARGET.md",
   "next_session_target_installed_date": "2026-10-16",
   "next_session_target_source": "S008_PARTIAL_CONCRETE_NAMED_SPIDER_LEAN_INCREMENT_WITH_OPEN_UNIVERSAL_PATTERN_ISOMORPHISM",
   "s004_status": "COMPLETED_2026_10_16",
@@ -191,7 +191,7 @@
   "s007_proof_branch": "session/s007-full-lean-flagship",
   "s007_start_proof_source": "402465f2330a275e04108169a6bfbb65e94e10b8",
   "s007_core_problem": "CONNECTED_EIGHT_VERTEX_UNORDERED_COMPATIBLE_TRIPLES_TO_MATRIX_GRAPH_COUNT_AND_NAMED_SPIDER_ISOMORPHISM",
-  "flagship_kernel_status": "INCOMPLETE_GENERAL_NAMED_SPIDER_EQUALITY_AND_CAP_LABELLED_PROBABILITY_OPEN",
+  "flagship_kernel_status": "INCOMPLETE_S009_UNIVERSAL_NAMED_SPIDER_IFF_NOT_KERNEL_CERTIFIED_FULL_PROBABILITY_OPEN",
   "flagship_required_interfaces": [
     "h(G)=3 iff actual named spider graph isomorphism",
     "honest classical nine-cap hypothesis or full classification and zero-fixing linear cap transfer",
@@ -301,6 +301,14 @@
     "honest 8-cap classical-input bridge",
     "uniform 8! labellings + regular fibres + complete N0 probability law"
   ],
-  "s009_status": "INSTALLED_NOT_EXECUTED",
-  "s009_target": "research/S009_SPIDER_PATTERN_ISOMORPHISM_LEAN_TARGET.md"
+  "s009_status": "EXECUTED_PROOF_SOURCE_CANDIDATE_HOSTED_RUN_FAILURE",
+  "s009_target": "research/S009_SPIDER_PATTERN_ISOMORPHISM_LEAN_TARGET.md",
+  "s009_proof_sha": "59d34387f4a8bd299a37034d4ed878cba7be3e8d",
+  "s009_workflow_sha": "0a9961f92c69027bda803c9e805349943079856b",
+  "s009_run": "38922840797",
+  "s009_ci_status": "FAILED_RUNNER_SHUTDOWN_EXIT143_LAKE_BUILD_NO_COMPILER_DIAGNOSTICS",
+  "s009_closeout": "sessions/S009_CLOSEOUT.md",
+  "s009_proof_note": "research/S009_SPIDER_MATRIX_PERMUTATION_CANDIDATE.md",
+  "s010_target": "research/S010_SPIDER_KERNEL_CLOSURE_TARGET.md",
+  "s010_status": "INSTALLED_NOT_EXECUTED"
 }

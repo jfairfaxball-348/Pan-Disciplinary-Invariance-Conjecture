@@ -1,27 +1,25 @@
-# PDIC S009 — formalise the universal row/column spider isomorphism
+# PDIC S010 — structural spider normalisation and strict equality-case Lean proof
 
-**Automatically installed after S008; NOT EXECUTED.** Owner instruction "run next session" executes this target. Continue on session/s007-full-lean-flagship; preserve strict S003R9/S007 certificates and any S008 declarations actually verified by hosted CI.
+**Automatically installed after S009; NOT EXECUTED.** Execute when the owner next says "run next session". Canonical proof branch: `session/s007-full-lean-flagship`. Preserve S003R9, S007 and S008 kernel-certified source, no PR merge or external publication, correspondence or Palomar submission.
 
-## Mission (the first-paper Lean critical path)
+## Certified context and S009 failure
 
-Finish the equality case for the *genuine unordered* compatible-three count on every connected SimpleGraph (Fin 8):
+S007's connected eight-vertex genuine unordered compatible-triple bound `h(G)≤3` is LEAN_KERNEL_VERIFIED at `ff864170834954ef2a286afe6a6b6577ec02f986`, hosted run 38914271558. S008's genuine named spider isomorphism, connectedness and `h(namedSpider)=3` are LEAN_KERNEL_VERIFIED at `fc8581d0bd117cd66c4497fa16209e3480c65ec7`, run 38918496261. S009 added the **unverified** universal spider pattern graph isomorphism and public `connected_h_three_iff_namedSpider` candidate in commit `59d34387f4a8bd299a37034d4ed878cba7be3e8d`. On the same mathematical source, strict [run 38922840797](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38922840797) failed after about six minutes of `lake build` when the runner received a shutdown signal (exit code 143); no Lean compiler diagnostic was reported. Subsequent eight independent checkers and axiom-output inspection did not complete. Python exhaustively verified the target normalisation for all 192 equality matrices, but that does **not** promote it to a Lean theorem.
 
-    theorem connected_h_three_iff_namedSpider
-      (G : SimpleGraph (Fin 8)) (hconn : G.Connected) :
-      unorderedCompatibleTripleCount G = 3 ↔ Nonempty (G ≃g namedSpider).
+## Primary execution target: eliminate the computational proof bottleneck
 
-Do not substitute a Boolean-only equality, source-level Python verification, an isomorphism *hypothesis*, or a graph-only manuscript claim. Keep the specific seven-edge namedSpider (04,05,06,07,16,25,34) and preserve the skew 3+1 and 1+3 MIS.
+1. Review `PDIC.lean`, `research/S009_SPIDER_MATRIX_PERMUTATION_CANDIDATE.md`, `sessions/S009_CLOSEOUT.md`, the original S009 target, current branch head, and GitHub job 117046840316 logs. The specific remaining gap is the expensive global `spiderBitRows_permutation_certificate` proving for each spider-pattern Boolean 4×4 matrix an actual pair `p q : Fin 4 ≃ Fin 4` and optional side-swap matching `canonicalSpiderMatrix`.
+2. **Prove structurally**, without enumerating every 16-bit matrix times every permutation. Split the equality `spiderMatrixBV` into four row-hub cases and four column-hub (transposed) cases; each has a full hub and three distinct unit neighbours. Send the hub to canonical 0, order the three other row vertices as 1,2,3, map their distinct singleton columns to 6,5,4, and the missing fourth to 7. Use `Finset` or `Equiv.ofBijective` to construct the actual two `Fin 4` permutations. Prove equality of all 16 adjacency values under ordinary or side-swapping row/column relabelling. Where appropriate, use eight small finite kernel certificates as local ingredients rather than a giant global `decide +kernel`.
+3. Reuse `spiderRowPermutationIso`, `spiderColumnPermutationIso`, `spiderPattern_matrixGraph_iso`, `connected_partition_h_eq_matrix`, `connected_graphMixedCount_three_iff_pattern` and `compatibleTripleCount_iso`. Produce a public strictly checked theorem with exact statement:
+```lean
+theorem connected_h_three_iff_namedSpider
+    (G : SimpleGraph (Fin 8)) (hconn : G.Connected) :
+    unorderedCompatibleTripleCount G = 3 ↔ Nonempty (G ≃g namedSpider)
+```
+Do not replace graph isomorphism by a Boolean matrix pattern, assume an isomorphism, discard 3+1/1+3 spider MIS or count ordered triples.
+4. Run `lake build` and strict `#print axioms` audits for the constructed permutation and public equality declarations, with only approved `propext`, `Classical.choice`, `Quot.sound`; forbid `sorry`, `admit`, `native_decide`, custom axioms or compiler trust. Run all eight independent finite scripts; require a successful hosted Lean workflow on the exact final source commit, record its full 40-digit SHA, workflow/job IDs and actual outcome. If any proof still fails, document exact smallest remaining declaration and install S011 attacking it, not paperwork.
+5. **If the equality is strictly kernel-certified**, pivot within the same session if feasible to the next flagship obstruction: begin genuinely typed admissible affine eight-cap and zero-sum quartet incidence transfer over `(ZMod 3)^3`, treating the classical nine-cap classification as an explicitly stated external *mathematical premise*, never a falsely certified theorem or an unapproved Lean axiom. The full distribution still requires genuine uniform 8! labellings, 16-element fibres, binomial moments, N0≤3 and four-term probability law with sharp spider equality.
 
-## Required primary proof interface
+## Governance and automatic follow-up
 
-1. Read AGENTS.md, README.md, ROADMAP.md, authoritative/STATE.json, research/CLAIMS.md, research/FLAGSHIP_THEOREM.md, research/S007_UNORDERED_GRAPH_BRIDGE.md, research/S008_NAMED_SPIDER_NORMALISATION.md, sessions/S008_CLOSEOUT.md, and actual source on the certified proof branch. Confirm the **exact source SHA and hosted statuses** before claiming anything.
-2. Formalise the constructive written row- and column-hub normalisation from S008, not just its 65,536 finite checker: if spiderMatrixBV (rowsOfAdj A 0) ... (rowsOfAdj A 3) = true, construct a genuine graph isomorphism matrixGraph A ≃g namedSpider. In the row case, map the degree-four hub to 0, the other three rows (ascending index) to 1,2,3, their distinct unique neighbour columns to 6,5,4, and the remaining column to 7. Use the transposed construction in the column case. Establish the eight-vertex bijection **and both directions of adjacency** (including every nonedge) without unproved assumptions. Prefer finite row/column permutations and cardinal-4 type equivalences over brute forcing all 8! vertex permutations for all 65,536 matrices.
-3. Prove the forward direction by h(G)=3 -> complementary partition exists (from an actual unordered triple), connected_partition_h_eq_matrix, connected_graphMixedCount_three_iff_pattern, pattern-to-actual-iso, and iso composition. No change to the already certified S007 graph/cardinality bridges.
-4. Prove the backward direction using the exact S008 named-spider h=3 declaration once certified; use compatibleTripleCount_iso and compatibleTripleCount_eq_unordered to transport to G. If S008 code is not kernel-certified, repair it first with minimal changes.
-5. Publish a single public theorem with the stated iff, then immediately audit its #print axioms output (standard propext/Classical.choice/Quot.sound only) and compare the exact theorem statement to the manuscript. No sorry, admit, native_decide, custom axiom, hidden hypothesis, or computationally unchecked promotion.
-
-## Verification and governance
-
-Run lake build and the strict GitHub PR Lean workflow on the exact final changed commit; run the seven legacy independent finite checkers plus the new S008 spider-normalisation checker. Record explicit SHA, run IDs, compile output/axiom check, failure/retry history, and names of all certified declarations. Keep the proof branch separate from stale main and the superseded S008 scaffold; do not merge to main, submit to Palomar, correspond, or publish.
-
-If normalisation still fails, identify the **smallest** remaining Lean lemma and include an executable replacement target (not generic packaging). At closeout update claims, state, README, ROADMAP, a truthful sessions/S009_CLOSEOUT.md, and automatically install a complete S010 executable prompt. If this equality theorem succeeds, S010 should attack the honest classical nine-cap interface and incidence transfer, then the genuine uniform 8! label bijections, 16-element fibres, binomial moments, N0 ≤ 3 and the integrated four-point probability law. The complete first-paper theorem remains the only gateway back to Palomar preparation unless the owner redirects.
+Update `authoritative/STATE.json`, `research/CLAIMS.md`, `README.md`, `ROADMAP.md`, mathematical notes and `sessions/S010_CLOSEOUT.md` with actual evidence; automatically write/install/commit a complete executable S011 target directed at the largest remaining first-paper Lean obligation, but do not execute it until a subsequent owner instruction. Palomar, arXiv, journal submission and PR merges remain paused. Novelty/priority unresolved.
