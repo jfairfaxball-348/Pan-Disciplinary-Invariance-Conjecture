@@ -2905,7 +2905,7 @@ theorem pulledQuartet_complement_zero (e : Equiv.Perm Vertex) :
   have h : (Finset.univ \ quartet (0 : QuartetIndex)).map e.symm.toEmbedding =
       Finset.univ \ (quartet (0 : QuartetIndex)).map e.symm.toEmbedding := by
     rw [Finset.map_sdiff, Finset.map_univ_equiv]
-  change Finset.univ \\ (quartet (0 : QuartetIndex)).map e.symm.toEmbedding =
+  change Finset.univ \ (quartet (0 : QuartetIndex)).map e.symm.toEmbedding =
     (quartet (3 : QuartetIndex)).map e.symm.toEmbedding
   rw [← h, quartet_zero_complement_three]
 
@@ -2915,7 +2915,7 @@ theorem pulledQuartet_complement_one (e : Equiv.Perm Vertex) :
   have h : (Finset.univ \ quartet (1 : QuartetIndex)).map e.symm.toEmbedding =
       Finset.univ \ (quartet (1 : QuartetIndex)).map e.symm.toEmbedding := by
     rw [Finset.map_sdiff, Finset.map_univ_equiv]
-  change Finset.univ \\ (quartet (1 : QuartetIndex)).map e.symm.toEmbedding =
+  change Finset.univ \ (quartet (1 : QuartetIndex)).map e.symm.toEmbedding =
     (quartet (2 : QuartetIndex)).map e.symm.toEmbedding
   rw [← h, quartet_one_complement_two]
 
