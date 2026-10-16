@@ -557,3 +557,1020 @@ theorem eight_edges_at_most_two_mixed_BV (a b c d : BitVec 4) :
 #print axioms PDIC.eight_edges_at_most_two_mixed_BV
 
 end PDIC
+
+
+namespace PDIC
+
+/- S003R4 constructive, executable pairwise criterion; no classical
+   proposition-decider is hidden in a Boolean finite census. -/
+def allSides : List Side := [0, 1, 2, 3]
+
+private theorem allSides_complete (i : Side) : i ∈ allSides := by
+  fin_cases i <;> decide
+
+def leftDominationBool (adj : Side → Side → Bool)
+    (X Y : Finset Side) : Bool :=
+  allSides.all (fun i => decide (i ∈ X) ||
+    allSides.any (fun j => decide (j ∈ Y) && adj i j))
+
+private theorem leftDominationBool_iff (adj : Side → Side → Bool)
+    (X Y : Finset Side) :
+    leftDominationBool adj X Y = true ↔
+      (∀ i : Side, i ∉ X → ∃ j ∈ Y, adj i j = true) := by
+  simp only [leftDominationBool, List.all_eq_true, List.any_eq_true,
+    Bool.or_eq_true, Bool.and_eq_true, decide_eq_true_eq]
+  constructor
+  · intro h i hi
+    rcases h i (allSides_complete i) with hx | he
+    · exact False.elim (hi hx)
+    · rcases he with ⟨j, _, hj, hv⟩
+      exact ⟨j, hj, hv⟩
+  · intro h i _
+    by_cases hi : i ∈ X
+    · exact Or.inl hi
+    · rcases h i hi with ⟨j, hj, hv⟩
+      exact Or.inr ⟨j, allSides_complete j, hj, hv⟩
+
+def mixedPairCriterionBool (adj : Side → Side → Bool)
+    (X : Finset Side) : Bool :=
+  decide (X.card = 2) &&
+    decide ((Finset.univ \ sideNeighbours adj X).card = 2) &&
+    leftDominationBool adj X (Finset.univ \ sideNeighbours adj X)
+
+theorem mixedPairCriterionBool_iff (adj : Side → Side → Bool)
+    (X : Finset Side) :
+    mixedPairCriterionBool adj X = true ↔
+      mixedPairCriterion adj X := by
+  simp [mixedPairCriterionBool, mixedPairCriterion,
+    Bool.and_eq_true, decide_eq_true_eq, leftDominationBool_iff, and_assoc]
+
+def computableMixedLeftPairCount (adj : Side → Side → Bool) : ℕ :=
+  ((Finset.univ : Finset (Finset Side)).filter
+    (fun X => mixedPairCriterionBool adj X = true)).card
+
+theorem computableMixedLeftPairCount_eq_actual
+    (adj : Side → Side → Bool) :
+    computableMixedLeftPairCount adj = actualMixedLeftPairCount adj := by
+  classical
+  unfold computableMixedLeftPairCount actualMixedLeftPairCount
+  apply congrArg Finset.card
+  ext X
+  simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+  rw [mixedPairCriterionBool_iff]
+  exact (exists_mixed_iff_criterion adj X).symm
+
+#print axioms PDIC.computableMixedLeftPairCount_eq_actual
+
+end PDIC
+
+namespace PDIC
+
+/-! S003R5: replace universal 65,536-matrix semantic reductions with
+    small kernel obligations.  The global count bridge is deliberately
+    NOT asserted until an efficient compositional proof is checked. -/
+
+/-- The semantic edge count, one edge per oriented left/right pair. -/
+def actualMatrixEdgeCount (adj : Side → Side → Bool) : ℕ :=
+  ((Finset.univ : Finset (Side × Side)).filter
+    (fun ij => adj ij.1 ij.2 = true)).card
+
+set_option maxRecDepth 4096 in
+/-- A four-bit row has exactly the advertised number of set positions.
+    Sixteen possible row masks; unlike the previous global decide, this
+    calculation is confined to one row. -/
+theorem fourBitPopCount5_eq_rowCard (v : BitVec 4) :
+    (fourBitPopCount5 v).toNat =
+      ((Finset.univ : Finset Side).filter
+        (fun j => v.getLsbD j.val = true)).card := by
+  revert v
+  decide +kernel
+
+set_option maxRecDepth 4096 in
+theorem twoNeighboursBV_eq_rowCard_two (v : BitVec 4) :
+    (twoNeighboursBV v = true ↔
+      ((Finset.univ : Finset Side).filter
+        (fun j => v.getLsbD j.val = true)).card = 2) := by
+  revert v
+  decide +kernel
+
+set_option maxRecDepth 4096 in
+/-- Bitwise nonzero intersection with the complement has a genuine
+    witness column. This is one component of the six-pair bridge. -/
+theorem outsideMask_nonzero_iff (n z : BitVec 4) :
+    ((z &&& (~~~n)) != 0) = true ↔
+      ∃ j : Side, z.getLsbD j.val = true ∧ n.getLsbD j.val = false := by
+  revert n z
+  decide +kernel
+
+#print axioms PDIC.computableMixedLeftPairCount_eq_actual
+#print axioms PDIC.fourBitPopCount5_eq_rowCard
+#print axioms PDIC.twoNeighboursBV_eq_rowCard_two
+#print axioms PDIC.outsideMask_nonzero_iff
+
+end PDIC
+
+
+namespace PDIC
+
+set_option maxRecDepth 4096
+
+/-! S003R6: compositional local witnesses and bounded arithmetic.
+    All local test domains below are at most 1024 cases, rather than
+    the full 65536 adjacency matrices with nested finite-set semantics. -/
+
+/-- A bit of an OR-mask is set exactly when it is set in either operand. -/
+theorem orMask_getLsbD_iff (x y : BitVec 4) (j : Side) :
+    (x ||| y).getLsbD j.val = true ↔
+      x.getLsbD j.val = true ∨ y.getLsbD j.val = true := by
+  revert x y j
+  decide +kernel
+
+/-- One good-left-pair test has exact neighbourhood, size and
+    outside-neighbour witness semantics; this is not a global census. -/
+theorem goodLeftPairBV_spec (x y z w : BitVec 4) :
+    goodLeftPairBV x y z w = true ↔
+      ((Finset.univ : Finset Side).filter
+        (fun j => (x ||| y).getLsbD j.val = true)).card = 2 ∧
+      (∃ j : Side, z.getLsbD j.val = true ∧
+        (x ||| y).getLsbD j.val = false) ∧
+      (∃ j : Side, w.getLsbD j.val = true ∧
+        (x ||| y).getLsbD j.val = false) := by
+  simp only [goodLeftPairBV, Bool.and_eq_true,
+    twoNeighboursBV_eq_rowCard_two, outsideMask_nonzero_iff, and_assoc]
+
+/-- Every two-subset of Fin 4 appears exactly once in the explicit six. -/
+def sidePairsSix : Finset (Finset Side) :=
+  {({0,1} : Finset Side), ({0,2} : Finset Side),
+   ({0,3} : Finset Side), ({1,2} : Finset Side),
+   ({1,3} : Finset Side), ({2,3} : Finset Side)}
+
+theorem sidePairsSix_eq_filter :
+    sidePairsSix =
+      ((Finset.univ : Finset (Finset Side)).filter (fun X => X.card = 2)) := by
+  decide
+
+theorem sidePairsSix_card : sidePairsSix.card = 6 := by
+  decide
+
+/-- Six zero-one summands fit exactly in three bits. -/
+theorem sixBooleanIndicatorCount (p q r s t u : Bool) :
+    ((if p then (1 : BitVec 3) else 0) +
+      (if q then (1 : BitVec 3) else 0) +
+      (if r then (1 : BitVec 3) else 0) +
+      (if s then (1 : BitVec 3) else 0) +
+      (if t then (1 : BitVec 3) else 0) +
+      (if u then (1 : BitVec 3) else 0)).toNat =
+      (if p then (1 : ℕ) else 0) +
+      (if q then (1 : ℕ) else 0) +
+      (if r then (1 : ℕ) else 0) +
+      (if s then (1 : ℕ) else 0) +
+      (if t then (1 : ℕ) else 0) +
+      (if u then (1 : ℕ) else 0) := by
+  revert p q r s t u
+  decide +kernel
+
+theorem fourRowMixedCountBV_eq_sixNat (a b c d : BitVec 4) :
+    (fourRowMixedCountBV a b c d).toNat =
+      (if goodLeftPairBV a b c d then (1 : ℕ) else 0) +
+      (if goodLeftPairBV a c b d then (1 : ℕ) else 0) +
+      (if goodLeftPairBV a d b c then (1 : ℕ) else 0) +
+      (if goodLeftPairBV b c a d then (1 : ℕ) else 0) +
+      (if goodLeftPairBV b d a c then (1 : ℕ) else 0) +
+      (if goodLeftPairBV c d a b then (1 : ℕ) else 0) := by
+  unfold fourRowMixedCountBV
+  exact sixBooleanIndicatorCount _ _ _ _ _ _
+
+/-- Each row popcount is at most four. -/
+theorem fourBitPopCount5_le_four (v : BitVec 4) :
+    (fourBitPopCount5 v).toNat ≤ 4 := by
+  revert v
+  decide +kernel
+
+/-- Adding four 0..4 counts in five bits cannot overflow. -/
+theorem fourSmallBVSum_noOverflow (a b c d : BitVec 5)
+    (ha : a.toNat ≤ 4) (hb : b.toNat ≤ 4)
+    (hc : c.toNat ≤ 4) (hd : d.toNat ≤ 4) :
+    (a + b + c + d).toNat = a.toNat + b.toNat + c.toNat + d.toNat := by
+  simp only [BitVec.toNat_add]
+  omega
+
+theorem fourRowEdgeCountBV_eq_fourPopNat (a b c d : BitVec 4) :
+    (fourRowEdgeCountBV a b c d).toNat =
+      (fourBitPopCount5 a).toNat + (fourBitPopCount5 b).toNat +
+      (fourBitPopCount5 c).toNat + (fourBitPopCount5 d).toNat := by
+  unfold fourRowEdgeCountBV
+  exact fourSmallBVSum_noOverflow _ _ _ _
+    (fourBitPopCount5_le_four a) (fourBitPopCount5_le_four b)
+    (fourBitPopCount5_le_four c) (fourBitPopCount5_le_four d)
+
+#print axioms PDIC.orMask_getLsbD_iff
+#print axioms PDIC.goodLeftPairBV_spec
+#print axioms PDIC.sidePairsSix_eq_filter
+#print axioms PDIC.sixBooleanIndicatorCount
+#print axioms PDIC.fourRowMixedCountBV_eq_sixNat
+#print axioms PDIC.fourSmallBVSum_noOverflow
+#print axioms PDIC.fourRowEdgeCountBV_eq_fourPopNat
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S003R7: the arbitrary-row pair-neighbourhood bridge.  This is
+    symbolic in the row map; the only finite computation below concerns
+    a single four-bit mask, not 65,536 matrices. -/
+
+/-- The neighbourhood of a two-element left set is exactly the bitwise OR
+    of its row masks, for every row function and both (possibly equal) indices. -/
+theorem twoRowNeighbours_eq_orMask
+    (rows : Side → BitVec 4) (i k : Side) :
+    sideNeighbours (adjOfRows rows) ({i, k} : Finset Side) =
+      ((Finset.univ : Finset Side).filter
+        (fun j => (rows i ||| rows k).getLsbD j.val = true)) := by
+  ext j
+  simp only [sideNeighbours, Finset.mem_filter, Finset.mem_univ, true_and,
+    adjOfRows, Finset.mem_insert, Finset.mem_singleton]
+  rw [orMask_getLsbD_iff]
+  constructor
+  · rintro ⟨v, hv, he⟩
+    rcases hv with rfl | rfl
+    · exact Or.inl he
+    · exact Or.inr he
+  · rintro (he | he)
+    · exact ⟨i, Or.inl rfl, he⟩
+    · exact ⟨k, Or.inr rfl, he⟩
+
+/-- Local four-bit complement fact: two absent columns iff two present
+    columns.  This checks 16 masks, independently of the adjacency space. -/
+theorem fourMask_complement_card_two_iff (n : BitVec 4) :
+    (((Finset.univ : Finset Side) \
+        ((Finset.univ : Finset Side).filter
+          (fun j => n.getLsbD j.val = true))).card = 2 ↔
+      ((Finset.univ : Finset Side).filter
+        (fun j => n.getLsbD j.val = true)).card = 2) := by
+  revert n
+  decide +kernel
+
+/-- Numerical part of the mixed-pair semantic bridge is now generic in rows. -/
+theorem twoRow_complement_card_two_iff
+    (rows : Side → BitVec 4) (i k : Side) :
+    ((Finset.univ \ sideNeighbours (adjOfRows rows) ({i, k} : Finset Side)).card = 2) ↔
+    ((Finset.univ : Finset Side).filter
+      (fun j => (rows i ||| rows k).getLsbD j.val = true)).card = 2 := by
+  rw [twoRowNeighbours_eq_orMask]
+  exact fourMask_complement_card_two_iff _
+
+#print axioms PDIC.twoRowNeighbours_eq_orMask
+#print axioms PDIC.fourMask_complement_card_two_iff
+#print axioms PDIC.twoRow_complement_card_two_iff
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S003R7: the remaining semantic witness is local in the row map. -/
+
+/-- A vertex in the complement of the two-row neighbourhood is the
+    same thing as a set bit of a third row outside their OR-mask. -/
+theorem twoRow_outsideWitness_iff
+    (rows : Side → BitVec 4) (i k v : Side) :
+    (∃ j ∈ (Finset.univ \ sideNeighbours (adjOfRows rows)
+        ({i, k} : Finset Side)), adjOfRows rows v j = true) ↔
+      (∃ j : Side, (rows v).getLsbD j.val = true ∧
+        (rows i ||| rows k).getLsbD j.val = false) := by
+  rw [twoRowNeighbours_eq_orMask]
+  constructor
+  · rintro ⟨j, hj, he⟩
+    have hn : (rows i ||| rows k).getLsbD j.val = false := by
+      have hnot : (rows i ||| rows k).getLsbD j.val ≠ true := by
+        intro ht
+        exact (Finset.mem_sdiff.mp hj).2
+          (Finset.mem_filter.mpr ⟨Finset.mem_univ j, ht⟩)
+      cases hb : (rows i ||| rows k).getLsbD j.val with
+      | false => rfl
+      | true => exact False.elim (hnot hb)
+    exact ⟨j, he, hn⟩
+  · rintro ⟨j, he, hn⟩
+    refine ⟨j, ?_, he⟩
+    apply Finset.mem_sdiff.mpr
+    constructor
+    · exact Finset.mem_univ j
+    · intro hm
+      have ht := (Finset.mem_filter.mp hm).2
+      have hor : (rows i ||| rows k).getLsbD j.val = true := ht
+      rw [hn] at hor
+      cases hor
+
+/-- One *generic* mixed-pair correspondence, assuming the two remaining
+    indices are z,w. The six concrete pairs will instantiate this once. -/
+theorem goodPair_iff_mixedPairCriterion
+    (rows : Side → BitVec 4) (i k z w : Side)
+    (hpair : ({i, k} : Finset Side).card = 2)
+    (hrest : ∀ v : Side, v ∉ ({i, k} : Finset Side) ↔ v = z ∨ v = w) :
+    goodLeftPairBV (rows i) (rows k) (rows z) (rows w) = true ↔
+      mixedPairCriterion (adjOfRows rows) ({i, k} : Finset Side) := by
+  rw [goodLeftPairBV_spec]
+  unfold mixedPairCriterion
+  rw [twoRow_complement_card_two_iff]
+  constructor
+  · rintro ⟨hcard, hz, hw⟩
+    refine ⟨hpair, hcard, ?_⟩
+    intro v hv
+    rcases (hrest v).mp hv with he | he
+    · rw [he]
+      exact (twoRow_outsideWitness_iff rows i k z).mpr hz
+    · rw [he]
+      exact (twoRow_outsideWitness_iff rows i k w).mpr hw
+  · rintro ⟨_, hcard, hdom⟩
+    refine ⟨hcard, ?_, ?_⟩
+    · exact (twoRow_outsideWitness_iff rows i k z).mp
+        (hdom z ((hrest z).mpr (Or.inl rfl)))
+    · exact (twoRow_outsideWitness_iff rows i k w).mp
+        (hdom w ((hrest w).mpr (Or.inr rfl)))
+
+#print axioms PDIC.twoRow_outsideWitness_iff
+#print axioms PDIC.goodPair_iff_mixedPairCriterion
+
+end PDIC
+
+namespace PDIC
+
+/-! S003R7: all six concrete witnesses are instances of the single
+    arbitrary-row, arbitrary-partition semantic equivalence. -/
+
+def fourRows (a b c d : BitVec 4) (i : Side) : BitVec 4 :=
+  if i = 0 then a else if i = 1 then b else if i = 2 then c else d
+
+
+theorem fixedPair01Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV a b c d = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({0, 1} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (0 : Side) (1 : Side) (2 : Side) (3 : Side)
+    (by decide) (by decide)
+
+
+theorem fixedPair02Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV a c b d = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({0, 2} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (0 : Side) (2 : Side) (1 : Side) (3 : Side)
+    (by decide) (by decide)
+
+
+theorem fixedPair03Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV a d b c = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({0, 3} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (0 : Side) (3 : Side) (1 : Side) (2 : Side)
+    (by decide) (by decide)
+
+
+theorem fixedPair12Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV b c a d = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({1, 2} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (1 : Side) (2 : Side) (0 : Side) (3 : Side)
+    (by decide) (by decide)
+
+
+theorem fixedPair13Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV b d a c = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({1, 3} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (1 : Side) (3 : Side) (0 : Side) (2 : Side)
+    (by decide) (by decide)
+
+
+theorem fixedPair23Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV c d a b = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({2, 3} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (2 : Side) (3 : Side) (0 : Side) (1 : Side)
+    (by decide) (by decide)
+
+#print axioms PDIC.fixedPair01Criterion
+#print axioms PDIC.fixedPair02Criterion
+#print axioms PDIC.fixedPair03Criterion
+#print axioms PDIC.fixedPair12Criterion
+#print axioms PDIC.fixedPair13Criterion
+#print axioms PDIC.fixedPair23Criterion
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S003R7: six-pair filtered cardinality via the standard sum_boole
+    lemma, rather than the previously failed recursive simp/card_filter. -/
+
+set_option maxRecDepth 8192
+
+theorem sixPairsBoolCardinality_by_sum (p : Finset Side → Bool)
+    (h : ∀ X, p X = true → X.card = 2) :
+    ((Finset.univ : Finset (Finset Side)).filter
+      (fun X => p X = true)).card =
+      (if p {0,1} then (1 : ℕ) else 0) +
+      (if p {0,2} then (1 : ℕ) else 0) +
+      (if p {0,3} then (1 : ℕ) else 0) +
+      (if p {1,2} then (1 : ℕ) else 0) +
+      (if p {1,3} then (1 : ℕ) else 0) +
+      (if p {2,3} then (1 : ℕ) else 0) := by
+  classical
+  have hf :
+      ((Finset.univ : Finset (Finset Side)).filter (fun X => p X = true)) =
+      sidePairsSix.filter (fun X => p X = true) := by
+    rw [sidePairsSix_eq_filter]
+    ext X
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+    exact ⟨fun hp => ⟨h X hp, hp⟩, fun hp => hp.2⟩
+  rw [hf]
+  calc
+    _ = (∑ X ∈ sidePairsSix, if p X = true then (1 : ℕ) else 0) := by
+      exact (Finset.sum_boole (R := ℕ)
+        (fun X : Finset Side => p X = true) sidePairsSix).symm
+    _ = _ := by
+      unfold sidePairsSix
+      rw [Finset.sum_insert (by decide), Finset.sum_insert (by decide),
+        Finset.sum_insert (by decide), Finset.sum_insert (by decide),
+        Finset.sum_insert (by decide), Finset.sum_singleton]
+      simp only [add_assoc]
+
+theorem computableMixedLeftPairCount_eq_sixCriterion
+    (adj : Side → Side → Bool) :
+    computableMixedLeftPairCount adj =
+      (if mixedPairCriterionBool adj {0,1} then (1 : ℕ) else 0) +
+      (if mixedPairCriterionBool adj {0,2} then (1 : ℕ) else 0) +
+      (if mixedPairCriterionBool adj {0,3} then (1 : ℕ) else 0) +
+      (if mixedPairCriterionBool adj {1,2} then (1 : ℕ) else 0) +
+      (if mixedPairCriterionBool adj {1,3} then (1 : ℕ) else 0) +
+      (if mixedPairCriterionBool adj {2,3} then (1 : ℕ) else 0) := by
+  unfold computableMixedLeftPairCount
+  apply sixPairsBoolCardinality_by_sum
+  intro X hp
+  exact ((mixedPairCriterionBool_iff adj X).mp hp).1
+
+#print axioms PDIC.sixPairsBoolCardinality_by_sum
+#print axioms PDIC.computableMixedLeftPairCount_eq_sixCriterion
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S003R7 edge semantics: a product cardinality splits into four
+    independent row cardinalities. No census of matrix assignments. -/
+
+theorem actualMatrixEdgeCount_eq_sum_rows
+    (adj : Side → Side → Bool) :
+    actualMatrixEdgeCount adj =
+      ∑ i : Side, ((Finset.univ : Finset Side).filter
+        (fun j => adj i j = true)).card := by
+  classical
+  unfold actualMatrixEdgeCount
+  calc
+    _ = ∑ ij : Side × Side,
+          if adj ij.1 ij.2 = true then (1 : ℕ) else 0 := by
+      exact (Finset.sum_boole (R := ℕ)
+        (fun ij : Side × Side => adj ij.1 ij.2 = true) Finset.univ).symm
+    _ = ∑ i : Side, ∑ j : Side,
+          if adj i j = true then (1 : ℕ) else 0 := by
+      rw [← Finset.univ_product_univ, Finset.sum_product]
+    _ = _ := by
+      apply Finset.sum_congr rfl
+      intro i _
+      exact Finset.sum_boole (R := ℕ)
+        (fun j : Side => adj i j = true) Finset.univ
+
+theorem fourRowEdgeCountBV_eq_actual
+    (a b c d : BitVec 4) :
+    (fourRowEdgeCountBV a b c d).toNat =
+      actualMatrixEdgeCount (adjOfRows (fourRows a b c d)) := by
+  rw [fourRowEdgeCountBV_eq_fourPopNat, actualMatrixEdgeCount_eq_sum_rows,
+    Fin.sum_univ_four]
+  have hrow (i : Side) :
+      ((Finset.univ : Finset Side).filter
+        (fun j => adjOfRows (fourRows a b c d) i j = true)).card =
+        (fourBitPopCount5 (fourRows a b c d i)).toNat := by
+    exact (fourBitPopCount5_eq_rowCard (fourRows a b c d i)).symm
+  rw [hrow 0, hrow 1, hrow 2, hrow 3]
+  simp [fourRows]
+
+#print axioms PDIC.actualMatrixEdgeCount_eq_sum_rows
+#print axioms PDIC.fourRowEdgeCountBV_eq_actual
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S003R7: compose six individually proven iff witnesses, the six-pair
+    Boolean cardinality identity and the exact 3-bit no-overflow sum. -/
+
+theorem fourRowMixedCountBV_eq_actual
+    (a b c d : BitVec 4) :
+    (fourRowMixedCountBV a b c d).toNat =
+      actualMixedLeftPairCount (adjOfRows (fourRows a b c d)) := by
+  rw [fourRowMixedCountBV_eq_sixNat,
+    ← computableMixedLeftPairCount_eq_actual,
+    computableMixedLeftPairCount_eq_sixCriterion]
+  simp only [← fixedPair01Criterion a b c d,
+    ← fixedPair02Criterion a b c d,
+    ← fixedPair03Criterion a b c d,
+    ← fixedPair12Criterion a b c d,
+    ← fixedPair13Criterion a b c d,
+    ← fixedPair23Criterion a b c d]
+
+#print axioms PDIC.fourRowMixedCountBV_eq_actual
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S003R8: promote the strict-kernel S003R7 BitVec-to-actual-count bridges
+    to semantic theorems quantified over arbitrary Boolean 4 × 4 matrices.
+    No 65,536-input semantic reduction is performed here. -/
+
+theorem fourRows_rowsOfAdj (adj : Side → Side → Bool) :
+    fourRows (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+      (rowsOfAdj adj 2) (rowsOfAdj adj 3) = rowsOfAdj adj := by
+  funext i
+  fin_cases i <;> rfl
+
+theorem actualCounts_eq_encoded (adj : Side → Side → Bool) :
+    actualMixedLeftPairCount adj =
+      (fourRowMixedCountBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3)).toNat ∧
+    actualMatrixEdgeCount adj =
+      (fourRowEdgeCountBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3)).toNat := by
+  have hrow : adjOfRows
+      (fourRows (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3)) = adj := by
+    rw [fourRows_rowsOfAdj, adjOfRows_rowsOfAdj]
+  constructor
+  · rw [fourRowMixedCountBV_eq_actual, hrow]
+  · rw [fourRowEdgeCountBV_eq_actual, hrow]
+
+/-- For every Boolean 4 × 4 bipartite adjacency, four mixed maximal
+    independent left pairs force at most five edges. -/
+theorem four_mixed_implies_at_most_five_edges
+    (adj : Side → Side → Bool)
+    (h : 4 ≤ actualMixedLeftPairCount adj) :
+    actualMatrixEdgeCount adj ≤ 5 := by
+  obtain ⟨hm, he⟩ := actualCounts_eq_encoded adj
+  let a := rowsOfAdj adj 0
+  let b := rowsOfAdj adj 1
+  let c := rowsOfAdj adj 2
+  let d := rowsOfAdj adj 3
+  have hb : (4 : BitVec 3) ≤ fourRowMixedCountBV a b c d := by
+    rw [BitVec.le_def]
+    norm_num
+    dsimp only [a, b, c, d]
+    omega
+  have ht := four_by_four_six_edge_threshold_BV a b c d hb
+  have htNat := (BitVec.le_def).mp ht
+  norm_num at htNat
+  dsimp only [a, b, c, d] at htNat
+  omega
+
+/-- At least eight bipartite edges leave at most two mixed MIS witnesses. -/
+theorem eight_edges_implies_at_most_two_mixed
+    (adj : Side → Side → Bool)
+    (h : 8 ≤ actualMatrixEdgeCount adj) :
+    actualMixedLeftPairCount adj ≤ 2 := by
+  obtain ⟨hm, he⟩ := actualCounts_eq_encoded adj
+  let a := rowsOfAdj adj 0
+  let b := rowsOfAdj adj 1
+  let c := rowsOfAdj adj 2
+  let d := rowsOfAdj adj 3
+  have hb : (8 : BitVec 5) ≤ fourRowEdgeCountBV a b c d := by
+    rw [BitVec.le_def]
+    norm_num
+    dsimp only [a, b, c, d]
+    omega
+  have ht := eight_edges_at_most_two_mixed_BV a b c d hb
+  have htNat := (BitVec.le_def).mp ht
+  norm_num at htNat
+  dsimp only [a, b, c, d] at htNat
+  omega
+
+/-- The seven-edge/three-mixed-witness semantic equality case is EXACTLY
+    the previously certified row- or column-hub spider pattern. -/
+theorem seven_edges_three_mixed_iff_spider
+    (adj : Side → Side → Bool) :
+    (actualMatrixEdgeCount adj = 7 ∧
+      actualMixedLeftPairCount adj = 3) ↔
+    spiderMatrixBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+      (rowsOfAdj adj 2) (rowsOfAdj adj 3) = true := by
+  obtain ⟨hm, he⟩ := actualCounts_eq_encoded adj
+  let a := rowsOfAdj adj 0
+  let b := rowsOfAdj adj 1
+  let c := rowsOfAdj adj 2
+  let d := rowsOfAdj adj 3
+  have hbv := seven_edge_three_iff_spider_BV a b c d
+  dsimp only [a, b, c, d] at hbv
+  constructor
+  · rintro ⟨hedges, hmixed⟩
+    apply hbv.mp
+    constructor
+    · apply (BitVec.toNat_eq).2
+      norm_num
+      omega
+    · apply (BitVec.toNat_eq).2
+      norm_num
+      omega
+  · intro hspider
+    rcases hbv.mpr hspider with ⟨hedges, hmixed⟩
+    have heNat := congrArg BitVec.toNat hedges
+    have hmNat := congrArg BitVec.toNat hmixed
+    norm_num at heNat hmNat
+    constructor <;> omega
+
+/-- Hostile sanity check: the 8-vertex spider has a maximal independent
+    four-set with a 3+1 split, so its MIS family is NOT exhausted by the
+    two pure sides and the 2+2 mixed MIS family. -/
+theorem spider_has_three_one_mis :
+    IsMIS4 spiderAdj ({1, 2, 3, 7} : Finset Vertex) ∧
+      (({1, 2, 3, 7} : Finset Vertex).filter
+        (fun v => v.val < 4)).card = 3 := by
+  constructor
+  · apply (isMIS4Bool_iff_IsMIS4 _ _).mp
+    decide
+  · decide
+
+/-- Likewise the spider contains a 1+3 maximal independent four-set. -/
+theorem spider_has_one_three_mis :
+    IsMIS4 spiderAdj ({2, 4, 6, 7} : Finset Vertex) ∧
+      (({2, 4, 6, 7} : Finset Vertex).filter
+        (fun v => v.val < 4)).card = 1 := by
+  constructor
+  · apply (isMIS4Bool_iff_IsMIS4 _ _).mp
+    decide
+  · decide
+
+#print axioms PDIC.fourRows_rowsOfAdj
+#print axioms PDIC.actualCounts_eq_encoded
+#print axioms PDIC.four_mixed_implies_at_most_five_edges
+#print axioms PDIC.eight_edges_implies_at_most_two_mixed
+#print axioms PDIC.seven_edges_three_mixed_iff_spider
+#print axioms PDIC.spider_has_three_one_mis
+#print axioms PDIC.spider_has_one_three_mis
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S003R9: actual simple-graph semantics on the exact eight-element
+    type Fin 4 ⊕ Fin 4. No connectivity or isomorphism is assumed here. -/
+abbrev SplitVertex := Side ⊕ Side
+
+def matrixGraph (adj : Side → Side → Bool) : SimpleGraph SplitVertex where
+  Adj u v := match u, v with
+    | .inl i, .inr j => adj i j = true
+    | .inr j, .inl i => adj i j = true
+    | _, _ => False
+  symm.symm := by intro u v; cases u <;> cases v <;> simp_all
+  loopless.irrefl := by intro u; cases u <;> simp
+
+/-- Independence and domination are the usual exact finite MIS criterion. -/
+def GraphMIS {V : Type*} (G : SimpleGraph V) (s : Finset V) : Prop :=
+  (∀ u ∈ s, ∀ v ∈ s, ¬ G.Adj u v) ∧
+    (∀ v, v ∉ s → ∃ u ∈ s, G.Adj v u)
+
+/-- This predicate really is maximality under inclusion, not maximum size. -/
+theorem graphMIS_iff_maximal {V : Type*} [DecidableEq V]
+    (G : SimpleGraph V) (s : Finset V) :
+    GraphMIS G s ↔
+      (∀ u ∈ s, ∀ v ∈ s, ¬ G.Adj u v) ∧
+      ∀ t : Finset V, s ⊆ t →
+        (∀ u ∈ t, ∀ v ∈ t, ¬ G.Adj u v) → t = s := by
+  classical
+  constructor
+  · rintro ⟨hi, hd⟩
+    refine ⟨hi, ?_⟩
+    intro t hst ht
+    apply Finset.Subset.antisymm
+    · intro v hv
+      by_contra hvs
+      obtain ⟨u, hu, he⟩ := hd v hvs
+      exact ht v hv u (hst hu) he
+    · exact hst
+  · rintro ⟨hi, hm⟩
+    refine ⟨hi, ?_⟩
+    intro v hv
+    by_contra hn
+    have hno : ∀ u ∈ s, ¬ G.Adj v u := by
+      intro u hu he
+      exact hn ⟨u, hu, he⟩
+    have hind : ∀ a ∈ insert v s, ∀ b ∈ insert v s, ¬ G.Adj a b := by
+      intro a ha b hb
+      simp only [Finset.mem_insert] at ha hb
+      rcases ha with rfl | ha <;> rcases hb with rfl | hb
+      · exact G.irrefl
+      · exact hno b hb
+      · exact fun he => hno a ha (G.adj_symm he)
+      · exact hi a ha b hb
+    have heq := hm (insert v s) (Finset.subset_insert v s) hind
+    exact hv (heq ▸ Finset.mem_insert_self v s)
+
+theorem mixed_iff_graphMIS (adj : Side → Side → Bool)
+    (X Y : Finset Side) :
+    IsMixedMIS adj X Y ↔
+      X.card = 2 ∧ Y.card = 2 ∧
+        GraphMIS (matrixGraph adj) (X.disjSum Y) := by
+  constructor
+  · rintro ⟨hx, hy, hi, hl, hr⟩
+    refine ⟨hx, hy, ?_, ?_⟩
+    · intro u hu v hv
+      cases u with
+      | inl i =>
+        cases v with
+        | inl k => exact id
+        | inr j =>
+          have hf := hi i (by simpa using hu) j (by simpa using hv)
+          simpa [matrixGraph, hf]
+      | inr j =>
+        cases v with
+        | inl i =>
+          have hf := hi i (by simpa using hv) j (by simpa using hu)
+          simpa [matrixGraph, hf]
+        | inr k => exact id
+    · intro v hv
+      cases v with
+      | inl i =>
+        obtain ⟨j, hj, he⟩ := hl i (by simpa using hv)
+        exact ⟨.inr j, by simpa using hj, he⟩
+      | inr j =>
+        obtain ⟨i, hi, he⟩ := hr j (by simpa using hv)
+        exact ⟨.inl i, by simpa using hi, he⟩
+  · rintro ⟨hx, hy, hi, hd⟩
+    refine ⟨hx, hy, ?_, ?_, ?_⟩
+    · intro i hiX j hjY
+      have hn := hi (.inl i) (by simpa using hiX)
+        (.inr j) (by simpa using hjY)
+      cases he : adj i j with
+      | false => rfl
+      | true => exact False.elim (hn he)
+    · intro i hiX
+      obtain ⟨u, hu, he⟩ := hd (.inl i) (by simpa using hiX)
+      cases u with
+      | inl k => exact False.elim he
+      | inr j => exact ⟨j, by simpa using hu, he⟩
+    · intro j hjY
+      obtain ⟨u, hu, he⟩ := hd (.inr j) (by simpa using hjY)
+      cases u with
+      | inl i => exact ⟨i, by simpa using hu, he⟩
+      | inr k => exact False.elim he
+
+/-- Actual graph witnesses, represented as vertex sets rather than row pairs. -/
+noncomputable def graphMixedCount (adj : Side → Side → Bool) : ℕ := by
+  classical
+  exact Fintype.card {s : Finset SplitVertex //
+    s.toLeft.card = 2 ∧ s.toRight.card = 2 ∧ GraphMIS (matrixGraph adj) s}
+
+/-- Lossless bijection between actual mixed graph MIS and eligible left pairs. -/
+noncomputable def graphMixedEquiv (adj : Side → Side → Bool) :
+    {s : Finset SplitVertex //
+      s.toLeft.card = 2 ∧ s.toRight.card = 2 ∧ GraphMIS (matrixGraph adj) s} ≃
+    {X : Finset Side // ∃ Y : Finset Side, IsMixedMIS adj X Y} where
+  toFun s := ⟨s.val.toLeft, s.val.toRight,
+    (mixed_iff_graphMIS adj _ _).mpr
+      ⟨s.property.1, s.property.2.1,
+        by simpa only [Finset.toLeft_disjSum_toRight] using s.property.2.2⟩⟩
+  invFun X := by
+    let Y := Finset.univ \ sideNeighbours adj X.val
+    have h : IsMixedMIS adj X.val Y := by
+      obtain ⟨Z, hz⟩ := X.property
+      have he := mixed_opposite_unique adj X.val Z hz
+      simpa only [he] using hz
+    exact ⟨X.val.disjSum Y, by
+      simpa only [Finset.toLeft_disjSum, Finset.toRight_disjSum] using
+        (mixed_iff_graphMIS adj X.val Y).mp h⟩
+  left_inv s := by
+    apply Subtype.ext
+    have h := (mixed_iff_graphMIS adj s.val.toLeft s.val.toRight).mpr
+      ⟨s.property.1, s.property.2.1,
+        by simpa only [Finset.toLeft_disjSum_toRight] using s.property.2.2⟩
+    change s.val.toLeft.disjSum
+      (Finset.univ \ sideNeighbours adj s.val.toLeft) = s.val
+    rw [← mixed_opposite_unique adj _ _ h, Finset.toLeft_disjSum_toRight]
+  right_inv X := by
+    apply Subtype.ext
+    exact Finset.toLeft_disjSum
+
+theorem graphMixedCount_eq_actual (adj : Side → Side → Bool) :
+    graphMixedCount adj = actualMixedLeftPairCount adj := by
+  classical
+  rw [graphMixedCount, Fintype.card_congr (graphMixedEquiv adj)]
+  simp [actualMixedLeftPairCount, Fintype.card_subtype]
+
+/-- An edge-threshold graph theorem; connectivity-to-edge-count is separate. -/
+theorem graphMixedCount_le_three (adj : Side → Side → Bool)
+    (he : 6 ≤ actualMatrixEdgeCount adj) : graphMixedCount adj ≤ 3 := by
+  rw [graphMixedCount_eq_actual]
+  by_contra hn
+  have hm : 4 ≤ actualMixedLeftPairCount adj := by omega
+  have hh := four_mixed_implies_at_most_five_edges adj hm
+  omega
+
+theorem graphMixedCount_three_iff_spider (adj : Side → Side → Bool)
+    (he : 7 ≤ actualMatrixEdgeCount adj) :
+    graphMixedCount adj = 3 ↔
+      spiderMatrixBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3) = true := by
+  rw [graphMixedCount_eq_actual]
+  constructor
+  · intro hm
+    have heq : actualMatrixEdgeCount adj = 7 := by
+      by_contra hn
+      have he8 : 8 ≤ actualMatrixEdgeCount adj := by omega
+      have hb := eight_edges_implies_at_most_two_mixed adj he8
+      omega
+    exact (seven_edges_three_mixed_iff_spider adj).mp ⟨heq, hm⟩
+  · intro hs
+    exact ((seven_edges_three_mixed_iff_spider adj).mpr hs).2
+
+#print axioms PDIC.graphMIS_iff_maximal
+#print axioms PDIC.mixed_iff_graphMIS
+#print axioms PDIC.graphMixedEquiv
+#print axioms PDIC.graphMixedCount_eq_actual
+#print axioms PDIC.graphMixedCount_le_three
+#print axioms PDIC.graphMixedCount_three_iff_spider
+
+end PDIC
+
+
+namespace PDIC
+
+/-- A proper two-colouring, with no balance or maximality assumed. -/
+def ProperBoolColouring {V : Type*} (G : SimpleGraph V) (c : V → Bool) : Prop :=
+  ∀ ⦃u v⦄, G.Adj u v → c u ≠ c v
+
+theorem walk_colour_agreement {V : Type*} {G : SimpleGraph V}
+    (c d : V → Bool) (hc : ProperBoolColouring G c)
+    (hd : ProperBoolColouring G d) {u v : V} (p : G.Walk u v) :
+    (c u = d u ↔ c v = d v) := by
+  induction p with
+  | nil => rfl
+  | @cons u v w he p ih =>
+    have hstep : c u = d u ↔ c v = d v := by
+      have hc' := hc he
+      have hd' := hd he
+      cases hcu : c u <;> cases hcv : c v <;>
+        cases hdu : d u <;> cases hdv : d v <;> simp_all
+    exact hstep.trans ih
+
+/-- Connectedness supplies the UNIQUE bipartition up to global swap. -/
+theorem connected_bool_colouring_unique {V : Type*} {G : SimpleGraph V}
+    (hconn : G.Connected) (r : V) (c d : V → Bool)
+    (hc : ProperBoolColouring G c) (hd : ProperBoolColouring G d) :
+    c = d ∨ c = fun v => !(d v) := by
+  have hagree (v : V) : c r = d r ↔ c v = d v := by
+    obtain ⟨p⟩ := hconn.preconnected r v
+    exact walk_colour_agreement c d hc hd p
+  by_cases hroot : c r = d r
+  · exact Or.inl (funext fun v => (hagree v).mp hroot)
+  · right
+    funext v
+    have hne : c v ≠ d v := fun he => hroot ((hagree v).mpr he)
+    cases hcv : c v <;> cases hdv : d v <;> simp_all
+
+noncomputable def membershipColour {V : Type*} (s : Finset V) (v : V) : Bool :=
+  @decide (v ∈ s) (Classical.propDecidable _)
+
+theorem independent_complement_proper {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) (s : Finset V)
+    (hi : ∀ u ∈ s, ∀ v ∈ s, ¬ G.Adj u v)
+    (hj : ∀ u ∈ (Finset.univ \ s), ∀ v ∈ (Finset.univ \ s), ¬ G.Adj u v) :
+    ProperBoolColouring G (membershipColour s) := by
+  classical
+  intro u v he hcol
+  by_cases hu : u ∈ s <;> by_cases hv : v ∈ s
+  · exact hi u hu v hv he
+  · simpa [membershipColour, hu, hv] using hcol
+  · simpa [membershipColour, hu, hv] using hcol
+  · exact hj u (by simp [hu]) v (by simp [hv]) he
+
+/-- Any two complementary independent decompositions of a connected finite
+    graph agree up to exchanging the two parts. Cardinalities are irrelevant. -/
+theorem connected_independent_partition_unique
+    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+    (hconn : G.Connected) (r : V) (s t : Finset V)
+    (hs : ∀ u ∈ s, ∀ v ∈ s, ¬ G.Adj u v)
+    (hsc : ∀ u ∈ (Finset.univ \ s), ∀ v ∈ (Finset.univ \ s), ¬ G.Adj u v)
+    (ht : ∀ u ∈ t, ∀ v ∈ t, ¬ G.Adj u v)
+    (htc : ∀ u ∈ (Finset.univ \ t), ∀ v ∈ (Finset.univ \ t), ¬ G.Adj u v) :
+    s = t ∨ s = Finset.univ \ t := by
+  classical
+  obtain he | he := connected_bool_colouring_unique hconn r
+    (membershipColour s) (membershipColour t)
+    (independent_complement_proper G s hs hsc)
+    (independent_complement_proper G t ht htc)
+  · left
+    ext v
+    have hv := congrFun he v
+    have hm : membershipColour s v = true ↔ membershipColour t v = true := by rw [hv]
+    simpa [membershipColour] using hm
+  · right
+    ext v
+    have hv := congrFun he v
+    have hm : membershipColour s v = true ↔ (!(membershipColour t v)) = true := by rw [hv]
+    simpa [membershipColour] using hm
+
+#print axioms PDIC.walk_colour_agreement
+#print axioms PDIC.connected_bool_colouring_unique
+#print axioms PDIC.independent_complement_proper
+#print axioms PDIC.connected_independent_partition_unique
+
+end PDIC
+
+
+namespace PDIC
+
+/-- Every occupied matrix cell is exactly one unordered simple-graph edge. -/
+def matrixCellEdge (adj : Side → Side → Bool)
+    (c : {ij : Side × Side // adj ij.1 ij.2 = true}) :
+    (matrixGraph adj).edgeSet :=
+  ⟨s(Sum.inl c.val.1, Sum.inr c.val.2), c.property⟩
+
+theorem matrixCellEdge_bijective (adj : Side → Side → Bool) :
+    Function.Bijective (matrixCellEdge adj) := by
+  constructor
+  · intro a b he
+    apply Subtype.ext
+    have hh : a.val.1 = b.val.1 ∧ a.val.2 = b.val.2 := by
+      simpa only [matrixCellEdge, Sym2.eq_iff, Sum.inl.injEq, Sum.inr.injEq,
+        Sum.inl_ne_inr, Sum.inr_ne_inl, false_and, or_false] using
+        congrArg Subtype.val he
+    exact Prod.ext hh.1 hh.2
+  · rintro ⟨e, he⟩
+    revert he
+    refine Sym2.inductionOn e ?_
+    intro u v he
+    cases u with
+    | inl i =>
+      cases v with
+      | inl k => exact False.elim he
+      | inr j => exact ⟨⟨(i, j), he⟩, rfl⟩
+    | inr j =>
+      cases v with
+      | inl i =>
+        refine ⟨⟨(i, j), he⟩, ?_⟩
+        apply Subtype.ext
+        exact Sym2.eq_swap
+      | inr k => exact False.elim he
+
+theorem matrixGraph_edgeCount (adj : Side → Side → Bool) :
+    Nat.card (matrixGraph adj).edgeSet = actualMatrixEdgeCount adj := by
+  classical
+  letI : Fintype (matrixGraph adj).edgeSet := Fintype.ofFinite _
+  rw [Nat.card_eq_fintype_card,
+    ← Fintype.card_congr (Equiv.ofBijective _ (matrixCellEdge_bijective adj))]
+  simp [actualMatrixEdgeCount, Fintype.card_subtype]
+
+theorem connected_matrixGraph_seven_edges (adj : Side → Side → Bool)
+    (hc : (matrixGraph adj).Connected) : 7 ≤ actualMatrixEdgeCount adj := by
+  have hh := hc.card_vert_le_card_edgeSet_add_one
+  rw [matrixGraph_edgeCount] at hh
+  have hv : Nat.card SplitVertex = 8 := by
+    simp [Nat.card_eq_fintype_card, SplitVertex, Side, Fintype.card_sum]
+  rw [hv] at hh
+  omega
+
+/-- A genuine connected SimpleGraph theorem about actual mixed MIS vertex sets. -/
+theorem connected_graphMixedCount_le_three (adj : Side → Side → Bool)
+    (hc : (matrixGraph adj).Connected) : graphMixedCount adj ≤ 3 := by
+  apply graphMixedCount_le_three
+  have hh := connected_matrixGraph_seven_edges adj hc
+  omega
+
+theorem connected_graphMixedCount_three_iff_pattern (adj : Side → Side → Bool)
+    (hc : (matrixGraph adj).Connected) :
+    graphMixedCount adj = 3 ↔
+      spiderMatrixBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3) = true := by
+  exact graphMixedCount_three_iff_spider adj (connected_matrixGraph_seven_edges adj hc)
+
+#print axioms PDIC.matrixCellEdge_bijective
+#print axioms PDIC.matrixGraph_edgeCount
+#print axioms PDIC.connected_matrixGraph_seven_edges
+#print axioms PDIC.connected_graphMixedCount_le_three
+#print axioms PDIC.connected_graphMixedCount_three_iff_pattern
+
+end PDIC
