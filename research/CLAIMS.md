@@ -1,6 +1,6 @@
-# PDIC claim register — S009 universal spider equality source candidate unverified
+# PDIC claim register — S010 strictly certified universal spider equality; full probability law open
 
-Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessions/S003R9_CLOSEOUT.md). Certified new Lean source remains on unmerged PR #3; main source is the earlier S003R3 baseline.
+Certified universal graph equality: [S010 source `c8c64e5a2a98ee359c79430293ca0738211b4215`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/c8c64e5a2a98ee359c79430293ca0738211b4215), [hosted Lean `38928965168`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168) and [all eight finite checkers `38928965172`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965172) on unmerged PR #4. Main's older `PDIC.lean` is not the proof branch. See [S010 proof note](S010_EQUALITY_KERNEL_CERTIFICATE.md).
 
 | Claim | Status | Precise boundary |
 | --- | --- | --- |
@@ -11,7 +11,7 @@ Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessi
 | Anchored mixed third-set count independent of partition choice | LEAN_KERNEL_VERIFIED_S007 | Count over actual graph MIS, not yet proven bijective to unordered h(G) |
 | Genuine unordered h(G)=4×4 matrix count, connected h≤3 | LEAN_KERNEL_VERIFIED_S007 | Exact S007 graph transport and h=B theorem; source ff864170..., run 38914271558 |
 | Named spider concrete graph, matrixGraph isomorphism, connectedness, h=3 | LEAN_KERNEL_VERIFIED_S008 | Source fc8581d0bd117cd66c4497fa16209e3480c65ec7; run 38918496261; STRICT LEAN PASS with all eight independent checkers |
-| Universal h=3 iff G is isomorphic to named spider | LEAN_SOURCE_CANDIDATE_S009; OPEN_IN_LEAN | Proposed at 59d34387; strict run 38922840797 failed with runner shutdown exit 143 during lake build. All 192 patterns finite verified, NOT a Lean kernel proof |
+| Universal h=3 iff G is isomorphic to named spider | **LEAN_KERNEL_VERIFIED_S010** | Actual graph isomorphism, no ordered-triple shortcut, exact source `c8c64e5a2a98ee359c79430293ca0738211b4215`, Lean PASS `38928965168`; standard axioms only |
 | Admissible eight-cap classification, 702 caps and linear orbit | PROVED_WITH_CLASSICAL_INPUT / FINITE_CHECKED | Nine-cap equivalence externally cited; not all-caps Lean |
 | Canonical four zero quartets and C4 incidence | LEAN_KERNEL_VERIFIED | Concrete canonical cap |
 | Executable IsMIS4 iff Prop MIS | LEAN_KERNEL_VERIFIED | Every Bool adjacency |
@@ -29,7 +29,7 @@ Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessi
 | Two nine-total-MIS trees have h=3 and h=1 | FINITE_CHECKED_S003R9; explicit lists written | Distinguishes total MIS statistic, not priority |
 | Uniform 2520 images with 16 bijections each, eight favourable triple images | PROVED_WRITTEN / FINITE_CHECKED | Actual finite probability semantics remain OPEN_IN_LEAN |
 | Arbitrary connected eight-vertex h≤3, genuine unordered count and h=B transport | LEAN_KERNEL_VERIFIED_S007 | Exact source ff864170834954ef2a286afe6a6b6577ec02f986; run 38914271558; actual graph isomorphism and MIS/triple transport |
-| h=3 iff G is isomorphic to named spider | PROVED_WRITTEN / FINITE_CHECKED; OPEN_IN_LEAN | Explicit row/column normalisation is written and independent 192-pattern checker supplied; universal Lean normalisation remains next obligation |
+| h=3 iff G is isomorphic to named spider | **LEAN_KERNEL_VERIFIED_S010** | Matrix pattern transformed into actual `SimpleGraph` iso; connected `Fin 8` classification proved at exact S010 source |
 | Full N0 law and sharp probability ≤1/105 | PROVED_WRITTEN_WITH_CLASSICAL_INPUT | Genuine graph/labelling probability Lean interface OPEN |
 | Conditional moment inversion and rational bound | LEAN_KERNEL_VERIFIED | Arithmetic is not a probability-model proof |
 | Greedy charge mixture / signed pebbling residues | PROVED_WRITTEN_ELEMENTARY | Does not prove reachability or stackability |
@@ -97,3 +97,7 @@ An explicit constructive proof normalising **every** 96 row-centred and 96 colum
 ## S009 strict evidence boundary — 16 October 2026
 
 Proposed source 59d34387 constructs row/column graph-isomorphism and public connected h=3 iff namedSpider statements. Strict source workflow head 0a9961f92c69027bda803c9e805349943079856b: [run 38922840797](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38922840797) **FAILED** with runner SIGTERM/143 during lake build after six minutes, without Lean compiler diagnostics. Full eight checkers and axiom check skipped. Earlier S007/S008 certificates remain valid. Unverified new declarations may not be labelled proved. Independent enumeration: 96 row + 96 column qualifying matrices all admit correct permutations, FINITE_CHECKED only. [S010 constructive repair installed](S010_SPIDER_KERNEL_CLOSURE_TARGET.md); no external submission.
+
+## S010 strict universal graph equality certificate — 16 October 2026
+
+Public `connected_h_three_iff_namedSpider` and supporting bit-mask, transpose, permutation, true-graph-isomorphism certificates passed `lake build`, strict allowed-axiom scan and all eight independent finite checkers at [exact commit `c8c64e5a2a98ee359c79430293ca0738211b4215`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/c8c64e5a2a98ee359c79430293ca0738211b4215) with [Lean run 38928965168](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168). The earlier S009 failure remains historical, not the current formalisation status. **Still OPEN_IN_LEAN:** admissible-cap classical linear-transfer interface, uniform label counting and the whole four-term probability theorem. [Detailed proof](S010_EQUALITY_KERNEL_CERTIFICATE.md), [S011 target](S011_CAP_INCIDENCE_UNIFORM_LABELLING_TARGET.md). Novelty, priority and Palomar registration remain unresolved/unperformed.
