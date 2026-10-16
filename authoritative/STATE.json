@@ -23,7 +23,7 @@
   "palomar": "NOT_REQUESTED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
-  "strict_hosted_ci": "PR3_COMPOSITIONAL_LOCAL_2bfb316_LEAN_PASS_RUN_38871115121_AND_FIVE_CHECKERS_PASS__LATEST_SIX_PAIR_COUNT_ATTEMPT_PENDING_CERTIFICATION",
+  "strict_hosted_ci": "PR3_2bfb316_LOCAL_KERNEL_LEAN_PASS_38871115121_AND_ALL_FIVE_VERIFIERS__SIX_PAIR_FILTER_CANDIDATE_FAILED_TWICE_AND_WITHDRAWN__PR3_HEAD_30ac30_CLEAN_CI_PENDING",
   "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871115121",
   "all_five_verifier_run": "PR_FINITE_LEAD_CHECK_PASS_SEPARATE_FROM_LEAN",
   "native_axioms_approved": false,
@@ -44,5 +44,6 @@
   "s003r6_local_verified_sha": "2bfb3164d9dbc73c830ea9cac24667a66b11a8f1",
   "s003r6_local_verified_run": "38871115121",
   "s003r6_six_pair_candidate_sha": "540e132973ef8f3be583293c514e8cef962cc7cf",
-  "s003r6_six_pair_candidate_status": "PENDING_EXACT_HEAD_LEAN_CI"
+  "s003r6_six_pair_candidate_status": "FAILED_SIMP_MAXRECDEPTH_TWICE_WITHDRAWN_FROM_PR3",
+  "s003r6_clean_branch_head_sha": "30ac30c02eba4b0e6c58ac528c5a146f59388a97"
 }
