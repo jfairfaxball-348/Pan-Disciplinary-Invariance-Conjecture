@@ -481,7 +481,7 @@
     "single end-to-end four-probability theorem",
     "conditional classical cap normal-form premise supplied externally"
   ],
-  "s016_status": "COMPLETED_PARTIAL__COMPLEMENTARY_PAIR_2304_STRICT_KERNEL_PASS__CANONICAL_OVERLAP_128_CANDIDATE_UNVERIFIED",
+  "s016_status": "COMPLETED_STRICT_LEAN_PASS_COMPLEMENTARY_PAIR_2304_AND_CANONICAL_OVERLAP_PAIR_128_FULL_DISTRIBUTION_OPEN",
   "s015_verified_sha": "69de0c9e9963016ff5324545d55710619e8b8ead",
   "s015_verified_run": "38959901730",
   "s015_verified_finite_run": "38959901752",
@@ -504,7 +504,7 @@
   "s016_verified_2304_finite_run": 38962480950,
   "s016_canonical_128_candidate_sha": "5dc78de0aad6fa1d19bcda72e7143386f222d617",
   "s016_canonical_128_candidate_run": 38963802011,
-  "s016_canonical_128_status": "SOURCE_FORMALIZED_CI_PENDING",
+  "s016_canonical_128_status": "LEAN_KERNEL_VERIFIED_STANDARD_AXIOMS_ONLY",
   "s016_closeout": "sessions/S016_CLOSEOUT.md",
   "s016_proof_note": "research/S016_PAIR_FIBRE_PROOF.md",
   "s016_unclosed": [
@@ -515,5 +515,16 @@
     "CLASSICAL_CAP_NORMAL_FORM_SUPPLIED_HYPOTHESIS"
   ],
   "s017_status": "INSTALLED_NOT_EXECUTED",
-  "s017_target": "research/S017_FULL_PAIR_MOMENTS_TARGET.md"
+  "s017_target": "research/S017_FULL_PAIR_MOMENTS_TARGET.md",
+  "s016_canonical_128_verified_sha": "5dc78de0aad6fa1d19bcda72e7143386f222d617",
+  "s016_canonical_128_verified_run": 38963802011,
+  "s016_canonical_128_verified_finite_run": 38963802113,
+  "s016_verified_declarations": [
+    "canonicalCapF3_perm_complementary_pair_event_card",
+    "quartet_ordered_overlap_two_orbit",
+    "perm_pair_image_fibre_card_eq_stabilizer",
+    "canonical_ordered_overlap_pair_image_fibre_card",
+    "canonicalOrderedOverlapPair_card",
+    "canonicalCapF3_perm_canonical_overlap_pair_event_card"
+  ]
 }
