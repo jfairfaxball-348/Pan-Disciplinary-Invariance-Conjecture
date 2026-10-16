@@ -38,7 +38,7 @@ The explicit `#print axioms` reports for all principal declarations contain only
 
 The next source revision adds `sixPairsBoolCardinality`, asserting that the cardinality of **any** Boolean predicate supported on two-subsets of `Fin 4` is its six ordinary-Nat indicator sum, plus `computableMixedLeftPairCount_eq_sixCriterion` for the existing semantic criterion. This strengthens the six-subset enumeration from a list identity to a cardinality identity.
 
-At the time of drafting, the first attempt failed at a `simp` recursion-depth limit, and an increased-depth revision was submitted for strict CI. **Do not cite this additional theorem as kernel-verified without an exact-HEAD passing run.**
+Both attempts **failed strict Lean**: original candidate `25f4c628` ([run 38871309939](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871309939)) and increased-depth candidate `540e1329` ([run 38871823604](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871823604)) hit `simp` recursion-depth exhaustion. The uncertified extension was **withdrawn** from PR source at commit `30ac30c0`; the compositional kernels proven at `2bfb3164` remain. The symbolic cardinality proof is OPEN_IN_LEAN for S003R7.
 
 ## Remaining indispensable bridge
 
