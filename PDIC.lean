@@ -1138,8 +1138,12 @@ theorem four_mixed_implies_at_most_five_edges
   let c := rowsOfAdj adj 2
   let d := rowsOfAdj adj 3
   have hb : (4 : BitVec 3) ≤ fourRowMixedCountBV a b c d := by
+    rw [BitVec.le_def]
+    norm_num
     omega
   have ht := four_by_four_six_edge_threshold_BV a b c d hb
+  have htNat := (BitVec.le_def).mp ht
+  norm_num at htNat
   omega
 
 /-- At least eight bipartite edges leave at most two mixed MIS witnesses. -/
@@ -1153,8 +1157,12 @@ theorem eight_edges_implies_at_most_two_mixed
   let c := rowsOfAdj adj 2
   let d := rowsOfAdj adj 3
   have hb : (8 : BitVec 5) ≤ fourRowEdgeCountBV a b c d := by
+    rw [BitVec.le_def]
+    norm_num
     omega
   have ht := eight_edges_at_most_two_mixed_BV a b c d hb
+  have htNat := (BitVec.le_def).mp ht
+  norm_num at htNat
   omega
 
 /-- The seven-edge/three-mixed-witness semantic equality case is EXACTLY
@@ -1174,9 +1182,18 @@ theorem seven_edges_three_mixed_iff_spider
   constructor
   · rintro ⟨hedges, hmixed⟩
     apply hbv.mp
-    constructor <;> omega
+    constructor
+    · apply (BitVec.toNat_eq).2
+      norm_num
+      omega
+    · apply (BitVec.toNat_eq).2
+      norm_num
+      omega
   · intro hspider
     rcases hbv.mpr hspider with ⟨hedges, hmixed⟩
+    have heNat := congrArg BitVec.toNat hedges
+    have hmNat := congrArg BitVec.toNat hmixed
+    norm_num at heNat hmNat
     constructor <;> omega
 
 /-- Hostile sanity check: the 8-vertex spider has a maximal independent
@@ -1186,14 +1203,20 @@ theorem spider_has_three_one_mis :
     IsMIS4 spiderAdj ({1, 2, 3, 7} : Finset Vertex) ∧
       (({1, 2, 3, 7} : Finset Vertex).filter
         (fun v => v.val < 4)).card = 3 := by
-  decide
+  constructor
+  · apply (isMIS4Bool_iff_IsMIS4 _ _).mp
+    decide
+  · decide
 
 /-- Likewise the spider contains a 1+3 maximal independent four-set. -/
 theorem spider_has_one_three_mis :
     IsMIS4 spiderAdj ({2, 4, 6, 7} : Finset Vertex) ∧
       (({2, 4, 6, 7} : Finset Vertex).filter
         (fun v => v.val < 4)).card = 1 := by
-  decide
+  constructor
+  · apply (isMIS4Bool_iff_IsMIS4 _ _).mp
+    decide
+  · decide
 
 #print axioms PDIC.fourRows_rowsOfAdj
 #print axioms PDIC.actualCounts_eq_encoded
