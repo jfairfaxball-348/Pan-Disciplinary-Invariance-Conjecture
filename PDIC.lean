@@ -997,8 +997,12 @@ theorem sixPairsBoolCardinality_by_sum (p : Finset Side → Bool)
     ext X
     simp only [Finset.mem_filter, Finset.mem_univ, true_and]
     exact ⟨fun hp => ⟨h X hp, hp⟩, fun hp => hp.2⟩
-  rw [hf, ← Finset.sum_boole]
-  simp [sidePairsSix, add_assoc]
+  rw [hf]
+  calc
+    _ = (∑ X ∈ sidePairsSix, if p X = true then (1 : ℕ) else 0) := by
+      exact (Finset.sum_boole (R := ℕ)
+        (fun X : Finset Side => p X = true) sidePairsSix).symm
+    _ = _ := by simp [sidePairsSix, add_assoc]
 
 theorem computableMixedLeftPairCount_eq_sixCriterion
     (adj : Side → Side → Bool) :
