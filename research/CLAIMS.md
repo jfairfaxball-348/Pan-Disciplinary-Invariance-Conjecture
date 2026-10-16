@@ -1,4 +1,4 @@
-# PDIC claim register — S003R5 (2026-10-16)
+# PDIC claim register — S003R6 (2026-10-16)
 
 | Claim | Status | Boundary |
 | --- | --- | --- |
@@ -27,3 +27,19 @@
 | Manuscript / priority / peer review | NOT_STARTED / OPEN | S004 conditional; no submissions |
 
 See [S003R5 closeout](../sessions/S003R5_CLOSEOUT.md), [S003R5 decomposed proof](S003R5_PROOF_DECOMPOSITION.md), [S003R4 closeout](../sessions/S003R4_CLOSEOUT.md), [PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), and [prior S003R3 closeout](../sessions/S003R3_CLOSEOUT.md), [new eight-edge and semantic proof](S003R3_GRAPH_SEMANTICS_AND_EIGHT_EDGE_BOUND.md), [Lean source](../PDIC.lean), and [next prompt](NEXT_SESSION_PROMPT.md).
+
+## S003R6 audit addendum (2026-10-16)
+
+| Claim | Status | Exact limit |
+| --- | --- | --- |
+| One-pair `goodLeftPairBV_spec` iff two-neighbour mask and two outside witnesses | **LEAN_KERNEL_CHECKED_ON_PR3_2bfb316** | All four BitVec rows; exact Lean [run 38871115121](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871115121) |
+| OR-mask bit correspondence; six distinct two-subsets of `Fin 4` | **LEAN_KERNEL_CHECKED_ON_PR3_2bfb316** | `orMask_getLsbD_iff`, `sidePairsSix_eq_filter`, `sidePairsSix_card` |
+| Three-bit six-indicator sum equals exact natural sum | **LEAN_KERNEL_CHECKED_ON_PR3_2bfb316** | `sixBooleanIndicatorCount`, `fourRowMixedCountBV_eq_sixNat`; at most six, no wrap |
+| Four five-bit row popcounts sum to exact natural sum | **LEAN_KERNEL_CHECKED_ON_PR3_2bfb316** | `fourSmallBVSum_noOverflow`, `fourRowEdgeCountBV_eq_fourPopNat`; each at most four |
+| Arbitrary Boolean predicate's six two-subset filtered-cardinality identity | **PENDING_STRICT_CI_ON_PR3** | `sixPairsBoolCardinality`; earlier recursion-depth failure, revision needs exact-head verification |
+| Exact `fourRowMixedCountBV.toNat = actualMixedLeftPairCount` | **OPEN_IN_LEAN** | Six scalar `goodLeftPairBV`↔`mixedPairCriterionBool` equivalences still required |
+| Exact `fourRowEdgeCountBV.toNat = actualMatrixEdgeCount` | **OPEN_IN_LEAN** | Four-row filtered edge-cardinality sum adapter still required |
+| General Boolean matrix transferred edge/mixed bounds and spider iff | **OPEN_IN_LEAN** | Both semantic numerical count adapters prerequisite |
+| Complete graph probability law / originality | **PROVED_WRITTEN_WITH_CLASSICAL_INPUT / OPEN_IN_LEAN / NOVELTY_OPEN** | Graph isomorphism, h=b, 2520-assignments and specialist source audit remain |
+
+This addendum is authoritative for S003R6 and supersedes older 'NEXT S003R4/S003R5' wording elsewhere. Do not claim an unverified PR candidate was kernel checked.
