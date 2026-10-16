@@ -1868,3 +1868,66 @@ theorem tripleOfThird_injective_on_mixed
 #print axioms PDIC.tripleOfThird_injective_on_mixed
 
 end PDIC
+
+
+/-! S008: exact bijection of genuine unordered triples with anchored thirds. -/
+namespace PDIC
+
+/-- Connectedness and a fixed genuine complementary four-MIS partition
+supply a lossless correspondence. The inverse really selects the mixed
+third set of an unordered three-member family. -/
+noncomputable def unorderedTripleAnchoredEquiv
+    (G : SimpleGraph Vertex) (hc : G.Connected)
+    (s : Finset Vertex) (hs : FourMISPartition G s) :
+    {T : Finset (Finset Vertex) // IsUnorderedCompatibleTriple G T} ≃
+      {r : Finset Vertex // IsAnchoredMixedThird G s r} where
+  toFun T := by
+    let h := unorderedTriple_has_anchored_third G hc s hs T.val T.property
+    exact ⟨Classical.choose h, (Classical.choose_spec h).2⟩
+  invFun r := ⟨tripleOfThird s r.val,
+    tripleOfThird_compatible G s r.val hs r.property⟩
+  left_inv T := by
+    apply Subtype.ext
+    let h := unorderedTriple_has_anchored_third G hc s hs T.val T.property
+    change tripleOfThird s (Classical.choose h) = T.val
+    exact (compatibleTriple_eq_tripleOfThird G hc s hs T.val T.property
+      (Classical.choose h) (Classical.choose_spec h).1
+      (Classical.choose_spec h).2).symm
+  right_inv r := by
+    apply Subtype.ext
+    let T : {T : Finset (Finset Vertex) // IsUnorderedCompatibleTriple G T} :=
+      ⟨tripleOfThird s r.val, tripleOfThird_compatible G s r.val hs r.property⟩
+    let h := unorderedTriple_has_anchored_third G hc s hs T.val T.property
+    change Classical.choose h = r.val
+    have hrmem : Classical.choose h ∈ tripleOfThird s r.val :=
+      (Classical.choose_spec h).1
+    have hn := anchoredThird_ne_sides G s (Classical.choose h) hs
+      (Classical.choose_spec h).2
+    simp only [tripleOfThird, Finset.mem_insert, Finset.mem_singleton] at hrmem
+    rcases hrmem with he | he | he
+    · exact False.elim (hn.1 he)
+    · exact False.elim (hn.2 he)
+    · exact he
+
+/-- Exact cardinality bridge: no factorial overcount and no assumption
+that all four-MIS have a 2+2 split. -/
+theorem unorderedCompatibleTripleCount_eq_anchoredMixedThirdCount
+    (G : SimpleGraph Vertex) (hc : G.Connected)
+    (s : Finset Vertex) (hs : FourMISPartition G s) :
+    unorderedCompatibleTripleCount G = anchoredMixedThirdCount G s := by
+  classical
+  calc
+    unorderedCompatibleTripleCount G =
+        Fintype.card {T : Finset (Finset Vertex) //
+          IsUnorderedCompatibleTriple G T} := by
+      simp [unorderedCompatibleTripleCount, Fintype.card_subtype]
+    _ = Fintype.card {r : Finset Vertex //
+          IsAnchoredMixedThird G s r} :=
+      Fintype.card_congr (unorderedTripleAnchoredEquiv G hc s hs)
+    _ = anchoredMixedThirdCount G s := by
+      simp [anchoredMixedThirdCount, Fintype.card_subtype]
+
+#print axioms PDIC.unorderedTripleAnchoredEquiv
+#print axioms PDIC.unorderedCompatibleTripleCount_eq_anchoredMixedThirdCount
+
+end PDIC
