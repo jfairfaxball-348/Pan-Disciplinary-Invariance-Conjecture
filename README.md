@@ -2,7 +2,7 @@
 
 **Mission:** connect finite-group zero-sum quartet geometry and graph maximal-independent-set statistics in a precise first paper. The project name is aspirational.
 
-**S003R9 COMPLETED. Next: S004, prepared, not executed.** The source is on [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), branch `session/s003r4-numerical-semantic`. Main retains the earlier S003R3 Lean baseline; documentation on main describes the separately certified PR source. Read the [S003R9 closeout](sessions/S003R9_CLOSEOUT.md) for exact final SHA and workflow evidence.
+**S003R9 COMPLETED. Owner-directed sessions: S004 target unassigned.** The source is on [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), branch `session/s003r4-numerical-semantic`. Main retains the earlier S003R3 Lean baseline; documentation on main describes the separately certified PR source. Read the [S003R9 closeout](sessions/S003R9_CLOSEOUT.md) for exact final SHA and workflow evidence.
 
 ## Strictly certified foundation
 
@@ -28,6 +28,8 @@ Equality in the final bound holds precisely at the spider S(2,2,2,1), as a writt
 
 The [revised manuscript](paper/PDIC_S003R8_DRAFT.tex) supplies the zero-fixing linear cap transfer, equal 16-element labelling fibres, and a concrete comparison: two classical nine-MIS trees have h=3 and h=1. This distinguishes the statistic from total MIS count, and does not establish novelty.
 
-[Claims](research/CLAIMS.md) · [Roadmap](ROADMAP.md) · [S003R9 proof/scope](research/S003R9_GRAPH_WITNESSES_AND_SCOPE.md) · [Next prompt](research/NEXT_SESSION_PROMPT.md).
+[Claims](research/CLAIMS.md) · [Roadmap](ROADMAP.md) · [S003R9 proof/scope](research/S003R9_GRAPH_WITNESSES_AND_SCOPE.md) · [Session control](research/NEXT_SESSION_PROMPT.md).
 
-Reproduce the pinned `lake build`, strict `#print axioms` audit and six Python checkers in `scripts/`. The sixth checks the prior-art separation examples and all 2520 atom assignments. No PR merge, author correspondence, Palomar/arXiv/journal submission has occurred. S004 is the final source-comparison, editing and publication-preparation gate.
+Reproduce the pinned `lake build`, strict `#print axioms` audit and six Python checkers in `scripts/`. The sixth checks the prior-art separation examples and all 2520 atom assignments. No PR merge, author correspondence, Palomar/arXiv/journal submission has occurred. The owner supplies each session target. Closeouts report completed work and verification without suggesting a next step or generating a next-session prompt. The former S004 brief is withdrawn; S004 awaits the owner's target.
+
+**S003R9 final exact-head PASS:** [`402465f2330a275e04108169a6bfbb65e94e10b8`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/402465f2330a275e04108169a6bfbb65e94e10b8), [strict Lean 38890367785](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38890367785), all six checkers PASS. [Final closeout](sessions/S003R9_CLOSEOUT.md).
