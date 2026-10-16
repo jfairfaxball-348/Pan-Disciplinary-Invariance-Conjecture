@@ -4295,3 +4295,59 @@ theorem graphMIS_first_moment_numerator
 #print axioms PDIC.graphMIS_first_moment_numerator
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S018 continued: convert the exact real graph incidence count to the
+manuscript's rational first moment and eliminate an ordered-triple pitfall. -/
+
+/-- The expectation is calculated over the full genuine uniform 8! sample
+space, with no replacement of the graph family by symbolic quartet indices. -/
+noncomputable def graphMIS_first_moment (G : SimpleGraph Vertex) : ℚ :=
+  (∑ e : Equiv.Perm Vertex, (labellingZeroMISCount G e : ℚ)) /
+    (Fintype.card (Equiv.Perm Vertex) : ℚ)
+
+/-- The first factor of the manuscript's complete probability law,
+valid for every graph: E[N₀]=2m/35. -/
+theorem graphMIS_first_moment_eq (G : SimpleGraph Vertex) :
+    graphMIS_first_moment G =
+      (2 : ℚ) * ((fourGraphMISFamily G).card : ℚ) / 35 := by
+  classical
+  have hn :
+      (∑ e : Equiv.Perm Vertex, (labellingZeroMISCount G e : ℚ)) =
+        (2304 : ℚ) * ((fourGraphMISFamily G).card : ℚ) := by
+    exact_mod_cast graphMIS_first_moment_numerator G
+  unfold graphMIS_first_moment
+  rw [hn, uniformLabellings_card]
+  ring
+
+/-- A four-set in eight vertices has a unique disjoint four-set partner.
+This is the orientation-free combinatorial reason a compatible unordered
+three-MIS family cannot carry two different complementary pairs. -/
+theorem disjoint_four_partner_unique
+    (s t u : Finset Vertex)
+    (hs : s.card = 4) (ht : t.card = 4) (hu : u.card = 4)
+    (hst : Disjoint s t) (hsu : Disjoint s u) :
+    t = u := by
+  calc
+    t = Finset.univ \ s :=
+      disjoint_four_sets_complement s t hs ht hst
+    _ = u := (disjoint_four_sets_complement s u hs hu hsu).symm
+
+/-- In particular, three distinct four-sets never have two disjoint pairs
+sharing the first set. This is a *true* unordered-incidence restriction,
+not an assumption of sixfold ordered-triple multiplicity. -/
+theorem three_distinct_four_sets_no_two_disjoint_pairs
+    (s t u : Finset Vertex)
+    (hs : s.card = 4) (ht : t.card = 4) (hu : u.card = 4)
+    (htu : t ≠ u) (hst : Disjoint s t) :
+    ¬ Disjoint s u := by
+  intro hsu
+  exact htu (disjoint_four_partner_unique s t u hs ht hu hst hsu)
+
+#print axioms PDIC.graphMIS_first_moment_eq
+#print axioms PDIC.disjoint_four_partner_unique
+#print axioms PDIC.three_distinct_four_sets_no_two_disjoint_pairs
+
+end PDIC
