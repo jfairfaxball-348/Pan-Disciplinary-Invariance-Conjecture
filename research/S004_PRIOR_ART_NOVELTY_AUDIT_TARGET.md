@@ -1,6 +1,6 @@
 # PDIC S004 — prior-art and novelty audit
 
-**OWNER-INSTALLED TARGET — NOT EXECUTED.** Installed on 16 October 2026 at the owner's request. Installation is preparation only; execute when the owner instructs this session to run. This replaces the earlier withdrawn combined novelty/manuscript/publication-preparation brief.
+**OWNER-INSTALLED TARGET — EXECUTED AND CLOSED on 16 October 2026.** Originally installed on 16 October 2026 at the owner's request; subsequently executed on explicit instruction. This replaced the earlier withdrawn combined novelty/manuscript/publication-preparation brief. The historic scope below is preserved for traceability. Final deliverables: [source-backed audit](S004_PRIOR_ART_NOVELTY_AUDIT.md), [claims register](CLAIMS.md), [normal closeout](../sessions/S004_CLOSEOUT.md). No subsequent target was installed.
 
 ## Objective
 
