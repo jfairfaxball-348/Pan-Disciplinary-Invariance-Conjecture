@@ -4,22 +4,22 @@
   "last_completed_session": "S015",
   "next_session": "S016",
   "next_session_executed": false,
-  "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION_S015_SINGLETON_2304_PROOF_CANDIDATE_S016_INSTALLED",
+  "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION_S015_TRUE_2304_SINGLETON_EVENT_KERNEL_VERIFIED_S016_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
     "S003R9 strict actual SimpleGraph/count/connectedness appendix and general unique partition theorem; revised manuscript and primary-source comparison"
   ],
-  "mathematics": "S014_STRICT_576_16_STABILIZERS__S015_ACTUAL_2304_SINGLETON_SOURCE_CANDIDATE_WAITING_STRICT_KERNEL__GENERAL_128_EVENTS_MOMENTS_DISTRIBUTION_OPEN",
+  "mathematics": "S015_GENUINE_2304_PERMUTATION_SINGLETON_EVENT_AND_GENERAL_576_IMAGE_FIBRES_STRICT_LEAN_PASS__128_PAIR_TRIPLE_EVENTS_GRAPH_MOMENTS_AND_FOUR_TERM_LAW_OPEN",
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
-  "lean": "S015_69de0c9e9963016ff5324545d55710619e8b8ead_STRICT_LEAN_PENDING_RUN_38959901730_FINITE_PASS_38959901752__S014_LAST_CERTIFIED_95ef8f4886868f66edfbde90b34cc9e12fe6b463_RUN_38949894336",
+  "lean": "S015_69de0c9e9963016ff5324545d55710619e8b8ead_STRICT_KERNEL_PASS_38959901730_STANDARD_AXIOMS_ONLY_NINE_FINITE_CHECKERS_PASS_38959901752__FULL_LAW_OPEN",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
   "next_prompt": "research/S016_PAIR_FIBRES_AND_MOMENTS_TARGET.md",
   "source": "PDIC.lean",
-  "strict_hosted_ci": "S014_95ef8f4886868f66edfbde90b34cc9e12fe6b463_LEAN_KERNEL_AND_NINE_INDEPENDENT_CHECKERS_PASS_38949894336",
-  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38949894336",
+  "strict_hosted_ci": "S015_69de0c9e9963016ff5324545d55710619e8b8ead_LEAN_KERNEL_STANDARD_AXIOMS_ONLY_AND_NINE_CHECKERS_PASS_38959901730",
+  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38959901730",
   "all_five_verifier_run": "ALL_SIX_PASS_LOCAL_AND_HOSTED_38890367785",
   "native_axioms_approved": false,
   "s003r3_closeout": "sessions/S003R3_CLOSEOUT.md",
@@ -228,7 +228,7 @@
   "s007_proof_branch": "session/s007-full-lean-flagship",
   "s007_start_proof_source": "402465f2330a275e04108169a6bfbb65e94e10b8",
   "s007_core_problem": "CONNECTED_EIGHT_VERTEX_UNORDERED_COMPATIBLE_TRIPLES_TO_MATRIX_GRAPH_COUNT_AND_NAMED_SPIDER_ISOMORPHISM",
-  "flagship_kernel_status": "INCOMPLETE_S010_GRAPH_IFF_AND_S011_TYPED_CAP_PASS__S012_SOURCE_UNVERIFIED__EVENT_FIBRES_N0_BOUND_MOMENTS_AND_ALL_CAP_DISTRIBUTION_OPEN",
+  "flagship_kernel_status": "INCOMPLETE_S015_TRUE_SINGLETON_EVENT_2304_AND_S013_N0_LE_THREE_AND_S010_SPIDER_IFF_CERTIFIED__ACTUAL_128_PAIR_TRIPLE_EVENTS_GRAPH_MOMENTS_AND_FULL_LAW_OPEN",
   "flagship_required_interfaces": [
     "admissible 8-cap typed zero-sum quartet incidence and explicitly conditional classical GL(3,3) cap transfer",
     "genuine uniform 8! labellings, regular fibres, moments, N0<=3 and all four probabilities",
@@ -466,10 +466,10 @@
     "GRAPH_MIS_UNORDERED_FACTORIAL_MOMENTS",
     "FULL_FOUR_TERM_PROBABILITY_WITH_SPIDER_IFF"
   ],
-  "s015_status": "EXECUTED_SOURCE_FORMALIZED_TRUE_2304_SINGLETON_EVENT_CANDIDATE_STRICT_PENDING",
+  "s015_status": "COMPLETED_STRICT_LEAN_PASS_GENUINE_2304_SINGLETON_ZERO_SUM_EVENT",
   "s015_source_sha": "69de0c9e9963016ff5324545d55710619e8b8ead",
   "s015_ci_run": "38959901730",
-  "s015_ci_status": "IN_PROGRESS_NOT_YET_VERIFIED_AT_CLOSEOUT_SNAPSHOT",
+  "s015_ci_status": "SUCCESS_EXACT_SOURCE_STRICT_LEAN_HOLE_SCAN_NINE_CHECKERS_STANDARD_AXIOMS_ONLY",
   "s015_finite_run": "38959901752",
   "s015_finite_status": "PASS_EXACT_SOURCE",
   "s015_closeout_path": "sessions/S015_CLOSEOUT.md",
@@ -481,5 +481,22 @@
     "single end-to-end four-probability theorem",
     "conditional classical cap normal-form premise supplied externally"
   ],
-  "s016_status": "INSTALLED_NOT_EXECUTED"
+  "s016_status": "INSTALLED_NOT_EXECUTED",
+  "s015_verified_sha": "69de0c9e9963016ff5324545d55710619e8b8ead",
+  "s015_verified_run": "38959901730",
+  "s015_verified_finite_run": "38959901752",
+  "s015_verified_declarations": [
+    "canonicalTwoQuartetColour_comp_iff_images_fixed",
+    "canonicalTwoQuartetImageStabilizer_card",
+    "exists_perm_fourset_image",
+    "finset_image_perm_trans",
+    "perm_image_fibre_card_eq_stabilizer",
+    "arbitraryFourset_to_canonicalQuartet_fibre_card",
+    "indexedQuartetBlockColour_fibre_card",
+    "indexedQuartetBlockStabilizer_card",
+    "indexedQuartetBlockColour_comp_iff_image_fixed",
+    "indexedQuartetImageStabilizer_card",
+    "arbitraryFourset_to_anyQuartet_fibre_card",
+    "canonicalCapF3_perm_singleton_event_card"
+  ]
 }
