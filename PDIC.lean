@@ -2399,9 +2399,6 @@ matrix.  The finite certificate only chooses 4-by-4 side permutations and
 whether to exchange the two sides.  Graph adjacency is transported
 separately, for all vertex pairs including nonedges. -/
 
-/-- All spider-pattern matrices admit a row/column permutation to the
-canonical labelled matrix. This is a finite statement about the sixteen
-Boolean cells and the two symmetric groups on four elements. -/
 /-! S010: break the former 65,536-matrix × permutation proof into
     one 3-leaf kernel certificate, four explicit row-hub relabellings,
     and a transpose identity.  No theorem assumes the desired isomorphism. -/
@@ -2429,7 +2426,8 @@ private theorem spiderTransposeCells (a b c d : BitVec 4) (i j : Side) :
       (columnOfRowsBV a b c d 3)) i j =
     adjOfRows (fourRows a b c d) j i := by
   fin_cases i <;> fin_cases j <;>
-    simp [adjOfRows, fourRows, columnOfRowsBV] <;> bv_decide
+    simp only [adjOfRows, fourRows, columnOfRowsBV, ↓reduceIte] <;>
+      (revert a b c d; decide +kernel)
 
 /-- Hub-on-the-left normalisation. The only finite search occurs in
 spiderHubZero_leaves: row placements are explicit swaps. -/
@@ -2439,10 +2437,10 @@ private theorem spiderHubRows_permutations (a b c d : BitVec 4)
       (adjOfRows (fourRows a b c d) i j = true) ↔
         canonicalSpiderMatrix (p i) (q j) = true := by
   have hcases :
-      (a = 15 ∧ threeDistinctLeavesBV b c d = true) ∨
-      (b = 15 ∧ threeDistinctLeavesBV a c d = true) ∨
-      (c = 15 ∧ threeDistinctLeavesBV a b d = true) ∨
-      (d = 15 ∧ threeDistinctLeavesBV a b c = true) := by
+      (((a = 15 ∧ threeDistinctLeavesBV b c d = true) ∨
+        (b = 15 ∧ threeDistinctLeavesBV a c d = true)) ∨
+        (c = 15 ∧ threeDistinctLeavesBV a b d = true)) ∨
+        (d = 15 ∧ threeDistinctLeavesBV a b c = true) := by
     simpa [spiderHubRowsBV, Bool.or_eq_true, Bool.and_eq_true] using hs
   rcases hcases with ⟨ha, hleaf⟩ | ⟨hb, hleaf⟩ |
     ⟨hc, hleaf⟩ | ⟨hd, hleaf⟩
@@ -2459,22 +2457,25 @@ private theorem spiderHubRows_permutations (a b c d : BitVec 4)
     · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (2 : Side) j
     · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (3 : Side) j
   · subst c
-    obtain ⟨q, hq⟩ := spiderHubZero_leaves b a d hleaf
-    refine ⟨Equiv.swap (0 : Side) (2 : Side), q, ?_⟩
+    obtain ⟨q, hq⟩ := spiderHubZero_leaves a b d hleaf
+    refine ⟨(Equiv.swap (0 : Side) (2 : Side)).trans
+      (Equiv.swap (1 : Side) (2 : Side)), q, ?_⟩
     intro i j
     fin_cases i
-    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (2 : Side) j
     · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (1 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (2 : Side) j
     · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (0 : Side) j
     · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (3 : Side) j
   · subst d
-    obtain ⟨q, hq⟩ := spiderHubZero_leaves b c a hleaf
-    refine ⟨Equiv.swap (0 : Side) (3 : Side), q, ?_⟩
+    obtain ⟨q, hq⟩ := spiderHubZero_leaves a b c hleaf
+    refine ⟨((Equiv.swap (0 : Side) (3 : Side)).trans
+      (Equiv.swap (1 : Side) (3 : Side))).trans
+      (Equiv.swap (2 : Side) (3 : Side)), q, ?_⟩
     intro i j
     fin_cases i
-    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (3 : Side) j
     · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (1 : Side) j
     · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (2 : Side) j
+    · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (3 : Side) j
     · simpa [adjOfRows, fourRows, Equiv.swap_apply_def] using hq (0 : Side) j
 
 /-- Universal orientation certificate, now factoring out the transpose
@@ -2536,10 +2537,10 @@ private def spiderRowPermutationIso
     | inl i =>
       cases v with
       | inl j => simp [matrixGraph]
-      | inr j => exact h i j
+      | inr j => exact (h i j).symm
     | inr i =>
       cases v with
-      | inl j => exact h j i
+      | inl j => exact (h j i).symm
       | inr j => simp [matrixGraph]
 
 /-- The transposed alternative is treated by a genuine swap of the graph
