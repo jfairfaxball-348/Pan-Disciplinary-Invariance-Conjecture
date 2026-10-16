@@ -17,3 +17,7 @@ For the named spider, true size-four MIS counts are m=9, n₀=1, n₂=15, h=3, a
 ## Remaining mandatory Lean tasks
 
 The all-graphs `N₀≤3` support bound, permutation-sum reindexing, 16-element fibres as a Lean cardinality theorem, actual uniform event/moment identities, a single four-probability theorem and all-cap classification hypothesis/transfer remain OPEN_IN_LEAN. Prior-art and originality remain unresolved. No Palomar registration, manuscript submission or PR merge.
+
+## Final exact-head hosted checks
+
+After integrating the ninth checker and strengthening it to assert that **every** one of 2520 image configurations has 16 preimages, the proof branch head [7f7e32dda87983c3df619481693af5a4baff5bfd](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/7f7e32dda87983c3df619481693af5a4baff5bfd) passed [strict Lean workflow 38935115211](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38935115211), including pinned build, source-hole guard and **nine** finite checkers. [Independent finite lead run 38935115324](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38935115324) also succeeded. Earlier proof-only e302e5f certificate remains valid.
