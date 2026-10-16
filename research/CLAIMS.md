@@ -1,4 +1,4 @@
-# PDIC claim register — S007 structural bridge strict PASS; S008 h-count bridge next
+# PDIC claim register — S008 concrete spider h=3 increment; universal equality iff pending S009
 
 Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessions/S003R9_CLOSEOUT.md). Certified new Lean source remains on unmerged PR #3; main source is the earlier S003R3 baseline.
 
@@ -9,7 +9,9 @@ Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessi
 | Connected complementary 4-MIS partition unique up to swapping | LEAN_KERNEL_VERIFIED_S007 | Reuses S003R9 connected partition uniqueness |
 | Any unordered compatible triple has an anchored 2+2 third | LEAN_KERNEL_VERIFIED_S007 | At any fixed balanced complementary partition in a connected graph |
 | Anchored mixed third-set count independent of partition choice | LEAN_KERNEL_VERIFIED_S007 | Count over actual graph MIS, not yet proven bijective to unordered h(G) |
-| Intrinsic unordered h(G)=4×4 matrix graph count, h(G)≤3, named spider equality | OPEN_IN_LEAN | Cardinality bijection, arbitrary graph isomorphism and final extremal transport remain S008+ obligations |
+| Genuine unordered h(G)=4×4 matrix count, connected h≤3 | LEAN_KERNEL_VERIFIED_S007 | Exact S007 graph transport and h=B theorem; source ff864170..., run 38914271558 |
+| Named spider concrete graph, matrixGraph isomorphism, connectedness, h=3 | LEAN_KERNEL_VERIFIED_S008 | Source fc8581d0bd117cd66c4497fa16209e3480c65ec7; run 38918496261; STRICT LEAN PASS with all eight independent checkers |
+| Universal h=3 iff G is isomorphic to named spider | PROVED_WRITTEN / FINITE_CHECKED; OPEN_IN_LEAN | Missing actual row/column matrix-pattern-to-graph-isomorphism proof; S009 target |
 | Admissible eight-cap classification, 702 caps and linear orbit | PROVED_WITH_CLASSICAL_INPUT / FINITE_CHECKED | Nine-cap equivalence externally cited; not all-caps Lean |
 | Canonical four zero quartets and C4 incidence | LEAN_KERNEL_VERIFIED | Concrete canonical cap |
 | Executable IsMIS4 iff Prop MIS | LEAN_KERNEL_VERIFIED | Every Bool adjacency |
@@ -27,7 +29,7 @@ Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessi
 | Two nine-total-MIS trees have h=3 and h=1 | FINITE_CHECKED_S003R9; explicit lists written | Distinguishes total MIS statistic, not priority |
 | Uniform 2520 images with 16 bijections each, eight favourable triple images | PROVED_WRITTEN / FINITE_CHECKED | Actual finite probability semantics remain OPEN_IN_LEAN |
 | Arbitrary connected eight-vertex h≤3, genuine unordered count and h=B transport | LEAN_KERNEL_VERIFIED_S007 | Exact source ff864170834954ef2a286afe6a6b6577ec02f986; run 38914271558; actual graph isomorphism and MIS/triple transport |
-| h=3 iff G is isomorphic to named spider | PROVED_WRITTEN; OPEN_IN_LEAN | Matrix-pattern to named graph-isomorphism remains the next obligation |
+| h=3 iff G is isomorphic to named spider | PROVED_WRITTEN / FINITE_CHECKED; OPEN_IN_LEAN | Explicit row/column normalisation is written and independent 192-pattern checker supplied; universal Lean normalisation remains next obligation |
 | Full N0 law and sharp probability ≤1/105 | PROVED_WRITTEN_WITH_CLASSICAL_INPUT | Genuine graph/labelling probability Lean interface OPEN |
 | Conditional moment inversion and rational bound | LEAN_KERNEL_VERIFIED | Arithmetic is not a probability-model proof |
 | Greedy charge mixture / signed pebbling residues | PROVED_WRITTEN_ELEMENTARY | Does not prove reachability or stackability |
@@ -84,3 +86,10 @@ Exact proof SHA [`d05fe1e71d054fe74a52a664112b6de436e999da`](https://github.com/
 **LEAN_KERNEL_VERIFIED** at [`ff864170834954ef2a286afe6a6b6577ec02f986`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/ff864170834954ef2a286afe6a6b6577ec02f986), [strict run 38914271558: PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38914271558). The earlier d05fe1e certificate remains valid but its missing count/graph interfaces are now closed. Genuine unordered triples are in a proved bijection with anchored mixed third sets; disjoint four-sets are proved complementary on eight vertices; actual balanced vertex enumeration and graph isomorphism transfer adjacency, MIS and triple counts. The public theorem `connected_unorderedCompatibleTripleCount_le_three` assumes only a connected `SimpleGraph (Fin 8)`. Its graph/matrix representation and h=B equality are constructed conclusions. All seven finite checkers pass. [Detailed scope](S007_UNORDERED_GRAPH_BRIDGE.md).
 
 **OPEN_IN_LEAN:** equality iff named spider, cap transfer/classical input, actual uniform bijection probability model and complete four-term theorem. No novelty or publication-status upgrade. S008 named-spider prompt is installed, not executed; the older h-count prompt/scaffold is superseded.
+
+
+## S008 — concrete spider Lean increment and universal isomorphism bridge boundary (16 October 2026)
+
+Named `SimpleGraph (Fin 8)` with edges 04,05,06,07,16,25,34, explicit canonical 4×4 `matrixGraph` isomorphism, connectedness via hub walks, and the theorem `namedSpider_unorderedCompatibleTripleCount_three` have Lean source at [fc8581d0bd117cd66c4497fa16209e3480c65ec7](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/fc8581d0bd117cd66c4497fa16209e3480c65ec7). `#print axioms` for these concrete declarations reports only propext, Classical.choice and Quot.sound in a successful compile at 191f2b5. Latest exact-source strict run: [38918496261](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38918496261) — STRICT LEAN PASS with all eight independent checkers. The initial failed run merely lacked reduction of named adjacency; the second compiled but source-guard rejected an innocuous comment token, which has been removed.
+
+An explicit constructive proof normalising **every** 96 row-centred and 96 column-centred matrix to the named graph is written at [S008 note](S008_NAMED_SPIDER_NORMALISATION.md); [independent checker](../scripts/verify_s008.py) covers all 65,536 matrices and all 28 unordered adjacency/nonadjacency pairs per witness. That evidence is PROVED_WRITTEN / FINITE_CHECKED; the quantified pattern-to-actual-graph-isomorphism remains OPEN_IN_LEAN. No completed equality iff and no full cap-labelled probability law are claimed. S009 is automatically installed but unexecuted. No submissions or PR merge.

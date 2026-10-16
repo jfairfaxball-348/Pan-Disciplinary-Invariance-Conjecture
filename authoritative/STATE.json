@@ -1,25 +1,25 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-16",
-  "last_completed_session": "S007",
-  "next_session": "S008",
+  "last_completed_session": "S008",
+  "next_session": "S009",
   "next_session_executed": false,
-  "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION__S007_GENERAL_H_BOUND_STRICT_PASS__S008_NAMED_SPIDER_INSTALLED",
+  "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION__S008_CONCRETE_SPIDER_H3_PROOF__UNIVERSAL_EQUALITY_OPEN__S009_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
     "S003R9 strict actual SimpleGraph/count/connectedness appendix and general unique partition theorem; revised manuscript and primary-source comparison"
   ],
-  "mathematics": "FULL_FLAGSHIP_PROVED_WRITTEN_WITH_CLASSICAL_INPUT__GENERAL_CONNECTED_H_LE_THREE_STRICT_LEAN_VERIFIED__NAMED_EQUALITY_AND_PROBABILITY_OPEN",
+  "mathematics": "FULL_FLAGSHIP_PROVED_WRITTEN_WITH_CLASSICAL_INPUT__CONNECTED_H_LE_THREE_STRICT_LEAN_VERIFIED__CONCRETE_SPIDER_H_EQ_THREE_COMPILES__GENERAL_EQUALITY_AND_PROBABILITY_OPEN",
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
-  "lean": "S007_GENERAL_H_BOUND_STRICT_PASS_ff864170834954ef2a286afe6a6b6577ec02f986_RUN_38914271558__FULL_FLAGSHIP_OPEN",
+  "lean": "S007_H_BOUND_STRICT_PASS_ff864170..._RUN_38914271558__S008_CONCRETE_H3_STRICT_PASS_fc8581..._RUN_38918496261__FULL_FLAGSHIP_OPEN",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
-  "next_prompt": "research/S008_NAMED_SPIDER_ISOMORPHISM_TARGET.md",
+  "next_prompt": "research/S009_SPIDER_PATTERN_ISOMORPHISM_LEAN_TARGET.md",
   "source": "PDIC.lean",
-  "strict_hosted_ci": "S007_ff864170834954ef2a286afe6a6b6577ec02f986_STRICT_PASS_STANDARD_AXIOMS_AND_SEVEN_FINITE_CHECKERS_38914271558",
-  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38914271558",
+  "strict_hosted_ci": "S008_fc8581d0bd117cd66c4497fa16209e3480c65ec7_STRICT_PASS_STANDARD_AXIOMS_AND_EIGHT_FINITE_CHECKERS_RUN_38918496261",
+  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38918496261",
   "all_five_verifier_run": "ALL_SIX_PASS_LOCAL_AND_HOSTED_38890367785",
   "native_axioms_approved": false,
   "s003r3_closeout": "sessions/S003R3_CLOSEOUT.md",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "NAMED_SPIDER_GRAPH_ISOMORPHISM_IFF_H_EQUALS_THREE",
+  "next_session_target": "UNIVERSAL_SPIDER_MATRIX_PATTERN_TO_NAMED_GRAPH_ISOMORPHISM_AND_CONNECTED_H_THREE_IFF",
   "next_session_status": "AUTOMATICALLY_INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": "research/NEXT_SESSION_PROMPT.md",
@@ -130,9 +130,9 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S008_NAMED_SPIDER_ISOMORPHISM_TARGET.md",
+  "next_session_target_file": "research/S009_SPIDER_PATTERN_ISOMORPHISM_LEAN_TARGET.md",
   "next_session_target_installed_date": "2026-10-16",
-  "next_session_target_source": "AUTOMATIC_S007_CONTINUATION_CLOSEOUT_AFTER_KERNEL_CLOSURE_OF_H_COUNT_AND_GENERAL_BOUND",
+  "next_session_target_source": "S008_PARTIAL_CONCRETE_NAMED_SPIDER_LEAN_INCREMENT_WITH_OPEN_UNIVERSAL_PATTERN_ISOMORPHISM",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -191,7 +191,7 @@
   "s007_proof_branch": "session/s007-full-lean-flagship",
   "s007_start_proof_source": "402465f2330a275e04108169a6bfbb65e94e10b8",
   "s007_core_problem": "CONNECTED_EIGHT_VERTEX_UNORDERED_COMPATIBLE_TRIPLES_TO_MATRIX_GRAPH_COUNT_AND_NAMED_SPIDER_ISOMORPHISM",
-  "flagship_kernel_status": "INCOMPLETE_NAMED_EQUALITY_CAP_TRANSFER_AND_FULL_PROBABILITY_OPEN",
+  "flagship_kernel_status": "INCOMPLETE_GENERAL_NAMED_SPIDER_EQUALITY_AND_CAP_LABELLED_PROBABILITY_OPEN",
   "flagship_required_interfaces": [
     "h(G)=3 iff actual named spider graph isomorphism",
     "honest classical nine-cap hypothesis or full classification and zero-fixing linear cap transfer",
@@ -254,7 +254,7 @@
     "canonical cap transfer and explicitly scoped classical cap input",
     "uniform 8! labels, regular fibres, moments and complete four-term probability theorem"
   ],
-  "s008_status": "INSTALLED_NOT_EXECUTED_RETARGETED_AFTER_S007_COUNT_AND_BOUND_COMPLETION",
+  "s008_status": "EXECUTED_PARTIAL_CONCRETE_NAMED_SPIDER_H3__GENERAL_NAMED_EQUALITY_OPEN",
   "s008_branch": "session/s007-full-lean-flagship",
   "s008_target_file": "research/S008_NAMED_SPIDER_ISOMORPHISM_TARGET.md",
   "s008_start_proof_sha": "ff864170834954ef2a286afe6a6b6577ec02f986",
@@ -270,5 +270,37 @@
     "h(G)=B(A) and general connected eight-vertex h(G)<=3"
   ],
   "s007_independent_checkers": "ALL_SEVEN_PASS_LOCAL_AND_HOSTED_38914271558",
-  "s007_local_kernel": "PASS_PINNED_LEAN_4_35_0_RC2_STANDARD_AXIOMS_ONLY"
+  "s007_local_kernel": "PASS_PINNED_LEAN_4_35_0_RC2_STANDARD_AXIOMS_ONLY",
+  "s008_source_sha": "fc8581d0bd117cd66c4497fa16209e3480c65ec7",
+  "s008_ci_run": "38918496261",
+  "s008_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38918496261",
+  "s008_ci_status": "SUCCESS_STRICT_KERNEL_AND_EIGHT_FINITE_CHECKERS",
+  "s008_compilation_evidence": {
+    "source": "191f2b502f97e3062c1b54d271a0de0ea02efe70",
+    "run": "38917870582",
+    "compiled": true,
+    "overall_workflow": "FAILED_ONLY_ON_GUARD_TOKEN_IN_COMMENT_BEFORE_CORRECTION",
+    "axioms": "propext, Classical.choice, Quot.sound"
+  },
+  "s008_proof_note": "research/S008_NAMED_SPIDER_NORMALISATION.md",
+  "s008_closeout": "sessions/S008_CLOSEOUT.md",
+  "s008_concrete_declarations": [
+    "namedSpider",
+    "canonicalSpiderMatrix",
+    "spiderSplitEquiv",
+    "canonicalSpiderIso",
+    "spiderSpoke",
+    "canonicalSpider_root_reachable",
+    "canonicalSpider_connected",
+    "namedSpider_unorderedCompatibleTripleCount_three"
+  ],
+  "s008_written_finite_check": "EXPLICIT_ROW_COLUMN_NORMALISATION_PROVED_WRITTEN__192_LABELLED_PATTERNS_FINITE_CHECKED",
+  "s008_unproved": [
+    "arbitrary spiderMatrixBV 4x4 pattern -> genuine SimpleGraph graph-isomorphism to namedSpider",
+    "connected eight-vertex h(G)=3 iff isomorphism to namedSpider",
+    "honest 8-cap classical-input bridge",
+    "uniform 8! labellings + regular fibres + complete N0 probability law"
+  ],
+  "s009_status": "INSTALLED_NOT_EXECUTED",
+  "s009_target": "research/S009_SPIDER_PATTERN_ISOMORPHISM_LEAN_TARGET.md"
 }
