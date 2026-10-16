@@ -4047,12 +4047,11 @@ theorem overlapSourceColour_fibre_card
         (Finset.univ : Finset Vertex) \ (s ∪ t) := by
       ext v
       simp [overlapSourceCell]
-      tauto
     rw [h]
     exact hOutside
   · have h : overlapSourceCell s t (false, true) = t \ s := by
       ext v
-      simp [overlapSourceCell]
+      simp [overlapSourceCell] <;> tauto
     rw [h]
     exact hdiffT
   · have h : overlapSourceCell s t (true, false) = s \ t := by
@@ -4105,7 +4104,8 @@ theorem exists_perm_overlap_pair_to_canonical
   have hpS : s.image p = quartet (0 : QuartetIndex) := by
     ext v
     constructor
-    · rintro ⟨w, hw, rfl⟩
+    · intro hv
+      obtain ⟨w, hw, rfl⟩ := Finset.mem_image.mp hv
       exact (hS w).mp hw
     · intro hv
       refine Finset.mem_image.mpr ⟨p.symm v, ?_, by simp⟩
@@ -4113,7 +4113,8 @@ theorem exists_perm_overlap_pair_to_canonical
   have hpT : t.image p = quartet (1 : QuartetIndex) := by
     ext v
     constructor
-    · rintro ⟨w, hw, rfl⟩
+    · intro hv
+      obtain ⟨w, hw, rfl⟩ := Finset.mem_image.mp hv
       exact (hT w).mp hw
     · intro hv
       refine Finset.mem_image.mpr ⟨p.symm v, ?_, by simp⟩
