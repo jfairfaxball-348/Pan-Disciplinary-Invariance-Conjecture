@@ -11,12 +11,16 @@
 | S008 concrete named-spider graph isomorphism, connectedness, h=3 | **PARTIAL S008 PROOF INCREMENT**, source `fc8581d0bd117cd66c4497fa16209e3480c65ec7`; [run 38918496261](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38918496261) (STRICT LEAN PASS with all eight independent checkers); [written normalisation](research/S008_NAMED_SPIDER_NORMALISATION.md). |
 | S009: universal equality candidate | Attempt unverified (runner exit 143); superseded by S010 strict certificate |
 | **S010: universal h=3 iff named spider actual isomorphism** | **STRICT LEAN PASS**, [source `c8c64e5a2a98`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/c8c64e5a2a98ee359c79430293ca0738211b4215), [Lean run 38928965168](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168); eight finite checkers PASS; standard axioms only |
-| **S011: cap incidence / 8! uniform-label proof bridge** | **INSTALLED, NOT EXECUTED** — [S011 target](research/S011_CAP_INCIDENCE_UNIFORM_LABELLING_TARGET.md) |
-| Cap transfer and classical-input interface | OPEN_IN_LEAN |
-| Genuine uniform bijections, regular fibres, moments, N₀≤3 and complete distribution | OPEN_IN_LEAN |
+| **S011: typed cap, linear transfer, actual 8! labelling space** | **STRICT LEAN PASS** at [`e302e5f`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e302e5f82434b3d8790c81506fe55062700e7a53), [run 38934564596](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38934564596); 40320 exhaustive finite check with 16-preimage fibres, Lean fibres not yet proved |
+| **S012: genuine uniform probability/moments/connected N₀≤3** | **INSTALLED, NOT EXECUTED** — [S012 target](research/S012_UNIFORM_PROBABILITY_LEAN_TARGET.md) |
+| Canonical cap incidence and preservation under supplied GL(3,3) | LEAN_KERNEL_VERIFIED_S011; existence of arbitrary-cap orbit is external classical premise, not proved |
+| Genuine 8! sample-space cardinal | LEAN_KERNEL_VERIFIED_S011 |
+| 16-element event fibres, moments, N₀≤3 and complete distribution | FINITE_CHECKED for canonical event fibres and spider/P8; OPEN_IN_LEAN universally |
 | Single end-to-end headline theorem and strict hosted certification | OPEN; mandatory gate |
 | Full-theorem-aligned Palomar preparation | PAUSED until full gate closes or owner redirects |
 
 Continue from `session/s007-full-lean-flagship`, whose exact certificate is above. Main's older Lean and the former `session/s008-full-h-bridge` scaffold are not the current source. The old S008 h-count brief remains superseded because S007 continuation closed its principal obligations; S008 provided certified concrete h=3. S009's failed candidate is superseded by S010's **strictly certified iff**, while the full first-paper probability law remains OPEN_IN_LEAN. [Proof note](research/S007_UNORDERED_GRAPH_BRIDGE.md); [closeout](sessions/S007_EXTENSION_CLOSEOUT.md).
 
 Every executed session must produce actual proof work, exact-SHA hosted evidence and truthful scope updates. Automatically select the greatest remaining mathematical obligation toward the complete flagship, write/install/commit the next numbered executable prompt, and stop. “Run next session” triggers execution; prompt generation is not an unattended run. Preserve strict standard-axiom checking and independent corroboration. Do not substitute a narrower graph certificate or packaging session for completion.
+
+S011 proof detail: [typed cap and independent exhaustive check](research/S011_CAP_LABELLING_PROOF.md), [closeout](sessions/S011_CLOSEOUT.md). S012 attacks event-fibre and moment formalisation, not the already closed graph extremiser.
