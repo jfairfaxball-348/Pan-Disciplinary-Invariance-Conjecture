@@ -2891,3 +2891,57 @@ theorem connected_not_all_four_quartets_independent
 #print axioms PDIC.connected_not_all_four_quartets_independent
 
 end PDIC
+
+
+namespace PDIC
+
+/-- Pull each of the four cap quartets back to the graph vertices. -/
+def pulledQuartet (e : Equiv.Perm Vertex) (i : QuartetIndex) : Finset Vertex :=
+  (quartet i).map e.symm.toEmbedding
+
+theorem pulledQuartet_complement_zero (e : Equiv.Perm Vertex) :
+    Finset.univ \ pulledQuartet e 0 = pulledQuartet e 3 := by
+  classical
+  have h : (Finset.univ \ quartet (0 : QuartetIndex)).map e.symm.toEmbedding =
+      Finset.univ \ (quartet (0 : QuartetIndex)).map e.symm.toEmbedding := by
+    rw [Finset.map_sdiff, Finset.map_univ_equiv]
+  rw [pulledQuartet, pulledQuartet, ← h, quartet_zero_complement_three]
+
+theorem pulledQuartet_complement_one (e : Equiv.Perm Vertex) :
+    Finset.univ \ pulledQuartet e 1 = pulledQuartet e 2 := by
+  classical
+  have h : (Finset.univ \ quartet (1 : QuartetIndex)).map e.symm.toEmbedding =
+      Finset.univ \ (quartet (1 : QuartetIndex)).map e.symm.toEmbedding := by
+    rw [Finset.map_sdiff, Finset.map_univ_equiv]
+  rw [pulledQuartet, pulledQuartet, ← h, quartet_one_complement_two]
+
+/-- The same connectedness obstruction holds at every *actual* permutation
+    of the cap labels, not just at the fixed canonical ordering. -/
+theorem connected_not_all_permuted_quartets_independent
+    (G : SimpleGraph Vertex) (hc : G.Connected) (e : Equiv.Perm Vertex) :
+    ¬ ∀ i : QuartetIndex,
+        (∀ u ∈ pulledQuartet e i, ∀ v ∈ pulledQuartet e i, ¬ G.Adj u v) := by
+  intro hi
+  have hsc : ∀ u ∈ (Finset.univ \ pulledQuartet e 0),
+      ∀ v ∈ (Finset.univ \ pulledQuartet e 0), ¬ G.Adj u v := by
+    simpa only [pulledQuartet_complement_zero] using hi 3
+  have htc : ∀ u ∈ (Finset.univ \ pulledQuartet e 1),
+      ∀ v ∈ (Finset.univ \ pulledQuartet e 1), ¬ G.Adj u v := by
+    simpa only [pulledQuartet_complement_one] using hi 2
+  obtain heq | hswap :=
+    connected_independent_partition_unique G hc (0 : Vertex)
+      (pulledQuartet e 0) (pulledQuartet e 1) (hi 0) hsc (hi 1) htc
+  · have hne : pulledQuartet e 0 ≠ pulledQuartet e 1 := by
+      intro h
+      have hf : quartet (0 : QuartetIndex) = quartet (1 : QuartetIndex) :=
+        Finset.map_inj.mp h
+      exact (by decide : quartet (0 : QuartetIndex) ≠ quartet (1 : QuartetIndex)) hf
+    exact hne heq
+  · rw [pulledQuartet_complement_one] at hswap
+    have hf : quartet (0 : QuartetIndex) = quartet (2 : QuartetIndex) :=
+      Finset.map_inj.mp hswap
+    exact (by decide : quartet (0 : QuartetIndex) ≠ quartet (2 : QuartetIndex)) hf
+
+#print axioms PDIC.connected_not_all_permuted_quartets_independent
+
+end PDIC
