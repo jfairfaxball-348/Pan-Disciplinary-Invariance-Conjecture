@@ -43,3 +43,19 @@ Full [claim-by-claim primary-source audit](S004_PRIOR_ART_NOVELTY_AUDIT.md) and 
 | Literature priority and publication-level significance | UNRESOLVED | Special small-order result; bounded web source search, not exhaustive expert literature review |
 
 **No first-priority claim is licensed.** The formal source remains on unmerged PR #3, main's Lean remains the S003R3 baseline, and the written flagship is not end-to-end Lean-certified. S004 closed without setting a subsequent target. The earlier combined brief remains withdrawn. No correspondence, merge, Palomar, arXiv or journal submission.
+
+## S005 Palomar registration reconnaissance — 16 October 2026
+
+This was a **read-only Palomar procedure and public-record audit**, not a new proof or verification. See [official-workflow and public-display reconnaissance](S005_PALOMAR_RECON.md), [record-alignment proposal](S005_PUBLIC_RECORD_PROPOSAL.md), and [closeout](../sessions/S005_CLOSEOUT.md).
+
+| Claim / capability | S005 status and precise limit |
+| --- | --- |
+| Full eight-cap law, \(\Pr(N_0=3)=h/315\le1/105\), equality at spider | PROVED_WRITTEN_WITH_CLASSICAL_INPUT; **not** certified by Palomar nor end-to-end Lean |
+| Connected 4×4 SimpleGraph mixed maximal independent set bound and equality pattern | STRICT_LEAN_VERIFIED on unmerged PR #3 at exact S003R9 source; **not** Palomar Comparator verified |
+| Palomar Challenge/Solution, comparator.json, v0.4 formalization.yaml, root SPDX licence and module headers | MISSING / NOT_READY; earlier Lakefile, manifest and toolchain do exist but Palomar compatibility **NOT_TESTED** |
+| Palomar CI preflight and full mechanical mode | OFFICIAL PROCEDURE RESEARCHED; **NO WORKFLOW EXECUTED** |
+| Public entry title, project abstract, selected compared statement, verification and citation presentation | UI SOURCE INSPECTED, PROPOSAL WRITTEN; sample TreeStack dynamic page/JSON inaccessible for direct record validation |
+| Submission/registration | NOT_REQUESTED; no public PDIC registry record |
+| Priority and significance | S004 PRIORITY_UNRESOLVED (unchanged); no new theorem claim |
+
+The paper title and formula may appear in a **proposed full-claim record only if the same theorem is genuinely selected, proved and mechanically verified in the eventual Palomar Challenge/Solution**. Narrower certified statements must instead be titled and described as such. No next target automatically installed.
