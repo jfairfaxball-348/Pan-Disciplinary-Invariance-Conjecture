@@ -848,7 +848,7 @@ theorem twoRow_outsideWitness_iff
         exact (Finset.mem_sdiff.mp hj).2
           (Finset.mem_filter.mpr ⟨Finset.mem_univ j, ht⟩)
       cases hb : (rows i ||| rows k).getLsbD j.val with
-      | false => exact hb
+      | false => rfl
       | true => exact False.elim (hnot hb)
     exact ⟨j, he, hn⟩
   · rintro ⟨j, he, hn⟩
@@ -858,7 +858,10 @@ theorem twoRow_outsideWitness_iff
     · exact Finset.mem_univ j
     · intro hm
       have ht := (Finset.mem_filter.mp hm).2
-      simp [hn] at ht
+      have hor : (rows i ||| rows k).getLsbD j.val = true :=
+        (orMask_getLsbD_iff (rows i) (rows k) j).mpr ht
+      rw [hn] at hor
+      cases hor
 
 /-- One *generic* mixed-pair correspondence, assuming the two remaining
     indices are z,w. The six concrete pairs will instantiate this once. -/
@@ -875,9 +878,11 @@ theorem goodPair_iff_mixedPairCriterion
   · rintro ⟨hcard, hz, hw⟩
     refine ⟨hpair, hcard, ?_⟩
     intro v hv
-    rcases (hrest v).mp hv with rfl | rfl
-    · exact (twoRow_outsideWitness_iff rows i k z).mpr hz
-    · exact (twoRow_outsideWitness_iff rows i k w).mpr hw
+    rcases (hrest v).mp hv with he | he
+    · rw [he]
+      exact (twoRow_outsideWitness_iff rows i k z).mpr hz
+    · rw [he]
+      exact (twoRow_outsideWitness_iff rows i k w).mpr hw
   · rintro ⟨_, hcard, hdom⟩
     refine ⟨hcard, ?_, ?_⟩
     · exact (twoRow_outsideWitness_iff rows i k z).mp
