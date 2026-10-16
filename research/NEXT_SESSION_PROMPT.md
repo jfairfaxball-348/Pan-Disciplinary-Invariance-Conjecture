@@ -1,13 +1,15 @@
-# PDIC — current owner-installed session target
+# PDIC — NEXT SESSION: S007 full Lean flagship bridge
 
-**S006: Palomar preparation to a submission-ready immutable commit — INSTALLED, NOT EXECUTED.**
+**S007 INSTALLED, NOT EXECUTED** (16 October 2026). The authoritative executable prompt is [S007_FULL_FLAGSHIP_LEAN_BRIDGE_TARGET.md](S007_FULL_FLAGSHIP_LEAN_BRIDGE_TARGET.md).
 
-The owner explicitly selected this target on 16 October 2026. The binding instructions are [S006_PALOMAR_SUBMISSION_READY_PREPARATION_TARGET.md](S006_PALOMAR_SUBMISSION_READY_PREPARATION_TARGET.md). Installation authorises **nothing to run yet**: execution begins only on a subsequent explicit “run next session”.
+**Execution:** when the owner says **“run next session,”** immediately execute S007 on the `session/s007-full-lean-flagship` proof branch.
 
-## Success criterion when S006 is executed
+**Stage:** RETURNED TO FULL FIRST-PAPER LEAN FORMALISATION. S006's graph-only Palomar package is historical and not a valid substitute for the complete theorem.
 
-Deliver a publicly accessible, complete, exact **40-character Git commit SHA** with Challenge/Solution/Comparator/v0.4 metadata/licence/toolchain/module-system compliance and an **official full-mode PalomarSubmission mechanical PASS at the identical SHA**, plus report links and copyable owner submission fields. Prioritise complete first-paper formalisation; if genuinely unachievable, a truthfully titled narrower graph/matrix paper theorem may be registerable, but **must not be marketed as the full probability flagship**. If the official full verifier did not pass at the final SHA, report NOT_READY, not success.
+**S007 critical proof goal:** Define genuine compatible unordered triples of four-vertex maximal independent sets for arbitrary connected eight-vertex simple graphs, prove the required unique balanced bipartition and 4×4 matrix witness-count equivalence `h(G)=B(A)`, derive `h(G)≤3`, and if achievable prove equality iff the named spider graph `S(2,2,2,1)`. Reuse exact strictly checked S003R9 source, with new strict hosted CI.
 
-The owner alone authorises actual Palomar submission, editorial review and registration. S006 preparation may run the public **reusable CI preflight and full mechanical workflow** on execution but may not contact/dispatch the live Palomar submission server.
+**Ultimate non-negotiable completion gate:** Full end-to-end Lean proof of the manuscript's entire zero-sum quartet probability distribution and sharp spider extremiser, with the classical nine-cap classification explicitly formalised or clearly stated as a genuine sourced hypothesis. No administrative or narrower registration substitute.
 
-S005 [reconnaissance](S005_PALOMAR_RECON.md) and [paper-to-public-record proposal](S005_PUBLIC_RECORD_PROPOSAL.md) are completed prior evidence. Its [closeout](../sessions/S005_CLOSEOUT.md) records no full preflight or submission. The user's owner-directed protocol remains: close an executed session without suggesting or installing a subsequent target, and return control to the owner.
+**Automatic closeout prompting is ACTIVE:** at the end of S007 create and install the complete **S008 executable prompt** targeting the highest-impact still-open Lean obligation, commit `research/NEXT_SESSION_PROMPT.md`, `authoritative/STATE.json` and session closeout. Repeat at every later session until the entire flagship is formalised. Do **not** execute S008 until the owner asks.
+
+No Palomar submission, external correspondence or publication is authorised by this prompt.
