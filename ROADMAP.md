@@ -26,3 +26,16 @@ At unmerged PR #3 commit [`df53e200`](https://github.com/jfairfaxball-348/Pan-Di
 ## S003R7 FINAL STRICT CHECK (supersedes earlier partial text)
 
 [PR #3 exact HEAD `e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca) and [Lean CI 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311) both verify `fourRowMixedCountBV_eq_actual`, `fourRowEdgeCountBV_eq_actual`, the six-characteristic-indicator cardinality theorem, and the matrix-product edge-cardinality adapter, **for every four 4-bit row masks**. All five separate Python verifiers passed; no forbidden native or custom axioms. The arbitrary Boolean-matrix extremal corollaries, connected eight-vertex graph isomorphism, random cap probability law, and novelty check are still outstanding. [S003R7 closeout](sessions/S003R7_CLOSEOUT.md). **S003R8 is next.**
+
+
+## S003R8 executed — S003R9 is NEXT (overrides older NEXT S003R8 sections)
+
+| Workstream | S003R8 result | Status |
+| --- | --- | --- |
+| Arbitrary 4×4 matrix semantic transfers | Source declarations committed to PR #3 at `f0f56b60`; exact [Lean CI 38886710499](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38886710499) pending | MATH PROVED / NEW LEAN CERTIFICATE PENDING |
+| Connected eight-vertex h=b and sharp spider extremiser | Complete rigorous graph reduction written in [S003R8 report](research/S003R8_GRAPH_BRIDGE_AND_NOVELTY.md) | PROVED_WRITTEN, FINITE_CHECKED, GRAPH LEAN OPEN |
+| Skew MIS handling | Concrete 3+1 and 1+3 maximal independent spider witnesses | Lean candidates added, check exact CI |
+| First manuscript | [Full TeX draft](paper/PDIC_S003R8_DRAFT.tex) | DRAFT, originality OPEN |
+| S003R9 | Graph/partition theorem, spider isomorphism, 2520 uniform labelling and final prior art | PREPARED, NOT EXECUTED |
+
+Proof gates still open: actual `SimpleGraph (Fin 8)` connectedness/spider theorem, genuine labelling law in Lean, externally sourced nine-cap equivalence, priority. See [full S003R8 closeout](sessions/S003R8_CLOSEOUT.md) and [prepared next prompt](research/NEXT_SESSION_PROMPT.md). PR #3 remains unmerged.
