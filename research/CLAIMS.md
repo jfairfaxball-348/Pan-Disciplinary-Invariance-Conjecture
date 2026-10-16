@@ -1,4 +1,4 @@
-# PDIC claim register — S004 prior-art / novelty review
+# PDIC claim register — S007 full Lean formalisation resumed
 
 Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessions/S003R9_CLOSEOUT.md). Certified new Lean source remains on unmerged PR #3; main source is the earlier S003R3 baseline.
 
@@ -59,3 +59,11 @@ This was a **read-only Palomar procedure and public-record audit**, not a new pr
 | Priority and significance | S004 PRIORITY_UNRESOLVED (unchanged); no new theorem claim |
 
 The paper title and formula may appear in a **proposed full-claim record only if the same theorem is genuinely selected, proved and mechanically verified in the eventual Palomar Challenge/Solution**. Narrower certified statements must instead be titled and described as such. No next target automatically installed.
+
+## S006 factual closeout and S007 owner reset — 16 October 2026
+
+- S006 did **not** complete the full mathematical formalisation. Its separate [graph-only Palomar package](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/session/s006-palomar-prepare) was prepared but has **no verified official full-mode mechanical PASS** at its final SHA; no registration was made.
+- The previously strictly kernel-verified S003R9 graph/matrix proof remains exactly certified at source `402465f2330a275e04108169a6bfbb65e94e10b8`, Lean run 38890367785. The full flagship is **PROVED_WRITTEN_WITH_CLASSICAL_INPUT; OPEN_END_TO_END_LEAN**.
+- The owner explicitly restored the **full flagship** as a mandatory Lean milestone and reactivated automatic next-session prompt generation. New formal work is to continue on `session/s007-full-lean-flagship` (the previous exact mathematical proof source, not the S006 Comparator package).
+- Installed S007 attempts the genuine arbitrary-graph unordered compatible-triple invariant `h(G)`, uniqueness/transport to actual 4×4 mixed MIS count `B(A)`, `h(G)≤3`, and (where possible) equality iff named spider isomorphism. **This is an installed target, not a newly proved Lean theorem.** The general eight-cap / 8! probability model and resulting single full theorem remain further kernel obligations.
+- Priority/novelty remains unresolved as in S004; no Palomar/arXiv/journal submission is authorised by the process change.
