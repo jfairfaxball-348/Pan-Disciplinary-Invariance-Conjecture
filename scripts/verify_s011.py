@@ -2,6 +2,7 @@
 """Independent S011 exhaustive test of genuine 8! cap labellings."""
 from itertools import combinations, permutations
 from fractions import Fraction
+from collections import Counter
 
 V = frozenset(range(8))
 QUARTETS = {frozenset(s) for s in (
@@ -39,6 +40,7 @@ T_DISJOINT = frozenset((4,5,6,7))
 T_OVERLAP = frozenset((2,3,4,5))
 R = frozenset((0,1,4,5))
 COUNTS = dict(single=0, disjoint_pair=0, overlap_pair=0, compatible_triple=0)
+PAIR_FIBRES, TRIPLE_FIBRES = Counter(), Counter()
 SPIDER = graph_four_mis(((0,4),(0,5),(0,6),(0,7),(1,6),(2,5),(3,4)))
 PATH = graph_four_mis(tuple((v, v+1) for v in range(7)))
 HIST = {name:[0]*5 for name in ('spider','path')}
@@ -52,11 +54,15 @@ for p in permutations(range(8)):
     COUNTS['overlap_pair'] += single and mapped(T_OVERLAP) in QUARTETS
     COUNTS['compatible_triple'] += (
         single and mapped(T_DISJOINT) in QUARTETS and mapped(R) in QUARTETS)
+    PAIR_FIBRES[(mapped(S), mapped(T_OVERLAP))] += 1
+    TRIPLE_FIBRES[(mapped(S), mapped(T_DISJOINT), mapped(R))] += 1
     for name,mis in (('spider',SPIDER),('path',PATH)):
         count = sum(mapped(s) in QUARTETS for s in mis)
         assert count <= 3
         HIST[name][count] += 1
 
+assert len(PAIR_FIBRES) == 2520 and set(PAIR_FIBRES.values()) == {16}
+assert len(TRIPLE_FIBRES) == 2520 and set(TRIPLE_FIBRES.values()) == {16}
 assert COUNTS == dict(single=2304, disjoint_pair=2304,
                        overlap_pair=128, compatible_triple=128), COUNTS
 for name,mis in (('spider',SPIDER),('path',PATH)):
