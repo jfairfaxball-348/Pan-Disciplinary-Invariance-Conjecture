@@ -4220,3 +4220,78 @@ theorem canonicalCapF3_perm_compatible_triple_event_card
 #print axioms PDIC.canonicalCapF3_perm_compatible_triple_event_card
 
 end PDIC
+
+ 
+namespace PDIC
+
+/-! S018: begin the actual graph-level probability moment assembly.
+The family below contains genuine maximal-independent vertex sets, not
+quartet-index proxies or a matrix count. -/
+
+/-- All size-four maximal independent vertex sets of the actual graph. -/
+noncomputable def fourGraphMISFamily (G : SimpleGraph Vertex) :
+    Finset (Finset Vertex) := by
+  classical
+  exact (Finset.univ : Finset (Finset Vertex)).filter
+    (fun s => s.card = 4 ∧ GraphMIS G s)
+
+/-- The manuscript's random variable is the cardinal of the real graph-MIS
+family surviving the canonical cap-zero condition. -/
+theorem labellingZeroMISCount_eq_family_filter
+    (G : SimpleGraph Vertex) (e : Equiv.Perm Vertex) :
+    labellingZeroMISCount G e =
+      ((fourGraphMISFamily G).filter
+        (fun s => capSum (fun v => canonicalCapF3 (e v)) s = 0)).card := by
+  classical
+  change ((Finset.univ : Finset (Finset Vertex)).filter
+      (fun s => s.card = 4 ∧ GraphMIS G s ∧
+        capSum (fun v => canonicalCapF3 (e v)) s = 0)).card =
+    (((Finset.univ : Finset (Finset Vertex)).filter
+      (fun s => s.card = 4 ∧ GraphMIS G s)).filter
+        (fun s => capSum (fun v => canonicalCapF3 (e v)) s = 0)).card
+  congr 1
+  ext s
+  simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+  tauto
+
+/-- The first *genuine graph-derived* factorial-moment numerator.
+It double-counts actual (labelling, four-MIS) incidents, and invokes the
+strictly verified 2304 fibre theorem for each real graph MIS. -/
+theorem graphMIS_first_moment_numerator
+    (G : SimpleGraph Vertex) :
+    (∑ e : Equiv.Perm Vertex, labellingZeroMISCount G e) =
+      2304 * (fourGraphMISFamily G).card := by
+  classical
+  have hfilter (e : Equiv.Perm Vertex) :
+      labellingZeroMISCount G e =
+        ∑ s ∈ fourGraphMISFamily G,
+          if capSum (fun v => canonicalCapF3 (e v)) s = 0
+          then (1 : ℕ) else 0 := by
+    rw [labellingZeroMISCount_eq_family_filter]
+    simp
+  calc
+    (∑ e : Equiv.Perm Vertex, labellingZeroMISCount G e) =
+        ∑ e : Equiv.Perm Vertex, ∑ s ∈ fourGraphMISFamily G,
+          if capSum (fun v => canonicalCapF3 (e v)) s = 0
+          then (1 : ℕ) else 0 := by
+            apply Finset.sum_congr rfl
+            intro e _
+            exact hfilter e
+    _ = ∑ s ∈ fourGraphMISFamily G, ∑ e : Equiv.Perm Vertex,
+          if capSum (fun v => canonicalCapF3 (e v)) s = 0
+          then (1 : ℕ) else 0 := by
+            rw [Finset.sum_comm]
+    _ = ∑ _s ∈ fourGraphMISFamily G, (2304 : ℕ) := by
+          apply Finset.sum_congr rfl
+          intro s hs
+          have hfour : s.card = 4 := (Finset.mem_filter.mp hs).2.1
+          have hc := canonicalCapF3_perm_singleton_event_card s hfour
+          rw [Fintype.card_subtype] at hc
+          simpa using hc
+    _ = 2304 * (fourGraphMISFamily G).card := by
+          simp [mul_comm]
+
+#print axioms PDIC.labellingZeroMISCount_eq_family_filter
+#print axioms PDIC.graphMIS_first_moment_numerator
+
+end PDIC
