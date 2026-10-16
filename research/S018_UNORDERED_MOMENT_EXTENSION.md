@@ -42,7 +42,7 @@ Lean candidate declarations in proof-bearing source
 - `zeroGraphMIS_subfamilies_eq_filter`
 - `graphMIS_unordered_moment_double_count`
 
-At writing, this source is **SOURCE_FORMALIZED / CI PENDING**, not yet certified; audit [strict workflow 38976368670](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38976368670) and finite workflow 38976368661 at the same SHA before upgrading. The earlier S018 first rational moment remains strictly certified.
+This source is **LEAN_KERNEL_VERIFIED** with only the standard axioms; [strict workflow 38976368670](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38976368670) and [finite workflow 38976368661](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38976368661) both **PASS** at the same SHA. The pinned Lean build, hole scan, all ten independent checkers and the four new `#print axioms` inspections passed. The printed axioms are only `propext`, `Classical.choice`, `Quot.sound`. The earlier S018 first rational moment remains strictly certified.
 
 ## Independent sanity check: path P8
 
