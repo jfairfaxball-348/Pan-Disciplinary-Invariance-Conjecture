@@ -3256,3 +3256,36 @@ theorem canonicalFourBlockStabilizer_card :
 #print axioms PDIC.canonicalFourBlockStabilizer_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S014: the second regular fibre has four two-element colour cells. -/
+
+/-- Two intersecting canonical quartets partition the eight vertices into
+four genuine cells of size two, indexed by their two membership bits. -/
+def canonicalTwoQuartetColour (v : Vertex) : Bool × Bool :=
+  (decide (v ∈ quartet (0 : QuartetIndex)),
+   decide (v ∈ quartet (1 : QuartetIndex)))
+
+/-- All four membership-bit cells have cardinality two. -/
+theorem canonicalTwoQuartetColour_fibre_card (b : Bool × Bool) :
+    Fintype.card {v : Vertex // canonicalTwoQuartetColour v = b} = 2 := by
+  rcases b with ⟨b₀, b₁⟩
+  cases b₀ <;> cases b₁ <;> decide
+
+/-- (2!)⁴ = 16: the exact stabilizer fibre of the ordered two-quartet
+incidence configuration. This is a product-of-factorials argument,
+not an enumeration of all permutations. -/
+theorem canonicalTwoQuartetStabilizer_card :
+    Fintype.card {e : Equiv.Perm Vertex //
+      canonicalTwoQuartetColour ∘ e = canonicalTwoQuartetColour} = 16 := by
+  classical
+  rw [DomMulAct.stabilizer_card]
+  simp only [canonicalTwoQuartetColour_fibre_card]
+  decide
+
+#print axioms PDIC.canonicalTwoQuartetColour_fibre_card
+#print axioms PDIC.canonicalTwoQuartetStabilizer_card
+
+end PDIC
