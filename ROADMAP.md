@@ -12,7 +12,8 @@
 | S004 | Primary-source prior art audit | COMPLETE; PRIORITY_UNRESOLVED |
 | S005 | Palomar procedure and registry display reconnaissance | COMPLETE; READ_ONLY |
 | S006 | Preparation of narrower matrix/MIS Palomar package | COMPLETE_ON_SEPARATE_BRANCH; **NOT** official full-mode verified and **NOT** full-paper formalisation |
-| **S007** | **Resume full Lean**: arbitrary connected eight-vertex unordered h(G), balanced bipartition and matrix-count transfer; h≤3, seek named spider iff | **NEXT: INSTALLED, NOT EXECUTED** |
+| **S007** | Genuine unordered h(G), connected partition uniqueness, h=0 without a partition and anchored-third witness theorem | **STRICT LEAN PASS** d05fe1e / run 38912238607; full count bridge remains open |
+| **S008** | Exact unordered h(G)=anchored mixed-third count; graph re-enumeration to matrixGraph and h≤3 | **NEXT: INSTALLED, NOT EXECUTED** |
 
 ## Outstanding strict Lean interfaces, in proof order
 
@@ -26,4 +27,4 @@
 
 Every executed session must: (i) produce substantive mathematical work and an exact-SHA Lean evidence report, (ii) update claims/state, (iii) identify the strongest still-open obligation from the full-theorem chain, (iv) **write, install and commit the next numbered executable session prompt automatically** in `research/NEXT_SESSION_PROMPT.md` with its authoritative target file. Do not ask the owner to re-specify the stage or choose an administrative fallback. The user triggers each session by saying “run next session”; prompt generation alone never launches research in the background.
 
-Current binding session target: [S007 full flagship Lean bridge](research/S007_FULL_FLAGSHIP_LEAN_BRIDGE_TARGET.md). Work branch: [session/s007-full-lean-flagship](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/session/s007-full-lean-flagship). Historical S006 package remains preserved [here](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/session/s006-palomar-prepare), not merged or treated as full verification.
+Current binding session target: [S008 exact h-count and graph-matrix bridge](research/S008_FULL_H_COUNT_MATRIX_TRANSFER_TARGET.md). Work branch: [session/s008-full-h-bridge](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/session/s008-full-h-bridge). S007 structural lemmas passed strict hosted Lean [38912238607](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38912238607) at [d05fe1e](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/d05fe1e71d054fe74a52a664112b6de436e999da); h=B and h≤3 remain OPEN. Historical S006 package remains preserved [here](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/session/s006-palomar-prepare), not merged or treated as full verification.

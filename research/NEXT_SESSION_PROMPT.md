@@ -1,15 +1,11 @@
-# PDIC — NEXT SESSION: S007 full Lean flagship bridge
+# PDIC — NEXT SESSION: S008 exact h(G) cardinality bridge and matrix transfer
 
-**S007 INSTALLED, NOT EXECUTED** (16 October 2026). The authoritative executable prompt is [S007_FULL_FLAGSHIP_LEAN_BRIDGE_TARGET.md](S007_FULL_FLAGSHIP_LEAN_BRIDGE_TARGET.md).
+**S008 INSTALLED; NOT EXECUTED** (16 October 2026). Authoritative instructions: [S008_FULL_H_COUNT_MATRIX_TRANSFER_TARGET.md](S008_FULL_H_COUNT_MATRIX_TRANSFER_TARGET.md).
 
-**Execution:** when the owner says **“run next session,”** immediately execute S007 on the `session/s007-full-lean-flagship` proof branch.
+**Run command:** On the next owner instruction “run next session”, execute S008 on `session/s008-full-h-bridge` (created from S007 strict-PASS `d05fe1e71d054fe74a52a664112b6de436e999da`). Do not restart from main's older `PDIC.lean`.
 
-**Stage:** RETURNED TO FULL FIRST-PAPER LEAN FORMALISATION. S006's graph-only Palomar package is historical and not a valid substitute for the complete theorem.
+**Highest-priority goal:** Prove for any connected eight-vertex SimpleGraph G and any `FourMISPartition G s` that the genuine unordered `unorderedCompatibleTripleCount G = anchoredMixedThirdCount G s` using a lossless bijection `r ↦ {s, univ\s, r}`. Then construct the arbitrary-graph 4×4 `matrixGraph` transport and derive `h(G)≤3` by the already strictly verified matrix theorem, without smuggling in count identities. Seek the named spider equality iff. Maintain actual skew 3+1/1+3 sets without counting them as mixed triples.
 
-**S007 critical proof goal:** Define genuine compatible unordered triples of four-vertex maximal independent sets for arbitrary connected eight-vertex simple graphs, prove the required unique balanced bipartition and 4×4 matrix witness-count equivalence `h(G)=B(A)`, derive `h(G)≤3`, and if achievable prove equality iff the named spider graph `S(2,2,2,1)`. Reuse exact strictly checked S003R9 source, with new strict hosted CI.
+**Ultimate gate unchanged:** Complete cap-labelled 8! bijection model, exact four-term distribution, sharp spider iff and honest classical nine-cap input all integrated into a single Lean theorem matching the paper. Palomar remains paused.
 
-**Ultimate non-negotiable completion gate:** Full end-to-end Lean proof of the manuscript's entire zero-sum quartet probability distribution and sharp spider extremiser, with the classical nine-cap classification explicitly formalised or clearly stated as a genuine sourced hypothesis. No administrative or narrower registration substitute.
-
-**Automatic closeout prompting is ACTIVE:** at the end of S007 create and install the complete **S008 executable prompt** targeting the highest-impact still-open Lean obligation, commit `research/NEXT_SESSION_PROMPT.md`, `authoritative/STATE.json` and session closeout. Repeat at every later session until the entire flagship is formalised. Do **not** execute S008 until the owner asks.
-
-No Palomar submission, external correspondence or publication is authorised by this prompt.
+**Automatic handoff rule active:** On S008 completion commit closeout, updated claims/state and a complete S009 executable prompt attacking the largest remaining proof obstruction. Do not execute S009 without the next owner request. External registration/publication require explicit consent.
