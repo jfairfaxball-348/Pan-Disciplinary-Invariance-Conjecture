@@ -1687,8 +1687,34 @@ theorem anchoredMixedThirdCount_partition_independent
   · rw [he]
     exact anchoredMixedThirdCount_swap G t
 
+/-- A genuine unordered compatible triple has a 2+2 mixed third set
+    relative to *any* balanced independent partition of a connected graph.
+    This is the central uniqueness step before cardinality transport. -/
+theorem unorderedTriple_has_anchored_third
+    (G : SimpleGraph Vertex) (hc : G.Connected)
+    (s : Finset Vertex) (hs : FourMISPartition G s)
+    (T : Finset (Finset Vertex))
+    (hT : IsUnorderedCompatibleTriple G T) :
+    ∃ r ∈ T, IsAnchoredMixedThird G s r := by
+  rcases hT with ⟨_, hall, a, ha, b, hb, r, hr, _, _, _, hab, hra, hrb⟩
+  have hp : FourMISPartition G a := by
+    refine ⟨(hall a ha).1, (hall a ha).2, ?_⟩
+    simpa only [← hab] using (hall b hb).2
+  rcases fourMISPartition_unique_up_to_swap G hc a s hp hs with he | he
+  · subst a
+    refine ⟨r, hr, (hall r hr).2, hra, ?_⟩
+    simpa only [hab] using hrb
+  · have hcc :
+        (Finset.univ : Finset Vertex) \ (Finset.univ \ s) = s := by
+      ext v
+      simp
+    refine ⟨r, hr, (hall r hr).2, ?_, ?_⟩
+    · simpa only [hab, he, hcc] using hrb
+    · simpa only [he] using hra
+
 #print axioms PDIC.fourMISPartition_unique_up_to_swap
 #print axioms PDIC.unorderedTriple_has_partition
+#print axioms PDIC.unorderedTriple_has_anchored_third
 #print axioms PDIC.unorderedCompatibleTripleCount_zero_of_no_partition
 #print axioms PDIC.anchoredMixedThirdCount_swap
 #print axioms PDIC.anchoredMixedThirdCount_partition_independent
