@@ -3998,3 +3998,177 @@ theorem canonicalCapF3_perm_canonical_overlap_pair_event_card :
 #print axioms PDIC.canonicalCapF3_perm_canonical_overlap_pair_event_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S017: true all-source ordered overlapping-pair orbit transport. -/
+
+def overlapSourceColour (s t : Finset Vertex) (v : Vertex) : Bool × Bool :=
+  (decide (v ∈ s), decide (v ∈ t))
+
+def overlapSourceCell (s t : Finset Vertex) (b : Bool × Bool) : Finset Vertex :=
+  (if b.1 then s else Finset.univ \ s) ∩
+  (if b.2 then t else Finset.univ \ t)
+
+/-- The two prescribed overlapping four-sets cut the actual vertex set into
+four two-element membership-bit cells. -/
+theorem overlapSourceColour_fibre_card
+    (s t : Finset Vertex) (hs : s.card = 4) (ht : t.card = 4)
+    (hst : (s ∩ t).card = 2) (b : Bool × Bool) :
+    Fintype.card {v : Vertex // overlapSourceColour s t v = b} = 2 := by
+  classical
+  have hfilter :
+      (Finset.univ.filter (fun v : Vertex => overlapSourceColour s t v = b)) =
+        overlapSourceCell s t b := by
+    ext v
+    rcases b with ⟨b₁, b₂⟩
+    cases b₁ <;> cases b₂ <;>
+      by_cases h₁ : v ∈ s <;> by_cases h₂ : v ∈ t <;>
+        simp [overlapSourceColour, overlapSourceCell, h₁, h₂]
+  rw [Fintype.card_subtype, hfilter]
+  have hdiffS : (s \ t).card = 2 := by
+    have h := Finset.card_sdiff_add_card_inter s t
+    omega
+  have hdiffT : (t \ s).card = 2 := by
+    have h := Finset.card_sdiff_add_card_inter t s
+    rw [Finset.inter_comm t s] at h
+    omega
+  have hUnion : (s ∪ t).card = 6 := by
+    have h := Finset.card_inter_add_card_union s t
+    omega
+  have hOutside : ((Finset.univ : Finset Vertex) \ (s ∪ t)).card = 2 := by
+    rw [Finset.card_sdiff_of_subset (Finset.subset_univ (s ∪ t))]
+    have hEight : (Finset.univ : Finset Vertex).card = 8 := by decide
+    omega
+  rcases b with ⟨b₁, b₂⟩
+  cases b₁ <;> cases b₂
+  · have h : overlapSourceCell s t (false, false) =
+        (Finset.univ : Finset Vertex) \ (s ∪ t) := by
+      ext v
+      simp [overlapSourceCell]
+      tauto
+    rw [h]
+    exact hOutside
+  · have h : overlapSourceCell s t (false, true) = t \ s := by
+      ext v
+      simp [overlapSourceCell]
+    rw [h]
+    exact hdiffT
+  · have h : overlapSourceCell s t (true, false) = s \ t := by
+      ext v
+      simp [overlapSourceCell]
+    rw [h]
+    exact hdiffS
+  · simpa [overlapSourceCell] using hst
+
+/-- A permutation of the ACTUAL eight vertices takes any ordered pair of
+four-sets with two-point overlap to the canonical ordered pair (Q0,Q1).
+It is constructed by four explicit two-element fibre equivalences. -/
+theorem exists_perm_overlap_pair_to_canonical
+    (s t : Finset Vertex) (hs : s.card = 4) (ht : t.card = 4)
+    (hst : (s ∩ t).card = 2) :
+    ∃ p : Equiv.Perm Vertex,
+      s.image p = quartet (0 : QuartetIndex) ∧
+      t.image p = quartet (1 : QuartetIndex) := by
+  classical
+  let c := overlapSourceColour s t
+  let d := canonicalTwoQuartetColour
+  have hc (b : Bool × Bool) :
+      Fintype.card {v : Vertex // c v = b} = 2 := by
+    exact overlapSourceColour_fibre_card s t hs ht hst b
+  let φ (b : Bool × Bool) :
+      {v : Vertex // c v = b} ≃ {v : Vertex // d v = b} :=
+    Fintype.equivOfCardEq
+      ((hc b).trans (canonicalTwoQuartetColour_fibre_card b).symm)
+  let p : Equiv.Perm Vertex :=
+    ((Equiv.sigmaFiberEquiv c).symm.trans
+      (Equiv.sigmaCongrRight φ)).trans (Equiv.sigmaFiberEquiv d)
+  have hcolour (v : Vertex) : c v = d (p v) := by
+    have h :
+        (Equiv.sigmaFiberEquiv d).symm (p v) =
+          (Equiv.sigmaCongrRight φ) ((Equiv.sigmaFiberEquiv c).symm v) := by
+      simp only [p, Equiv.trans_apply, Equiv.symm_apply_apply]
+    have hf := congrArg Sigma.fst h.symm
+    simpa only [Equiv.sigmaFiberEquiv_symm_apply_fst,
+      Equiv.sigmaCongrRight_apply] using hf
+  have hS (v : Vertex) : v ∈ s ↔ p v ∈ quartet (0 : QuartetIndex) := by
+    have h := congrArg Prod.fst (hcolour v)
+    by_cases a : v ∈ s <;>
+      by_cases b : p v ∈ quartet (0 : QuartetIndex) <;>
+        simp [c, d, overlapSourceColour, canonicalTwoQuartetColour, a, b] at h ⊢
+  have hT (v : Vertex) : v ∈ t ↔ p v ∈ quartet (1 : QuartetIndex) := by
+    have h := congrArg Prod.snd (hcolour v)
+    by_cases a : v ∈ t <;>
+      by_cases b : p v ∈ quartet (1 : QuartetIndex) <;>
+        simp [c, d, overlapSourceColour, canonicalTwoQuartetColour, a, b] at h ⊢
+  have hpS : s.image p = quartet (0 : QuartetIndex) := by
+    ext v
+    constructor
+    · rintro ⟨w, hw, rfl⟩
+      exact (hS w).mp hw
+    · intro hv
+      refine Finset.mem_image.mpr ⟨p.symm v, ?_, by simp⟩
+      exact (hS (p.symm v)).mpr (by simpa using hv)
+  have hpT : t.image p = quartet (1 : QuartetIndex) := by
+    ext v
+    constructor
+    · rintro ⟨w, hw, rfl⟩
+      exact (hT w).mp hw
+    · intro hv
+      refine Finset.mem_image.mpr ⟨p.symm v, ?_, by simp⟩
+      exact (hT (p.symm v)).mpr (by simpa using hv)
+  exact ⟨p, hpS, hpT⟩
+
+/-- Universal real 128-event theorem: all prescribed distinct size-four
+source sets meeting in two vertices, not only Q0 and Q1. No enumeration
+of all 40320 permutations is used. -/
+theorem canonicalCapF3_perm_overlap_two_pair_event_card
+    (s t : Finset Vertex) (hs : s.card = 4) (ht : t.card = 4)
+    (hst : (s ∩ t).card = 2) :
+    Fintype.card {e : Equiv.Perm Vertex //
+      capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+      capSum (fun v => canonicalCapF3 (e v)) t = 0} = 128 := by
+  classical
+  obtain ⟨p, hps, hpt⟩ :=
+    exists_perm_overlap_pair_to_canonical s t hs ht hst
+  let F : Equiv.Perm Vertex ≃ Equiv.Perm Vertex :=
+    { toFun := fun e => p.symm.trans e
+      invFun := fun e => p.trans e
+      left_inv := by intro e; ext v; simp
+      right_inv := by intro e; ext v; simp }
+  have hpred (e : Equiv.Perm Vertex) :
+      (capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+       capSum (fun v => canonicalCapF3 (e v)) t = 0) ↔
+      (capSum (fun v => canonicalCapF3 ((F e) v))
+          (quartet (0 : QuartetIndex)) = 0 ∧
+       capSum (fun v => canonicalCapF3 ((F e) v))
+          (quartet (1 : QuartetIndex)) = 0) := by
+    have hsum (a : Finset Vertex) :
+        capSum (fun v => canonicalCapF3 (e v)) a =
+          capSum (fun v => canonicalCapF3 ((F e) v)) (a.image p) := by
+      rw [capSum_perm_reindex, capSum_perm_reindex,
+        finset_image_perm_trans]
+      have hp : p.trans (F e) = e := F.left_inv e
+      rw [hp]
+    have hsumS := (hsum s)
+    have hsumT := (hsum t)
+    rw [hps] at hsumS
+    rw [hpt] at hsumT
+    rw [hsumS, hsumT]
+  let E :
+      {e : Equiv.Perm Vertex //
+        capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) t = 0} ≃
+      {e : Equiv.Perm Vertex //
+        capSum (fun v => canonicalCapF3 (e v)) (quartet (0 : QuartetIndex)) = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) (quartet (1 : QuartetIndex)) = 0} :=
+    Equiv.subtypeEquiv F (fun e => hpred e)
+  exact (Fintype.card_congr E).trans
+    canonicalCapF3_perm_canonical_overlap_pair_event_card
+
+#print axioms PDIC.overlapSourceColour_fibre_card
+#print axioms PDIC.exists_perm_overlap_pair_to_canonical
+#print axioms PDIC.canonicalCapF3_perm_overlap_two_pair_event_card
+
+end PDIC
