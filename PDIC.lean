@@ -889,3 +889,80 @@ theorem goodPair_iff_mixedPairCriterion
 #print axioms PDIC.goodPair_iff_mixedPairCriterion
 
 end PDIC
+
+namespace PDIC
+
+/-! S003R7: all six concrete witnesses are instances of the single
+    arbitrary-row, arbitrary-partition semantic equivalence. -/
+
+def fourRows (a b c d : BitVec 4) (i : Side) : BitVec 4 :=
+  if i = 0 then a else if i = 1 then b else if i = 2 then c else d
+
+
+theorem fixedPair01Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV a b c d = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({0, 1} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (0 : Side) (1 : Side) (2 : Side) (3 : Side)
+    (by decide) (by decide)
+
+
+theorem fixedPair02Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV a c b d = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({0, 2} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (0 : Side) (2 : Side) (1 : Side) (3 : Side)
+    (by decide) (by decide)
+
+
+theorem fixedPair03Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV a d b c = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({0, 3} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (0 : Side) (3 : Side) (1 : Side) (2 : Side)
+    (by decide) (by decide)
+
+
+theorem fixedPair12Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV b c a d = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({1, 2} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (1 : Side) (2 : Side) (0 : Side) (3 : Side)
+    (by decide) (by decide)
+
+
+theorem fixedPair13Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV b d a c = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({1, 3} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (1 : Side) (3 : Side) (0 : Side) (2 : Side)
+    (by decide) (by decide)
+
+
+theorem fixedPair23Criterion (a b c d : BitVec 4) :
+    goodLeftPairBV c d a b = true ↔
+      mixedPairCriterionBool (adjOfRows (fourRows a b c d))
+        ({2, 3} : Finset Side) = true := by
+  rw [mixedPairCriterionBool_iff]
+  exact goodPair_iff_mixedPairCriterion (fourRows a b c d)
+    (2 : Side) (3 : Side) (0 : Side) (1 : Side)
+    (by decide) (by decide)
+
+#print axioms PDIC.fixedPair01Criterion
+#print axioms PDIC.fixedPair02Criterion
+#print axioms PDIC.fixedPair03Criterion
+#print axioms PDIC.fixedPair12Criterion
+#print axioms PDIC.fixedPair13Criterion
+#print axioms PDIC.fixedPair23Criterion
+
+end PDIC
