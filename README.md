@@ -2,7 +2,7 @@
 
 **Mission:** join finite-group zero-sum quartet geometry, maximal independent sets, graph extremal combinatorics, random greedy dynamics and signed pebbling invariants in a precise, formally certified first paper. The project name is aspirational, not a proven universal invariance conjecture.
 
-**Status 2026-10-16:** **S003R7 completed with strict-Lean-certified generic complement/witness equivalences and ALL SIX mask-pair↔semantic-criterion iff lemmas on unmerged PR #3 at `df53e200` (CI 38880618519 PASS).** The earlier S003R6 pair enumeration and no-overflow arithmetic remain certified. Full **six-pair cardinality aggregation**, numerical↔actual-MIS and edge cardinality adapters, connected graph classification and finite probability semantics remain open. Main retains the already certified S003R3 Lean baseline; no paper or original-priority claim is made.
+**Status 2026-10-16:** **S003R7 COMPLETED and BOTH arbitrary 4×4 numerical-to-semantic count identities are strictly kernel-verified** on unmerged PR #3 commit [`e1253ef`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca), [Lean CI 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311). The six individual mask-to-genuine-mixed-MIS pair iff lemmas, six-indicator filtered-cardinality sum, and exact matrix edge cardinality are certified with only standard axioms, alongside all five independent finite tests. Main retains the earlier S003R3 Lean baseline pending review/merge. The derived general Boolean-matrix extremal declarations, connected eight-vertex graph/spider isomorphism, genuine finite probability law and literature novelty remain open; no paper or priority claim is made.
 
 ## Written flagship (classical cap input required)
 
@@ -30,7 +30,8 @@ Pr(N0=0)=1−M1+M2−M3; Pr(N0=1)=M1−2M2+3M3; Pr(N0=2)=M2−3M3; Pr(N0=3)=M3�
 | **S003R3** | **DONE, partial** — lossless row representation, actual existential witness criterion/count, e≥8⇒b≤2 in strict Lean; not yet full graph/measure bridge |
 | **S003R4–S003R5** | Written numerical bridge, verified small Boolean and row-mask semantic lemmas on PR #3 |
 | **S003R6** | **DONE, partial** — exact single-pair Boolean mask specification, six-pair enumeration, and no-overflow 3-bit/5-bit arithmetic certified at [CI 38871115121](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38871115121) |
-| **S003R7** | **DONE, partial** — arbitrary-row OR-support and witness semantics plus all six exact scalar iff, strict Lean [PASS 38880618519](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38880618519); global summation OPEN |
+| **S003R7** | **DONE, strict full numerical bridge** — all six pair semantics, exact six-indicator and row-edge sums, both arbitrary-matrix natural-number count identities [PASS 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311) |
+| **S003R8** | **NEXT** — transfer three extremal matrix statements and eight-vertex graph/spider semantics; paper-positioning source audit |
 | **S003R8** | **NEXT** — six-pair Nat count aggregation, edge product decomposition, full matrix theorem transfers or narrow paper fallback |
 | S004 | Conditional novelty audit and TeX manuscript |
 
@@ -39,3 +40,5 @@ Pr(N0=0)=1−M1+M2−M3; Pr(N0=1)=M1−2M2+3M3; Pr(N0=2)=M2−3M3; Pr(N0=3)=M3�
 Reproduce with pinned `lake build`, strict `#print axioms` audit and all five checkers in `scripts/`. A `bv_decide` trial was rejected because of its compiler-native axiom; the accepted theorems use `decide +kernel`. No Palomar/arXiv/journal submission authorised.
 
 [S003R7 closeout](sessions/S003R7_CLOSEOUT.md) · [S003R7 proof notes](research/S003R7_SYMBOLIC_SEMANTIC_BRIDGE.md) · [Prepared S003R8](research/NEXT_SESSION_PROMPT.md)
+
+**S003R7 final proof certificate:** [commit `e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e1253ef0060ec5f0bc9c1f5f6dbfec2b45b06fca), [Lean workflow 38883050311](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38883050311), separate finite workflow 38883050344 PASS. See [full closeout](sessions/S003R7_CLOSEOUT.md) and [next S003R8 handoff](research/NEXT_SESSION_PROMPT.md).
