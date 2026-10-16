@@ -776,6 +776,9 @@ end PDIC
 
 namespace PDIC
 
+set_option maxRecDepth 8192
+set_option maxHeartbeats 1500000
+
 /-! S003R6: purely symbolic counting of any Boolean predicate supported
     on the six two-subsets of a four-element side. -/
 
