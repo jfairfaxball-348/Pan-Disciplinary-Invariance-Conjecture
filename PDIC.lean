@@ -3316,7 +3316,9 @@ theorem perm_finset_image_fixed_iff
   · intro h
     ext v
     constructor
-    · rintro ⟨w, hw, rfl⟩
+    · intro hv
+      obtain ⟨w, hw, hew⟩ := Finset.mem_image.mp hv
+      subst v
       exact (h w).mp hw
     · intro hv
       have hmem : e (e.symm v) ∈ s := by simpa using hv
