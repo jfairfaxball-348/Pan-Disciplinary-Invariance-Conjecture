@@ -1499,3 +1499,78 @@ theorem connected_independent_partition_unique
 #print axioms PDIC.connected_independent_partition_unique
 
 end PDIC
+
+
+namespace PDIC
+
+/-- Every occupied matrix cell is exactly one unordered simple-graph edge. -/
+def matrixCellEdge (adj : Side → Side → Bool)
+    (c : {ij : Side × Side // adj ij.1 ij.2 = true}) :
+    (matrixGraph adj).edgeSet :=
+  ⟨s(Sum.inl c.val.1, Sum.inr c.val.2), c.property⟩
+
+theorem matrixCellEdge_bijective (adj : Side → Side → Bool) :
+    Function.Bijective (matrixCellEdge adj) := by
+  constructor
+  · intro a b he
+    apply Subtype.ext
+    have hh : a.val.1 = b.val.1 ∧ a.val.2 = b.val.2 := by
+      simpa only [matrixCellEdge, Sym2.eq_iff, Sum.inl.injEq, Sum.inr.injEq,
+        Sum.inl_ne_inr, Sum.inr_ne_inl, false_and, or_false] using
+        congrArg Subtype.val he
+    exact Prod.ext hh.1 hh.2
+  · rintro ⟨e, he⟩
+    revert he
+    refine Sym2.inductionOn e ?_
+    intro u v he
+    cases u with
+    | inl i =>
+      cases v with
+      | inl k => exact False.elim he
+      | inr j => exact ⟨⟨(i, j), he⟩, rfl⟩
+    | inr j =>
+      cases v with
+      | inl i =>
+        refine ⟨⟨(i, j), he⟩, ?_⟩
+        apply Subtype.ext
+        exact Sym2.eq_swap
+      | inr k => exact False.elim he
+
+theorem matrixGraph_edgeCount (adj : Side → Side → Bool) :
+    Nat.card (matrixGraph adj).edgeSet = actualMatrixEdgeCount adj := by
+  classical
+  letI : Fintype (matrixGraph adj).edgeSet := Fintype.ofFinite _
+  rw [Nat.card_eq_fintype_card,
+    ← Fintype.card_congr (Equiv.ofBijective _ (matrixCellEdge_bijective adj))]
+  simp [actualMatrixEdgeCount, Fintype.card_subtype]
+
+theorem connected_matrixGraph_seven_edges (adj : Side → Side → Bool)
+    (hc : (matrixGraph adj).Connected) : 7 ≤ actualMatrixEdgeCount adj := by
+  have hh := hc.card_vert_le_card_edgeSet_add_one
+  rw [matrixGraph_edgeCount] at hh
+  have hv : Nat.card SplitVertex = 8 := by
+    simp [Nat.card_eq_fintype_card, SplitVertex, Side, Fintype.card_sum]
+  rw [hv] at hh
+  omega
+
+/-- A genuine connected SimpleGraph theorem about actual mixed MIS vertex sets. -/
+theorem connected_graphMixedCount_le_three (adj : Side → Side → Bool)
+    (hc : (matrixGraph adj).Connected) : graphMixedCount adj ≤ 3 := by
+  apply graphMixedCount_le_three
+  have hh := connected_matrixGraph_seven_edges adj hc
+  omega
+
+theorem connected_graphMixedCount_three_iff_pattern (adj : Side → Side → Bool)
+    (hc : (matrixGraph adj).Connected) :
+    graphMixedCount adj = 3 ↔
+      spiderMatrixBV (rowsOfAdj adj 0) (rowsOfAdj adj 1)
+        (rowsOfAdj adj 2) (rowsOfAdj adj 3) = true := by
+  exact graphMixedCount_three_iff_spider adj (connected_matrixGraph_seven_edges adj hc)
+
+#print axioms PDIC.matrixCellEdge_bijective
+#print axioms PDIC.matrixGraph_edgeCount
+#print axioms PDIC.connected_matrixGraph_seven_edges
+#print axioms PDIC.connected_graphMixedCount_le_three
+#print axioms PDIC.connected_graphMixedCount_three_iff_pattern
+
+end PDIC
