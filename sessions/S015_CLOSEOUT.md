@@ -29,3 +29,10 @@ The genuine **128** overlap-two pair/triple events, **2304** complementary pair 
 ## Automatic next-session target
 
 [S016 executable prompt](../research/NEXT_SESSION_PROMPT.md), also preserved as [S016 fixed target](../research/S016_PAIR_FIBRES_AND_MOMENTS_TARGET.md), is **installed, not executed**. First verify/repair S015, then prove the genuine 128-pair/triple fibre and moments. Continue proof-first, no administrative detour.
+
+
+## Final strict certification update — 16 October 2026
+
+**S015 is LEAN_KERNEL_VERIFIED**, not merely a source candidate. Exact theorem-bearing source [`69de0c9e9963016ff5324545d55710619e8b8ead`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/69de0c9e9963016ff5324545d55710619e8b8ead) has [hosted strict Lean run 38959901730: SUCCESS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38959901730) and [independent finite run 38959901752: SUCCESS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38959901752). The exact kernel workflow succeeded at `lake build`, forbidden proof-hole scan and all nine independent checkers. Explicit `#print axioms` for `canonicalTwoQuartetImageStabilizer_card`, `arbitraryFourset_to_anyQuartet_fibre_card`, `canonicalCapF3_perm_singleton_event_card` yielded **only `propext`, `Classical.choice`, and `Quot.sound`**. The new numerical theorem counts genuinely all permutations of `Fin 8`: for every four-set `s`, exactly **2304** of the **40320** bijections give cap-zero sum; `2304/40320=2/35`.
+
+Earlier provisional and CI-pending statements above describe prior checkpoints and are now **superseded by this exact-source successful certificate**. The genuine 128 two-overlap pair/compatible triple event counts, arbitrary complementary-pair event transport, graph-derived unordered MIS moments, and complete four-probability theorem remain **OPEN_IN_LEAN**. The full flagship is still not certified. S016 is installed but **NOT EXECUTED**; no PR merge, Palomar registration or publication action occurred.
