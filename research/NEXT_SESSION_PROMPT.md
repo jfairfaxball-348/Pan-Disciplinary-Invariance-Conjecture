@@ -1,13 +1,12 @@
-# PDIC — current owner-installed next session
+# PDIC — owner-directed session control
 
-**S005: PALOMAR REGISTRATION RECONNAISSANCE — INSTALLED, NOT EXECUTED.**
+**No next session target is installed.** S005 (Palomar preflight and public-record reconnaissance) was executed and closed on 16 October 2026 on explicit owner instruction.
 
-Installed at the owner's express direction on 16 October 2026. The operative session brief is [S005_PALOMAR_REGISTRATION_RECON_TARGET.md](S005_PALOMAR_REGISTRATION_RECON_TARGET.md).
+- Historical [owner-installed S005 scope](S005_PALOMAR_REGISTRATION_RECON_TARGET.md).
+- [Actual S005 research and official CI/public-field audit](S005_PALOMAR_RECON.md).
+- [Paper-matched public record proposal](S005_PUBLIC_RECORD_PROPOSAL.md).
+- [Verified scope and closeout](../sessions/S005_CLOSEOUT.md).
 
-## Exact target
+**S005 was reconnaissance only.** No Palomar CI preflight, Comparator run, registration, PR merge, arXiv or journal submission occurred. Novelty and full-theorem Lean formalisation remain unresolved as separately recorded.
 
-Investigate Palomar's submission and registration requirements and its official preflight CL/CI preparation and full-verifier workflows. Inspect [the owner's sample register entry PALOMAR-2026-09-25-000010 v1](https://palomar-registry.org/entry?id=PALOMAR-2026-09-25-000010&version=1), including its immutable JSON, to establish what readers see. Propose a precise, truthful public record whose title and "We prove that…" theorem/formula match the first PDIC manuscript, while honestly distinguishing its written full law from the narrower strict-Lean-certified PR #3 appendix.
-
-**Installation is not execution.** Execute only when the owner says to run the next session. This session is recon and proposed text/preflight recipe only: no Palomar submission, preflight job or registration, new Lean formalisation, source-PR merge, or journal/arXiv submission.
-
-S004 was [closed](../sessions/S004_CLOSEOUT.md) with novelty and historical priority unresolved. The owner's per-session control remains in force: the executed S005 closeout must not suggest or automatically install any subsequent target.
+The owner steers one session at a time. An installed target is not an instruction to execute; a completed session must not suggest, invent, or automatically install a subsequent target. Await a new explicit owner-selected target.
