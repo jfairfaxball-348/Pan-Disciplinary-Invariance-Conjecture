@@ -1,8 +1,8 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-16",
-  "last_completed_session": "S015",
-  "next_session": "S016",
+  "last_completed_session": "S016",
+  "next_session": "S017",
   "next_session_executed": false,
   "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION_S015_TRUE_2304_SINGLETON_EVENT_KERNEL_VERIFIED_S016_INSTALLED",
   "first_paper_roadmap": [
@@ -16,7 +16,7 @@
   "lean": "S015_69de0c9e9963016ff5324545d55710619e8b8ead_STRICT_KERNEL_PASS_38959901730_STANDARD_AXIOMS_ONLY_NINE_FINITE_CHECKERS_PASS_38959901752__FULL_LAW_OPEN",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
-  "next_prompt": "research/S016_PAIR_FIBRES_AND_MOMENTS_TARGET.md",
+  "next_prompt": "research/S017_FULL_PAIR_MOMENTS_TARGET.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S015_69de0c9e9963016ff5324545d55710619e8b8ead_LEAN_KERNEL_STANDARD_AXIOMS_ONLY_AND_NINE_CHECKERS_PASS_38959901730",
   "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38959901730",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S016_VERIFY_S015_2304_AND_PROVE_TRUE_128_PAIR_TRIPLE_EVENTS_AND_GRAPH_MOMENTS_FULL_LAW",
+  "next_session_target": "S017_ARBITRARY_128_PAIR_EVENT_COMPATIBLE_TRIPLE_GRAPH_MOMENTS_FULL_FLAGSHIP",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,7 +167,7 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S016_PAIR_FIBRES_AND_MOMENTS_TARGET.md",
+  "next_session_target_file": "research/S017_FULL_PAIR_MOMENTS_TARGET.md",
   "next_session_target_installed_date": "2026-10-16",
   "next_session_target_source": "69de0c9e9963016ff5324545d55710619e8b8ead",
   "s004_status": "COMPLETED_2026_10_16",
@@ -481,7 +481,7 @@
     "single end-to-end four-probability theorem",
     "conditional classical cap normal-form premise supplied externally"
   ],
-  "s016_status": "INSTALLED_NOT_EXECUTED",
+  "s016_status": "COMPLETED_PARTIAL__COMPLEMENTARY_PAIR_2304_STRICT_KERNEL_PASS__CANONICAL_OVERLAP_128_CANDIDATE_UNVERIFIED",
   "s015_verified_sha": "69de0c9e9963016ff5324545d55710619e8b8ead",
   "s015_verified_run": "38959901730",
   "s015_verified_finite_run": "38959901752",
@@ -498,5 +498,22 @@
     "indexedQuartetImageStabilizer_card",
     "arbitraryFourset_to_anyQuartet_fibre_card",
     "canonicalCapF3_perm_singleton_event_card"
-  ]
+  ],
+  "s016_verified_2304_sha": "4b4b02aad5a8d1074288011976fc0c040622a4c0",
+  "s016_verified_2304_run": 38962481022,
+  "s016_verified_2304_finite_run": 38962480950,
+  "s016_canonical_128_candidate_sha": "5dc78de0aad6fa1d19bcda72e7143386f222d617",
+  "s016_canonical_128_candidate_run": 38963802011,
+  "s016_canonical_128_status": "SOURCE_FORMALIZED_CI_PENDING",
+  "s016_closeout": "sessions/S016_CLOSEOUT.md",
+  "s016_proof_note": "research/S016_PAIR_FIBRE_PROOF.md",
+  "s016_unclosed": [
+    "ARBITRARY_SOURCE_OVERLAP_TWO_PAIR_EVENT_128",
+    "COMPATIBLE_UNORDERED_TRIPLE_EVENT_128",
+    "GRAPH_MIS_UNORDERED_FACTORIAL_MOMENTS",
+    "FULL_FOUR_TERM_PROBABILITY_THEOREM_SPIDER_IFF",
+    "CLASSICAL_CAP_NORMAL_FORM_SUPPLIED_HYPOTHESIS"
+  ],
+  "s017_status": "INSTALLED_NOT_EXECUTED",
+  "s017_target": "research/S017_FULL_PAIR_MOMENTS_TARGET.md"
 }
