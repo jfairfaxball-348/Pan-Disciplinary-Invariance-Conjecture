@@ -70,8 +70,8 @@ There are exactly 192 matrices with seven edges and three qualifying left pairs,
 ## Certificate tracking
 
 - First S003R7 local OR-neighbourhood and complement lemmas: PR #3 commit `b7d5523207675fe9c9b15df1a67ba469528f86f5`, strict CI run `38879098667` PASS (Lean + all five Python scripts).
-- Follow-on witness and arbitrary-partition criterion candidate: commit `2f9b0344a0e37ee39bcee3ee5e05395a85f68ee2`, **check live CI before certifying**.
-- Six fixed-pair criterion candidate: commit `206a6e1df35f576fc8aa8af79f9efe60edeeeb8d`, **check live CI before certifying**.
+- Generic outside-witness, arbitrary-partition criterion and **all six** individual fixed-pair equivalences: commit `df53e200188cf185c1398929143f5b0456fbadd2`, strict CI run `38880618519` **PASS** (Lean + five Python scripts, only standard axioms).
+- Subsequent six-pair filtered-cardinality trial at `a8df4a89` **FAILED** CI 38880747155 on a Nat casting/rewrite issue. Candidate `8e76088b` uses explicit `R := ℕ` with `Finset.sum_boole`; do not certify until exact-head CI passes.
 - The full global two-count equalities, transferred matrix extremal theorem, SimpleGraph/spider isomorphism, and 2520-bijection probability theorem are OPEN_IN_LEAN unless later evidence is linked here.
 
 No priority claim, Palomar request, manuscript submission, or merge of PR #3 is authorised by this note.
