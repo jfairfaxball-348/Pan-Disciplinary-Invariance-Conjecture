@@ -2687,3 +2687,97 @@ theorem connected_h_three_iff_namedSpider (G : SimpleGraph Vertex)
 #print axioms PDIC.connected_h_three_iff_namedSpider
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S011: a genuine F₃³ cap, with the external cap classification
+represented only by a supplied zero-fixing linear equivalence. -/
+
+abbrev CapPoint := Fin 3 → ZMod 3
+
+def canonicalCapF3 (v : Vertex) : CapPoint :=
+  fun j => (canonicalCap v j : ZMod 3)
+
+def capSum (f : Vertex → CapPoint) (s : Finset Vertex) : CapPoint :=
+  ∑ v ∈ s, f v
+
+def IsAdmissibleCap (f : Vertex → CapPoint) : Prop :=
+  Function.Injective f ∧
+    ∀ s : Finset Vertex,
+      (s.card = 1 ∨ s.card = 2 ∨ s.card = 3) → capSum f s ≠ 0
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+theorem canonicalCapF3_injective : Function.Injective canonicalCapF3 := by
+  decide +kernel
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+theorem canonicalCapF3_short_zero_free :
+    ∀ s : Finset Vertex, (s.card = 1 ∨ s.card = 2 ∨ s.card = 3) →
+      capSum canonicalCapF3 s ≠ 0 := by
+  decide +kernel
+
+theorem canonicalCapF3_admissible : IsAdmissibleCap canonicalCapF3 := by
+  exact ⟨canonicalCapF3_injective, canonicalCapF3_short_zero_free⟩
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+theorem canonicalCapF3_four_zero_iff :
+    ∀ s : Finset Vertex, s.card = 4 →
+      (capSum canonicalCapF3 s = 0 ↔
+        ∃ i : QuartetIndex, quartet i = s) := by
+  decide +kernel
+
+/-- Linear maps preserving the origin commute with every finite label sum. -/
+theorem capSum_linear (L : CapPoint ≃ₗ[ZMod 3] CapPoint)
+    (f : Vertex → CapPoint) (s : Finset Vertex) :
+    capSum (fun v => L (f v)) s = L (capSum f s) := by
+  simp [capSum, map_sum]
+
+theorem capSum_zero_linear_iff (L : CapPoint ≃ₗ[ZMod 3] CapPoint)
+    (f : Vertex → CapPoint) (s : Finset Vertex) :
+    capSum (fun v => L (f v)) s = 0 ↔ capSum f s = 0 := by
+  rw [capSum_linear]
+  constructor
+  · intro h
+    apply L.injective
+    simpa using h
+  · intro h
+    simp [h]
+
+/-- A supplied GL(3,3) transformation preserves the cap conditions. -/
+theorem admissible_under_linear
+    (L : CapPoint ≃ₗ[ZMod 3] CapPoint) (f : Vertex → CapPoint)
+    (h : IsAdmissibleCap f) :
+    IsAdmissibleCap (fun v => L (f v)) := by
+  constructor
+  · exact L.injective.comp h.1
+  · intro s hs
+    exact (capSum_zero_linear_iff L f s).not.mpr (h.2 s hs)
+
+/-- Complete quartet classification, conditional ONLY on a supplied
+zero-fixing linear equivalence; the classical existence claim is separate. -/
+theorem linearCanonicalCap_four_zero_iff
+    (L : CapPoint ≃ₗ[ZMod 3] CapPoint)
+    (s : Finset Vertex) (hs : s.card = 4) :
+    (capSum (fun v => L (canonicalCapF3 v)) s = 0 ↔
+      ∃ i : QuartetIndex, quartet i = s) := by
+  rw [capSum_zero_linear_iff]
+  exact canonicalCapF3_four_zero_iff s hs
+
+/-- The genuine finite uniform-labelling sample space has eight factorial
+outcomes; this statement does not assert the event-fibre probabilities. -/
+theorem uniformLabellings_card :
+    Fintype.card (Equiv.Perm Vertex) = 40320 := by
+  norm_num [Fintype.card_perm, Vertex]
+
+#print axioms PDIC.canonicalCapF3_admissible
+#print axioms PDIC.canonicalCapF3_four_zero_iff
+#print axioms PDIC.capSum_zero_linear_iff
+#print axioms PDIC.admissible_under_linear
+#print axioms PDIC.linearCanonicalCap_four_zero_iff
+#print axioms PDIC.uniformLabellings_card
+
+end PDIC
