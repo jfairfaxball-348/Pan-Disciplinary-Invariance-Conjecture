@@ -1694,3 +1694,171 @@ theorem anchoredMixedThirdCount_partition_independent
 #print axioms PDIC.anchoredMixedThirdCount_partition_independent
 
 end PDIC
+
+namespace PDIC
+
+/-! S007: unordered compatible triples in an arbitrary finite simple graph.
+The count is over sets of sets, so neither orientations nor orderings are counted.
+The complementary-pair condition includes the two size-four MIS explicitly. -/
+
+def ComplementaryFourMIS {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) (s t : Finset V) : Prop :=
+  s.card = 4 ∧ t.card = 4 ∧ GraphMIS G s ∧ GraphMIS G t ∧
+    t = Finset.univ \ s
+
+def MixedFourMIS {V : Type*} [DecidableEq V]
+    (G : SimpleGraph V) (s t r : Finset V) : Prop :=
+  r.card = 4 ∧ GraphMIS G r ∧ (r ∩ s).card = 2 ∧ (r ∩ t).card = 2
+
+def CompatibleTriple {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) (q : Finset (Finset V)) : Prop :=
+  ∃ s t r, ComplementaryFourMIS G s t ∧ MixedFourMIS G s t r ∧
+    q = {s, t, r}
+
+noncomputable def compatibleTripleCount {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) : ℕ := by
+  classical
+  exact Fintype.card {q : Finset (Finset V) // CompatibleTriple G q}
+
+noncomputable def partitionMixedCount {V : Type*} [Fintype V] [DecidableEq V]
+    (G : SimpleGraph V) (s t : Finset V) : ℕ := by
+  classical
+  exact Fintype.card {r : Finset V // MixedFourMIS G s t r}
+
+theorem complementaryFourMIS_symm {V : Type*} [Fintype V] [DecidableEq V]
+    {G : SimpleGraph V} {s t : Finset V} (h : ComplementaryFourMIS G s t) :
+    ComplementaryFourMIS G t s := by
+  classical
+  rcases h with ⟨hs, ht, hms, hmt, rfl⟩
+  exact ⟨ht, hs, hmt, hms, by ext v; simp⟩
+
+theorem complementaryFourMIS_ne {V : Type*} [Fintype V] [DecidableEq V]
+    {G : SimpleGraph V} {s t : Finset V} (h : ComplementaryFourMIS G s t) :
+    s ≠ t := by
+  classical
+  intro he
+  obtain ⟨v, hv⟩ := Finset.card_pos.mp (show 0 < s.card by rw [h.1]; decide)
+  have hvt : v ∈ t := he ▸ hv
+  rw [h.2.2.2.2] at hvt
+  exact (Finset.mem_sdiff.mp hvt).2 hv
+
+theorem mixedFourMIS_ne_sides {V : Type*} [DecidableEq V]
+    {G : SimpleGraph V} {s t r : Finset V}
+    (h : MixedFourMIS G s t r) : r ≠ s ∧ r ≠ t := by
+  constructor
+  · intro he
+    have hh := h.2.2.1
+    rw [← he, Finset.inter_self] at hh
+    omega
+  · intro he
+    have hh := h.2.2.2
+    rw [← he, Finset.inter_self] at hh
+    omega
+
+theorem compatibleTriple_card {V : Type*} [Fintype V] [DecidableEq V]
+    {G : SimpleGraph V} {q : Finset (Finset V)} (h : CompatibleTriple G q) :
+    q.card = 3 := by
+  classical
+  obtain ⟨s, t, r, hp, hm, rfl⟩ := h
+  have hst := complementaryFourMIS_ne hp
+  obtain ⟨hrs, hrt⟩ := mixedFourMIS_ne_sides hm
+  simp [hst, Ne.symm hrs, Ne.symm hrt]
+
+/-- If there is no complementary pair, there are no compatible triples. -/
+theorem compatibleTripleCount_zero_of_no_pair
+    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+    (h : ¬ ∃ s t, ComplementaryFourMIS G s t) :
+    compatibleTripleCount G = 0 := by
+  classical
+  unfold compatibleTripleCount
+  apply Fintype.card_eq_zero_iff.mpr
+  exact ⟨fun q => by
+    obtain ⟨s, t, r, hp, _, _⟩ := q.property
+    exact h ⟨s, t, hp⟩⟩
+
+/-- A genuine connected graph has only one such unordered pair. -/
+theorem connected_complementaryFourMIS_unique
+    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+    (hc : G.Connected) (root : V) {s t a b : Finset V}
+    (hst : ComplementaryFourMIS G s t) (hab : ComplementaryFourMIS G a b) :
+    (a = s ∧ b = t) ∨ (a = t ∧ b = s) := by
+  have ht : GraphMIS G (Finset.univ \ s) := hst.2.2.2.2 ▸ hst.2.2.2.1
+  have hb : GraphMIS G (Finset.univ \ a) := hab.2.2.2.2 ▸ hab.2.2.2.1
+  obtain he | he := connected_independent_partition_unique G hc root a s
+    hab.2.2.1.1 hb.1 hst.2.2.1.1 ht.1
+  · left
+    exact ⟨he, by rw [hab.2.2.2.2, he, ← hst.2.2.2.2]⟩
+  · right
+    refine ⟨he.trans hst.2.2.2.2.symm, ?_⟩
+    rw [hab.2.2.2.2, he]
+    ext v
+    simp
+
+/-- Relative to the unique connected bipartition, every unordered triple
+has precisely the form obtained by adjoining one genuine 2+2 mixed MIS. -/
+theorem connected_compatibleTriple_iff
+    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+    (hc : G.Connected) (root : V) {s t : Finset V}
+    (hst : ComplementaryFourMIS G s t) (q : Finset (Finset V)) :
+    CompatibleTriple G q ↔ ∃ r, MixedFourMIS G s t r ∧ q = {s, t, r} := by
+  classical
+  constructor
+  · rintro ⟨a, b, r, hab, hr, hq⟩
+    obtain ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ :=
+      connected_complementaryFourMIS_unique G hc root hst hab
+    · exact ⟨r, hr, hq⟩
+    · refine ⟨r, ⟨hr.1, hr.2.1, hr.2.2.2, hr.2.2.1⟩, ?_⟩
+      rw [hq]
+      ext x
+      simp only [Finset.mem_insert, Finset.mem_singleton]
+      tauto
+  · rintro ⟨r, hr, hq⟩
+    exact ⟨s, t, r, hst, hr, hq⟩
+
+/-- The map is injective because the added set differs from both sides.
+This is the step that prevents counting the two pair orientations. -/
+noncomputable def compatibleTripleEquiv
+    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+    (hc : G.Connected) (root : V) {s t : Finset V}
+    (hst : ComplementaryFourMIS G s t) :
+    {r : Finset V // MixedFourMIS G s t r} ≃
+    {q : Finset (Finset V) // CompatibleTriple G q} := by
+  classical
+  let f : {r : Finset V // MixedFourMIS G s t r} →
+      {q : Finset (Finset V) // CompatibleTriple G q} :=
+    fun r => ⟨{s, t, r.val}, s, t, r.val, hst, r.property, rfl⟩
+  apply Equiv.ofBijective f
+  constructor
+  · intro a b he
+    apply Subtype.ext
+    have hm : a.val ∈ ({s, t, b.val} : Finset (Finset V)) := by
+      rw [← show ({s, t, a.val} : Finset (Finset V)) = {s, t, b.val} from
+        congrArg Subtype.val he]
+      simp
+    have hn := mixedFourMIS_ne_sides a.property
+    simpa only [Finset.mem_insert, Finset.mem_singleton, hn.1, hn.2,
+      false_or] using hm
+  · intro q
+    obtain ⟨r, hr, he⟩ := (connected_compatibleTriple_iff G hc root hst q.val).mp q.property
+    exact ⟨⟨r, hr⟩, Subtype.ext he.symm⟩
+
+/-- Exact unordered-triple count, with no count equality assumed. -/
+theorem connected_compatibleTripleCount_eq_partitionMixedCount
+    {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
+    (hc : G.Connected) (root : V) {s t : Finset V}
+    (hst : ComplementaryFourMIS G s t) :
+    compatibleTripleCount G = partitionMixedCount G s t := by
+  classical
+  exact (Fintype.card_congr (compatibleTripleEquiv G hc root hst)).symm
+
+#print axioms PDIC.complementaryFourMIS_symm
+#print axioms PDIC.complementaryFourMIS_ne
+#print axioms PDIC.mixedFourMIS_ne_sides
+#print axioms PDIC.compatibleTriple_card
+#print axioms PDIC.compatibleTripleCount_zero_of_no_pair
+#print axioms PDIC.connected_complementaryFourMIS_unique
+#print axioms PDIC.connected_compatibleTriple_iff
+#print axioms PDIC.compatibleTripleEquiv
+#print axioms PDIC.connected_compatibleTripleCount_eq_partitionMixedCount
+
+end PDIC
