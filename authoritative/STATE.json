@@ -1,22 +1,22 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-16",
-  "last_completed_session": "S014",
-  "next_session": "S015",
+  "last_completed_session": "S015",
+  "next_session": "S016",
   "next_session_executed": false,
-  "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION_S014_576_16_STABILIZERS_AND_FIXED_IMAGE_KERNEL_VERIFIED_S015_INSTALLED",
+  "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION_S015_SINGLETON_2304_PROOF_CANDIDATE_S016_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
     "S003R9 strict actual SimpleGraph/count/connectedness appendix and general unique partition theorem; revised manuscript and primary-source comparison"
   ],
-  "mathematics": "S013_ACTUAL_N0_BOUND_AND_S014_INDEX_CORRESPONDENCE_AND_576_16_STABILIZERS_AND_FIXED_QUARTET_IMAGE_KERNEL_VERIFIED__FULL_2304_128_EVENTS_MOMENTS_DISTRIBUTION_OPEN",
+  "mathematics": "S014_STRICT_576_16_STABILIZERS__S015_ACTUAL_2304_SINGLETON_SOURCE_CANDIDATE_WAITING_STRICT_KERNEL__GENERAL_128_EVENTS_MOMENTS_DISTRIBUTION_OPEN",
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
-  "lean": "S014_EXACT_SOURCE_95ef8f4886868f66edfbde90b34cc9e12fe6b463_STRICT_LEAN_PASS_RUN_38949894336_AND_FINITE_PASS_38949894242_STANDARD_AXIOMS_ONLY_FULL_LAW_OPEN",
+  "lean": "S015_69de0c9e9963016ff5324545d55710619e8b8ead_STRICT_LEAN_PENDING_RUN_38959901730_FINITE_PASS_38959901752__S014_LAST_CERTIFIED_95ef8f4886868f66edfbde90b34cc9e12fe6b463_RUN_38949894336",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
-  "next_prompt": "research/S015_EVENT_FIBRES_TO_MOMENTS_TARGET.md",
+  "next_prompt": "research/S016_PAIR_FIBRES_AND_MOMENTS_TARGET.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S014_95ef8f4886868f66edfbde90b34cc9e12fe6b463_LEAN_KERNEL_AND_NINE_INDEPENDENT_CHECKERS_PASS_38949894336",
   "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38949894336",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S015_ARBITRARY_IMAGE_FIBRE_TO_2304_128_COUNTS_AND_MOMENTS_FULL_LAW",
+  "next_session_target": "S016_VERIFY_S015_2304_AND_PROVE_TRUE_128_PAIR_TRIPLE_EVENTS_AND_GRAPH_MOMENTS_FULL_LAW",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,9 +167,9 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S015_EVENT_FIBRES_TO_MOMENTS_TARGET.md",
+  "next_session_target_file": "research/S016_PAIR_FIBRES_AND_MOMENTS_TARGET.md",
   "next_session_target_installed_date": "2026-10-16",
-  "next_session_target_source": "S014_KERNEL_VERIFIED_95ef8f4886868f66edfbde90b34cc9e12fe6b463",
+  "next_session_target_source": "69de0c9e9963016ff5324545d55710619e8b8ead",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -465,5 +465,21 @@
     "ORDERED_PAIR_FIBRE_TRANSPORT_AND_EIGHT_IMAGES_TO_128_TOTAL",
     "GRAPH_MIS_UNORDERED_FACTORIAL_MOMENTS",
     "FULL_FOUR_TERM_PROBABILITY_WITH_SPIDER_IFF"
-  ]
+  ],
+  "s015_status": "EXECUTED_SOURCE_FORMALIZED_TRUE_2304_SINGLETON_EVENT_CANDIDATE_STRICT_PENDING",
+  "s015_source_sha": "69de0c9e9963016ff5324545d55710619e8b8ead",
+  "s015_ci_run": "38959901730",
+  "s015_ci_status": "IN_PROGRESS_NOT_YET_VERIFIED_AT_CLOSEOUT_SNAPSHOT",
+  "s015_finite_run": "38959901752",
+  "s015_finite_status": "PASS_EXACT_SOURCE",
+  "s015_closeout_path": "sessions/S015_CLOSEOUT.md",
+  "s015_proof_path": "research/S015_SINGLETON_EVENT_PROOF.md",
+  "s015_unclosed": [
+    "genuine 128 overlap-two pair and compatible-triple event fibre",
+    "complementary-pair event fibre",
+    "true unordered GraphMIS moments",
+    "single end-to-end four-probability theorem",
+    "conditional classical cap normal-form premise supplied externally"
+  ],
+  "s016_status": "INSTALLED_NOT_EXECUTED"
 }
