@@ -2416,8 +2416,20 @@ private theorem spiderHubZero_leaves (b c d : BitVec 4)
   revert b c d
   decide +kernel
 
-/-- A column mask is exactly the transposed row adjacency. This local
-bitvector identity is separate from the combinatorial permutation search. -/
+/-- The four weighted Boolean masks contribute to disjoint bits.
+Only sixteen Boolean inputs and four bit positions occur in the kernel check. -/
+private theorem spiderWeightedBit (p q r s : Bool) (i : Side) :
+    (((if p then (1 : BitVec 4) else 0) +
+      (if q then 2 else 0) +
+      (if r then 4 else 0) +
+      (if s then 8 else 0)).getLsbD i.val) =
+      (if i = 0 then p else if i = 1 then q else if i = 2 then r else s) := by
+  revert p q r s i
+  decide +kernel
+
+/-- A column mask is precisely the transposed row adjacency.
+The kernel proof reduces to the sixteen cell positions, reusing
+spiderWeightedBit instead of searching over all 65,536 matrices. -/
 private theorem spiderTransposeCells (a b c d : BitVec 4) (i j : Side) :
     adjOfRows (fourRows
       (columnOfRowsBV a b c d 0)
@@ -2426,8 +2438,7 @@ private theorem spiderTransposeCells (a b c d : BitVec 4) (i j : Side) :
       (columnOfRowsBV a b c d 3)) i j =
     adjOfRows (fourRows a b c d) j i := by
   fin_cases i <;> fin_cases j <;>
-    simp only [adjOfRows, fourRows, columnOfRowsBV, ↓reduceIte] <;>
-      (revert a b c d; decide +kernel)
+    simp [adjOfRows, fourRows, columnOfRowsBV, spiderWeightedBit]
 
 /-- Hub-on-the-left normalisation. The only finite search occurs in
 spiderHubZero_leaves: row placements are explicit swaps. -/
