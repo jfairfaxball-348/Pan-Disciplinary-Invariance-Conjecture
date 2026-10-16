@@ -1,5 +1,8 @@
 # S019 — exact source-event classification and honest unordered pair families
 
+**FINAL EXACT-SOURCE CERTIFICATE:** [strict Lean run 38978027666](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38978027666) **SUCCESS** and [ten-checker finite run 38978027657](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38978027657) **SUCCESS**, both at proof SHA `e981acac25b8106e4b4df782340217ed948445bb`. All four S019 public Lean declarations are **LEAN_KERNEL_VERIFIED** (only `propext`, `Classical.choice`, `Quot.sound`; pinned build and hole scanner PASS). The complete global M₂/M₃ and four-probability flagship is nevertheless **OPEN_IN_LEAN**.
+
+
 16 October 2026. Canonical source branch: `session/s007-full-lean-flagship` (unmerged draft PR #4).
 
 ## The source-level mathematical advance
