@@ -602,7 +602,7 @@ theorem mixedPairCriterionBool_iff (adj : Side → Side → Bool)
     mixedPairCriterionBool adj X = true ↔
       mixedPairCriterion adj X := by
   simp [mixedPairCriterionBool, mixedPairCriterion,
-    Bool.and_eq_true, decide_eq_true_eq, leftDominationBool_iff]
+    Bool.and_eq_true, decide_eq_true_eq, leftDominationBool_iff, and_assoc]
 
 def computableMixedLeftPairCount (adj : Side → Side → Bool) : ℕ :=
   ((Finset.univ : Finset (Finset Side)).filter
@@ -634,10 +634,10 @@ def actualMatrixEdgeCount (adj : Side → Side → Bool) : ℕ :=
   ((Finset.univ : Finset (Side × Side)).filter
     (fun ij => adj ij.1 ij.2 = true)).card
 
+set_option maxRecDepth 4096 in
 /-- A four-bit row has exactly the advertised number of set positions.
     Sixteen possible row masks; unlike the previous global decide, this
     calculation is confined to one row. -/
-set_option maxRecDepth 4096 in
 theorem fourBitPopCount5_eq_rowCard (v : BitVec 4) :
     (fourBitPopCount5 v).toNat =
       ((Finset.univ : Finset Side).filter
@@ -653,9 +653,9 @@ theorem twoNeighboursBV_eq_rowCard_two (v : BitVec 4) :
   revert v
   decide +kernel
 
+set_option maxRecDepth 4096 in
 /-- Bitwise nonzero intersection with the complement has a genuine
     witness column. This is one component of the six-pair bridge. -/
-set_option maxRecDepth 4096 in
 theorem outsideMask_nonzero_iff (n z : BitVec 4) :
     ((z &&& (~~~n)) != 0) = true ↔
       ∃ j : Side, z.getLsbD j.val = true ∧ n.getLsbD j.val = false := by
