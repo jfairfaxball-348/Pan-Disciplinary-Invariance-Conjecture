@@ -71,3 +71,17 @@ This addendum is authoritative for S003R6 and supersedes older 'NEXT S003R4/S003
 | Prior-art novelty and paper | **OPEN / NOT SUBMITTED** | No originality claim follows from kernel verification |
 
 All five independent finite verifiers PASS on the same PR HEAD; `#print axioms` for new count identities reports only `[propext, Classical.choice, Quot.sound]`.
+
+
+## S003R8 graph/matrix transfer claim audit (supersedes prior stage markers, 2026-10-16)
+
+| Claim | State | Boundary |
+| --- | --- | --- |
+| Semantic b(A)≥4 ⇒ e(A)≤5, e(A)≥8 ⇒ b(A)≤2; seven-edge three-mixed spider matrix iff | **PROVED_MATHEMATICALLY_FROM_STRICT_S003R7_BRIDGES; NEW_DECLARATIONS_CI_PENDING** | New Lean proofs on [unmerged PR #3](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/3), initial exact SHA f0f56b60 [strict Lean run 38886710499](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38886710499) must PASS before promotion |
+| Four-row reconstruction and actual semantic count equals encoded BV count | **LEAN_DECLARATIONS_CANDIDATE** | Already kernel-verified at earlier failed-overall candidate runs as isolated declarations, final exact-head certificate required |
+| Concrete spider mixed 3+1 and 1+3 four-MIS | **LEAN_DECLARATIONS_CANDIDATE** | Both isolated theorem declarations passed on earlier failed-overall runs; latest exact SHA workflow gate retained |
+| Connected eight-vertex compatible triple count h=b(A), h≤3 and equality iff spider S(2,2,2,1) | **PROVED_WRITTEN / INDEPENDENT_FINITE_CHECKED; OPEN_IN_GRAPH_LEAN** | Uses unique connected balanced bipartition and previous strict finite matrix bounds; no SimpleGraph/isomorphism theorem yet |
+| Complete quartet/cap N0 law, Pr(N0=3)=h/315≤1/105 | **PROVED_WRITTEN_WITH_EXTERNAL_CLASSICAL_CAP_INPUT; OPEN_IN_PROBABILITY_LEAN** | True 2520 uniform labelling model and cap equivalence not formalised |
+| First full TeX research draft | **DRAFT_CREATED, NOT_SUBMITTED, NOVELTY_OPEN** | [paper/PDIC_S003R8_DRAFT.tex](../paper/PDIC_S003R8_DRAFT.tex), Liu 1993 and cap primary source checked, detailed originality comparison outstanding |
+
+Independent 65,536-matrix check including all 36,317 connected fixed bipartition instances and 192 sharp spider matrices is **FINITE_CHECKED, not Lean**. See [S003R8 closeout](../sessions/S003R8_CLOSEOUT.md), [mathematical research note](S003R8_GRAPH_BRIDGE_AND_NOVELTY.md), [next S003R9 handoff](NEXT_SESSION_PROMPT.md). Any later exact Lean PASS certificate supersedes this candidate-status row.
