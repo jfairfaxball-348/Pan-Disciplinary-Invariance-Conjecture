@@ -2329,12 +2329,16 @@ def canonicalSpiderIso : matrixGraph canonicalSpiderMatrix ≃g namedSpider wher
     cases u with
     | inl i =>
       cases v with
-      | inl j => fin_cases i <;> fin_cases j <;> decide
-      | inr j => fin_cases i <;> fin_cases j <;> decide
+      | inl j => fin_cases i <;> fin_cases j <;>
+          simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
+      | inr j => fin_cases i <;> fin_cases j <;>
+          simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
     | inr i =>
       cases v with
-      | inl j => fin_cases i <;> fin_cases j <;> decide
-      | inr j => fin_cases i <;> fin_cases j <;> decide
+      | inl j => fin_cases i <;> fin_cases j <;>
+          simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
+      | inr j => fin_cases i <;> fin_cases j <;>
+          simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
 
 /-- Each left vertex has an explicitly chosen right neighbour. -/
 def spiderSpoke (i : Side) : Side :=
@@ -2347,15 +2351,15 @@ theorem canonicalSpider_root_reachable (u : SplitVertex) :
   | inl i =>
     have h1 : (matrixGraph canonicalSpiderMatrix).Adj
         (Sum.inl (0 : Side)) (Sum.inr (spiderSpoke i)) := by
-      fin_cases i <;> decide
+      fin_cases i <;> simp [matrixGraph, canonicalSpiderMatrix, spiderSpoke]
     have h2 : (matrixGraph canonicalSpiderMatrix).Adj
         (Sum.inr (spiderSpoke i)) (Sum.inl i) := by
-      fin_cases i <;> decide
+      fin_cases i <;> simp [matrixGraph, canonicalSpiderMatrix, spiderSpoke]
     exact ⟨.cons h1 (.cons h2 .nil)⟩
   | inr j =>
     have h : (matrixGraph canonicalSpiderMatrix).Adj
         (Sum.inl (0 : Side)) (Sum.inr j) := by
-      fin_cases j <;> decide
+      fin_cases j <;> simp [matrixGraph, canonicalSpiderMatrix]
     exact ⟨.cons h .nil⟩
 
 theorem canonicalSpider_connected :
