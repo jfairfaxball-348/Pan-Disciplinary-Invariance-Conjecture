@@ -1,7 +1,7 @@
 name: PDIC Lean kernel verification
 on:
   push:
-    branches: [main]
+    branches: [main, session/s007-full-lean-flagship]
   pull_request:
   workflow_dispatch:
 jobs:
