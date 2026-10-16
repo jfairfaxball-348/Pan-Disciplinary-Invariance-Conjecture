@@ -4529,3 +4529,51 @@ theorem canonicalCapF3_perm_distinct_triple_event_zero_of_no_disjoint
 #print axioms PDIC.canonicalCapF3_perm_distinct_triple_event_zero_of_no_disjoint
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S019 genuine unordered-family bridge: a two-member subfamily of
+actual graph four-MIS is an unordered pair of distinct genuine sources,
+whose event fibre is the classified, ordered-source fibre. -/
+
+/-- Every genuine unordered two-subfamily has an exact 2304/128/0
+fibre determined by its two different member four-MIS. The family T is
+counted once in powersetCard 2, with no extra factor of two. -/
+theorem graphMIS_unordered_pair_family_event_card
+    (G : SimpleGraph Vertex) (T : Finset (Finset Vertex))
+    (hT : T ∈ (fourGraphMISFamily G).powersetCard 2) :
+    ∃ s t : Finset Vertex,
+      s ≠ t ∧ s ∈ fourGraphMISFamily G ∧
+      t ∈ fourGraphMISFamily G ∧ T = {s, t} ∧
+      ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+        (fun e => ∀ u ∈ T,
+          capSum (fun v => canonicalCapF3 (e v)) u = 0)).card =
+        (if (s ∩ t).card = 0 then 2304
+          else if (s ∩ t).card = 2 then 128 else 0) := by
+  classical
+  obtain ⟨hsub, hcard⟩ := Finset.mem_powersetCard.mp hT
+  obtain ⟨s, t, hne, rfl⟩ := Finset.card_eq_two.mp hcard
+  have hsM : s ∈ fourGraphMISFamily G := hsub (by simp)
+  have htM : t ∈ fourGraphMISFamily G := hsub (by simp)
+  have hs : s.card = 4 := (Finset.mem_filter.mp hsM).2.1
+  have ht : t.card = 4 := (Finset.mem_filter.mp htM).2.1
+  refine ⟨s, t, hne, hsM, htM, rfl, ?_⟩
+  have hfilter :
+      ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+        (fun e => ∀ u ∈ ({s, t} : Finset (Finset Vertex)),
+          capSum (fun v => canonicalCapF3 (e v)) u = 0)).card =
+      Fintype.card {e : Equiv.Perm Vertex //
+        capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+        capSum (fun v => canonicalCapF3 (e v)) t = 0} := by
+    rw [Fintype.card_subtype]
+    congr 1
+    ext e
+    simp
+  rw [hfilter]
+  exact canonicalCapF3_perm_distinct_pair_event_card_by_overlap
+    s t hs ht hne
+
+#print axioms PDIC.graphMIS_unordered_pair_family_event_card
+
+end PDIC
