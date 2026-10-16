@@ -13,7 +13,7 @@
 | **S010: universal h=3 iff named spider actual isomorphism** | **STRICT LEAN PASS**, [source `c8c64e5a2a98`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/c8c64e5a2a98ee359c79430293ca0738211b4215), [Lean run 38928965168](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168); eight finite checkers PASS; standard axioms only |
 | **S011: typed cap, linear transfer, actual 8! labelling space** | **STRICT LEAN PASS** at [`e302e5f`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e302e5f82434b3d8790c81506fe55062700e7a53), [run 38934564596](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38934564596); 40320 exhaustive finite check with 16-preimage fibres, Lean fibres not yet proved |
 | **S012: permutation transport and quartet support obstruction** | **EXECUTED — SOURCE_FORMALIZED, CI_UNVERIFIED** at [4c6872883](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/4c68728834570cb436944c407d700487c6448002). Actual N₀≤3 cardinality and moments NOT CLOSED. [Closeout](sessions/S012_CLOSEOUT.md) |
-| **S013: certify S012, prove actual N₀≤3 and true event fibres/moments** | **INSTALLED, NOT EXECUTED** — [S013 prompt](research/NEXT_SESSION_PROMPT.md) |
+| **S013: true N₀≤3 for every labelling** | **STRICT LEAN PASS**, [source 2a808e5](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/2a808e53cb7a763b54c53c4f06d12f7f64d3b113), [Lean run 38945169850](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169850) |
 | Canonical cap incidence and preservation under supplied GL(3,3) | LEAN_KERNEL_VERIFIED_S011; existence of arbitrary-cap orbit is external classical premise, not proved |
 | Genuine 8! sample-space cardinal | LEAN_KERNEL_VERIFIED_S011 |
 | 16-element event fibres, moments, N₀≤3 and complete distribution | FINITE_CHECKED for canonical event fibres and spider/P8; OPEN_IN_LEAN universally |
@@ -34,3 +34,10 @@ S012 verified-status clarification: S011 exact-source 7f7e32d / run 38935115211 
 
 
 S013 strict proof note: [actual N₀ and event fibres](research/S013_ACTUAL_N0_AND_EVENT_FIBRES.md); [S013 closeout](sessions/S013_CLOSEOUT.md). The **general** 2304/128 numerical event fibres and graph-derived moments remain OPEN_IN_LEAN despite independent enumeration. Complete manuscript four-probability theorem is not kernel certified. The historical S011/S012 pending status paragraphs above reflect earlier closeout times, superseded by exact-source S012/S013 PASS evidence.
+
+
+### S014 regular fibres / S015 active target
+
+S014 PARTIAL PROOF INCREMENT: strict kernel PASS at 3d004c3378e3c4afd07343a2e9dcc5ca26475aeb, run 38948956267, for the exact 4!×4!=576 four/four-colour stabilizer. Later source 0ab79e8c9d9f5ef0fe111d69e6c87fa938d2b9bb adds the (2!)^4=16 ordered two-quartet-colour stabilizer; 3b8d2e3cd771f34ead2de9e6bf8bd72f3d55a585 additionally connects the 576-colour stabilizer to a fixed actual quartet image. At writing these later exact-source hosted Lean jobs are pending, so their status is SOURCE_FORMALIZED, not LEAN_KERNEL_VERIFIED. Full 2304/128 cap-zero event counts, actual MIS factorial moments and full four-term distribution are still OPEN_IN_LEAN. S015 installed, not executed.
+
+The proof branch `session/s007-full-lean-flagship` remains canonical. The full-theorem gate forbids a Palomar or paper-only shortcut. S015 must first certify the latest S014 Lean source and then turn 576 and 16 regular stabilizer cardinalities into the real 2304/128 event-fibre theorems and graph-derived moments.

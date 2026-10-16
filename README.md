@@ -2,7 +2,7 @@
 
 Connect finite-group zero-sum quartet geometry and maximal-independent-set statistics in a precise first paper. The project name is aspirational; literature priority remains unresolved.
 
-**Current stage: S013 STRICT LEAN PASS for the real connected-graph labelled zero-sum maximal-independent-four-set random-variable support `N₀(e,G)≤3`**, proof [`2a808e53cb`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/2a808e53cb7a763b54c53c4f06d12f7f64d3b113), [Lean kernel + nine checkers PASS 38945169850](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169850), [finite PASS 38945169844](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169844). S012's previously pending Lean source also passed [38938608949](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38938608949). The complete 2304/128 fibre theorem, genuine moments and four-term probability law are **still OPEN_IN_LEAN**. **S014 is installed, not executed.**
+**Current stage: S014 partial Lean proof increment; 576 stabilizer STRICT LEAN PASS, 16 stabilizer and fixed-image bridge await CI.** S015 installed. The entire first-paper probability law remains OPEN_IN_LEAN.
 
 ## What is now strictly verified
 
@@ -73,3 +73,10 @@ The completed four-probability theorem still requires genuine N₀≤3 *cardinal
 ## S013 actual N₀ support certified; S014 installed (16 October 2026)
 
 At exact proof branch commit [`2a808e53cb7a763b54c53c4f06d12f7f64d3b113`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/2a808e53cb7a763b54c53c4f06d12f7f64d3b113), [strict hosted Lean PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169850), [all nine checkers PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169850), and [finite PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169844), `connected_labellingZeroMISCount_le_three` establishes the **actual** `N₀(e,G)≤3` for every connected eight-vertex `SimpleGraph` and genuine label permutation. The bridge uses real 4-MIS, typed F₃³ sums and connectedness, not a symbolic replacement. The 2304/128 fibre laws and true three factorial moments remain outside the Lean kernel certificate. [S013 proof note](research/S013_ACTUAL_N0_AND_EVENT_FIBRES.md) · [closeout](sessions/S013_CLOSEOUT.md) · [S014 installed](research/NEXT_SESSION_PROMPT.md). S014 is not executed. Main's historical `PDIC.lean` is still not the canonical Lean proof branch.
+
+
+## S014 regular-fibre advance and S015 handoff (16 October 2026)
+
+S014 PARTIAL PROOF INCREMENT: strict kernel PASS at 3d004c3378e3c4afd07343a2e9dcc5ca26475aeb, run 38948956267, for the exact 4!×4!=576 four/four-colour stabilizer. Later source 0ab79e8c9d9f5ef0fe111d69e6c87fa938d2b9bb adds the (2!)^4=16 ordered two-quartet-colour stabilizer; 3b8d2e3cd771f34ead2de9e6bf8bd72f3d55a585 additionally connects the 576-colour stabilizer to a fixed actual quartet image. At writing these later exact-source hosted Lean jobs are pending, so their status is SOURCE_FORMALIZED, not LEAN_KERNEL_VERIFIED. Full 2304/128 cap-zero event counts, actual MIS factorial moments and full four-term distribution are still OPEN_IN_LEAN. S015 installed, not executed.
+
+See [S014 mathematical proof note](research/S014_REGULAR_FIBRE_PROOF.md), [S014 closeout](sessions/S014_CLOSEOUT.md), and [S015 executable prompt](research/NEXT_SESSION_PROMPT.md). Historical "S013 installed" descriptions elsewhere above are session records, not current control. No Palomar or publication action was performed.
