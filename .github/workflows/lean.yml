@@ -32,7 +32,7 @@ jobs:
             echo "Forbidden proof hole or custom axiom in Lean source"
             exit 1
           fi
-      - name: Run all six independent finite checkers
+      - name: Run all seven independent finite checkers
         run: |
           python3 scripts/verify_s000.py
           python3 scripts/verify_s001_independent.py
@@ -40,3 +40,4 @@ jobs:
           python3 scripts/verify_s003r.py
           python3 scripts/verify_s003r2.py
           python3 scripts/verify_s003r9.py
+          python3 scripts/verify_s007.py

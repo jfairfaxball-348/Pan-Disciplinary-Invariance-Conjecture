@@ -2050,7 +2050,7 @@ theorem graphMIS_map_iff {V W : Type*} [DecidableEq V] [DecidableEq W]
       exact hi (e u) (Finset.mem_map.mpr ⟨u, hu, rfl⟩)
         (e v) (Finset.mem_map.mpr ⟨v, hv, rfl⟩) (e.map_rel_iff.mpr he)
     · intro v hv
-      have hn : e v ∉ s.map e.toEquiv.toEmbedding := by simpa using hv
+      have hn : e v ∉ s.map e.toEquiv.toEmbedding := by simpa only [Finset.mem_map_equiv, e.symm_apply_apply] using hv
       obtain ⟨w, hw, he⟩ := hd (e v) hn
       obtain ⟨u, hu, rfl⟩ := Finset.mem_map.mp hw
       exact ⟨u, hu, e.map_rel_iff.mp he⟩
@@ -2110,7 +2110,9 @@ theorem compatibleTriple_map_iff
   · exact compatibleTriple_map e q
   · intro h
     have hh := compatibleTriple_map e.symm _ h
-    simpa only [← Equiv.finsetCongr_symm, Equiv.symm_apply_apply] using hh
+    let E := Equiv.finsetCongr (Equiv.finsetCongr e.toEquiv)
+    change CompatibleTriple G (E.symm (E q)) at hh
+    simpa only [Equiv.symm_apply_apply] using hh
 
 /-- The set-of-sets count is a graph isomorphism invariant, not a labelling statistic. -/
 theorem compatibleTripleCount_iso
@@ -2132,7 +2134,7 @@ end PDIC
 
 namespace PDIC
 
-/-- A four-element side and its four-element complement admit an actual
+/-- A four-element side and its four-element complement give an actual
 bijection from Fin 4 + Fin 4, with the two side membership laws. -/
 theorem exists_balancedSplitEquiv (s : Finset Vertex)
     (hs : s.card = 4) (ht : (Finset.univ \ s).card = 4) :
@@ -2195,5 +2197,57 @@ theorem connected_unorderedCompatibleTripleCount_le_three
 #print axioms PDIC.exists_balancedSplitEquiv
 #print axioms PDIC.exists_matrixGraph_iso
 #print axioms PDIC.connected_unorderedCompatibleTripleCount_le_three
+
+end PDIC
+
+namespace PDIC
+
+/-- On exactly eight vertices, disjoint four-sets are complementary.
+Thus the complement used in the invariant is not an extra graph hypothesis. -/
+theorem disjoint_four_sets_complement (s t : Finset Vertex)
+    (hs : s.card = 4) (ht : t.card = 4) (hd : Disjoint s t) :
+    t = Finset.univ \ s := by
+  classical
+  have hcard : (s ∪ t).card = 8 := by
+    rw [Finset.card_union_of_disjoint hd, hs, ht]
+  have hu : s ∪ t = Finset.univ := Finset.eq_of_subset_of_card_le
+    (Finset.subset_univ _) (by simp [hcard, Vertex])
+  ext v
+  simp only [Finset.mem_sdiff, Finset.mem_univ, true_and]
+  constructor
+  · intro hv hs'
+    exact Finset.disjoint_left.mp hd hs' hv
+  · intro hv
+    have hm : v ∈ s ∪ t := by rw [hu]; simp
+    exact (Finset.mem_union.mp hm).resolve_left hv
+
+theorem complementaryFourMIS_iff_disjoint (G : SimpleGraph Vertex)
+    (s t : Finset Vertex) :
+    ComplementaryFourMIS G s t ↔
+      s.card = 4 ∧ t.card = 4 ∧ GraphMIS G s ∧ GraphMIS G t ∧ Disjoint s t := by
+  constructor
+  · rintro ⟨hs, ht, hms, hmt, he⟩
+    refine ⟨hs, ht, hms, hmt, ?_⟩
+    rw [he]
+    exact disjoint_sdiff_self_right
+  · rintro ⟨hs, ht, hms, hmt, hd⟩
+    exact ⟨hs, ht, hms, hmt, disjoint_four_sets_complement s t hs ht hd⟩
+
+/-- Explicit graph-to-matrix cardinality bridge for any connected graph
+with a complementary four-MIS pair. Neither the isomorphism nor h=B is an input. -/
+theorem connected_partition_h_eq_matrix (G : SimpleGraph Vertex)
+    (hc : G.Connected) (s : Finset Vertex) (hs : FourMISPartition G s) :
+    ∃ adj : Side → Side → Bool,
+      (matrixGraph adj).Connected ∧ Nonempty (matrixGraph adj ≃g G) ∧
+        unorderedCompatibleTripleCount G = graphMixedCount adj := by
+  obtain ⟨adj, ⟨e⟩⟩ := exists_matrixGraph_iso G s hs
+  have hm := e.connected_iff.mpr hc
+  refine ⟨adj, hm, ⟨e⟩, ?_⟩
+  rw [← compatibleTripleCount_eq_unordered, ← compatibleTripleCount_iso e,
+    connected_compatibleTripleCount_matrix adj hm]
+
+#print axioms PDIC.disjoint_four_sets_complement
+#print axioms PDIC.complementaryFourMIS_iff_disjoint
+#print axioms PDIC.connected_partition_h_eq_matrix
 
 end PDIC
