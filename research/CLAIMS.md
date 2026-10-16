@@ -1,4 +1,4 @@
-# PDIC claim register — S003R9
+# PDIC claim register — S004 prior-art / novelty review
 
 Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessions/S003R9_CLOSEOUT.md). Certified new Lean source remains on unmerged PR #3; main source is the earlier S003R3 baseline.
 
@@ -24,8 +24,22 @@ Exact source SHA and hosted proof certificates are in [S003R9 closeout](../sessi
 | Full N0 law and sharp probability ≤1/105 | PROVED_WRITTEN_WITH_CLASSICAL_INPUT | Genuine graph/labelling probability Lean interface OPEN |
 | Conditional moment inversion and rational bound | LEAN_KERNEL_VERIFIED | Arithmetic is not a probability-model proof |
 | Greedy charge mixture / signed pebbling residues | PROVED_WRITTEN_ELEMENTARY | Does not prove reachability or stackability |
-| Novelty, journal readiness, priority | OPEN | Publisher abstract and explicit primary theorem comparison; no full Liu text |
+| Novelty, journal readiness, priority | S004_AUDITED__PRIORITY_UNRESOLVED | Cap classification classical; total-MIS tree spider class known; fixed-cardinality MIS literature established. Exact h/cap law not located in accessible texts; full Liu/Jou–Chang/Byskov primary theorem-level texts inaccessible |
 | Manuscript | REVISED_LATEX_DRAFT | Compiled and visually reviewed; not submitted |
 | Native/compiler axioms, proof holes or custom axioms | NOT_APPROVED | Strict CI rejects them |
 
-The owner has installed S004 as a prior-art and novelty audit; it has not been executed and no novelty verdict has changed as a result of installation. The previous combined brief remains withdrawn. Sessions now close out without suggested next steps or next-session prompts. No correspondence, merge or external submission.
+## S004 source-based originality qualification — 16 October 2026
+
+Full [claim-by-claim primary-source audit](S004_PRIOR_ART_NOVELTY_AUDIT.md) and [S004 closeout](../sessions/S004_CLOSEOUT.md). These are **novelty** judgements, separate from the unchanged proof/Lean statuses above.
+
+| Claim family | Novelty verdict | Evidence and limitation |
+| --- | --- | --- |
+| Classical affine nine-cap classification | CLASSICAL / SUBSUMED | [Follett et al. (2014), Proposition 2.2](https://sites.lafayette.edu/mcmahone/files/2015/01/PartitionsAG43.pdf) |
+| Zero-fixing cap map; 702 orbit; four canonical zero-sum quartets; C4 nerve | ROUTINE_DERIVED | Canonical finite calculation and classical cap input; not a new cap classification or topological theorem |
+| Known baton/spider family and nine *total* MIS extremum | CLASSICAL / SUBSUMED | [Li–Zhang–Zhang (2013), Lemma 3](https://dmtcs.episciences.org/607/pdf), citing Jou–Chang (1997) |
+| Fixed-size maximal-independent-set counting as a research direction | CLASSICAL | [Nielsen (2002), Theorem 2](https://www.brics.dk/RS/02/15/BRICS-RS-02-15.pdf), [He–Nie–Spiro (2022), Theorems 1.3, 1.6](https://arxiv.org/pdf/2108.06359) |
+| Exact 4×4 2+2 mixed threshold package, connected h≤3/spider iff, cap-labelled exact distribution combination | POTENTIALLY_ORIGINAL_WITH_STATED_EVIDENCE / UNRESOLVED | Specific h and joint cap probability not located in compared full texts; total-MIS extremality does not determine h (explicit two-tree witness). Accessible sources do not establish priority; full Liu/Jou–Chang/Byskov theorems not compared |
+| Random-bijection fibres, binomial moments, conditional greedy mixture, signed mod-3 pebbling conservation | ROUTINE_DERIVED | Elementary double counting, moment inversion, conditioning, signed parity arithmetic |
+| Literature priority and publication-level significance | UNRESOLVED | Special small-order result; bounded web source search, not exhaustive expert literature review |
+
+**No first-priority claim is licensed.** The formal source remains on unmerged PR #3, main's Lean remains the S003R3 baseline, and the written flagship is not end-to-end Lean-certified. S004 closed without setting a subsequent target. The earlier combined brief remains withdrawn. No correspondence, merge, Palomar, arXiv or journal submission.
