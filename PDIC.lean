@@ -2438,8 +2438,59 @@ private theorem spiderTransposeCells (a b c d : BitVec 4) (i j : Side) :
       (columnOfRowsBV a b c d 2)
       (columnOfRowsBV a b c d 3)) i j =
     adjOfRows (fourRows a b c d) j i := by
-  fin_cases i <;> fin_cases j <;>
-    simp [adjOfRows, fourRows, columnOfRowsBV, spiderWeightedBit]
+  fin_cases i
+  · fin_cases j
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 0) (b.getLsbD 0)
+          (c.getLsbD 0) (d.getLsbD 0) (0 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 0) (b.getLsbD 0)
+          (c.getLsbD 0) (d.getLsbD 0) (1 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 0) (b.getLsbD 0)
+          (c.getLsbD 0) (d.getLsbD 0) (2 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 0) (b.getLsbD 0)
+          (c.getLsbD 0) (d.getLsbD 0) (3 : Side))
+  · fin_cases j
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 1) (b.getLsbD 1)
+          (c.getLsbD 1) (d.getLsbD 1) (0 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 1) (b.getLsbD 1)
+          (c.getLsbD 1) (d.getLsbD 1) (1 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 1) (b.getLsbD 1)
+          (c.getLsbD 1) (d.getLsbD 1) (2 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 1) (b.getLsbD 1)
+          (c.getLsbD 1) (d.getLsbD 1) (3 : Side))
+  · fin_cases j
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 2) (b.getLsbD 2)
+          (c.getLsbD 2) (d.getLsbD 2) (0 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 2) (b.getLsbD 2)
+          (c.getLsbD 2) (d.getLsbD 2) (1 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 2) (b.getLsbD 2)
+          (c.getLsbD 2) (d.getLsbD 2) (2 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 2) (b.getLsbD 2)
+          (c.getLsbD 2) (d.getLsbD 2) (3 : Side))
+  · fin_cases j
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 3) (b.getLsbD 3)
+          (c.getLsbD 3) (d.getLsbD 3) (0 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 3) (b.getLsbD 3)
+          (c.getLsbD 3) (d.getLsbD 3) (1 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 3) (b.getLsbD 3)
+          (c.getLsbD 3) (d.getLsbD 3) (2 : Side))
+    · simpa [adjOfRows, fourRows, columnOfRowsBV] using
+        (spiderWeightedBit (a.getLsbD 3) (b.getLsbD 3)
+          (c.getLsbD 3) (d.getLsbD 3) (3 : Side))
 
 /-- Hub-on-the-left normalisation. The only finite search occurs in
 spiderHubZero_leaves: row placements are explicit swaps. -/
