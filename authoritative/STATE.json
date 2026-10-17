@@ -747,5 +747,27 @@
     "propext",
     "Classical.choice",
     "Quot.sound"
-  ]
+  ],
+  "s024_extension_status": "PROVED_WRITTEN_BASIS_EXISTENCE__17_POINT_REDUCTION_LEAN_KERNEL_VERIFIED__18_NORMALIZED_IMAGES_FINITE_CHECKED__ORBIT_OPEN",
+  "s024_extension_lean_proof_sha": "d038d5b654b4e2dc762eb1aa05d248e69702f3f3",
+  "s024_extension_lean_run": 39037607809,
+  "s024_extension_finite_run": 39037607792,
+  "s024_extension_lean_declarations": [
+    "admissibleCap_point_ne_zero",
+    "admissibleCap_pair_ne_zero",
+    "s024FreePoints_card"
+  ],
+  "s024_extension_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "s024_extension_normalized_free_points": 17,
+  "s024_extension_normalized_five_subsets": 6188,
+  "s024_extension_normalized_admissible": 18,
+  "s024_extension_proof_note": "research/S024_BASIS_NORMALIZATION_EXTENSION.md (on proof branch)",
+  "s024_extension_independent_checker": "scripts/verify_s024_normal_form.py",
+  "s024_extension_classification_kernel_verified": false,
+  "s024_extension_all_cap_unconditional_kernel_verified": false,
+  "s024_extension_s025_prompt_updated": true
 }
