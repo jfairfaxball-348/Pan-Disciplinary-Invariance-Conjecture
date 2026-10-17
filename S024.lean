@@ -573,10 +573,14 @@ theorem s026_admissible_normalized_anchors
   have ha : Function.Injective a := by
     intro i j hij
     fin_cases i <;> fin_cases j <;>
-      simp [a, hne.1, hne.2, ne_comm] at hij ⊢
+      simp [a, hne.1, hne.2] at hij ⊢
+    · exact hne.1 hij.symm
+    · exact hne.2 hij.symm
   refine ⟨a, ha, ?_⟩
   intro i
-  exact s026_capBasisEquiv_inverse_basis_action f hf w hw i
+  fin_cases i <;>
+    simpa [L, a] using
+      (s026_capBasisEquiv_inverse_basis_action f hf w hw i)
 
 #print axioms PDIC.s026_capBasisEquiv_inverse_basis_action
 #print axioms PDIC.s026_basis_third_ne_zero_one
