@@ -62,3 +62,14 @@ At [\`e70005454ba00c6e52ee5d2c2b33a8da19ac88f9\`](https://github.com/jfairfaxbal
 A further proof candidate at [\`a4fd51d5507db604eb5bcfb24c8cccd3108e037b\`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/a4fd51d5507db604eb5bcfb24c8cccd3108e037b) adds a sign-normalized ternary projective representation, the at-most-four-direction plane lemma, and an attempted theorem \`s024_admissible_point_outside_two_span\` that no genuine eight-cap can lie in the linear span of two selected labels. **Its formal status must follow exact-head strict CI**; its source content alone is not certification.
 
 The global cap-orbit theorem, full typed basis normalization and 18-case classification remain unresolved. S025 remains installed and unexecuted; this section is S024 continuation, not S025 closeout.
+
+
+### Strict certificate for the two-span obstruction
+
+The repaired proof-bearing [commit \`9f714802a8e38c4989de968f061886e1e4d7dc16\`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/9f714802a8e38c4989de968f061886e1e4d7dc16) passed [strict Lean workflow \`39045727429\`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39045727429) and [independent finite workflow \`39045727481\`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39045727481), both **SUCCESS**. The initial source at \`a4fd51d...\` had two documentation/option-position parser failures despite showing standard-axiom declarations; it is **not** the source certificate. The repaired source has no such failure.
+
+- \`s024ProjectiveOrient_eq_cases\` proves equality of sign-normalized F₃³ vectors implies equality up to sign.
+- \`s024TwoSpan_projective_le_four\` kernel-computes that every span of two F₃³ vectors has at most four nonzero projective directions.
+- \`s024_admissible_point_outside_two_span\` uses genuine cap injection and one-/two-point zero-sum exclusions to construct, for **any** two cap-labelled vertices \`u,v\`, a genuine vertex \`w\` with \`f w ∉ s024TwoSpan (f u) (f v)\`. It has no assumed orbit statement or normalizing basis.
+
+All three printed axiom lists contain only \`propext\`, \`Classical.choice\`, \`Quot.sound\`. These are **LEAN_KERNEL_VERIFIED**. The combination with \`f 0\` and \`f 1\` reduces basis existence to constructing a typed independent triple and its inverse linear equivalence. Formal normalization and the 18-of-6188 exact cap classification, typed orbit witnesses, \`AdmissibleCapImageOrbit\`, and the unconditional flagship remain open. S025 is still the installed **NOT EXECUTED** target.
