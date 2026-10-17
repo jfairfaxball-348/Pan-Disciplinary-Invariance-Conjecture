@@ -416,3 +416,31 @@ end PDIC
 
 /-! Remaining S025 matrix and finite-table proof candidates are preserved
 in scratch/S025_FULL_UNVERIFIED_SOURCE.lean until separate kernel checks. -/
+
+
+namespace PDIC
+
+/-! S026: isolate the column-action bridge from the costly determinant
+certificate. This is a typed statement about the actual ternary vectors,
+not an external basis-normal-form assumption. -/
+
+/-- The selected cap points as the three columns of a genuine 3 × 3
+matrix, prior to certifying its nonsingularity. -/
+def s025ColumnMatrix (p q r : CapPoint) :
+    Matrix (Fin 3) (Fin 3) (ZMod 3) :=
+  fun i j => if j = 0 then p i else if j = 1 then q i else r i
+
+/-- A column matrix sends each pinned standard basis vector to the
+corresponding actual column. This is the action missing from S025. -/
+theorem s026_columnMatrix_basis_action (p q r : CapPoint) (i : Fin 3) :
+    (s025ColumnMatrix p q r).mulVec (s024BasisPoint i) =
+      (if i = 0 then p else if i = 1 then q else r) := by
+  have hsingle : s024BasisPoint i = Pi.single i (1 : ZMod 3) := by
+    funext j
+    simp [s024BasisPoint, Pi.single_apply, eq_comm]
+  rw [hsingle, Matrix.mulVec_single_one]
+  fin_cases i <;> ext j <;> simp [s025ColumnMatrix, Matrix.col]
+
+#print axioms PDIC.s026_columnMatrix_basis_action
+
+end PDIC
