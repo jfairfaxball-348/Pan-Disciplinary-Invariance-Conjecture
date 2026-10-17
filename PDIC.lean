@@ -4916,3 +4916,80 @@ theorem graphMIS_third_moment_eq (G : SimpleGraph Vertex) :
 #print axioms PDIC.graphMIS_third_moment_eq
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S021: the sharp extremal theorem as a probability of the actual
+40320-element uniform permutation sample space, not a dummy moment variable. -/
+
+noncomputable def graphMIS_exact_probability (G : SimpleGraph Vertex)
+    (i : ℕ) : ℚ :=
+  (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+    (fun e => labellingZeroMISCount G e = i)).card : ℚ) /
+      (Fintype.card (Equiv.Perm Vertex) : ℚ)
+
+/-- When the graph is connected, a labelling supports at most three
+zero-sum four-MIS, so choose(N0,3) is exactly the indicator of N0=3. -/
+theorem connected_graphMIS_choose_three_eq_indicator
+    (G : SimpleGraph Vertex) (hc : G.Connected)
+    (e : Equiv.Perm Vertex) :
+    Nat.choose (labellingZeroMISCount G e) 3 =
+      if labellingZeroMISCount G e = 3 then 1 else 0 := by
+  have hb := connected_labellingZeroMISCount_le_three G hc e
+  have hcases : labellingZeroMISCount G e = 0 ∨
+      labellingZeroMISCount G e = 1 ∨
+      labellingZeroMISCount G e = 2 ∨
+      labellingZeroMISCount G e = 3 := by omega
+  rcases hcases with h | h | h | h <;> simp [h, Nat.choose]
+
+/-- The genuine probability of precisely three zero-sum graph maximal
+independent four-sets is h(G)/315. This is an actual event cardinal,
+divided by the 8! = 40320 equally likely label permutations. -/
+theorem connected_graphMIS_exact_probability_three
+    (G : SimpleGraph Vertex) (hc : G.Connected) :
+    graphMIS_exact_probability G 3 =
+      (unorderedCompatibleTripleCount G : ℚ) / 315 := by
+  classical
+  have hs :
+      (∑ e : Equiv.Perm Vertex,
+        Nat.choose (labellingZeroMISCount G e) 3) =
+      ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+        (fun e => labellingZeroMISCount G e = 3)).card := by
+    calc
+      (∑ e : Equiv.Perm Vertex,
+        Nat.choose (labellingZeroMISCount G e) 3) =
+        ∑ e : Equiv.Perm Vertex,
+          (if labellingZeroMISCount G e = 3 then (1 : ℕ) else 0) := by
+            apply Finset.sum_congr rfl
+            intro e _
+            exact connected_graphMIS_choose_three_eq_indicator G hc e
+      _ = ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+          (fun e => labellingZeroMISCount G e = 3)).card := by simp
+  have hn :
+      (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+        (fun e => labellingZeroMISCount G e = 3)).card : ℚ) =
+      (128 : ℚ) * (unorderedCompatibleTripleCount G : ℚ) := by
+    exact_mod_cast (hs.symm.trans (graphMIS_third_moment_numerator G))
+  unfold graphMIS_exact_probability
+  rw [hn, uniformLabellings_card]
+  ring
+
+/-- The sharp real-event extremal result. The only connected eight-vertex
+equality case up to graph isomorphism is the named spider S(2,2,2,1). -/
+theorem connected_graphMIS_probability_three_sharp
+    (G : SimpleGraph Vertex) (hc : G.Connected) :
+    graphMIS_exact_probability G 3 ≤ (1 : ℚ) / 105 ∧
+      (graphMIS_exact_probability G 3 = (1 : ℚ) / 105 ↔
+        Nonempty (G ≃g namedSpider)) := by
+  rw [connected_graphMIS_exact_probability_three G hc]
+  obtain ⟨hle, heq⟩ :=
+    sharp_probability_from_h (unorderedCompatibleTripleCount G)
+      (connected_unorderedCompatibleTripleCount_le_three G hc)
+  exact ⟨hle, heq.trans (connected_h_three_iff_namedSpider G hc)⟩
+
+#print axioms PDIC.connected_graphMIS_choose_three_eq_indicator
+#print axioms PDIC.connected_graphMIS_exact_probability_three
+#print axioms PDIC.connected_graphMIS_probability_three_sharp
+
+end PDIC
