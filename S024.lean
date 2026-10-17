@@ -436,7 +436,8 @@ theorem s025_column_det_nonzero :
       q ∉ s024TwoSpan p p →
       r ∉ s024TwoSpan p q →
       (s025ColumnMatrix p q r).det ≠ 0 := by
-  decide +kernel
+  intro p
+  fin_cases p <;> decide +kernel
 
 /-- For every admissible cap a genuine third vertex provides an actual
 zero-fixing linear equivalence. It is constructed from the three selected
