@@ -1,19 +1,19 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-17",
-  "last_completed_session": "S024",
-  "next_session": "S025",
+  "last_completed_session": "S025",
+  "next_session": "S026",
   "next_session_executed": false,
-  "phase": "S024_POINTED_IMAGE_ORBIT_BRIDGE_AND_NORMALIZED_5_OF_17_STRICT_LEAN_KERNEL_VERIFIED__GLOBAL_CAP_ORBIT_STILL_OPEN",
+  "phase": "S025_18_OF_6188_AND_TYPED_BASIS_SOURCE_CANDIDATES_UNVERIFIED__GLOBAL_ZERO_FIXING_CAP_ORBIT_OPEN",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
     "S003R9 strict actual SimpleGraph/count/connectedness appendix and general unique partition theorem; revised manuscript and primary-source comparison"
   ],
-  "mathematics": "ALL_FOUR_REAL_PROBABILITIES_AND_UNIQUE_SHARP_SPIDER_VALID_FOR_EVERY_ADMISSIBLE_EIGHT_CAP_CONDITIONALLY_ON_CLASSICAL_NORMAL_FORM",
+  "mathematics": "ALL_FOUR_REAL_PROBABILITIES_AND_UNIQUE_SHARP_SPIDER_VALID_FOR_EVERY_ADMISSIBLE_EIGHT_CAP_CONDITIONALLY_ON_CLASSICAL_NORMAL_FORM__S025_NEW_POINTED_ORBIT_SOURCE_UNVERIFIED",
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
-  "lean": "S024_PROOF_BRANCH_CERTIFIES_CONDITIONAL_IMAGE_ORBIT_BRIDGE_AND_GENUINE_NORMALIZED_5_OF_17__CLASSICAL_NORMAL_FORM_AND_UNCONDITIONAL_ALL_CAP_FLAGSHIP_STILL_OPEN",
+  "lean": "S025_NEW_DETERMINANT_NORMALIZED_18_CASE_TABLE_AND_TYPED_GL_SOURCE_FORMALIZED_UNVERIFIED__PREVIOUS_S024_STRICT_CERTIFICATES_VALID__CLASSICAL_NORMAL_FORM_AND_UNCONDITIONAL_ALL_CAP_FLAGSHIP_OPEN",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S025: PROVE_ADMISSIBLE_CAP_IMAGE_ORBIT_WITH_INTERNAL_KERNEL_CERTIFICATE_THEN_UNCONDITIONAL_FLAGSHIP",
+  "next_session_target": "S026: EXACT_SOURCE_STRICT_CI_S025_REPAIR__ACTUAL_ZERO_FIXING_NORMALIZATION_AND_IMAGE_ORBIT__UNCONDITIONAL_ALL_CAP_FLAGSHIP",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,9 +167,9 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S025_EXACT_CAP_ORBIT_KERNEL_TARGET.md",
+  "next_session_target_file": "research/S026_UNCONDITIONAL_CAP_ORBIT_CLOSE_TARGET.md",
   "next_session_target_installed_date": "2026-10-17",
-  "next_session_target_source": "78273ce1fae09f844009740830b5ca9cdff7f6b7",
+  "next_session_target_source": "1b4a096c94bd333ef6e0cf4274efc0f358235e5f",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -806,5 +806,21 @@
     "Classical.choice",
     "Quot.sound"
   ],
-  "s025_next_exact_gate": "Construct certified actual linear equivalence normalizing an independent triple from unconditional two-span escape, then Lean-certify 18-of-6188 classification and typed orbit witnesses"
+  "s025_next_exact_gate": "Construct certified actual linear equivalence normalizing an independent triple from unconditional two-span escape, then Lean-certify 18-of-6188 classification and typed orbit witnesses",
+  "s025": {
+    "status": "EXECUTED_PARTIAL_SOURCE_FORMALIZED_CI_UNVERIFIED",
+    "proof_branch": "session/s007-full-lean-flagship",
+    "proof_source_sha": "1b4a096c94bd333ef6e0cf4274efc0f358235e5f",
+    "new_declarations": "S024.lean: independent anchors, determinant GL map, complete 18 of 6188 normalized source candidate, 18 explicit matrices",
+    "independent_finite": "702 admissible cap images and 11232 independent triples confirmed by equivalent in-session Python; S024 independent 18-case scripts previously passed",
+    "hosted_lean": "NO_SUCCESSFUL_EXACT_HEAD_RUN_RETRIEVED",
+    "prior_certified_S024_proof_sha": "9f714802a8e38c4989de968f061886e1e4d7dc16",
+    "prior_certified_S024_run": "39045727429",
+    "closeout": "sessions/S025_CLOSEOUT.md",
+    "proof_note": "research/S025_POINTED_BASIS_AND_NORMALIZED_ORBIT.md",
+    "all_cap_unconditional": "OPEN_IN_LEAN",
+    "next_prompt": "research/NEXT_SESSION_PROMPT.md",
+    "external_submission": false,
+    "pr4_draft_unmerged": true
+  }
 }
