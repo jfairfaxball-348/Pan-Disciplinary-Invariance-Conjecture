@@ -249,6 +249,7 @@ theorem s024_normalized_cap_image_in_candidates
     s024RemainingCapPoints_in_five_subsets f hf a ha hanchor
   apply Finset.mem_image.mpr
   refine ⟨T, hT, ?_⟩
+  symm
   ext x
   simp only [Finset.mem_image, Finset.mem_univ, true_and,
     Finset.mem_union, s024BasisSet, T, s024RemainingCapPoints,
