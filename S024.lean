@@ -656,7 +656,7 @@ theorem s027_image_short_zero_free
       ((U.powersetCard n).filter (fun s =>
         (∑ p ∈ s, p) = (0 : CapPoint))).card = 0 := by
     apply Finset.card_eq_zero.mpr
-    apply Finset.eq_empty_iff_forall_not_mem.mpr
+    apply Finset.eq_empty_of_forall_notMem
     intro s hs
     obtain ⟨hs, hz⟩ := Finset.mem_filter.mp hs
     obtain ⟨hsub, hc⟩ := Finset.mem_powersetCard.mp hs
@@ -674,7 +674,8 @@ theorem s027_image_short_zero_free
     decide (((U.powersetCard 3).filter (fun s =>
       (∑ p ∈ s, p) = (0 : CapPoint))).card = 0)) = true
   simp only [hbad 1 (Or.inl rfl), hbad 2 (Or.inr (Or.inl rfl)),
-    hbad 3 (Or.inr (Or.inr rfl)), decide_True, Bool.true_and]
+    hbad 3 (Or.inr (Or.inr rfl))]
+  rfl
 
 #print axioms PDIC.s027_image_subset_no_short_zero
 #print axioms PDIC.s027_image_short_zero_free
