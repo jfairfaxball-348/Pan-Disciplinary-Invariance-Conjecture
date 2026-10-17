@@ -5252,9 +5252,10 @@ theorem labellingZeroMISCountForCap_transport
 /-- Any event predicate on label permutations has the same number of
 real sample points after the bijective postcomposition \`e ↦ e.trans p\`. -/
 theorem rightTranslation_event_fibre_card
-    (p : Equiv.Perm Vertex) (P : Equiv.Perm Vertex → Prop) :
+    (p : Equiv.Perm Vertex) (P : Equiv.Perm Vertex → Prop)
+    [DecidablePred P] :
     ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
-      (fun e => P (e.trans p))).card =
+      (fun e : Equiv.Perm Vertex => P (e.trans p))).card =
     ((Finset.univ : Finset (Equiv.Perm Vertex)).filter P).card := by
   classical
   let T := rightTranslation p
