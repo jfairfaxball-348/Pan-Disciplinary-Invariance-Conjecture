@@ -4830,24 +4830,22 @@ theorem graphMIS_unordered_triple_compatible_of_event
   · exact hmake b c a (by simp) (by simp) (by simp)
       hbc hab.symm hac.symm hd
 
-/-- Each genuine unordered graph-MIS triple has exactly 128 labellings
-if it is compatible and zero otherwise. -/
-theorem graphMIS_unordered_triple_event_card
+/-- An incompatible genuine unordered triple has zero joint zero-sum
+labellings. Together with the positive 128-fibre lemma this classifies
+all true unordered three-MIS event fibres. -/
+theorem graphMIS_unordered_triple_event_card_zero
     (G : SimpleGraph Vertex) (T : Finset (Finset Vertex))
-    (hT : T ∈ (fourGraphMISFamily G).powersetCard 3) :
+    (hT : T ∈ (fourGraphMISFamily G).powersetCard 3)
+    (hnot : ¬ IsUnorderedCompatibleTriple G T) :
     ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
       (fun e => ∀ s ∈ T,
-        capSum (fun v => canonicalCapF3 (e v)) s = 0)).card =
-      if IsUnorderedCompatibleTriple G T then 128 else 0 := by
+        capSum (fun v => canonicalCapF3 (e v)) s = 0)).card = 0 := by
   classical
-  by_cases hc : IsUnorderedCompatibleTriple G T
-  · simp only [if_pos hc]
-    exact graphMIS_unordered_compatible_triple_event_card G T hc
-  · have hnone (e : Equiv.Perm Vertex) :
-        ¬(∀ s ∈ T, capSum (fun v => canonicalCapF3 (e v)) s = 0) := by
-      intro hz
-      exact hc (graphMIS_unordered_triple_compatible_of_event G T hT e hz)
-    simp [hc, hnone]
+  have hnone (e : Equiv.Perm Vertex) :
+      ¬(∀ s ∈ T, capSum (fun v => canonicalCapF3 (e v)) s = 0) := by
+    intro hz
+    exact hnot (graphMIS_unordered_triple_compatible_of_event G T hT e hz)
+  simp [hnone]
 
 /-- Full third factorial moment over *true unordered* three-member
 graph-MIS families; the coefficient is 128, not 6 × 128. -/
@@ -4870,7 +4868,7 @@ theorem graphMIS_third_moment_numerator (G : SimpleGraph Vertex) :
     change (F.filter (IsUnorderedCompatibleTriple G)).card =
       ((Finset.univ : Finset (Finset (Finset Vertex))).filter
         (IsUnorderedCompatibleTriple G)).card
-    congr 1
+    apply congrArg Finset.card
     ext T
     simp only [Finset.mem_filter, Finset.mem_univ, true_and]
     exact ⟨fun h => h.2, fun h => ⟨hfamily T h, h⟩⟩
@@ -4885,7 +4883,11 @@ theorem graphMIS_third_moment_numerator (G : SimpleGraph Vertex) :
     _ = ∑ T ∈ F, (if IsUnorderedCompatibleTriple G T then 128 else 0) := by
           apply Finset.sum_congr rfl
           intro T hT
-          exact graphMIS_unordered_triple_event_card G T hT
+          by_cases hc : IsUnorderedCompatibleTriple G T
+          · simp only [if_pos hc]
+            exact graphMIS_unordered_compatible_triple_event_card G T hc
+          · simp only [if_neg hc]
+            exact graphMIS_unordered_triple_event_card_zero G T hT hc
     _ = 128 * (F.filter (IsUnorderedCompatibleTriple G)).card := by
           simp [Finset.sum_ite, mul_comm]
     _ = 128 * unorderedCompatibleTripleCount G := by rw [hcount]
@@ -4909,7 +4911,7 @@ theorem graphMIS_third_moment_eq (G : SimpleGraph Vertex) :
 
 #print axioms PDIC.canonicalCapF3_perm_third_overlap_two
 #print axioms PDIC.graphMIS_unordered_triple_compatible_of_event
-#print axioms PDIC.graphMIS_unordered_triple_event_card
+#print axioms PDIC.graphMIS_unordered_triple_event_card_zero
 #print axioms PDIC.graphMIS_third_moment_numerator
 #print axioms PDIC.graphMIS_third_moment_eq
 
