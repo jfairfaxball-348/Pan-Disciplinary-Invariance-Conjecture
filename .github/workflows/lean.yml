@@ -15,11 +15,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Announce precise CI run on draft PR 4
         continue-on-error: true
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/session/s007-full-lean-flagship' }}
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/session/s007-full-lean-flagship') || (github.event_name == 'pull_request' && github.head_ref == 'session/s025-ci-validation') }}
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
-          SHA: ${{ github.sha }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           RUN_ID: ${{ github.run_id }}
         run: |
           gh api "repos/$REPO/issues/4/comments" --method POST \
@@ -69,11 +69,11 @@ jobs:
 
       - name: Publish exact-source CI verdict to draft PR 4
         continue-on-error: true
-        if: ${{ always() && github.event_name == 'push' && github.ref == 'refs/heads/session/s007-full-lean-flagship' }}
+        if: ${{ always() && ((github.event_name == 'push' && github.ref == 'refs/heads/session/s007-full-lean-flagship') || (github.event_name == 'pull_request' && github.head_ref == 'session/s025-ci-validation')) }}
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
-          SHA: ${{ github.sha }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           RESULT: ${{ job.status }}
           RUN_ID: ${{ github.run_id }}
         run: |
