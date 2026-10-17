@@ -817,3 +817,22 @@ theorem s027_any_admissible_normalized_in_filtered_family
 #print axioms PDIC.s027_any_admissible_normalized_in_filtered_family
 
 end PDIC
+
+
+namespace PDIC
+
+/-! CI-only experimental cardinality certificate for the complete
+normalized admissible-tail filter. Full set equality previously exceeded
+hosted kernel resources. A successful cardinality plus the separately
+certified explicit 18-tail inclusion would imply exact classification;
+a failed or interrupted run is NOT a proof. -/
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 40000000 in
+theorem s027_filtered_normalized_tail_count :
+    s027NormalizedAdmissibleTails.card = 18 := by
+  decide +kernel
+
+#print axioms PDIC.s027_filtered_normalized_tail_count
+
+end PDIC
