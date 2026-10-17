@@ -91,3 +91,68 @@ theorem graphMIS_probability_for_cap_of_image_orbit
 #print axioms PDIC.graphMIS_probability_for_cap_of_image_orbit
 
 end PDIC
+
+
+namespace PDIC
+
+/-!
+S024 extension: genuine normalized-cap exclusions.  These are universal
+logical consequences of the short zero-sum conditions, not extra numerical
+assumptions or an assertion of the still-open orbit theorem.
+-/
+
+/-- No triple of distinct cap labels can sum to zero. -/
+theorem admissibleCap_three_ne_zero
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (u v w : Vertex) (huv : u ≠ v) (huw : u ≠ w) (hvw : v ≠ w) :
+    f u + f v + f w ≠ 0 := by
+  have hs : capSum f ({u, v, w} : Finset Vertex) ≠ 0 :=
+    hf.2 _ (Or.inr (Or.inr (by simp [huv, huw, hvw, ne_comm])))
+  simpa [capSum, huv, huw, hvw, ne_comm,
+    add_assoc, add_comm, add_left_comm] using hs
+
+/-- Given three genuinely placed standard basis labels, every OTHER label
+is in the explicitly kernel-counted seventeen-point free set. -/
+theorem s024_normalized_other_mem_free
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (a : Fin 3 → Vertex) (ha : Function.Injective a)
+    (hanchor : ∀ i, f (a i) = s024BasisPoint i)
+    (v : Vertex) (hv : ∀ i, v ≠ a i) :
+    f v ∈ s024FreePoints := by
+  classical
+  apply Finset.mem_sdiff.mpr
+  refine ⟨Finset.mem_univ _, ?_⟩
+  intro he
+  unfold s024ExcludedPoints at he
+  simp only [Finset.mem_union] at he
+  rcases he with hzero | hbase | hneg | hpair
+  · have heq : f v = 0 := by simpa using hzero
+    exact (admissibleCap_point_ne_zero f hf v) heq
+  · obtain ⟨i, _, hi⟩ := Finset.mem_image.mp hbase
+    have heq : f v = f (a i) := by rw [hanchor i]; exact hi.symm
+    exact hv i (hf.1 heq)
+  · obtain ⟨i, _, hi⟩ := Finset.mem_image.mp hneg
+    have hz : f v + f (a i) = 0 := by
+      calc
+        f v + f (a i) = -s024BasisPoint i + s024BasisPoint i := by
+          rw [← hi, hanchor i]
+        _ = 0 := neg_add_cancel _
+    exact (admissibleCap_pair_ne_zero f hf v (a i) (hv i)) hz
+  · obtain ⟨t, ht, hi⟩ := Finset.mem_image.mp hpair
+    obtain ⟨i, j, hij, rfl⟩ :=
+      Finset.card_eq_two.mp (Finset.mem_powersetCard.mp ht).2
+    have hab : a i ≠ a j := ha.ne hij
+    have hvi : v ≠ a i := hv i
+    have hvj : v ≠ a j := hv j
+    have hval : f v = -(s024BasisPoint i + s024BasisPoint j) := by
+      simpa [hij] using hi.symm
+    have hzero : f v + f (a i) + f (a j) = 0 := by
+      rw [hval, hanchor i, hanchor j]
+      abel
+    exact (admissibleCap_three_ne_zero f hf v (a i) (a j)
+      hvi hvj hab) hzero
+
+#print axioms PDIC.admissibleCap_three_ne_zero
+#print axioms PDIC.s024_normalized_other_mem_free
+
+end PDIC
