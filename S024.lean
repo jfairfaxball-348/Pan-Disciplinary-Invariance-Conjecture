@@ -209,3 +209,64 @@ theorem s024RemainingCapPoints_in_five_subsets
 #print axioms PDIC.s024RemainingCapPoints_in_five_subsets
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S024 continuation: exact normalized full-image finite domain.  This
+does not assume that an arbitrary cap already admits normalizing anchors. -/
+
+/-- There are exactly 6,188 possible five-point residual subsets in the
+17-point ambient domain. The 18 admissible cases still require separate
+Lean classification; 6,188 counts *candidates*, not caps. -/
+theorem s024RemainingCandidateFamily_card :
+    (s024FreePoints.powersetCard 5).card = 6188 := by
+  rw [Finset.card_powersetCard, s024FreePoints_card]
+  decide
+
+/-- The three pinned basis points as a finite unordered set. -/
+def s024BasisSet : Finset CapPoint :=
+  (Finset.univ : Finset (Fin 3)).image s024BasisPoint
+
+/-- Every candidate full eight-point image must be a three-basis union
+with a five-point subset from the reduced 17-point family. -/
+def s024NormalizedFullCandidates : Finset (Finset CapPoint) :=
+  (s024FreePoints.powersetCard 5).image
+    (fun T => s024BasisSet ∪ T)
+
+/-- Every genuinely admissible cap whose three actual anchor vertices
+carry the pinned basis has its entire unordered image represented by one
+of the 6,188 full-image candidates. No orbit equivalence is assumed. -/
+theorem s024_normalized_cap_image_in_candidates
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (a : Fin 3 → Vertex) (ha : Function.Injective a)
+    (hanchor : ∀ i, f (a i) = s024BasisPoint i) :
+    ((Finset.univ : Finset Vertex).image f) ∈
+      s024NormalizedFullCandidates := by
+  classical
+  let T := s024RemainingCapPoints f a
+  have hT : T ∈ s024FreePoints.powersetCard 5 :=
+    s024RemainingCapPoints_in_five_subsets f hf a ha hanchor
+  apply Finset.mem_image.mpr
+  refine ⟨T, hT, ?_⟩
+  ext x
+  simp only [Finset.mem_image, Finset.mem_univ, true_and,
+    Finset.mem_union, s024BasisSet, T, s024RemainingCapPoints,
+    s024RemainingVertices, Finset.mem_filter]
+  constructor
+  · rintro ⟨v, hv⟩
+    by_cases h : ∃ i : Fin 3, v = a i
+    · rcases h with ⟨i, rfl⟩
+      exact Or.inl ⟨i, (hanchor i).symm.trans hv⟩
+    · apply Or.inr
+      refine ⟨v, ?_, hv⟩
+      intro i
+      exact fun hi => h ⟨i, hi⟩
+  · rintro (⟨i, hi⟩ | ⟨v, _hv, hi⟩)
+    · exact ⟨a i, (hanchor i).trans hi⟩
+    · exact ⟨v, hi⟩
+
+#print axioms PDIC.s024RemainingCandidateFamily_card
+#print axioms PDIC.s024_normalized_cap_image_in_candidates
+
+end PDIC
