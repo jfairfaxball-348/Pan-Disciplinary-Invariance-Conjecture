@@ -497,3 +497,23 @@ theorem s025_admissible_has_linear_basis_map
 
 
 end PDIC
+
+namespace PDIC
+
+/-! S026: expose the typed GL basis-map action, not just its existence. -/
+
+/-- The actual typed linear equivalence sends each standard basis point
+to the corresponding chosen admissible-cap column. -/
+theorem s026_capBasisEquiv_basis_action
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (w : Vertex) (hw : f w ∉ s024TwoSpan (f 0) (f 1))
+    (i : Fin 3) :
+    s025CapBasisEquiv f hf w hw (s024BasisPoint i) =
+      (if i = 0 then f 0 else if i = 1 then f 1 else f w) := by
+  unfold s025CapBasisEquiv
+  simp only [Matrix.toLinearEquiv'_apply, Matrix.toLin'_apply]
+  exact s026_columnMatrix_basis_action (f 0) (f 1) (f w) i
+
+#print axioms PDIC.s026_capBasisEquiv_basis_action
+
+end PDIC
