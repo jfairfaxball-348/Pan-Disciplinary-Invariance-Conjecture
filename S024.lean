@@ -670,3 +670,150 @@ theorem s025_witness_matrices_nonsingular :
 
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S027 proof experiment: genuine labelled cap images satisfy the intrinsic
+point-set short-zero exclusion test. This does not use the eighteen-case
+table, orbit classification, an assumed normal form or an external script. -/
+
+/-- Lift each small subset of an actual admissible cap's unordered point
+image back to its unique subset of eight labelled vertices; sums and
+cardinalities are preserved by injectivity. -/
+theorem s027_image_subset_no_short_zero
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (s : Finset CapPoint)
+    (hs : s ⊆ (Finset.univ : Finset Vertex).image f)
+    (hcard : s.card = 1 ∨ s.card = 2 ∨ s.card = 3) :
+    (∑ p ∈ s, p) ≠ (0 : CapPoint) := by
+  classical
+  let t : Finset Vertex :=
+    s.preimage f (fun _ _ _ _ h => hf.1 h)
+  have himage : t.image f = s := by
+    ext p
+    constructor
+    · intro hp
+      obtain ⟨v, hv, hvp⟩ := Finset.mem_image.mp hp
+      have hfv : f v ∈ s := Finset.mem_preimage.mp hv
+      simpa [hvp] using hfv
+    · intro hp
+      obtain ⟨v, _, hvp⟩ := Finset.mem_image.mp (hs hp)
+      apply Finset.mem_image.mpr
+      refine ⟨v, ?_, hvp⟩
+      apply Finset.mem_preimage.mpr
+      simpa [hvp] using hp
+  have hcardt : t.card = s.card := by
+    calc
+      t.card = (t.image f).card :=
+        (Finset.card_image_of_injective _ hf.1).symm
+      _ = s.card := congrArg Finset.card himage
+  have hsum : (∑ p ∈ s, p) = capSum f t := by
+    rw [← himage]
+    simpa [capSum] using
+      (Finset.sum_image (s := t) (g := f)
+        (f := fun p : CapPoint => p)
+        (fun _ _ _ _ h => hf.1 h))
+  intro hz
+  have htcard : t.card = 1 ∨ t.card = 2 ∨ t.card = 3 := by
+    simpa [hcardt] using hcard
+  exact (hf.2 t htcard) (hsum.symm.trans hz)
+
+/-- All three genuine finite point-set obstructions, rather than a test
+on an unrelated synthetic eight-element list. -/
+def s027ShortZeroFree (U : Finset CapPoint) : Bool :=
+  decide (((U.powersetCard 1).filter (fun s =>
+    (∑ p ∈ s, p) = (0 : CapPoint))).card = 0) &&
+  decide (((U.powersetCard 2).filter (fun s =>
+    (∑ p ∈ s, p) = (0 : CapPoint))).card = 0) &&
+  decide (((U.powersetCard 3).filter (fun s =>
+    (∑ p ∈ s, p) = (0 : CapPoint))).card = 0)
+
+theorem s027_image_short_zero_free
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
+    s027ShortZeroFree ((Finset.univ : Finset Vertex).image f) = true := by
+  classical
+  let U : Finset CapPoint := (Finset.univ : Finset Vertex).image f
+  have hbad (n : ℕ) (hn : n = 1 ∨ n = 2 ∨ n = 3) :
+      ((U.powersetCard n).filter (fun s =>
+        (∑ p ∈ s, p) = (0 : CapPoint))).card = 0 := by
+    apply Finset.card_eq_zero.mpr
+    apply Finset.eq_empty_of_forall_notMem
+    intro s hs
+    obtain ⟨hs, hz⟩ := Finset.mem_filter.mp hs
+    obtain ⟨hsub, hc⟩ := Finset.mem_powersetCard.mp hs
+    have hc' : s.card = 1 ∨ s.card = 2 ∨ s.card = 3 := by
+      rcases hn with h1 | h2 | h3
+      · exact Or.inl (hc.trans h1)
+      · exact Or.inr (Or.inl (hc.trans h2))
+      · exact Or.inr (Or.inr (hc.trans h3))
+    exact (s027_image_subset_no_short_zero f hf s hsub hc') hz
+  change
+    (decide (((U.powersetCard 1).filter (fun s =>
+      (∑ p ∈ s, p) = (0 : CapPoint))).card = 0) &&
+    decide (((U.powersetCard 2).filter (fun s =>
+      (∑ p ∈ s, p) = (0 : CapPoint))).card = 0) &&
+    decide (((U.powersetCard 3).filter (fun s =>
+      (∑ p ∈ s, p) = (0 : CapPoint))).card = 0)) = true
+  simp only [hbad 1 (Or.inl rfl), hbad 2 (Or.inr (Or.inl rfl)),
+    hbad 3 (Or.inr (Or.inr rfl))]
+  rfl
+
+#print axioms PDIC.s027_image_subset_no_short_zero
+#print axioms PDIC.s027_image_short_zero_free
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S027: bridge the actual zero-sum-free normalized image into the
+complete filtered 6,188-candidate search family without using the unverified
+classification of its eighteen survivors. -/
+
+def s027NormalizedAdmissibleTails : Finset (Finset CapPoint) :=
+  (s024FreePoints.powersetCard 5).filter
+    (fun T => s027ShortZeroFree (s024BasisSet ∪ T) = true)
+
+theorem s027_normalized_cap_image_in_filtered_candidates
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (a : Fin 3 → Vertex) (ha : Function.Injective a)
+    (hanchor : ∀ i, f (a i) = s024BasisPoint i) :
+    ((Finset.univ : Finset Vertex).image f) ∈
+      s027NormalizedAdmissibleTails.image
+        (fun T => s024BasisSet ∪ T) := by
+  classical
+  have hraw :=
+    s024_normalized_cap_image_in_candidates f hf a ha hanchor
+  change ((Finset.univ : Finset Vertex).image f) ∈
+    (s024FreePoints.powersetCard 5).image
+      (fun T => s024BasisSet ∪ T) at hraw
+  obtain ⟨T, hT, hEq⟩ := Finset.mem_image.mp hraw
+  apply Finset.mem_image.mpr
+  refine ⟨T, ?_, hEq⟩
+  apply Finset.mem_filter.mpr
+  refine ⟨hT, ?_⟩
+  rw [hEq]
+  exact s027_image_short_zero_free f hf
+
+/-- Every actual admissible eight-cap can first be normalized by a
+zero-fixing invertible linear equivalence, and its real unordered image
+then belongs to the full finite candidate *filter* (not yet to the
+eighteen-entry orbit table). -/
+theorem s027_any_admissible_normalized_in_filtered_family
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
+    ∃ L : CapPoint ≃ₗ[ZMod 3] CapPoint,
+      ((Finset.univ : Finset Vertex).image
+        (fun v => L (f v))) ∈
+          s027NormalizedAdmissibleTails.image
+            (fun T => s024BasisSet ∪ T) := by
+  obtain ⟨L, hL, a, ha, hanchor⟩ :=
+    s026_admissible_normalized_anchors f hf
+  exact ⟨L,
+    s027_normalized_cap_image_in_filtered_candidates
+      (fun v => L (f v)) hL a ha hanchor⟩
+
+#print axioms PDIC.s027_normalized_cap_image_in_filtered_candidates
+#print axioms PDIC.s027_any_admissible_normalized_in_filtered_family
+
+end PDIC
