@@ -531,3 +531,63 @@ theorem s025_normalized_tail_count :
 #print axioms PDIC.s025_normalized_tail_count
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S025: independent explicit zero-fixing matrix witnesses for the
+normalized cap table. The finite equalities below are checked in the
+kernel rather than trusting an external list of orbit images. -/
+
+/-- One concrete 3×3 invertible matrix for each normalized canonical
+cap image. There are precisely eighteen chosen representatives. -/
+def s025WitnessMatrices :
+    Finset (Matrix (Fin 3) (Fin 3) (ZMod 3)) :=
+  {
+    !![![2, 1, 2], ![1, 1, 2], ![0, 1, 0]],
+    !![![2, 0, 2], ![1, 1, 2], ![0, 1, 0]],
+    !![![2, 2, 2], ![1, 0, 2], ![0, 2, 0]],
+    !![![2, 1, 2], ![0, 1, 0], ![1, 1, 2]],
+    !![![1, 0, 0], ![1, 2, 2], ![1, 1, 2]],
+    !![![0, 2, 1], ![2, 0, 1], ![2, 2, 1]],
+    !![![0, 2, 1], ![1, 2, 2], ![1, 1, 2]],
+    !![![2, 1, 2], ![2, 0, 1], ![1, 1, 2]],
+    !![![2, 0, 2], ![0, 1, 0], ![1, 1, 2]],
+    !![![0, 1, 1], ![1, 2, 2], ![1, 1, 2]],
+    !![![1, 2, 0], ![2, 0, 1], ![2, 2, 1]],
+    !![![2, 0, 2], ![1, 2, 2], ![1, 1, 2]],
+    !![![0, 1, 1], ![2, 0, 1], ![1, 1, 2]],
+    !![![2, 2, 2], ![0, 2, 0], ![1, 0, 2]],
+    !![![0, 2, 1], ![2, 2, 1], ![2, 0, 1]],
+    !![![2, 2, 2], ![1, 2, 2], ![2, 0, 1]],
+    !![![1, 2, 0], ![2, 2, 1], ![2, 0, 1]],
+    !![![0, 2, 1], ![1, 2, 2], ![2, 0, 1]]
+  }
+
+def s025WitnessImages : Finset (Finset CapPoint) :=
+  s025WitnessMatrices.image (fun M =>
+    (Finset.univ : Finset Vertex).image
+      (fun v => M.mulVec (canonicalCapF3 v)))
+
+def s025NormalizedFullTable : Finset (Finset CapPoint) :=
+  s025NormalizedTails.image (fun T => s024BasisSet ∪ T)
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+/-- The eighteen displayed matrix images are *exactly* the eighteen
+normalized eight-point sets. All maps fix the origin. -/
+theorem s025_matrix_images_eq_normalized_table :
+    s025WitnessImages = s025NormalizedFullTable := by
+  decide +kernel
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 4000000 in
+/-- No matrix in the displayed witness family has a zero determinant. -/
+theorem s025_witness_matrices_nonsingular :
+    (s025WitnessMatrices.filter (fun M => M.det = 0)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s025_matrix_images_eq_normalized_table
+#print axioms PDIC.s025_witness_matrices_nonsingular
+
+end PDIC
