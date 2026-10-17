@@ -1,10 +1,10 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-17",
-  "last_completed_session": "S023",
-  "next_session": "S024",
+  "last_completed_session": "S024",
+  "next_session": "S025",
   "next_session_executed": false,
-  "phase": "FULL_FLAGSHIP_ALL_CAP_CONDITIONAL_TRANSPORT_STRICT_LEAN_KERNEL_VERIFIED__CLASSICAL_CAP_NORMAL_FORM_EXTERNAL",
+  "phase": "S024_POINTED_IMAGE_ORBIT_BRIDGE_AND_NORMALIZED_5_OF_17_STRICT_LEAN_KERNEL_VERIFIED__GLOBAL_CAP_ORBIT_STILL_OPEN",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -13,7 +13,7 @@
   "mathematics": "ALL_FOUR_REAL_PROBABILITIES_AND_UNIQUE_SHARP_SPIDER_VALID_FOR_EVERY_ADMISSIBLE_EIGHT_CAP_CONDITIONALLY_ON_CLASSICAL_NORMAL_FORM",
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
-  "lean": "S023_ALL_CAP_CONDITIONAL_EXPLICIT_EVENT_FIBRE_BIJECTION_STRICT_VERIFIED_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_PASS_39023530142_FINITE_PASS_39023530135",
+  "lean": "S024_PROOF_BRANCH_CERTIFIES_CONDITIONAL_IMAGE_ORBIT_BRIDGE_AND_GENUINE_NORMALIZED_5_OF_17__CLASSICAL_NORMAL_FORM_AND_UNCONDITIONAL_ALL_CAP_FLAGSHIP_STILL_OPEN",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "INTERNAL_LEAN_PROOF_OF_CLASSICAL_CAP_NORMAL_FORM_AND_UNCONDITIONAL_ALL_CAP_FLAGSHIP",
+  "next_session_target": "S025: PROVE_ADMISSIBLE_CAP_IMAGE_ORBIT_WITH_INTERNAL_KERNEL_CERTIFICATE_THEN_UNCONDITIONAL_FLAGSHIP",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,7 +167,7 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S024_CAP_NORMAL_FORM_CERTIFICATION_TARGET.md",
+  "next_session_target_file": "research/S025_EXACT_CAP_ORBIT_KERNEL_TARGET.md",
   "next_session_target_installed_date": "2026-10-17",
   "next_session_target_source": "78273ce1fae09f844009740830b5ca9cdff7f6b7",
   "s004_status": "COMPLETED_2026_10_16",
@@ -748,7 +748,7 @@
     "Classical.choice",
     "Quot.sound"
   ],
-  "s024_extension_status": "PROVED_WRITTEN_BASIS_EXISTENCE__17_POINT_REDUCTION_LEAN_KERNEL_VERIFIED__18_NORMALIZED_IMAGES_FINITE_CHECKED__ORBIT_OPEN",
+  "s024_extension_status": "PROVED_WRITTEN_BASIS_EXISTENCE__GENUINE_5_OF_17_REDUCTION_LEAN_KERNEL_VERIFIED__18_NORMALIZED_IMAGES_FINITE_CHECKED__ORBIT_OPEN",
   "s024_extension_lean_proof_sha": "d038d5b654b4e2dc762eb1aa05d248e69702f3f3",
   "s024_extension_lean_run": 39037607809,
   "s024_extension_finite_run": 39037607792,
@@ -769,5 +769,23 @@
   "s024_extension_independent_checker": "scripts/verify_s024_normal_form.py",
   "s024_extension_classification_kernel_verified": false,
   "s024_extension_all_cap_unconditional_kernel_verified": false,
-  "s024_extension_s025_prompt_updated": true
+  "s024_extension_s025_prompt_updated": true,
+  "s024_extension_normalized_containment_sha": "4a0aad7a0728c699fc49edecb14567a6b89f3d1d",
+  "s024_extension_normalized_containment_lean_run": 39040469364,
+  "s024_extension_normalized_containment_finite_run": 39040469361,
+  "s024_extension_five_subsets_sha": "3a63b938cfff51e70be63dcd22835a6fa67e3046",
+  "s024_extension_five_subsets_lean_run": 39040892718,
+  "s024_extension_five_subsets_finite_run": 39040892593,
+  "s024_extension_five_subsets_declarations": [
+    "admissibleCap_three_ne_zero",
+    "s024_normalized_other_mem_free",
+    "s024RemainingVertices_card",
+    "s024RemainingCapPoints_in_five_subsets"
+  ],
+  "s024_extension_five_subsets_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "s024_extension_true_five_subsets_kernel_verified": true
 }
