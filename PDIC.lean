@@ -5274,7 +5274,7 @@ theorem rightTranslation_event_fibre_card
       exact T.apply_symm_apply e.1
   }
   have hc := Fintype.card_congr E
-  simpa only [Fintype.card_subtype] using hc
+  simpa [T, rightTranslation, Fintype.card_subtype] using hc
 
 /-- The cardinality of every one of the four genuine zero-MIS event fibres
 is identical for \`f\` and the canonical cap, conditional only on the supplied
