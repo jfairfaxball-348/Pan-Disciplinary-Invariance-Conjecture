@@ -1,36 +1,57 @@
-# PDIC S020 — close the honest unordered M₂/M₃ numerators and complete the flagship law
+# PDIC S021 — strict-certify S020 M₂; close the genuine unordered M₃ and complete the flagship
 
-**Automatically installed at S019 closeout; not executed.** The next owner's “run next session” authorises S020. Follow `AGENTS.md`; automatically install S021 with the closeout, but do not execute it. Work on the canonical Lean proof branch `session/s007-full-lean-flagship` and unmerged draft PR #4. No Palomar preparation, PR merge, arXiv or journal submission without separate owner approval.
+**Automatically installed at the S020 closeout (17 October 2026). NOT EXECUTED.** The owner's next “run next session” authorises S021 immediately. Follow AGENTS.md. Work on the canonical Lean proof branch \`session/s007-full-lean-flagship\` and draft PR #4, **not** main's historic \`PDIC.lean\`. At closeout automatically install a full executable S022 without executing it. Do not merge PRs, register on Palomar, submit to arXiv/journal or contact anyone without explicit owner approval.
 
-## Preflight and evidence discipline
+## Mandatory preflight
 
-Read `research/NEXT_SESSION_PROMPT.md`, `sessions/S019_CLOSEOUT.md`, `research/S019_PAIR_SUBFAMILY_BRIDGE.md`, `sessions/S018_CLOSEOUT.md`, `research/S018_UNORDERED_MOMENT_EXTENSION.md`, `research/FLAGSHIP_THEOREM.md`, and `paper/PDIC_S003R8_DRAFT.tex`. Check exact-commit hosted Lean and finite results for the last S019 source head; a source candidate is not certified until the pinned full Lean workflow succeeds with printed standard axioms only. Repair any failed S019 candidates before advancing.
+Read \`AGENTS.md\`, \`research/NEXT_SESSION_PROMPT.md\`, \`sessions/S020_CLOSEOUT.md\`, \`research/S020_UNORDERED_MOMENT_PROOF_ATTEMPT.md\`, \`research/S019_PAIR_SUBFAMILY_BRIDGE.md\`, \`research/S018_UNORDERED_MOMENT_EXTENSION.md\`, \`research/FLAGSHIP_THEOREM.md\`, \`paper/PDIC_S003R8_DRAFT.tex\`, \`research/CLAIMS.md\`, \`ROADMAP.md\`, \`authoritative/STATE.json\`, and the **current canonical proof branch source**.
 
-Already kernel certified in S018: `graphMIS_unordered_moment_double_count G k` over honest `powersetCard k` subfamilies, `graphMIS_first_moment_eq`, unique disjoint-four partner, cap-zero `N₀≤3`, connected `h≤3` and `h=3 ↔ G ≃g namedSpider`, and 2304/128 prescribed-source event fibres. S019 added exact four-subset pair event classification (2304 for intersection 0; 128 for intersection 2; 0 otherwise) and an honest two-MIS-subfamily representation candidate. **Use these source declarations after strict certification**; do not duplicate their geometry or silently assume they passed.
+The **last confirmed exact-source strict Lean certificate** in the record is S019 \`e981acac25b8106e4b4df782340217ed948445bb\`, with strict Lean run 38978027666 SUCCESS and independent ten-checker run 38978027657 SUCCESS. S020 added Lean candidates at \`6a8ddd69b636ce523f7aa0c599e59c0fe07b7186\` and \`cba4eedef0033ec828c66593f8cf35aba3d45fa1\`, with finite script at \`afc1ecd80909d32a7e5cabf18df0044ccae9e696\`. **These S020 Lean declarations are SOURCE_FORMALIZED/CI_UNVERIFIED; no exact-source Lean run has been established.**
 
-## Nonnegotiable target
+## Priority zero — establish exact-source strict Lean
 
-For any connected eight-vertex simple graph, set `F = fourGraphMISFamily G`, `N₀(e,G) = labellingZeroMISCount G e` over the genuine uniformly sampled 40320 permutations. Define `n₀` and `n₂` as cardinalities of *unordered* two-element subfamilies `T∈F.powersetCard 2` classified by source intersection 0 and 2, and `h` as the previously kernel-proved genuine `unorderedCompatibleTripleCount G`. Prove the actual Nat equations, not paper abbreviations:
+Obtain an actual hosted GitHub Actions run on the **current proof branch SHA**. If needed use the repository's existing supported workflow trigger or workflow_dispatch, not a status guess. Confirm:
+- pinned toolchain/Mathlib full \`lake build\`,
+- scanner rejecting proof holes (\`sorry\`, \`admit\`, \`native_decide\`, unapproved axiom/constant),
+- \`#print axioms\` for **each** new public S020 declaration showing only \`propext\`, \`Classical.choice\`, \`Quot.sound\`,
+- existing ten independent finite checkers, plus the new \`scripts/verify_s020_unordered_moments.py\`.
 
-```
-∑ e, Nat.choose (N₀(e,G)) 2 = 2304*n₀ + 128*n₂
-∑ e, Nat.choose (N₀(e,G)) 3 = 128*h
-```
+Immediately repair compiler or scanner failures; keep exact SHA/run links. **Do not label S020 M₂ kernel-verified unless this passes.** For source repairs, examine the final \`simp [F, graphMIS_pairOverlapCount, Finset.sum_add_distrib, Finset.sum_ite, mul_comm]\`, the unordered-pair orientation lemma and the \`Finset.eq_of_subset_of_card_le\` use in the compatible-triple bridge.
 
-Prove their `ℚ` normalisations
-`M₂ = 2*n₀/35 + n₂/315`, `M₃=h/315`, and **all four exact probabilities**
-`(P₀,P₁,P₂,P₃) =
- (1-M₁+M₂-M₃, M₁-2*M₂+3*M₃, M₂-3*M₃, M₃)`;
-then `P₃≤1/105`, equality iff `Nonempty (G ≃g namedSpider)` for connected graphs. This complete flagship is the gate; don't reinterpret the moment identities alone as completion.
+## Primary mathematics — finish the honest M₃ numerator
 
-## Proof attack
+Let \`F = fourGraphMISFamily G\`; \`N₀(e,G) = labellingZeroMISCount G e\`; \`h = unorderedCompatibleTripleCount G\`.
 
-1. Use S019's two-element unordered `powersetCard` representation to define invariant overlap classes `PairOverlapZero T` and `PairOverlapTwo T`; prove classification is independent of the chosen ordering, classes are disjoint, and each actual `T` contributes exactly `2304`, `128` or zero. Sum these values over the real filtered family and use `Finset.sum_ite`/filtered cardinalities to obtain exact M₂ numerator. Avoid multiplicity 2.
-2. For each true three-element `T∈F.powersetCard 3`, use `Finset.card_eq_three` to obtain three distinct actual graph MIS and the already verified S014 cap-zero triple disjoint-pair theorem. Use S018 partner uniqueness to show any nonempty triple zero event has **exactly one** complementary pair; the remaining pair overlaps are 2. Show equivalence between nonempty triple events and `IsUnorderedCompatibleTriple G T`. The fibre is 128 by S017; otherwise it is 0. Sum to `128 * unorderedCompatibleTripleCount G` without ordering the triple or six-fold overcount.
-3. Cast exact Nat sums into `ℚ` with `norm_num`, `exact_mod_cast`, `ring`, and the certified `uniformLabellings_card`. Use connected `N₀≤3` to invert the three factorial moments into actual cardinalities `#\{e : N₀(e,G)=i\}`, `i∈\{0,1,2,3\}`. Prove the four rational probability identities, not just algebraic binomial inversion for symbolic moments.
-4. Apply `connected_h_three_iff_namedSpider` to the proved real `P₃=h/315`. Handle `h≤3` and the rational equality carefully. The fixed canonical cap law is unconditional; arbitrary caps are covered only under the supplied `ClassicalCapNormalForm` hypothesis, never by invented axioms.
-5. Independently test the actual 40320 permutations for `namedSpider` and `P8` against the resulting P-vector. Check counts `(m,n₀,n₂,h)=(9,1,15,3)` for spider and `(5,1,3,1)` for P8. Audit all source-class and set-inclusion directions. Novelty/priority remains unresolved.
+Prove for **every** true \`T ∈ F.powersetCard 3\`:
+1. If its simultaneous zero-permutation event is inhabited, use its genuine three distinct four-MIS, S014's \`canonicalCapF3_perm_three_zero_has_disjoint_pair\`, and S018 \`disjoint_four_partner_unique\` to extract **one and only one** complementary pair.
+2. For the third distinct four-MIS, use S019's \`canonicalCapF3_perm_distinct_pair_overlap_cases\`. Overlap zero would make it the unique complementary partner and contradict distinctness. Therefore it overlaps the first side in two vertices, and hence also the other side in two, because the pair partitions all eight vertices.
+3. Convert exactly to \`IsUnorderedCompatibleTriple G T\` with the existing definition; do not silently order or count the triple six times.
+4. Conversely, use the S020 candidate \`graphMIS_unordered_compatible_triple_event_card\` (after strict certification) to show a compatible T has exactly **128** real labelling events. An incompatible T has **zero**.
+5. Sum these true unordered k=3 event fibres with the S018 kernel-proved \`graphMIS_unordered_moment_double_count G 3\`, bridge the filter cardinal to existing \`unorderedCompatibleTripleCount G\`, and prove the genuine Nat equation
 
-## Strict completion and handoff
+\`\`\`lean
+(∑ e : Equiv.Perm Vertex,
+   Nat.choose (labellingZeroMISCount G e) 3) =
+ 128 * unorderedCompatibleTripleCount G
+\`\`\`
 
-Use pinned Lean 4/Mathlib `lake build`, hole scan rejecting `sorry`, `admit`, `native_decide`, unapproved `axiom`/`constant`, and `#print axioms` for each new theorem; all printed axioms must be limited to `propext`, `Classical.choice`, `Quot.sound`. Require exact-source GitHub hosted Lean and ten-checker finite PASS. If the entire flagship cannot be certified, close the largest substantive Lean theorem actually proved (preferably the complete M₂ numerator), identify the precise next incidence equivalence, and **install a full executable S021** attacking the remaining theorem. Update `sessions/S020_CLOSEOUT.md`, proof notes, `research/CLAIMS.md`, `README.md`, `ROADMAP.md`, `authoritative/STATE.json` and `research/NEXT_SESSION_PROMPT.md`. Keep statuses exact, do not claim a source candidate is kernel verified without a successful strict hosted run.
+Do not substitute an ordered-triple or labelled-quartet-index count.
+
+## Full flagship, not another narrow stopping point
+
+Once strict M₂ and M₃ are certified, obtain the rational \`M₂=2n₀/35+n₂/315\`, \`M₃=h/315\` over the actual 40320 labellings. Reuse kernel-certified \`M₁=2m/35\`, actual connected \`N₀≤3\`, and the fact that all 40320 labellings are accounted for. Establish the four *actual event probability* identities
+
+\`\`\`
+P0 = 1 - M1 + M2 - M3
+P1 = M1 - 2*M2 + 3*M3
+P2 = M2 - 3*M3
+P3 = M3
+\`\`\`
+
+with \`Pi\` an explicit normalized cardinal of \`{e | N₀(e,G)=i}\`, **not merely algebraic dummy variables**. Then prove for every connected \`G\` the actual sharp statement \`P3≤1/105\`, with equality iff \`Nonempty (G ≃g namedSpider)\`, invoking the already strictly certified \`h≤3\` and \`h=3 ↔ namedSpider\` statements. Arbitrary-cap normal form must remain **conditional on the explicitly supplied classical hypothesis**, never a fresh axiom.
+
+## Independent checks and closeout
+
+Re-run/host the real 40320-label-permutation enumeration for the spider and P8. Verify \`(m,n₀,n₂,h)=(9,1,15,3)\` and \`(5,1,3,1)\`, actual histograms \`(23424,13440,3072,384)\` and \`(31360,6528,2304,128)\`, M₂ numerators 4224 and 2688, and M₃ numerators 384 and 128. Audit the true graph MIS criteria and unordered class membership.
+
+Aim for the **complete** law this session. If not strictly certified, close the largest substantive verified increment rather than claiming the flagship, identify the precise unproved Lean obligation, and **install a full executable S022** targeting the remainder. Write/update \`sessions/S021_CLOSEOUT.md\`, a substantive proof note, \`research/CLAIMS.md\`, \`README.md\`, \`ROADMAP.md\`, \`authoritative/STATE.json\` and \`research/NEXT_SESSION_PROMPT.md\` with exact SHA/run evidence. Novelty/priority remains unresolved, and external registrations/submissions remain paused.
