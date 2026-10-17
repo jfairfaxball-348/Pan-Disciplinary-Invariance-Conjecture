@@ -48,5 +48,6 @@ jobs:
           python3 scripts/verify_s023_all_caps.py
           python3 scripts/verify_s024_normal_form.py
           python3 scripts/verify_s024_orbit.py
+          python3 scripts/verify_s025_basis.py
           python3 scripts/verify_s020_unordered_moments.py
 
