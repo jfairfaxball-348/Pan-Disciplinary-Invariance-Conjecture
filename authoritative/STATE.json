@@ -896,7 +896,7 @@
     "canonical_all_increment_sha": "9f5030951a54182dfaf692a621eeb081cfb09675",
     "canonical_all_increment_strict_lean_run": "39078143085",
     "canonical_all_increment_finite_run": "39078143139",
-    "canonical_all_increment_status_at_documentation": "INTEGRATED_CHECK_PENDING_FINAL_CONCLUSION",
+    "canonical_all_increment_status_at_documentation": "STRICT_LEAN_SUCCESS_39078143085__INDEPENDENT_FINITE_SUCCESS_39078143139",
     "certified_axioms_only": [
       "propext",
       "Classical.choice",
@@ -904,6 +904,11 @@
     ],
     "monolithic_6188_to_18_strict_run": "39060204539",
     "monolithic_6188_to_18_status": "FAILED_RUNNER_SHUTDOWN_EXIT_143_NOT_CERTIFIED",
-    "flagship_unconditional": "OPEN_IN_LEAN"
+    "flagship_unconditional": "OPEN_IN_LEAN",
+    "canonical_all_increment_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
   }
 }
