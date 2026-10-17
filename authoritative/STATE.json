@@ -717,13 +717,13 @@
   "s023_proof_note": "research/S023_CAP_TRANSPORT_PROOF.md",
   "s023_closeout": "sessions/S023_CLOSEOUT.md",
   "s024_target": "research/S024_CAP_NORMAL_FORM_CERTIFICATION_TARGET.md",
-  "s024_status": "EXECUTED__POINTED_UNLABELLED_ORBIT_BRIDGE_SOURCE_FORMALIZED__IMAGE_ORBIT_OPEN",
+  "s024_status": "EXECUTED_PARTIAL__POINTED_ORBIT_BRIDGE_STRICT_LEAN_KERNEL_VERIFIED__IMAGE_ORBIT_STILL_OPEN",
   "s024_start_source_sha": "1ae1e7eccb55893d1dee798c57ba2e2663f03090",
   "s024_branch": "session/s007-full-lean-flagship",
   "s024_pr": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4",
   "s024_proof_sha": "06daea1887f0918fa3b1191cf315ec56a0c0222f",
   "s024_strict_lean_run": "39025025539",
-  "s024_strict_lean_status": "PENDING_RESULT_VERIFICATION_AT_STATE_WRITE",
+  "s024_strict_lean_status": "SUCCESS_EXACT_SHA_PINNED_LAKE_BUILD_S024_MODULE_PROOF_HOLE_SCAN_ALL_INDEPENDENT_CHECKERS",
   "s024_independent_finite_run": "39025025613",
   "s024_independent_finite_status": "SUCCESS_EXACT_SHA_702_IMAGES_11232_GL_STABILIZER_16_PERMUTATIONS",
   "s024_proof_file": "S024.lean",
@@ -741,5 +741,11 @@
   "s024_unconditional_all_caps_kernel_verified": false,
   "s024_exact_remaining_obligation": "Prove AdmissibleCapImageOrbit unconditionally in Lean; then infer ClassicalCapNormalForm and full all-cap flagship",
   "s025_target": "research/S025_EXACT_CAP_ORBIT_KERNEL_TARGET.md",
-  "s025_status": "INSTALLED_NOT_EXECUTED"
+  "s025_status": "INSTALLED_NOT_EXECUTED",
+  "s024_new_declarations_kernel_verified": true,
+  "s024_new_declarations_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ]
 }
