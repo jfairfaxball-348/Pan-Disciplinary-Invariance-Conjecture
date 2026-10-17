@@ -1,0 +1,33 @@
+# PDIC S027 — finish unconditional Lean formalisation of the exact flagship
+
+**Installed after S026 on 17 October 2026; NOT EXECUTED.** The owner's next “Run next session” authorises execution immediately. This is ONLY completion of the theorem already in `research/FLAGSHIP_THEOREM.md`, not new mathematics, novelty, manuscript, Palomar or other research targets. Follow `AGENTS.md`.
+
+## Nonnegotiable deliverable
+
+Produce an exact-SHA strict Lean kernel proof with only `propext`, `Classical.choice`, `Quot.sound`, and a public theorem named `connected_graphMIS_complete_flagship_unconditional_all_caps`, **with no `hnf` argument**, for every connected eight-vertex simple graph and EVERY `IsAdmissibleCap` labelled eight-cap. It must give the exact real 40320-permutation four-term law P0/P1/P2/P3 (moment and expanded forms), deterministic `N₀≤3` for every labelling, `P₃=h/315≤1/105`, with equality iff `G ≃g namedSpider`. Do not merely export the conditional S023 theorem or a numerical finite enumeration.
+
+The intermediate interfaces are:
+```lean
+admissibleCapImageOrbit_proved : AdmissibleCapImageOrbit
+classicalCapNormalForm_proved : ClassicalCapNormalForm
+connected_graphMIS_complete_flagship_unconditional_all_caps
+```
+
+## Certified handoff and branches
+
+Canonical active proof branch `session/s007-full-lean-flagship` draft PR #4, **unmerged**. S026 exact proof commit [bc77db01f5fbc4c783a58370377b591b98dff5f8](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/bc77db01f5fbc4c783a58370377b591b98dff5f8), [strict run 39058175065 SUCCESS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39058175065), [finite run 39058175027 SUCCESS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39058175027). New genuine basis-map machinery is kernel certified: `s025_admissible_three_anchor_witness`, `s025ColumnMatrix`, `s025_column_det_nonzero`, `s025CapBasisEquiv`, `s025_admissible_has_linear_basis_map`, `s026_columnMatrix_basis_action`. Earlier S024 `s024_normalized_cap_image_in_candidates` and S023 `connected_graphMIS_complete_flagship_all_caps` are kernel certified in their explicit scopes.
+
+**First step: inspect final strict CI conclusions, not merely builds**, for CI-only draft [PR #11](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/11) and run 39058398437 (full `s025_normalized_tail_classification` + exact 18 matrix images) and [PR #12](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/12) run 39058538203 (actual `s025CapBasisEquiv` action). At S026 closeout these runs were NOT certified success. If they fail or hit 143, repair with smaller Lean-native kernel certificates / per-tail splits; preserve saved `scratch/S025_FULL_UNVERIFIED_SOURCE.lean`, do not trust Python as proof. Neither temporary PR may be merged.
+
+## Mandatory proof steps, in this order
+
+1. **Typed normalisation:** Complete verified `s026_capBasisEquiv_basis_action`, prove inverse equivalence maps actual `f 0`, `f 1`, `f w` onto `s024BasisPoint 0/1/2`. From `f w` outside `s024TwoSpan (f 0) (f 1)`, derive `w ≠ 0`, `w ≠ 1`, so `a : Fin 3 → Vertex` is injective. Use `admissible_under_linear` on the actual inverse-composed cap. No affine translation.
+2. **Verified 18-case completeness:** Prove the exhaustively filtered `s024FreePoints.powersetCard 5` (6188 candidates) equals the *explicit* 18-item normalised tails. Either strict-check the existing `s025_normalized_tail_classification` and exact table or replace its monolithic `decide +kernel` by bounded cases/per-case Boolean kernels. The original finite Python check is independent corroboration only.
+3. **Actual-cap predicate connection:** Show `s025ShortZeroFree` holds on the image of any *genuine* normalised admissible cap; map unordered one-, two-, three-point point subsets to the true labelled vertex `capSum` short-zero exclusions using injectivity, not by assuming table membership. Combine with S024 `s024_normalized_cap_image_in_candidates`, then conclude this actual normalised image lies in the certified 18-table.
+4. **Genuine GL witness:** Prove `s025_matrix_images_eq_normalized_table` and `s025_witness_matrices_nonsingular` strict and exact; extract a matrix from the 18-item family for the actual image, show determinant nonzero, construct `Matrix.toLinearEquiv'` with an `Invertible` instance and prove image equality for actual `canonicalCapF3` after `mulVec`. Check columns vs rows, and scalar orientation in the composition with the inverse normalisation.
+5. **Unconditional orbit and flagship:** Compose zero-fixing equivalences to prove `AdmissibleCapImageOrbit` unconditionally. Use already-certified `classicalCapNormalForm_of_image_orbit` to remove the external hypothesis; apply S023 theorem unchanged. Add deterministic `N₀≤3` and both moment/expanded probability identities as required by flagship, not silently omitted.
+6. **Strict trust audit:** `lake build` AND `lake env lean S024.lean` pinned, hole/axiom grep for BOTH `PDIC.lean` and `S024.lean`, explicit `#print axioms` on all new public statements and final unconditional flagship, all finite checkers; pin actual exact proof SHA and final successful GitHub Actions job ID(s). Reject `sorry`, `admit`, `axiom`, `constant`, `native_decide`, compiler trust, and theorem claims based on an in-progress/terminated CI run.
+
+## Scope control and closeout
+
+Only once genuinely kernel checked, mark `LEAN_KERNEL_VERIFIED` and close the flagship gate. Else mark outstanding components `SOURCE_FORMALIZED` / `FINITE_CHECKED` / `OPEN` with smallest obstruction and make the continuation focus on that obstruction, not Palomar or publication. Update README, ROADMAP, CLAIMS, STATE, S027 proof record/closeout; install S028 but do not execute it. Keep research PR #4 draft and unmerged. No publications or external contact without user approval. Novelty/priority remains unresolved.

@@ -1,19 +1,19 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-17",
-  "last_completed_session": "S025",
-  "next_session": "S026",
+  "last_completed_session": "S026",
+  "next_session": "S027",
   "next_session_executed": false,
-  "phase": "S025_POST_CLOSEOUT_STRICT_ANCHOR_VERIFICATION_PASS__TYPED_GL_AND_FINITE_ORBIT_PENDING",
+  "phase": "S026_STRICT_GL_BASIS_AND_COLUMN_ACTION_PASS__18_CASE_CLASSIFICATION_TYPED_NORMALISATION_AND_UNCONDITIONAL_FLAGSHIP_OPEN",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
     "S003R9 strict actual SimpleGraph/count/connectedness appendix and general unique partition theorem; revised manuscript and primary-source comparison"
   ],
-  "mathematics": "ALL_FOUR_REAL_PROBABILITIES_AND_UNIQUE_SHARP_SPIDER_VALID_FOR_EVERY_ADMISSIBLE_EIGHT_CAP_CONDITIONALLY_ON_CLASSICAL_NORMAL_FORM__S025_NEW_POINTED_ORBIT_SOURCE_UNVERIFIED",
+  "mathematics": "CANONICAL_COMPLETE_FOUR_TERM_LAW_AND_CONDITIONAL_ALL_CAP_S023_VERIFIED__S026_GENUINE_GL_BASIS_CERTIFIED__UNCONDITIONAL_EIGHT_CAP_IMAGE_ORBIT_AND_ALL_CAP_FLAGSHIP_OPEN",
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
-  "lean": "S025_ANCHOR_THREE_DECLARATIONS_KERNEL_VERIFIED_AT_EQUIVALENT_EXACT_LEAN_BLOBS_RUN_39053896006__MONOLITHIC_S025_FAILED_RUNNER_143__TYPED_MATRIX_AND_18_OF_6188_UNVERIFIED",
+  "lean": "S026_CANONICAL_COMBINED_STRICT_SUCCESS_SHA_bc77db01_RUN_39058175065__FINITE_39058175027_SUCCESS__S025_DET_SPLIT_S026_COLUMNS_STANDARD_AXIOMS__UNCONDITIONAL_ORBIT_OPEN",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S026: EXACT_SOURCE_STRICT_CI_S025_REPAIR__ACTUAL_ZERO_FIXING_NORMALIZATION_AND_IMAGE_ORBIT__UNCONDITIONAL_ALL_CAP_FLAGSHIP",
+  "next_session_target": "S027: STRICT_18_OF_6188_ORBIT_CERTIFICATE__TYPED_INVERSE_NORMALISATION__UNCONDITIONAL_ALL_CAP_FOUR_TERM_FLAGSHIP",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,7 +167,7 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S026_UNCONDITIONAL_CAP_ORBIT_CLOSE_TARGET.md",
+  "next_session_target_file": "research/S027_FINISH_UNCONDITIONAL_FLAGSHIP_LEAN_TARGET.md",
   "next_session_target_installed_date": "2026-10-17",
   "next_session_target_source": "1b4a096c94bd333ef6e0cf4274efc0f358235e5f",
   "s004_status": "COMPLETED_2026_10_16",
@@ -835,8 +835,38 @@
     "monolithic_failed_reason": "EXIT_143_AFTER_LAKE_BUILD_NO_KERNEL_CERTIFICATE",
     "unverified_full_backup": "scratch/S025_FULL_UNVERIFIED_SOURCE.lean",
     "typed_map_candidate_run": "39054362391",
-    "typed_map_candidate_status": "CHECK_FINAL_RUN_BEFORE_ANY_PROMOTION",
+    "typed_map_candidate_status": "FAILED_RUNNER_SHUTDOWN_EXIT_143__REPAIRED_IN_S026_STRICT_SHA_7934dbee_RUN_39057615918",
     "record": "sessions/S025_VERIFICATION_RECOVERY.md",
     "unconditional_flagship": "OPEN_IN_LEAN"
+  },
+  "s026": {
+    "status": "EXECUTED_PARTIAL__CERTIFIED_POINTED_BASIS_MATRIX_AND_COLUMN_ACTION__UNCONDITIONAL_FLAGSHIP_OPEN",
+    "canonical_proof_branch": "session/s007-full-lean-flagship",
+    "canonical_verified_proof_sha": "bc77db01f5fbc4c783a58370377b591b98dff5f8",
+    "strict_lean_success_run": "39058175065",
+    "independent_finite_success_run": "39058175027",
+    "isolated_determinant_verified_sha": "7934dbeeec1ab64cde09458f7761452a51253432",
+    "isolated_determinant_verified_run": "39057615918",
+    "isolated_column_action_verified_sha": "eeae2d2a47cf1740d6fa4736acf1eb657a4739cc",
+    "isolated_column_action_verified_run": "39058090455",
+    "standard_axioms_only": true,
+    "source_holes_none": true,
+    "exact_18_case_candidate_sha": "0a81491e82b272cf36dbda0eb94bf96be447a962",
+    "exact_18_case_candidate_ci": "39058398437",
+    "exact_18_case_status_at_closeout": "PENDING_STRICT_CHECK_NOT_KERNEL_VERIFIED",
+    "typed_normalisation_action_candidate_sha": "12fb17724f3583b4ae349ec838a5690412427cfe",
+    "typed_normalisation_action_ci": "39058538203",
+    "typed_normalisation_status_at_closeout": "PENDING_STRICT_CHECK_NOT_KERNEL_VERIFIED",
+    "admissible_cap_image_orbit": "OPEN_IN_LEAN",
+    "classical_normal_form_unconditional": "OPEN_IN_LEAN",
+    "all_caps_flagship_unconditional": "OPEN_IN_LEAN",
+    "proof_note": "research/S026_PROOF_NOTE.md",
+    "closeout": "sessions/S026_CLOSEOUT.md",
+    "pr4_draft_unmerged": true
+  },
+  "s027": {
+    "status": "INSTALLED_NOT_EXECUTED",
+    "target_file": "research/S027_FINISH_UNCONDITIONAL_FLAGSHIP_LEAN_TARGET.md",
+    "focus": "exact_18_case_Lean_certificate_and_genuine_zero_fixing_orbit_plus_unconditional_complete_flagship"
   }
 }
