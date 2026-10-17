@@ -4,7 +4,7 @@
   "last_completed_session": "S025",
   "next_session": "S026",
   "next_session_executed": false,
-  "phase": "S025_18_OF_6188_AND_TYPED_BASIS_SOURCE_CANDIDATES_UNVERIFIED__GLOBAL_ZERO_FIXING_CAP_ORBIT_OPEN",
+  "phase": "S025_POST_CLOSEOUT_STRICT_ANCHOR_VERIFICATION_PASS__TYPED_GL_AND_FINITE_ORBIT_PENDING",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -13,7 +13,7 @@
   "mathematics": "ALL_FOUR_REAL_PROBABILITIES_AND_UNIQUE_SHARP_SPIDER_VALID_FOR_EVERY_ADMISSIBLE_EIGHT_CAP_CONDITIONALLY_ON_CLASSICAL_NORMAL_FORM__S025_NEW_POINTED_ORBIT_SOURCE_UNVERIFIED",
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
-  "lean": "S025_NEW_DETERMINANT_NORMALIZED_18_CASE_TABLE_AND_TYPED_GL_SOURCE_FORMALIZED_UNVERIFIED__PREVIOUS_S024_STRICT_CERTIFICATES_VALID__CLASSICAL_NORMAL_FORM_AND_UNCONDITIONAL_ALL_CAP_FLAGSHIP_OPEN",
+  "lean": "S025_ANCHOR_THREE_DECLARATIONS_KERNEL_VERIFIED_AT_EQUIVALENT_EXACT_LEAN_BLOBS_RUN_39053896006__MONOLITHIC_S025_FAILED_RUNNER_143__TYPED_MATRIX_AND_18_OF_6188_UNVERIFIED",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
@@ -822,5 +822,21 @@
     "next_prompt": "research/NEXT_SESSION_PROMPT.md",
     "external_submission": false,
     "pr4_draft_unmerged": true
+  },
+  "s025_recovery": {
+    "status": "THREE_S025_ANCHOR_THEOREMS_LEAN_KERNEL_VERIFIED",
+    "proof_commit": "482f17e5bc9eee15e1063d696e73c77d5e968014",
+    "identical_source_validation_commit": "80610407d796d1ccbd4b9f3174db4d8727f048d5",
+    "strict_lean_pass_run": "39053896006",
+    "strict_lean_pass_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39053896006",
+    "independent_finite": "PASSED",
+    "standard_axioms_only": true,
+    "monolithic_failed_run": "39052514935",
+    "monolithic_failed_reason": "EXIT_143_AFTER_LAKE_BUILD_NO_KERNEL_CERTIFICATE",
+    "unverified_full_backup": "scratch/S025_FULL_UNVERIFIED_SOURCE.lean",
+    "typed_map_candidate_run": "39054362391",
+    "typed_map_candidate_status": "CHECK_FINAL_RUN_BEFORE_ANY_PROMOTION",
+    "record": "sessions/S025_VERIFICATION_RECOVERY.md",
+    "unconditional_flagship": "OPEN_IN_LEAN"
   }
 }
