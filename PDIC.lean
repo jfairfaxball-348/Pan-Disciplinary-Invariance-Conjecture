@@ -5399,10 +5399,10 @@ def s024ExcludedPoints : Finset CapPoint :=
 def s024FreePoints : Finset CapPoint :=
   (Finset.univ : Finset CapPoint) \ s024ExcludedPoints
 
-/-- A kernel-checked reduction: after pinning three basis points,
-    precisely seventeen ambient candidates remain for the other five. -/
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 2000000 in
+/-- A kernel-checked reduction: after pinning three basis points,
+    precisely seventeen ambient candidates remain for the other five. -/
 theorem s024FreePoints_card : s024FreePoints.card = 17 := by
   decide +kernel
 
