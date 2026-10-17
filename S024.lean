@@ -124,20 +124,21 @@ theorem s024_normalized_other_mem_free
   refine ⟨Finset.mem_univ _, ?_⟩
   intro he
   unfold s024ExcludedPoints at he
-  simp only [Finset.mem_union] at he
-  rcases he with hzero | hbase | hneg | hpair
-  · have heq : f v = 0 := by simpa using hzero
-    exact (admissibleCap_point_ne_zero f hf v) heq
-  · obtain ⟨i, _, hi⟩ := Finset.mem_image.mp hbase
-    have heq : f v = f (a i) := by rw [hanchor i]; exact hi.symm
-    exact hv i (hf.1 heq)
-  · obtain ⟨i, _, hi⟩ := Finset.mem_image.mp hneg
-    have hz : f v + f (a i) = 0 := by
-      calc
-        f v + f (a i) = -s024BasisPoint i + s024BasisPoint i := by
-          rw [← hi, hanchor i]
-        _ = 0 := neg_add_cancel _
-    exact (admissibleCap_pair_ne_zero f hf v (a i) (hv i)) hz
+  rcases Finset.mem_union.mp he with hfirst | hpair
+  · rcases Finset.mem_union.mp hfirst with hfirst | hneg
+    · rcases Finset.mem_union.mp hfirst with hzero | hbase
+      · have heq : f v = 0 := by simpa using hzero
+        exact (admissibleCap_point_ne_zero f hf v) heq
+      · obtain ⟨i, _, hi⟩ := Finset.mem_image.mp hbase
+        have heq : f v = f (a i) := by rw [hanchor i]; exact hi.symm
+        exact hv i (hf.1 heq)
+    · obtain ⟨i, _, hi⟩ := Finset.mem_image.mp hneg
+      have hz : f v + f (a i) = 0 := by
+        calc
+          f v + f (a i) = -s024BasisPoint i + s024BasisPoint i := by
+            rw [← hi, hanchor i]
+          _ = 0 := neg_add_cancel _
+      exact (admissibleCap_pair_ne_zero f hf v (a i) (hv i)) hz
   · obtain ⟨t, ht, hi⟩ := Finset.mem_image.mp hpair
     obtain ⟨i, j, hij, rfl⟩ :=
       Finset.card_eq_two.mp (Finset.mem_powersetCard.mp ht).2
