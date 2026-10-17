@@ -4658,3 +4658,78 @@ theorem graphMIS_second_moment_numerator (G : SimpleGraph Vertex) :
 #print axioms PDIC.graphMIS_second_moment_numerator
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S020 continuation: rational normalization and the genuine compatible
+unordered three-subfamily fibre. -/
+
+noncomputable def graphMIS_second_moment (G : SimpleGraph Vertex) : ℚ :=
+  (∑ e : Equiv.Perm Vertex,
+    (Nat.choose (labellingZeroMISCount G e) 2 : ℚ)) /
+      (Fintype.card (Equiv.Perm Vertex) : ℚ)
+
+/-- The exact rational second binomial moment, with actual unordered
+overlap counts and no ordered-pair multiplicity. -/
+theorem graphMIS_second_moment_eq (G : SimpleGraph Vertex) :
+    graphMIS_second_moment G =
+      (2 : ℚ) * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 +
+      (graphMIS_pairOverlapCount G 2 : ℚ) / 315 := by
+  classical
+  have hn :
+      (∑ e : Equiv.Perm Vertex,
+        (Nat.choose (labellingZeroMISCount G e) 2 : ℚ)) =
+        (2304 : ℚ) * (graphMIS_pairOverlapCount G 0 : ℚ) +
+        (128 : ℚ) * (graphMIS_pairOverlapCount G 2 : ℚ) := by
+    exact_mod_cast graphMIS_second_moment_numerator G
+  unfold graphMIS_second_moment
+  rw [hn, uniformLabellings_card]
+  ring
+
+/-- Each *actual* unordered compatible three-MIS family has precisely 128
+simultaneous zero-label permutations. -/
+theorem graphMIS_unordered_compatible_triple_event_card
+    (G : SimpleGraph Vertex) (T : Finset (Finset Vertex))
+    (hT : IsUnorderedCompatibleTriple G T) :
+    ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => ∀ s ∈ T,
+        capSum (fun v => canonicalCapF3 (e v)) s = 0)).card = 128 := by
+  classical
+  rcases hT with ⟨hthree, hall, s, hs, t, ht, r, hr,
+    hst, hsr, htr, hcomp, hmixed, _hmixedOther⟩
+  have hsub : ({s, t, r} : Finset (Finset Vertex)) ⊆ T := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl | rfl <;> assumption
+  have hcard : ({s, t, r} : Finset (Finset Vertex)).card = 3 := by
+    simp [hst, hsr, htr]
+  have heq : T = {s, t, r} :=
+    (Finset.eq_of_subset_of_card_le hsub (by omega)).symm
+  have hd : Disjoint s t := by
+    rw [Finset.disjoint_iff_inter_eq_empty, hcomp]
+    ext v
+    simp
+  have hmix : (s ∩ r).card = 2 := by
+    simpa [Finset.inter_comm] using hmixed
+  rw [heq]
+  have hfilt :
+      ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+        (fun e => ∀ u ∈ ({s, t, r} : Finset (Finset Vertex)),
+          capSum (fun v => canonicalCapF3 (e v)) u = 0)).card =
+        Fintype.card {e : Equiv.Perm Vertex //
+          capSum (fun v => canonicalCapF3 (e v)) s = 0 ∧
+          capSum (fun v => canonicalCapF3 (e v)) t = 0 ∧
+          capSum (fun v => canonicalCapF3 (e v)) r = 0} := by
+    rw [Fintype.card_subtype]
+    congr 1
+    ext e
+    simp
+  rw [hfilt]
+  exact canonicalCapF3_perm_compatible_triple_event_card s t r
+    (hall s hs).1 (hall t ht).1 (hall r hr).1 hd hmix
+
+#print axioms PDIC.graphMIS_second_moment_eq
+#print axioms PDIC.graphMIS_unordered_compatible_triple_event_card
+
+end PDIC
