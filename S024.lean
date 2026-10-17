@@ -444,3 +444,56 @@ theorem s026_columnMatrix_basis_action (p q r : CapPoint) (i : Fin 3) :
 #print axioms PDIC.s026_columnMatrix_basis_action
 
 end PDIC
+
+namespace PDIC
+
+/-! S026: bounded kernel certificate for genuine cap determinant and the
+actual typed GL(3,3) basis map, promoted from the dedicated CI branch. -/
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 10000000 in
+/-- An ordered triple comprising a nonzero point, a point outside its
+projective line and a third point outside their plane has an invertible
+column matrix. The finite determinant obstruction is kernel checked. -/
+theorem s025_column_det_nonzero :
+    ∀ p q r : CapPoint, p ≠ 0 →
+      q ∉ s024TwoSpan p p →
+      r ∉ s024TwoSpan p q →
+      (s025ColumnMatrix p q r).det ≠ 0 := by
+  intro p
+  fin_cases p <;> decide +kernel
+
+/-- For every admissible cap a genuine third vertex provides an actual
+zero-fixing linear equivalence. It is constructed from the three selected
+cap columns, rather than supplied as a normal-form assumption. -/
+noncomputable def s025CapBasisEquiv
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (w : Vertex) (hw : f w ∉ s024TwoSpan (f 0) (f 1)) :
+    CapPoint ≃ₗ[ZMod 3] CapPoint := by
+  let M : Matrix (Fin 3) (Fin 3) (ZMod 3) :=
+    s025ColumnMatrix (f 0) (f 1) (f w)
+  have hdet : M.det ≠ 0 :=
+    s025_column_det_nonzero (f 0) (f 1) (f w)
+      (admissibleCap_point_ne_zero f hf 0)
+      (s025_cap01_not_in_self_span f hf) hw
+  have hunit : IsUnit M.det := isUnit_iff_ne_zero.mpr hdet
+  letI : Invertible M := Matrix.invertibleOfIsUnitDet M hunit
+  exact M.toLinearEquiv' inferInstance
+
+/-- A normalizing linear equivalence exists for every admissible cap,
+with columns explicitly taken from genuine labels 0, 1 and w. This closes
+the basis-existence part of the orbit gate but not the finite 18-case orbit
+classification. -/
+theorem s025_admissible_has_linear_basis_map
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
+    ∃ w : Vertex, ∃ L : CapPoint ≃ₗ[ZMod 3] CapPoint,
+      f w ∉ s024TwoSpan (f 0) (f 1) := by
+  obtain ⟨w, _, hw⟩ := s025_admissible_three_anchor_witness f hf
+  exact ⟨w, s025CapBasisEquiv f hf w hw, hw⟩
+
+#print axioms PDIC.s025_column_det_nonzero
+#print axioms PDIC.s025CapBasisEquiv
+#print axioms PDIC.s025_admissible_has_linear_basis_map
+
+
+end PDIC
