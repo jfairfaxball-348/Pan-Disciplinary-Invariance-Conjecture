@@ -4577,3 +4577,84 @@ theorem graphMIS_unordered_pair_family_event_card
 #print axioms PDIC.graphMIS_unordered_pair_family_event_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S020: invariant overlap classes and the numerical second factorial
+moment of the actual graph maximal-independent-set family. -/
+
+/-- The overlap of a genuine unordered pair of sets is independent of
+which member is named first. -/
+def UnorderedPairOverlap (T : Finset (Finset Vertex)) (k : ℕ) : Prop :=
+  ∀ s ∈ T, ∀ t ∈ T, s ≠ t → (s ∩ t).card = k
+
+theorem unorderedPairOverlap_pair_iff
+    (s t : Finset Vertex) (hne : s ≠ t) (k : ℕ) :
+    UnorderedPairOverlap {s, t} k ↔ (s ∩ t).card = k := by
+  classical
+  constructor
+  · intro h
+    exact h s (by simp) t (by simp) hne
+  · intro h a ha b hb hab
+    simp only [Finset.mem_insert, Finset.mem_singleton] at ha hb
+    rcases ha with rfl | rfl <;> rcases hb with rfl | rfl
+    · exact (hab rfl).elim
+    · exact h
+    · simpa [Finset.inter_comm] using h
+    · exact (hab rfl).elim
+
+/-- Number of genuine *unordered* two-MIS subfamilies with overlap k. -/
+noncomputable def graphMIS_pairOverlapCount
+    (G : SimpleGraph Vertex) (k : ℕ) : ℕ :=
+  (((fourGraphMISFamily G).powersetCard 2).filter
+    (fun T => UnorderedPairOverlap T k)).card
+
+/-- The first fully numerical second factorial-moment identity for the
+genuine 40320-element labelling space and genuine unordered graph MIS pairs. -/
+theorem graphMIS_second_moment_numerator (G : SimpleGraph Vertex) :
+    (∑ e : Equiv.Perm Vertex,
+      Nat.choose (labellingZeroMISCount G e) 2) =
+      2304 * graphMIS_pairOverlapCount G 0 +
+      128 * graphMIS_pairOverlapCount G 2 := by
+  classical
+  let F := (fourGraphMISFamily G).powersetCard 2
+  have hfibre (T : Finset (Finset Vertex)) (hT : T ∈ F) :
+      ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+        (fun e => ∀ s ∈ T,
+          capSum (fun v => canonicalCapF3 (e v)) s = 0)).card =
+        (if UnorderedPairOverlap T 0 then 2304 else 0) +
+        (if UnorderedPairOverlap T 2 then 128 else 0) := by
+    obtain ⟨s, t, hne, _hs, _ht, rfl, hevent⟩ :=
+      graphMIS_unordered_pair_family_event_card G T hT
+    rw [hevent]
+    simp only [unorderedPairOverlap_pair_iff s t hne]
+    by_cases h0 : (s ∩ t).card = 0
+    · have h2 : (s ∩ t).card ≠ 2 := by omega
+      simp [h0, h2]
+    · by_cases h2 : (s ∩ t).card = 2
+      · simp [h0, h2]
+      · simp [h0, h2]
+  calc
+    (∑ e : Equiv.Perm Vertex,
+      Nat.choose (labellingZeroMISCount G e) 2) =
+        ∑ T ∈ F,
+          ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+            (fun e => ∀ s ∈ T,
+              capSum (fun v => canonicalCapF3 (e v)) s = 0)).card := by
+          exact graphMIS_unordered_moment_double_count G 2
+    _ = ∑ T ∈ F,
+          (if UnorderedPairOverlap T 0 then 2304 else 0) +
+          (if UnorderedPairOverlap T 2 then 128 else 0) := by
+          apply Finset.sum_congr rfl
+          intro T hT
+          exact hfibre T hT
+    _ = 2304 * graphMIS_pairOverlapCount G 0 +
+        128 * graphMIS_pairOverlapCount G 2 := by
+          simp [F, graphMIS_pairOverlapCount, Finset.sum_add_distrib,
+            Finset.sum_ite, mul_comm]
+
+#print axioms PDIC.unorderedPairOverlap_pair_iff
+#print axioms PDIC.graphMIS_second_moment_numerator
+
+end PDIC
