@@ -1,8 +1,8 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
-  "date": "2026-10-16",
-  "last_completed_session": "S019",
-  "next_session": "S020",
+  "date": "2026-10-17",
+  "last_completed_session": "S020",
+  "next_session": "S021",
   "next_session_executed": false,
   "phase": "FULL_FLAGSHIP_LEAN_FORMALISATION_S018_GENERAL_UNORDERED_K_MOMENT_BRIDGE_KERNEL_CERTIFIED",
   "first_paper_roadmap": [
@@ -16,7 +16,7 @@
   "lean": "S018_EXTENSION_EXACT_SOURCE_6eb67aa8cb7ae08151fe3074166b7a206f844cd7_STRICT_LEAN_PASS_38976368670_FINITE_PASS_38976368661_STANDARD_AXIOMS_ONLY",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
-  "next_prompt": "research/S020_FULL_UNORDERED_MOMENTS_AND_FLAGSHIP_TARGET.md",
+  "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S018_EXTENSION_6eb67aa8cb7ae08151fe3074166b7a206f844cd7_STRICT_KERNEL_AND_TEN_FINITE_CHECKERS_PASS_38976368670",
   "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38976368670",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S020_UNORDERED_PAIR_CLASS_FILTER_AGGREGATION_TRIPLE_128_H_AND_FULL_FOUR_TERM_LAW",
+  "next_session_target": "S021_EXACT_SHA_CERTIFICATION_OF_S020_M2_AND_GENUINE_UNORDERED_M3_THEN_FULL_FOUR_TERM_SPIDER_IFF",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,9 +167,9 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S020_FULL_UNORDERED_MOMENTS_AND_FLAGSHIP_TARGET.md",
-  "next_session_target_installed_date": "2026-10-16",
-  "next_session_target_source": "e981acac25b8106e4b4df782340217ed948445bb",
+  "next_session_target_file": "research/S021_STRICT_M2_M3_FLAGSHIP_CLOSURE_TARGET.md",
+  "next_session_target_installed_date": "2026-10-17",
+  "next_session_target_source": "afc1ecd80909d32a7e5cabf18df0044ccae9e696",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -611,12 +611,35 @@
   "s019_closeout": "sessions/S019_CLOSEOUT.md",
   "s019_proof_note": "research/S019_PAIR_SUBFAMILY_BRIDGE.md",
   "s020_target": "research/S020_FULL_UNORDERED_MOMENTS_AND_FLAGSHIP_TARGET.md",
-  "s020_status": "INSTALLED_NOT_EXECUTED",
+  "s020_status": "EXECUTED_SOURCE_FORMALIZED_CI_UNVERIFIED_M2_NUMERATOR_RATIONAL_AND_COMPATIBLE_TRIPLE_FIBRE__FLAGSHIP_OPEN",
   "s019_source_verified": true,
   "s019_new_declarations_kernel_verified": true,
   "s019_verified_axioms": [
     "propext",
     "Classical.choice",
     "Quot.sound"
-  ]
+  ],
+  "s020_branch": "session/s007-full-lean-flagship",
+  "s020_pr": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4",
+  "s020_candidate_m2_sha": "6a8ddd69b636ce523f7aa0c599e59c0fe07b7186",
+  "s020_candidate_rational_and_triple_sha": "cba4eedef0033ec828c66593f8cf35aba3d45fa1",
+  "s020_finite_checker_sha": "afc1ecd80909d32a7e5cabf18df0044ccae9e696",
+  "s020_source_declarations": [
+    "UnorderedPairOverlap",
+    "unorderedPairOverlap_pair_iff",
+    "graphMIS_pairOverlapCount",
+    "graphMIS_second_moment_numerator",
+    "graphMIS_second_moment",
+    "graphMIS_second_moment_eq",
+    "graphMIS_unordered_compatible_triple_event_card"
+  ],
+  "s020_lean_ci_status": "NO_EXACT_SHA_RUN_OBTAINED__NOT_KERNEL_VERIFIED",
+  "s020_finite_local_status": "PASS_SPIDER_AND_P8_ALL_40320_LABELS_M2_AND_M3_NUMERATORS",
+  "s020_second_moment_aggregate_kernel_verified": false,
+  "s020_third_moment_aggregate_kernel_verified": false,
+  "s020_four_probability_full_flagship_kernel_verified": false,
+  "s020_closeout": "sessions/S020_CLOSEOUT.md",
+  "s020_proof_note": "research/S020_UNORDERED_MOMENT_PROOF_ATTEMPT.md",
+  "s021_target": "research/S021_STRICT_M2_M3_FLAGSHIP_CLOSURE_TARGET.md",
+  "s021_status": "INSTALLED_NOT_EXECUTED"
 }
