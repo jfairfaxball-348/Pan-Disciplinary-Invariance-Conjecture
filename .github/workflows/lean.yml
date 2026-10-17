@@ -21,14 +21,14 @@ jobs:
       - name: Kernel-check PDIC declarations
         run: |
           set -euo pipefail
-          lake build 2>&1 | tee pdic-lean-build.log
+          (lake build && lake env lean S024.lean) 2>&1 | tee pdic-lean-build.log
           if grep -E 'sorryAx|_native|Lean.trustCompiler' pdic-lean-build.log; then
             echo "Rejected nonstandard axiom in Lean proof declarations"
             exit 1
           fi
       - name: Reject unapproved proof holes
         run: |
-          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' PDIC.lean; then
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' PDIC.lean S024.lean; then
             echo "Forbidden proof hole or custom axiom in Lean source"
             exit 1
           fi
