@@ -50,3 +50,15 @@ Both strict runs checked `lake build`, `lake env lean S024.lean`, the complete p
 **Remaining exact gates:** (i) independently construct and kernel-certify a normalizing basis for *every* admissible cap, (ii) kernel-certify that the genuine admissible members of the 6188 five-subset candidates are exactly the 18 finitely computed normalized caps, (iii) exhibit and certify zero-fixing invertible linear maps for those 18; only then derive `AdmissibleCapImageOrbit`, `ClassicalCapNormalForm` and the unconditional four-probability/spider theorem. The 6188/18 counts remain **FINITE_CHECKED** until the enumerative Lean certificate exists; this extension does **not** discharge the orbit theorem.
 
 The authoritative installed next prompt remains S025, **NOT EXECUTED**. Draft PR #4 stays **OPEN / UNMERGED**. No submissions, correspondence, or mutation of other research repositories.
+
+
+## Continuation: exact full-image 6,188-candidate domain
+
+At [\`e70005454ba00c6e52ee5d2c2b33a8da19ac88f9\`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e70005454ba00c6e52ee5d2c2b33a8da19ac88f9), [strict Lean workflow \`39044981946\` SUCCESS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39044981946), the source now proves:
+
+- \`s024RemainingCandidateFamily_card\`: exactly \`(s024FreePoints.powersetCard 5).card = 6188\` in the Lean kernel.
+- \`s024_normalized_cap_image_in_candidates\`: the **entire unordered image** of any actual admissible eight-cap with three genuinely pinned basis labels belongs to \`s024NormalizedFullCandidates\`, constructed from the true five-element cap image. This is a universal conditional-on-anchor statement, not an independently assumed candidate representation.
+
+A further proof candidate at [\`a4fd51d5507db604eb5bcfb24c8cccd3108e037b\`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/a4fd51d5507db604eb5bcfb24c8cccd3108e037b) adds a sign-normalized ternary projective representation, the at-most-four-direction plane lemma, and an attempted theorem \`s024_admissible_point_outside_two_span\` that no genuine eight-cap can lie in the linear span of two selected labels. **Its formal status must follow exact-head strict CI**; its source content alone is not certification.
+
+The global cap-orbit theorem, full typed basis normalization and 18-case classification remain unresolved. S025 remains installed and unexecuted; this section is S024 continuation, not S025 closeout.
