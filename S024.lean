@@ -518,3 +518,68 @@ theorem s026_capBasisEquiv_basis_action
 #print axioms PDIC.s026_capBasisEquiv_basis_action
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S026: the inverse typed equivalence normalises genuine cap anchors,
+not an abstract change of coordinates. -/
+
+theorem s026_capBasisEquiv_inverse_basis_action
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (w : Vertex) (hw : f w ∉ s024TwoSpan (f 0) (f 1))
+    (i : Fin 3) :
+    (s025CapBasisEquiv f hf w hw).symm
+      (if i = 0 then f 0 else if i = 1 then f 1 else f w) =
+      s024BasisPoint i := by
+  rw [← s026_capBasisEquiv_basis_action f hf w hw i]
+  simp
+
+/-- The third selected label really is distinct from the first two. -/
+theorem s026_basis_third_ne_zero_one
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (w : Vertex) (hw : f w ∉ s024TwoSpan (f 0) (f 1)) :
+    w ≠ 0 ∧ w ≠ 1 := by
+  have hmem0 : f 0 ∈ s024TwoSpan (f 0) (f 1) := by
+    apply Finset.mem_image.mpr
+    refine ⟨(1, 0), Finset.mem_univ _, ?_⟩
+    simp
+  have hmem1 : f 1 ∈ s024TwoSpan (f 0) (f 1) := by
+    apply Finset.mem_image.mpr
+    refine ⟨(0, 1), Finset.mem_univ _, ?_⟩
+    simp
+  constructor
+  · intro h
+    exact hw (by simpa [h] using hmem0)
+  · intro h
+    exact hw (by simpa [h] using hmem1)
+
+/-- Every genuine admissible eight-cap admits genuine injective anchor
+vertices and a normalised admissible cap; this still does not assume orbit
+classification, and it uses only the inverse of the explicitly constructed
+zero-fixing typed basis equivalence. -/
+theorem s026_admissible_normalized_anchors
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
+    ∃ L : CapPoint ≃ₗ[ZMod 3] CapPoint,
+      IsAdmissibleCap (fun v => L (f v)) ∧
+      ∃ a : Fin 3 → Vertex, Function.Injective a ∧
+        ∀ i, L (f (a i)) = s024BasisPoint i := by
+  obtain ⟨w, _, hw⟩ := s025_admissible_three_anchor_witness f hf
+  let L := (s025CapBasisEquiv f hf w hw).symm
+  refine ⟨L, admissible_under_linear L f hf, ?_⟩
+  let a : Fin 3 → Vertex :=
+    fun i => if i = 0 then 0 else if i = 1 then 1 else w
+  have hne := s026_basis_third_ne_zero_one f hf w hw
+  have ha : Function.Injective a := by
+    intro i j hij
+    fin_cases i <;> fin_cases j <;>
+      simp [a, hne.1, hne.2, ne_comm] at hij ⊢
+  refine ⟨a, ha, ?_⟩
+  intro i
+  exact s026_capBasisEquiv_inverse_basis_action f hf w hw i
+
+#print axioms PDIC.s026_capBasisEquiv_inverse_basis_action
+#print axioms PDIC.s026_basis_third_ne_zero_one
+#print axioms PDIC.s026_admissible_normalized_anchors
+
+end PDIC
