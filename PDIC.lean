@@ -5352,3 +5352,62 @@ theorem connected_graphMIS_complete_flagship_all_caps
 #print axioms PDIC.connected_graphMIS_complete_flagship_all_caps
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S024: pointed cap classification preflight. These unconditional
+    lemmas hold for every actual admissible eight-cap; no normal-form
+    hypothesis is assumed. The reduced finite enumeration still requires
+    an internal completeness proof before all-cap flagship closure. -/
+
+/-- An admissible cap cannot include the origin, because a singleton
+    zero-sum subset is forbidden. -/
+theorem admissibleCap_point_ne_zero
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) (v : Vertex) :
+    f v ≠ 0 := by
+  intro hz
+  have hs := hf.2 ({v} : Finset Vertex) (by simp)
+  apply hs
+  simp [capSum, hz]
+
+/-- An admissible cap cannot contain an antipodal pair at distinct
+    vertex positions. -/
+theorem admissibleCap_pair_ne_zero
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (v w : Vertex) (hvw : v ≠ w) :
+    f v + f w ≠ 0 := by
+  intro hz
+  have hs := hf.2 ({v, w} : Finset Vertex) (by simp [hvw])
+  apply hs
+  simpa [capSum, hvw] using hz
+
+/-- The standard basis of the pointed ternary space. -/
+def s024BasisPoint (i : Fin 3) : CapPoint :=
+  fun j => if i = j then 1 else 0
+
+/-- Exclusions forced by origin-freeness and the short zero-sum tests:
+    zero, the three basis points, their antipodes, and three negatives
+    of sums of different basis points. -/
+def s024ExcludedPoints : Finset CapPoint :=
+  ({0} : Finset CapPoint) ∪
+  ((Finset.univ : Finset (Fin 3)).image s024BasisPoint) ∪
+  ((Finset.univ : Finset (Fin 3)).image (fun i => -s024BasisPoint i)) ∪
+  (((Finset.univ : Finset (Fin 3)).powersetCard 2).image
+    (fun t => -(∑ i ∈ t, s024BasisPoint i)))
+
+def s024FreePoints : Finset CapPoint :=
+  (Finset.univ : Finset CapPoint) \\ s024ExcludedPoints
+
+/-- A kernel-checked reduction: after pinning three basis points,
+    precisely seventeen ambient candidates remain for the other five. -/
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+theorem s024FreePoints_card : s024FreePoints.card = 17 := by
+  decide +kernel
+
+#print axioms PDIC.admissibleCap_point_ne_zero
+#print axioms PDIC.admissibleCap_pair_ne_zero
+#print axioms PDIC.s024FreePoints_card
+
+end PDIC
