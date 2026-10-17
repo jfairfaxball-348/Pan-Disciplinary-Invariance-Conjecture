@@ -17,6 +17,12 @@ For the quadratic canonical cap `U₀={(x,y,x²+y²): (x,y)≠0}`, there are **4
 
 The script `scripts/verify_s024_normal_form.py` checks this **independently** of the repository's `scripts/verify_s024_orbit.py`, and corroborates: 702 admissible unordered cap images, 11232 invertible matrices, 16 maps in each image fibre, and 48 independent unordered triples in each cap.
 
+## Written proof of the basis-existence step
+
+**PROVED_WRITTEN, not yet LEAN_KERNEL_VERIFIED:** An admissible eight-point cap `U` contains an independent triple. Its span has dimension at most three. If the dimension were at most two, `U` would lie in a two-dimensional linear subspace `P ≅ F₃²`. Such a plane has exactly eight nonzero vectors, partitioned into four opposite pairs `{x,-x}`. Since `U` contains neither zero nor an opposite pair, it can contain at most four points of `P`. This contradicts `|U|=8`. Thus `span(U)` has dimension three and a basis can be selected from its points. The corresponding ordered basis determines a genuine invertible zero-fixing linear map taking it to `E`.
+
+This rank-and-antipodes argument avoids any exhaustive labelled-map search. Lean still needs an internal proof of the dimension/cardinality implication, not a hypothesis asserting a basis exists.
+
 ## Formal progress and precise remaining obligations
 
 New unconditionally formulated source in `PDIC.lean` introduces `s024BasisPoint`, the exact finite excluded-point set, `s024FreePoints`, and theorem `s024FreePoints_card : s024FreePoints.card = 17` by a **kernel-computed** `decide +kernel` certificate, together with elementary cap exclusions. **Promote this theorem to LEAN_KERNEL_VERIFIED only after hosted strict workflow success at its exact commit.** It does **not** prove the orbit.
