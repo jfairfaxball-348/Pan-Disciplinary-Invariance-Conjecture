@@ -1,5 +1,7 @@
 # PDIC S021 — strict M₂ recovery and real unordered M₃ proof
 
+**S021 FINAL P₃ STRICT CERTIFICATE (17 October 2026):** Source [`1339127d293b0c865c7c98d64f3b81a283909c8b`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/1339127d293b0c865c7c98d64f3b81a283909c8b) has [exact-source Lean kernel PASS 39013646695](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39013646695) and [finite PASS 39013646709](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39013646709). Kernel-verified `graphMIS_exact_probability G i` is the **actual** cardinal of `{e : Perm Vertex | N₀(e,G)=i}` divided by 40320. For connected G, `P₃=h/315≤1/105`, equality **iff `Nonempty (G ≃g namedSpider)`**. All three new public declarations print only `propext`, `Classical.choice`, `Quot.sound`; strict scan and all finite scripts **including S020 unordered witness checker** pass. This **supersedes the CI-PENDING P₃ notes from earlier S021 snapshots**. S022 remains necessary for the actual P₀/P₁/P₂ laws; full flagship is **not** kernel certified.
+
 **Executed:** 17 October 2026. **Canonical source:** `session/s007-full-lean-flagship`, unmerged draft PR #4. Do not substitute main's historic `PDIC.lean`.
 
 ## Certified repair — true second moment
