@@ -286,10 +286,10 @@ def s024ProjectiveOrient (p : CapPoint) : CapPoint :=
       (p 0 = 0 ∧ p 1 = 0 ∧ p 2 = (2 : ZMod 3))
   then -p else p
 
-/-- Two points have the same canonical direction precisely up to sign.
-This is a finite property of the actual 27-element ternary vector space. -/
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 2000000 in
+/-- Two points have the same canonical direction precisely up to sign.
+This is a finite property of the actual 27-element ternary vector space. -/
 theorem s024ProjectiveOrient_eq_cases :
     ∀ p q : CapPoint,
       s024ProjectiveOrient p = s024ProjectiveOrient q →
@@ -301,11 +301,11 @@ def s024TwoSpan (p q : CapPoint) : Finset CapPoint :=
   (Finset.univ : Finset (ZMod 3 × ZMod 3)).image
     (fun ab => ab.1 • p + ab.2 • q)
 
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
 /-- Every ternary linear plane has at most four nonzero projective
 directions. Unlike external scripts, this is a kernel-computed 27×27
 finite geometry certificate. -/
-set_option maxRecDepth 16384 in
-set_option maxHeartbeats 2000000 in
 theorem s024TwoSpan_projective_le_four :
     ∀ p q : CapPoint,
       (((s024TwoSpan p q).filter (fun x => x ≠ 0)).image
