@@ -359,3 +359,55 @@ theorem s024_admissible_point_outside_two_span
 #print axioms PDIC.s024_admissible_point_outside_two_span
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S025: genuine independent-triple witness from actual cap exclusions.
+The next task is to construct the typed zero-fixing linear equivalence from
+this witness, then certify the eighteen normalized orbit cases. -/
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+/-- The span of a repeated vector has only zero and its two signs,
+including the degenerate zero-vector case. The assertion is finite and
+checked by the Lean kernel over the actual ternary coordinate type. -/
+theorem s025_span_self_cases :
+    ∀ p q : CapPoint, q ∈ s024TwoSpan p p →
+      q = 0 ∨ q = p ∨ q = -p := by
+  decide +kernel
+
+/-- Two actual distinct cap labels cannot lie on the same ternary
+projective direction. This establishes the first two independent anchors
+without an assumed cap normal form. -/
+theorem s025_cap01_not_in_self_span
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
+    f 1 ∉ s024TwoSpan (f 0) (f 0) := by
+  intro hs
+  rcases s025_span_self_cases (f 0) (f 1) hs with hzero | hsame | hneg
+  · exact admissibleCap_point_ne_zero f hf 1 hzero
+  · have h : (1 : Vertex) = 0 := hf.1 hsame
+    exact (by decide : (1 : Vertex) ≠ 0) h
+  · have hsum : f 0 + f 1 = 0 := by
+      rw [hneg]
+      exact add_neg_cancel _
+    exact admissibleCap_pair_ne_zero f hf 0 1 (by decide) hsum
+
+/-- Every genuine eight-cap has an ordered triple of actual labelled points:
+the second is outside the first one's line and the third is outside their
+plane. These hypotheses are sufficient for coordinate basis normalization,
+which is the next S025 construction. -/
+theorem s025_admissible_three_anchor_witness
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
+    ∃ w : Vertex,
+      f 1 ∉ s024TwoSpan (f 0) (f 0) ∧
+      f w ∉ s024TwoSpan (f 0) (f 1) := by
+  obtain ⟨w, hw⟩ :=
+    s024_admissible_point_outside_two_span f hf 0 1
+  exact ⟨w, s025_cap01_not_in_self_span f hf, hw⟩
+
+#print axioms PDIC.s025_span_self_cases
+#print axioms PDIC.s025_cap01_not_in_self_span
+#print axioms PDIC.s025_admissible_three_anchor_witness
+
+end PDIC
