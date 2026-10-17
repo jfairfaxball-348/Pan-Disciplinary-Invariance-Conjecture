@@ -70,7 +70,7 @@ theorem classicalCapNormalForm_iff_image_orbit :
       exact ⟨p v, (hp v).symm⟩
     · rintro ⟨v, rfl⟩
       refine ⟨p.symm v, ?_⟩
-      simpa using (hp (p.symm v)).symm
+      simpa using (hp (p.symm v))
   · exact classicalCapNormalForm_of_image_orbit
 
 /-- Under the precise *unproved* image-orbit classification, all
