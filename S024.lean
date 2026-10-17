@@ -157,3 +157,55 @@ theorem s024_normalized_other_mem_free
 #print axioms PDIC.s024_normalized_other_mem_free
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S024 extension: the exact 6188-candidate domain, under a genuinely
+normalized independent triple. The universal existence of a normalizing
+triple and exhaustive 18-case orbit certificate remain separate obligations. -/
+
+/-- The five vertices outside the three distinct basis-anchor positions. -/
+def s024RemainingVertices (a : Fin 3 → Vertex) : Finset Vertex :=
+  (Finset.univ : Finset Vertex).filter (fun v => ∀ i, v ≠ a i)
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+theorem s024RemainingVertices_card :
+    ∀ a : Fin 3 → Vertex, Function.Injective a →
+      (s024RemainingVertices a).card = 5 := by
+  decide +kernel
+
+/-- The actual five non-basis cap points, retaining the vertex-to-point
+injection rather than assuming a choice of five ambient vectors. -/
+noncomputable def s024RemainingCapPoints
+    (f : Vertex → CapPoint) (a : Fin 3 → Vertex) : Finset CapPoint := by
+  classical
+  exact (s024RemainingVertices a).image f
+
+/-- Every normalized admissible cap contributes one of the genuine
+five-element subsets of the seventeen allowable ambient points.
+This reduces the later universal classification to precisely the
+\`s024FreePoints.powersetCard 5\` domain; it does not assume all
+such subsets are caps or classify the resulting eighteen caps. -/
+theorem s024RemainingCapPoints_in_five_subsets
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (a : Fin 3 → Vertex) (ha : Function.Injective a)
+    (hanchor : ∀ i, f (a i) = s024BasisPoint i) :
+    s024RemainingCapPoints f a ∈ s024FreePoints.powersetCard 5 := by
+  classical
+  change (s024RemainingVertices a).image f ∈
+    s024FreePoints.powersetCard 5
+  apply Finset.mem_powersetCard.mpr
+  constructor
+  · intro x hx
+    obtain ⟨v, hv, rfl⟩ := Finset.mem_image.mp hx
+    apply s024_normalized_other_mem_free f hf a ha hanchor v
+    exact (Finset.mem_filter.mp hv).2
+  · rw [Finset.card_image_of_injective _ hf.1]
+    exact s024RemainingVertices_card a ha
+
+#print axioms PDIC.s024RemainingVertices_card
+#print axioms PDIC.s024RemainingCapPoints_in_five_subsets
+
+end PDIC
