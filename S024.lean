@@ -817,3 +817,62 @@ theorem s027_any_admissible_normalized_in_filtered_family
 #print axioms PDIC.s027_any_admissible_normalized_in_filtered_family
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S027 positive half of the finite normalized-cap classification:
+verify *only* the 18 explicitly stated tails, never enumerate every
+possible Finset CapPoint in the kernel. The remaining exhaustive
+no-other-tail direction is a separate, still-open mathematical gate. -/
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 5000000 in
+theorem s027_eighteen_tails_free_domain_certificate :
+    (s025NormalizedTails.filter (fun T =>
+      ¬ (T ⊆ s024FreePoints ∧ T.card = 5))).card = 0 := by
+  decide +kernel
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 5000000 in
+theorem s027_eighteen_tails_short_zero_certificate :
+    (s025NormalizedTails.filter (fun T =>
+      s027ShortZeroFree (s024BasisSet ∪ T) = false)).card = 0 := by
+  decide +kernel
+
+/-- Every one of the explicit eighteen candidate tails belongs to the
+genuinely admissible normalized filter. This is only one inclusion. -/
+theorem s027_eighteen_tails_subset_filtered_candidates :
+    s025NormalizedTails ⊆ s027NormalizedAdmissibleTails := by
+  classical
+  intro T hT
+  have hdomain : T ⊆ s024FreePoints ∧ T.card = 5 := by
+    by_contra hn
+    have hmem :
+        T ∈ s025NormalizedTails.filter (fun V =>
+          ¬ (V ⊆ s024FreePoints ∧ V.card = 5)) :=
+      Finset.mem_filter.mpr ⟨hT, hn⟩
+    have he : (s025NormalizedTails.filter (fun V =>
+          ¬ (V ⊆ s024FreePoints ∧ V.card = 5))) = ∅ :=
+      Finset.card_eq_zero.mp s027_eighteen_tails_free_domain_certificate
+    simp [he] at hmem
+  have hshort : s027ShortZeroFree (s024BasisSet ∪ T) = true := by
+    cases h : s027ShortZeroFree (s024BasisSet ∪ T) with
+    | false =>
+      have hmem :
+          T ∈ s025NormalizedTails.filter (fun V =>
+            s027ShortZeroFree (s024BasisSet ∪ V) = false) :=
+        Finset.mem_filter.mpr ⟨hT, h⟩
+      have he : (s025NormalizedTails.filter (fun V =>
+            s027ShortZeroFree (s024BasisSet ∪ V) = false)) = ∅ :=
+        Finset.card_eq_zero.mp s027_eighteen_tails_short_zero_certificate
+      simp [he] at hmem
+    | true => exact h
+  apply Finset.mem_filter.mpr
+  exact ⟨Finset.mem_powersetCard.mpr hdomain, hshort⟩
+
+#print axioms PDIC.s027_eighteen_tails_free_domain_certificate
+#print axioms PDIC.s027_eighteen_tails_short_zero_certificate
+#print axioms PDIC.s027_eighteen_tails_subset_filtered_candidates
+
+end PDIC
