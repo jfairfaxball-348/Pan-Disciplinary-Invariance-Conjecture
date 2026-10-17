@@ -45,3 +45,4 @@ jobs:
 
           python3 scripts/verify_s011.py
           python3 scripts/verify_s018_spider_distribution.py
+          python3 scripts/verify_s020_unordered_moments.py
