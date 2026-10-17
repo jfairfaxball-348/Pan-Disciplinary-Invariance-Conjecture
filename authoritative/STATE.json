@@ -1,25 +1,25 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-17",
-  "last_completed_session": "S021",
-  "next_session": "S023",
+  "last_completed_session": "S023",
+  "next_session": "S024",
   "next_session_executed": false,
-  "phase": "FULL_FLAGSHIP_LEAN__GENUINE_M1_M2_M3_AND_ACTUAL_P3_SHARP_KERNEL_VERIFIED__P0_P1_P2_BRIDGE_OPEN",
+  "phase": "FULL_FLAGSHIP_ALL_CAP_CONDITIONAL_TRANSPORT_STRICT_LEAN_KERNEL_VERIFIED__CLASSICAL_CAP_NORMAL_FORM_EXTERNAL",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
     "S003R9 strict actual SimpleGraph/count/connectedness appendix and general unique partition theorem; revised manuscript and primary-source comparison"
   ],
-  "mathematics": "GENUINE_UNORDERED_M2_M3_STRICT_KERNEL_VERIFIED__ACTUAL_P3_EQ_H_DIV_315_SHARP_IFF_SPIDER_KERNEL_VERIFIED__ACTUAL_P0_P1_P2_OPEN",
+  "mathematics": "ALL_FOUR_REAL_PROBABILITIES_AND_UNIQUE_SHARP_SPIDER_VALID_FOR_EVERY_ADMISSIBLE_EIGHT_CAP_CONDITIONALLY_ON_CLASSICAL_NORMAL_FORM",
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
-  "lean": "S021_ACTUAL_P3_STRICT_CERTIFIED_1339127d293b0c865c7c98d64f3b81a283909c8b_LEAN_PASS_39013646695_FINITE_PASS_39013646709_STANDARD_AXIOMS",
+  "lean": "S023_ALL_CAP_CONDITIONAL_EXPLICIT_EVENT_FIBRE_BIJECTION_STRICT_VERIFIED_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_PASS_39023530142_FINITE_PASS_39023530135",
   "publication": "FIVE_PAGE_DRAFT_NOT_SUBMITTED__S004_NOVELTY_AND_SIGNIFICANCE_NOT_ESTABLISHED",
   "palomar": "S006_NARROW_GRAPH_MATRIX_PACKAGE_PREPARED_UNVERIFIED_NO_MATCHING_OFFICIAL_FULL_MODE_PASS__OWNER_PAUSED_PALOMAR_FOR_FULL_LEAN",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
-  "strict_hosted_ci": "S021_ACTUAL_P3_1339127d293b0c865c7c98d64f3b81a283909c8b_EXACT_SHA_STRICT_KERNEL_HOLE_SCAN_AND_ALL_ELEVEN_FINITE_CHECKERS_SUCCESS",
-  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39013646695",
+  "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
+  "strict_hosted_ci_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39023530142",
   "all_five_verifier_run": "ALL_SIX_PASS_LOCAL_AND_HOSTED_38890367785",
   "native_axioms_approved": false,
   "s003r3_closeout": "sessions/S003R3_CLOSEOUT.md",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "CONDITIONAL_ALL_ADMISSIBLE_CAP_UNIFORM_LABELLING_TRANSPORT_AND_PAPER_ALIGNMENT",
+  "next_session_target": "INTERNAL_LEAN_PROOF_OF_CLASSICAL_CAP_NORMAL_FORM_AND_UNCONDITIONAL_ALL_CAP_FLAGSHIP",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,7 +167,7 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S023_ALL_CAP_TRANSPORT_TARGET.md",
+  "next_session_target_file": "research/S024_CAP_NORMAL_FORM_CERTIFICATION_TARGET.md",
   "next_session_target_installed_date": "2026-10-17",
   "next_session_target_source": "78273ce1fae09f844009740830b5ca9cdff7f6b7",
   "s004_status": "COMPLETED_2026_10_16",
@@ -690,7 +690,33 @@
     "connected_graphMIS_complete_flagship"
   ],
   "s023_target": "research/S023_ALL_CAP_TRANSPORT_TARGET.md",
-  "s023_status": "INSTALLED_NOT_EXECUTED",
+  "s023_status": "EXECUTED_COMPLETE_CONDITIONAL_ALL_CAP_FLAGSHIP_LEAN_KERNEL_VERIFIED",
   "s023_branch": "session/s007-full-lean-flagship",
-  "s023_pr": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4"
+  "s023_pr": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4",
+  "s023_proof_sha": "1ae1e7eccb55893d1dee798c57ba2e2663f03090",
+  "s023_lean_run": "39023530142",
+  "s023_finite_run": "39023530135",
+  "s023_lean_status": "SUCCESS_EXACT_SHA_BUILD_HOLE_SCAN_ALL_FINITE_STANDARD_AXIOMS",
+  "s023_finite_status": "SUCCESS_EXACT_SHA_TWO_CAP_40320_PER_GRAPH_INDEPENDENT_FINITE_CHECK",
+  "s023_new_declarations": [
+    "rightTranslation",
+    "labellingZeroMISCountForCap_transport",
+    "rightTranslation_event_fibre_card",
+    "graphMIS_cap_event_fibre_card",
+    "graphMIS_probability_for_cap_eq_canonical",
+    "connected_graphMIS_complete_flagship_all_caps"
+  ],
+  "s023_verified_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "s023_all_cap_conditional_flagship_kernel_verified": true,
+  "s023_classical_normal_form_internally_proved": false,
+  "s023_external_input": "ClassicalCapNormalForm is a Prop supplied as an explicit theorem hypothesis; never an axiom or global instance",
+  "s023_proof_note": "research/S023_CAP_TRANSPORT_PROOF.md",
+  "s023_closeout": "sessions/S023_CLOSEOUT.md",
+  "s024_target": "research/S024_CAP_NORMAL_FORM_CERTIFICATION_TARGET.md",
+  "s024_status": "INSTALLED_NOT_EXECUTED",
+  "s024_start_source_sha": "1ae1e7eccb55893d1dee798c57ba2e2663f03090"
 }

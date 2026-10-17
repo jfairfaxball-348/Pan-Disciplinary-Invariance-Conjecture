@@ -10,7 +10,7 @@
 \newcommand{\cF}{\mathcal{F}}
 \title{Zero-Sum Quartet Incidence and Sharp Maximal-Independent-Set Witnesses on Eight Vertices}
 \author{John Fairfax-Ball}
-\date{Research draft, 16 October 2026 --- NOT FOR SUBMISSION}
+\date{Research draft, 17 October 2026 --- NOT FOR SUBMISSION}
 \begin{document}
 \maketitle
 
@@ -21,13 +21,13 @@ vertices. Assuming the classical affine equivalence classification of
 nine-caps, we derive the complete distribution of the number of zero-sum
 four-vertex maximal independent sets under a uniform cap labelling.
 Its three-witness probability is at most $1/105$, with equality precisely
-for the spider tree with leg lengths $(2,2,2,1)$. The finite $4\times4$
-mixed-maximal-independent-set extremal component has a
-Lean-verified bit-vector foundation; its three arbitrary Boolean-matrix semantic extremal transfers
-have been strictly Lean-kernel-verified on research pull request \#3
-at commit \href{https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/1e4cadd580b385e0d8e69e836f3211129e705839}{\texttt{1e4cadd580b3}}. This draft
-makes no claim of literature priority or a complete end-to-end
-formalisation.
+for the spider tree with leg lengths $(2,2,2,1)$. The full four-term law and uniquely sharp spider are strictly
+Lean-kernel-verified for the canonical cap (S022), and their transport to
+every admissible fixed eight-cap is likewise Lean-kernel-verified (S023),
+explicitly conditional on the classical cap normal-form proposition.
+The linear normal form remains an external geometric hypothesis,
+not a Lean axiom or an internally established classification.
+Neither a literature-priority claim nor publication readiness is asserted.
 \end{abstract}
 
 \section{Introduction and scope}
@@ -271,43 +271,50 @@ These supporting transfers are not claimed to imply a
 reachability/stackability result.
 
 \section{Formal verification and publication gate}
-The three arbitrary Boolean-matrix extremal transfers and the concrete
-spider witnesses were strictly kernel-verified at S003R8 commit
-\href{https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/1e4cadd580b385e0d8e69e836f3211129e705839}{\texttt{1e4cadd580b3}}, hosted workflow
-38887318919. All proofs use only standard Lean axioms. The S003R9 graph and connected-partition extensions passed at
-\texttt{8199e6bc41dc}, workflow 38889327092; the exact certificate appears in the
-\href{https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/blob/main/sessions/S003R9_CLOSEOUT.md}{S003R9 closeout}.
+The three finite mixed-witness extremal bounds, their arbitrary graph
+semantic transfers, and the named-spider classification have been
+Lean-kernel-verified; the graph-isomorphism and connectedness
+certificates supersede the earlier S003R8--S003R9 limitations.
 
-\paragraph{Precisely scoped formal appendix.}
-For each Boolean $4\times4$ matrix $A$, define a simple graph on
-$[4]\sqcup[4]$ by making $i$ adjacent to $j$ across the sides exactly
-when $A_{ij}=1$. Independence plus domination is proved equivalent to
-maximality under inclusion. Disjoint union of the side sets yields a
-bijection between mixed maximal independent vertex sets and eligible
-left pairs. Consequently, for the actual vertex-set count $B(A)$,
-\[
-e(A)\ge6\Longrightarrow B(A)\le3,\qquad
-[e(A)\ge7]\Longrightarrow
-(B(A)=3\Longleftrightarrow A\text{ has the certified spider pattern}).
-\]
-The edge adapter identifies the actual unordered graph edge count with
-$e(A)$, and connectedness supplies $e(A)\ge7$. Thus the connected
-matrix graph has at most three mixed vertex-set MIS, with equality
-exactly at the certified pattern. A separate
-general graph argument proves uniqueness of proper Boolean colourings,
-and hence complementary independent partitions, up to exchanging sides
-in a connected graph. All these S003R9 statements passed strict hosted Lean workflow
-38889327092 at revision \texttt{8199e6bc41dc}, using only standard axioms.
+At S022, the genuine $8!=40320$ uniformly sampled permutation
+labellings of the typed canonical eight-cap were formalised. In
+particular, the full four-event histogram, real first, second, and
+third binomial moments, the displayed four coefficients, and the
+inequality $\Pr(N_0=3)\leq 1/105$ with equality if and only if
+$G\cong S(2,2,2,1)$ are all Lean-kernel-verified at
+\href{https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/78273ce1fae09f844009740830b5ca9cdff7f6b7}{\texttt{78273ce1fae0}}
+(strict workflow 39019738861).
 
-\paragraph{Remaining formal interface.}
-The missing end-to-end links are: transport an arbitrary balanced
-bipartition to the displayed matrix graph; identify its unordered
-compatible-triple count with $B(A)$; construct the graph isomorphism from a spider-pattern matrix; and
-realise the uniform $2520$-assignment model with its regular labelling
-fibres and moments. The classical cap equivalence remains external.
-The written theorems above do not depend on pretending these kernel
-interfaces are already complete. This draft is not ready for submission:
-priority, source comparison and final mathematical editing remain open.
+At S023, the additional declaration
+\texttt{connected\_graphMIS\_complete\_flagship\_all\_caps}
+proves the identical law for every admissible fixed eight-cap.
+Its hypothesis \texttt{hnf : ClassicalCapNormalForm} is explicit.
+From the supplied normal form $f(v)=L(c(p(v)))$ with
+$L\in\mathrm{GL}(3,3)$, the Lean proof establishes that
+$e\mapsto e\mathbin{\mathrm{trans}}p$ is a permutation of all
+$40320$ labellings. Zero-sum four-MIS counts are preserved under
+the zero-fixing linear map $L$, and consequently the cardinality of
+each event fibre $N_0=i$ is exactly preserved for $i=0,1,2,3$.
+This is a genuine labelling-count transport, not an informal
+distributional symmetry argument.
+The exact source is
+\href{https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/1ae1e7eccb55893d1dee798c57ba2e2663f03090}{\texttt{1ae1e7eccb55}},
+with strict hosted Lean workflow 39023530142 and independent finite
+workflow 39023530135 both successful. The new proof declarations
+use only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}; no unapproved axioms or proof holes occur.
+
+\paragraph{Exact remaining mathematical and publication scope.}
+The classical nine-cap classification and its pointed, zero-fixing
+linear normal form have \emph{not} been proved internally in Lean.
+The all-cap formal theorem is therefore a verified implication from
+this \emph{explicit} classical hypothesis, not an unconditional
+self-contained Lean formalisation of the classification. S024 targets
+the classification itself. Independent exhaustive checks include all
+$40320$ labellings for the spider and path on two distinct admissible
+caps, but these checks do not replace universal proofs. The priority,
+novelty, and possible subsumption by existing cap-design/MIS literature
+remain unresolved. This draft is \emph{not} approved for submission.
 
 \begin{thebibliography}{9}
 \bibitem{Follett2014}
