@@ -578,9 +578,13 @@ theorem s026_admissible_normalized_anchors
     · exact hne.2 hij.symm
   refine ⟨a, ha, ?_⟩
   intro i
-  fin_cases i <;>
-    simpa [L, a] using
-      (s026_capBasisEquiv_inverse_basis_action f hf w hw i)
+  calc
+    L (f (a i)) =
+        (s025CapBasisEquiv f hf w hw).symm
+          (if i = 0 then f 0 else if i = 1 then f 1 else f w) := by
+            simp only [L, a, apply_ite]
+    _ = s024BasisPoint i :=
+      s026_capBasisEquiv_inverse_basis_action f hf w hw i
 
 #print axioms PDIC.s026_capBasisEquiv_inverse_basis_action
 #print axioms PDIC.s026_basis_third_ne_zero_one
