@@ -4734,3 +4734,183 @@ theorem graphMIS_unordered_compatible_triple_event_card
 #print axioms PDIC.graphMIS_unordered_compatible_triple_event_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S021: a simultaneous zero event on a genuine unordered three-MIS
+subfamily forces exactly one complementary pair, and hence the 2+2
+incidence defining the paper's intrinsic compatible-triple count. -/
+
+/-- With a complementary four-set pair, any distinct third zero quartet
+overlaps both sides in two vertices; a second complementary partner would
+contradict its uniqueness. -/
+theorem canonicalCapF3_perm_third_overlap_two
+    (e : Equiv.Perm Vertex) (s t r : Finset Vertex)
+    (hs : s.card = 4) (ht : t.card = 4) (hr : r.card = 4)
+    (hsr : s ≠ r) (htr : t ≠ r)
+    (hst : Disjoint s t)
+    (hzs : capSum (fun v => canonicalCapF3 (e v)) s = 0)
+    (hzt : capSum (fun v => canonicalCapF3 (e v)) t = 0)
+    (hzr : capSum (fun v => canonicalCapF3 (e v)) r = 0) :
+    (s ∩ r).card = 2 ∧ (t ∩ r).card = 2 := by
+  classical
+  constructor
+  · rcases canonicalCapF3_perm_distinct_pair_overlap_cases e s r
+      hs hr hsr hzs hzr with hzero | htwo
+    · exfalso
+      have hd : Disjoint s r := by
+        rw [Finset.disjoint_iff_inter_eq_empty]
+        exact Finset.card_eq_zero.mp hzero
+      exact htr (disjoint_four_partner_unique s t r hs ht hr hst hd)
+    · exact htwo
+  · rcases canonicalCapF3_perm_distinct_pair_overlap_cases e t r
+      ht hr htr hzt hzr with hzero | htwo
+    · exfalso
+      have hd : Disjoint t r := by
+        rw [Finset.disjoint_iff_inter_eq_empty]
+        exact Finset.card_eq_zero.mp hzero
+      exact hsr (disjoint_four_partner_unique t s r ht hs hr hst.symm hd)
+    · exact htwo
+
+/-- A *real* three-element subfamily of graph maximal-independent
+four-sets admitting one joint zero-sum labelling is intrinsically a
+compatible unordered triple. No ordering is used in the conclusion. -/
+theorem graphMIS_unordered_triple_compatible_of_event
+    (G : SimpleGraph Vertex) (T : Finset (Finset Vertex))
+    (hT : T ∈ (fourGraphMISFamily G).powersetCard 3)
+    (e : Equiv.Perm Vertex)
+    (hzero : ∀ s ∈ T,
+      capSum (fun v => canonicalCapF3 (e v)) s = 0) :
+    IsUnorderedCompatibleTriple G T := by
+  classical
+  obtain ⟨hsub, hcard⟩ := Finset.mem_powersetCard.mp hT
+  obtain ⟨a, b, c, hab, hac, hbc, rfl⟩ := Finset.card_eq_three.mp hcard
+  have hall : ∀ x ∈ ({a, b, c} : Finset (Finset Vertex)),
+      x.card = 4 ∧ GraphMIS G x := by
+    intro x hx
+    exact (Finset.mem_filter.mp (hsub hx)).2
+  have hthree : ({a, b, c} : Finset (Finset Vertex)).card = 3 := by
+    simp [hab, hac, hbc]
+  have hza : capSum (fun v => canonicalCapF3 (e v)) a = 0 :=
+    hzero a (by simp)
+  have hzb : capSum (fun v => canonicalCapF3 (e v)) b = 0 :=
+    hzero b (by simp)
+  have hzc : capSum (fun v => canonicalCapF3 (e v)) c = 0 :=
+    hzero c (by simp)
+  have hmake (s t r : Finset Vertex)
+      (hsm : s ∈ ({a, b, c} : Finset (Finset Vertex)))
+      (htm : t ∈ ({a, b, c} : Finset (Finset Vertex)))
+      (hrm : r ∈ ({a, b, c} : Finset (Finset Vertex)))
+      (hst : s ≠ t) (hsr : s ≠ r) (htr : t ≠ r)
+      (hdis : (s ∩ t).card = 0) :
+      IsUnorderedCompatibleTriple G {a, b, c} := by
+    have hs := (hall s hsm).1
+    have ht := (hall t htm).1
+    have hr := (hall r hrm).1
+    have hd : Disjoint s t := by
+      rw [Finset.disjoint_iff_inter_eq_empty]
+      exact Finset.card_eq_zero.mp hdis
+    have hcomp := disjoint_four_sets_complement s t hs ht hd
+    have hmix := canonicalCapF3_perm_third_overlap_two e s t r
+      hs ht hr hsr htr hd (hzero s hsm) (hzero t htm) (hzero r hrm)
+    refine ⟨hthree, hall, s, hsm, t, htm, r, hrm,
+      hst, hsr, htr, hcomp, ?_, ?_⟩
+    · simpa [Finset.inter_comm] using hmix.1
+    · simpa [Finset.inter_comm] using hmix.2
+  have ha := (hall a (by simp)).1
+  have hb := (hall b (by simp)).1
+  have hc := (hall c (by simp)).1
+  rcases canonicalCapF3_perm_three_zero_has_disjoint_pair
+      e a b c ha hb hc hab hac hbc hza hzb hzc with hd | hd | hd
+  · exact hmake a b c (by simp) (by simp) (by simp)
+      hab hac hbc hd
+  · exact hmake a c b (by simp) (by simp) (by simp)
+      hac hab hbc.symm hd
+  · exact hmake b c a (by simp) (by simp) (by simp)
+      hbc hab.symm hac.symm hd
+
+/-- Each genuine unordered graph-MIS triple has exactly 128 labellings
+if it is compatible and zero otherwise. -/
+theorem graphMIS_unordered_triple_event_card
+    (G : SimpleGraph Vertex) (T : Finset (Finset Vertex))
+    (hT : T ∈ (fourGraphMISFamily G).powersetCard 3) :
+    ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => ∀ s ∈ T,
+        capSum (fun v => canonicalCapF3 (e v)) s = 0)).card =
+      if IsUnorderedCompatibleTriple G T then 128 else 0 := by
+  classical
+  by_cases hc : IsUnorderedCompatibleTriple G T
+  · simp only [if_pos hc]
+    exact graphMIS_unordered_compatible_triple_event_card G T hc
+  · have hnone (e : Equiv.Perm Vertex) :
+        ¬(∀ s ∈ T, capSum (fun v => canonicalCapF3 (e v)) s = 0) := by
+      intro hz
+      exact hc (graphMIS_unordered_triple_compatible_of_event G T hT e hz)
+    simp [hc, hnone]
+
+/-- Full third factorial moment over *true unordered* three-member
+graph-MIS families; the coefficient is 128, not 6 × 128. -/
+theorem graphMIS_third_moment_numerator (G : SimpleGraph Vertex) :
+    (∑ e : Equiv.Perm Vertex,
+      Nat.choose (labellingZeroMISCount G e) 3) =
+      128 * unorderedCompatibleTripleCount G := by
+  classical
+  let F := (fourGraphMISFamily G).powersetCard 3
+  have hfamily (T : Finset (Finset Vertex))
+      (h : IsUnorderedCompatibleTriple G T) : T ∈ F := by
+    apply Finset.mem_powersetCard.mpr
+    refine ⟨?_, h.1⟩
+    intro s hs
+    exact Finset.mem_filter.mpr
+      ⟨Finset.mem_univ _, h.2.1 s hs⟩
+  have hcount :
+      (F.filter (IsUnorderedCompatibleTriple G)).card =
+        unorderedCompatibleTripleCount G := by
+    change (F.filter (IsUnorderedCompatibleTriple G)).card =
+      ((Finset.univ : Finset (Finset (Finset Vertex))).filter
+        (IsUnorderedCompatibleTriple G)).card
+    congr 1
+    ext T
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+    exact ⟨fun h => h.2, fun h => ⟨hfamily T h, h⟩⟩
+  calc
+    (∑ e : Equiv.Perm Vertex,
+      Nat.choose (labellingZeroMISCount G e) 3) =
+        ∑ T ∈ F,
+          ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+            (fun e => ∀ s ∈ T,
+              capSum (fun v => canonicalCapF3 (e v)) s = 0)).card :=
+        graphMIS_unordered_moment_double_count G 3
+    _ = ∑ T ∈ F, (if IsUnorderedCompatibleTriple G T then 128 else 0) := by
+          apply Finset.sum_congr rfl
+          intro T hT
+          exact graphMIS_unordered_triple_event_card G T hT
+    _ = 128 * (F.filter (IsUnorderedCompatibleTriple G)).card := by
+          simp [Finset.sum_ite, mul_comm]
+    _ = 128 * unorderedCompatibleTripleCount G := by rw [hcount]
+
+noncomputable def graphMIS_third_moment (G : SimpleGraph Vertex) : ℚ :=
+  (∑ e : Equiv.Perm Vertex,
+    (Nat.choose (labellingZeroMISCount G e) 3 : ℚ)) /
+      (Fintype.card (Equiv.Perm Vertex) : ℚ)
+
+theorem graphMIS_third_moment_eq (G : SimpleGraph Vertex) :
+    graphMIS_third_moment G =
+      (unorderedCompatibleTripleCount G : ℚ) / 315 := by
+  have hn :
+      (∑ e : Equiv.Perm Vertex,
+        (Nat.choose (labellingZeroMISCount G e) 3 : ℚ)) =
+      (128 : ℚ) * (unorderedCompatibleTripleCount G : ℚ) := by
+    exact_mod_cast graphMIS_third_moment_numerator G
+  unfold graphMIS_third_moment
+  rw [hn, uniformLabellings_card]
+  ring
+
+#print axioms PDIC.canonicalCapF3_perm_third_overlap_two
+#print axioms PDIC.graphMIS_unordered_triple_compatible_of_event
+#print axioms PDIC.graphMIS_unordered_triple_event_card
+#print axioms PDIC.graphMIS_third_moment_numerator
+#print axioms PDIC.graphMIS_third_moment_eq
+
+end PDIC
