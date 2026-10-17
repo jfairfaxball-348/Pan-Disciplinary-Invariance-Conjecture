@@ -681,3 +681,57 @@ theorem s027_image_short_zero_free
 #print axioms PDIC.s027_image_short_zero_free
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S027: bridge the actual zero-sum-free normalized image into the
+complete filtered 6,188-candidate search family without using the unverified
+classification of its eighteen survivors. -/
+
+def s027NormalizedAdmissibleTails : Finset (Finset CapPoint) :=
+  (s024FreePoints.powersetCard 5).filter
+    (fun T => s027ShortZeroFree (s024BasisSet ∪ T) = true)
+
+theorem s027_normalized_cap_image_in_filtered_candidates
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (a : Fin 3 → Vertex) (ha : Function.Injective a)
+    (hanchor : ∀ i, f (a i) = s024BasisPoint i) :
+    ((Finset.univ : Finset Vertex).image f) ∈
+      s027NormalizedAdmissibleTails.image
+        (fun T => s024BasisSet ∪ T) := by
+  classical
+  have hraw :=
+    s024_normalized_cap_image_in_candidates f hf a ha hanchor
+  change ((Finset.univ : Finset Vertex).image f) ∈
+    (s024FreePoints.powersetCard 5).image
+      (fun T => s024BasisSet ∪ T) at hraw
+  obtain ⟨T, hT, hEq⟩ := Finset.mem_image.mp hraw
+  apply Finset.mem_image.mpr
+  refine ⟨T, ?_, hEq⟩
+  apply Finset.mem_filter.mpr
+  refine ⟨hT, ?_⟩
+  rw [hEq]
+  exact s027_image_short_zero_free f hf
+
+/-- Every actual admissible eight-cap can first be normalized by a
+zero-fixing invertible linear equivalence, and its real unordered image
+then belongs to the full finite candidate *filter* (not yet to the
+eighteen-entry orbit table). -/
+theorem s027_any_admissible_normalized_in_filtered_family
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
+    ∃ L : CapPoint ≃ₗ[ZMod 3] CapPoint,
+      ((Finset.univ : Finset Vertex).image
+        (fun v => L (f v))) ∈
+          s027NormalizedAdmissibleTails.image
+            (fun T => s024BasisSet ∪ T) := by
+  obtain ⟨L, hL, a, ha, hanchor⟩ :=
+    s026_admissible_normalized_anchors f hf
+  exact ⟨L,
+    s027_normalized_cap_image_in_filtered_candidates
+      (fun v => L (f v)) hL a ha hanchor⟩
+
+#print axioms PDIC.s027_normalized_cap_image_in_filtered_candidates
+#print axioms PDIC.s027_any_admissible_normalized_in_filtered_family
+
+end PDIC
