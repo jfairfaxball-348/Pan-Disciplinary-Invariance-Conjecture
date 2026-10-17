@@ -21,6 +21,18 @@ Two new proof-bearing commits on `session/s007-full-lean-flagship` make the 17-p
 
 S025 **must not redo** these certified conditional-on-normalization reductions. Still prove independently (a) existence of a normalizing linear equivalence/basis for every admissible cap, (b) all surviving 18 cases among the 6188 reduced candidates by a Lean kernel certificate, and (c) the corresponding **typed invertible** zero-fixing linear maps. The 18-case and global orbit claims remain **OPEN_IN_LEAN**, and the independent Python result remains only **FINITE_CHECKED**. S025 is installed, **NOT EXECUTED**. See `research/S024_BASIS_NORMALIZATION_EXTENSION.md` on the proof branch for precise closure.
 
+## Further S024 extension: strictly certified two-span escape
+
+After the already certified full-image 6,188-candidate theorem, a new unconditional mathematical obstruction is now **LEAN_KERNEL_VERIFIED**. At [source commit \`9f714802a8e38c4989de968f061886e1e4d7dc16\`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/9f714802a8e38c4989de968f061886e1e4d7dc16), [strict Lean run \`39045727429\` SUCCESS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39045727429), [independent finite \`39045727481\` SUCCESS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39045727481), Lean has proved:
+
+- \`s024ProjectiveOrient_eq_cases\`: equality of projectively normalized ternary vectors implies equality up to sign;
+- \`s024TwoSpan_projective_le_four\`: every span of two ternary vectors contains at most four nonzero projective directions;
+- \`s024_admissible_point_outside_two_span\`: for every genuine admissible enumerated eight-cap and **any** two vertex labels \`u,v\`, there exists a third labelled vertex \`w\` outside the linear span of \`f u,f v\`.
+
+Their printed axioms are only \`propext\`, \`Classical.choice\`, \`Quot.sound\`. This is a **genuine unconditional geometric lemma**, not a normalizing linear map or the final orbit theorem.
+
+**S025 updated first mathematical gate:** start with \`u=0,v=1\`; prove these two cap vectors are linearly independent (using injectivity, nonzero singleton and nonzero pair sum over F₃), use the new outside-span witness as the third basis point, and **construct its actual inverse \`CapPoint ≃ₗ[ZMod 3] CapPoint\`**, e.g. via a verified matrix determinant and Mathlib's invertible-matrix/linear-equivalence machinery. Only after that normalization is kernel certified, implement the **18-of-6188** admissibility enumeration and typed zero-fixing witnesses. Do not redo the new two-span or 6,188-candidate proofs or silently assume an independent triple. The orbit, \`ClassicalCapNormalForm\`, and unconditional flagship remain **OPEN_IN_LEAN**. S025 remains **NOT EXECUTED**.
+
 ## Main proof target
 
 Construct a theorem `admissibleCapImageOrbit_proved : AdmissibleCapImageOrbit` using real `CapPoint = Fin 3 → ZMod 3` and actual `CapPoint ≃ₗ[ZMod 3] CapPoint`. Then obtain `classicalCapNormalForm_proved : ClassicalCapNormalForm` via S024's certified equivalence, and finally derive `connected_graphMIS_complete_flagship_unconditional_all_caps` by applying S023's conditional flagship. The final statement must quantify over **all connected eight-vertex graphs G** and **all admissible enumerated caps f** and retain every one of the genuine four exact probabilities and the iff named-spider sharp equality case.
