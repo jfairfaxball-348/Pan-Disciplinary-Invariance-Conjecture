@@ -1,61 +1,28 @@
-# PDIC S022 — certify real sharp P₃ and close all four actual event probabilities in Lean
+# PDIC S023 — transport the complete canonical flagship to every admissible eight-cap (conditional on the explicit classical normal form)
 
-**Automatically installed by S021 closeout on 17 October 2026. NOT EXECUTED.** The owner's next **“Run next session”** authorises S022 immediately. Follow [AGENTS.md](../AGENTS.md) and work on the existing canonical proof branch `session/s007-full-lean-flagship`, draft PR #4. **Never formalise against main's older PDIC.lean**. At closeout install a full executable S023, unexecuted. **No PR merge, Palomar registration, arXiv/journal submission or correspondence** without separate owner direction.
+**Automatically installed at S022 closeout on 17 October 2026. NOT EXECUTED.** The owner's next “Run next session” executes S023 immediately; do not request additional confirmation. Use AGENTS.md, the canonical proof branch \`session/s007-full-lean-flagship\`, draft PR #4, and strict CI. **Do not use historical main/PDIC.lean, merge PR #4, register Palomar, submit to arXiv/journal, or contact researchers** without separate owner authorisation. At closeout install full S024, unexecuted.
 
-## Required preflight and strict CI
+## Certified S022 starting point
 
-Read `AGENTS.md`, this prompt, `sessions/S021_CLOSEOUT.md`, `research/S021_TRUE_UNORDERED_M3_AND_SHARP_PROBABILITY.md`, `research/FLAGSHIP_THEOREM.md`, `paper/PDIC_S003R8_DRAFT.tex`, `research/CLAIMS.md`, `ROADMAP.md`, `authoritative/STATE.json`, and exact current proof branch `PDIC.lean`.
+The complete first-paper canonical-cap four-event graph law and unique sharp spider extremiser are strictly Lean-kernel verified at source \`78273ce1fae09f844009740830b5ca9cdff7f6b7\` ([strict Lean PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39019738861), [finite PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39019738772)). The eight new public declarations \`connected_graphMIS_four_event_histogram\`, \`connected_graphMIS_four_event_expectation\`, \`connected_graphMIS_probability_mass\`, \`connected_graphMIS_probability_first\`, \`connected_graphMIS_probability_second\`, \`connected_graphMIS_four_probability_moment_law\`, \`connected_graphMIS_four_probability_law\`, and \`connected_graphMIS_complete_flagship\` printed only \`propext\`, \`Classical.choice\`, \`Quot.sound\`; strict hole scanner and the S020 unordered 40320-labelling checker passed.
 
-The certified incremental base includes first true moment `M₁=2m/35` (S018), genuine unordered pair numerator `2304n₀+128n₂`, rational `M₂=2n₀/35+n₂/315` ([strict Lean success 39012753312](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39012753312), SHA `3a3db44e088eaae07338dc033091fd4c0241c4f2`), and genuine unordered triple numerator `128h`, rational `M₃=h/315` ([strict Lean success 39013338273](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39013338273), SHA `810a13cc994aaec0c56a5872be6f6e4d87622b49`). The exact source P₃ sharpness candidate was added at `1339127d293b0c865c7c98d64f3b81a283909c8b`; check [strict run 39013646695](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39013646695) and inspect compiler logs and its `#print axioms`. Do not assume success if pending/failure.
+Read README.md, ROADMAP.md, authoritative/STATE.json, research/FLAGSHIP_THEOREM.md, research/CLAIMS.md, sessions/S022_CLOSEOUT.md, research/S022_ACTUAL_FOUR_PROBABILITY_LAW.md, paper/PDIC_S003R8_DRAFT.tex and exact branch PDIC.lean. Pin all subsequent source, logs, full Actions success and any failure repairs.
 
-Obtain a fully successful hosted `lake build`, the proof-hole scanner (no `sorry`, `admit`, `native_decide` or new `axiom`/`constant`), `#print axioms` for every added public declaration with **only** `propext`, `Classical.choice`, `Quot.sound`, and all independent checkers **including** `scripts/verify_s020_unordered_moments.py`. Pin exact SHA and Actions run URLs.
+## Primary obligation — actual arbitrary-cap uniform-labelling transport
 
-## Primary completion target — four honest probability events
+The written theorem samples a **uniform bijection into any fixed admissible eight-point cap** U in F₃³, not solely the named canonical cap. Existing \`ClassicalCapNormalForm\` is a **Prop to be supplied as a hypothesis**, not a proved theorem, instance or axiom. Its mathematical claim is an external literature classification of nine-caps. Implement:
+1. For an arbitrary injection/label enumeration \`f : Vertex → CapPoint\` with \`IsAdmissibleCap f\`, define real \`labellingZeroMISCountForCap G f e\` and \`graphMIS_exact_probability_for_cap G f i\`, with the same actual 40320-element uniform \`Equiv.Perm Vertex\` denominator. Verify all events use *maximal independent four-sets*, never merely independent sets.
+2. Assuming \`ClassicalCapNormalForm\`, obtain explicit \`L : CapPoint ≃ₗ[ZMod 3] CapPoint\` and \`p : Equiv.Perm Vertex\` with \`f(v)=L(canonicalCapF3(p v))\`. Prove for every \`e\`, the count for \`f ∘ e\` is the canonical count for \`e.trans p\` (confirm Lean composition orientation), using \`capSum_zero_linear_iff\`. Prove \`e ↦ e.trans p\` is a genuine permutation of the finite sample space and preserves each **event fibre cardinal**, hence every actual probability P₀..P₃. No probability transfer by informal symmetry alone.
+3. Deduce a single theorem matching the manuscript's **all admissible U** distribution with formulas
+   \`P0=1-2m/35+2n0/35+n2/315-h/315\`,
+   \`P1=2m/35-4n0/35-2n2/315+3h/315\`,
+   \`P2=2n0/35+n2/315-h/105\`,
+   \`P3=h/315≤1/105\` and \`P3=1/105 iff Nonempty (G ≃g namedSpider)\`, for connected G, **explicitly conditional on supplied \`ClassicalCapNormalForm\`**.
+4. Explicitly document exactly what is internal Lean proof and what remains an external mathematical input. Do not add a new axiom, constant, hidden instance, vague cap-orbit assertion or an affine translation preserving zero-sum quartets.
+5. Independently cross-check P8 and S(2,2,2,1), at all 40320 permutations and at more than one admissible cap if feasible; exact histograms from S022 are respectively \`(31360,6528,2304,128)\` and \`(23424,13440,3072,384)\`. Inspect the mathematical manuscript's cap equivalence wording, graph-isomorphism extremiser, all four coefficients, and its now-stale formalisation-status section; prepare justified source/paper alignment, without releasing the paper.
 
-Use the already defined true event probability
+## Verification and hard boundaries
 
-```lean
-graphMIS_exact_probability G i =
-  (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
-      (fun e => labellingZeroMISCount G e = i)).card : ℚ) /
-    (Fintype.card (Equiv.Perm Vertex) : ℚ)
-```
+Run pinned \`lake build\` with every newly advertised \`#print axioms\` (only \`propext\`, \`Classical.choice\`, \`Quot.sound\`), explicit proof-hole scanner and **all** independent checkers including \`scripts/verify_s020_unordered_moments.py\`. Record the exact SHA and actual strict hosted Actions run. If compilation fails, repair and verify; if blocked, truthfully close the largest certified increment and install a narrow S024 on the precise obstruction. Keep novelty and priority UNRESOLVED. No merge, external registration, submission or correspondence.
 
-for i=0,1,2,3. This **must not be replaced** by abstract variables satisfying invented moment equations. For every `G : SimpleGraph Vertex` with `hc : G.Connected`, the existing kernel-certified `connected_labellingZeroMISCount_le_three G hc e` forces `N₀(e,G)∈{0,1,2,3}` for every one of the actual 40320 permutations. Prove a reusable `Finset`-sum/filter histogram transfer for the following exact rational equalities (ideally a general four-support lemma, or separately by per-e cases 0/1/2/3):
-
-```
-P0 + P1 + P2 + P3 = 1
-P1 + 2*P2 + 3*P3 = graphMIS_first_moment G
-P2 + 3*P3 = graphMIS_second_moment G
-P3 = graphMIS_third_moment G
-```
-
-where `Pi := graphMIS_exact_probability G i` and all casts/normalisations from natural event-cardinality sums are **explicit**. Reuse the already kernel-proved `four_point_moment_inversion` (rather than reproving algebra). Derive the **actual graph probability law**:
-
-```text
-P0 = 1 - 2*m/35 + 2*n₀/35 + n₂/315 - h/315
-P1 = 2*m/35 - 4*n₀/35 - 2*n₂/315 + 3*h/315
-P2 = 2*n₀/35 + n₂/315 - h/105
-P3 = h/315
-```
-
-with `m=(fourGraphMISFamily G).card`, `n₀=graphMIS_pairOverlapCount G 0`, `n₂=graphMIS_pairOverlapCount G 2`, `h=unorderedCompatibleTripleCount G`. Also offer the compact moment form `P0=1-M1+M2-M3`, `P1=M1-2M2+3M3`, `P2=M2-3M3`, `P3=M3`. Correct actual probabilities only; do not merely restate the written theorem.
-
-## Sharp extremal part
-
-After confirming or repairing S021's `connected_graphMIS_exact_probability_three` and `connected_graphMIS_probability_three_sharp`, integrate
-
-```lean
-P3 ≤ (1 : ℚ) / 105
-P3 = (1 : ℚ) / 105 ↔ Nonempty (G ≃g namedSpider)
-```
-
-as the final connected-graph theorem with actual P3. Reuse certified `connected_unorderedCompatibleTripleCount_le_three`, `connected_h_three_iff_namedSpider`, and `sharp_probability_from_h`. Do not falsely present a paper-only sharpness statement as a complete Lean certificate. Keep the any-cap extension **conditional** on an explicitly supplied `ClassicalCapNormalForm` hypothesis.
-
-## Mandatory independent cross-checks
-
-Reconfirm the genuine independent graph four-MIS and all 40320 label permutations for both spider and P8. Spider: `(m,n₀,n₂,h)=(9,1,15,3)`, histogram `(23424,13440,3072,384)`, `M₂` numerator 4224, `M₃` numerator 384, probabilities `(61/105,1/3,8/105,1/105)`. P8: `(5,1,3,1)`, histogram `(31360,6528,2304,128)`, `M₂` numerator 2688, `M₃` numerator 128, probabilities `(7/9,17/105,2/35,1/315)`. Check max independent, not merely independent, and don't count ordered triples.
-
-## Closeout & disposition
-
-Aim at full **strictly kernel-verified flagship**, not an incidental lemma or publication paperwork. If the full theorem is not compiled, close out the largest kernel-proved increment, name the exact smallest unproved equation and install **full executable S023** attacking it. Update `research/CLAIMS.md`, `README.md`, `ROADMAP.md`, `authoritative/STATE.json`, `sessions/S022_CLOSEOUT.md`, proof note, and `research/NEXT_SESSION_PROMPT.md` with exact SHA/run links. Keep mathematical novelty and journal priority **unresolved**. Leave PR #4 draft and unmerged; do not register or submit.
+At closeout update README.md, ROADMAP.md, research/CLAIMS.md, authoritative/STATE.json, proof note, sessions/S023_CLOSEOUT.md, research/NEXT_SESSION_PROMPT.md and the draft PR description. Install an **executable S024** under automatic prompt-generation rules; do not run it without the owner's next command.

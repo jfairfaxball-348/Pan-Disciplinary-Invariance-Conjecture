@@ -1,6 +1,6 @@
 # PDIC S022 — certify real sharp P₃ and close all four actual event probabilities in Lean
 
-**Automatically installed by S021 closeout on 17 October 2026. NOT EXECUTED.** The owner's next **“Run next session”** authorises S022 immediately. Follow [AGENTS.md](../AGENTS.md) and work on the existing canonical proof branch `session/s007-full-lean-flagship`, draft PR #4. **Never formalise against main's older PDIC.lean**. At closeout install a full executable S023, unexecuted. **No PR merge, Palomar registration, arXiv/journal submission or correspondence** without separate owner direction.
+**HISTORICAL EXECUTED TARGET: S022 completed and strictly certified 17 October 2026.** The owner's next **“Run next session”** authorises S022 immediately. Follow [AGENTS.md](../AGENTS.md) and work on the existing canonical proof branch `session/s007-full-lean-flagship`, draft PR #4. **Never formalise against main's older PDIC.lean**. At closeout install a full executable S023, unexecuted. **No PR merge, Palomar registration, arXiv/journal submission or correspondence** without separate owner direction.
 
 ## Required preflight and strict CI
 

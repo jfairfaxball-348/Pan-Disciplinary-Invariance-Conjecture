@@ -2,7 +2,7 @@
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-17",
   "last_completed_session": "S021",
-  "next_session": "S022",
+  "next_session": "S023",
   "next_session_executed": false,
   "phase": "FULL_FLAGSHIP_LEAN__GENUINE_M1_M2_M3_AND_ACTUAL_P3_SHARP_KERNEL_VERIFIED__P0_P1_P2_BRIDGE_OPEN",
   "first_paper_roadmap": [
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S021_EXACT_SHA_CERTIFICATION_OF_S020_M2_AND_GENUINE_UNORDERED_M3_THEN_FULL_FOUR_TERM_SPIDER_IFF",
+  "next_session_target": "CONDITIONAL_ALL_ADMISSIBLE_CAP_UNIFORM_LABELLING_TRANSPORT_AND_PAPER_ALIGNMENT",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,9 +167,9 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S021_STRICT_M2_M3_FLAGSHIP_CLOSURE_TARGET.md",
+  "next_session_target_file": "research/S023_ALL_CAP_TRANSPORT_TARGET.md",
   "next_session_target_installed_date": "2026-10-17",
-  "next_session_target_source": "afc1ecd80909d32a7e5cabf18df0044ccae9e696",
+  "next_session_target_source": "78273ce1fae09f844009740830b5ca9cdff7f6b7",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -228,11 +228,11 @@
   "s007_proof_branch": "session/s007-full-lean-flagship",
   "s007_start_proof_source": "402465f2330a275e04108169a6bfbb65e94e10b8",
   "s007_core_problem": "CONNECTED_EIGHT_VERTEX_UNORDERED_COMPATIBLE_TRIPLES_TO_MATRIX_GRAPH_COUNT_AND_NAMED_SPIDER_ISOMORPHISM",
-  "flagship_kernel_status": "INCOMPLETE_S019_PAIR_EVENT_CLASSIFICATION_AND_GENUINE_UNORDERED_TWO_MIS_SUBFAMILY_BRIDGE_STRICT_LEAN_VERIFIED__GLOBAL_M2_M3_AND_FOUR_PROBABILITIES_OPEN",
+  "flagship_kernel_status": "COMPLETE_CANONICAL_CAP_CONNECTED_GRAPH_FOUR_ACTUAL_PROBABILITIES_AND_SHARP_SPIDER_STRICT_LEAN_VERIFIED__ALL_CAP_CLASSIFICATION_REMAINS_EXPLICIT_EXTERNAL_HYPOTHESIS",
   "flagship_required_interfaces": [
-    "admissible 8-cap typed zero-sum quartet incidence and explicitly conditional classical GL(3,3) cap transfer",
-    "genuine uniform 8! labellings, regular fibres, moments, N0<=3 and all four probabilities",
-    "single integrated Lean theorem matching complete flagship including graph sharpness"
+    "Canonical cap: all four actual event probabilities and uniquely sharp spider now kernel-verified",
+    "All admissible caps: formal permutation transport conditional on explicitly supplied ClassicalCapNormalForm (S023)",
+    "External classical nine-cap normal form and mathematical novelty/priority remain explicitly unresolved"
   ],
   "process_reset_date": "2026-10-16",
   "process_reset_reason": "OWNER_DIRECTED_RETURN_TO_FULL_LEAN_AND_REACTIVATE_END_OF_SESSION_PROMPT_GENERATION",
@@ -662,6 +662,35 @@
   "s021_closeout": "sessions/S021_CLOSEOUT.md",
   "s021_proof_note": "research/S021_TRUE_UNORDERED_M3_AND_SHARP_PROBABILITY.md",
   "s022_target": "research/S022_FULL_FOUR_PROBABILITY_LAW_TARGET.md",
-  "s022_status": "INSTALLED_NOT_EXECUTED",
-  "s021_last_certified_source_sha": "1339127d293b0c865c7c98d64f3b81a283909c8b"
+  "s022_status": "EXECUTED_COMPLETE_ALL_FOUR_ACTUAL_PROBABILITIES_AND_SHARP_SPIDER_STRICT_KERNEL_VERIFIED_FOR_CANONICAL_CAP",
+  "s021_last_certified_source_sha": "1339127d293b0c865c7c98d64f3b81a283909c8b",
+  "s022_proof_sha": "78273ce1fae09f844009740830b5ca9cdff7f6b7",
+  "s022_lean_run": "39019738861",
+  "s022_finite_run": "39019738772",
+  "s022_first_failed_sha": "679eaddeff4f875358ded9f2b4a250a9d9b42426",
+  "s022_first_failed_run": "39019429781",
+  "s022_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "s022_kernel_verified": true,
+  "s022_complete_canonical_flagship_kernel_verified": true,
+  "s022_all_admissible_caps_conditional_transfer_kernel_verified": false,
+  "s022_closeout": "sessions/S022_CLOSEOUT.md",
+  "s022_proof_note": "research/S022_ACTUAL_FOUR_PROBABILITY_LAW.md",
+  "s022_new_declarations": [
+    "connected_graphMIS_four_event_histogram",
+    "connected_graphMIS_four_event_expectation",
+    "connected_graphMIS_probability_mass",
+    "connected_graphMIS_probability_first",
+    "connected_graphMIS_probability_second",
+    "connected_graphMIS_four_probability_moment_law",
+    "connected_graphMIS_four_probability_law",
+    "connected_graphMIS_complete_flagship"
+  ],
+  "s023_target": "research/S023_ALL_CAP_TRANSPORT_TARGET.md",
+  "s023_status": "INSTALLED_NOT_EXECUTED",
+  "s023_branch": "session/s007-full-lean-flagship",
+  "s023_pr": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4"
 }
