@@ -271,3 +271,91 @@ theorem s024_normalized_cap_image_in_candidates
 #print axioms PDIC.s024_normalized_cap_image_in_candidates
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S024 continuation: intrinsic basis-existence obstruction, without
+assuming a normal-form map or examining all labelled cap functions. -/
+
+/-- Orient each nonzero ternary direction by making its first nonzero
+coordinate equal to 1. Zero is fixed. -/
+def s024ProjectiveOrient (p : CapPoint) : CapPoint :=
+  if p 0 = (2 : ZMod 3) ∨
+      (p 0 = 0 ∧ p 1 = (2 : ZMod 3)) ∨
+      (p 0 = 0 ∧ p 1 = 0 ∧ p 2 = (2 : ZMod 3))
+  then -p else p
+
+/-- Two points have the same canonical direction precisely up to sign.
+This is a finite property of the actual 27-element ternary vector space. -/
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+theorem s024ProjectiveOrient_eq_cases :
+    ∀ p q : CapPoint,
+      s024ProjectiveOrient p = s024ProjectiveOrient q →
+        p = q ∨ p = -q := by
+  decide +kernel
+
+/-- Nine or fewer vectors in the subspace spanned by two vectors. -/
+def s024TwoSpan (p q : CapPoint) : Finset CapPoint :=
+  (Finset.univ : Finset (ZMod 3 × ZMod 3)).image
+    (fun ab => ab.1 • p + ab.2 • q)
+
+/-- Every ternary linear plane has at most four nonzero projective
+directions. Unlike external scripts, this is a kernel-computed 27×27
+finite geometry certificate. -/
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+theorem s024TwoSpan_projective_le_four :
+    ∀ p q : CapPoint,
+      (((s024TwoSpan p q).filter (fun x => x ≠ 0)).image
+        s024ProjectiveOrient).card ≤ 4 := by
+  decide +kernel
+
+/-- A genuine admissible eight-cap always has some point outside the
+linear span of any TWO selected cap labels: eight injective, nonzero,
+pairwise nonantipodal points cannot fit in four projective directions. -/
+theorem s024_admissible_point_outside_two_span
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (u v : Vertex) :
+    ∃ w : Vertex, f w ∉ s024TwoSpan (f u) (f v) := by
+  classical
+  by_contra hnone
+  have hall (w : Vertex) : f w ∈ s024TwoSpan (f u) (f v) := by
+    by_contra hw
+    exact hnone ⟨w, hw⟩
+  have hinj : Function.Injective
+      (fun w : Vertex => s024ProjectiveOrient (f w)) := by
+    intro a b hab
+    rcases s024ProjectiveOrient_eq_cases (f a) (f b) hab with heq | hneg
+    · exact hf.1 heq
+    · by_contra hne
+      have hzero : f a + f b = 0 := by
+        rw [hneg]
+        exact neg_add_cancel _
+      exact (admissibleCap_pair_ne_zero f hf a b hne) hzero
+  have hsub :
+      ((Finset.univ : Finset Vertex).image
+        (fun w => s024ProjectiveOrient (f w))) ⊆
+      (((s024TwoSpan (f u) (f v)).filter (fun x => x ≠ 0)).image
+        s024ProjectiveOrient) := by
+    intro x hx
+    obtain ⟨w, _, rfl⟩ := Finset.mem_image.mp hx
+    apply Finset.mem_image.mpr
+    refine ⟨f w, ?_, rfl⟩
+    exact Finset.mem_filter.mpr
+      ⟨hall w, admissibleCap_point_ne_zero f hf w⟩
+  have hc :
+      ((Finset.univ : Finset Vertex).image
+        (fun w => s024ProjectiveOrient (f w))).card = 8 := by
+    rw [Finset.card_image_of_injective _ hinj]
+    decide
+  have hle := Finset.card_le_card hsub
+  have hfour := s024TwoSpan_projective_le_four (f u) (f v)
+  omega
+
+#print axioms PDIC.s024ProjectiveOrient_eq_cases
+#print axioms PDIC.s024TwoSpan_projective_le_four
+#print axioms PDIC.s024_admissible_point_outside_two_span
+
+end PDIC
