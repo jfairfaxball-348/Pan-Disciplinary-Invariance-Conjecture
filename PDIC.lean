@@ -4606,8 +4606,9 @@ theorem unorderedPairOverlap_pair_iff
 
 /-- Number of genuine *unordered* two-MIS subfamilies with overlap k. -/
 noncomputable def graphMIS_pairOverlapCount
-    (G : SimpleGraph Vertex) (k : ℕ) : ℕ :=
-  (((fourGraphMISFamily G).powersetCard 2).filter
+    (G : SimpleGraph Vertex) (k : ℕ) : ℕ := by
+  classical
+  exact (((fourGraphMISFamily G).powersetCard 2).filter
     (fun T => UnorderedPairOverlap T k)).card
 
 /-- The first fully numerical second factorial-moment identity for the
@@ -4644,8 +4645,8 @@ theorem graphMIS_second_moment_numerator (G : SimpleGraph Vertex) :
               capSum (fun v => canonicalCapF3 (e v)) s = 0)).card := by
           exact graphMIS_unordered_moment_double_count G 2
     _ = ∑ T ∈ F,
-          (if UnorderedPairOverlap T 0 then 2304 else 0) +
-          (if UnorderedPairOverlap T 2 then 128 else 0) := by
+          ((if UnorderedPairOverlap T 0 then 2304 else 0) +
+           (if UnorderedPairOverlap T 2 then 128 else 0)) := by
           apply Finset.sum_congr rfl
           intro T hT
           exact hfibre T hT
