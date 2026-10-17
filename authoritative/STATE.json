@@ -4,7 +4,7 @@
   "last_completed_session": "S026",
   "next_session": "S027",
   "next_session_executed": false,
-  "phase": "S026_STRICT_GL_BASIS_AND_COLUMN_ACTION_PASS__18_CASE_CLASSIFICATION_TYPED_NORMALISATION_AND_UNCONDITIONAL_FLAGSHIP_OPEN",
+  "phase": "S026_RECOVERY_STRICT_NORMALISATION_PLUS_MATRIX_WITNESSES_PLUS_POINTSET_FILTER_VERIFIED__18_CASE_ORBIT_AND_UNCONDITIONAL_FLAGSHIP_OPEN",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -877,6 +877,33 @@
   "s027": {
     "status": "INSTALLED_NOT_EXECUTED",
     "target_file": "research/S027_FINISH_UNCONDITIONAL_FLAGSHIP_LEAN_TARGET.md",
-    "focus": "exact_18_case_Lean_certificate_and_genuine_zero_fixing_orbit_plus_unconditional_complete_flagship"
+    "focus": "LEAN_KERNEL_CERTIFY_exact_18_of_6188_normalized_tail_family__compose_already_certified_GL_witnesses_and_actual_cap_image_filter__export_entire_unconditional_flagship",
+    "remaining_first_gate": "s027NormalizedAdmissibleTails = s025NormalizedTails",
+    "after_first_gate": "typed_matrix_witness_extraction_plus_zero_fixing_image_orbit_plus_unconditional_four_term_probability_and_spider_iff",
+    "no_external_submission": true,
+    "proof_branch": "session/s007-full-lean-flagship"
+  },
+  "s026_post_closeout": {
+    "status": "STRICT_LEAN_VERIFIED_INCREMENTS_UNCONDITIONAL_FLAGSHIP_STILL_OPEN",
+    "recovery_note": "sessions/S026_POST_CLOSEOUT_VERIFICATION_RECOVERY.md",
+    "canonical_normalization_sha": "d13efd7d142071716f008e3b39051186d51db2e4",
+    "normalization_strict_lean_success": "39062459463",
+    "witness_isolated_strict_lean_success": "39076819328",
+    "witness_canonical_sha": "ce5108b73d950b888cc0170cd96c4ef0f3198fb7",
+    "witness_canonical_lean_success": "39077367669",
+    "pointset_isolated_lean_success": "39077143925",
+    "image_to_full_filtered_family_isolated_lean_success": "39077624243",
+    "canonical_all_increment_sha": "9f5030951a54182dfaf692a621eeb081cfb09675",
+    "canonical_all_increment_strict_lean_run": "39078143085",
+    "canonical_all_increment_finite_run": "39078143139",
+    "canonical_all_increment_status_at_documentation": "INTEGRATED_CHECK_PENDING_FINAL_CONCLUSION",
+    "certified_axioms_only": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "monolithic_6188_to_18_strict_run": "39060204539",
+    "monolithic_6188_to_18_status": "FAILED_RUNNER_SHUTDOWN_EXIT_143_NOT_CERTIFIED",
+    "flagship_unconditional": "OPEN_IN_LEAN"
   }
 }
