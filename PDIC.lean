@@ -5016,11 +5016,11 @@ theorem connected_graphMIS_four_event_histogram
   classical
   calc
     (∑ e : Equiv.Perm Vertex, f (labellingZeroMISCount G e)) =
-      ∑ e : Equiv.Perm Vertex,
+      ∑ e : Equiv.Perm Vertex, (
         (if labellingZeroMISCount G e = 0 then f 0 else 0) +
         (if labellingZeroMISCount G e = 1 then f 1 else 0) +
         (if labellingZeroMISCount G e = 2 then f 2 else 0) +
-        (if labellingZeroMISCount G e = 3 then f 3 else 0) := by
+        (if labellingZeroMISCount G e = 3 then f 3 else 0)) := by
         apply Finset.sum_congr rfl
         intro e _
         have hb := connected_labellingZeroMISCount_le_three G hc e
@@ -5136,7 +5136,7 @@ theorem connected_graphMIS_four_probability_law
       (unorderedCompatibleTripleCount G : ℚ) / 315 := by
   obtain ⟨h0, h1, h2, h3⟩ :=
     connected_graphMIS_four_probability_moment_law G hc
-  rw [graphMIS_first_moment_eq, graphMIS_second_moment_eq,
+  simp only [graphMIS_first_moment_eq, graphMIS_second_moment_eq,
     graphMIS_third_moment_eq] at h0 h1 h2 h3
   constructor
   · linarith
