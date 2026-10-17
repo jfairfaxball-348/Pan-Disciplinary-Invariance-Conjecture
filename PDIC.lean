@@ -5397,7 +5397,7 @@ def s024ExcludedPoints : Finset CapPoint :=
     (fun t => -(∑ i ∈ t, s024BasisPoint i)))
 
 def s024FreePoints : Finset CapPoint :=
-  (Finset.univ : Finset CapPoint) \\ s024ExcludedPoints
+  (Finset.univ : Finset CapPoint) \ s024ExcludedPoints
 
 /-- A kernel-checked reduction: after pinning three basis points,
     precisely seventeen ambient candidates remain for the other five. -/
