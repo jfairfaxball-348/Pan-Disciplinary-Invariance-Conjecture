@@ -5182,3 +5182,173 @@ theorem connected_graphMIS_complete_flagship
 #print axioms PDIC.connected_graphMIS_complete_flagship
 
 end PDIC
+
+namespace PDIC
+
+/-! S023: conditional transport of the actual 40320-label sample space from
+an arbitrary admissible eight-cap to the canonical typed cap. The only
+external geometric classification is the explicit *hypothesis*
+\`ClassicalCapNormalForm\`, never an axiom or global instance. -/
+
+/-- Genuine four-element *maximal independent* zero-sum count with a fixed
+admissible cap enumeration \`f\` and a uniformly sampled label permutation. -/
+noncomputable def labellingZeroMISCountForCap
+    (G : SimpleGraph Vertex) (f : Vertex → CapPoint)
+    (e : Equiv.Perm Vertex) : ℕ :=
+  ((fourGraphMISFamily G).filter
+    (fun s => capSum (fun v => f (e v)) s = 0)).card
+
+/-- Actual event-fibre probability, with the unchanged denominator 8!=40320. -/
+noncomputable def graphMIS_exact_probability_for_cap
+    (G : SimpleGraph Vertex) (f : Vertex → CapPoint) (i : ℕ) : ℚ :=
+  (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+    (fun e => labellingZeroMISCountForCap G f e = i)).card : ℚ) /
+      (Fintype.card (Equiv.Perm Vertex) : ℚ)
+
+/-- Postcomposing an eight-vertex labelling permutation by a fixed
+permutation gives a genuine permutation of the entire sample space. -/
+def rightTranslation (p : Equiv.Perm Vertex) :
+    Equiv.Perm (Equiv.Perm Vertex) where
+  toFun := fun e => e.trans p
+  invFun := fun e => e.trans p.symm
+  left_inv := by
+    intro e
+    ext v
+    change p.symm (p (e v)) = e v
+    exact p.symm_apply_apply (e v)
+  right_inv := by
+    intro e
+    ext v
+    change p (p.symm (e v)) = e v
+    exact p.apply_symm_apply (e v)
+
+/-- The true zero-event count for the cap \`L (canonicalCapF3 ∘ p)\`
+equals the canonical count after the honest reindexing \`e.trans p\`.
+This relies on *zero-fixing* linearity, not an affine translation. -/
+theorem labellingZeroMISCountForCap_transport
+    (G : SimpleGraph Vertex) (f : Vertex → CapPoint)
+    (L : CapPoint ≃ₗ[ZMod 3] CapPoint) (p : Equiv.Perm Vertex)
+    (hf : ∀ v, f v = L (canonicalCapF3 (p v)))
+    (e : Equiv.Perm Vertex) :
+    labellingZeroMISCountForCap G f e =
+      labellingZeroMISCount G (e.trans p) := by
+  classical
+  have hz (s : Finset Vertex) :
+      capSum (fun v => f (e v)) s = 0 ↔
+        capSum (fun v => canonicalCapF3 ((e.trans p) v)) s = 0 := by
+    have he :
+        (fun v => f (e v)) =
+          (fun v => L (canonicalCapF3 ((e.trans p) v))) := by
+      funext v
+      simpa only [Equiv.trans_apply] using hf (e v)
+    rw [he]
+    exact capSum_zero_linear_iff L
+      (fun v => canonicalCapF3 ((e.trans p) v)) s
+  unfold labellingZeroMISCountForCap
+  rw [labellingZeroMISCount_eq_family_filter]
+  congr 1
+  ext s
+  simp only [Finset.mem_filter]
+  exact and_congr_right (fun _ => hz s)
+
+/-- Any event predicate on label permutations has the same number of
+real sample points after the bijective postcomposition \`e ↦ e.trans p\`. -/
+theorem rightTranslation_event_fibre_card
+    (p : Equiv.Perm Vertex) (P : Equiv.Perm Vertex → Prop) :
+    ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => P (e.trans p))).card =
+    ((Finset.univ : Finset (Equiv.Perm Vertex)).filter P).card := by
+  classical
+  let T := rightTranslation p
+  let E : {e : Equiv.Perm Vertex // P (T e)} ≃
+      {e : Equiv.Perm Vertex // P e} where
+    toFun := fun e => ⟨T e.1, e.2⟩
+    invFun := fun e => ⟨T.symm e.1, by
+      simpa only [Equiv.apply_symm_apply] using e.2⟩
+    left_inv := by
+      intro e
+      apply Subtype.ext
+      exact T.symm_apply_apply e.1
+    right_inv := by
+      intro e
+      apply Subtype.ext
+      exact T.apply_symm_apply e.1
+  have hc := Fintype.card_congr E
+  simpa only [Fintype.card_subtype] using hc
+
+/-- The cardinality of every one of the four genuine zero-MIS event fibres
+is identical for \`f\` and the canonical cap, conditional only on the supplied
+classical geometric normal form. -/
+theorem graphMIS_cap_event_fibre_card
+    (G : SimpleGraph Vertex) (f : Vertex → CapPoint)
+    (hf : IsAdmissibleCap f) (hnf : ClassicalCapNormalForm) (i : ℕ) :
+    ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCountForCap G f e = i)).card =
+    ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCount G e = i)).card := by
+  classical
+  obtain ⟨L, p, hmodel⟩ := hnf f hf
+  calc
+    ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCountForCap G f e = i)).card =
+        ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+          (fun e => labellingZeroMISCount G (e.trans p) = i)).card := by
+          congr 1
+          ext e
+          simp only [Finset.mem_filter]
+          rw [labellingZeroMISCountForCap_transport G f L p hmodel e]
+    _ = ((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCount G e = i)).card :=
+        rightTranslation_event_fibre_card p
+          (fun e => labellingZeroMISCount G e = i)
+
+/-- For an admissible fixed cap the real finite distribution agrees
+*term by term* with the canonical one. This is not an abstract
+probability symmetry assertion: the event cardinalities are identical. -/
+theorem graphMIS_probability_for_cap_eq_canonical
+    (G : SimpleGraph Vertex) (f : Vertex → CapPoint)
+    (hf : IsAdmissibleCap f) (hnf : ClassicalCapNormalForm)
+    (i : ℕ) :
+    graphMIS_exact_probability_for_cap G f i =
+      graphMIS_exact_probability G i := by
+  unfold graphMIS_exact_probability_for_cap graphMIS_exact_probability
+  rw [graphMIS_cap_event_fibre_card G f hf hnf i]
+
+/-- Complete connected-graph four-event distribution and uniquely sharp
+spider at EVERY admissible fixed eight-cap, conditional explicitly on the
+classical nine-cap normal-form proposition. The hypothesis is supplied,
+not postulated or proved in this file. -/
+theorem connected_graphMIS_complete_flagship_all_caps
+    (G : SimpleGraph Vertex) (hc : G.Connected)
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
+    (hnf : ClassicalCapNormalForm) :
+    (graphMIS_exact_probability_for_cap G f 0 =
+      1 - 2 * ((fourGraphMISFamily G).card : ℚ) / 35 +
+        2 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 +
+        (graphMIS_pairOverlapCount G 2 : ℚ) / 315 -
+        (unorderedCompatibleTripleCount G : ℚ) / 315 ∧
+    graphMIS_exact_probability_for_cap G f 1 =
+      2 * ((fourGraphMISFamily G).card : ℚ) / 35 -
+        4 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 -
+        2 * (graphMIS_pairOverlapCount G 2 : ℚ) / 315 +
+        3 * (unorderedCompatibleTripleCount G : ℚ) / 315 ∧
+    graphMIS_exact_probability_for_cap G f 2 =
+      2 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 +
+        (graphMIS_pairOverlapCount G 2 : ℚ) / 315 -
+        (unorderedCompatibleTripleCount G : ℚ) / 105 ∧
+    graphMIS_exact_probability_for_cap G f 3 =
+      (unorderedCompatibleTripleCount G : ℚ) / 315) ∧
+    (graphMIS_exact_probability_for_cap G f 3 ≤ (1 : ℚ) / 105 ∧
+      (graphMIS_exact_probability_for_cap G f 3 = (1 : ℚ) / 105 ↔
+        Nonempty (G ≃g namedSpider))) := by
+  simp only [graphMIS_probability_for_cap_eq_canonical G f hf hnf]
+  exact connected_graphMIS_complete_flagship G hc
+
+#print axioms PDIC.rightTranslation
+#print axioms PDIC.labellingZeroMISCountForCap_transport
+#print axioms PDIC.rightTranslation_event_fibre_card
+#print axioms PDIC.graphMIS_cap_event_fibre_card
+#print axioms PDIC.graphMIS_probability_for_cap_eq_canonical
+#print axioms PDIC.connected_graphMIS_complete_flagship_all_caps
+
+end PDIC
