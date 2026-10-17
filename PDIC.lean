@@ -5214,13 +5214,11 @@ def rightTranslation (p : Equiv.Perm Vertex) :
   left_inv := by
     intro e
     ext v
-    change p.symm (p (e v)) = e v
-    exact p.symm_apply_apply (e v)
+    simp [Equiv.trans_apply]
   right_inv := by
     intro e
     ext v
-    change p (p.symm (e v)) = e v
-    exact p.apply_symm_apply (e v)
+    simp [Equiv.trans_apply]
 
 /-- The true zero-event count for the cap \`L (canonicalCapF3 ∘ p)\`
 equals the canonical count after the honest reindexing \`e.trans p\`.
@@ -5261,7 +5259,7 @@ theorem rightTranslation_event_fibre_card
   classical
   let T := rightTranslation p
   let E : {e : Equiv.Perm Vertex // P (T e)} ≃
-      {e : Equiv.Perm Vertex // P e} where
+      {e : Equiv.Perm Vertex // P e} := {
     toFun := fun e => ⟨T e.1, e.2⟩
     invFun := fun e => ⟨T.symm e.1, by
       simpa only [Equiv.apply_symm_apply] using e.2⟩
@@ -5273,6 +5271,7 @@ theorem rightTranslation_event_fibre_card
       intro e
       apply Subtype.ext
       exact T.apply_symm_apply e.1
+  }
   have hc := Fintype.card_congr E
   simpa only [Fintype.card_subtype] using hc
 
