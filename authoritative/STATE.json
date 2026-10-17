@@ -787,5 +787,24 @@
     "Classical.choice",
     "Quot.sound"
   ],
-  "s024_extension_true_five_subsets_kernel_verified": true
+  "s024_extension_true_five_subsets_kernel_verified": true,
+  "s024_extension_full_image_candidate_status": "LEAN_KERNEL_VERIFIED_CONDITIONAL_ON_ACTUAL_PINNED_BASIS",
+  "s024_extension_full_image_candidate_proof_sha": "e70005454ba00c6e52ee5d2c2b33a8da19ac88f9",
+  "s024_extension_full_image_candidate_lean_run": 39044981946,
+  "s024_extension_normalized_candidate_family_card": 6188,
+  "s024_extension_two_span_status": "LEAN_KERNEL_VERIFIED_UNCONDITIONAL_EVERY_ADMISSIBLE_EIGHT_CAP_OUTSIDE_ANY_SELECTED_TWO_POINT_SPAN",
+  "s024_extension_two_span_proof_sha": "9f714802a8e38c4989de968f061886e1e4d7dc16",
+  "s024_extension_two_span_strict_lean_run": 39045727429,
+  "s024_extension_two_span_finite_run": 39045727481,
+  "s024_extension_two_span_declarations": [
+    "s024ProjectiveOrient_eq_cases",
+    "s024TwoSpan_projective_le_four",
+    "s024_admissible_point_outside_two_span"
+  ],
+  "s024_extension_two_span_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "s025_next_exact_gate": "Construct certified actual linear equivalence normalizing an independent triple from unconditional two-span escape, then Lean-certify 18-of-6188 classification and typed orbit witnesses"
 }
