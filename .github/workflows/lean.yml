@@ -4,6 +4,9 @@ on:
     branches: [main, session/s007-full-lean-flagship]
   pull_request:
   workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
 jobs:
   kernel:
     runs-on: ubuntu-latest
@@ -32,8 +35,9 @@ jobs:
             echo "Forbidden proof hole or custom axiom in Lean source"
             exit 1
           fi
-      - name: Run all ten independent finite checkers
+      - name: Run all independent finite checkers
         run: |
+          exec > >(tee -a pdic-finite-checkers.log) 2>&1
           python3 scripts/verify_s000.py
           python3 scripts/verify_s001_independent.py
           python3 scripts/verify_s002.py
@@ -51,3 +55,39 @@ jobs:
           python3 scripts/verify_s025_basis.py
           python3 scripts/verify_s020_unordered_moments.py
 
+
+      - name: Publish exact-source CI verdict to draft PR 4
+        if: ${{ always() && github.event_name == 'push' && github.ref == 'refs/heads/session/s007-full-lean-flagship' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+          RESULT: ${{ job.status }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          from textwrap import dedent
+          status = os.environ['RESULT']
+          sha = os.environ['SHA']
+          repo = os.environ['REPO']
+          run_id = os.environ['RUN_ID']
+          body = [
+              f'### Automated PDIC strict Lean verification — {status.upper()}',
+              f'**Exact source SHA:** \`{sha}\`',
+              f'**Workflow:** https://github.com/{repo}/actions/runs/{run_id}',
+              'This message is posted by the GitHub Actions runner on the proof branch, not by a finite Python certificate.',
+              ''
+          ]
+          for name in ['pdic-lean-build.log', 'pdic-finite-checkers.log']:
+              path = Path(name)
+              if path.exists():
+                  txt = path.read_text(errors='replace')
+                  sample = txt[-16000:].replace('```', '` ` `')
+                  body.extend([f'**{name} (last 16000 characters)**', '```text', sample, '```', ''])
+              else:
+                  body.append(f'**{name}: not produced** (failure may have occurred during toolchain setup).')
+          Path('pdic-ci-verdict.md').write_text('\n'.join(body))
+          PY
+          gh api "repos/$REPO/issues/4/comments" --method POST -F body=@pdic-ci-verdict.md
