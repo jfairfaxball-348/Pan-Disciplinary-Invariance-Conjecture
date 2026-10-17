@@ -1,0 +1,32 @@
+# PDIC S024 extension — basis-normalized 17-point finite-orbit reduction
+
+**Research continuation after the separately completed S024 closeout (17 October 2026).** This is additional groundwork for the installed S025 orbit proof, **not execution or closeout of S025**. Preserve the authoritative main-branch S025 prompt and the draft unmerged PR #4.
+
+## Exact normalization and finite search
+
+Represent `CapPoint` by triples over `F₃` and take an admissible eight-point image `U`. Whenever an ordered independent triple `(a,b,c)` belongs to `U`, its inverse basis matrix takes that triple to `E={e₁,e₂,e₃}`. In those coordinates all other five cap points avoid:
+
+1. `0` (forbidden singleton);
+2. `e₁,e₂,e₃` (already selected);
+3. `-e₁,-e₂,-e₃` (forbidden opposite pairs);
+4. `-(e₁+e₂), -(e₁+e₃), -(e₂+e₃)` (forbidden zero-sum triples).
+
+These are exactly **ten distinct excluded ambient points**, leaving **17** eligible points. Thus after choosing a basis, classification needs only `C(17,5)=6188` remaining-five-subsets, compared with the 329472 opposite-direction configurations of S025's initial suggested strategy, or the impractical `27^8` labelled maps. Full singleton, pair and triple zero-sum checks on these 6188 candidates retain exactly **18** normalized images containing the prescribed basis.
+
+For the quadratic canonical cap `U₀={(x,y,x²+y²): (x,y)≠0}`, there are **48 independent unordered point triples**, or **288 ordered triples**. Applying the unique linear map taking each ordered canonical triple to `E` produces exactly the same **18 normalized cap sets**. Consequently the finite calculation supplies a strong, small exhaustiveness certificate: every normalized admissible candidate is a zero-fixing linear image of the canonical cap, with no translation.
+
+The script `scripts/verify_s024_normal_form.py` checks this **independently** of the repository's `scripts/verify_s024_orbit.py`, and corroborates: 702 admissible unordered cap images, 11232 invertible matrices, 16 maps in each image fibre, and 48 independent unordered triples in each cap.
+
+## Formal progress and precise remaining obligations
+
+New unconditionally formulated source in `PDIC.lean` introduces `s024BasisPoint`, the exact finite excluded-point set, `s024FreePoints`, and theorem `s024FreePoints_card : s024FreePoints.card = 17` by a **kernel-computed** `decide +kernel` certificate, together with elementary cap exclusions. **Promote this theorem to LEAN_KERNEL_VERIFIED only after hosted strict workflow success at its exact commit.** It does **not** prove the orbit.
+
+The remaining formal bridge is:
+
+- Derive an *independent triple inside every admissible eight-cap* without an external hypothesis, and construct its actual inverse `CapPoint ≃ₗ[ZMod 3] CapPoint`.
+- Kernel-certify the full **18-of-6188 normalized classification**, with no `native_decide` or external script treated as a trusted oracle.
+- Construct typed invertible linear image witnesses for those 18 caps, then use the existing S024 image-set-to-labelled-permutation equivalence to discharge `AdmissibleCapImageOrbit`. Only then derive unconditional `ClassicalCapNormalForm` and the complete all-cap probability flagship.
+
+The independent Python count is `FINITE_CHECKED`, not a proof of these universally quantified Lean steps. The primary Follett et al. (2014), Proposition 2.2(1), states affine nine-cap equivalence; the pointed linear strengthening requires the specific origin-fixing argument and is not quoted as the literal proposition. Original citation: https://sites.lafayette.edu/mcmahone/files/2015/01/PartitionsAG43.pdf.
+
+**Status:** the original S024 conditional image-orbit bridge is already LEAN_KERNEL_VERIFIED at 06daea1887f0918fa3b1191cf315ec56a0c0222f / strict 39025025539. The entire unconditional cap-classification claim remains **OPEN_IN_LEAN**; the S022/S023 flagship certificates remain valid with their stated scopes. No new Palomar submission, arXiv submission, PR merge, or external correspondence.
