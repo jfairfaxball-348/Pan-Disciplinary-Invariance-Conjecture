@@ -1,5 +1,8 @@
 # PDIC — full first-paper Lean roadmap
 
+**S025 Lean recovery (17 Oct 2026):** After failed whole-file CI exit 143, isolated three independent-cap anchor theorems passed strict [Lean Actions 39053896006](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39053896006), with standard axioms, hole scan and all scripts passing and identical proof branch Lean blobs verified. The typed GL determinant and 18-of-6188 finite orbit remain next mathematical gates, with original full source preserved for repair. [Recovery record](sessions/S025_VERIFICATION_RECOVERY.md); authoritative S026 installed and NOT EXECUTED.
+
+
 **17 Oct 2026 — S025 EXECUTED (PARTIAL):** Added independent-triple, determinant/typed linear-map, full 18-of-6188 candidate and explicit eighteen GL matrix witness proof source on unmerged branch at `1b4a096c94bd333ef6e0cf4274efc0f358235e5f`. Independent finite corroboration only; **new Lean source NOT strict-CI verified**. S026 installed, **NOT EXECUTED**, to certify/repair source and finish genuine cap normalization, image orbit, unconditional flagship. Strict S024 proofs and conditional S023 law retain prior statuses. [S025 closeout](sessions/S025_CLOSEOUT.md) · [S026](research/NEXT_SESSION_PROMPT.md).
 
 
