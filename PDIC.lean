@@ -4993,3 +4993,192 @@ theorem connected_graphMIS_probability_three_sharp
 #print axioms PDIC.connected_graphMIS_probability_three_sharp
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S022: four *actual* probabilities, obtained from a histogram of genuine
+40320-label events, never from hypothetical moment variables. -/
+
+/-- A connected graph's genuine label histogram supports every rational test
+function by summing over its four disjoint event fibres. -/
+theorem connected_graphMIS_four_event_histogram
+    (G : SimpleGraph Vertex) (hc : G.Connected) (f : ℕ → ℚ) :
+    (∑ e : Equiv.Perm Vertex, f (labellingZeroMISCount G e)) =
+    f 0 * (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCount G e = 0)).card : ℚ) +
+    f 1 * (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCount G e = 1)).card : ℚ) +
+    f 2 * (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCount G e = 2)).card : ℚ) +
+    f 3 * (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCount G e = 3)).card : ℚ) := by
+  classical
+  calc
+    (∑ e : Equiv.Perm Vertex, f (labellingZeroMISCount G e)) =
+      ∑ e : Equiv.Perm Vertex,
+        (if labellingZeroMISCount G e = 0 then f 0 else 0) +
+        (if labellingZeroMISCount G e = 1 then f 1 else 0) +
+        (if labellingZeroMISCount G e = 2 then f 2 else 0) +
+        (if labellingZeroMISCount G e = 3 then f 3 else 0) := by
+        apply Finset.sum_congr rfl
+        intro e _
+        have hb := connected_labellingZeroMISCount_le_three G hc e
+        have hcases : labellingZeroMISCount G e = 0 ∨
+            labellingZeroMISCount G e = 1 ∨
+            labellingZeroMISCount G e = 2 ∨
+            labellingZeroMISCount G e = 3 := by omega
+        rcases hcases with h | h | h | h <;> simp [h]
+    _ = f 0 * (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCount G e = 0)).card : ℚ) +
+    f 1 * (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCount G e = 1)).card : ℚ) +
+    f 2 * (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCount G e = 2)).card : ℚ) +
+    f 3 * (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
+      (fun e => labellingZeroMISCount G e = 3)).card : ℚ) := by
+        simp [Finset.sum_add_distrib, Finset.sum_ite, mul_comm]
+
+/-- Normalized histogram identity for any rational-valued observable on the
+actual zero-sum maximal-independent-set count. -/
+theorem connected_graphMIS_four_event_expectation
+    (G : SimpleGraph Vertex) (hc : G.Connected) (f : ℕ → ℚ) :
+    (∑ e : Equiv.Perm Vertex, f (labellingZeroMISCount G e)) /
+      (Fintype.card (Equiv.Perm Vertex) : ℚ) =
+    f 0 * graphMIS_exact_probability G 0 +
+    f 1 * graphMIS_exact_probability G 1 +
+    f 2 * graphMIS_exact_probability G 2 +
+    f 3 * graphMIS_exact_probability G 3 := by
+  simp only [graphMIS_exact_probability]
+  rw [connected_graphMIS_four_event_histogram G hc f]
+  ring
+
+/-- Every one of the genuine 40320 labels falls into exactly one of
+N₀=0,1,2,3. -/
+theorem connected_graphMIS_probability_mass
+    (G : SimpleGraph Vertex) (hc : G.Connected) :
+    graphMIS_exact_probability G 0 + graphMIS_exact_probability G 1 +
+      graphMIS_exact_probability G 2 + graphMIS_exact_probability G 3 = 1 := by
+  have h := connected_graphMIS_four_event_expectation G hc (fun _ => (1 : ℚ))
+  have hu : (∑ _e : Equiv.Perm Vertex, (1 : ℚ)) =
+      (Fintype.card (Equiv.Perm Vertex) : ℚ) := by simp
+  rw [hu, uniformLabellings_card] at h
+  norm_num at h
+  linarith
+
+/-- True first-moment transfer from event-cardinal probabilities. -/
+theorem connected_graphMIS_probability_first
+    (G : SimpleGraph Vertex) (hc : G.Connected) :
+    graphMIS_exact_probability G 1 + 2 * graphMIS_exact_probability G 2 +
+      3 * graphMIS_exact_probability G 3 = graphMIS_first_moment G := by
+  have h := connected_graphMIS_four_event_expectation G hc
+    (fun n => (n : ℚ))
+  change graphMIS_first_moment G =
+    (0 : ℚ) * graphMIS_exact_probability G 0 +
+    (1 : ℚ) * graphMIS_exact_probability G 1 +
+    (2 : ℚ) * graphMIS_exact_probability G 2 +
+    (3 : ℚ) * graphMIS_exact_probability G 3 at h
+  linarith
+
+/-- True second *binomial* moment from the actual event partition. -/
+theorem connected_graphMIS_probability_second
+    (G : SimpleGraph Vertex) (hc : G.Connected) :
+    graphMIS_exact_probability G 2 + 3 * graphMIS_exact_probability G 3 =
+      graphMIS_second_moment G := by
+  have h := connected_graphMIS_four_event_expectation G hc
+    (fun n => (Nat.choose n 2 : ℚ))
+  change graphMIS_second_moment G =
+    (Nat.choose 0 2 : ℚ) * graphMIS_exact_probability G 0 +
+    (Nat.choose 1 2 : ℚ) * graphMIS_exact_probability G 1 +
+    (Nat.choose 2 2 : ℚ) * graphMIS_exact_probability G 2 +
+    (Nat.choose 3 2 : ℚ) * graphMIS_exact_probability G 3 at h
+  norm_num at h
+  linarith
+
+/-- The abstract rational inversion is now instantiated by real graph
+probabilities, real factorial moments and connected support N₀≤3. -/
+theorem connected_graphMIS_four_probability_moment_law
+    (G : SimpleGraph Vertex) (hc : G.Connected) :
+    graphMIS_exact_probability G 0 =
+        1 - graphMIS_first_moment G + graphMIS_second_moment G -
+          graphMIS_third_moment G ∧
+    graphMIS_exact_probability G 1 =
+        graphMIS_first_moment G - 2 * graphMIS_second_moment G +
+          3 * graphMIS_third_moment G ∧
+    graphMIS_exact_probability G 2 =
+        graphMIS_second_moment G - 3 * graphMIS_third_moment G ∧
+    graphMIS_exact_probability G 3 = graphMIS_third_moment G := by
+  apply four_point_moment_inversion
+  · exact connected_graphMIS_probability_mass G hc
+  · exact connected_graphMIS_probability_first G hc
+  · exact connected_graphMIS_probability_second G hc
+  · rw [graphMIS_third_moment_eq, connected_graphMIS_exact_probability_three G hc]
+
+/-- The complete, actual four-term probability law for every connected graph
+on eight vertices. All parameters are true graph-MIS incidence counts. -/
+theorem connected_graphMIS_four_probability_law
+    (G : SimpleGraph Vertex) (hc : G.Connected) :
+    graphMIS_exact_probability G 0 =
+      1 - 2 * ((fourGraphMISFamily G).card : ℚ) / 35 +
+        2 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 +
+        (graphMIS_pairOverlapCount G 2 : ℚ) / 315 -
+        (unorderedCompatibleTripleCount G : ℚ) / 315 ∧
+    graphMIS_exact_probability G 1 =
+      2 * ((fourGraphMISFamily G).card : ℚ) / 35 -
+        4 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 -
+        2 * (graphMIS_pairOverlapCount G 2 : ℚ) / 315 +
+        3 * (unorderedCompatibleTripleCount G : ℚ) / 315 ∧
+    graphMIS_exact_probability G 2 =
+      2 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 +
+        (graphMIS_pairOverlapCount G 2 : ℚ) / 315 -
+        (unorderedCompatibleTripleCount G : ℚ) / 105 ∧
+    graphMIS_exact_probability G 3 =
+      (unorderedCompatibleTripleCount G : ℚ) / 315 := by
+  obtain ⟨h0, h1, h2, h3⟩ :=
+    connected_graphMIS_four_probability_moment_law G hc
+  rw [graphMIS_first_moment_eq, graphMIS_second_moment_eq,
+    graphMIS_third_moment_eq] at h0 h1 h2 h3
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor
+  · linarith
+  · exact h3
+
+/-- Unified flagship: all four *actual* label probabilities and the unique
+sharp spider extremiser, not merely an abstract moment inversion. -/
+theorem connected_graphMIS_complete_flagship
+    (G : SimpleGraph Vertex) (hc : G.Connected) :
+    (graphMIS_exact_probability G 0 =
+      1 - 2 * ((fourGraphMISFamily G).card : ℚ) / 35 +
+        2 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 +
+        (graphMIS_pairOverlapCount G 2 : ℚ) / 315 -
+        (unorderedCompatibleTripleCount G : ℚ) / 315 ∧
+    graphMIS_exact_probability G 1 =
+      2 * ((fourGraphMISFamily G).card : ℚ) / 35 -
+        4 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 -
+        2 * (graphMIS_pairOverlapCount G 2 : ℚ) / 315 +
+        3 * (unorderedCompatibleTripleCount G : ℚ) / 315 ∧
+    graphMIS_exact_probability G 2 =
+      2 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 +
+        (graphMIS_pairOverlapCount G 2 : ℚ) / 315 -
+        (unorderedCompatibleTripleCount G : ℚ) / 105 ∧
+    graphMIS_exact_probability G 3 =
+      (unorderedCompatibleTripleCount G : ℚ) / 315) ∧
+    (graphMIS_exact_probability G 3 ≤ (1 : ℚ) / 105 ∧
+      (graphMIS_exact_probability G 3 = (1 : ℚ) / 105 ↔
+        Nonempty (G ≃g namedSpider))) := by
+  exact ⟨connected_graphMIS_four_probability_law G hc,
+    connected_graphMIS_probability_three_sharp G hc⟩
+
+#print axioms PDIC.connected_graphMIS_four_event_histogram
+#print axioms PDIC.connected_graphMIS_four_event_expectation
+#print axioms PDIC.connected_graphMIS_probability_mass
+#print axioms PDIC.connected_graphMIS_probability_first
+#print axioms PDIC.connected_graphMIS_probability_second
+#print axioms PDIC.connected_graphMIS_four_probability_moment_law
+#print axioms PDIC.connected_graphMIS_four_probability_law
+#print axioms PDIC.connected_graphMIS_complete_flagship
+
+end PDIC
