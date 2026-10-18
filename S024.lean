@@ -851,15 +851,14 @@ theorem s027_image_orbit_of_tail_classification
     rw [he] at hmem
     simp at hmem
   have hunit : IsUnit M.det := isUnit_iff_ne_zero.mpr hdet
-  letI : Invertible M := Matrix.invertibleOfIsUnitDet M hunit
-  let W : CapPoint ≃ₗ[ZMod 3] CapPoint := M.toLinearEquiv' inferInstance
+  let hInv : Invertible M := Matrix.invertibleOfIsUnitDet M hunit
+  let W : CapPoint ≃ₗ[ZMod 3] CapPoint := M.toLinearEquiv' hInv
   have hW (v : Vertex) :
       W (canonicalCapF3 v) = M.mulVec (canonicalCapF3 v) := by
     calc
       W (canonicalCapF3 v) =
           (M.toLin') (canonicalCapF3 v) :=
-        congrFun (Matrix.toLinearEquiv'_apply M
-          (inferInstance : Invertible M)) (canonicalCapF3 v)
+        congrFun (Matrix.toLinearEquiv'_apply M hInv) (canonicalCapF3 v)
       _ = M.mulVec (canonicalCapF3 v) :=
         Matrix.toLin'_apply M (canonicalCapF3 v)
   have hFin :
