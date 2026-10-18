@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S035_MANUSCRIPT_PROOF_AND_NOVELTY_HISTORICAL_SOURCE_AUDIT",
+  "next_session_target": "S035_PALOMAR_COMPARATOR_MEMORY_RECOVERY_AND_SAME_SHA_ALL_GREEN",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,9 +167,9 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/NEXT_SESSION_PROMPT.md",
+  "next_session_target_file": "research/S035_PALOMAR_COMPARATOR_RECOVERY_TARGET.md",
   "next_session_target_installed_date": "2026-10-18",
-  "next_session_target_source": "OWNER_EXPLICIT_OVERRIDE_AFTER_S033_PALOMAR_OOM",
+  "next_session_target_source": "OWNER_OVERRIDE_2026_10_18_OFFICIAL_PALOMAR_RESOURCE_EXHAUSTION",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -1137,5 +1137,6 @@
   "s035_target_file": "research/NEXT_SESSION_PROMPT.md",
   "s034_source_commit": "428588e695e12f883b26aef035af00c7ade25bb6",
   "s034_final_tex_sha256": "189e9a0c284a185dcfc8ddefbb1294b24884684127c9eff007a0b90cd12a1985",
-  "s034_checked_final_pdf_pages": 6
+  "s034_checked_final_pdf_pages": 6,
+  "s035_deferred_prior_target": "research/S035_DEFERRED_MANUSCRIPT_AUDIT_PROMPT.md"
 }
