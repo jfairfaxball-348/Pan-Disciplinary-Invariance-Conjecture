@@ -257,3 +257,14 @@ The S024/S025 snapshot above is historical and **superseded** by the following c
 - **OPEN IN LEAN:** the *exhaustive* theorem that the 6,188 candidates have exactly 18 surviving normalized admissible tails. The original monolithic kernel proof failed with runner termination [#39060204539](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39060204539), and no Lean proof of `AdmissibleCapImageOrbit`, unconditional `ClassicalCapNormalForm` or the unconditional complete P₀–P₃/spider theorem is claimed. Finite Python evidence remains separate and insufficient.
 
 The authoritative [S027 target](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/blob/main/research/NEXT_SESSION_PROMPT.md) is installed with **strictly the original flagship formalisation** as the goal; its first gate is a *smaller trusted Lean proof* of `s027NormalizedAdmissibleTails = s025NormalizedTails`. S027 was not executed as a numbered session by this post-S026 recovery. Research PR #4 remains draft and unmerged; no Palomar registration, external correspondence or submission has occurred.
+
+
+---
+
+## S029 session update — 18 October 2026
+
+**Partial: complete flagship still OPEN in Lean.** The genuine zero-fixing typed orbit and normal-form bridge, conditional on the exact 18-tail classification equation, passed pinned strict Lean [39112985302](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39112985302) at `d86864d6d5560c2f1d89f4febd242ff8e244594b`, approved axioms only. That proof code was promoted to canonical proof-branch commit [a9b0edd](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/a9b0edd18ea31b87ce8eb410f8c0828ce104c68a), with combined-source re-verification CI 39114476045 initiated.
+
+S029 added **35 further bounded actual short-zero-free pair-shard certificates** to isolated draft [PRs #17–#20](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pulls), and universal disjointness/cardinality bridges to isolated [PRs #21–#22](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pulls). Finite-lead workflows passed; strict Lean jobs were pending at closeout. These remain `SOURCE_FORMALIZED / CI_UNVERIFIED`, and none is counted as a certified classification. The `18/6188` tally remains independent FINITE_CHECKED evidence only.
+
+The unconditional cap orbit, unrestricted normal form, and the exact all-cap P₀–P₃ sharp-spider theorem remain **unproved in Lean**. See [S029 proof note](research/S029_LEAN_PROOF_NOTE.md), [S029 closeout](sessions/S029_CLOSEOUT.md), and [installed S030 target](research/NEXT_SESSION_PROMPT.md). PR #4 remains draft/unmerged; no submissions or correspondence.

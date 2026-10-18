@@ -1,0 +1,33 @@
+# PDIC S029 — honest exact-source proof and CI note
+
+**18 October 2026; executed, partial.** Objective strictly the frozen complete first-paper Lean flagship, not new mathematics.
+
+## Strict SUCCESS: real typed conditional orbit bridge
+
+The isolated [S028 validation PR #15](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/15) advanced to proof commit `d86864d6d5560c2f1d89f4febd242ff8e244594b`, whose [pinned Lean kernel run 39112985302](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39112985302) **SUCCEEDED** after the earlier failed run 39112521836. The log explicitly reports both `PDIC.s027_image_orbit_of_tail_classification` and `PDIC.s027_classical_normal_form_of_tail_classification` depending only on `[propext, Classical.choice, Quot.sound]`, with `lake build`, `lake env lean S024.lean`, no-hole scan and all independent finite checkers successful. The earlier error was a coercion mismatch at `congrFun (Matrix.toLinearEquiv'_apply ...)`; the successful version uses typed linear-map application.
+
+The same successful source declarations were appended to canonical `S024.lean` at [commit a9b0edd18ea31b87ce8eb410f8c0828ce104c68a](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/a9b0edd18ea31b87ce8eb410f8c0828ce104c68a), new blob `483d1878bfd1aa5ba965bbe5286f8b9c90464f2b`. This *combined* canonical file has an additional [strict CI run 39114476045](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39114476045), which must be inspected for exact final-SHA success before upgrading its status. The two proved lemmas are conditional **on** the still unproved 18-tail classification, so neither unconditional orbit nor complete all-cap flagship is claimed.
+
+## S029 proposed bounded certificates
+
+Four separate CI-only draft branches, all targeting the actual Lean `s028SecondIndexSurvivors` over `Fin 17` and real `s027ShortZeroFree`, proposed 35 further local pair counts (the S028 eleven are already strictly verified):
+
+- [PR #17](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/17), exact candidate commit `8f7e213716e7f9587dc86fad869b9b0644c8ed27`, eight (0,j) cases, [Lean 39113871192](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39113871192).
+- [PR #18](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/18), `0a3b0368ded1758955853d5e01fd4771d4ddefa2`, nine (1,j) cases, [Lean 39113941273](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39113941273).
+- [PR #19](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/19), `cbd3588b1ae5d30d8bc14212c1702ca311a8b946`, nine (2,j) cases, [Lean 39113949993](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39113949993).
+- [PR #20](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/20), `3303579fe15d8761b95d59df18b0307fe439d448`, nine (3,j) cases, [Lean 39113958416](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39113958416).
+
+All four independent finite-lead workflows completed successfully. At closeout **all four strict Lean jobs were still in progress**; therefore these 35 are `SOURCE_FORMALIZED / CI_UNVERIFIED`, not established kernel proof. Independent direct 6,188-case enumeration (outside Lean) again found exactly 18 survivors; for first indices 0..3 nonzero pair shard cards: 0→(3,4,5,6,11 each 1); 1→(3,4,5,7,11 each 1); 2→(3:2,4:2,12:1); 3→(5:1). This is FINITE_CHECKED only.
+
+## Structural finite-to-full-proof bridges: conditional CI status
+
+- [PR #21](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/21), `eebf837866cb158bf9fa0f92758cd704a1a41e74`, [Lean 39114099370](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39114099370): proposed `s029_second_index_unique`, `s029_second_survivors_disjoint`, and `s029_first_survivors_card_eq_second_sum` using exact sorted actual shards.
+- [PR #22](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/22), `7f85927d486fa7cc2e34fb520a484e6d9e95d841`, [Lean 39114267118](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39114267118): proposed true filtered indexed↔normalized image/cardinality preservation and first-index uniqueness/disjointness/sum.
+
+These are **Lean source candidates, not accepted theorems**, pending compiler/kernel check. They deliberately make disjointness, coverage and faithful image transfer explicit; merely listing 35 numerical certificates could not prove the unrestricted 18-tail theorem. No direct full 6,188-case kernel `decide` was asserted or used.
+
+## Strictly open
+
+`s027NormalizedAdmissibleTails.card = 18`, `s027NormalizedAdmissibleTails = s025NormalizedTails`, unconditional `AdmissibleCapImageOrbit`, unconditional `ClassicalCapNormalForm`, and `connected_graphMIS_complete_flagship_unconditional_all_caps` are **OPEN IN LEAN**. PR #4 remains draft/unmerged, all six CI PRs draft and unmerged, and no Palomar, publication or correspondence action occurred.
+
+Automatic handover: [S030 installed](S030_COMPLETE_UNCONDITIONAL_FLAGSHIP_LEAN_TARGET.md), **not executed**. First action: inspect exact-source S029 CI verdicts, repair failures and promote only certified source.
