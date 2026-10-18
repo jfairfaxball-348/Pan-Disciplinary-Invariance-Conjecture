@@ -988,3 +988,61 @@ theorem s027_indexed_five_tails_eq_original :
 #print axioms PDIC.s027_indexed_five_tails_eq_original
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S027: disjoint-first-index decomposition of the 6,188 five-element
+index tails. This is a universal finite-set identity, and is independent
+of the expensive zero-sum classifier. It enables genuine shard-local
+decidable certificates without recomputing the whole powerset. -/
+
+def s027LaterIndexPoints (i : Fin 17) : Finset (Fin 17) :=
+  (Finset.univ : Finset (Fin 17)).filter (fun j => i < j)
+
+def s027FirstIndexShard (i : Fin 17) : Finset (Finset (Fin 17)) :=
+  (s027LaterIndexPoints i).powersetCard 4 |>.image (fun R => insert i R)
+
+theorem s027_five_index_tails_split_by_first :
+    (Finset.univ : Finset (Fin 17)).biUnion s027FirstIndexShard =
+      (Finset.univ : Finset (Fin 17)).powersetCard 5 := by
+  classical
+  ext S
+  constructor
+  · intro hS
+    obtain ⟨i, _, hi⟩ := Finset.mem_biUnion.mp hS
+    obtain ⟨R, hR, hEq⟩ := Finset.mem_image.mp hi
+    obtain ⟨hSub, hCard⟩ := Finset.mem_powersetCard.mp hR
+    have hNot : i ∉ R := by
+      intro hiR
+      have hiLater : i ∈ s027LaterIndexPoints i := hSub hiR
+      have hiLt : i < i := (Finset.mem_filter.mp hiLater).2
+      exact (lt_irrefl i) hiLt
+    rw [← hEq]
+    apply Finset.mem_powersetCard.mpr
+    refine ⟨Finset.subset_univ _, ?_⟩
+    simp [hNot, hCard]
+  · intro hS
+    have hCard : S.card = 5 := (Finset.mem_powersetCard.mp hS).2
+    have hNe : S.Nonempty := Finset.card_pos.mp (by omega : 0 < S.card)
+    let i : Fin 17 := S.min' hNe
+    have hiMem : i ∈ S := Finset.min'_mem S hNe
+    let R : Finset (Fin 17) := S.erase i
+    have hRCard : R.card = 4 := by
+      simp [R, Finset.card_erase_of_mem hiMem, hCard]
+    have hRSub : R ⊆ s027LaterIndexPoints i := by
+      intro j hj
+      have hjne : j ≠ i := (Finset.mem_erase.mp hj).1
+      have hjMem : j ∈ S := (Finset.mem_erase.mp hj).2
+      have hle : i ≤ j := Finset.min'_le S j hjMem
+      apply Finset.mem_filter.mpr
+      exact ⟨Finset.mem_univ _, lt_of_le_of_ne hle hjne.symm⟩
+    apply Finset.mem_biUnion.mpr
+    refine ⟨i, Finset.mem_univ _, ?_⟩
+    apply Finset.mem_image.mpr
+    exact ⟨R, Finset.mem_powersetCard.mpr ⟨hRSub,hRCard⟩,
+      Finset.insert_erase hiMem⟩
+
+#print axioms PDIC.s027_five_index_tails_split_by_first
+
+end PDIC
