@@ -4,7 +4,7 @@
   "last_completed_session": "S033",
   "next_session": "S034",
   "next_session_executed": false,
-  "phase": "S033_POSTCLOSEOUT_VERIFICATION_FAILURE_REPAIRED_BY_SOLUTION_IMPORT__NEW_MECHANICAL_GATES_PENDING__NOT_READY",
+  "phase": "S033_SOLUTION_IMPORT_REPAIR_STRICT_LEAN_AND_FINITE_PASS__OFFICIAL_FULL_MODE_RUNNING_NOT_READY",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -1096,7 +1096,7 @@
   "s033_postcloseout_lean_run": 39138306744,
   "s033_postcloseout_full_run": 39138306868,
   "s033_postcloseout_finite_run": 39138306687,
-  "s033_postcloseout_full_result": "IN_PROGRESS_UNCONFIRMED",
-  "s033_postcloseout_strict_result": "IN_PROGRESS_UNCONFIRMED",
+  "s033_postcloseout_full_result": "IN_PROGRESS_OFFICIAL_FULL_MECHANICAL_UNCONFIRMED",
+  "s033_postcloseout_strict_result": "SUCCESS_FULL_MODULE_AXIOMS_NO_HOLES_EXACT_SHA_020e5a2a63f3b40fb62a2989e4d8fbe45da16cbb",
   "s033_postcloseout_finite_result": "SUCCESS_EXACT_SHA_020e5a2a63f3b40fb62a2989e4d8fbe45da16cbb"
 }
