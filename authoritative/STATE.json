@@ -4,7 +4,7 @@
   "last_completed_session": "S033",
   "next_session": "S034",
   "next_session_executed": false,
-  "phase": "S033_STRICT_AND_FINITE_AT_PRIOR_SHA_PASS_PALOMAR_COMPARATOR_SPIDERADJ_MISMATCH__REPAIRED_EXPLICIT_SEVEN_EDGE_CHALLENGE__CHECKS_PENDING",
+  "phase": "S033_FINAL_LATEST_FULL_CHECK_RESOURCE_EXHAUSTED_COMPARATOR_OOM_16GB__STRICT_AND_FINITE_PASS__NOT_READY",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -1067,7 +1067,7 @@
   "s032_closeout": "sessions/S032_CLOSEOUT.md",
   "s032_release_audit": "research/S032_PALOMAR_RELEASE_AUDIT.md",
   "s033_target": "RESOLVE_EXACT_SHA_OFFICIAL_PALOMAR_FULL_MECHANICAL_AND_HANDOVER",
-  "s033_status": "EXECUTED_S033_POSTCLOSEOUT_OWNER_REQUESTED_COMPARATOR_REPAIR__NEW_EXACT_SHA_CHECKS_PENDING",
+  "s033_status": "EXECUTED__FOLLOWUP_EXACT_MECHANICAL_REPORT_PALOMAR_COMPARATOR_16GB_OOM",
   "s032_postcloseout_compiler_fix_sha": "c2f3cc5de3c2e902d36484f085c6d77669e264ce",
   "s032_postcloseout_compiler_fix_strict_run": 39129163513,
   "s032_postcloseout_compiler_fix_strict_result": "SUCCESS",
@@ -1107,5 +1107,13 @@
   "s033_latest_finite_run": 39140422043,
   "s033_latest_full_run": 39140422199,
   "s033_latest_all_gate_result": "PENDING_NOT_READY",
-  "s033_latest_finite_result": "SUCCESS_EXACT_SHA_fe94685a626051378e4c3dd1e0ff5fbc89503f02"
+  "s033_latest_finite_result": "SUCCESS",
+  "s033_latest_strict_result": "SUCCESS",
+  "s033_latest_full_result": "FAILURE_PROVIDER_RESOURCE_EXHAUSTED_COMPARATOR_CGROUP_OOM",
+  "s033_latest_full_report_artifact": 12142417885,
+  "s033_latest_full_comparator_memory_peak_bytes": 16129802240,
+  "s033_latest_full_cgroup_limit_bytes": 16431086551,
+  "s033_latest_full_comparator_semantic_verdict": "NOT_REACHED",
+  "s033_latest_independent_kernels_result": "NOT_REACHED",
+  "s033_high_memory_profile_available_in_palomar_catalogue": "palomar-namespace-16x32-v1__CALLER_ELIGIBILITY_NOT_VERIFIED"
 }
