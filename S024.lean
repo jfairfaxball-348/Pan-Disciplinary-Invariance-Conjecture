@@ -1403,3 +1403,83 @@ theorem s028_first_survivors_split (i : Fin 17) :
 #print axioms PDIC.s028_first_survivors_split
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S029 isolated true short-zero-free pair-shard kernel certificates, first index 3;
+this table is finite-local and is not a proof of 18-tail exhaustiveness. -/
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_4_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (4 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_4_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_5_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (5 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_5_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_6_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (6 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_6_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_7_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (7 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_7_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_8_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (8 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_8_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_10_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (10 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_10_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_11_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (11 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_11_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_12_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (12 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_12_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_13_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (13 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_13_survivor_card
+
+end PDIC
