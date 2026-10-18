@@ -216,3 +216,14 @@ The authoritative [S027 target](https://github.com/jfairfaxball-348/Pan-Discipli
 S029 added **35 further bounded actual short-zero-free pair-shard certificates** to isolated draft [PRs #17–#20](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pulls), and universal disjointness/cardinality bridges to isolated [PRs #21–#22](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pulls). Finite-lead workflows passed; strict Lean jobs were pending at closeout. These remain `SOURCE_FORMALIZED / CI_UNVERIFIED`, and none is counted as a certified classification. The `18/6188` tally remains independent FINITE_CHECKED evidence only.
 
 The unconditional cap orbit, unrestricted normal form, and the exact all-cap P₀–P₃ sharp-spider theorem remain **unproved in Lean**. See [S029 proof note](research/S029_LEAN_PROOF_NOTE.md), [S029 closeout](sessions/S029_CLOSEOUT.md), and [installed S030 target](research/NEXT_SESSION_PROMPT.md). PR #4 remains draft/unmerged; no submissions or correspondence.
+
+
+---
+
+## Owner-directed S035 target override — 18 October 2026
+
+S034 completed the full first-paper manuscript. The owner has **deferred the automatically proposed S035 manuscript/novelty audit** until after mechanical verification; the old audit prompt is preserved at [research/S035_DEFERRED_MANUSCRIPT_AUDIT_PROMPT.md](research/S035_DEFERRED_MANUSCRIPT_AUDIT_PROMPT.md).
+
+**S035 is now installed but NOT executed** as a Palomar resource/comparator recovery session: identify why the entire flagship Challenge/Solution export comparison exceeds runner memory, implement a lower-footprint equivalent package without reducing the full all-cap P0–P3 theorem or sharp spider characterisation, and iterate same-SHA strict Lean, independent finite checks and full-mode Palomar preflight to all-green Comparator and independent kernels. Complete instructions: [research/NEXT_SESSION_PROMPT.md](research/NEXT_SESSION_PROMPT.md), stable copy: [research/S035_PALOMAR_COMPARATOR_RECOVERY_TARGET.md](research/S035_PALOMAR_COMPARATOR_RECOVERY_TARGET.md).
+
+Latest package PR #24 SHA fe94685a626051378e4c3dd1e0ff5fbc89503f02 has strict Lean and finite PASSES but Palomar preflight 39140422199 failed during Comparator with OOM exit 137 (report 12142417885); registry verification is still unverified. The owner reports the official Palomar submission encountered a similar resource barrier. Earlier Comparator declaration mismatch also remains unconfirmed resolved. Do not declare readiness or register without actual independent NanoDa/con-ron and full mechanical verdict; keep paper's registry link pending. If S035 finishes without full green, S036 continues this same recovery target.
