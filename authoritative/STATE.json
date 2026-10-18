@@ -4,7 +4,7 @@
   "last_completed_session": "S028",
   "next_session": "S029",
   "next_session_executed": false,
-  "phase": "S028_EXECUTED_PARTIAL_CORRECTED_BOUNDED_PAIR_SHARDS_STRICT_CI_CHECKING__UNCONDITIONAL_CAP_NORMAL_FORM_AND_FLAGSHIP_OPEN",
+  "phase": "S028_PARTIAL_ELEVEN_PAIR_SHARD_AND_FILTERED_SHARD_UNION_STRICT_KERNEL_VERIFIED__EIGHTEEN_CLASSIFICATION_AND_UNCONDITIONAL_FLAGSHIP_OPEN",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -169,7 +169,7 @@
   },
   "next_session_target_file": "research/S029_EXHAUSTIVE_CAP_ORBIT_AND_FLAGSHIP.md",
   "next_session_target_installed_date": "2026-10-18",
-  "next_session_target_source": "daf67285f0b4f09df21541cc0667ce1fcce064d6",
+  "next_session_target_source": "fabb6135d2ced461481c3dce59898953d6d4d61c",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -949,7 +949,7 @@
     "target_file": "research/S028_EXHAUSTIVE_CAP_SHARDS_AND_UNCONDITIONAL_FLAGSHIP.md",
     "focus": "finish_remaining_first_index_0_to_3_bounded_Lean_kernel_shard_counts_and_derive_exact_normalized_18_case_equality_then_full_zero_fixing_cap_orbit_and_unconditional_flagship"
   },
-  "s028_status": "EXECUTED_PARTIAL__CORRECTED_PAIR_SHARDS_SOURCE__STRICT_PROOF_STATUS_DEPENDS_ON_EXACT_CI_RUN",
+  "s028_status": "EXECUTED_PARTIAL__CORRECTED_ELEVEN_PAIR_SHARDS_AND_FILTERED_UNION_LEAN_KERNEL_VERIFIED__EIGHTEEN_CLASSIFICATION_OPEN",
   "s028_closeout": "sessions/S028_CLOSEOUT.md",
   "s028_proof_note": "research/S028_LEAN_PROOF_NOTE.md",
   "s028_canonical_proof_sha": "daf67285f0b4f09df21541cc0667ce1fcce064d6",
@@ -961,5 +961,9 @@
   "s028_structural_candidate_run": 39112524267,
   "s028_failed_wrong_target_ci_run": 39111982390,
   "s028_unconditional_flagship_proved": false,
-  "s028_palomar_or_publication": false
+  "s028_palomar_or_publication": false,
+  "s028_pair_ci_status": "SUCCESS_APPROVED_AXIOMS_HOLE_SCAN_ALL_FINITE",
+  "s028_structural_ci_status": "SUCCESS_APPROVED_AXIOMS_HOLE_SCAN_ALL_FINITE",
+  "s028_structural_ci_run": 39112524267,
+  "s028_latest_promoted_proof_sha": "fabb6135d2ced461481c3dce59898953d6d4d61c"
 }
