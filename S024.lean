@@ -1370,3 +1370,100 @@ theorem s028_pair_3_9_survivor_card :
 #print axioms PDIC.s028_pair_3_9_survivor_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S028: the orbit transport is proved using genuine typed zero-fixing
+linear equivalences, with the sole missing 18-of-6188 classification
+supplied as an explicit, UNPROVED parameter. There is no new axiom. -/
+
+/-- Provided the exact finite classification is kernel certified, the
+existing independently checked matrix witnesses yield the universal
+zero-fixing linear cap orbit. This theorem does NOT assert the missing
+classification or unconditional orbit. -/
+theorem s027_image_orbit_of_tail_classification
+    (hclass : s027NormalizedAdmissibleTails = s025NormalizedTails) :
+    AdmissibleCapImageOrbit := by
+  classical
+  intro f hf
+  obtain ⟨N, hN⟩ :=
+    s027_any_admissible_normalized_in_filtered_family f hf
+  rw [hclass] at hN
+  change ((Finset.univ : Finset Vertex).image (fun v => N (f v))) ∈
+    s025NormalizedFullTable at hN
+  rw [← s025_matrix_images_eq_normalized_table] at hN
+  obtain ⟨M, hM, hEq⟩ := Finset.mem_image.mp hN
+  have hdet : M.det ≠ 0 := by
+    intro hz
+    have hmem : M ∈ s025WitnessMatrices.filter (fun K => K.det = 0) :=
+      Finset.mem_filter.mpr ⟨hM, hz⟩
+    have he :
+        (s025WitnessMatrices.filter (fun K => K.det = 0)) = ∅ :=
+      Finset.card_eq_zero.mp s025_witness_matrices_nonsingular
+    rw [he] at hmem
+    simp at hmem
+  have hunit : IsUnit M.det := isUnit_iff_ne_zero.mpr hdet
+  let hInv : Invertible M := Matrix.invertibleOfIsUnitDet M hunit
+  let W : CapPoint ≃ₗ[ZMod 3] CapPoint := M.toLinearEquiv' hInv
+  have hW (v : Vertex) :
+      W (canonicalCapF3 v) = M.mulVec (canonicalCapF3 v) := by
+    change (M.toLinearEquiv' hInv) (canonicalCapF3 v) =
+      M.mulVec (canonicalCapF3 v)
+    have hLin :
+        (M.toLinearEquiv' hInv) (canonicalCapF3 v) =
+          (Matrix.toLin' M) (canonicalCapF3 v) :=
+      congrArg
+        (fun L : CapPoint →ₗ[ZMod 3] CapPoint => L (canonicalCapF3 v))
+        (Matrix.toLinearEquiv'_apply M hInv)
+    exact hLin.trans (Matrix.toLin'_apply M (canonicalCapF3 v))
+  have hFin :
+      ((Finset.univ : Finset Vertex).image (fun v => N (f v))) =
+      ((Finset.univ : Finset Vertex).image
+        (fun v => W (canonicalCapF3 v))) := by
+    simpa only [hW] using hEq.symm
+  have hrange :
+      Set.range (fun v => N (f v)) =
+      Set.range (fun v => W (canonicalCapF3 v)) := by
+    ext x
+    have hm : (∃ a : Vertex, N (f a) = x) =
+        (∃ a : Vertex, W (canonicalCapF3 a) = x) := by
+      simpa only [Finset.mem_image, Finset.mem_univ, true_and]
+        using congrArg (fun S : Finset CapPoint => x ∈ S) hFin
+    change (∃ a : Vertex, N (f a) = x) ↔
+      (∃ a : Vertex, W (canonicalCapF3 a) = x)
+    exact ⟨Eq.mp hm, Eq.mpr hm⟩
+  refine ⟨W.trans N.symm, ?_⟩
+  ext x
+  constructor
+  · rintro ⟨v, rfl⟩
+    have hmem :
+        N (f v) ∈ Set.range (fun u => W (canonicalCapF3 u)) := by
+      rw [← hrange]
+      exact ⟨v, rfl⟩
+    obtain ⟨u, hu⟩ := hmem
+    refine ⟨u, ?_⟩
+    change N.symm (W (canonicalCapF3 u)) = f v
+    simpa using congrArg N.symm hu
+  · rintro ⟨v, rfl⟩
+    have hmem :
+        W (canonicalCapF3 v) ∈ Set.range (fun u => N (f u)) := by
+      rw [hrange]
+      exact ⟨v, rfl⟩
+    obtain ⟨u, hu⟩ := hmem
+    refine ⟨u, ?_⟩
+    change f u = N.symm (W (canonicalCapF3 v))
+    simpa using congrArg N.symm hu
+
+/-- Explicitly scoped bridge: no external classical normal-form
+assumption remains, provided the finite classification equation. -/
+theorem s027_classical_normal_form_of_tail_classification
+    (hclass : s027NormalizedAdmissibleTails = s025NormalizedTails) :
+    ClassicalCapNormalForm :=
+  classicalCapNormalForm_of_image_orbit
+    (s027_image_orbit_of_tail_classification hclass)
+
+#print axioms PDIC.s027_image_orbit_of_tail_classification
+#print axioms PDIC.s027_classical_normal_form_of_tail_classification
+
+end PDIC
