@@ -855,7 +855,13 @@ theorem s027_image_orbit_of_tail_classification
   let W : CapPoint ≃ₗ[ZMod 3] CapPoint := M.toLinearEquiv' inferInstance
   have hW (v : Vertex) :
       W (canonicalCapF3 v) = M.mulVec (canonicalCapF3 v) := by
-    simp only [W, Matrix.toLinearEquiv'_apply, Matrix.toLin'_apply]
+    calc
+      W (canonicalCapF3 v) =
+          (M.toLin') (canonicalCapF3 v) :=
+        congrFun (Matrix.toLinearEquiv'_apply M
+          (inferInstance : Invertible M)) (canonicalCapF3 v)
+      _ = M.mulVec (canonicalCapF3 v) :=
+        Matrix.toLin'_apply M (canonicalCapF3 v)
   have hFin :
       ((Finset.univ : Finset Vertex).image (fun v => N (f v))) =
       ((Finset.univ : Finset Vertex).image
@@ -865,9 +871,13 @@ theorem s027_image_orbit_of_tail_classification
       Set.range (fun v => N (f v)) =
       Set.range (fun v => W (canonicalCapF3 v)) := by
     ext x
-    have hm := congrArg (fun S : Finset CapPoint => x ∈ S) hFin
-    simp only [Finset.mem_image, Finset.mem_univ, true_and] at hm
-    exact ⟨fun hx => hm ▸ hx, fun hx => hm.symm ▸ hx⟩
+    have hm : (∃ a : Vertex, N (f a) = x) =
+        (∃ a : Vertex, W (canonicalCapF3 a) = x) := by
+      simpa only [Finset.mem_image, Finset.mem_univ, true_and]
+        using congrArg (fun S : Finset CapPoint => x ∈ S) hFin
+    change (∃ a : Vertex, N (f a) = x) ↔
+      (∃ a : Vertex, W (canonicalCapF3 a) = x)
+    exact ⟨Eq.mp hm, Eq.mpr hm⟩
   refine ⟨W.trans N.symm, ?_⟩
   ext x
   constructor
