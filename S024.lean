@@ -1269,3 +1269,104 @@ theorem s027_shard_16_survivor_card :
 #print axioms PDIC.s027_shard_16_survivor_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S028: bounded exact first/second-index normalized-cap certificates.
+    Only these local finite classes are checked; the universal orbit
+    needs proof of all remaining classes and their disjoint aggregation. -/
+
+def s028SecondIndexSurvivors (i j : Fin 17) : Finset (Finset (Fin 17)) :=
+  (s027SecondIndexShard i j).filter (fun I =>
+    s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = true)
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_0_3_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (3 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_0_3_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_0_9_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (9 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_0_9_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_0_10_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (10 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_0_10_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_0_11_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (11 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_0_11_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_0_12_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (12 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_0_12_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_1_9_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (9 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_1_9_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_1_10_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (10 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_1_10_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_1_11_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (11 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_1_11_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_2_10_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (10 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_2_10_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_2_11_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (11 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_2_11_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s028_pair_3_9_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (9 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s028_pair_3_9_survivor_card
+
+end PDIC
