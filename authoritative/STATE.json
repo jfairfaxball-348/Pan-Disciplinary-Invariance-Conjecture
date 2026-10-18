@@ -4,7 +4,7 @@
   "last_completed_session": "S029",
   "next_session": "S030",
   "next_session_executed": false,
-  "phase": "S029_PARTIAL_TYPED_CONDITIONAL_ORBIT_STRICT_VERIFIED__THIRTY_FIVE_PAIR_SHARDS_AND_DISJOINT_BRIDGES_CI_PENDING__UNCONDITIONAL_FLAGSHIP_OPEN",
+  "phase": "S029_PARTIAL_ALL_35_PAIR_CERTIFICATES_AND_11_UNIVERSAL_BRIDGES_STRICT_ISOLATED_SUCCESS__COMBINED_CANONICAL_CI_PENDING__FULL_UNCONDITIONAL_FLAGSHIP_OPEN",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -995,8 +995,26 @@
     39114267118
   ],
   "s029_local_shard_certificates_added": 35,
-  "s029_local_shard_ci_state_at_closeout": "IN_PROGRESS_NOT_KERNEL_VERIFIED",
-  "s029_structural_ci_state_at_closeout": "IN_PROGRESS_NOT_KERNEL_VERIFIED",
+  "s029_local_shard_ci_state_at_closeout": "ALL_4_EXACT_SHA_SUCCESS_STANDARD_AXIOMS_HOLE_SCAN_FINITE_PASS",
+  "s029_structural_ci_state_at_closeout": "BOTH_EXACT_SHA_SUCCESS_STANDARD_AXIOMS_HOLE_SCAN_FINITE_PASS",
   "s029_original_full_flagship_proved": false,
-  "s029_palomar_publication_correspondence": false
+  "s029_palomar_publication_correspondence": false,
+  "s029_strict_shard_verified_count": 35,
+  "s029_strict_structural_verified_count": 11,
+  "s029_strict_shard_runs": [
+    39113871192,
+    39113941273,
+    39113949993,
+    39113958416
+  ],
+  "s029_strict_structural_runs": [
+    39114099370,
+    39114267118
+  ],
+  "s029_combined_initial_failed_sha": "a9b0edd18ea31b87ce8eb410f8c0828ce104c68a",
+  "s029_combined_initial_failed_run": 39114476045,
+  "s029_promoted_all_isolated_verified_source_commit": "9903ef8eb1d734ae5b11f0cb076aba6b0c440e64",
+  "s029_promoted_all_source_blob": "2981bf783955ec77148700a6e643b235c9796356",
+  "s029_full_combined_strict_ci_run": 39115243350,
+  "s029_full_combined_ci_state": "IN_PROGRESS_NOT_YET_KERNEL_VERIFIED"
 }
