@@ -857,7 +857,9 @@ theorem s027_image_orbit_of_tail_classification
       W (canonicalCapF3 v) = M.mulVec (canonicalCapF3 v) := by
     change (M.toLinearEquiv' hInv) (canonicalCapF3 v) =
       M.mulVec (canonicalCapF3 v)
-    simp only [Matrix.toLinearEquiv'_apply, Matrix.toLin'_apply]
+    exact (congrFun (Matrix.toLinearEquiv'_apply M hInv)
+      (canonicalCapF3 v)).trans
+        (Matrix.toLin'_apply M (canonicalCapF3 v))
   have hFin :
       ((Finset.univ : Finset Vertex).image (fun v => N (f v))) =
       ((Finset.univ : Finset Vertex).image
