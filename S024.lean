@@ -849,23 +849,25 @@ theorem s027_image_orbit_of_tail_classification
         (s025WitnessMatrices.filter (fun K => K.det = 0)) = ∅ :=
       Finset.card_eq_zero.mp s025_witness_matrices_nonsingular
     rw [he] at hmem
-    exact Finset.not_mem_empty M hmem
+    simp at hmem
   have hunit : IsUnit M.det := isUnit_iff_ne_zero.mpr hdet
   letI : Invertible M := Matrix.invertibleOfIsUnitDet M hunit
   let W : CapPoint ≃ₗ[ZMod 3] CapPoint := M.toLinearEquiv' inferInstance
+  have hW (v : Vertex) :
+      W (canonicalCapF3 v) = M.mulVec (canonicalCapF3 v) := by
+    simp only [W, Matrix.toLinearEquiv'_apply, Matrix.toLin'_apply]
   have hFin :
       ((Finset.univ : Finset Vertex).image (fun v => N (f v))) =
       ((Finset.univ : Finset Vertex).image
         (fun v => W (canonicalCapF3 v))) := by
-    simpa only [W, Matrix.toLinearEquiv'_apply, Matrix.toLin'_apply]
-      using hEq.symm
+    simpa only [hW] using hEq.symm
   have hrange :
       Set.range (fun v => N (f v)) =
       Set.range (fun v => W (canonicalCapF3 v)) := by
     ext x
     have hm := congrArg (fun S : Finset CapPoint => x ∈ S) hFin
-    simpa only [Finset.mem_image, Finset.mem_univ, true_and,
-      Set.mem_range] using hm
+    simp only [Finset.mem_image, Finset.mem_univ, true_and] at hm
+    exact ⟨fun hx => hm ▸ hx, fun hx => hm.symm ▸ hx⟩
   refine ⟨W.trans N.symm, ?_⟩
   ext x
   constructor
