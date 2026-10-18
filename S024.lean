@@ -867,7 +867,8 @@ theorem s027_eighteen_tails_subset_filtered_candidates :
       have he : (s025NormalizedTails.filter (fun V =>
             s027ShortZeroFree (s024BasisSet ∪ V) = false)) = ∅ :=
         Finset.card_eq_zero.mp s027_eighteen_tails_short_zero_certificate
-      simp [he] at hmem
+      rw [he] at hmem
+      exact Finset.not_mem_empty T hmem
     | true => rfl
   apply Finset.mem_filter.mpr
   exact ⟨Finset.mem_powersetCard.mpr hdomain, hshort⟩
