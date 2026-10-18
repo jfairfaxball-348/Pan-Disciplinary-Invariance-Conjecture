@@ -1496,3 +1496,532 @@ theorem s027_classical_normal_form_of_tail_classification
 #print axioms PDIC.s027_classical_normal_form_of_tail_classification
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S029: independent bounded certificates for the remaining first-index-zero
+second-index shards, each computed with the true sorted five-tail predicate.
+The disjoint union/cardinality argument is a separate obligation. -/
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_0_1_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (1 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_0_1_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_0_2_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (2 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_0_2_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_0_4_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (4 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_0_4_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_0_5_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (5 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_0_5_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_0_6_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (6 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_0_6_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_0_7_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (7 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_0_7_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_0_8_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (8 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_0_8_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_0_13_survivor_card :
+    (s028SecondIndexSurvivors (0 : Fin 17) (13 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_0_13_survivor_card
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S029 isolated true short-zero-free pair-shard kernel certificates, first index 1;
+this table is finite-local and is not a proof of 18-tail exhaustiveness. -/
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_1_2_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (2 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_1_2_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_1_3_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (3 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_1_3_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_1_4_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (4 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_1_4_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_1_5_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (5 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_1_5_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_1_6_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (6 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_1_6_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_1_7_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (7 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_1_7_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_1_8_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (8 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_1_8_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_1_12_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (12 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_1_12_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_1_13_survivor_card :
+    (s028SecondIndexSurvivors (1 : Fin 17) (13 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_1_13_survivor_card
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S029 isolated true short-zero-free pair-shard kernel certificates, first index 2;
+this table is finite-local and is not a proof of 18-tail exhaustiveness. -/
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_2_3_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (3 : Fin 17)).card = 2 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_2_3_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_2_4_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (4 : Fin 17)).card = 2 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_2_4_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_2_5_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (5 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_2_5_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_2_6_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (6 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_2_6_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_2_7_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (7 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_2_7_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_2_8_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (8 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_2_8_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_2_9_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (9 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_2_9_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_2_12_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (12 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_2_12_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_2_13_survivor_card :
+    (s028SecondIndexSurvivors (2 : Fin 17) (13 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_2_13_survivor_card
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S029 isolated true short-zero-free pair-shard kernel certificates, first index 3;
+this table is finite-local and is not a proof of 18-tail exhaustiveness. -/
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_4_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (4 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_4_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_5_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (5 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_5_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_6_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (6 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_6_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_7_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (7 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_7_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_8_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (8 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_8_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_10_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (10 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_10_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_11_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (11 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_11_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_12_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (12 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_12_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s029_pair_3_13_survivor_card :
+    (s028SecondIndexSurvivors (3 : Fin 17) (13 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s029_pair_3_13_survivor_card
+
+end PDIC
+
+
+namespace PDIC
+
+/-!
+S029 structural cardinality gate. Unlike finite card evaluations, this
+works for all i,j,k and all five-index sets in their actual sorted shards.
+-/
+
+/-- Any candidate in a genuine second-index shard contains j; every
+member other than the distinguished first index i is at least j. -/
+theorem s029_second_index_le_every_later_member
+    (i j : Fin 17) (S : Finset (Fin 17))
+    (hS : S ∈ s027SecondIndexShard i j) :
+    i < j ∧ j ∈ S ∧ ∀ k ∈ S, k ≠ i → j ≤ k := by
+  classical
+  by_cases hij : i < j
+  · have h :
+        S ∈ ((s027LaterIndexPoints j).powersetCard 3).image
+          (fun T => insert i (insert j T)) := by
+      simpa [s027SecondIndexShard, hij] using hS
+    obtain ⟨T, hT, hEq⟩ := Finset.mem_image.mp h
+    obtain ⟨hTsub, _⟩ := Finset.mem_powersetCard.mp hT
+    refine ⟨hij, ?_, ?_⟩
+    · rw [← hEq]
+      simp
+    · intro k hk hki
+      rw [← hEq] at hk
+      rcases Finset.mem_insert.mp hk with hki' | hk'
+      · exact False.elim (hki hki')
+      rcases Finset.mem_insert.mp hk' with hkj | hkt
+      · exact le_of_eq hkj.symm
+      · exact le_of_lt (Finset.mem_filter.mp (hTsub hkt)).2
+  · have he : S ∈ (∅ : Finset (Finset (Fin 17))) := by
+      simpa [s027SecondIndexShard, hij] using hS
+    simpa using he
+
+/-- Sorted second indices are unique, independently of the zero-sum test. -/
+theorem s029_second_index_unique
+    (i j k : Fin 17) (S : Finset (Fin 17))
+    (hj : S ∈ s027SecondIndexShard i j)
+    (hk : S ∈ s027SecondIndexShard i k) : j = k := by
+  obtain ⟨hij, hjmem, hjleast⟩ :=
+    s029_second_index_le_every_later_member i j S hj
+  obtain ⟨hik, hkmem, hkleast⟩ :=
+    s029_second_index_le_every_later_member i k S hk
+  exact le_antisymm
+    (hjleast k hkmem (ne_of_lt hik).symm)
+    (hkleast j hjmem (ne_of_lt hij).symm)
+
+/-- All different second-index survivor shards are disjoint. -/
+theorem s029_second_survivors_disjoint
+    (i j k : Fin 17) (hjk : j ≠ k) :
+    Disjoint (s028SecondIndexSurvivors i j)
+      (s028SecondIndexSurvivors i k) := by
+  classical
+  apply Finset.disjoint_left.mpr
+  intro S hSj hSk
+  have hj := (Finset.mem_filter.mp hSj).1
+  have hk := (Finset.mem_filter.mp hSk).1
+  exact hjk (s029_second_index_unique i j k S hj hk)
+
+/-- The cardinality of each real first-index survivor class is exactly
+the sum over its pairwise disjoint second-index survivor classes. -/
+theorem s029_first_survivors_card_eq_second_sum (i : Fin 17) :
+    (s027FirstIndexSurvivors i).card =
+      ∑ j : Fin 17, (s028SecondIndexSurvivors i j).card := by
+  classical
+  rw [← s028_first_survivors_split]
+  have hdisj :
+      ((Finset.univ : Finset (Fin 17)) : Set (Fin 17)).PairwiseDisjoint
+        (s028SecondIndexSurvivors i) := by
+    intro j _ k _ hjk
+    exact s029_second_survivors_disjoint i j k hjk
+  simpa using Finset.card_biUnion hdisj
+
+#print axioms PDIC.s029_second_index_le_every_later_member
+#print axioms PDIC.s029_second_index_unique
+#print axioms PDIC.s029_second_survivors_disjoint
+#print axioms PDIC.s029_first_survivors_card_eq_second_sum
+
+end PDIC
+
+
+namespace PDIC
+
+/-! S029: global first-index partition and faithful transport from indexed
+five-tails to the original admissible normalized point sets. -/
+
+def s029IndexedSurvivors : Finset (Finset (Fin 17)) :=
+  ((Finset.univ : Finset (Fin 17)).powersetCard 5).filter
+    (fun I =>
+      s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = true)
+
+/-- The certified 17-vector bijection transports *the actual predicate*,
+not merely the unfiltered 6,188 candidate family. -/
+theorem s029_indexed_survivors_image_eq_normalized :
+    s029IndexedSurvivors.image
+      (fun I => I.image s027FreePointAt) =
+        s027NormalizedAdmissibleTails := by
+  classical
+  ext T
+  constructor
+  · intro hT
+    obtain ⟨I, hI, hEq⟩ := Finset.mem_image.mp hT
+    obtain ⟨hDom, hFree⟩ := Finset.mem_filter.mp hI
+    apply Finset.mem_filter.mpr
+    constructor
+    · rw [← s027_indexed_five_tails_eq_original]
+      exact Finset.mem_image.mpr ⟨I, hDom, hEq⟩
+    · rw [← hEq]
+      exact hFree
+  · intro hT
+    obtain ⟨hDom, hFree⟩ := Finset.mem_filter.mp hT
+    have hIm :
+        T ∈ (((Finset.univ : Finset (Fin 17)).powersetCard 5).image
+          (fun I => I.image s027FreePointAt)) := by
+      rw [s027_indexed_five_tails_eq_original]
+      exact hDom
+    obtain ⟨I, hI, hEq⟩ := Finset.mem_image.mp hIm
+    apply Finset.mem_image.mpr
+    refine ⟨I, Finset.mem_filter.mpr ⟨hI, ?_⟩, hEq⟩
+    rw [hEq]
+    exact hFree
+
+/-- Exact count preserving the original genuine classification set. -/
+theorem s029_normalized_card_eq_indexed :
+    s027NormalizedAdmissibleTails.card =
+      s029IndexedSurvivors.card := by
+  rw [← s029_indexed_survivors_image_eq_normalized]
+  exact Finset.card_image_of_injective _
+    (Finset.image_injective s027FreePointAt_injective)
+
+/-- All surviving indexed five-subsets lie in exactly one first-index
+class; the union equality is a filtered version of the S027 proof. -/
+theorem s029_indexed_survivors_first_split :
+    (Finset.univ : Finset (Fin 17)).biUnion
+      s027FirstIndexSurvivors = s029IndexedSurvivors := by
+  classical
+  ext S
+  constructor
+  · intro hS
+    obtain ⟨i, hi, hSh⟩ := Finset.mem_biUnion.mp hS
+    obtain ⟨hShard, hFree⟩ := Finset.mem_filter.mp hSh
+    apply Finset.mem_filter.mpr
+    constructor
+    · rw [← s027_five_index_tails_split_by_first]
+      exact Finset.mem_biUnion.mpr ⟨i, hi, hShard⟩
+    · exact hFree
+  · intro hS
+    obtain ⟨hDom, hFree⟩ := Finset.mem_filter.mp hS
+    rw [← s027_five_index_tails_split_by_first] at hDom
+    obtain ⟨i, hi, hShard⟩ := Finset.mem_biUnion.mp hDom
+    apply Finset.mem_biUnion.mpr
+    exact ⟨i, hi, Finset.mem_filter.mpr ⟨hShard, hFree⟩⟩
+
+theorem s029_first_index_le_every_member
+    (i : Fin 17) (S : Finset (Fin 17))
+    (hS : S ∈ s027FirstIndexShard i) :
+    i ∈ S ∧ ∀ k ∈ S, i ≤ k := by
+  classical
+  obtain ⟨R, hR, hEq⟩ := Finset.mem_image.mp hS
+  obtain ⟨hSub, _⟩ := Finset.mem_powersetCard.mp hR
+  constructor
+  · rw [← hEq]
+    simp
+  · intro k hk
+    rw [← hEq] at hk
+    rcases Finset.mem_insert.mp hk with hki | hk
+    · exact le_of_eq hki.symm
+    · exact le_of_lt (Finset.mem_filter.mp (hSub hk)).2
+
+theorem s029_first_index_unique
+    (i j : Fin 17) (S : Finset (Fin 17))
+    (hi : S ∈ s027FirstIndexShard i)
+    (hj : S ∈ s027FirstIndexShard j) : i = j := by
+  obtain ⟨hiMem, hiLeast⟩ :=
+    s029_first_index_le_every_member i S hi
+  obtain ⟨hjMem, hjLeast⟩ :=
+    s029_first_index_le_every_member j S hj
+  exact le_antisymm (hiLeast j hjMem) (hjLeast i hiMem)
+
+theorem s029_first_survivors_disjoint
+    (i j : Fin 17) (hij : i ≠ j) :
+    Disjoint (s027FirstIndexSurvivors i)
+      (s027FirstIndexSurvivors j) := by
+  classical
+  apply Finset.disjoint_left.mpr
+  intro S hSi hSj
+  exact hij (s029_first_index_unique i j S
+    (Finset.mem_filter.mp hSi).1
+    (Finset.mem_filter.mp hSj).1)
+
+/-- Structural exact first-index cardinal aggregation, without a numerical
+cap classification premise. -/
+theorem s029_indexed_card_eq_first_sum :
+    s029IndexedSurvivors.card =
+      ∑ i : Fin 17, (s027FirstIndexSurvivors i).card := by
+  classical
+  rw [← s029_indexed_survivors_first_split]
+  have hd :
+      ((Finset.univ : Finset (Fin 17)) : Set (Fin 17)).PairwiseDisjoint
+        s027FirstIndexSurvivors := by
+    intro i _ j _ hij
+    exact s029_first_survivors_disjoint i j hij
+  simpa using Finset.card_biUnion hd
+
+#print axioms PDIC.s029_indexed_survivors_image_eq_normalized
+#print axioms PDIC.s029_normalized_card_eq_indexed
+#print axioms PDIC.s029_indexed_survivors_first_split
+#print axioms PDIC.s029_first_index_le_every_member
+#print axioms PDIC.s029_first_index_unique
+#print axioms PDIC.s029_first_survivors_disjoint
+#print axioms PDIC.s029_indexed_card_eq_first_sum
+
+end PDIC
