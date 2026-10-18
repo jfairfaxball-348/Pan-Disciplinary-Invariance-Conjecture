@@ -862,3 +862,67 @@ theorem s027FreePointAt_image :
 #print axioms PDIC.s027FreePointAt_image
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S027: all five-point subsets of the original seventeen free vectors
+are exactly images of five-element subsets of Fin 17. This typed
+bijection permits later certificates to split the computation by
+ordered index prefixes, without any external enumeration assumptions. -/
+
+theorem s027_indexed_five_tails_eq_original :
+    ((Finset.univ : Finset (Fin 17)).powersetCard 5).image
+      (fun I => I.image s027FreePointAt) =
+        s024FreePoints.powersetCard 5 := by
+  classical
+  ext T
+  constructor
+  · intro h
+    obtain ⟨I, hI, rfl⟩ := Finset.mem_image.mp h
+    obtain ⟨_hsub, hcard⟩ := Finset.mem_powersetCard.mp hI
+    apply Finset.mem_powersetCard.mpr
+    constructor
+    · intro p hp
+      obtain ⟨i, _, rfl⟩ := Finset.mem_image.mp hp
+      rw [← s027FreePointAt_image]
+      exact Finset.mem_image.mpr ⟨i, Finset.mem_univ _, rfl⟩
+    · rw [Finset.card_image_of_injective _ s027FreePointAt_injective]
+      exact hcard
+  · intro h
+    obtain ⟨hsub, hcard⟩ := Finset.mem_powersetCard.mp h
+    let I : Finset (Fin 17) :=
+      T.preimage s027FreePointAt
+        (fun _ _ _ _ h => s027FreePointAt_injective h)
+    have hIeq : I.image s027FreePointAt = T := by
+      ext p
+      constructor
+      · intro hp
+        obtain ⟨i, hi, hpi⟩ := Finset.mem_image.mp hp
+        have hpt : s027FreePointAt i ∈ T :=
+          Finset.mem_preimage.mp hi
+        simpa [hpi] using hpt
+      · intro hp
+        have hfull :
+            p ∈ ((Finset.univ : Finset (Fin 17)).image
+              s027FreePointAt) := by
+          rw [s027FreePointAt_image]
+          exact hsub hp
+        obtain ⟨i, _, hpi⟩ := Finset.mem_image.mp hfull
+        apply Finset.mem_image.mpr
+        refine ⟨i, ?_, hpi⟩
+        apply Finset.mem_preimage.mpr
+        simpa [hpi] using hp
+    have hIcard : I.card = 5 := by
+      calc
+        I.card = (I.image s027FreePointAt).card :=
+          (Finset.card_image_of_injective _ s027FreePointAt_injective).symm
+        _ = T.card := congrArg Finset.card hIeq
+        _ = 5 := hcard
+    apply Finset.mem_image.mpr
+    exact ⟨I, Finset.mem_powersetCard.mpr
+      ⟨Finset.subset_univ _, hIcard⟩, hIeq⟩
+
+#print axioms PDIC.s027_indexed_five_tails_eq_original
+
+end PDIC
