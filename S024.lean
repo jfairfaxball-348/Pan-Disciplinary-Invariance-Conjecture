@@ -1107,3 +1107,40 @@ theorem s027_shard_12_survivor_card :
 #print axioms PDIC.s027_shard_12_survivor_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S027 mid-size exact kernel cardinality checks, each restricted to
+a disjoint normalized five-tail shard. Do not claim full exhaustiveness
+from these isolated results. -/
+
+def s027MidFirstIndexSurvivors (i : Fin 17) : Finset (Finset (Fin 17)) :=
+  (s027FirstIndexShard i).filter (fun I =>
+    s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = true)
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s027_mid_shard_4_survivor_card :
+    (s027MidFirstIndexSurvivors (4 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s027_mid_shard_4_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s027_mid_shard_5_survivor_card :
+    (s027MidFirstIndexSurvivors (5 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_mid_shard_5_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s027_mid_shard_6_survivor_card :
+    (s027MidFirstIndexSurvivors (6 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_mid_shard_6_survivor_card
+
+end PDIC
