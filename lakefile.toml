@@ -1,9 +1,22 @@
 name = "PDIC"
 version = "0.1.0"
-defaultTargets = ["PDIC"]
+defaultTargets = ["PDIC", "S024", "Challenge", "Solution"]
 
 [[lean_lib]]
 name = "PDIC"
+roots = ["PDIC"]
+
+[[lean_lib]]
+name = "S024"
+roots = ["S024"]
+
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]
 
 [[require]]
 name = "mathlib"
