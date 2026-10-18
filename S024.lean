@@ -984,3 +984,64 @@ theorem s027_five_index_tails_split_by_first :
 #print axioms PDIC.s027_five_index_tails_split_by_first
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S027: small, independently kernel-checked shards of the genuine
+normalized five-of-seventeen classifier. These are finite exact cardinality
+claims, not yet the universal 18-case classification. -/
+
+def s027FirstIndexSurvivors (i : Fin 17) : Finset (Finset (Fin 17)) :=
+  (s027FirstIndexShard i).filter (fun I =>
+    s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = true)
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 10000000 in
+theorem s027_shard_7_survivor_card :
+    (s027FirstIndexSurvivors (7 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_shard_7_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 10000000 in
+theorem s027_shard_8_survivor_card :
+    (s027FirstIndexSurvivors (8 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s027_shard_8_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 10000000 in
+theorem s027_shard_9_survivor_card :
+    (s027FirstIndexSurvivors (9 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_shard_9_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 10000000 in
+theorem s027_shard_10_survivor_card :
+    (s027FirstIndexSurvivors (10 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_shard_10_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 10000000 in
+theorem s027_shard_11_survivor_card :
+    (s027FirstIndexSurvivors (11 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_shard_11_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 10000000 in
+theorem s027_shard_12_survivor_card :
+    (s027FirstIndexSurvivors (12 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_shard_12_survivor_card
+
+end PDIC
