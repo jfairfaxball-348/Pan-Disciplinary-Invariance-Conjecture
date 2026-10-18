@@ -2029,3 +2029,296 @@ theorem s029_indexed_card_eq_first_sum :
 #print axioms PDIC.s029_indexed_card_eq_first_sum
 
 end PDIC
+
+
+namespace PDIC
+
+/-!
+S030 strict finite-to-universal closure candidate. The only bounded decisions
+below are empty late-index families, 18 explicitly displayed sets, and tiny
+finite sums. Every nontrivial pair count and both disjoint-union transports
+come from the S028/S029 checked source, without a 6188-case opaque oracle.
+This branch is VALIDATION-ONLY until its exact source passes hosted strict Lean.
+-/
+
+/-- The actual pair shard is empty when the second index is not larger. -/
+theorem s030_nonincreasing_second_zero (i j : Fin 17) (h : j ≤ i) :
+    (s028SecondIndexSurvivors i j).card = 0 := by
+  simp [s028SecondIndexSurvivors, s027SecondIndexShard, not_lt.mpr h]
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s030_later_14_empty :
+    (s027LaterIndexPoints (14 : Fin 17)).powersetCard 3 = ∅ := by
+  decide +kernel
+
+theorem s030_second_14_zero (i : Fin 17) :
+    (s028SecondIndexSurvivors i (14 : Fin 17)).card = 0 := by
+  by_cases h : i < (14 : Fin 17)
+  · simp [s028SecondIndexSurvivors, s027SecondIndexShard, h, s030_later_14_empty]
+  · simp [s028SecondIndexSurvivors, s027SecondIndexShard, h]
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s030_later_15_empty :
+    (s027LaterIndexPoints (15 : Fin 17)).powersetCard 3 = ∅ := by
+  decide +kernel
+
+theorem s030_second_15_zero (i : Fin 17) :
+    (s028SecondIndexSurvivors i (15 : Fin 17)).card = 0 := by
+  by_cases h : i < (15 : Fin 17)
+  · simp [s028SecondIndexSurvivors, s027SecondIndexShard, h, s030_later_15_empty]
+  · simp [s028SecondIndexSurvivors, s027SecondIndexShard, h]
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s030_later_16_empty :
+    (s027LaterIndexPoints (16 : Fin 17)).powersetCard 3 = ∅ := by
+  decide +kernel
+
+theorem s030_second_16_zero (i : Fin 17) :
+    (s028SecondIndexSurvivors i (16 : Fin 17)).card = 0 := by
+  by_cases h : i < (16 : Fin 17)
+  · simp [s028SecondIndexSurvivors, s027SecondIndexShard, h, s030_later_16_empty]
+  · simp [s028SecondIndexSurvivors, s027SecondIndexShard, h]
+
+def s030_expected_row_0 (j : Fin 17) : ℕ :=
+  if j = (3 : Fin 17) ∨ j = (4 : Fin 17) ∨ j = (5 : Fin 17) ∨ j = (6 : Fin 17) ∨ j = (11 : Fin 17) then 1 else 0
+
+theorem s030_first_0_survivor_card :
+    (s027FirstIndexSurvivors (0 : Fin 17)).card = 5 := by
+  classical
+  have hrow (j : Fin 17) :
+      (s028SecondIndexSurvivors (0 : Fin 17) j).card =
+        s030_expected_row_0 j := by
+    fin_cases j
+    · simpa [s030_expected_row_0] using (s030_nonincreasing_second_zero (0 : Fin 17) (0 : Fin 17) (by decide))
+    · simpa [s030_expected_row_0] using s029_pair_0_1_survivor_card
+    · simpa [s030_expected_row_0] using s029_pair_0_2_survivor_card
+    · simpa [s030_expected_row_0] using s028_pair_0_3_survivor_card
+    · simpa [s030_expected_row_0] using s029_pair_0_4_survivor_card
+    · simpa [s030_expected_row_0] using s029_pair_0_5_survivor_card
+    · simpa [s030_expected_row_0] using s029_pair_0_6_survivor_card
+    · simpa [s030_expected_row_0] using s029_pair_0_7_survivor_card
+    · simpa [s030_expected_row_0] using s029_pair_0_8_survivor_card
+    · simpa [s030_expected_row_0] using s028_pair_0_9_survivor_card
+    · simpa [s030_expected_row_0] using s028_pair_0_10_survivor_card
+    · simpa [s030_expected_row_0] using s028_pair_0_11_survivor_card
+    · simpa [s030_expected_row_0] using s028_pair_0_12_survivor_card
+    · simpa [s030_expected_row_0] using s029_pair_0_13_survivor_card
+    · simpa [s030_expected_row_0] using (s030_second_14_zero (0 : Fin 17))
+    · simpa [s030_expected_row_0] using (s030_second_15_zero (0 : Fin 17))
+    · simpa [s030_expected_row_0] using (s030_second_16_zero (0 : Fin 17))
+  calc
+    (s027FirstIndexSurvivors (0 : Fin 17)).card =
+        ∑ j : Fin 17, (s028SecondIndexSurvivors (0 : Fin 17) j).card :=
+      s029_first_survivors_card_eq_second_sum (0 : Fin 17)
+    _ = ∑ j : Fin 17, s030_expected_row_0 j :=
+      Finset.sum_congr rfl (by intro j _; exact hrow j)
+    _ = 5 := by decide +kernel
+
+#print axioms PDIC.s030_first_0_survivor_card
+
+def s030_expected_row_1 (j : Fin 17) : ℕ :=
+  if j = (3 : Fin 17) ∨ j = (4 : Fin 17) ∨ j = (5 : Fin 17) ∨ j = (7 : Fin 17) ∨ j = (11 : Fin 17) then 1 else 0
+
+theorem s030_first_1_survivor_card :
+    (s027FirstIndexSurvivors (1 : Fin 17)).card = 5 := by
+  classical
+  have hrow (j : Fin 17) :
+      (s028SecondIndexSurvivors (1 : Fin 17) j).card =
+        s030_expected_row_1 j := by
+    fin_cases j
+    · simpa [s030_expected_row_1] using (s030_nonincreasing_second_zero (1 : Fin 17) (0 : Fin 17) (by decide))
+    · simpa [s030_expected_row_1] using (s030_nonincreasing_second_zero (1 : Fin 17) (1 : Fin 17) (by decide))
+    · simpa [s030_expected_row_1] using s029_pair_1_2_survivor_card
+    · simpa [s030_expected_row_1] using s029_pair_1_3_survivor_card
+    · simpa [s030_expected_row_1] using s029_pair_1_4_survivor_card
+    · simpa [s030_expected_row_1] using s029_pair_1_5_survivor_card
+    · simpa [s030_expected_row_1] using s029_pair_1_6_survivor_card
+    · simpa [s030_expected_row_1] using s029_pair_1_7_survivor_card
+    · simpa [s030_expected_row_1] using s029_pair_1_8_survivor_card
+    · simpa [s030_expected_row_1] using s028_pair_1_9_survivor_card
+    · simpa [s030_expected_row_1] using s028_pair_1_10_survivor_card
+    · simpa [s030_expected_row_1] using s028_pair_1_11_survivor_card
+    · simpa [s030_expected_row_1] using s029_pair_1_12_survivor_card
+    · simpa [s030_expected_row_1] using s029_pair_1_13_survivor_card
+    · simpa [s030_expected_row_1] using (s030_second_14_zero (1 : Fin 17))
+    · simpa [s030_expected_row_1] using (s030_second_15_zero (1 : Fin 17))
+    · simpa [s030_expected_row_1] using (s030_second_16_zero (1 : Fin 17))
+  calc
+    (s027FirstIndexSurvivors (1 : Fin 17)).card =
+        ∑ j : Fin 17, (s028SecondIndexSurvivors (1 : Fin 17) j).card :=
+      s029_first_survivors_card_eq_second_sum (1 : Fin 17)
+    _ = ∑ j : Fin 17, s030_expected_row_1 j :=
+      Finset.sum_congr rfl (by intro j _; exact hrow j)
+    _ = 5 := by decide +kernel
+
+#print axioms PDIC.s030_first_1_survivor_card
+
+def s030_expected_row_2 (j : Fin 17) : ℕ :=
+  if j = (3 : Fin 17) ∨ j = (4 : Fin 17) then 2 else if j = (12 : Fin 17) then 1 else 0
+
+theorem s030_first_2_survivor_card :
+    (s027FirstIndexSurvivors (2 : Fin 17)).card = 5 := by
+  classical
+  have hrow (j : Fin 17) :
+      (s028SecondIndexSurvivors (2 : Fin 17) j).card =
+        s030_expected_row_2 j := by
+    fin_cases j
+    · simpa [s030_expected_row_2] using (s030_nonincreasing_second_zero (2 : Fin 17) (0 : Fin 17) (by decide))
+    · simpa [s030_expected_row_2] using (s030_nonincreasing_second_zero (2 : Fin 17) (1 : Fin 17) (by decide))
+    · simpa [s030_expected_row_2] using (s030_nonincreasing_second_zero (2 : Fin 17) (2 : Fin 17) (by decide))
+    · simpa [s030_expected_row_2] using s029_pair_2_3_survivor_card
+    · simpa [s030_expected_row_2] using s029_pair_2_4_survivor_card
+    · simpa [s030_expected_row_2] using s029_pair_2_5_survivor_card
+    · simpa [s030_expected_row_2] using s029_pair_2_6_survivor_card
+    · simpa [s030_expected_row_2] using s029_pair_2_7_survivor_card
+    · simpa [s030_expected_row_2] using s029_pair_2_8_survivor_card
+    · simpa [s030_expected_row_2] using s029_pair_2_9_survivor_card
+    · simpa [s030_expected_row_2] using s028_pair_2_10_survivor_card
+    · simpa [s030_expected_row_2] using s028_pair_2_11_survivor_card
+    · simpa [s030_expected_row_2] using s029_pair_2_12_survivor_card
+    · simpa [s030_expected_row_2] using s029_pair_2_13_survivor_card
+    · simpa [s030_expected_row_2] using (s030_second_14_zero (2 : Fin 17))
+    · simpa [s030_expected_row_2] using (s030_second_15_zero (2 : Fin 17))
+    · simpa [s030_expected_row_2] using (s030_second_16_zero (2 : Fin 17))
+  calc
+    (s027FirstIndexSurvivors (2 : Fin 17)).card =
+        ∑ j : Fin 17, (s028SecondIndexSurvivors (2 : Fin 17) j).card :=
+      s029_first_survivors_card_eq_second_sum (2 : Fin 17)
+    _ = ∑ j : Fin 17, s030_expected_row_2 j :=
+      Finset.sum_congr rfl (by intro j _; exact hrow j)
+    _ = 5 := by decide +kernel
+
+#print axioms PDIC.s030_first_2_survivor_card
+
+def s030_expected_row_3 (j : Fin 17) : ℕ :=
+  if j = (5 : Fin 17) then 1 else 0
+
+theorem s030_first_3_survivor_card :
+    (s027FirstIndexSurvivors (3 : Fin 17)).card = 1 := by
+  classical
+  have hrow (j : Fin 17) :
+      (s028SecondIndexSurvivors (3 : Fin 17) j).card =
+        s030_expected_row_3 j := by
+    fin_cases j
+    · simpa [s030_expected_row_3] using (s030_nonincreasing_second_zero (3 : Fin 17) (0 : Fin 17) (by decide))
+    · simpa [s030_expected_row_3] using (s030_nonincreasing_second_zero (3 : Fin 17) (1 : Fin 17) (by decide))
+    · simpa [s030_expected_row_3] using (s030_nonincreasing_second_zero (3 : Fin 17) (2 : Fin 17) (by decide))
+    · simpa [s030_expected_row_3] using (s030_nonincreasing_second_zero (3 : Fin 17) (3 : Fin 17) (by decide))
+    · simpa [s030_expected_row_3] using s029_pair_3_4_survivor_card
+    · simpa [s030_expected_row_3] using s029_pair_3_5_survivor_card
+    · simpa [s030_expected_row_3] using s029_pair_3_6_survivor_card
+    · simpa [s030_expected_row_3] using s029_pair_3_7_survivor_card
+    · simpa [s030_expected_row_3] using s029_pair_3_8_survivor_card
+    · simpa [s030_expected_row_3] using s028_pair_3_9_survivor_card
+    · simpa [s030_expected_row_3] using s029_pair_3_10_survivor_card
+    · simpa [s030_expected_row_3] using s029_pair_3_11_survivor_card
+    · simpa [s030_expected_row_3] using s029_pair_3_12_survivor_card
+    · simpa [s030_expected_row_3] using s029_pair_3_13_survivor_card
+    · simpa [s030_expected_row_3] using (s030_second_14_zero (3 : Fin 17))
+    · simpa [s030_expected_row_3] using (s030_second_15_zero (3 : Fin 17))
+    · simpa [s030_expected_row_3] using (s030_second_16_zero (3 : Fin 17))
+  calc
+    (s027FirstIndexSurvivors (3 : Fin 17)).card =
+        ∑ j : Fin 17, (s028SecondIndexSurvivors (3 : Fin 17) j).card :=
+      s029_first_survivors_card_eq_second_sum (3 : Fin 17)
+    _ = ∑ j : Fin 17, s030_expected_row_3 j :=
+      Finset.sum_congr rfl (by intro j _; exact hrow j)
+    _ = 1 := by decide +kernel
+
+#print axioms PDIC.s030_first_3_survivor_card
+
+def s030_expected_first (i : Fin 17) : ℕ :=
+  if i = (0 : Fin 17) ∨ i = (1 : Fin 17) ∨ i = (2 : Fin 17) then 5
+  else if i = (3 : Fin 17) ∨ i = (4 : Fin 17) ∨ i = (8 : Fin 17) then 1
+  else 0
+
+theorem s030_normalized_survivor_card :
+    s027NormalizedAdmissibleTails.card = 18 := by
+  classical
+  have hfirst (i : Fin 17) :
+      (s027FirstIndexSurvivors i).card = s030_expected_first i := by
+    fin_cases i
+    · simpa [s030_expected_first] using s030_first_0_survivor_card
+    · simpa [s030_expected_first] using s030_first_1_survivor_card
+    · simpa [s030_expected_first] using s030_first_2_survivor_card
+    · simpa [s030_expected_first] using s030_first_3_survivor_card
+    · simpa [s030_expected_first] using (show (s027FirstIndexSurvivors (4 : Fin 17)).card = 1 from (by simpa only [s027FirstIndexSurvivors, s027MidFirstIndexSurvivors] using s027_mid_shard_4_survivor_card))
+    · simpa [s030_expected_first] using (show (s027FirstIndexSurvivors (5 : Fin 17)).card = 0 from (by simpa only [s027FirstIndexSurvivors, s027MidFirstIndexSurvivors] using s027_mid_shard_5_survivor_card))
+    · simpa [s030_expected_first] using (show (s027FirstIndexSurvivors (6 : Fin 17)).card = 0 from (by simpa only [s027FirstIndexSurvivors, s027MidFirstIndexSurvivors] using s027_mid_shard_6_survivor_card))
+    · simpa [s030_expected_first] using s027_shard_7_survivor_card
+    · simpa [s030_expected_first] using s027_shard_8_survivor_card
+    · simpa [s030_expected_first] using s027_shard_9_survivor_card
+    · simpa [s030_expected_first] using s027_shard_10_survivor_card
+    · simpa [s030_expected_first] using s027_shard_11_survivor_card
+    · simpa [s030_expected_first] using s027_shard_12_survivor_card
+    · simpa [s030_expected_first] using s027_shard_13_survivor_card
+    · simpa [s030_expected_first] using s027_shard_14_survivor_card
+    · simpa [s030_expected_first] using s027_shard_15_survivor_card
+    · simpa [s030_expected_first] using s027_shard_16_survivor_card
+  calc
+    s027NormalizedAdmissibleTails.card = s029IndexedSurvivors.card :=
+      s029_normalized_card_eq_indexed
+    _ = ∑ i : Fin 17, (s027FirstIndexSurvivors i).card :=
+      s029_indexed_card_eq_first_sum
+    _ = ∑ i : Fin 17, s030_expected_first i :=
+      Finset.sum_congr rfl (by intro i _; exact hfirst i)
+    _ = 18 := by decide +kernel
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s030_explicit_eighteen_card : s025NormalizedTails.card = 18 := by
+  decide +kernel
+
+/-- Unconditional identity of the real admissible normalized cap tails. -/
+theorem s030_normalized_tail_classification :
+    s027NormalizedAdmissibleTails = s025NormalizedTails := by
+  exact (Finset.eq_of_subset_of_card_le
+    s027_eighteen_tails_subset_filtered_candidates
+    (by rw [s030_normalized_survivor_card, s030_explicit_eighteen_card])).symm
+
+/-- Verified no-classification-hypothesis orbit, once this branch is checked. -/
+theorem admissibleCapImageOrbit_proved : AdmissibleCapImageOrbit :=
+  s027_image_orbit_of_tail_classification s030_normalized_tail_classification
+
+/-- Genuine zero-fixing equivalence and vertex relabelling for each cap. -/
+theorem classicalCapNormalForm_proved : ClassicalCapNormalForm :=
+  s027_classical_normal_form_of_tail_classification s030_normalized_tail_classification
+
+/-- The exact original 40320-permutation P0–P3 graph law and sharp
+named-spider equivalence, for every admissible eight-cap, with no
+external normal-form hypothesis. -/
+theorem connected_graphMIS_complete_flagship_unconditional_all_caps
+    (G : SimpleGraph Vertex) (hc : G.Connected)
+    (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
+    (graphMIS_exact_probability_for_cap G f 0 =
+      1 - 2 * ((fourGraphMISFamily G).card : ℚ) / 35 +
+        2 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 +
+        (graphMIS_pairOverlapCount G 2 : ℚ) / 315 -
+        (unorderedCompatibleTripleCount G : ℚ) / 315 ∧
+    graphMIS_exact_probability_for_cap G f 1 =
+      2 * ((fourGraphMISFamily G).card : ℚ) / 35 -
+        4 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 -
+        2 * (graphMIS_pairOverlapCount G 2 : ℚ) / 315 +
+        3 * (unorderedCompatibleTripleCount G : ℚ) / 315 ∧
+    graphMIS_exact_probability_for_cap G f 2 =
+      2 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 +
+        (graphMIS_pairOverlapCount G 2 : ℚ) / 315 -
+        (unorderedCompatibleTripleCount G : ℚ) / 105 ∧
+    graphMIS_exact_probability_for_cap G f 3 =
+      (unorderedCompatibleTripleCount G : ℚ) / 315) ∧
+    (graphMIS_exact_probability_for_cap G f 3 ≤ (1 : ℚ) / 105 ∧
+      (graphMIS_exact_probability_for_cap G f 3 = (1 : ℚ) / 105 ↔
+        Nonempty (G ≃g namedSpider))) := by
+  exact connected_graphMIS_complete_flagship_all_caps G hc f hf classicalCapNormalForm_proved
+
+#print axioms PDIC.s030_normalized_survivor_card
+#print axioms PDIC.s030_explicit_eighteen_card
+#print axioms PDIC.s030_normalized_tail_classification
+#print axioms PDIC.admissibleCapImageOrbit_proved
+#print axioms PDIC.classicalCapNormalForm_proved
+#print axioms PDIC.connected_graphMIS_complete_flagship_unconditional_all_caps
+
+end PDIC
