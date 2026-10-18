@@ -1,3 +1,7 @@
+## S032 — Palomar full-flagship packaging: mechanical verification pending (18 October 2026)
+
+[Draft PR #24](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/24) holds complete Challenge/Solution/Comparator/v0.4 source candidate `0ab571018cb2af789fae819fdb0d2002f3197951`, preserving the original eight-cap probability/spider theorem. Previously certified full mathematics is at `09d9f392d20399c80f2c51e2f4979b78b412c4e2`. Official [full-mode run 39124453153](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39124453153) and [strict package Lean 39124452988](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39124452988) were pending. **NOT_READY_FOR_OWNER_SUBMISSION** without final full mechanical Comparator/NanoDa pass at exact SHA. [S032 audit](research/S032_PALOMAR_RELEASE_AUDIT.md), [closeout](sessions/S032_CLOSEOUT.md), [installed S033](research/NEXT_SESSION_PROMPT.md). No Palomar registration or PR merge.
+
 # Pan-Disciplinary Invariance Conjecture (PDIC)
 
 ## S031 final verification — canonical full flagship (18 October 2026)
