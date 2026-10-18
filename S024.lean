@@ -1403,3 +1403,85 @@ theorem s028_first_survivors_split (i : Fin 17) :
 #print axioms PDIC.s028_first_survivors_split
 
 end PDIC
+
+
+namespace PDIC
+
+/-!
+S029 structural cardinality gate. Unlike finite card evaluations, this
+works for all i,j,k and all five-index sets in their actual sorted shards.
+-/
+
+/-- Any candidate in a genuine second-index shard contains j; every
+member other than the distinguished first index i is at least j. -/
+theorem s029_second_index_le_every_later_member
+    (i j : Fin 17) (S : Finset (Fin 17))
+    (hS : S ∈ s027SecondIndexShard i j) :
+    i < j ∧ j ∈ S ∧ ∀ k ∈ S, k ≠ i → j ≤ k := by
+  classical
+  by_cases hij : i < j
+  · have h :
+        S ∈ ((s027LaterIndexPoints j).powersetCard 3).image
+          (fun T => insert i (insert j T)) := by
+      simpa [s027SecondIndexShard, hij] using hS
+    obtain ⟨T, hT, hEq⟩ := Finset.mem_image.mp h
+    obtain ⟨hTsub, _⟩ := Finset.mem_powersetCard.mp hT
+    refine ⟨hij, ?_, ?_⟩
+    · rw [← hEq]
+      simp
+    · intro k hk hki
+      rw [← hEq] at hk
+      rcases Finset.mem_insert.mp hk with hki' | hk'
+      · exact False.elim (hki hki')
+      rcases Finset.mem_insert.mp hk' with hkj | hkt
+      · exact le_of_eq hkj.symm
+      · exact le_of_lt (Finset.mem_filter.mp (hTsub hkt)).2
+  · have he : S ∈ (∅ : Finset (Finset (Fin 17))) := by
+      simpa [s027SecondIndexShard, hij] using hS
+    simpa using he
+
+/-- Sorted second indices are unique, independently of the zero-sum test. -/
+theorem s029_second_index_unique
+    (i j k : Fin 17) (S : Finset (Fin 17))
+    (hj : S ∈ s027SecondIndexShard i j)
+    (hk : S ∈ s027SecondIndexShard i k) : j = k := by
+  obtain ⟨hij, hjmem, hjleast⟩ :=
+    s029_second_index_le_every_later_member i j S hj
+  obtain ⟨hik, hkmem, hkleast⟩ :=
+    s029_second_index_le_every_later_member i k S hk
+  exact le_antisymm
+    (hjleast k hkmem (ne_of_lt hik).symm)
+    (hkleast j hjmem (ne_of_lt hij).symm)
+
+/-- All different second-index survivor shards are disjoint. -/
+theorem s029_second_survivors_disjoint
+    (i j k : Fin 17) (hjk : j ≠ k) :
+    Disjoint (s028SecondIndexSurvivors i j)
+      (s028SecondIndexSurvivors i k) := by
+  classical
+  apply Finset.disjoint_left.mpr
+  intro S hSj hSk
+  have hj := (Finset.mem_filter.mp hSj).1
+  have hk := (Finset.mem_filter.mp hSk).1
+  exact hjk (s029_second_index_unique i j k S hj hk)
+
+/-- The cardinality of each real first-index survivor class is exactly
+the sum over its pairwise disjoint second-index survivor classes. -/
+theorem s029_first_survivors_card_eq_second_sum (i : Fin 17) :
+    (s027FirstIndexSurvivors i).card =
+      ∑ j : Fin 17, (s028SecondIndexSurvivors i j).card := by
+  classical
+  rw [← s028_first_survivors_split]
+  have hdisj :
+      ((Finset.univ : Finset (Fin 17)) : Set (Fin 17)).PairwiseDisjoint
+        (s028SecondIndexSurvivors i) := by
+    intro j _ k _ hjk
+    exact s029_second_survivors_disjoint i j k hjk
+  simpa using Finset.card_biUnion hdisj
+
+#print axioms PDIC.s029_second_index_le_every_later_member
+#print axioms PDIC.s029_second_index_unique
+#print axioms PDIC.s029_second_survivors_disjoint
+#print axioms PDIC.s029_first_survivors_card_eq_second_sum
+
+end PDIC
