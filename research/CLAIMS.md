@@ -301,3 +301,13 @@ The complete **unconditional** eight-cap / connected eight-vertex graph flagship
 
 See [current next-session prompt](research/NEXT_SESSION_PROMPT.md) and [S031 closeout](sessions/S031_CLOSEOUT.md).
 
+
+
+## S033 verified packaging checkpoint (18 October 2026)
+
+**Original complete flagship mathematics is kernel-verified, but the Palomar packaging remains NOT READY.** Canonical proof commit `09d9f392d20399c80f2c51e2f4979b78b412c4e2` passed strict Lean [39120877185](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39120877185). The S032 repackaged source `c2f3cc5de3c2e902d36484f085c6d77669e264ce` passed **strict source Lean 39129163513** but [official full Palomar 39129163852](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39129163852) **FAILED Comparator** with `Const does not match between challenge and target 'PDIC.namedSpider'`, as confirmed by downloadable artifact 12137673218.
+
+S033 repaired an *unmerged* separate package at immutable SHA [`a7fe196d55b85ac98d36de39dfc648a27d71139a`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/a7fe196d55b85ac98d36de39dfc648a27d71139a): the same sole Challenge/Solution flagship theorem now **adds** a proved exact named-spider adjacency-specification conjunct to prevent an unconstrained comparator definition hole. All four actual probability identities and the unique sharp spider iff remain the unchanged first conjunct. This is an explicit strengthening, not a claim of literal unchanged full theorem type. Comparator allows named-definition body variation for `PDIC.namedSpider`, whose adjacency is now constrained by the proved theorem and ordinary compared `spiderAdj` definition. Await actual certified comparator determination; the modification is not yet proved by this explanation alone.
+
+[Independent finite 39136238949](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39136238949) **PASSED**. [Strict Lean 39136238887](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39136238887) and [official full-mode 39136239171](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39136239171) were **IN PROGRESS** at S033 closeout. Until same-SHA strict+official Comparator+Lean+NanoDa all PASS and the actual report is inspected, **NOT_READY_FOR_OWNER_SUBMISSION**. No Palomar submission or public registration, no PR merge. Priority/novelty unresolved. [S033 closeout](../sessions/S033_CLOSEOUT.md) · [S034 installed](NEXT_SESSION_PROMPT.md).
+
