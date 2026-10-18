@@ -1,4 +1,8 @@
-import PDIC
+module
+
+public import PDIC
+
+public section
 
 namespace PDIC
 

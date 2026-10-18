@@ -1,0 +1,29 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "PDIC.palomar_complete_probability_and_spider"
+  ],
+  "definition_names": [
+    "PDIC.GraphMIS",
+    "PDIC.spiderAdj",
+    "PDIC.namedSpider",
+    "PDIC.CapPoint",
+    "PDIC.capSum",
+    "PDIC.IsAdmissibleCap",
+    "PDIC.fourGraphMISFamily",
+    "PDIC.labellingZeroMISCountForCap",
+    "PDIC.graphMIS_exact_probability_for_cap",
+    "PDIC.UnorderedPairOverlap",
+    "PDIC.graphMIS_pairOverlapCount",
+    "PDIC.IsUnorderedCompatibleTriple",
+    "PDIC.unorderedCompatibleTripleCount",
+    "PDIC.Vertex"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

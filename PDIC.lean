@@ -1,4 +1,8 @@
-import Mathlib
+module
+
+public import Mathlib
+
+public section
 
 /-!
 # PDIC: finite quartet incidence, labelled spider, and moment inversion

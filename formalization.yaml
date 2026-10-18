@@ -1,0 +1,71 @@
+# Palomar formalization.yaml v0.4 — substantive first-paper proof, not a thin wrapper.
+version: "v0.4"
+project:
+  name: "Zero-Sum Quartet Incidence and Sharp Maximal-Independent-Set Witnesses on Eight Vertices"
+  description: >-
+    We prove an exact four-term probability law for zero-sum maximal-independent-set
+    witnesses. For every connected simple graph G on eight vertices and every
+    admissible eight-point cap U in F_3^3, sample uniformly from all 40,320
+    bijections of the vertices onto U. Let N0 count zero-sum maximal independent
+    four-sets, m count the size-four maximal independent sets, n0 and n2 count
+    their unordered pairs intersecting in zero and two vertices, and h count
+    compatible unordered triples. Put M1 = 2m/35, M2 = 2n0/35 + n2/315,
+    and M3 = h/315. Then P(N0=0) = 1-M1+M2-M3,
+    P(N0=1) = M1-2M2+3M3, P(N0=2) = M2-3M3,
+    and P(N0=3) = M3 = h/315 <= 1/105; equality holds if and only if
+    G is isomorphic to the spider S(2,2,2,1). In particular N0 <= 3.
+    The theorem does not assume an external cap normal-form classification.
+  authors:
+    - "John Fairfax-Ball"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "John Fairfax-Ball"
+classification:
+  arxiv: ["math.CO"]
+  msc2020: ["05C69", "05C80"]
+sources:
+  - title: "Zero-Sum Quartet Incidence and Sharp Maximal-Independent-Set Witnesses on Eight Vertices (working manuscript)"
+    authors:
+      - "John Fairfax-Ball"
+    type: "working manuscript"
+    location: "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/blob/93065b9e67bc9692b4f19be41f69b0918d8eda8b/paper/PDIC_S003R8_DRAFT.tex"
+    relationship: "formalizes"
+    note: "Author's unpublished proof draft; priority and novelty have not been established. Earlier conditional classification wording in the draft is superseded by the proved all-cap theorem."
+related_formalizations: []
+status:
+  scope: >-
+    Exact unconditional all-admissible-cap four-outcome law, genuine uniform
+    permutation semantics, sharp connected-eight-vertex spider equality;
+    supporting finite cap-orbit classification and graph incidence in the same
+    proof repository. The independent Challenge is deliberately unproved;
+    the Solution and substantive proof modules must be checked mechanically.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+automation:
+  methods:
+    - method: "agent"
+      models: ["GPT-6"]
+      framework: "ChatGPT with GitHub tool and Lean/GitHub Actions"
+      tool_setup: "AI-assisted Lean proof engineering, exact-source hosted CI, and independent finite checker scripts; human owner directs and reviews session objectives."
+      prompting_notes: "Successive numbered research sessions with explicit strict Lean verification and complete formal flagship target."
+  spend_usd: "not tracked"
+  notes: "Substantial AI-assisted theorem development; automated proof checks are not an independent human mathematics or originality review."
+fidelity:
+  divergences: >-
+    The working paper text predates the completed formal cap classification
+    and may still describe it as a conditional hypothesis. The proved theorem
+    has no such external hypothesis. No literature-priority review is claimed.
+review:
+  status: "self-assessed"
+  reviewers: []
+  notes: "Repeated Lean/GitHub Actions and independent finite checks. No external peer review, editorial approval or novelty certification."
+alignment:
+  namespace: "PDIC"
+  statements:
+    - source: "Working manuscript: full four-term probability law and sharp spider conclusion"
+      lean: "PDIC.palomar_complete_probability_and_spider"
+      module: "Solution"
+      status: "proved"
+      note: "Transparent wrapper around PDIC.connected_graphMIS_complete_flagship_unconditional_all_caps; Comparator must certify independent Challenge equivalence."
+acknowledgements: "Mathlib, Lean 4, GitHub Actions, and the Palomar open submission tooling."
