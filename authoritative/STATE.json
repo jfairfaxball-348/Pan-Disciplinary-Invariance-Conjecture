@@ -1106,5 +1106,6 @@
   "s033_latest_strict_run": 39140421991,
   "s033_latest_finite_run": 39140422043,
   "s033_latest_full_run": 39140422199,
-  "s033_latest_all_gate_result": "PENDING_NOT_READY"
+  "s033_latest_all_gate_result": "PENDING_NOT_READY",
+  "s033_latest_finite_result": "SUCCESS_EXACT_SHA_fe94685a626051378e4c3dd1e0ff5fbc89503f02"
 }
