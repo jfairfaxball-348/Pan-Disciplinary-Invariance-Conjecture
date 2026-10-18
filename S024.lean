@@ -856,7 +856,7 @@ theorem s027_eighteen_tails_subset_filtered_candidates :
           ¬ (V ⊆ s024FreePoints ∧ V.card = 5))) = ∅ :=
       Finset.card_eq_zero.mp s027_eighteen_tails_free_domain_certificate
     rw [he] at hmem
-    exact Finset.not_mem_empty T hmem
+    simp at hmem
   have hshort : s027ShortZeroFree (s024BasisSet ∪ T) = true := by
     cases h : s027ShortZeroFree (s024BasisSet ∪ T) with
     | false =>
@@ -868,7 +868,7 @@ theorem s027_eighteen_tails_subset_filtered_candidates :
             s027ShortZeroFree (s024BasisSet ∪ V) = false)) = ∅ :=
         Finset.card_eq_zero.mp s027_eighteen_tails_short_zero_certificate
       rw [he] at hmem
-      exact Finset.not_mem_empty T hmem
+      simp at hmem
     | true => rfl
   apply Finset.mem_filter.mpr
   exact ⟨Finset.mem_powersetCard.mpr hdomain, hshort⟩
