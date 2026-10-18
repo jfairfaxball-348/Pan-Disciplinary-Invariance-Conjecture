@@ -19,7 +19,7 @@ namespace PDIC
 theorem palomar_complete_probability_and_spider
     (G : SimpleGraph Vertex) (hc : G.Connected)
     (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
-    (graphMIS_exact_probability_for_cap G f 0 =
+    ((graphMIS_exact_probability_for_cap G f 0 =
       1 - 2 * ((fourGraphMISFamily G).card : ℚ) / 35 +
         2 * (graphMIS_pairOverlapCount G 0 : ℚ) / 35 +
         (graphMIS_pairOverlapCount G 2 : ℚ) / 315 -
@@ -37,8 +37,11 @@ theorem palomar_complete_probability_and_spider
       (unorderedCompatibleTripleCount G : ℚ) / 315) ∧
     (graphMIS_exact_probability_for_cap G f 3 ≤ (1 : ℚ) / 105 ∧
       (graphMIS_exact_probability_for_cap G f 3 = (1 : ℚ) / 105 ↔
-        Nonempty (G ≃g namedSpider))) := by
-  exact connected_graphMIS_complete_flagship_unconditional_all_caps G hc f hf
+        Nonempty (G ≃g namedSpider)))) ∧
+    (∀ u v : Vertex, namedSpider.Adj u v ↔ spiderAdj u v = true) := by
+  refine ⟨connected_graphMIS_complete_flagship_unconditional_all_caps G hc f hf, ?_⟩
+  intro u v
+  rfl
 
 #print axioms PDIC.palomar_complete_probability_and_spider
 
