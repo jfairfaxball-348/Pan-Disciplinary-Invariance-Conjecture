@@ -1044,4 +1044,36 @@ theorem s027_shard_12_survivor_card :
 
 #print axioms PDIC.s027_shard_12_survivor_card
 
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 5000000 in
+theorem s027_shard_13_survivor_card :
+    (s027FirstIndexSurvivors (13 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_shard_13_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 5000000 in
+theorem s027_shard_14_survivor_card :
+    (s027FirstIndexSurvivors (14 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_shard_14_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 5000000 in
+theorem s027_shard_15_survivor_card :
+    (s027FirstIndexSurvivors (15 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_shard_15_survivor_card
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 5000000 in
+theorem s027_shard_16_survivor_card :
+    (s027FirstIndexSurvivors (16 : Fin 17)).card = 0 := by
+  decide +kernel
+
+#print axioms PDIC.s027_shard_16_survivor_card
+
 end PDIC
