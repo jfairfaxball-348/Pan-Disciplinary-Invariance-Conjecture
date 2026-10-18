@@ -1370,3 +1370,36 @@ theorem s028_pair_3_9_survivor_card :
 #print axioms PDIC.s028_pair_3_9_survivor_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S028 exact structural bridge: the actual short-zero-free first-index
+survivors are the union of the actual short-zero-free second-index shards.
+This is a genuine finite-set identity, not a numerical observation. -/
+
+theorem s028_first_survivors_split (i : Fin 17) :
+    (Finset.univ : Finset (Fin 17)).biUnion
+      (fun j => s028SecondIndexSurvivors i j) =
+    s027FirstIndexSurvivors i := by
+  classical
+  ext S
+  constructor
+  · intro hs
+    obtain ⟨j, hj, hm⟩ := Finset.mem_biUnion.mp hs
+    obtain ⟨hmsh, hz⟩ := Finset.mem_filter.mp hm
+    apply Finset.mem_filter.mpr
+    constructor
+    · rw [← s027_first_index_shard_second_split i]
+      exact Finset.mem_biUnion.mpr ⟨j, hj, hmsh⟩
+    · exact hz
+  · intro hs
+    obtain ⟨hmsh, hz⟩ := Finset.mem_filter.mp hs
+    rw [← s027_first_index_shard_second_split i] at hmsh
+    obtain ⟨j, hj, hmem⟩ := Finset.mem_biUnion.mp hmsh
+    apply Finset.mem_biUnion.mpr
+    exact ⟨j, hj, Finset.mem_filter.mpr ⟨hmem, hz⟩⟩
+
+#print axioms PDIC.s028_first_survivors_split
+
+end PDIC
