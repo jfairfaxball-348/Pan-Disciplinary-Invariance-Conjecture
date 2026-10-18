@@ -1,3 +1,9 @@
+# SUPERSEDED S032 TARGET — NOT AUTHORITATIVE
+
+**Owner steering 18 October 2026:** canonical strict Lean run 39120877185 succeeded, so paper-writing/novelty-audit focus was superseded. The sole installed S032 target is [Palomar full flagship packaging](S032_PALOMAR_FULL_FLAGSHIP_REGISTRATION_PREP_TARGET.md) via [NEXT_SESSION_PROMPT.md](NEXT_SESSION_PROMPT.md). The following is retained only as an earlier version of the unexecuted target.
+
+---
+
 # PDIC S032 — verify exact canonical Lean CI then reconcile the manuscript
 
 **INSTALLED at S031 closeout, NOT EXECUTED.** The owner's next 'run next session' authorises execution immediately. No new mathematics or weaker theorem; do not merge main or submit externally.
