@@ -1332,7 +1332,7 @@ theorem s028_pair_1_9_survivor_card :
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
 theorem s028_pair_1_10_survivor_card :
-    (s028SecondIndexSurvivors (1 : Fin 17) (10 : Fin 17)).card = 1 := by
+    (s028SecondIndexSurvivors (1 : Fin 17) (10 : Fin 17)).card = 0 := by
   decide +kernel
 
 #print axioms PDIC.s028_pair_1_10_survivor_card
@@ -1340,7 +1340,7 @@ theorem s028_pair_1_10_survivor_card :
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
 theorem s028_pair_1_11_survivor_card :
-    (s028SecondIndexSurvivors (1 : Fin 17) (11 : Fin 17)).card = 0 := by
+    (s028SecondIndexSurvivors (1 : Fin 17) (11 : Fin 17)).card = 1 := by
   decide +kernel
 
 #print axioms PDIC.s028_pair_1_11_survivor_card
@@ -1356,7 +1356,7 @@ theorem s028_pair_2_10_survivor_card :
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
 theorem s028_pair_2_11_survivor_card :
-    (s028SecondIndexSurvivors (2 : Fin 17) (11 : Fin 17)).card = 1 := by
+    (s028SecondIndexSurvivors (2 : Fin 17) (11 : Fin 17)).card = 0 := by
   decide +kernel
 
 #print axioms PDIC.s028_pair_2_11_survivor_card
