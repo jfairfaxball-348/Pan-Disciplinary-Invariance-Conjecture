@@ -1403,3 +1403,137 @@ theorem s028_first_survivors_split (i : Fin 17) :
 #print axioms PDIC.s028_first_survivors_split
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S029: global first-index partition and faithful transport from indexed
+five-tails to the original admissible normalized point sets. -/
+
+def s029IndexedSurvivors : Finset (Finset (Fin 17)) :=
+  ((Finset.univ : Finset (Fin 17)).powersetCard 5).filter
+    (fun I =>
+      s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = true)
+
+/-- The certified 17-vector bijection transports *the actual predicate*,
+not merely the unfiltered 6,188 candidate family. -/
+theorem s029_indexed_survivors_image_eq_normalized :
+    s029IndexedSurvivors.image
+      (fun I => I.image s027FreePointAt) =
+        s027NormalizedAdmissibleTails := by
+  classical
+  ext T
+  constructor
+  · intro hT
+    obtain ⟨I, hI, hEq⟩ := Finset.mem_image.mp hT
+    obtain ⟨hDom, hFree⟩ := Finset.mem_filter.mp hI
+    apply Finset.mem_filter.mpr
+    constructor
+    · rw [← s027_indexed_five_tails_eq_original]
+      exact Finset.mem_image.mpr ⟨I, hDom, hEq⟩
+    · rw [← hEq]
+      exact hFree
+  · intro hT
+    obtain ⟨hDom, hFree⟩ := Finset.mem_filter.mp hT
+    have hIm :
+        T ∈ (((Finset.univ : Finset (Fin 17)).powersetCard 5).image
+          (fun I => I.image s027FreePointAt)) := by
+      rw [s027_indexed_five_tails_eq_original]
+      exact hDom
+    obtain ⟨I, hI, hEq⟩ := Finset.mem_image.mp hIm
+    apply Finset.mem_image.mpr
+    refine ⟨I, Finset.mem_filter.mpr ⟨hI, ?_⟩, hEq⟩
+    rw [hEq]
+    exact hFree
+
+/-- Exact count preserving the original genuine classification set. -/
+theorem s029_normalized_card_eq_indexed :
+    s027NormalizedAdmissibleTails.card =
+      s029IndexedSurvivors.card := by
+  rw [← s029_indexed_survivors_image_eq_normalized]
+  exact Finset.card_image_of_injective _
+    (Finset.image_injective s027FreePointAt_injective)
+
+/-- All surviving indexed five-subsets lie in exactly one first-index
+class; the union equality is a filtered version of the S027 proof. -/
+theorem s029_indexed_survivors_first_split :
+    (Finset.univ : Finset (Fin 17)).biUnion
+      s027FirstIndexSurvivors = s029IndexedSurvivors := by
+  classical
+  ext S
+  constructor
+  · intro hS
+    obtain ⟨i, hi, hSh⟩ := Finset.mem_biUnion.mp hS
+    obtain ⟨hShard, hFree⟩ := Finset.mem_filter.mp hSh
+    apply Finset.mem_filter.mpr
+    constructor
+    · rw [← s027_five_index_tails_split_by_first]
+      exact Finset.mem_biUnion.mpr ⟨i, hi, hShard⟩
+    · exact hFree
+  · intro hS
+    obtain ⟨hDom, hFree⟩ := Finset.mem_filter.mp hS
+    rw [← s027_five_index_tails_split_by_first] at hDom
+    obtain ⟨i, hi, hShard⟩ := Finset.mem_biUnion.mp hDom
+    apply Finset.mem_biUnion.mpr
+    exact ⟨i, hi, Finset.mem_filter.mpr ⟨hShard, hFree⟩⟩
+
+theorem s029_first_index_le_every_member
+    (i : Fin 17) (S : Finset (Fin 17))
+    (hS : S ∈ s027FirstIndexShard i) :
+    i ∈ S ∧ ∀ k ∈ S, i ≤ k := by
+  classical
+  obtain ⟨R, hR, hEq⟩ := Finset.mem_image.mp hS
+  obtain ⟨hSub, _⟩ := Finset.mem_powersetCard.mp hR
+  constructor
+  · rw [← hEq]
+    simp
+  · intro k hk
+    rw [← hEq] at hk
+    rcases Finset.mem_insert.mp hk with hki | hk
+    · exact le_of_eq hki.symm
+    · exact le_of_lt (Finset.mem_filter.mp (hSub hk)).2
+
+theorem s029_first_index_unique
+    (i j : Fin 17) (S : Finset (Fin 17))
+    (hi : S ∈ s027FirstIndexShard i)
+    (hj : S ∈ s027FirstIndexShard j) : i = j := by
+  obtain ⟨hiMem, hiLeast⟩ :=
+    s029_first_index_le_every_member i S hi
+  obtain ⟨hjMem, hjLeast⟩ :=
+    s029_first_index_le_every_member j S hj
+  exact le_antisymm (hiLeast j hjMem) (hjLeast i hiMem)
+
+theorem s029_first_survivors_disjoint
+    (i j : Fin 17) (hij : i ≠ j) :
+    Disjoint (s027FirstIndexSurvivors i)
+      (s027FirstIndexSurvivors j) := by
+  classical
+  apply Finset.disjoint_left.mpr
+  intro S hSi hSj
+  exact hij (s029_first_index_unique i j S
+    (Finset.mem_filter.mp hSi).1
+    (Finset.mem_filter.mp hSj).1)
+
+/-- Structural exact first-index cardinal aggregation, without a numerical
+cap classification premise. -/
+theorem s029_indexed_card_eq_first_sum :
+    s029IndexedSurvivors.card =
+      ∑ i : Fin 17, (s027FirstIndexSurvivors i).card := by
+  classical
+  rw [← s029_indexed_survivors_first_split]
+  have hd :
+      ((Finset.univ : Finset (Fin 17)) : Set (Fin 17)).PairwiseDisjoint
+        s027FirstIndexSurvivors := by
+    intro i _ j _ hij
+    exact s029_first_survivors_disjoint i j hij
+  simpa using Finset.card_biUnion hd
+
+#print axioms PDIC.s029_indexed_survivors_image_eq_normalized
+#print axioms PDIC.s029_normalized_card_eq_indexed
+#print axioms PDIC.s029_indexed_survivors_first_split
+#print axioms PDIC.s029_first_index_le_every_member
+#print axioms PDIC.s029_first_index_unique
+#print axioms PDIC.s029_first_survivors_disjoint
+#print axioms PDIC.s029_indexed_card_eq_first_sum
+
+end PDIC
