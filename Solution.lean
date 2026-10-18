@@ -39,10 +39,16 @@ theorem palomar_complete_probability_and_spider
     (graphMIS_exact_probability_for_cap G f 3 ≤ (1 : ℚ) / 105 ∧
       (graphMIS_exact_probability_for_cap G f 3 = (1 : ℚ) / 105 ↔
         Nonempty (G ≃g namedSpider)))) ∧
-    (∀ u v : Vertex, namedSpider.Adj u v ↔ spiderAdj u v = true) := by
+    (∀ u v : Vertex, namedSpider.Adj u v ↔
+      ((u = 0 ∧ (v = 4 ∨ v = 5 ∨ v = 6 ∨ v = 7)) ∨
+       (v = 0 ∧ (u = 4 ∨ u = 5 ∨ u = 6 ∨ u = 7)) ∨
+       (u = 1 ∧ v = 6) ∨ (u = 6 ∧ v = 1) ∨
+       (u = 2 ∧ v = 5) ∨ (u = 5 ∧ v = 2) ∨
+       (u = 3 ∧ v = 4) ∨ (u = 4 ∧ v = 3))) := by
   refine ⟨connected_graphMIS_complete_flagship_unconditional_all_caps G hc f hf, ?_⟩
   intro u v
-  rfl
+  change spiderAdj u v = true ↔ _
+  simp only [spiderAdj, decide_eq_true_eq]
 
 #print axioms PDIC.palomar_complete_probability_and_spider
 
