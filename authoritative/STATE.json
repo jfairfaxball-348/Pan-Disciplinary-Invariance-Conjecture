@@ -1130,9 +1130,12 @@
   "s034_closeout": "sessions/S034_CLOSEOUT.md",
   "s034_figure_count": 5,
   "s034_pdf_pages": 6,
-  "s034_build_status": "TWO_PDFLATEX_PASSES_EXIT_ZERO__FINAL_NO_WARNINGS__ALL_SIX_PAGES_VISUALLY_INSPECTED",
+  "s034_build_status": "TWO_FINAL_PDFLATEX_PASSES_EXIT_ZERO__SIX_A4_PAGES__FINAL_LOG_NO_TEX_WARNINGS",
   "s034_exact_example_check": "PASS_BOTH_GRAPHS_40320_ACTUAL_BIJECTIONS_EACH",
   "s035_status": "INSTALLED_NOT_EXECUTED",
   "s035_target": "MANUSCRIPT_MATHEMATICAL_PROOF_REFERENCES_FIGURES_JOURNAL_READINESS_AUDIT",
-  "s035_target_file": "research/NEXT_SESSION_PROMPT.md"
+  "s035_target_file": "research/NEXT_SESSION_PROMPT.md",
+  "s034_source_commit": "428588e695e12f883b26aef035af00c7ade25bb6",
+  "s034_final_tex_sha256": "189e9a0c284a185dcfc8ddefbb1294b24884684127c9eff007a0b90cd12a1985",
+  "s034_checked_final_pdf_pages": 6
 }

@@ -56,3 +56,10 @@ Target file: `research/NEXT_SESSION_PROMPT.md`. Owner's next **run next session*
 
 Math and citation gaps corrected, paper genuinely clearer and stronger for journal review, visible reliable figures and reproducible build, clear distinction between passed Lean and pending Palomar, no novelty/priority overclaim. Handover exact changed commit SHA and full next-session prompt.
 
+
+
+## Exact GitHub handover / final source audit
+
+- S034 first repository content commit: [`428588e695e12f883b26aef035af00c7ade25bb6`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/428588e695e12f883b26aef035af00c7ade25bb6), to main. The second follow-up handover commit corrects the long theorem-identifier line-breaking in the very same revised TeX, checks its final PDF against the final TeX, and records the immutable source digest. The manuscript in the final branch head, not the first intermediate TeX blob, is authoritative.
+- Final manuscript source SHA-256: `189e9a0c284a185dcfc8ddefbb1294b24884684127c9eff007a0b90cd12a1985`; exact 21,184 UTF-8 bytes. Final two-pass pdflatex build: 6 pages, no warnings; all six pages rendered and visually inspected. The separate `paper/check_figures.py` passed all exact example checks.
+- The closing commit modifies only manuscript/admin paths and leaves both draft formalisation PRs unmerged. No Palomar full-mode retry.
