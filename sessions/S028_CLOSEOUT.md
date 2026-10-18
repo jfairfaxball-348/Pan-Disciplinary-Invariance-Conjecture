@@ -1,5 +1,8 @@
 # S028 — bounded cap shards, corrected certificates and strict verification
 
+**S028 STRICT SUCCESS UPDATE:** All eleven corrected pair-index cardinal certificates are **LEAN_KERNEL_VERIFIED**, exact proof blob `3130b682596bba3ef3746a975d9422fc1181b722` at [strict 39112520609 PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39112520609), with approved axioms only, hole scan and independent finite scripts passing. The exact filtered first-to-second survivor-union theorem `s028_first_survivors_split` is separately **LEAN_KERNEL_VERIFIED** at [strict 39112524267 PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39112524267), promoted to canonical proof [fabb6135d2ce](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/fabb6135d2ced461481c3dce59898953d6d4d61c). The full 18-of-6,188 exhaustion, disjoint/cardinality assembly and unconditional flagship remain **OPEN_IN_LEAN**. Conditional typed orbit source remains under separate CI. S029 installed, **NOT EXECUTED**.
+
+
 **18 October 2026. S028 EXECUTED, PARTIAL.** Scope was exclusively trusted Lean formalisation of the already frozen complete PDIC flagship. The unconditional normal form and the all-cap four-term probability/spider theorem remain **OPEN_IN_LEAN** until explicit exact-source strict certification of both remaining gates.
 
 ## What happened
