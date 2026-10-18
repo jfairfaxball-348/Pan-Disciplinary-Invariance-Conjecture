@@ -1144,3 +1144,91 @@ theorem s027_mid_shard_6_survivor_card :
 #print axioms PDIC.s027_mid_shard_6_survivor_card
 
 end PDIC
+
+
+namespace PDIC
+
+/-! S027 exact two-index disjoint decomposition of each first-index
+shard, putting the largest remaining search class into at most 455
+five-tail candidates per kernel decision. -/
+
+def s027SecondIndexShard (i j : Fin 17) :
+    Finset (Finset (Fin 17)) :=
+  if i < j then
+    (s027LaterIndexPoints j).powersetCard 3 |>.image
+      (fun T => insert i (insert j T))
+  else ∅
+
+theorem s027_first_index_shard_second_split (i : Fin 17) :
+    (Finset.univ : Finset (Fin 17)).biUnion
+      (s027SecondIndexShard i) = s027FirstIndexShard i := by
+  classical
+  ext S
+  constructor
+  · intro hS
+    obtain ⟨j, _, hj⟩ := Finset.mem_biUnion.mp hS
+    by_cases hij : i < j
+    · have hj' : S ∈
+          ((s027LaterIndexPoints j).powersetCard 3).image
+            (fun T => insert i (insert j T)) := by
+        simpa [s027SecondIndexShard, hij] using hj
+      obtain ⟨T, hT, hEq⟩ := Finset.mem_image.mp hj'
+      obtain ⟨hTsub, hTcard⟩ := Finset.mem_powersetCard.mp hT
+      have hjNot : j ∉ T := by
+        intro hjT
+        have hlt : j < j := (Finset.mem_filter.mp (hTsub hjT)).2
+        exact (lt_irrefl j) hlt
+      have hiNot : i ∉ T := by
+        intro hiT
+        have hlt : j < i := (Finset.mem_filter.mp (hTsub hiT)).2
+        exact (not_lt_of_ge (le_of_lt hij)) hlt
+      have hiNotInsert : i ∉ insert j T := by
+        simp [hiNot, ne_of_lt hij]
+      have hSub : insert j T ⊆ s027LaterIndexPoints i := by
+        intro k hk
+        rcases Finset.mem_insert.mp hk with rfl | hk'
+        · exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, hij⟩
+        · have hjk : j < k := (Finset.mem_filter.mp (hTsub hk')).2
+          exact Finset.mem_filter.mpr
+            ⟨Finset.mem_univ _, lt_trans hij hjk⟩
+      have hCard : (insert j T).card = 4 := by
+        simp [hjNot, hTcard]
+      apply Finset.mem_image.mpr
+      exact ⟨insert j T,
+        Finset.mem_powersetCard.mpr ⟨hSub, hCard⟩, hEq⟩
+    · have hjEmpty : s027SecondIndexShard i j = ∅ := by
+        simp [s027SecondIndexShard, hij]
+      rw [hjEmpty] at hj
+      simp at hj
+  · intro hS
+    obtain ⟨R, hR, hEq⟩ := Finset.mem_image.mp hS
+    obtain ⟨hRsub, hRcard⟩ := Finset.mem_powersetCard.mp hR
+    have hRne : R.Nonempty :=
+      Finset.card_pos.mp (by omega : 0 < R.card)
+    let j : Fin 17 := R.min' hRne
+    have hjMem : j ∈ R := Finset.min'_mem R hRne
+    have hij : i < j := (Finset.mem_filter.mp (hRsub hjMem)).2
+    let T : Finset (Fin 17) := R.erase j
+    have hTcard : T.card = 3 := by
+      simp [T, Finset.card_erase_of_mem hjMem, hRcard]
+    have hTsub : T ⊆ s027LaterIndexPoints j := by
+      intro k hk
+      have hkNe : k ≠ j := (Finset.mem_erase.mp hk).1
+      have hkMem : k ∈ R := (Finset.mem_erase.mp hk).2
+      have hle : j ≤ k := Finset.min'_le R k hkMem
+      exact Finset.mem_filter.mpr
+        ⟨Finset.mem_univ _, lt_of_le_of_ne hle hkNe.symm⟩
+    have hEq' : insert i (insert j T) = S := by
+      simpa [T, Finset.insert_erase hjMem] using hEq
+    apply Finset.mem_biUnion.mpr
+    refine ⟨j, Finset.mem_univ _, ?_⟩
+    have hmem : S ∈
+        ((s027LaterIndexPoints j).powersetCard 3).image
+          (fun T => insert i (insert j T)) :=
+      Finset.mem_image.mpr
+        ⟨T, Finset.mem_powersetCard.mpr ⟨hTsub,hTcard⟩, hEq'⟩
+    simpa [s027SecondIndexShard, hij] using hmem
+
+#print axioms PDIC.s027_first_index_shard_second_split
+
+end PDIC
