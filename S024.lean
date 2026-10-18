@@ -1403,7 +1403,11 @@ theorem s028_first_survivors_split (i : Fin 17) :
 #print axioms PDIC.s028_first_survivors_split
 
 end PDIC
-: the orbit transport is proved using genuine typed zero-fixing
+
+
+namespace PDIC
+
+/-! S028: the orbit transport is proved using genuine typed zero-fixing
 linear equivalences, with the sole missing 18-of-6188 classification
 supplied as an explicit, UNPROVED parameter. There is no new axiom. -/
 
