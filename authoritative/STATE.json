@@ -1,10 +1,10 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-17",
-  "last_completed_session": "S026",
-  "next_session": "S027",
+  "last_completed_session": "S027",
+  "next_session": "S028",
   "next_session_executed": false,
-  "phase": "S026_RECOVERY_STRICT_NORMALISATION_PLUS_MATRIX_WITNESSES_PLUS_POINTSET_FILTER_VERIFIED__18_CASE_ORBIT_AND_UNCONDITIONAL_FLAGSHIP_OPEN",
+  "phase": "S027_PARTIAL_STRICT_FIN17_SHARDS_COUNTS_4_TO_16_VERIFIED__EXHAUSTIVE_0_TO_3_AND_UNCONDITIONAL_FLAGSHIP_OPEN",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S027: STRICT_18_OF_6188_ORBIT_CERTIFICATE__TYPED_INVERSE_NORMALISATION__UNCONDITIONAL_ALL_CAP_FOUR_TERM_FLAGSHIP",
+  "next_session_target": "S028_EXHAUSTIVE_CAP_SHARDS_AND_UNCONDITIONAL_FLAGSHIP_LEAN",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -167,7 +167,7 @@
     "status": "WITHDRAWN_BY_OWNER_PROCESS_CHANGE_NOT_EXECUTED",
     "date": "2026-10-16"
   },
-  "next_session_target_file": "research/S027_FINISH_UNCONDITIONAL_FLAGSHIP_LEAN_TARGET.md",
+  "next_session_target_file": "research/S028_EXHAUSTIVE_CAP_SHARDS_AND_UNCONDITIONAL_FLAGSHIP.md",
   "next_session_target_installed_date": "2026-10-17",
   "next_session_target_source": "1b4a096c94bd333ef6e0cf4274efc0f358235e5f",
   "s004_status": "COMPLETED_2026_10_16",
@@ -875,13 +875,46 @@
     "normalized_anchors_status": "SOURCE_FORMALIZED_NOT_VERIFIED"
   },
   "s027": {
-    "status": "INSTALLED_NOT_EXECUTED",
-    "target_file": "research/S027_FINISH_UNCONDITIONAL_FLAGSHIP_LEAN_TARGET.md",
-    "focus": "LEAN_KERNEL_CERTIFY_exact_18_of_6188_normalized_tail_family__compose_already_certified_GL_witnesses_and_actual_cap_image_filter__export_entire_unconditional_flagship",
-    "remaining_first_gate": "s027NormalizedAdmissibleTails = s025NormalizedTails",
-    "after_first_gate": "typed_matrix_witness_extraction_plus_zero_fixing_image_orbit_plus_unconditional_four_term_probability_and_spider_iff",
-    "no_external_submission": true,
-    "proof_branch": "session/s007-full-lean-flagship"
+    "status": "EXECUTED_PARTIAL__18_LISTED_TAILS_INCLUDED__FIN17_BIJECTION__EXACT_SHARD_PARTITION__COUNTS_4_TO_16__UNCONDITIONAL_OPEN",
+    "proof_branch": "session/s007-full-lean-flagship",
+    "pr": 4,
+    "latest_promoted_sha_at_closeout": "fc3f6efede23b9d9eb1cc95d3a7bac2347e78f14",
+    "initial_canonical_strict_green_sha": "9f5030951a54182dfaf692a621eeb081cfb09675",
+    "initial_canonical_strict_run": 39078143085,
+    "eighteen_inclusion_isolated_strict_run": 39109084674,
+    "indexed_17_point_strict_run": 39108972085,
+    "indexed_five_tail_equivalence_strict_run": 39109155431,
+    "first_index_coverage_strict_run": 39109376664,
+    "first_index_coverage_canonical_integrated_strict_run": 39109927604,
+    "six_small_shard_counts_strict_run": 39109880476,
+    "mid_shard_counts_strict_run": 39110009522,
+    "two_index_partition_strict_run": 39110136139,
+    "high_index_empty_shards_strict_run": 39110496919,
+    "all_new_verified_declarations_standard_axioms_only": true,
+    "full_normalized_18_of_6188_kernel_verified": false,
+    "unclosed_first_index_shards": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "actual_cap_to_filtered_family_kernel_verified": true,
+    "explicit_18_table_subset_kernel_verified": true,
+    "named_first_paper_flagship_unconditional_kernel_verified": false,
+    "conditional_orbit_candidate_branch": "session/s027-conditional-orbit-transport-ci",
+    "conditional_orbit_latest_candidate_sha": "5638d80580fde4ad6dc50170f3c7dd13929c3046",
+    "conditional_orbit_candidate_strict_run": 39110700344,
+    "conditional_orbit_verification_at_closeout": "REQUIRES_FINAL_EXACT_RUN_AUDIT",
+    "pair_pilot_branch": "session/s027-pair-shard-pilot-ci",
+    "pair_pilot_strict_run": 39110855359,
+    "pair_pilot_verification_at_closeout": "REQUIRES_FINAL_EXACT_RUN_AUDIT",
+    "canonical_integrated_final_head_verification": "REQUIRES_FINAL_EXACT_RUN_AUDIT",
+    "proof_note": "research/S027_LEAN_PROOF_NOTE.md",
+    "closeout": "sessions/S027_CLOSEOUT.md",
+    "next_session": "S028",
+    "palomar_submitted": false,
+    "published": false,
+    "pr4_draft_unmerged": true
   },
   "s026_post_closeout": {
     "status": "STRICT_LEAN_VERIFIED_INCREMENTS_UNCONDITIONAL_FLAGSHIP_STILL_OPEN",
@@ -910,5 +943,10 @@
       "Classical.choice",
       "Quot.sound"
     ]
+  },
+  "s028": {
+    "status": "INSTALLED_NOT_EXECUTED",
+    "target_file": "research/S028_EXHAUSTIVE_CAP_SHARDS_AND_UNCONDITIONAL_FLAGSHIP.md",
+    "focus": "finish_remaining_first_index_0_to_3_bounded_Lean_kernel_shard_counts_and_derive_exact_normalized_18_case_equality_then_full_zero_fixing_cap_orbit_and_unconditional_flagship"
   }
 }
