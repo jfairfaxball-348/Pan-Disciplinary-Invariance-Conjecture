@@ -817,3 +817,48 @@ theorem s027_any_admissible_normalized_in_filtered_family
 #print axioms PDIC.s027_any_admissible_normalized_in_filtered_family
 
 end PDIC
+
+namespace PDIC
+
+/-! S027 experimental indexed finite enumeration for a bounded, trusted
+Lean classification. The 17 coordinates are explicit; no noncomputable
+set-to-list conversion is used. These statements are preliminary and
+do NOT establish exhaustiveness of the eighteen admissible tails. -/
+
+def s027FreePointAt (i : Fin 17) : CapPoint :=
+  match i.val with
+  | 0 => ![0, 1, 1]
+  | 1 => ![0, 1, 2]
+  | 2 => ![0, 2, 1]
+  | 3 => ![1, 0, 1]
+  | 4 => ![1, 0, 2]
+  | 5 => ![1, 1, 0]
+  | 6 => ![1, 1, 1]
+  | 7 => ![1, 1, 2]
+  | 8 => ![1, 2, 0]
+  | 9 => ![1, 2, 1]
+  | 10 => ![1, 2, 2]
+  | 11 => ![2, 0, 1]
+  | 12 => ![2, 1, 0]
+  | 13 => ![2, 1, 1]
+  | 14 => ![2, 1, 2]
+  | 15 => ![2, 2, 1]
+  | _ => ![2, 2, 2]
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+theorem s027FreePointAt_injective :
+    Function.Injective s027FreePointAt := by
+  decide +kernel
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 2000000 in
+theorem s027FreePointAt_image :
+    ((Finset.univ : Finset (Fin 17)).image s027FreePointAt) =
+      s024FreePoints := by
+  decide +kernel
+
+#print axioms PDIC.s027FreePointAt_injective
+#print axioms PDIC.s027FreePointAt_image
+
+end PDIC
