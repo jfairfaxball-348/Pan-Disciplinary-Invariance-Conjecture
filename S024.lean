@@ -855,12 +855,9 @@ theorem s027_image_orbit_of_tail_classification
   let W : CapPoint ≃ₗ[ZMod 3] CapPoint := M.toLinearEquiv' hInv
   have hW (v : Vertex) :
       W (canonicalCapF3 v) = M.mulVec (canonicalCapF3 v) := by
-    calc
-      W (canonicalCapF3 v) =
-          (M.toLin') (canonicalCapF3 v) :=
-        congrFun (Matrix.toLinearEquiv'_apply M hInv) (canonicalCapF3 v)
-      _ = M.mulVec (canonicalCapF3 v) :=
-        Matrix.toLin'_apply M (canonicalCapF3 v)
+    change (M.toLinearEquiv' hInv) (canonicalCapF3 v) =
+      M.mulVec (canonicalCapF3 v)
+    simp only [Matrix.toLinearEquiv'_apply, Matrix.toLin'_apply]
   have hFin :
       ((Finset.univ : Finset Vertex).image (fun v => N (f v))) =
       ((Finset.univ : Finset Vertex).image
