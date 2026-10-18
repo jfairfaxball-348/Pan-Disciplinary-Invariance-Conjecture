@@ -19,3 +19,8 @@ Deliver one durable public full 40-character SHA with truthful independent Chall
 5. Update S032 audit with final fate and create S033 closeout, update README/ROADMAP/CLAIMS/STATE on main. Automatically install a thorough S034 prompt for remaining non-executed handoff work. Never initiate public submission or publication without explicit owner instruction.
 
 If full mode cannot pass, close `NOT_READY` with the exact obstruction and executable next prompt; do not silently narrow the flagship or claim registry readiness.
+
+
+## S032 post-closeout correction to opening checkpoint (18 October 2026)
+
+Before executing S033, note that run 39124453153 and strict run 39124452988 ultimately **FAILED** because Lean module conversion made imported `PDIC` definition bodies unexposed to S024's proofs. Do not treat them as pending or passing. The latest unmerged packaging-branch candidate is `c2f3cc5de3c2e902d36484f085c6d77669e264ce`, which changes `S024.lean` to include `import all PDIC` alongside `public import PDIC`. Check exact-source [strict run 39129163513](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39129163513) and [official Palomar full-mode run 39129163852](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39129163852); new independent [finite run 39129163566](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39129163566) already PASSED. Strict/Palomar still pending at the time of this note. The same-SHA official full-mechanical gate remains mandatory; no permission for registration. This correction does not itself execute S033.
