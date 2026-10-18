@@ -1072,3 +1072,24 @@ theorem s027_first_index_shard_second_split (i : Fin 17) :
 #print axioms PDIC.s027_first_index_shard_second_split
 
 end PDIC
+
+
+namespace PDIC
+
+/-! Pilot bounded certificate for one large-cap shard: first indices
+0 and 3. This enumerates only the 286 possible three-element tails from
+the 13 remaining points. No global 6188-case decision is attempted. -/
+
+def s027SecondIndexSurvivors (i j : Fin 17) : Finset (Finset (Fin 17)) :=
+  (s027SecondIndexShard i j).filter (fun I =>
+    s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = true)
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s027_pair_0_3_survivor_card :
+    (s027SecondIndexSurvivors (0 : Fin 17) (3 : Fin 17)).card = 1 := by
+  decide +kernel
+
+#print axioms PDIC.s027_pair_0_3_survivor_card
+
+end PDIC
