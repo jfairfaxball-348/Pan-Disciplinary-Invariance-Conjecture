@@ -2296,6 +2296,7 @@ public theorem spiderAdj_symmetric : ∀ u v : Vertex, spiderAdj u v = true → 
 public theorem spiderAdj_loopless : ∀ u : Vertex, ¬ spiderAdj u u = true := by decide
 
 /-- The actual simple graph with edges 04, 05, 06, 07, 16, 25, 34. -/
+set_option backward.proofsInPublic true in
 public def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
   symm.symm := spiderAdj_symmetric

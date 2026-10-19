@@ -33,6 +33,7 @@ theorem spiderAdj_symmetric : ∀ u v : Vertex, spiderAdj u v = true → spiderA
 theorem spiderAdj_loopless : ∀ u : Vertex, ¬ spiderAdj u u = true := by decide
 
 /-- The undirected simple graph S(2,2,2,1) presented on Fin 8. -/
+set_option backward.proofsInPublic true in
 def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
   symm.symm := spiderAdj_symmetric
