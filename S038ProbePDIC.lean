@@ -12,6 +12,10 @@ run_cmd do
   logInfo m!"S038_LEVELS={repr d.levelParams}"
   logInfo m!"S038_TYPE={repr d.type}"
   logInfo m!"S038_SAFETY={repr d.safety}"
-  logInfo m!"S038_HINTS={repr d.hints}"
+  let hints : String := match d.hints with
+    | .opaque => "opaque"
+    | .abbrev => "abbrev"
+    | .regular n => s!"regular({n})"
+  logInfo m!"S038_HINTS={hints}"
   logInfo m!"S038_VALUE_HASH={hash d.value}"
   logInfo m!"S038_VALUE={repr d.value}"
