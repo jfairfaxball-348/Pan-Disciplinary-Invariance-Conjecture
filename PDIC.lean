@@ -90,11 +90,11 @@ theorem canonical_four_zero_iff :
 /- The spider S(2,2,2,1): hub 0, neighbours 4,5,6,7,
    additional edges 1--6, 2--5, 3--4. -/
 public def spiderAdj (u v : Vertex) : Bool :=
-  decide ((u = 0 ∧ (v = 4 ∨ v = 5 ∨ v = 6 ∨ v = 7)) ∨
-          (v = 0 ∧ (u = 4 ∨ u = 5 ∨ u = 6 ∨ u = 7)) ∨
-          (u = 1 ∧ v = 6) ∨ (u = 6 ∧ v = 1) ∨
-          (u = 2 ∧ v = 5) ∨ (u = 5 ∧ v = 2) ∨
-          (u = 3 ∧ v = 4) ∨ (u = 4 ∧ v = 3))
+  decide ((u.val = 0 ∧ (v.val = 4 ∨ v.val = 5 ∨ v.val = 6 ∨ v.val = 7)) ∨
+          (v.val = 0 ∧ (u.val = 4 ∨ u.val = 5 ∨ u.val = 6 ∨ u.val = 7)) ∨
+          (u.val = 1 ∧ v.val = 6) ∨ (u.val = 6 ∧ v.val = 1) ∨
+          (u.val = 2 ∧ v.val = 5) ∨ (u.val = 5 ∧ v.val = 2) ∨
+          (u.val = 3 ∧ v.val = 4) ∨ (u.val = 4 ∧ v.val = 3))
 
 def IsMIS4 (adj : Vertex → Vertex → Bool) (s : Finset Vertex) : Prop :=
   s.card = 4 ∧
@@ -2292,11 +2292,14 @@ namespace PDIC
     The difficult converse (a normalising permutation for every equality
     matrix) is deliberately NOT taken as an axiom. -/
 
+public theorem spiderAdj_symmetric : ∀ u v : Vertex, spiderAdj u v = true → spiderAdj v u = true := by decide
+public theorem spiderAdj_loopless : ∀ u : Vertex, ¬ spiderAdj u u = true := by decide
+
 /-- The actual simple graph with edges 04, 05, 06, 07, 16, 25, 34. -/
 public def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
-  symm.symm := by decide
-  loopless.irrefl := by decide
+  symm.symm := spiderAdj_symmetric
+  loopless.irrefl := spiderAdj_loopless
 
 /-- A labelled four-by-four presentation, with row zero the hub. -/
 def canonicalSpiderMatrix (i j : Side) : Bool :=

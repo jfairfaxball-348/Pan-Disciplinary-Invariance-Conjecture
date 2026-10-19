@@ -1,0 +1,55 @@
+name: S039 independent spider-export and exact proof compile diagnostic
+on:
+  push:
+    branches: [diagnostic/s039-spider-export-repair]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve pinned Mathlib
+        run: |
+          lake update
+          lake exe cache get
+      - name: Compile full solution and theorem
+        run: |
+          set -euo pipefail
+          (lake build && lake env lean Solution.lean) 2>&1 | tee s039-lean.log
+          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s039-lean.log; then exit 1; fi
+      - name: Read independent compiled ConstantInfo
+        run: |
+          set -euo pipefail
+          lake env lean -o .lake/build/lib/lean/Challenge.olean Challenge.lean
+          lake env lean diagnostics/S038DumpChallenge.lean
+          lake env lean diagnostics/S038DumpPDIC.lean
+      - name: Check exported constants structurally
+        run: |
+          python3 diagnostics/s038_compare.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path('diagnostics/S038_EXPORTED_CONST_DIFF.json').read_text())['constants']
+          for name in ('PDIC.spiderAdj','PDIC.namedSpider'):
+            assert c[name]['equal_repr'], f"{name} still differs from independent Challenge"
+          print('S039 namedSpider + spiderAdj exported declarations match')
+          PY
+      - name: Finite checker sanity
+        run: |
+          set -euo pipefail
+          for script in scripts/verify_*.py; do python3 "$script"; done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s039-spider-export-evidence
+          path: |
+            s039-lean.log
+            diagnostics/S038_EXPORTED_CONST_DIFF.json
+            diagnostics/s038-*.txt
+          retention-days: 14
