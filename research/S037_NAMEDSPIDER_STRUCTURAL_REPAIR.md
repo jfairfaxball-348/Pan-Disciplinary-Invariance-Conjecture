@@ -1,0 +1,8 @@
+# S037 investigation — namedSpider's exported dependency equality
+
+- The [official 19 October report](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39222015131) rejected the *ordinary theorem-type dependency* `PDIC.namedSpider`. The official Comparator is `Lake.Check.Compare` at Lean `v4.35.0-rc2`. For ordinary dependencies it checks complete `ConstantInfo` structural equality; no one has yet demonstrated which `ConstantInfo` component differs. Equality of seven undirected edges does not establish declaration equality.
+- Candidate [`268f8ddf386e49875f6d21984fdfa8482187e900`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/268f8ddf386e49875f6d21984fdfa8482187e900) replaces two concrete graph proof terms on **both** independent Challenge and PDIC Solution-side definitions with `by decide`. The `Adj` field and theorem formula were not changed.
+- The proof-term stabilization hypothesis is empirically falsifiable. If official `Comparator` still fails `namedSpider`, next step is not to rename or configure it away: compare serialized exports, including the `ConstantInfo` type, val, reducibility hints, safety and any referenced generated constants. Use a bounded diagnostic output and keep independent Mathlib Challenge provenance.
+- At S037 closeout finite checks passed but strict and full remained in progress. Do not claim that the candidate compiles or eliminates the Comparator mismatch until these exact workflow reports finish.
+
+See [S037 closeout](../sessions/S037_CLOSEOUT.md) and [S038 prompt](NEXT_SESSION_PROMPT.md).
