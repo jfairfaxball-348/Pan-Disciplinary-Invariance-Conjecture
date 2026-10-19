@@ -2297,7 +2297,7 @@ public theorem spiderAdj_loopless : ∀ u : Vertex, ¬ spiderAdj u u = true := b
 
 set_option backward.proofsInPublic true
 /-- The actual simple graph with edges 04, 05, 06, 07, 16, 25, 34. -/
-public def namedSpider : SimpleGraph Vertex where
+@[expose] public def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
   symm.symm := spiderAdj_symmetric
   loopless.irrefl := spiderAdj_loopless

@@ -34,7 +34,7 @@ theorem spiderAdj_loopless : ∀ u : Vertex, ¬ spiderAdj u u = true := by decid
 
 set_option backward.proofsInPublic true
 /-- The undirected simple graph S(2,2,2,1) presented on Fin 8. -/
-def namedSpider : SimpleGraph Vertex where
+@[expose] def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
   symm.symm := spiderAdj_symmetric
   loopless.irrefl := spiderAdj_loopless
