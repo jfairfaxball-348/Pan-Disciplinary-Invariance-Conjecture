@@ -2,7 +2,7 @@ name: S042 private-Mathlib public-closure diagnostic
 on:
   push:
     branches:
-      - diagnostic/s042-slim-challenge-imports
+      - diagnostic/s042-private-mathlib-import
   workflow_dispatch:
 permissions:
   contents: read
