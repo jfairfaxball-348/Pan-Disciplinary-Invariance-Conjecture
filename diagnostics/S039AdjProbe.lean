@@ -14,6 +14,7 @@ theorem s039_spider_spec_probe (u v : Vertex) :
        (u = 3 ∧ v = 4) ∨ (u = 4 ∧ v = 3)) := by
   change spiderAdj u v = true ↔ _
   simp only [spiderAdj, decide_eq_true_eq, Fin.ext_iff]
+  rfl
 
 #print axioms PDIC.s039_spider_spec_probe
 

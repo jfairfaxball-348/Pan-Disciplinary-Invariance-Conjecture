@@ -50,6 +50,7 @@ theorem palomar_complete_probability_and_spider
   intro u v
   change spiderAdj u v = true ↔ _
   simp only [spiderAdj, decide_eq_true_eq, Fin.ext_iff]
+  rfl
 
 #print axioms PDIC.palomar_complete_probability_and_spider
 
