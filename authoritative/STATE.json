@@ -4,7 +4,7 @@
   "last_completed_session": "S039",
   "next_session": "S040",
   "next_session_executed": false,
-  "phase": "PALOMAR_S039_EXPORTED_PRIVATE_PROOF_CAUSE_CONFIRMED__REPAIR_DIAGNOSTIC_VALIDATION_PENDING",
+  "phase": "S039_POSTCLOSEOUT_COMPILER_FAILURE_CONFIRMED__ISOLATED_REPAIR_RECHECK_PENDING_S040_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "S037_PACKAGE_SHA_268f8ddf386e49875f6d21984fdfa8482187e900_STRICT_PASS_39242337067_FINITE_PASS_39242337236_FULL_COMPARATOR_FAIL_39242337489__S038_EXPORT_DIAGNOSTIC_PASS_39251725921_SHOWS_MODULE_PRIVATE_PROOF_REFERENCES__S039_SPIDER_REPAIR_DIAGNOSTIC_SHA_0e5743b72574df34b235631c3c99e0eabfa675fa__S039_DIAGNOSTIC_RUN_39254090135_PENDING_AT_CLOSEOUT__NOT_REGISTERED_NOT_READY",
+  "palomar": "PALOMAR_NOT_READY__S039_DIAGNOSTIC_RUN_39254090135_FAILS_SOLUTION_LEAN_DECIDABLE_PROOF_AND_SORRYAX__REPAIR_SHA_bf54b81333bba85c3755a598404fb41ad581fc56_DIAGNOSTIC_RUN_39267734748_PENDING__PR24_UNCHANGED_AT_268f8ddf386e49875f6d21984fdfa8482187e900",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -1259,7 +1259,7 @@
     "diagnostic_commit": "0e5743b72574df34b235631c3c99e0eabfa675fa",
     "diagnostic_workflow": ".github/workflows/s039-spider-export.yml",
     "validation_run": 39254090135,
-    "validation_status_at_closeout": "IN_PROGRESS__NO_COMPILER_VERDICT_YET",
+    "validation_status_at_closeout": "FAILED_AFTER_CLOSEOUT__RUN_39254090135_SOLUTION_LINE_50_MISSING_DECIDABLE_SORRYAX_REJECTED",
     "finite_run": 39254089941,
     "finite_status": "SUCCESS",
     "package_pr": 24,
@@ -1269,6 +1269,15 @@
     "palomar_full_mechanical_passed": false,
     "palomar_registered": false,
     "next_session": "S040",
-    "next_session_executed": false
+    "next_session_executed": false,
+    "failing_compile_line": "Solution.lean:50:34",
+    "failing_compile_cause": "fin_cases_u_v_then_decide_cannot_synthesize_decidable_of_namedSpider_adjacency",
+    "report_artifact": 12187563979,
+    "diagnostic_repair2_commit": "bf54b81333bba85c3755a598404fb41ad581fc56",
+    "diagnostic_repair2_run": 39267734748,
+    "diagnostic_repair2_status": "IN_PROGRESS_AT_POSTCLOSEOUT_UPDATE",
+    "diagnostic_repair2_changes": "Replace broken decidable enumeration with simp-spiderAdj-Fin.ext_iff; use compiled-proven expose and proofsInPublic namedSpider representation; test exported constants before full theorem",
+    "original_package_unmodified": true,
+    "source_hole_status": "S039_FIRST_DIAGNOSTIC_REJECTED_SORRYAX_FROM_UNSOLVED_GOALS_NOT_PROMOTED"
   }
 }
