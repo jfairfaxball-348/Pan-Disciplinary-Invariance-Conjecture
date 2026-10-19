@@ -1,0 +1,48 @@
+name: S041 compare exported independent source constants on narrowed Challenge
+on:
+  push:
+    branches: [diagnostic/s041-constantinfo]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve pinned Mathlib
+        run: |
+          lake update
+          lake exe cache get
+      - name: Compile independent Challenge and original PDIC
+        run: |
+          set -euo pipefail
+          lake build Challenge PDIC
+      - name: Compare actual exported ordinary ConstantInfo
+        run: |
+          set -euo pipefail
+          lake env lean diagnostics/S038DumpChallenge.lean
+          lake env lean diagnostics/S038DumpPDIC.lean
+          python3 diagnostics/s038_compare.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('diagnostics/S038_EXPORTED_CONST_DIFF.json').read_text())['constants']
+          bad=[k for k,v in a.items() if not v['equal_repr']]
+          print("Independent Challenge/PDIC divergent constants:", bad)
+          assert not bad, f"exported ConstantInfo mismatch: {bad}"
+          PY
+      - name: Upload structural comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s041-constantinfo-comparison
+          path: |
+            diagnostics/S038_EXPORTED_CONST_DIFF.json
+            diagnostics/s038-*.txt
+          if-no-files-found: ignore
+          retention-days: 14
