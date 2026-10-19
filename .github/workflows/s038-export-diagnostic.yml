@@ -1,0 +1,41 @@
+name: S038 exported ConstantInfo diagnostic (no Palomar)
+on:
+  push:
+    branches: [diagnostic/s038-namedspider-export]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve Mathlib and cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Compile the full substantive PDIC environment
+        run: lake build PDIC
+      - name: Compile independent Challenge environment
+        run: |
+          mkdir -p .lake/build/lib/lean diagnostics
+          lake env lean -o .lake/build/lib/lean/Challenge.olean Challenge.lean
+      - name: Export exact kernel ConstantInfo, separately
+        run: |
+          lake env lean diagnostics/S038DumpChallenge.lean
+          lake env lean diagnostics/S038DumpPDIC.lean
+      - name: Compare exported fields with bounded context
+        run: python3 diagnostics/s038_compare.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s038-exported-constantinfo-diff
+          path: |
+            diagnostics/S038_EXPORTED_CONST_DIFF.json
+            diagnostics/s038-*.txt
+          retention-days: 14
