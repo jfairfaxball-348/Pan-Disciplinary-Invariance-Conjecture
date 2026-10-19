@@ -1,0 +1,53 @@
+name: S041 Challenge export footprint diagnostic
+on:
+  push:
+    branches:
+      - diagnostic/s041-slim-challenge-imports
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve pinned Mathlib and cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Compile both independent Challenge and complete Solution
+        run: |
+          set -euo pipefail
+          (lake build && lake env lean Solution.lean) 2>&1 | tee s041-lean.log
+          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s041-lean.log; then exit 1; fi
+      - name: Reject unsupported proof sources
+        run: |
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' PDIC.lean S024.lean Solution.lean; then exit 1; fi
+      - name: Export exact theorem closures and record resource footprints
+        run: |
+          set -euo pipefail
+          /usr/bin/time -v -o s041-challenge-resource.log lake env leanexport Challenge -- PDIC.palomar_complete_probability_and_spider > s041-challenge.export
+          /usr/bin/time -v -o s041-solution-resource.log lake env leanexport Solution -- PDIC.palomar_complete_probability_and_spider > s041-solution.export
+          wc -c s041-challenge.export s041-solution.export | tee s041-exports-size.log
+          cat s041-challenge-resource.log s041-solution-resource.log
+      - name: Run independent finite checks
+        run: |
+          set -euo pipefail
+          for script in scripts/verify_*.py; do python3 "$script"; done
+      - name: Upload bounded diagnosis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s041-challenge-import-footprint
+          path: |
+            s041-lean.log
+            s041-exports-size.log
+            s041-challenge-resource.log
+            s041-solution-resource.log
+          if-no-files-found: ignore
+          retention-days: 14
