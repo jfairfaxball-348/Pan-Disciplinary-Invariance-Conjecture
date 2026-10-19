@@ -2,6 +2,7 @@ module
 
 public import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
 public import Mathlib.Data.ZMod.Basic
+public import Mathlib.Algebra.Field.ZMod
 public import Mathlib.Data.Finset.Powerset
 public import Mathlib.GroupTheory.Perm.Basic
 public import Mathlib.Data.Fintype.Perm
