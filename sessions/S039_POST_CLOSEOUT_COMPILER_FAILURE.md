@@ -15,3 +15,10 @@ The isolated [third repair `044fc33de3631725b1dd16ff4ae3fd77a39914f9`](https://g
 
 The [new run 39271046648](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39271046648) **attempt 1 failed due to TLS downloading pinned Lean**, before any proof check. A **rerun (attempt 2) was requested** and was in progress at documentation time. S040 must read the latest attempt, and cannot count either the proof or Palomar as green without its exact logs.
 
+
+### S039 fourth isolated diagnostic candidate — 19 October 2026
+
+The [third candidate's rerun, 39271046648 attempt 2](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39271046648), reached the fast independent proof and **FAILED** on an *unsolved Nat/Fin-numeral normalization goal*, not on the full theorem. Its attempt 1 had a separate transient Lean-toolchain TLS download error. The failing `simp only [spiderAdj, decide_eq_true_eq, Fin.ext_iff]` had rewritten every equation but retained `↑(0 : Fin 8)` beside ordinary `0` numerals. These sides are definitionally equal.
+
+The fourth isolated [diagnostic commit `530cd1922710d425117201a92506c5e2a843630c`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/530cd1922710d425117201a92506c5e2a843630c) adds final `rfl` to both the independent Challenge-based certificate and the actual Solution proof, without changing any mathematical definition, theorem type, external comparator setting, or Palomar package. [Exact-source run 39271952177](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39271952177) **passed the new independent spider-proof gate**, then proceeded to full PDIC compilation. **The complete Lean theorem / finite checker and official full Palomar gates remain unverified** on this commit. Read actual run steps and logs before promoting anything. PR #24 remains unmodified.
+
