@@ -18,10 +18,15 @@ jobs:
         run: |
           lake update
           lake exe cache get
+      - name: Prove seven-edge adjacency independently before the expensive full build
+        run: |
+          set -euo pipefail
+          (lake build Challenge && lake env lean diagnostics/S039AdjProbe.lean) 2>&1 | tee s039-probe.log
+          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s039-probe.log; then exit 1; fi
       - name: Compile independent Challenge and PDIC first
         run: |
           set -euo pipefail
-          lake build Challenge PDIC
+          lake build PDIC
       - name: Read independent compiled ConstantInfo
         run: |
           set -euo pipefail
@@ -53,6 +58,7 @@ jobs:
           name: s039-spider-export-evidence
           path: |
             s039-lean.log
+            s039-probe.log
             diagnostics/S038_EXPORTED_CONST_DIFF.json
             diagnostics/s038-*.txt
           retention-days: 14
