@@ -18,15 +18,13 @@ jobs:
         run: |
           lake update
           lake exe cache get
-      - name: Compile full solution and theorem
+      - name: Compile independent Challenge and PDIC first
         run: |
           set -euo pipefail
-          (lake build && lake env lean Solution.lean) 2>&1 | tee s039-lean.log
-          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s039-lean.log; then exit 1; fi
+          lake build Challenge PDIC
       - name: Read independent compiled ConstantInfo
         run: |
           set -euo pipefail
-          lake env lean -o .lake/build/lib/lean/Challenge.olean Challenge.lean
           lake env lean diagnostics/S038DumpChallenge.lean
           lake env lean diagnostics/S038DumpPDIC.lean
       - name: Check exported constants structurally
@@ -40,6 +38,11 @@ jobs:
             assert c[name]['equal_repr'], f"{name} still differs from independent Challenge"
           print('S039 namedSpider + spiderAdj exported declarations match')
           PY
+      - name: Compile full theorem and check approved axioms
+        run: |
+          set -euo pipefail
+          (lake build && lake env lean Solution.lean) 2>&1 | tee s039-lean.log
+          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s039-lean.log; then exit 1; fi
       - name: Finite checker sanity
         run: |
           set -euo pipefail

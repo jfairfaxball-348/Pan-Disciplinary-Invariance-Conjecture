@@ -2295,11 +2295,13 @@ namespace PDIC
 public theorem spiderAdj_symmetric : ∀ u v : Vertex, spiderAdj u v = true → spiderAdj v u = true := by decide
 public theorem spiderAdj_loopless : ∀ u : Vertex, ¬ spiderAdj u u = true := by decide
 
+set_option backward.proofsInPublic true
 /-- The actual simple graph with edges 04, 05, 06, 07, 16, 25, 34. -/
-public def namedSpider : SimpleGraph Vertex where
+@[expose] public def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
   symm.symm := spiderAdj_symmetric
   loopless.irrefl := spiderAdj_loopless
+set_option backward.proofsInPublic false
 
 /-- A labelled four-by-four presentation, with row zero the hub. -/
 def canonicalSpiderMatrix (i j : Side) : Bool :=

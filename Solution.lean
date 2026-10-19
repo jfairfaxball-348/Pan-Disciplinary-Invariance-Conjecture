@@ -47,7 +47,8 @@ theorem palomar_complete_probability_and_spider
        (u = 3 ∧ v = 4) ∨ (u = 4 ∧ v = 3))) := by
   refine ⟨connected_graphMIS_complete_flagship_unconditional_all_caps G hc f hf, ?_⟩
   intro u v
-  fin_cases u <;> fin_cases v <;> decide
+  change spiderAdj u v = true ↔ _
+  simpa [spiderAdj, Fin.ext_iff]
 
 #print axioms PDIC.palomar_complete_probability_and_spider
 
