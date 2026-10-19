@@ -1,3 +1,7 @@
+## S042 memory engineering — 19 October 2026
+
+The corrected reduced-Challenge package on unmerged PR #24 SHA c59cbeecd669d9a0ab5ba5f6e1e4021051a62c8a passes same-SHA strict Lean 39309876443 and finite 39309876407, but official full Palomar 39309877112 failed at Comparator with peak 16,118,239,232 bytes, two OOM kills and a 16,431,086,551-byte ceiling; no Comparator verdict or subsequent replay. S042 created a distinct isolated smaller public-Mathlib interface experiment at diagnostic/s042-private-mathlib-import SHA 70435c1857d1190d723edca5b205736f0b3581ed. The proof text and theorem statements are untouched. Exact-source CI 39318767343 passed Challenge and was still compiling Solution at S042 closeout. This trial is NOT promoted, all green or registered. No paid runner authorised. See sessions/S042_CLOSEOUT.md and installed S043 in research/NEXT_SESSION_PROMPT.md.
+
 ## S041 — Comparator OOM engineering experiment (19 October 2026)
 
 **Partial engineering closeout; NOT READY FOR PALOMAR REGISTRATION.** The [official S040 full run 39286142688](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39286142688) truly failed at **Comparator OOM**, not at the Lean proof: exit 137, 7 cgroup OOM kills, 16,117,096,448-byte Comparator peak versus 16,431,086,551-byte memory.max. Independent complete theorem, same-SHA strict Lean and finite verification remain passed on the unchanged [PR #24](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/24), package `7d2d94342dbf3337e9fd01b564465a04892bc18a`.
