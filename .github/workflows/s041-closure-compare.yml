@@ -29,7 +29,7 @@ jobs:
       - name: Candidate Challenge with restored typeclass imports
         run: |
           set -euo pipefail
-          git checkout --detach 9c7591a8242d40453ef77f6609c8c67bb5f3b68f
+          git checkout --detach 598fbc69deb165c05006517001a6a391306df3b0
           lake update
           lake build Challenge
           /usr/bin/time -v -o candidate-time.log lake env leanexport Challenge -- PDIC.palomar_complete_probability_and_spider > candidate.export
