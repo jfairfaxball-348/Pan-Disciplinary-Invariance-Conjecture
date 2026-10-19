@@ -6,3 +6,12 @@
 - The revised verification workflow runs **independent Challenge+PDIC compilation and exported `ConstantInfo` structural comparison first**, then the exact `Solution.lean` full theorem compile plus strict axiom scan, then independent finite checks. Run [39267734748](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39267734748) was **in progress at this update**. Do not infer any PASS before observing completed job steps and report.
 - Original PR #24 packaging branch remains **unmodified** at `268f8ddf386e49875f6d21984fdfa8482187e900`; previous official full Comparator failure remains unresolved in the Palomar package. No new official Palomar run, public registry submission, external correspondence, PR merge or publication.
 - S040 remains **installed, not executed**. Its first task is to retrieve completed run 39267734748, repair any exact compiler/export divergence on diagnostic branch, and promote to PR #24 only when all local pinned gates on the isolated repair are genuinely green.
+
+## S039 further diagnostic follow-up — 19 October 2026
+
+The [second exact-source run 39267734748](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39267734748) **FAILED** at `Solution.lean:51:2` with `Tactic simp failed ... maximum recursion depth`, which left `sorryAx`. Before that failure, compiled independent Challenge/PDIC ConstantInfo comparison **PASSED** for both `PDIC.spiderAdj` and `PDIC.namedSpider` on source `bf54b81333bba85c3755a598404fb41ad581fc56`. Official full Palomar is still unretried, and warnings about Node.js 20 / Ubuntu runner migration did not cause this failure.
+
+The isolated [third repair `044fc33de3631725b1dd16ff4ae3fd77a39914f9`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/044fc33de3631725b1dd16ff4ae3fd77a39914f9) changes only the final seven-edge theorem proof, bounded recursion setting, and early test harness. It uses `simp only` instead of the broad `simpa`, and first checks a genuinely independent Challenge-based proof of the same finite adjacency statement before the expensive full Lean recompile.
+
+The [new run 39271046648](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39271046648) **attempt 1 failed due to TLS downloading pinned Lean**, before any proof check. A **rerun (attempt 2) was requested** and was in progress at documentation time. S040 must read the latest attempt, and cannot count either the proof or Palomar as green without its exact logs.
+
