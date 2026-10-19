@@ -4,7 +4,7 @@
   "last_completed_session": "S040",
   "next_session": "S041",
   "next_session_executed": false,
-  "phase": "S040_PROMOTED_REPAIR__OFFICIAL_SAME_SHA_STRICT_FINITE_PALOMAR_QUEUED__S041_INSTALLED",
+  "phase": "S040_POSTCLOSEOUT_OFFICIAL_COMPARATOR_OOM_CONFIRMED__S041_MEMORY_CAPACITY_REPAIR_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "NOT_REGISTERED_NOT_YET_READY__S039_ISOLATED_FULL_LEAN_AND_EXPORT_EQUALS_PASS__S040_PR24_SHA_7d2d94342dbf3337e9fd01b564465a04892bc18a__OFFICIAL_39286142147_39286142201_39286142688_QUEUED",
+  "palomar": "NOT_REGISTERED_NOT_READY__OFFICIAL_S040_39286142688_FAILED_AT_COMPARATOR_OOM_EXIT137__S040_SAME_SHA_STRICT_39286142147_FINITE_39286142201_PASS__SOURCE_SHA_7d2d94342dbf3337e9fd01b564465a04892bc18a",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "VERIFY_S039_EXPORTED_SPIDER_REPAIR_PROMOTE_ONLY_AFTER_PINNED_LEAN_AND_IDENTITY_EVIDENCE_THEN_SEEK_SAME_SHA_ALL_GREEN_FULL_PALOMAR",
+  "next_session_target": "S041_COMPARATOR_MEMORY_FOOTPRINT_OR_APPROVED_32GB_CAPACITY_REPAIR",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": "S041",
   "session_control": {
@@ -1324,11 +1324,22 @@
     "strict_run": 39286142147,
     "finite_run": 39286142201,
     "official_full_run": 39286142688,
-    "official_status_at_closeout": "QUEUED__DO_NOT_PROMOTE",
+    "official_status_at_closeout": "INITIAL_QUEUED; POST_CLOSEOUT_OFFICIAL_STRICT_SUCCESS_39286142147_FINITE_SUCCESS_39286142201_FULL_FAILURE_39286142688_RESOURCE_OOM",
     "palomar_full_mechanical_passed": false,
     "ready_for_owner_submission": false,
     "registered": false,
     "next_session": "S041",
-    "next_session_executed": false
+    "next_session_executed": false,
+    "official_report_artifact": 12206410165,
+    "failure_stage": "comparator",
+    "failure_kind": "infrastructure/resource-exhausted",
+    "failure_exit_code": 137,
+    "comparator_peak_bytes": 16117096448,
+    "comparator_oom_kill_events": 7,
+    "cgroup_memory_max_bytes": 16431086551,
+    "solution_build_peak_bytes": 12320923648,
+    "solution_export_peak_bytes": 4773474304,
+    "approved_alternative_profile": "palomar-namespace-16x32-v1__PUBLISHED_IN_PINNED_PIPELINE_CATALOGUE__ACCESS_AND_BILLING_UNVERIFIED",
+    "followup_type": "POST_CLOSEOUT_AUDIT_WITHOUT_NEW_SESSION_NUMBER"
   }
 }
