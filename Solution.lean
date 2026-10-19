@@ -1,7 +1,6 @@
 module
 
 public import S024
-import all PDIC
 
 public section
 

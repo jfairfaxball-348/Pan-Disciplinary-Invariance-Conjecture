@@ -2,7 +2,7 @@ module
 
 public import Mathlib
 
-public section
+section
 
 /-!
 # PDIC: finite quartet incidence, labelled spider, and moment inversion
@@ -14,7 +14,7 @@ this file assumes the nine-cap classification or universal graph extremality.
 
 namespace PDIC
 
-abbrev Vertex := Fin 8
+public abbrev Vertex := Fin 8
 abbrev QuartetIndex := Fin 4
 
 def quartet (i : QuartetIndex) : Finset Vertex :=
@@ -89,7 +89,7 @@ theorem canonical_four_zero_iff :
 
 /- The spider S(2,2,2,1): hub 0, neighbours 4,5,6,7,
    additional edges 1--6, 2--5, 3--4. -/
-def spiderAdj (u v : Vertex) : Bool :=
+public def spiderAdj (u v : Vertex) : Bool :=
   decide ((u = 0 ∧ (v = 4 ∨ v = 5 ∨ v = 6 ∨ v = 7)) ∨
           (v = 0 ∧ (u = 4 ∨ u = 5 ∨ u = 6 ∨ u = 7)) ∨
           (u = 1 ∧ v = 6) ∨ (u = 6 ∧ v = 1) ∨
@@ -1253,7 +1253,7 @@ def matrixGraph (adj : Side → Side → Bool) : SimpleGraph SplitVertex where
   loopless.irrefl := by intro u; cases u <;> simp
 
 /-- Independence and domination are the usual exact finite MIS criterion. -/
-def GraphMIS {V : Type*} (G : SimpleGraph V) (s : Finset V) : Prop :=
+public def GraphMIS {V : Type*} (G : SimpleGraph V) (s : Finset V) : Prop :=
   (∀ u ∈ s, ∀ v ∈ s, ¬ G.Adj u v) ∧
     (∀ v, v ∉ s → ∃ u ∈ s, G.Adj v u)
 
@@ -1610,7 +1610,7 @@ def IsAnchoredMixedThird (G : SimpleGraph Vertex)
 /-- A genuine unordered triple of distinct four-MIS, including a
     complementary disjoint pair and one 2+2 mixed third set.
     The three members are encoded by a Finset, not a list/tuple. -/
-def IsUnorderedCompatibleTriple (G : SimpleGraph Vertex)
+public def IsUnorderedCompatibleTriple (G : SimpleGraph Vertex)
     (T : Finset (Finset Vertex)) : Prop :=
   T.card = 3 ∧
   (∀ r ∈ T, r.card = 4 ∧ GraphMIS G r) ∧
@@ -1620,7 +1620,7 @@ def IsUnorderedCompatibleTriple (G : SimpleGraph Vertex)
       (r ∩ s).card = 2 ∧ (r ∩ t).card = 2
 
 /-- The cardinality counts unordered triples, not ordered witnesses. -/
-noncomputable def unorderedCompatibleTripleCount
+public noncomputable def unorderedCompatibleTripleCount
     (G : SimpleGraph Vertex) : ℕ := by
   classical
   exact ((Finset.univ : Finset (Finset (Finset Vertex))).filter
@@ -2293,7 +2293,7 @@ namespace PDIC
     matrix) is deliberately NOT taken as an axiom. -/
 
 /-- The actual simple graph with edges 04, 05, 06, 07, 16, 25, 34. -/
-def namedSpider : SimpleGraph Vertex where
+public def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
   symm.symm := by
     intro u v
@@ -2698,15 +2698,15 @@ namespace PDIC
 /-! S011: a genuine F₃³ cap, with the external cap classification
 represented only by a supplied zero-fixing linear equivalence. -/
 
-abbrev CapPoint := Fin 3 → ZMod 3
+public abbrev CapPoint := Fin 3 → ZMod 3
 
 def canonicalCapF3 (v : Vertex) : CapPoint :=
   fun j => (canonicalCap v j : ZMod 3)
 
-def capSum (f : Vertex → CapPoint) (s : Finset Vertex) : CapPoint :=
+public def capSum (f : Vertex → CapPoint) (s : Finset Vertex) : CapPoint :=
   ∑ v ∈ s, f v
 
-def IsAdmissibleCap (f : Vertex → CapPoint) : Prop :=
+public def IsAdmissibleCap (f : Vertex → CapPoint) : Prop :=
   Function.Injective f ∧
     ∀ s : Finset Vertex,
       (s.card = 1 ∨ s.card = 2 ∨ s.card = 3) → capSum f s ≠ 0
@@ -4233,7 +4233,7 @@ The family below contains genuine maximal-independent vertex sets, not
 quartet-index proxies or a matrix count. -/
 
 /-- All size-four maximal independent vertex sets of the actual graph. -/
-noncomputable def fourGraphMISFamily (G : SimpleGraph Vertex) :
+public noncomputable def fourGraphMISFamily (G : SimpleGraph Vertex) :
     Finset (Finset Vertex) := by
   classical
   exact (Finset.univ : Finset (Finset Vertex)).filter
@@ -4590,7 +4590,7 @@ moment of the actual graph maximal-independent-set family. -/
 
 /-- The overlap of a genuine unordered pair of sets is independent of
 which member is named first. -/
-def UnorderedPairOverlap (T : Finset (Finset Vertex)) (k : ℕ) : Prop :=
+public def UnorderedPairOverlap (T : Finset (Finset Vertex)) (k : ℕ) : Prop :=
   ∀ s ∈ T, ∀ t ∈ T, s ≠ t → (s ∩ t).card = k
 
 theorem unorderedPairOverlap_pair_iff
@@ -4609,7 +4609,7 @@ theorem unorderedPairOverlap_pair_iff
     · exact (hab rfl).elim
 
 /-- Number of genuine *unordered* two-MIS subfamilies with overlap k. -/
-noncomputable def graphMIS_pairOverlapCount
+public noncomputable def graphMIS_pairOverlapCount
     (G : SimpleGraph Vertex) (k : ℕ) : ℕ := by
   classical
   exact (((fourGraphMISFamily G).powersetCard 2).filter
@@ -5196,14 +5196,14 @@ external geometric classification is the explicit *hypothesis*
 
 /-- Genuine four-element *maximal independent* zero-sum count with a fixed
 admissible cap enumeration \`f\` and a uniformly sampled label permutation. -/
-noncomputable def labellingZeroMISCountForCap
+public noncomputable def labellingZeroMISCountForCap
     (G : SimpleGraph Vertex) (f : Vertex → CapPoint)
     (e : Equiv.Perm Vertex) : ℕ :=
   ((fourGraphMISFamily G).filter
     (fun s => capSum (fun v => f (e v)) s = 0)).card
 
 /-- Actual event-fibre probability, with the unchanged denominator 8!=40320. -/
-noncomputable def graphMIS_exact_probability_for_cap
+public noncomputable def graphMIS_exact_probability_for_cap
     (G : SimpleGraph Vertex) (f : Vertex → CapPoint) (i : ℕ) : ℚ :=
   (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
     (fun e => labellingZeroMISCountForCap G f e = i)).card : ℚ) /

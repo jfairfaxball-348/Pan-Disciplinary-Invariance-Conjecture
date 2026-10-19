@@ -9,8 +9,5 @@
     "Quot.sound",
     "Classical.choice"
   ],
-  "enable_nanoda": true,
-  "definition_names": [
-    "PDIC.namedSpider"
-  ]
+  "enable_nanoda": true
 }

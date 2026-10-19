@@ -3,7 +3,7 @@ module
 import all PDIC
 public import PDIC
 
-public section
+section
 
 namespace PDIC
 
@@ -2295,7 +2295,7 @@ theorem classicalCapNormalForm_proved : ClassicalCapNormalForm :=
 /-- The exact original 40320-permutation P0–P3 graph law and sharp
 named-spider equivalence, for every admissible eight-cap, with no
 external normal-form hypothesis. -/
-theorem connected_graphMIS_complete_flagship_unconditional_all_caps
+public theorem connected_graphMIS_complete_flagship_unconditional_all_caps
     (G : SimpleGraph Vertex) (hc : G.Connected)
     (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
     (graphMIS_exact_probability_for_cap G f 0 =
