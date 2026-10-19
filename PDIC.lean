@@ -1,6 +1,16 @@
 module
 
-public import Mathlib
+-- Retain full Mathlib only for local proof elaboration; reexport the semantic
+-- dependencies needed by the independently authored Palomar Challenge.
+-- Isolated import-footprint experiment. No mathematical declarations change.
+import Mathlib
+public import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.Algebra.Field.ZMod
+public import Mathlib.Data.Finset.Powerset
+public import Mathlib.GroupTheory.Perm.Basic
+public import Mathlib.Data.Fintype.Perm
+public import Mathlib.Algebra.Order.Field.Rat
 
 section
 
