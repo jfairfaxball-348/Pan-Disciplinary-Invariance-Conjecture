@@ -1,0 +1,60 @@
+name: S038 namedSpider exported-constant forensics
+on:
+  push:
+    branches: [session/s038-namedspider-forensics]
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve pinned Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Build exact independent Challenge and full PDIC declarations
+        run: |
+          set -euo pipefail
+          lake build Challenge PDIC
+      - name: Print exported namedSpider ConstantInfo without altering source
+        run: |
+          set -euo pipefail
+          lake env lean S038ProbeChallenge.lean 2>&1 | tee s038-challenge-const.txt
+          lake env lean S038ProbePDIC.lean 2>&1 | tee s038-solution-const.txt
+      - name: Compare structural fields and identify first divergence
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          a=Path('s038-challenge-const.txt').read_text()
+          b=Path('s038-solution-const.txt').read_text()
+          for key in ['KIND','NAME','LEVELS','TYPE','SAFETY','HINTS','VALUE_HASH','VALUE']:
+              def get(s):
+                  pre='S038_'+key+'='
+                  p=s.find(pre)
+                  return None if p<0 else s[p+len(pre):].splitlines()[0]
+              left,right=get(a),get(b)
+              ok=left==right
+              print(f'{key}: {"MATCH" if ok else "DIFFER"}')
+              if not ok:
+                  if left is None or right is None:
+                      print('  missing field: Challenge',left is None,' PDIC',right is None)
+                  else:
+                      i=next((i for i,(x,y) in enumerate(zip(left,right)) if x!=y),min(len(left),len(right)))
+                      print('  first divergent character:',i,'lengths:',len(left),len(right))
+                      print('  Challenge context:',repr(left[max(0,i-240):i+400]))
+                      print('  PDIC context:',repr(right[max(0,i-240):i+400]))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s038-namedspider-exported-constantinfo
+          path: |
+            s038-challenge-const.txt
+            s038-solution-const.txt
+          if-no-files-found: warn
