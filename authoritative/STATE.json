@@ -1,10 +1,10 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-19",
-  "last_completed_session": "S035",
-  "next_session": "S036",
+  "last_completed_session": "S036",
+  "next_session": "S037",
   "next_session_executed": false,
-  "phase": "PALOMAR_COMPARATOR_PUBLIC_EXPORT_OPTIMISATION_COMMITTED__S035_SAME_SHA_PREFLIGHT_RUNNING",
+  "phase": "PALOMAR_S036_RESTORED_PRIVATE_IMPORT__FINITE_PASS__STRICT_AND_OFFICIAL_FULL_RUNNING_AT_CLOSEOUT",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "S035_COMPARATOR_RECOVERY_CANDIDATE_SHA_d3048b0c5aa0533a2ebfe10ff381e33498018eb5__FINITE_PASS_39217918892__STRICT_39217918899_AND_FULL_39217919193_PENDING_AT_CLOSEOUT__NOT_REGISTERED",
+  "palomar": "PR24_SHA_99e3a40ec0864050dc9596724ccde05dc8d5578d__FINITE_PASS_39222014796__STRICT_39222014929_RUNNING__OFFICIAL_FULL_39222015131_RUNNING_AT_S036_CLOSEOUT__NOT_REGISTERED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S036_CONTINUE_PALOMAR_MECHANICAL_RECOVERY_UNTIL_SAME_SHA_ALL_GREEN",
+  "next_session_target": "S037_CLOSE_PALOMAR_SAME_SHA_ALL_GREEN_GATE_OR_CONTINUE_REPAIR",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": true,
   "session_control": {
@@ -169,7 +169,7 @@
   },
   "next_session_target_file": "research/NEXT_SESSION_PROMPT.md",
   "next_session_target_installed_date": "2026-10-19",
-  "next_session_target_source": "S035_INCOMPLETE_SAME_SHA_FULL_PALOMAR_MECHANICAL_GATE",
+  "next_session_target_source": "S036_SOLUTION_IMPORT_BOUNDARY_REPAIRED__FULL_GATE_PENDING",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -1152,5 +1152,25 @@
   "s035_finite_status": "SUCCESS_EXACT_PACKAGE_CANDIDATE_SHA",
   "s035_palomar_full_status": "IN_PROGRESS_AT_DOCUMENTATION_CLOSEOUT_NOT_GREEN",
   "s035_report_path": "research/S035_PALOMAR_COMPARATOR_MEMORY_RECOVERY.md",
-  "s035_closeout_path": "sessions/S035_CLOSEOUT.md"
+  "s035_closeout_path": "sessions/S035_CLOSEOUT.md",
+  "s036": {
+    "status": "EXECUTED_PARTIAL__NOT_ALL_GREEN_AT_CLOSEOUT",
+    "closeout": "sessions/S036_CLOSEOUT.md",
+    "previous_candidate": "d3048b0c5aa0533a2ebfe10ff381e33498018eb5",
+    "previous_strict_run": 39217918899,
+    "previous_full_run": 39217919193,
+    "previous_machine_report_artifact": 12171217402,
+    "previous_failure": "SOLUTION_BUILD_CHANGE_TACTIC_DEFINITIONAL_MISMATCH__COMPARATOR_NOT_REACHED",
+    "previous_solution_build_seconds": 882.396,
+    "previous_solution_cgroup_peak_bytes": 12286300160,
+    "new_candidate": "99e3a40ec0864050dc9596724ccde05dc8d5578d",
+    "source_change": "RESTORE_PRIVATE_IMPORT_ALL_PDIC_IN_SOLUTION",
+    "new_finite_run": 39222014796,
+    "new_finite_status_at_closeout": "SUCCESS",
+    "new_strict_run": 39222014929,
+    "new_strict_status_at_closeout": "IN_PROGRESS_NOT_VERIFIED",
+    "new_full_run": 39222015131,
+    "new_full_status_at_closeout": "IN_PROGRESS_NOT_VERIFIED",
+    "palomar_registered": false
+  }
 }
