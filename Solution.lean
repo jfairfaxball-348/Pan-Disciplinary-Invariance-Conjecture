@@ -17,6 +17,7 @@ The module-system conversion and Comparator must be reverified at this new SHA.
 
 namespace PDIC
 
+set_option maxRecDepth 8192 in
 theorem palomar_complete_probability_and_spider
     (G : SimpleGraph Vertex) (hc : G.Connected)
     (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) :
@@ -48,7 +49,8 @@ theorem palomar_complete_probability_and_spider
   refine ⟨connected_graphMIS_complete_flagship_unconditional_all_caps G hc f hf, ?_⟩
   intro u v
   change spiderAdj u v = true ↔ _
-  simp only [spiderAdj, decide_eq_true_eq]
+  simp only [spiderAdj, decide_eq_true_eq, Fin.ext_iff]
+  rfl
 
 #print axioms PDIC.palomar_complete_probability_and_spider
 

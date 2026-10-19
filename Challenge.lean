@@ -23,17 +23,22 @@ def GraphMIS {V : Type*} (G : SimpleGraph V) (s : Finset V) : Prop :=
 
 /-- The named spider has hub 0, four hub-neighbours and three further leaf edges; its arm lengths are 2, 2, 2 and 1. -/
 def spiderAdj (u v : Vertex) : Bool :=
-  decide ((u = 0 ∧ (v = 4 ∨ v = 5 ∨ v = 6 ∨ v = 7)) ∨
-          (v = 0 ∧ (u = 4 ∨ u = 5 ∨ u = 6 ∨ u = 7)) ∨
-          (u = 1 ∧ v = 6) ∨ (u = 6 ∧ v = 1) ∨
-          (u = 2 ∧ v = 5) ∨ (u = 5 ∧ v = 2) ∨
-          (u = 3 ∧ v = 4) ∨ (u = 4 ∧ v = 3))
+  decide ((u.val = 0 ∧ (v.val = 4 ∨ v.val = 5 ∨ v.val = 6 ∨ v.val = 7)) ∨
+          (v.val = 0 ∧ (u.val = 4 ∨ u.val = 5 ∨ u.val = 6 ∨ u.val = 7)) ∨
+          (u.val = 1 ∧ v.val = 6) ∨ (u.val = 6 ∧ v.val = 1) ∨
+          (u.val = 2 ∧ v.val = 5) ∨ (u.val = 5 ∧ v.val = 2) ∨
+          (u.val = 3 ∧ v.val = 4) ∨ (u.val = 4 ∧ v.val = 3))
 
+theorem spiderAdj_symmetric : ∀ u v : Vertex, spiderAdj u v = true → spiderAdj v u = true := by decide
+theorem spiderAdj_loopless : ∀ u : Vertex, ¬ spiderAdj u u = true := by decide
+
+set_option backward.proofsInPublic true
 /-- The undirected simple graph S(2,2,2,1) presented on Fin 8. -/
-def namedSpider : SimpleGraph Vertex where
+@[expose] def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
-  symm.symm := by decide
-  loopless.irrefl := by decide
+  symm.symm := spiderAdj_symmetric
+  loopless.irrefl := spiderAdj_loopless
+set_option backward.proofsInPublic false
 
 /-- The three-dimensional vector space over the ternary field. -/
 abbrev CapPoint := Fin 3 → ZMod 3
