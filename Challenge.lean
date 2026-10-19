@@ -29,11 +29,14 @@ def spiderAdj (u v : Vertex) : Bool :=
           (u = 2 ∧ v = 5) ∨ (u = 5 ∧ v = 2) ∨
           (u = 3 ∧ v = 4) ∨ (u = 4 ∧ v = 3))
 
+theorem spiderAdj_symmetric : ∀ u v : Vertex, spiderAdj u v = true → spiderAdj v u = true := by decide
+theorem spiderAdj_loopless : ∀ u : Vertex, ¬ spiderAdj u u = true := by decide
+
 /-- The undirected simple graph S(2,2,2,1) presented on Fin 8. -/
 def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
-  symm.symm := by decide
-  loopless.irrefl := by decide
+  symm.symm := spiderAdj_symmetric
+  loopless.irrefl := spiderAdj_loopless
 
 /-- The three-dimensional vector space over the ternary field. -/
 abbrev CapPoint := Fin 3 → ZMod 3

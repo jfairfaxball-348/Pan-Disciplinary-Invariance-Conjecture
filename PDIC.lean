@@ -2292,11 +2292,14 @@ namespace PDIC
     The difficult converse (a normalising permutation for every equality
     matrix) is deliberately NOT taken as an axiom. -/
 
+public theorem spiderAdj_symmetric : ∀ u v : Vertex, spiderAdj u v = true → spiderAdj v u = true := by decide
+public theorem spiderAdj_loopless : ∀ u : Vertex, ¬ spiderAdj u u = true := by decide
+
 /-- The actual simple graph with edges 04, 05, 06, 07, 16, 25, 34. -/
 public def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
-  symm.symm := by decide
-  loopless.irrefl := by decide
+  symm.symm := spiderAdj_symmetric
+  loopless.irrefl := spiderAdj_loopless
 
 /-- A labelled four-by-four presentation, with row zero the hub. -/
 def canonicalSpiderMatrix (i j : Side) : Bool :=
