@@ -6,3 +6,7 @@
 - At S037 closeout finite checks passed but strict and full remained in progress. Do not claim that the candidate compiles or eliminates the Comparator mismatch until these exact workflow reports finish.
 
 See [S037 closeout](../sessions/S037_CLOSEOUT.md) and [S038 prompt](NEXT_SESSION_PROMPT.md).
+
+## Post-closeout final gate result
+
+Exact SHA `268f8ddf386e49875f6d21984fdfa8482187e900`: strict and finite PASS; full Palomar FAIL at the same `PDIC.namedSpider` Comparator structural mismatch, no OOM. The `by decide` candidate did not fix declaration equality. [Full final machine-report diagnosis](../sessions/S037_POST_CLOSEOUT_PALOMAR_REPORT.md). S038 must compare exported `ConstantInfo` before another guess.

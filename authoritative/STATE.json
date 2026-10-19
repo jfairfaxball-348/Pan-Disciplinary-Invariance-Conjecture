@@ -4,7 +4,7 @@
   "last_completed_session": "S037",
   "next_session": "S038",
   "next_session_executed": false,
-  "phase": "PALOMAR_NAMEDSPIDER_STRUCTURAL_PROOF_TERM_CANDIDATE_S037_FINITE_PASS_STRICT_FULL_IN_PROGRESS__S038_INSTALLED",
+  "phase": "PALOMAR_EXPORTED_NAMEDSPIDER_CONST_MISMATCH_S038_INSTALLED_NOT_EXECUTED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "S037_SHA_268f8ddf386e49875f6d21984fdfa8482187e900_FINITE_PASS_39242337236_STRICT_RUNNING_39242337067_FULL_RUNNING_39242337489__NOT_REGISTERED",
+  "palomar": "S037_SHA_268f8ddf386e49875f6d21984fdfa8482187e900_STRICT_PASS_39242337067_FINITE_PASS_39242337236_FULL_FAIL_39242337489_COMPARATOR_NAMEDSPIDER_CONST_MISMATCH_NOT_OOM__NOT_REGISTERED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -1182,7 +1182,7 @@
     "new_comparator_elapsed_seconds": 3.732
   },
   "s037": {
-    "status": "EXECUTED_SOURCE_REPAIR_CANDIDATE_COMMITTED__NOT_ALL_GREEN_AT_CLOSEOUT",
+    "status": "EXECUTED_REPAIR_CANDIDATE__STRICT_FINITE_PASS_FULL_COMPARATOR_NAMEDSPIDER_FAIL",
     "closeout": "sessions/S037_CLOSEOUT.md",
     "diagnostic_note": "research/S037_NAMEDSPIDER_STRUCTURAL_REPAIR.md",
     "prior_source_sha": "99e3a40ec0864050dc9596724ccde05dc8d5578d",
@@ -1203,6 +1203,18 @@
     "palomar_full_run": 39242337489,
     "palomar_full_status_at_closeout": "IN_PROGRESS_UNVERIFIED",
     "full_mechanical_pass_confirmed": false,
-    "palomar_registered": false
+    "palomar_registered": false,
+    "strict_status_final": "SUCCESS",
+    "palomar_full_status_final": "FAILURE__COMPARATOR_NAMEDSPIDER_CONST_MISMATCH",
+    "full_machine_report_artifact": 12182283774,
+    "final_comparator_elapsed_seconds": 3.563,
+    "final_comparator_peak_bytes": 185438208,
+    "final_comparator_oom_kills": 0,
+    "solution_build_seconds": 1054.946,
+    "solution_build_peak_bytes": 12346028032,
+    "solution_export_seconds": 20.08,
+    "solution_export_peak_bytes": 4767059968,
+    "replay_nanoda_conron": "NOT_REACHED",
+    "postcloseout_report": "sessions/S037_POST_CLOSEOUT_PALOMAR_REPORT.md"
   }
 }
