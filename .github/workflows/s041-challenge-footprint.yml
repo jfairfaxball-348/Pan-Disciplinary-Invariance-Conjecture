@@ -20,7 +20,11 @@ jobs:
         run: |
           lake update
           lake exe cache get
-      - name: Compile both independent Challenge and complete Solution
+      - name: Compile independent Challenge first with required instances
+        run: |
+          set -euo pipefail
+          lake build Challenge 2>&1 | tee s041-challenge.log
+      - name: Compile complete Solution
         run: |
           set -euo pipefail
           (lake build && lake env lean Solution.lean) 2>&1 | tee s041-lean.log
@@ -46,6 +50,7 @@ jobs:
           name: s041-challenge-import-footprint
           path: |
             s041-lean.log
+            s041-challenge.log
             s041-exports-size.log
             s041-challenge-resource.log
             s041-solution-resource.log
