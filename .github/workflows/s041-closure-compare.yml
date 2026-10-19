@@ -1,0 +1,63 @@
+name: S041 compare original and reduced Challenge export closures
+on:
+  push:
+    branches: [diagnostic/s041-export-comparison]
+permissions:
+  contents: read
+jobs:
+  closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install pinned Lean
+        run: |
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Baseline Challenge from official full-mode failure
+        run: |
+          set -euo pipefail
+          git checkout --detach 7d2d94342dbf3337e9fd01b564465a04892bc18a
+          lake update
+          lake exe cache get
+          lake build Challenge
+          /usr/bin/time -v -o baseline-time.log lake env leanexport Challenge -- PDIC.palomar_complete_probability_and_spider > baseline.export
+          wc -c baseline.export | tee baseline-size.log
+          sha256sum baseline.export | tee baseline-sha256.log
+      - name: Candidate Challenge with restored typeclass imports
+        run: |
+          set -euo pipefail
+          git checkout --detach 9c7591a8242d40453ef77f6609c8c67bb5f3b68f
+          lake update
+          lake build Challenge
+          /usr/bin/time -v -o candidate-time.log lake env leanexport Challenge -- PDIC.palomar_complete_probability_and_spider > candidate.export
+          wc -c candidate.export | tee candidate-size.log
+          sha256sum candidate.export | tee candidate-sha256.log
+      - name: Report exact closure comparison
+        run: |
+          set -euo pipefail
+          echo "Baseline export:" >> "$GITHUB_STEP_SUMMARY"
+          cat baseline-size.log baseline-sha256.log | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "Candidate export:" >> "$GITHUB_STEP_SUMMARY"
+          cat candidate-size.log candidate-sha256.log | tee -a "$GITHUB_STEP_SUMMARY"
+          if cmp -s baseline.export candidate.export; then
+            echo "EXACT_EXPORT_BYTES_EQUAL=true" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "EXACT_EXPORT_BYTES_EQUAL=false" | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload resource and size measurements only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s041-baseline-versus-candidate-export
+          path: |
+            baseline-time.log
+            candidate-time.log
+            baseline-size.log
+            candidate-size.log
+            baseline-sha256.log
+            candidate-sha256.log
+          if-no-files-found: ignore
+          retention-days: 14
