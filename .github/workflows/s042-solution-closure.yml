@@ -1,0 +1,68 @@
+name: PDIC isolated Solution import/export memory comparison
+on:
+  push:
+    branches:
+      - diagnostic/pdic-minimal-solution-import
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  solution-closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install pinned Lean and exact Mathlib cache
+        run: |
+          set -euo pipefail
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake update
+          lake exe cache get
+      - name: Build/export unchanged original complete Solution
+        run: |
+          set -euo pipefail
+          git checkout --detach c59cbeecd669d9a0ab5ba5f6e1e4021051a62c8a
+          (lake build Solution && lake env lean Solution.lean) 2>&1 | tee s042-baseline-build.log
+          /usr/bin/time -v -o s042-baseline-export-time.log lake env leanexport Solution -- PDIC.palomar_complete_probability_and_spider > s042-baseline.export
+          wc -c s042-baseline.export | tee s042-baseline-export-size.log
+          sha256sum s042-baseline.export | tee s042-baseline-export-sha.log
+      - name: Build/export exact single-line import candidate
+        run: |
+          set -euo pipefail
+          git checkout --detach dbf11692d4b0f5734d7560b9deb614484e8ee9dd
+          (lake build Solution && lake env lean Solution.lean) 2>&1 | tee s042-candidate-build.log
+          /usr/bin/time -v -o s042-candidate-export-time.log lake env leanexport Solution -- PDIC.palomar_complete_probability_and_spider > s042-candidate.export
+          wc -c s042-candidate.export | tee s042-candidate-export-size.log
+          sha256sum s042-candidate.export | tee s042-candidate-export-sha.log
+      - name: Reject axiom/hole changes and display size delta
+        run: |
+          set -euo pipefail
+          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s042-candidate-build.log; then exit 1; fi
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' PDIC.lean S024.lean Solution.lean; then exit 1; fi
+          echo "### Full theorem export; experimental import visibility only" >> "$GITHUB_STEP_SUMMARY"
+          cat s042-baseline-export-size.log s042-candidate-export-size.log | tee -a "$GITHUB_STEP_SUMMARY"
+          if cmp -s s042-baseline.export s042-candidate.export; then
+            echo "EXACT_FULL_EXPORT_EQUAL=true" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "EXACT_FULL_EXPORT_EQUAL=false" | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload bounded actual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdic-solution-import-memory-comparison
+          path: |
+            s042-baseline-build.log
+            s042-candidate-build.log
+            s042-baseline-export-time.log
+            s042-candidate-export-time.log
+            s042-baseline-export-size.log
+            s042-candidate-export-size.log
+            s042-baseline-export-sha.log
+            s042-candidate-export-sha.log
+          if-no-files-found: ignore
+          retention-days: 14
