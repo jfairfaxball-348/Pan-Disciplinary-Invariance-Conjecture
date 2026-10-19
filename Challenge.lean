@@ -32,12 +32,8 @@ def spiderAdj (u v : Vertex) : Bool :=
 /-- The undirected simple graph S(2,2,2,1) presented on Fin 8. -/
 def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
-  symm.symm := by
-    intro u v
-    fin_cases u <;> fin_cases v <;> decide
-  loopless.irrefl := by
-    intro u
-    fin_cases u <;> decide
+  symm.symm := by decide
+  loopless.irrefl := by decide
 
 /-- The three-dimensional vector space over the ternary field. -/
 abbrev CapPoint := Fin 3 → ZMod 3

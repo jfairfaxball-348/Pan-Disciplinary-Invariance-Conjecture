@@ -2295,12 +2295,8 @@ namespace PDIC
 /-- The actual simple graph with edges 04, 05, 06, 07, 16, 25, 34. -/
 public def namedSpider : SimpleGraph Vertex where
   Adj u v := spiderAdj u v = true
-  symm.symm := by
-    intro u v
-    fin_cases u <;> fin_cases v <;> decide
-  loopless.irrefl := by
-    intro u
-    fin_cases u <;> decide
+  symm.symm := by decide
+  loopless.irrefl := by decide
 
 /-- A labelled four-by-four presentation, with row zero the hub. -/
 def canonicalSpiderMatrix (i j : Side) : Bool :=
