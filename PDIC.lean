@@ -2715,7 +2715,7 @@ represented only by a supplied zero-fixing linear equivalence. -/
 
 public abbrev CapPoint := Fin 3 → ZMod 3
 
-def canonicalCapF3 (v : Vertex) : CapPoint :=
+public def canonicalCapF3 (v : Vertex) : CapPoint :=
   fun j => (canonicalCap v j : ZMod 3)
 
 public def capSum (f : Vertex → CapPoint) (s : Finset Vertex) : CapPoint :=
@@ -2767,7 +2767,7 @@ theorem capSum_zero_linear_iff (L : CapPoint ≃ₗ[ZMod 3] CapPoint)
     simp [h]
 
 /-- A supplied GL(3,3) transformation preserves the cap conditions. -/
-theorem admissible_under_linear
+public theorem admissible_under_linear
     (L : CapPoint ≃ₗ[ZMod 3] CapPoint) (f : Vertex → CapPoint)
     (h : IsAdmissibleCap f) :
     IsAdmissibleCap (fun v => L (f v)) := by
@@ -2854,7 +2854,7 @@ noncomputable def labellingZeroMISCount
 
 /-- The classical cap normal form is a *named proposition*, not an axiom or
     silently imported theorem.  Any use must supply its proof as a hypothesis. -/
-def ClassicalCapNormalForm : Prop :=
+public def ClassicalCapNormalForm : Prop :=
   ∀ f : Vertex → CapPoint, IsAdmissibleCap f →
     ∃ (L : CapPoint ≃ₗ[ZMod 3] CapPoint) (p : Equiv.Perm Vertex),
       ∀ v, f v = L (canonicalCapF3 (p v))
@@ -4942,7 +4942,7 @@ namespace PDIC
 /-! S021: the sharp extremal theorem as a probability of the actual
 40320-element uniform permutation sample space, not a dummy moment variable. -/
 
-noncomputable def graphMIS_exact_probability (G : SimpleGraph Vertex)
+public noncomputable def graphMIS_exact_probability (G : SimpleGraph Vertex)
     (i : ℕ) : ℚ :=
   (((Finset.univ : Finset (Equiv.Perm Vertex)).filter
     (fun e => labellingZeroMISCount G e = i)).card : ℚ) /
@@ -5324,7 +5324,7 @@ theorem graphMIS_cap_event_fibre_card
 /-- For an admissible fixed cap the real finite distribution agrees
 *term by term* with the canonical one. This is not an abstract
 probability symmetry assertion: the event cardinalities are identical. -/
-theorem graphMIS_probability_for_cap_eq_canonical
+public theorem graphMIS_probability_for_cap_eq_canonical
     (G : SimpleGraph Vertex) (f : Vertex → CapPoint)
     (hf : IsAdmissibleCap f) (hnf : ClassicalCapNormalForm)
     (i : ℕ) :
@@ -5337,7 +5337,7 @@ theorem graphMIS_probability_for_cap_eq_canonical
 spider at EVERY admissible fixed eight-cap, conditional explicitly on the
 classical nine-cap normal-form proposition. The hypothesis is supplied,
 not postulated or proved in this file. -/
-theorem connected_graphMIS_complete_flagship_all_caps
+public theorem connected_graphMIS_complete_flagship_all_caps
     (G : SimpleGraph Vertex) (hc : G.Connected)
     (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
     (hnf : ClassicalCapNormalForm) :
@@ -5382,7 +5382,7 @@ namespace PDIC
 
 /-- An admissible cap cannot include the origin, because a singleton
     zero-sum subset is forbidden. -/
-theorem admissibleCap_point_ne_zero
+public theorem admissibleCap_point_ne_zero
     (f : Vertex → CapPoint) (hf : IsAdmissibleCap f) (v : Vertex) :
     f v ≠ 0 := by
   intro hz
@@ -5392,7 +5392,7 @@ theorem admissibleCap_point_ne_zero
 
 /-- An admissible cap cannot contain an antipodal pair at distinct
     vertex positions. -/
-theorem admissibleCap_pair_ne_zero
+public theorem admissibleCap_pair_ne_zero
     (f : Vertex → CapPoint) (hf : IsAdmissibleCap f)
     (v w : Vertex) (hvw : v ≠ w) :
     f v + f w ≠ 0 := by
@@ -5402,27 +5402,27 @@ theorem admissibleCap_pair_ne_zero
   simpa [capSum, hvw] using hz
 
 /-- The standard basis of the pointed ternary space. -/
-def s024BasisPoint (i : Fin 3) : CapPoint :=
+public def s024BasisPoint (i : Fin 3) : CapPoint :=
   fun j => if i = j then 1 else 0
 
 /-- Exclusions forced by origin-freeness and the short zero-sum tests:
     zero, the three basis points, their antipodes, and three negatives
     of sums of different basis points. -/
-def s024ExcludedPoints : Finset CapPoint :=
+public def s024ExcludedPoints : Finset CapPoint :=
   ({0} : Finset CapPoint) ∪
   ((Finset.univ : Finset (Fin 3)).image s024BasisPoint) ∪
   ((Finset.univ : Finset (Fin 3)).image (fun i => -s024BasisPoint i)) ∪
   (((Finset.univ : Finset (Fin 3)).powersetCard 2).image
     (fun t => -(∑ i ∈ t, s024BasisPoint i)))
 
-def s024FreePoints : Finset CapPoint :=
+public def s024FreePoints : Finset CapPoint :=
   (Finset.univ : Finset CapPoint) \ s024ExcludedPoints
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 2000000 in
 /-- A kernel-checked reduction: after pinning three basis points,
     precisely seventeen ambient candidates remain for the other five. -/
-theorem s024FreePoints_card : s024FreePoints.card = 17 := by
+public theorem s024FreePoints_card : s024FreePoints.card = 17 := by
   decide +kernel
 
 #print axioms PDIC.admissibleCap_point_ne_zero
