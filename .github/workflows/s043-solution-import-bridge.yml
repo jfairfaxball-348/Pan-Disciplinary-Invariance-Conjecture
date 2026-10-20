@@ -1,0 +1,74 @@
+name: S043 Solution import-bridge and semantic closure diagnostic
+on:
+  push:
+    branches:
+      - diagnostic/s043-solution-import-bridge
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve pinned Mathlib and cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Compile independent Challenge first with required instances
+        run: |
+          set -euo pipefail
+          lake build Challenge 2>&1 | tee s043-challenge.log
+      - name: Compile complete Solution
+        run: |
+          set -euo pipefail
+          (lake build && lake env lean Solution.lean) 2>&1 | tee s043-lean.log
+          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s043-lean.log; then exit 1; fi
+      - name: Reject unsupported proof sources
+        run: |
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' PDIC.lean S024.lean Solution.lean; then exit 1; fi
+      - name: Export exact theorem closures and record resource footprints
+        run: |
+          set -euo pipefail
+          /usr/bin/time -v -o s043-challenge-resource.log lake env leanexport Challenge -- PDIC.palomar_complete_probability_and_spider > s043-challenge.export
+          /usr/bin/time -v -o s043-solution-resource.log lake env leanexport Solution -- PDIC.palomar_complete_probability_and_spider > s043-solution.export
+          wc -c s043-challenge.export s043-solution.export | tee s043-exports-size.log
+          cat s043-challenge-resource.log s043-solution-resource.log
+      - name: Compare the eight independent exported ordinary ConstantInfo declarations
+        run: |
+          set -euo pipefail
+          lake env lean diagnostics/S043DumpChallenge.lean
+          lake env lean diagnostics/S043DumpPDIC.lean
+          python3 diagnostics/s043_compare.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          j=json.loads(Path("diagnostics/S043_EXPORTED_CONST_DIFF.json").read_text())
+          divergent=[name for name, data in j["constants"].items() if not data["equal_repr"]]
+          print("Unmatched independent exported definitions:", divergent)
+          assert not divergent, divergent
+          PY
+      - name: Run independent finite checks
+        run: |
+          set -euo pipefail
+          for script in scripts/verify_*.py; do python3 "$script"; done
+      - name: Upload bounded diagnosis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s043-challenge-import-footprint
+          path: |
+            s043-lean.log
+            s043-challenge.log
+            s043-exports-size.log
+            s043-challenge-resource.log
+            s043-solution-resource.log
+            diagnostics/S043_EXPORTED_CONST_DIFF.json
+            diagnostics/s043-*.txt
+          if-no-files-found: ignore
+          retention-days: 14
