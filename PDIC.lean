@@ -2303,6 +2303,20 @@ set_option backward.proofsInPublic true
   loopless.irrefl := spiderAdj_loopless
 set_option backward.proofsInPublic false
 
+/-- Export the exact seven-edge specification without requiring private imports
+in the Palomar Solution wrapper. This does not change any existing definition. -/
+public theorem namedSpider_edge_spec (u v : Vertex) :
+    namedSpider.Adj u v ↔
+      ((u = 0 ∧ (v = 4 ∨ v = 5 ∨ v = 6 ∨ v = 7)) ∨
+       (v = 0 ∧ (u = 4 ∨ u = 5 ∨ u = 6 ∨ u = 7)) ∨
+       (u = 1 ∧ v = 6) ∨ (u = 6 ∧ v = 1) ∨
+       (u = 2 ∧ v = 5) ∨ (u = 5 ∧ v = 2) ∨
+       (u = 3 ∧ v = 4) ∨ (u = 4 ∧ v = 3)) := by
+  change spiderAdj u v = true ↔ _
+  simp only [spiderAdj, decide_eq_true_eq, Fin.ext_iff]
+  rfl
+
+
 /-- A labelled four-by-four presentation, with row zero the hub. -/
 def canonicalSpiderMatrix (i j : Side) : Bool :=
   decide (i = 0 ∨ (i = 1 ∧ j = 2) ∨
