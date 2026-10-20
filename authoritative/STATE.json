@@ -4,7 +4,7 @@
   "last_completed_session": "S044",
   "next_session": "S045",
   "next_session_executed": false,
-  "phase": "S044_PARTIAL_ENGINEERING_CANDIDATE_COMMITTED_DIAGNOSTIC_UNOBSERVED__PR24_OFFICIAL_COMPARATOR_OOM__S045_INSTALLED",
+  "phase": "S044_PARTIAL_DIAGNOSTIC_UNOBSERVED__S045_REVISED_EVIDENCE_LED_COMPARATOR_OOM_PROOF_CLOSURE_FIX_INSTALLED_NOT_EXECUTED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -1442,5 +1442,26 @@
       "referenced_decl_unmarked_public_regex_count": 12,
       "note": "TEXTUAL_RECON_ONLY_NOT_A_LEAN_BUILD_OR_COMPLETE_DEPENDENCY_GRAPH"
     }
+  },
+  "s045_installed_revised_2026_10_20": {
+    "status": "INSTALLED_NOT_EXECUTED",
+    "installed_prompt": "research/NEXT_SESSION_PROMPT.md",
+    "prompt_revision_commit": "caf03f92162d3788a2940fbd745a524aff1c82b1",
+    "owner_priority": "MEASURE_ACTUAL_DUAL_EXPORT_AND_COMPARATOR_MEMORY; IDENTIFY_DOMINANT_PROOF_CLOSURE; APPLY_TARGETED_KERNEL_SAFE_PROOF_ENGINEERING_NOT_SPECULATIVE_IMPORT_CLEANUP",
+    "benchmark_repos": [
+      "jfairfaxball-348/TreeStack-Structural-Certificates-for-Stacking-on-Trees",
+      "jfairfaxball-348/Greedy-Uniformity-on-Trees",
+      "jfairfaxball-348/Pascal-Extremes",
+      "jfairfaxball-348/pascal-minus-one"
+    ],
+    "measured_failure_run": 39309877112,
+    "baseline_pr24_sha": "c59cbeecd669d9a0ab5ba5f6e1e4021051a62c8a",
+    "initial_unverified_s044_source_sha": "c69038a66aba02e607450d86cca761fa77262643",
+    "keep_flagship_unchanged": true,
+    "full_palomar_gate": "COMPARATOR_AND_LEAN_REPLAY_AND_NANODA_AND_CONRON_ALL_PASS_SAME_SHA",
+    "high_memory_runner": "palomar-namespace-16x32-v1",
+    "high_memory_billing_user_approval_received": false,
+    "block_paid_dispatch": true,
+    "no_registry_or_publication_without_owner_instruction": true
   }
 }
