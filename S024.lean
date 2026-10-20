@@ -1,6 +1,5 @@
 module
 
-import all PDIC
 public import PDIC
 
 section
