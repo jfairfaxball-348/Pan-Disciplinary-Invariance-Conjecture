@@ -1,7 +1,6 @@
 module
 
 public import S024
-import all PDIC
 
 public section
 
@@ -48,9 +47,7 @@ theorem palomar_complete_probability_and_spider
        (u = 3 ∧ v = 4) ∨ (u = 4 ∧ v = 3))) := by
   refine ⟨connected_graphMIS_complete_flagship_unconditional_all_caps G hc f hf, ?_⟩
   intro u v
-  change spiderAdj u v = true ↔ _
-  simp only [spiderAdj, decide_eq_true_eq, Fin.ext_iff]
-  rfl
+  exact namedSpider_edge_spec u v
 
 #print axioms PDIC.palomar_complete_probability_and_spider
 
