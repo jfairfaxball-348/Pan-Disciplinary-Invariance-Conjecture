@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "NOT_REGISTERED_NOT_READY__PR24_UNCHANGED_c59cbeecd669d9a0ab5ba5f6e1e4021051a62c8a_STRICT_39309876443_PASS_FINITE_39309876407_PASS_FULL_39309877112_COMPARATOR_OOM_16118239232B_2KILLS__S043_VERIFIED_BUT_NO_SAVINGS__S044_DIAG_SHA_288e6557576a15b5c73b7c28113a046ac21a6ad7_CI_RESULT_NOT_OBSERVED__32GB_OWNER_APPROVAL_REQUIRED",
+  "palomar": "NOT_REGISTERED_NOT_READY__PR24_UNCHANGED_c59cbeecd669d9a0ab5ba5f6e1e4021051a62c8a_STRICT_39309876443_PASS_FINITE_39309876407_PASS_FULL_39309877112_COMPARATOR_OOM_16118239232B_2KILLS__S043_VERIFIED_BUT_NO_SAVINGS__S044_CANDIDATE_V2_SHA_c69038a66aba02e607450d86cca761fa77262643_CI_RESULT_NOT_OBSERVED__32GB_OWNER_APPROVAL_REQUIRED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -1410,9 +1410,9 @@
     "baseline_full_status": "FAILED_COMPARATOR_OOM_NO_REPLAY_NANODA_CONRON",
     "proof_unchanged_sha": "09d9f392d20399c80f2c51e2f4979b78b412c4e2",
     "candidate_branch": "diagnostic/s044-private-proof-boundary",
-    "candidate_source_commit": "831422f502c399f05e9031dcfb2a48069bfd2b98",
-    "candidate_workflow_commit": "288e6557576a15b5c73b7c28113a046ac21a6ad7",
-    "candidate_edit": "REMOVE_IMPORT_ALL_PDIC_FROM_S024_KEEP_PUBLIC_IMPORT_PDIC",
+    "candidate_source_commit": "c69038a66aba02e607450d86cca761fa77262643",
+    "candidate_workflow_commit": "c69038a66aba02e607450d86cca761fa77262643",
+    "candidate_edit": "REMOVE_IMPORT_ALL_PDIC_FROM_S024_AND_SELECTIVELY_MARK_12_S024_REFERENCED_PDIC_DECLARATIONS_PUBLIC",
     "candidate_ci_workflow": ".github/workflows/s044-private-import-probe.yml",
     "candidate_ci_run": null,
     "candidate_ci_result": "NOT_OBSERVED",
@@ -1432,6 +1432,15 @@
     "palomar_full_mechanical_passed": false,
     "registered": false,
     "next_session": "S045",
-    "next_session_executed": false
+    "next_session_executed": false,
+    "candidate_initial_source_commit": "831422f502c399f05e9031dcfb2a48069bfd2b98",
+    "candidate_workflow_creation_commit": "288e6557576a15b5c73b7c28113a046ac21a6ad7",
+    "candidate_static_audit": {
+      "pdic_declarations_regex_count": 344,
+      "pdic_explicit_public_declarations_regex_count": 16,
+      "referenced_declarations_regex_count": 20,
+      "referenced_decl_unmarked_public_regex_count": 12,
+      "note": "TEXTUAL_RECON_ONLY_NOT_A_LEAN_BUILD_OR_COMPLETE_DEPENDENCY_GRAPH"
+    }
   }
 }
