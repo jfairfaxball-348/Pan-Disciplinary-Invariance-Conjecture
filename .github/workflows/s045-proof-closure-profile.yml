@@ -1,8 +1,9 @@
-name: S045 bounded full proof closure profile
+name: S046 isolated compact spider-isomorphism proof profile
 on:
   push:
     branches:
       - diagnostic/s045-proof-closure-profile
+      - diagnostic/s046-compact-spider-iso
   workflow_dispatch:
 permissions:
   contents: read
@@ -62,7 +63,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: s045-baseline-closure-evidence
+          name: s046-compact-spider-iso-evidence
           if-no-files-found: ignore
           retention-days: 14
           path: |
