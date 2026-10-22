@@ -1,0 +1,65 @@
+name: S049 isolated Comparator stage-memory diagnostic
+on:
+  push:
+    branches:
+      - diagnostic/s049-comparator-load-profile
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage-memory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin toolchain and recover dependency cache
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          cat lean-toolchain
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build same actual full Solution
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+          lake build Solution Challenge
+      - name: Export exact Palomar theorem root from each independent module
+        run: |
+          set -euo pipefail
+          lake env leanexport Challenge -- PDIC.palomar_complete_probability_and_spider > s049-challenge.ndjson
+          lake env leanexport Solution -- PDIC.palomar_complete_probability_and_spider > s049-solution.ndjson
+          wc -c s049-challenge.ndjson s049-solution.ndjson
+      - name: Isolate parser and traversal peak memory
+        run: |
+          set -uo pipefail
+          for stage in challenge solution both compare axioms; do
+            echo "::group::S049 stage $stage"
+            echo "stage=$stage" | tee -a s049-outcomes.txt
+            /usr/bin/time -v -o "s049-${stage}-rss.txt" \
+              timeout --signal=TERM --kill-after=10s 600 \
+              lake env lean --run diagnostics/s049_compare_stage_memory.lean \
+              "$stage" s049-challenge.ndjson s049-solution.ndjson \
+              > "s049-${stage}-log.txt" 2>&1
+            rc=$?
+            echo "rc=$rc" | tee -a s049-outcomes.txt
+            cat "s049-${stage}-log.txt"
+            grep -E "Maximum resident set size|Elapsed \(wall clock\) time|Exit status" "s049-${stage}-rss.txt" || true
+            echo "::endgroup::"
+            if [ "$rc" -eq 137 ] || [ "$rc" -eq 124 ]; then
+              echo "stage $stage reached resource/time ceiling" | tee -a s049-outcomes.txt
+            fi
+          done
+          echo "S049 diagnostic complete; no result is a Palomar approval."
+      - name: Preserve only bounded diagnostic evidence, never 77MB exports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s049-comparator-stage-memory-evidence
+          retention-days: 14
+          if-no-files-found: ignore
+          path: |
+            s049-outcomes.txt
+            s049-*-rss.txt
+            s049-*-log.txt
