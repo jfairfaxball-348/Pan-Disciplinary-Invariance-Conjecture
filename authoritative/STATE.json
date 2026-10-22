@@ -1,10 +1,10 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
-  "date": "2026-10-20",
-  "last_completed_session": "S045",
-  "next_session": "S046",
+  "date": "2026-10-22",
+  "last_completed_session": "S046",
+  "next_session": "S047",
   "next_session_executed": false,
-  "phase": "S045_PARTIAL_PROOF_CLOSURE_PROFILER_RUNNING__S046_INSTALLED_NOT_EXECUTED",
+  "phase": "S046_PARTIAL_REAL_PROOF_EXPERIMENT_WITH_TWO_HOSTED_TESTS_RUNNING__S047_INSTALLED_NOT_EXECUTED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "NOT_REGISTERED_NOT_READY__PR24_UNCHANGED_c59cbeecd669d9a0ab5ba5f6e1e4021051a62c8a_STRICT_39309876443_PASS_FINITE_39309876407_PASS_FULL_39309877112_COMPARATOR_OOM__S044_V1_39398214983_AND_V2_39398926141_SOURCE_LEAN_FAILED__S045_PROFILE_39406088174_RUNNING__NO_VALIDATED_CANDIDATE__32GB_SPEND_NOT_APPROVED",
+  "palomar": "NOT_REGISTERED_NO_FULL_PASS__ORIGINAL_PR24_UNCHANGED_c59cbeecd669d9a0ab5ba5f6e1e4021051a62c8a_STRICT_39309876443_PASS_FINITE_39309876407_PASS_FULL_39309877112_COMPARATOR_16118239232_BYTES_2_OOM_KILLS__S045_PROFILER_39406088174_PASS__S046_COMPACT_SPIDER_39753030387_RUNNING__S046_INDEPENDENT_EIGHT_CONSTANTINFO_39754500391_RUNNING__S046_FINITE_39753030527_PASS__PAID_32GB_NOT_APPROVED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -105,9 +105,9 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S043_VALIDATE_S042_NARROW_PUBLIC_MATHLIB_COMPILATION_AND_REAL_COMPARATOR",
+  "next_session_target": "S047_FINISH_EXACT_SOURCE_PROOF_CLOSURE_EXPERIMENT_AND_RECOVER_FULL_PALOMAR",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
-  "next_session_target_installed": "S043",
+  "next_session_target_installed": "S047",
   "session_control": {
     "0": "r",
     "1": "e",
@@ -1482,5 +1482,33 @@
     "original_pr24_unchanged": true,
     "paid_spend_owner_approved": false,
     "next_prompt": "research/NEXT_SESSION_PROMPT.md"
+  },
+  "s046_closeout": "sessions/S046_CLOSEOUT.md",
+  "s046_audit": "research/S046_PROOF_CLOSURE_RESOURCE_AUDIT.md",
+  "s046_status": "PARTIAL_ENGINEERING_VALIDATION_HOSTED_CI_IN_PROGRESS_NOT_PALOMAR_VERIFIED",
+  "s045_profiling": {
+    "sha": "4adef41f1d1804d3e08ccc1886ffd2f01d007076",
+    "workflow_id": 39406088174,
+    "status": "SUCCESS",
+    "artifact_id": 12258565315,
+    "solution_export_bytes": 85068616,
+    "challenge_export_bytes": 23719351,
+    "solution_expr_nodes": 1480683
+  },
+  "s046_proof_trial": {
+    "branch": "diagnostic/s046-compact-spider-iso",
+    "source_sha": "c8ad03a6d4fb107475aa4f5bd40eec0683abfab1",
+    "run_id": 39753030387,
+    "strict_lean": "IN_PROGRESS",
+    "finite_run_id": 39753030527,
+    "finite": "PASS",
+    "candidate_promoted": false
+  },
+  "s046_structural_trial": {
+    "branch": "diagnostic/s046-constantinfo-check",
+    "source_sha": "37da2765335f7dc0cc1db55ebabf6a61088c38c2",
+    "run_id": 39754500391,
+    "status": "IN_PROGRESS",
+    "constantinfo_count": 8
   }
 }
