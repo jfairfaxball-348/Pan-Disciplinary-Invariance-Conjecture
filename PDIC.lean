@@ -12,6 +12,9 @@ public import Mathlib.Data.Fintype.Perm
 public import Mathlib.Algebra.Order.Field.Rat
 import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+-- Required by the graph-edge bound and permutation fibre-size proofs.
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import Mathlib.GroupTheory.Perm.DomMulAct
 -- Load only tactics used by the existing proof, not the aggregate tactic package.
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Ring
