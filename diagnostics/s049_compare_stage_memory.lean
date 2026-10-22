@@ -9,8 +9,10 @@ def loadExport (path : String) : IO LeanExport.ExportedEnv := do
 
 def main (args : List String) : IO Unit := do
   let [mode, challengePath, solutionPath] := args
-    | throw <| IO.userError "usage: <challenge|solution|both|compare|axioms> <challenge.ndjson> <solution.ndjson>"
-  if mode == "challenge" then
+    | throw <| IO.userError "usage: <baseline|challenge|solution|both|compare|axioms> <challenge.ndjson> <solution.ndjson>"
+  if mode == "baseline" then
+    IO.println "S049 baseline: Lean diagnostic runner loaded, no exports parsed"
+  else if mode == "challenge" then
     let c ← loadExport challengePath
     IO.println s!"S049 parsed challenge: {c.constOrder.size} declarations"
   else if mode == "solution" then
