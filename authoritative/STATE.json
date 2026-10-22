@@ -1,10 +1,10 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-22",
-  "last_completed_session": "S050",
-  "next_session": "S051",
+  "last_completed_session": "S051",
+  "next_session": "S052",
   "next_session_executed": false,
-  "phase": "S050_PARTIAL_COMPARATOR_PROFILER_ENTRYPOINT_AND_ERROR_VISIBILITY_REPAIRED__S051_INSTALLED_NOT_EXECUTED",
+  "phase": "S051_PARTIAL_OFFICIAL_COMPARATOR_EXPORT_ROOT_DIAGNOSTIC_CORRECTED__S052_INSTALLED_NOT_EXECUTED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -105,9 +105,9 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S051_MEASURED_16GB_COMPARATOR_RECOVERY_AND_SAFE_FULL_REVALIDATION",
+  "next_session_target": "S052_FAITHFUL_COMPARATOR_MEASUREMENT_AND_PROOF_CLOSURE_REDUCTION",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
-  "next_session_target_installed": "S051",
+  "next_session_target_installed": "S052",
   "session_control": {
     "0": "r",
     "1": "e",
@@ -1529,6 +1529,28 @@
     "registration": false,
     "billable_runner_authorised": false,
     "next_session": "S051",
+    "next_session_target": "research/NEXT_SESSION_PROMPT.md"
+  },
+  "s051": {
+    "status": "PARTIAL__OFFICIAL_EXPORT_TARGET_MISMATCH_CORRECTED__NEW_MEASUREMENTS_NOT_YET_INSPECTED",
+    "date": "2026-10-22",
+    "early_diagnostic_run": 39791921228,
+    "early_comparator_failure": "Const not found in challenge semiOutParam because diagnostic exported theorem root only",
+    "early_challenge_declarations": 6371,
+    "early_solution_declarations": 15804,
+    "early_parse_and_axioms_status": "PASS_BUT_NOT_OFFICIAL_FULL",
+    "early_comparator_status": "INCOMPLETE_INVALID_DIAGNOSTIC_INPUT",
+    "profiler_baseline_sha": "0abf56a33be1308e86d118f104d15678c6d5a083",
+    "profiler_official_export_root_fix_sha": "ba6276d0ab1d9c5f3561cdc904264e6d38d98d9e",
+    "profiler_branch": "diagnostic/s049-comparator-load-profile",
+    "new_profiling_run_status": "PUSHED_BUT_RUN_ID_AND_RESULT_NOT_VERIFIED",
+    "source_driven_memory_reduction_confirmed": false,
+    "full_palomar_launched": false,
+    "full_palomar_passed": false,
+    "paid_runner_authorised": false,
+    "pr_24_merged": false,
+    "registration": false,
+    "next_session": "S052",
     "next_session_target": "research/NEXT_SESSION_PROMPT.md"
   }
 }
