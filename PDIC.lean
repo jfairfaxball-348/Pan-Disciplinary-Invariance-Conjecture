@@ -12,7 +12,12 @@ public import Mathlib.Data.Fintype.Perm
 public import Mathlib.Algebra.Order.Field.Rat
 import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.Tactic
+-- Load only tactics used by the existing proof, not the aggregate tactic package.
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.FinCases
+import Mathlib.Tactic.Basic
 
 section
 
