@@ -4,6 +4,7 @@ on:
     branches:
       - diagnostic/s045-proof-closure-profile
       - diagnostic/s046-compact-spider-iso
+      - diagnostic/s048-lean-rc3-memory
       - diagnostic/s047-selective-mathlib-imports
       - diagnostic/s047-focused-tactics
   workflow_dispatch:
