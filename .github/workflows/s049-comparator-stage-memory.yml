@@ -28,9 +28,24 @@ jobs:
       - name: Export exact Palomar theorem root from each independent module
         run: |
           set -euo pipefail
-          lake env leanexport Challenge -- PDIC.palomar_complete_probability_and_spider > s049-challenge.ndjson
-          lake env leanexport Solution -- PDIC.palomar_complete_probability_and_spider > s049-solution.ndjson
-          wc -c s049-challenge.ndjson s049-solution.ndjson
+          # Identical export root selection to the pinned v4.35.0-rc3
+          # src/lake/Lake/CLI/Check.lean compareIt / primitiveTargets /
+          # builtinTargets. Exporting the flagship root alone is NOT an
+          # official Comparator input and made S050's compare a false failure.
+          export_roots=(
+            Quot Quot.mk Quot.lift Quot.ind
+            PDIC.palomar_complete_probability_and_spider
+            propext Quot.sound Classical.choice
+            Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd
+            Nat.div Nat.mod Nat.beq Nat.ble
+            Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight
+            String.ofList Char.ofNat List eagerReduce Nat
+            String String.mk Char optParam autoParam semiOutParam outParam
+          )
+          printf '%s\n' "${export_roots[@]}" > s049-export-roots.txt
+          lake env leanexport Challenge -- "${export_roots[@]}" > s049-challenge.ndjson
+          lake env leanexport Solution -- "${export_roots[@]}" > s049-solution.ndjson
+          wc -c -l s049-challenge.ndjson s049-solution.ndjson
       - name: Isolate parser and traversal peak memory
         run: |
           # GitHub's shell starts with -e; 'set -uo' does not disable it.
@@ -39,8 +54,14 @@ jobs:
           set -uo pipefail
           failures=0
           printf 'S049 SHA=%s toolchain=%s\n' "$GITHUB_SHA" "$(cat lean-toolchain)"
-          printf 'cgroup memory.max='; cat /sys/fs/cgroup/memory.max || true
-          for stage in challenge solution both compare axioms; do
+          if [ -r /sys/fs/cgroup/memory.max ]; then
+            printf 'cgroup memory.max='; cat /sys/fs/cgroup/memory.max
+          elif [ -r /sys/fs/cgroup/memory/memory.limit_in_bytes ]; then
+            printf 'cgroup v1 memory limit='; cat /sys/fs/cgroup/memory/memory.limit_in_bytes
+          else
+            echo 'cgroup memory limit not exposed on this GitHub-hosted runner'
+          fi
+          for stage in baseline challenge solution both compare axioms; do
             echo "::group::S049 stage $stage"
             echo "stage=$stage" | tee -a s049-outcomes.txt
             /usr/bin/time -v -o "s049-${stage}-rss.txt" \
@@ -56,9 +77,13 @@ jobs:
             if [ -f "s049-${stage}-rss.txt" ]; then
               grep -E "Maximum resident set size|Elapsed \(wall clock\) time|Exit status" "s049-${stage}-rss.txt" || true
             fi
-            printf 'memory.events after %s: ' "$stage"
-            tr '\n' ' ' < /sys/fs/cgroup/memory.events 2>/dev/null || true
-            printf '\n'
+            if [ -r /sys/fs/cgroup/memory.events ]; then
+              printf 'memory.events after %s: ' "$stage"
+              tr '\n' ' ' < /sys/fs/cgroup/memory.events
+              printf '\n'
+            else
+              echo 'memory.events unavailable (do not infer no OOM)'
+            fi
             if [ "$rc" -ne 0 ]; then failures=$((failures + 1)); fi
             echo "::endgroup::"
             if [ "$rc" -eq 137 ] || [ "$rc" -eq 124 ]; then
@@ -76,5 +101,6 @@ jobs:
           if-no-files-found: ignore
           path: |
             s049-outcomes.txt
+            s049-export-roots.txt
             s049-*-rss.txt
             s049-*-log.txt
