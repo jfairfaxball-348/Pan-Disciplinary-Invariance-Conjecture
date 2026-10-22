@@ -1,9 +1,10 @@
-name: S046 isolated compact spider-isomorphism proof profile
+name: S047 selective Mathlib dependency slim-build profile
 on:
   push:
     branches:
       - diagnostic/s045-proof-closure-profile
       - diagnostic/s046-compact-spider-iso
+      - diagnostic/s047-selective-mathlib-imports
   workflow_dispatch:
 permissions:
   contents: read
@@ -63,7 +64,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: s046-compact-spider-iso-evidence
+          name: s047-selective-mathlib-evidence
           if-no-files-found: ignore
           retention-days: 14
           path: |
