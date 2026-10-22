@@ -33,7 +33,13 @@ jobs:
           wc -c s049-challenge.ndjson s049-solution.ndjson
       - name: Isolate parser and traversal peak memory
         run: |
+          # GitHub's shell starts with -e; 'set -uo' does not disable it.
+          # Capture each diagnostic error and continue through independent stages.
+          set +e
           set -uo pipefail
+          failures=0
+          printf 'S049 SHA=%s toolchain=%s\n' "$GITHUB_SHA" "$(cat lean-toolchain)"
+          printf 'cgroup memory.max='; cat /sys/fs/cgroup/memory.max || true
           for stage in challenge solution both compare axioms; do
             echo "::group::S049 stage $stage"
             echo "stage=$stage" | tee -a s049-outcomes.txt
@@ -44,14 +50,23 @@ jobs:
               > "s049-${stage}-log.txt" 2>&1
             rc=$?
             echo "rc=$rc" | tee -a s049-outcomes.txt
-            cat "s049-${stage}-log.txt"
-            grep -E "Maximum resident set size|Elapsed \(wall clock\) time|Exit status" "s049-${stage}-rss.txt" || true
+            if [ -f "s049-${stage}-log.txt" ]; then
+              tail -c 12000 "s049-${stage}-log.txt" || true
+            fi
+            if [ -f "s049-${stage}-rss.txt" ]; then
+              grep -E "Maximum resident set size|Elapsed \(wall clock\) time|Exit status" "s049-${stage}-rss.txt" || true
+            fi
+            printf 'memory.events after %s: ' "$stage"
+            tr '\n' ' ' < /sys/fs/cgroup/memory.events 2>/dev/null || true
+            printf '\n'
+            if [ "$rc" -ne 0 ]; then failures=$((failures + 1)); fi
             echo "::endgroup::"
             if [ "$rc" -eq 137 ] || [ "$rc" -eq 124 ]; then
               echo "stage $stage reached resource/time ceiling" | tee -a s049-outcomes.txt
             fi
           done
-          echo "S049 diagnostic complete; no result is a Palomar approval."
+          echo "S049 diagnostic complete; stage failures=$failures; no result is a Palomar approval."
+          if [ "$failures" -ne 0 ]; then exit 1; fi
       - name: Preserve only bounded diagnostic evidence, never 77MB exports
         if: always()
         uses: actions/upload-artifact@v4
