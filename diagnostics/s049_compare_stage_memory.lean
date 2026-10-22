@@ -1,5 +1,3 @@
-module
-
 import Lake.Check.Compare
 import Lake.Check.Axioms
 
