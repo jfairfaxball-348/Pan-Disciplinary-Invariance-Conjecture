@@ -1,10 +1,11 @@
-name: S047 selective Mathlib dependency slim-build profile
+name: S047 focused tactics and Mathlib dependency slim-build profile
 on:
   push:
     branches:
       - diagnostic/s045-proof-closure-profile
       - diagnostic/s046-compact-spider-iso
       - diagnostic/s047-selective-mathlib-imports
+      - diagnostic/s047-focused-tactics
   workflow_dispatch:
 permissions:
   contents: read
@@ -64,7 +65,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: s047-selective-mathlib-evidence
+          name: s047-focused-tactics-evidence
           if-no-files-found: ignore
           retention-days: 14
           path: |
