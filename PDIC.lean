@@ -2796,7 +2796,7 @@ theorem linearCanonicalCap_four_zero_iff
 outcomes; this statement does not assert the event-fibre probabilities. -/
 theorem uniformLabellings_card :
     Fintype.card (Equiv.Perm Vertex) = 40320 := by
-  norm_num [Fintype.card_perm, Vertex]
+  norm_num [Fintype.card_perm, Vertex] <;> decide +kernel
 
 #print axioms PDIC.canonicalCapF3_admissible
 #print axioms PDIC.canonicalCapF3_four_zero_iff
