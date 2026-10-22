@@ -2335,15 +2335,15 @@ def canonicalSpiderIso : matrixGraph canonicalSpiderMatrix ≃g namedSpider wher
     | inl i =>
       cases v with
       | inl j => fin_cases i <;> fin_cases j <;>
-          simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
+          first | rfl | decide | simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
       | inr j => fin_cases i <;> fin_cases j <;>
-          simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
+          first | rfl | decide | simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
     | inr i =>
       cases v with
       | inl j => fin_cases i <;> fin_cases j <;>
-          simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
+          first | rfl | decide | simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
       | inr j => fin_cases i <;> fin_cases j <;>
-          simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
+          first | rfl | decide | simp [matrixGraph, namedSpider, canonicalSpiderMatrix, spiderAdj, spiderSplitEquiv]
 
 /-- Each left vertex has an explicitly chosen right neighbour. -/
 def spiderSpoke (i : Side) : Side :=
