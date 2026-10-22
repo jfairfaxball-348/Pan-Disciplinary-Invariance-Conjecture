@@ -1,10 +1,10 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-22",
-  "last_completed_session": "S046",
-  "next_session": "S047",
+  "last_completed_session": "S050",
+  "next_session": "S051",
   "next_session_executed": false,
-  "phase": "S046_PARTIAL_REAL_PROOF_EXPERIMENT_WITH_TWO_HOSTED_TESTS_RUNNING__S047_INSTALLED_NOT_EXECUTED",
+  "phase": "S050_PARTIAL_COMPARATOR_PROFILER_ENTRYPOINT_AND_ERROR_VISIBILITY_REPAIRED__S051_INSTALLED_NOT_EXECUTED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -105,9 +105,9 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S047_FINISH_EXACT_SOURCE_PROOF_CLOSURE_EXPERIMENT_AND_RECOVER_FULL_PALOMAR",
+  "next_session_target": "S051_MEASURED_16GB_COMPARATOR_RECOVERY_AND_SAFE_FULL_REVALIDATION",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
-  "next_session_target_installed": "S047",
+  "next_session_target_installed": "S051",
   "session_control": {
     "0": "r",
     "1": "e",
@@ -1510,5 +1510,25 @@
     "run_id": 39754500391,
     "status": "IN_PROGRESS",
     "constantinfo_count": 8
+  },
+  "s050": {
+    "status": "PARTIAL__INSTRUMENTATION_ERRORS_REPAIRED_NEW_STAGE_PROFILER_IN_PROGRESS_NOT_CREDITED_PASS",
+    "branch": "diagnostic/s049-comparator-load-profile",
+    "first_fix_sha": "6daf8b959707d62a520a2c50da2e07b358027ef2",
+    "runner_entrypoint_fix_sha": "3331f181cbdd4041b5eb12ab52c060ca73825959",
+    "original_failed_run": 39787482197,
+    "original_error": "(interpreter) unknown declaration 'main'",
+    "fixed_branch_stage_memory_run": 39791921228,
+    "stage_memory_verdict": "IN_PROGRESS_AT_SESSION_RECORD__DO_NOT_INFER_RSS_OR_COMPARE_PASS",
+    "finite_run": 39791921235,
+    "finite_status": "PASS",
+    "flagship_source_modified": false,
+    "mathematics_or_challenge_modified": false,
+    "full_palomar_launched": false,
+    "full_palomar_passed": false,
+    "registration": false,
+    "billable_runner_authorised": false,
+    "next_session": "S051",
+    "next_session_target": "research/NEXT_SESSION_PROMPT.md"
   }
 }
