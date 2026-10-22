@@ -1,6 +1,16 @@
 module
 
-public import Mathlib
+-- Keep the complete Mathlib environment available to the proofs, but do not
+-- re-export it indiscriminately through the public Palomar interface.
+import Mathlib
+-- These explicit imports match the semantics-facing independent Challenge.
+public import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.Algebra.Field.ZMod
+public import Mathlib.Data.Finset.Powerset
+public import Mathlib.GroupTheory.Perm.Basic
+public import Mathlib.Data.Fintype.Perm
+public import Mathlib.Algebra.Order.Field.Rat
 
 section
 
