@@ -1,6 +1,18 @@
 module
 
-public import Mathlib
+-- S047 structural import slimming: keep precisely named interface imports,
+-- plus mathematics/tactics needed to elaborate the existing full proof.
+-- Critically, do not import the all-Mathlib umbrella.
+public import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.Algebra.Field.ZMod
+public import Mathlib.Data.Finset.Powerset
+public import Mathlib.GroupTheory.Perm.Basic
+public import Mathlib.Data.Fintype.Perm
+public import Mathlib.Algebra.Order.Field.Rat
+import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+import Mathlib.Tactic
 
 section
 
