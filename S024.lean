@@ -1515,9 +1515,88 @@ The disjoint union/cardinality argument is a separate obligation. -/
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S056: replace two expansive Boolean enumeration witnesses with a
+    small, semantically explicit forbidden zero-sum triple certificate.
+    This derives contradiction from the original predicate and the exact
+    pair-shard membership; no classification assumption is introduced. -/
+
+private theorem s056_triple_obstructs_short_free
+    (U T : Finset CapPoint) (hsub : T ⊆ U) (hcard : T.card = 3)
+    (hsum : (∑ p ∈ T, p) = (0 : CapPoint)) :
+    s027ShortZeroFree U = false := by
+  have hm : T ∈ (U.powersetCard 3).filter
+      (fun s => (∑ p ∈ s, p) = (0 : CapPoint)) := by
+    exact Finset.mem_filter.mpr
+      ⟨Finset.mem_powersetCard.mpr ⟨hsub, hcard⟩, hsum⟩
+  have hnonzero : ((U.powersetCard 3).filter
+      (fun s => (∑ p ∈ s, p) = (0 : CapPoint))).card ≠ 0 := by
+    intro hzero
+    have hempty := Finset.card_eq_zero.mp hzero
+    simp [hempty] at hm
+  unfold s027ShortZeroFree
+  simp [hnonzero]
+
+private theorem s056_bad_anchor_pair
+    (b : Fin 3) (j : Fin 17)
+    (hcard : ({s024BasisPoint b, s027FreePointAt (0 : Fin 17),
+        s027FreePointAt j} : Finset CapPoint).card = 3)
+    (hsum : (∑ p ∈ ({s024BasisPoint b, s027FreePointAt (0 : Fin 17),
+        s027FreePointAt j} : Finset CapPoint), p) = (0 : CapPoint))
+    {I : Finset (Fin 17)}
+    (h0 : (0 : Fin 17) ∈ I) (hj : j ∈ I) :
+    s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = false := by
+  apply s056_triple_obstructs_short_free
+    (s024BasisSet ∪ I.image s027FreePointAt)
+    ({s024BasisPoint b, s027FreePointAt (0 : Fin 17),
+      s027FreePointAt j} : Finset CapPoint) ?_ hcard hsum
+  intro p hp
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hp
+  rcases hp with hp | hp | hp
+  · subst p
+    apply Finset.mem_union.mpr
+    left
+    change s024BasisPoint b ∈
+      (Finset.univ : Finset (Fin 3)).image s024BasisPoint
+    exact Finset.mem_image.mpr ⟨b, Finset.mem_univ _, rfl⟩
+  · subst p
+    exact Finset.mem_union.mpr
+      (Or.inr (Finset.mem_image.mpr ⟨0, h0, rfl⟩))
+  · subst p
+    exact Finset.mem_union.mpr
+      (Or.inr (Finset.mem_image.mpr ⟨j, hj, rfl⟩))
+
+private theorem s056_second_index_shard_contains_pair
+    (j : Fin 17) (hj : (0 : Fin 17) < j)
+    {I : Finset (Fin 17)}
+    (hI : I ∈ s027SecondIndexShard (0 : Fin 17) j) :
+    (0 : Fin 17) ∈ I ∧ j ∈ I := by
+  simp only [s027SecondIndexShard, if_pos hj] at hI
+  obtain ⟨T, _, heq⟩ := Finset.mem_image.mp hI
+  constructor
+  · rw [← heq]
+    simp
+  · rw [← heq]
+    simp
+
 theorem s029_pair_0_1_survivor_card :
     (s028SecondIndexSurvivors (0 : Fin 17) (1 : Fin 17)).card = 0 := by
-  decide +kernel
+  classical
+  apply Finset.card_eq_zero.mpr
+  apply Finset.eq_empty_of_forall_notMem
+  intro I hI
+  have hshard : I ∈ s027SecondIndexShard (0 : Fin 17) (1 : Fin 17) :=
+    (Finset.mem_filter.mp hI).1
+  have hfree :
+      s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = true :=
+    (Finset.mem_filter.mp hI).2
+  obtain ⟨h0, hj⟩ :=
+    s056_second_index_shard_contains_pair (1 : Fin 17) (by decide) hshard
+  have hbad :
+      s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = false :=
+    s056_bad_anchor_pair (1 : Fin 3) (1 : Fin 17)
+      (by decide +kernel) (by decide +kernel) h0 hj
+  rw [hbad] at hfree
+  cases hfree
 
 #print axioms PDIC.s029_pair_0_1_survivor_card
 
@@ -1525,7 +1604,23 @@ set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
 theorem s029_pair_0_2_survivor_card :
     (s028SecondIndexSurvivors (0 : Fin 17) (2 : Fin 17)).card = 0 := by
-  decide +kernel
+  classical
+  apply Finset.card_eq_zero.mpr
+  apply Finset.eq_empty_of_forall_notMem
+  intro I hI
+  have hshard : I ∈ s027SecondIndexShard (0 : Fin 17) (2 : Fin 17) :=
+    (Finset.mem_filter.mp hI).1
+  have hfree :
+      s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = true :=
+    (Finset.mem_filter.mp hI).2
+  obtain ⟨h0, hj⟩ :=
+    s056_second_index_shard_contains_pair (2 : Fin 17) (by decide) hshard
+  have hbad :
+      s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = false :=
+    s056_bad_anchor_pair (2 : Fin 3) (2 : Fin 17)
+      (by decide +kernel) (by decide +kernel) h0 hj
+  rw [hbad] at hfree
+  cases hfree
 
 #print axioms PDIC.s029_pair_0_2_survivor_card
 
