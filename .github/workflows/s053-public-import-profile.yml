@@ -1,4 +1,4 @@
-name: S053 public-only Solution import: strict Lean and closure profile
+name: 'S053 public-only Solution import - strict Lean and closure profile'
 on:
   push:
     branches:
