@@ -1,0 +1,37 @@
+name: 'S054 independent-kernel memory attribution (diagnostic only)'
+on:
+  push:
+    branches:
+      - diagnostic/s054-kernel-memory-isolation
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolated-kernels:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 105
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm immutable source and install pinned Lean
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          cat lean-toolchain
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore exact pinned Mathlib dependency cache
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Compile actual flagship, export official targets and profile kernels separately
+        run: bash scripts/s054_isolated_kernels.sh
+      - name: Preserve bounded diagnostics, never upload full theorem exports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s054-kernel-memory-evidence
+          retention-days: 14
+          if-no-files-found: ignore
+          path: |
+            s054-evidence/**
