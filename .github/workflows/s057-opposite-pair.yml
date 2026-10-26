@@ -1,0 +1,50 @@
+name: 'PDIC S057 symbolic opposite pair and remaining root profile'
+on:
+  push:
+    branches:
+      - diagnostic/s057-third-index-decomposition
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  strict-and-profile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean toolchain
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          cat lean-toolchain
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore pinned Mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Reject untrusted Solution-side terms
+        run: |
+          set -euo pipefail
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' PDIC.lean S024.lean Solution.lean; then
+            echo 'Untrusted proof term'; exit 1
+          fi
+      - name: Compile full unchanged flagship and collect independent root measurements
+        run: bash scripts/s057_remaining_pair_reprofile.sh
+      - name: Run independent finite enumerators
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_s024_normal_form.py
+          python3 scripts/verify_s024_orbit.py
+          python3 scripts/verify_s025_basis.py
+          python3 scripts/verify_s023_all_caps.py
+      - name: Save exact-source measurements and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s057-opposite-pair-evidence
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            s057-evidence/**
