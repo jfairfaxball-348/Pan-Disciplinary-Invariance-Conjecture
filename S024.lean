@@ -1680,11 +1680,79 @@ namespace PDIC
 /-! S029 isolated true short-zero-free pair-shard kernel certificates, first index 1;
 this table is finite-local and is not a proof of 18-tail exhaustiveness. -/
 
+/-! S057: second-index (1,2) is empty for a structural reason:
+    the two corresponding actual F₃³ points are additive opposites.
+    This is a proof of the original short-zero-free predicate, not a
+    replacement predicate or assumption. -/
+
+private theorem s057_pair_sum_obstructs_short_free
+    (U T : Finset CapPoint) (hsub : T ⊆ U) (hcard : T.card = 2)
+    (hsum : (∑ p ∈ T, p) = (0 : CapPoint)) :
+    s027ShortZeroFree U = false := by
+  have hm : T ∈ (U.powersetCard 2).filter
+      (fun s => (∑ p ∈ s, p) = (0 : CapPoint)) := by
+    exact Finset.mem_filter.mpr
+      ⟨Finset.mem_powersetCard.mpr ⟨hsub, hcard⟩, hsum⟩
+  have hnonzero : ((U.powersetCard 2).filter
+      (fun s => (∑ p ∈ s, p) = (0 : CapPoint))).card ≠ 0 := by
+    intro hz
+    have hempty := Finset.card_eq_zero.mp hz
+    simp [hempty] at hm
+  unfold s027ShortZeroFree
+  simp [hnonzero]
+
+private theorem s057_opposite_indexed_pair
+    {I : Finset (Fin 17)}
+    (h1 : (1 : Fin 17) ∈ I) (h2 : (2 : Fin 17) ∈ I) :
+    s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = false := by
+  apply s057_pair_sum_obstructs_short_free
+    (s024BasisSet ∪ I.image s027FreePointAt)
+    ({s027FreePointAt (1 : Fin 17), s027FreePointAt (2 : Fin 17)} :
+      Finset CapPoint) ?_ (by decide +kernel) (by decide +kernel)
+  intro p hp
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hp
+  rcases hp with hp | hp
+  · subst p
+    exact Finset.mem_union.mpr
+      (Or.inr (Finset.mem_image.mpr ⟨1, h1, rfl⟩))
+  · subst p
+    exact Finset.mem_union.mpr
+      (Or.inr (Finset.mem_image.mpr ⟨2, h2, rfl⟩))
+
+private theorem s057_second_index_shard_contains_pair
+    (i j : Fin 17) (hij : i < j)
+    {I : Finset (Fin 17)}
+    (hI : I ∈ s027SecondIndexShard i j) :
+    i ∈ I ∧ j ∈ I := by
+  simp only [s027SecondIndexShard, if_pos hij] at hI
+  obtain ⟨T, _, heq⟩ := Finset.mem_image.mp hI
+  constructor
+  · rw [← heq]
+    simp
+  · rw [← heq]
+    simp
+
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
 theorem s029_pair_1_2_survivor_card :
     (s028SecondIndexSurvivors (1 : Fin 17) (2 : Fin 17)).card = 0 := by
-  decide +kernel
+  classical
+  apply Finset.card_eq_zero.mpr
+  apply Finset.eq_empty_of_forall_notMem
+  intro I hI
+  have hshard : I ∈ s027SecondIndexShard (1 : Fin 17) (2 : Fin 17) :=
+    (Finset.mem_filter.mp hI).1
+  have hfree :
+      s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = true :=
+    (Finset.mem_filter.mp hI).2
+  obtain ⟨h1, h2⟩ :=
+    s057_second_index_shard_contains_pair
+      (1 : Fin 17) (2 : Fin 17) (by decide) hshard
+  have hbad :
+      s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = false :=
+    s057_opposite_indexed_pair h1 h2
+  rw [hbad] at hfree
+  cases hfree
 
 #print axioms PDIC.s029_pair_1_2_survivor_card
 
