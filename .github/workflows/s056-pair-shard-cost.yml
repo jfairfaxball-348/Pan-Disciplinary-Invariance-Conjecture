@@ -1,0 +1,37 @@
+name: 'PDIC S056 isolate first-index-zero finite certificate cost'
+on:
+  push:
+    branches:
+      - diagnostic/s056-pair-shard-cost
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pair-shard-cost:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install immutable Lean toolchain
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          cat lean-toolchain
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore mathlib at pinned commit
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Compile flagship and measure per-shard kernel closure
+        run: bash scripts/s056_pair_shard_cost.sh
+      - name: Save bounded stage evidence (never export NDJSON)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s056-pair-shard-cost-evidence
+          if-no-files-found: ignore
+          retention-days: 14
+          path: |
+            s056-evidence/**
