@@ -1,0 +1,77 @@
+name: S053 public-only Solution import: strict Lean and closure profile
+on:
+  push:
+    branches:
+      - diagnostic/s053-public-import-surface
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-closure:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show immutable source and toolchain
+        run: |
+          git rev-parse HEAD | tee s045-source-sha.txt
+          cat lean-toolchain
+          sha256sum lake-manifest.json
+      - name: Install pinned Lean
+        run: |
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Retrieve pinned Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Build independent Challenge
+        run: |
+          set -euo pipefail
+          /usr/bin/time -v -o s045-challenge-build-rss.txt lake build Challenge 2>&1 | tee s045-challenge-build.log
+      - name: Build full unchanged Solution and print axioms
+        run: |
+          set -euo pipefail
+          /usr/bin/time -v -o s045-solution-build-rss.txt lake build 2>&1 | tee s045-solution-build.log
+          lake env lean Solution.lean 2>&1 | tee s045-axioms.log
+          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s045-axioms.log; then exit 1; fi
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' PDIC.lean S024.lean Solution.lean; then exit 1; fi
+      - name: Export independently, profile bounded NDJSON and record exporter RSS
+        run: |
+          set -euo pipefail
+          /usr/bin/time -v -o s045-challenge-export-rss.txt lake env leanexport Challenge -- PDIC.palomar_complete_probability_and_spider > s045-challenge.ndjson
+          /usr/bin/time -v -o s045-solution-export-rss.txt lake env leanexport Solution -- PDIC.palomar_complete_probability_and_spider > s045-solution.ndjson
+          wc -c s045-challenge.ndjson s045-solution.ndjson | tee s045-export-bytes.txt
+          python3 scripts/profile_leanexport_ndjson.py s045-challenge.ndjson --output s045-challenge-profile.json --top 25
+          python3 scripts/profile_leanexport_ndjson.py s045-solution.ndjson --output s045-solution-profile.json --top 45
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          baseline = {'challenge': 16553836, 'solution': 85068616}
+          for mode in baseline:
+              current = Path('s045-' + mode + '.ndjson').stat().st_size
+              print(mode, 'bytes', current, 'baseline', baseline[mode],
+                    'percentage change', round(100 * (current / baseline[mode] - 1), 4))
+          PY
+          cat s045-challenge-export-rss.txt s045-solution-export-rss.txt
+      - name: Independent exhaustive finite checks
+        run: |
+          set -euo pipefail
+          for script in scripts/verify_*.py; do python3 "$script"; done
+      - name: Preserve bounded evidence only (never upload 85MB export)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s053-public-import-evidence
+          if-no-files-found: ignore
+          retention-days: 14
+          path: |
+            s045-source-sha.txt
+            s045-challenge-build-rss.txt
+            s045-solution-build-rss.txt
+            s045-challenge-export-rss.txt
+            s045-solution-export-rss.txt
+            s045-export-bytes.txt
+            s045-challenge-profile.json
+            s045-solution-profile.json
+            s045-axioms.log
