@@ -1,0 +1,37 @@
+name: 'PDIC S055 proof-root kernel memory localization - diagnostic'
+on:
+  push:
+    branches:
+      - diagnostic/s055-root-attribution
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  root-localization:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 95
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          cat lean-toolchain
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore precise Mathlib revision
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Build same theorem and profile independent kernel by proof root
+        run: bash scripts/s055_root_attribution.sh
+      - name: Preserve small diagnostic results only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s055-proof-root-attribution-evidence
+          if-no-files-found: ignore
+          retention-days: 14
+          path: |
+            s055-evidence/**
