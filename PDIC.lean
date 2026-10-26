@@ -109,7 +109,7 @@ theorem canonical_four_zero_iff :
 
 /- The spider S(2,2,2,1): hub 0, neighbours 4,5,6,7,
    additional edges 1--6, 2--5, 3--4. -/
-public def spiderAdj (u v : Vertex) : Bool :=
+@[expose] public def spiderAdj (u v : Vertex) : Bool :=
   decide ((u.val = 0 ∧ (v.val = 4 ∨ v.val = 5 ∨ v.val = 6 ∨ v.val = 7)) ∨
           (v.val = 0 ∧ (u.val = 4 ∨ u.val = 5 ∨ u.val = 6 ∨ u.val = 7)) ∨
           (u.val = 1 ∧ v.val = 6) ∨ (u.val = 6 ∧ v.val = 1) ∨
