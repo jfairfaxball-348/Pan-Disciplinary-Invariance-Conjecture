@@ -1,0 +1,39 @@
+name: 'PDIC S060 matched combined roots and omitted mid certificates'
+on:
+  push:
+    branches:
+      - diagnostic/s060-matched-baseline
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore pinned dependencies and compile exact original source
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+          mkdir -p s060-evidence/baseline-hosted
+          lake build Challenge PDIC S024 Solution > s060-evidence/baseline-hosted/build.log 2>&1 || {
+            tail -n 100 s060-evidence/baseline-hosted/build.log; exit 1;
+          }
+          lake env lean Solution.lean > s060-evidence/baseline-hosted/axioms.log
+      - name: Sequential discriminating root checks at a common 9 GiB virtual limit
+        run: python3 scripts/s060_kernel_memory.py --label baseline-hosted --cases control group01 group012 group0123 mid4 mid5 mid6 normalized flagship --vm 9 --timeout 300
+      - name: Save actual verdicts including resource failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s060-matched-baseline-evidence
+          retention-days: 14
+          path: s060-evidence/**
