@@ -1922,9 +1922,42 @@ theorem s029_pair_1_2_survivor_card :
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S059: all (1,3) genuine third-index survivors occur at k=6.
+     The survivor cardinal theorem below retains its exact original statement. -/
+def s059Tail13 : Finset (Fin 17) := {1, 3, 6, 8, 13}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_1_3_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (1 : Fin 17) (3 : Fin 17) k =
+      if k = (6 : Fin 17) then ({s059Tail13} : Finset (Finset (Fin 17))) else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s059_pair_1_3_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_1_3_card_optimized :
+    (s028SecondIndexSurvivors (1 : Fin 17) (3 : Fin 17)).card = 1 := by
+  classical
+  have hfun :
+      s058ThirdIndexSurvivors (1 : Fin 17) (3 : Fin 17) =
+        (fun k : Fin 17 =>
+          if k = (6 : Fin 17) then
+            ({s059Tail13} : Finset (Finset (Fin 17))) else ∅) := by
+    funext k
+    exact s059_pair_1_3_third_table k
+  rw [← s058_second_survivors_split (1 : Fin 17) (3 : Fin 17) (by decide)]
+  rw [hfun]
+  decide +kernel
+
+#print axioms PDIC.s059_pair_1_3_card_optimized
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
 theorem s029_pair_1_3_survivor_card :
     (s028SecondIndexSurvivors (1 : Fin 17) (3 : Fin 17)).card = 1 := by
-  decide +kernel
+  exact s059_pair_1_3_card_optimized
 
 #print axioms PDIC.s029_pair_1_3_survivor_card
 
@@ -1994,9 +2027,50 @@ this table is finite-local and is not a proof of 18-tail exhaustiveness. -/
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S059: exactly two (2,3) genuine third-index survivor tails,
+     sorted at third indices 6 and 8. No original predicate is weakened. -/
+def s059Tail23Six : Finset (Fin 17) := {2, 3, 6, 7, 12}
+def s059Tail23Eight : Finset (Fin 17) := {2, 3, 8, 10, 15}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_2_3_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (2 : Fin 17) (3 : Fin 17) k =
+      if k = (6 : Fin 17) then
+        ({s059Tail23Six} : Finset (Finset (Fin 17)))
+      else if k = (8 : Fin 17) then
+        ({s059Tail23Eight} : Finset (Finset (Fin 17)))
+      else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s059_pair_2_3_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_2_3_card_optimized :
+    (s028SecondIndexSurvivors (2 : Fin 17) (3 : Fin 17)).card = 2 := by
+  classical
+  have hfun :
+      s058ThirdIndexSurvivors (2 : Fin 17) (3 : Fin 17) =
+        (fun k : Fin 17 =>
+          if k = (6 : Fin 17) then
+            ({s059Tail23Six} : Finset (Finset (Fin 17)))
+          else if k = (8 : Fin 17) then
+            ({s059Tail23Eight} : Finset (Finset (Fin 17)))
+          else ∅) := by
+    funext k
+    exact s059_pair_2_3_third_table k
+  rw [← s058_second_survivors_split (2 : Fin 17) (3 : Fin 17) (by decide)]
+  rw [hfun]
+  decide +kernel
+
+#print axioms PDIC.s059_pair_2_3_card_optimized
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
 theorem s029_pair_2_3_survivor_card :
     (s028SecondIndexSurvivors (2 : Fin 17) (3 : Fin 17)).card = 2 := by
-  decide +kernel
+  exact s059_pair_2_3_card_optimized
 
 #print axioms PDIC.s029_pair_2_3_survivor_card
 

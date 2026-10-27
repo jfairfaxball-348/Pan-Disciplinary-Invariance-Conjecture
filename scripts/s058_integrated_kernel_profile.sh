@@ -17,7 +17,7 @@ base=(
 checker="$(lean --print-prefix)/bin/leanchecker"
 test -x "$checker"
 limit_bytes=$((9*1024*1024*1024))
-cases=(structural_third optimized_pair_0_3 original_pair_0_3 flagship)
+cases=(structural_third optimized_pair_0_3 original_pair_0_3 optimized_pair_1_3 original_pair_1_3 optimized_pair_2_3 original_pair_2_3 flagship)
 for case_name in "${cases[@]}"; do
   roots=("${base[@]}")
   case "$case_name" in
@@ -27,6 +27,14 @@ for case_name in "${cases[@]}"; do
       roots+=("_private.S024.0.PDIC.s058_pair_0_3_card_optimized") ;;
     original_pair_0_3)
       roots+=("_private.S024.0.PDIC.s028_pair_0_3_survivor_card") ;;
+    optimized_pair_1_3)
+      roots+=("_private.S024.0.PDIC.s059_pair_1_3_card_optimized") ;;
+    original_pair_1_3)
+      roots+=("_private.S024.0.PDIC.s029_pair_1_3_survivor_card") ;;
+    optimized_pair_2_3)
+      roots+=("_private.S024.0.PDIC.s059_pair_2_3_card_optimized") ;;
+    original_pair_2_3)
+      roots+=("_private.S024.0.PDIC.s029_pair_2_3_survivor_card") ;;
     flagship)
       roots+=("PDIC.palomar_complete_probability_and_spider") ;;
   esac
@@ -57,4 +65,9 @@ for case_name in "${cases[@]}"; do
   echo "::endgroup::"
 done
 cat s058-evidence/kernel-results.tsv
-# Deliberately do NOT claim PASS of a failed root just because the profile job exited 0.
+# Treat any independent checker failure as an actual CI failure. Diagnostics are
+# already emitted and saved by the job's always() upload-artifact step.
+if ! awk -F '\t' 'NR > 1 && ($3 != 0 || $4 != 0) { failed=1 } END { exit failed }' s058-evidence/kernel-results.tsv; then
+  echo 'Independent kernel verification did not pass for every root: see the TSV and logs.'
+  exit 1
+fi
