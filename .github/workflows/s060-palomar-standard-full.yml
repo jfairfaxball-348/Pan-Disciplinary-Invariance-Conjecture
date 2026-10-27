@@ -1,0 +1,18 @@
+name: 'PDIC S060 standard-memory Palomar FULL after strict root PASS'
+on:
+  push:
+    branches:
+      - diagnostic/s060-palomar-standard-full
+permissions:
+  contents: read
+jobs:
+  palomar-full:
+    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@d4e41c1d5b0d114c4859e6e5831dc6d3ad1d0d44
+    with:
+      repository: ${{ github.repository }}
+      commit: ${{ github.sha }}
+      pipeline_commit: d4e41c1d5b0d114c4859e6e5831dc6d3ad1d0d44
+      request_id: pdics0600001
+      mode: full
+      execution_profile: palomar-standard-v1
+      options: '{"comparator_config_path":"comparator.json","formalization_metadata_path":"formalization.yaml","authorization_relationship":"I am a responsible author or maintainer"}'
