@@ -1,0 +1,51 @@
+name: 'PDIC S058 third-index proof and kernel validation'
+on:
+  push:
+    branches:
+      - diagnostic/s058-third-index-partition
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  third-index-lean:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean toolchain
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          cat lean-toolchain
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore pinned Mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Reject untrusted proof terms in third-index candidate
+        run: |
+          set -euo pipefail
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' S058.lean; then
+            echo 'Untrusted S058 source'; exit 1
+          fi
+      - name: Compile base unchanged all-cap flagship and third-index mathematical partition
+        run: |
+          set -euo pipefail
+          mkdir -p s058-evidence
+          git rev-parse HEAD > s058-evidence/source-sha.txt
+          lake build Challenge PDIC S024 Solution 2>&1 | tee s058-evidence/build.log
+          lake env lean Solution.lean 2>&1 | tee s058-evidence/axioms.log
+          lake env lean S058.lean 2>&1 | tee s058-evidence/third-index.log
+          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s058-evidence/{axioms,third-index}.log; then
+            exit 1
+          fi
+      - name: Save isolated proof diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s058-third-index-source-check
+          retention-days: 14
+          if-no-files-found: warn
+          path: s058-evidence/**
