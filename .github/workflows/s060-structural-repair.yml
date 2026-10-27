@@ -30,6 +30,7 @@ jobs:
           lake update
           lake exe cache get
       - name: Compile original theorem and reject unapproved axioms
+        id: compile
         run: |
           set -euo pipefail
           mkdir -p s060-evidence/repaired
@@ -63,6 +64,7 @@ jobs:
           assert all(r['equal_repr'] for r in rows.values()), rows
           PY
       - name: Independent exact finite-predicate audits
+        if: ${{ !cancelled() && steps.compile.outcome == 'success' }}
         run: |
           set -euo pipefail
           python3 scripts/verify_s060_forbidden.py
@@ -72,6 +74,7 @@ jobs:
           python3 scripts/verify_s025_basis.py
           python3 scripts/verify_s023_all_caps.py
       - name: Independently check complete normalized-card and flagship closures
+        if: ${{ !cancelled() && steps.compile.outcome == 'success' }}
         run: python3 scripts/s060_kernel_memory.py --label repaired-hosted --cases normalized flagship --vm 9 --timeout 540
       - name: Retain exact-source evidence
         if: always()
