@@ -1,0 +1,17 @@
+# PDIC S059 — working checkpoint (not a closeout)
+
+## Why this continuation started
+
+Owner reported that “Full lean failed.” The genuinely failed S058 hosted exact-source run [40478141116](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40478141116) had the single `simp made no progress` at `S024.lean:1432`; its affected proof was not then valid. The later in-module singleton union fix `621e553b06f1cc7e55c57b0b19f4cef4e111aa6e` did fix this: hosted [40491186731](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40491186731) completed the exact Lean build, Solution axiom check and independent *pair* kernel check, preserving original all-cap flagship theorem. The (0,3) pair root fell from 5,804,080 KiB RSS (S057) to 1,096,264 KiB (S058), exit 0. The exported full-flagship single-process checker STILL returned 134 `std::bad_alloc`, approx. 7,099,140 KiB RSS under 9 GiB virtual address-space limit. The S058 CI was green only because its kernel-profile stage recorded the full-check failure but returned 0; that is not whole-flagship verification and not Palomar acceptance.
+
+## S059 actual work completed / host check in progress
+
+On *isolated* branch `diagnostic/s058-third-index-partition`, single atomic commit [4ad938ccd8bff906a60dbfa42ab88b3e50feaad2](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/4ad938ccd8bff906a60dbfa42ab88b3e50feaad2) changes precisely `S024.lean` and `scripts/s058_integrated_kernel_profile.sh`. All original 1,3 and 2,3 theorem statements are **byte-for-byte preserved** and now have candidate proofs via the previously trusted sorted-third-index decomposition and small new third-index tables with genuine unchanged `s027ShortZeroFree`. (1,3) exact tail {1,3,6,8,13}, third k=6. (2,3) exact tails {2,3,6,7,12} / {2,3,8,10,15}, thirds k=6/8. Each is isolated to 17 third-index instances checked by `fin_cases k <;> decide +kernel`, with `funext` rewriting the proper higher-order pair shard. No `sorry`, `admit`, additional axioms or `native_decide`.
+
+Kernel profiler now includes six individual (0,3),(1,3),(2,3) optimized/original pair roots, structural decomposition and full flagship. Critically **the script exits 1 if any independent root fails**, to prevent a misleading green workflow. All caps, theorem statement, independent Challenge, comparator and PR24 are untouched.
+
+Exact pinned CI [40495214089](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40495214089) started on SHA `4ad938cc`; **in progress at last check**, full S024 compilation underway. Finite lead test [40495213899](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40495213899) also triggered. **Do not claim S059 Lean compilation or kernel PASS until those exact job logs confirm it.** Even if Lean compile passes, true full checker PASS requires per-root last row of uploaded `s058-evidence/kernel-results.tsv` to have checker rc=0. Standard 16GiB Palomar remains NOT passed, no 32GiB authorisation.
+
+## Next move
+
+Check the full log of run 40495214089. If compiler fails, repair first exact error on isolated branch and re-run before other research; if all Lean compiles, inspect each independent checker memory figure and full flagship status. Retain full source unchanged and no paid Palomar submission. On real end-of-session update S059 closeout, AGENTS, STATE and install S060; this checkpoint is deliberately **not** a finished session.
