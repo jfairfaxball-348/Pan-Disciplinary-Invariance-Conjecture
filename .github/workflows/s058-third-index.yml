@@ -4,6 +4,7 @@ on:
     branches:
       - diagnostic/s058-third-index-partition
       - diagnostic/s059-remaining-positive-pairs
+      - diagnostic/s059-recovery-late-pairs
   workflow_dispatch:
 permissions:
   contents: read
