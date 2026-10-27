@@ -1790,25 +1790,115 @@ theorem s029_pair_0_2_survivor_card :
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S059: exact predicate unchanged, smallest third-index shards for (0,4). -/
+def s059Tail_0_4_0 : Finset (Fin 17) := {0, 4, 6, 9, 12}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_0_4_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (0 : Fin 17) (4 : Fin 17) k =
+      if k = (6 : Fin 17) then ({s059Tail_0_4_0} : Finset (Finset (Fin 17))) else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s059_pair_0_4_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_0_4_card_optimized :
+    (s028SecondIndexSurvivors (0 : Fin 17) (4 : Fin 17)).card = 1 := by
+  classical
+  have hfun :
+      s058ThirdIndexSurvivors (0 : Fin 17) (4 : Fin 17) =
+        (fun k : Fin 17 => if k = (6 : Fin 17) then ({s059Tail_0_4_0} : Finset (Finset (Fin 17))) else ∅) := by
+    funext k
+    exact s059_pair_0_4_third_table k
+  rw [← s058_second_survivors_split (0 : Fin 17) (4 : Fin 17) (by decide)]
+  rw [hfun]
+  decide +kernel
+
+#print axioms PDIC.s059_pair_0_4_card_optimized
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
 theorem s029_pair_0_4_survivor_card :
     (s028SecondIndexSurvivors (0 : Fin 17) (4 : Fin 17)).card = 1 := by
-  decide +kernel
+  exact s059_pair_0_4_card_optimized
 
 #print axioms PDIC.s029_pair_0_4_survivor_card
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S059: exact predicate unchanged, smallest third-index shards for (0,5). -/
+def s059Tail_0_5_0 : Finset (Fin 17) := {0, 5, 9, 10, 15}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_0_5_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (0 : Fin 17) (5 : Fin 17) k =
+      if k = (9 : Fin 17) then ({s059Tail_0_5_0} : Finset (Finset (Fin 17))) else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s059_pair_0_5_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_0_5_card_optimized :
+    (s028SecondIndexSurvivors (0 : Fin 17) (5 : Fin 17)).card = 1 := by
+  classical
+  have hfun :
+      s058ThirdIndexSurvivors (0 : Fin 17) (5 : Fin 17) =
+        (fun k : Fin 17 => if k = (9 : Fin 17) then ({s059Tail_0_5_0} : Finset (Finset (Fin 17))) else ∅) := by
+    funext k
+    exact s059_pair_0_5_third_table k
+  rw [← s058_second_survivors_split (0 : Fin 17) (5 : Fin 17) (by decide)]
+  rw [hfun]
+  decide +kernel
+
+#print axioms PDIC.s059_pair_0_5_card_optimized
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
 theorem s029_pair_0_5_survivor_card :
     (s028SecondIndexSurvivors (0 : Fin 17) (5 : Fin 17)).card = 1 := by
-  decide +kernel
+  exact s059_pair_0_5_card_optimized
 
 #print axioms PDIC.s029_pair_0_5_survivor_card
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S059: exact predicate unchanged, smallest third-index shards for (0,6). -/
+def s059Tail_0_6_0 : Finset (Fin 17) := {0, 6, 7, 8, 11}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_0_6_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (0 : Fin 17) (6 : Fin 17) k =
+      if k = (7 : Fin 17) then ({s059Tail_0_6_0} : Finset (Finset (Fin 17))) else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s059_pair_0_6_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_0_6_card_optimized :
+    (s028SecondIndexSurvivors (0 : Fin 17) (6 : Fin 17)).card = 1 := by
+  classical
+  have hfun :
+      s058ThirdIndexSurvivors (0 : Fin 17) (6 : Fin 17) =
+        (fun k : Fin 17 => if k = (7 : Fin 17) then ({s059Tail_0_6_0} : Finset (Finset (Fin 17))) else ∅) := by
+    funext k
+    exact s059_pair_0_6_third_table k
+  rw [← s058_second_survivors_split (0 : Fin 17) (6 : Fin 17) (by decide)]
+  rw [hfun]
+  decide +kernel
+
+#print axioms PDIC.s059_pair_0_6_card_optimized
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
 theorem s029_pair_0_6_survivor_card :
     (s028SecondIndexSurvivors (0 : Fin 17) (6 : Fin 17)).card = 1 := by
-  decide +kernel
+  exact s059_pair_0_6_card_optimized
 
 #print axioms PDIC.s029_pair_0_6_survivor_card
 
@@ -1963,9 +2053,39 @@ theorem s029_pair_1_3_survivor_card :
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S059: exact predicate unchanged, smallest third-index shards for (1,4). -/
+def s059Tail_1_4_0 : Finset (Fin 17) := {1, 4, 5, 10, 14}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_1_4_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (1 : Fin 17) (4 : Fin 17) k =
+      if k = (5 : Fin 17) then ({s059Tail_1_4_0} : Finset (Finset (Fin 17))) else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s059_pair_1_4_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_1_4_card_optimized :
+    (s028SecondIndexSurvivors (1 : Fin 17) (4 : Fin 17)).card = 1 := by
+  classical
+  have hfun :
+      s058ThirdIndexSurvivors (1 : Fin 17) (4 : Fin 17) =
+        (fun k : Fin 17 => if k = (5 : Fin 17) then ({s059Tail_1_4_0} : Finset (Finset (Fin 17))) else ∅) := by
+    funext k
+    exact s059_pair_1_4_third_table k
+  rw [← s058_second_survivors_split (1 : Fin 17) (4 : Fin 17) (by decide)]
+  rw [hfun]
+  decide +kernel
+
+#print axioms PDIC.s059_pair_1_4_card_optimized
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
 theorem s029_pair_1_4_survivor_card :
     (s028SecondIndexSurvivors (1 : Fin 17) (4 : Fin 17)).card = 1 := by
-  decide +kernel
+  exact s059_pair_1_4_card_optimized
 
 #print axioms PDIC.s029_pair_1_4_survivor_card
 
@@ -2076,9 +2196,40 @@ theorem s029_pair_2_3_survivor_card :
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S059: exact predicate unchanged, smallest third-index shards for (2,4). -/
+def s059Tail_2_4_0 : Finset (Fin 17) := {2, 4, 5, 6, 13}
+def s059Tail_2_4_1 : Finset (Fin 17) := {2, 4, 9, 10, 16}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_2_4_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (2 : Fin 17) (4 : Fin 17) k =
+      if k = (5 : Fin 17) then ({s059Tail_2_4_0} : Finset (Finset (Fin 17))) else if k = (9 : Fin 17) then ({s059Tail_2_4_1} : Finset (Finset (Fin 17))) else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s059_pair_2_4_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_pair_2_4_card_optimized :
+    (s028SecondIndexSurvivors (2 : Fin 17) (4 : Fin 17)).card = 2 := by
+  classical
+  have hfun :
+      s058ThirdIndexSurvivors (2 : Fin 17) (4 : Fin 17) =
+        (fun k : Fin 17 => if k = (5 : Fin 17) then ({s059Tail_2_4_0} : Finset (Finset (Fin 17))) else if k = (9 : Fin 17) then ({s059Tail_2_4_1} : Finset (Finset (Fin 17))) else ∅) := by
+    funext k
+    exact s059_pair_2_4_third_table k
+  rw [← s058_second_survivors_split (2 : Fin 17) (4 : Fin 17) (by decide)]
+  rw [hfun]
+  decide +kernel
+
+#print axioms PDIC.s059_pair_2_4_card_optimized
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
 theorem s029_pair_2_4_survivor_card :
     (s028SecondIndexSurvivors (2 : Fin 17) (4 : Fin 17)).card = 2 := by
-  decide +kernel
+  exact s059_pair_2_4_card_optimized
 
 #print axioms PDIC.s029_pair_2_4_survivor_card
 
