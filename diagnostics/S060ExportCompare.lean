@@ -22,7 +22,7 @@ def readExport (path : String) : IO LeanExport.ExportedEnv := do
   let f ← IO.FS.Handle.mk path .read
   LeanExport.parseStream (.ofHandle f)
 
-def main (args : List String) : IO Unit := do
+public def main (args : List String) : IO Unit := do
   let [cp, sp] := args | throw <| IO.userError "expected two export files"
   let c ← readExport cp
   let s ← readExport sp
@@ -35,6 +35,9 @@ def main (args : List String) : IO Unit := do
     IO.println s!"CONST {n}: full_equal={a == b} type_equal={a.type == b.type} value_equal={a.value? == b.value?} levels_equal={a.levelParams == b.levelParams}"
     IO.println s!"  CHALLENGE {detail a}"
     IO.println s!"  SOLUTION  {detail b}"
+    if a.value? != b.value? then
+      IO.println s!"  CHALLENGE_VALUE {reprStr a.value?}"
+      IO.println s!"  SOLUTION_VALUE {reprStr b.value?}"
   match Lake.Check.compareAt c s #[] #[] names with
   | .ok _ => IO.println "REAL_COMPARE PASS"
   | .error e => IO.println s!"REAL_COMPARE FAIL {e}"
