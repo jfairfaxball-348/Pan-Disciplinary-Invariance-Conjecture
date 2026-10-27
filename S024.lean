@@ -1428,9 +1428,23 @@ set_option maxHeartbeats 20000000 in
 theorem s058_pair_0_3_card_optimized :
     (s028SecondIndexSurvivors (0 : Fin 17) (3 : Fin 17)).card = 1 := by
   classical
-  rw [← s058_second_survivors_split (0 : Fin 17) (3 : Fin 17) (by decide)]
-  simp only [s058_pair_0_3_third_table]
-  decide +kernel
+  have hunion :
+      (Finset.univ : Finset (Fin 17)).biUnion
+        (s058ThirdIndexSurvivors (0 : Fin 17) (3 : Fin 17)) =
+          ({s058Tail03} : Finset (Finset (Fin 17))) := by
+    ext T
+    simp only [Finset.mem_biUnion, Finset.mem_univ, true_and]
+    constructor
+    · rintro ⟨k, hk⟩
+      rw [s058_pair_0_3_third_table] at hk
+      by_cases h7 : k = (7 : Fin 17)
+      · simpa [h7] using hk
+      · simp [h7] at hk
+    · intro hT
+      refine ⟨(7 : Fin 17), ?_⟩
+      simpa [s058_pair_0_3_third_table] using hT
+  rw [← s058_second_survivors_split (0 : Fin 17) (3 : Fin 17) (by decide), hunion]
+  simp
 
 #print axioms PDIC.s058_pair_0_3_card_optimized
 
