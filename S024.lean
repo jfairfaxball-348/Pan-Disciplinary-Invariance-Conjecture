@@ -2091,9 +2091,40 @@ theorem s029_pair_1_4_survivor_card :
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S059 recovery: true sorted-third-index proof for positive (1,5), unchanged predicates. -/
+def s059RecoveryTail_1_5 : Finset (Fin 17) := {1, 5, 6, 9, 11}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_recovery_1_5_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (1 : Fin 17) (5 : Fin 17) k =
+      if k = (6 : Fin 17) then ( {s059RecoveryTail_1_5} : Finset (Finset (Fin 17)) ) else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s059_recovery_1_5_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_recovery_1_5_card_optimized :
+    (s028SecondIndexSurvivors (1 : Fin 17) (5 : Fin 17)).card = 1 := by
+  classical
+  have hfun :
+      s058ThirdIndexSurvivors (1 : Fin 17) (5 : Fin 17) =
+        (fun k : Fin 17 => if k = (6 : Fin 17) then
+          ({s059RecoveryTail_1_5} : Finset (Finset (Fin 17))) else ∅) := by
+    funext k
+    exact s059_recovery_1_5_third_table k
+  rw [← s058_second_survivors_split (1 : Fin 17) (5 : Fin 17) (by decide)]
+  rw [hfun]
+  decide +kernel
+
+#print axioms PDIC.s059_recovery_1_5_card_optimized
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
 theorem s029_pair_1_5_survivor_card :
     (s028SecondIndexSurvivors (1 : Fin 17) (5 : Fin 17)).card = 1 := by
-  decide +kernel
+  exact s059_recovery_1_5_card_optimized
 
 #print axioms PDIC.s029_pair_1_5_survivor_card
 
@@ -2107,9 +2138,40 @@ theorem s029_pair_1_6_survivor_card :
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S059 recovery: true sorted-third-index proof for positive (1,7), unchanged predicates. -/
+def s059RecoveryTail_1_7 : Finset (Fin 17) := {1, 7, 8, 10, 16}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_recovery_1_7_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (1 : Fin 17) (7 : Fin 17) k =
+      if k = (8 : Fin 17) then ( {s059RecoveryTail_1_7} : Finset (Finset (Fin 17)) ) else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s059_recovery_1_7_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_recovery_1_7_card_optimized :
+    (s028SecondIndexSurvivors (1 : Fin 17) (7 : Fin 17)).card = 1 := by
+  classical
+  have hfun :
+      s058ThirdIndexSurvivors (1 : Fin 17) (7 : Fin 17) =
+        (fun k : Fin 17 => if k = (8 : Fin 17) then
+          ({s059RecoveryTail_1_7} : Finset (Finset (Fin 17))) else ∅) := by
+    funext k
+    exact s059_recovery_1_7_third_table k
+  rw [← s058_second_survivors_split (1 : Fin 17) (7 : Fin 17) (by decide)]
+  rw [hfun]
+  decide +kernel
+
+#print axioms PDIC.s059_recovery_1_7_card_optimized
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
 theorem s029_pair_1_7_survivor_card :
     (s028SecondIndexSurvivors (1 : Fin 17) (7 : Fin 17)).card = 1 := by
-  decide +kernel
+  exact s059_recovery_1_7_card_optimized
 
 #print axioms PDIC.s029_pair_1_7_survivor_card
 
@@ -2307,9 +2369,40 @@ theorem s029_pair_3_4_survivor_card :
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
+/-! S059 recovery: true sorted-third-index proof for positive (3,5), unchanged predicates. -/
+def s059RecoveryTail_3_5 : Finset (Fin 17) := {3, 5, 13, 14, 15}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_recovery_3_5_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (3 : Fin 17) (5 : Fin 17) k =
+      if k = (13 : Fin 17) then ( {s059RecoveryTail_3_5} : Finset (Finset (Fin 17)) ) else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s059_recovery_3_5_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s059_recovery_3_5_card_optimized :
+    (s028SecondIndexSurvivors (3 : Fin 17) (5 : Fin 17)).card = 1 := by
+  classical
+  have hfun :
+      s058ThirdIndexSurvivors (3 : Fin 17) (5 : Fin 17) =
+        (fun k : Fin 17 => if k = (13 : Fin 17) then
+          ({s059RecoveryTail_3_5} : Finset (Finset (Fin 17))) else ∅) := by
+    funext k
+    exact s059_recovery_3_5_third_table k
+  rw [← s058_second_survivors_split (3 : Fin 17) (5 : Fin 17) (by decide)]
+  rw [hfun]
+  decide +kernel
+
+#print axioms PDIC.s059_recovery_3_5_card_optimized
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
 theorem s029_pair_3_5_survivor_card :
     (s028SecondIndexSurvivors (3 : Fin 17) (5 : Fin 17)).card = 1 := by
-  decide +kernel
+  exact s059_recovery_3_5_card_optimized
 
 #print axioms PDIC.s029_pair_3_5_survivor_card
 
