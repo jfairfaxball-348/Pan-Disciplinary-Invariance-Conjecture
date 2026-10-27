@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - diagnostic/s058-third-index-partition
+      - diagnostic/s059-remaining-positive-pairs
     paths:
       - '.github/workflows/s059-root-memory.yml'
       - 'scripts/s059_root_memory_attribution.sh'
