@@ -129,3 +129,37 @@ theorem s058_second_survivors_split (i j : Fin 17) (hij : i < j) :
 #print axioms PDIC.s058_second_survivors_split
 
 end PDIC
+
+
+namespace PDIC
+
+/-!
+S058 pilot (0,3): the sole surviving sorted tail is {0,3,7,10,14}.
+For third index k, at most C(16-k,2) candidates require genuine
+short-zero-free evaluation, versus C(13,3)=286 simultaneously.
+No theorem from the historical giant proof is used in this cardinal proof.
+-/
+
+def s058Tail03 : Finset (Fin 17) := {0, 3, 7, 10, 14}
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s058_pair_0_3_third_table (k : Fin 17) :
+    s058ThirdIndexSurvivors (0 : Fin 17) (3 : Fin 17) k =
+      if k = (7 : Fin 17) then ({s058Tail03} : Finset (Finset (Fin 17))) else ∅ := by
+  fin_cases k <;> decide +kernel
+
+#print axioms PDIC.s058_pair_0_3_third_table
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s058_pair_0_3_card_optimized :
+    (s028SecondIndexSurvivors (0 : Fin 17) (3 : Fin 17)).card = 1 := by
+  classical
+  rw [← s058_second_survivors_split (0 : Fin 17) (3 : Fin 17) (by decide)]
+  simp only [s058_pair_0_3_third_table]
+  decide +kernel
+
+#print axioms PDIC.s058_pair_0_3_card_optimized
+
+end PDIC
