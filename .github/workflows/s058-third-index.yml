@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - diagnostic/s058-third-index-partition
+      - diagnostic/s059-remaining-positive-pairs
   workflow_dispatch:
 permissions:
   contents: read
