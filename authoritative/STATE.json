@@ -1782,13 +1782,13 @@
   },
   "s058": {
     "date": "2026-10-27",
-    "status": "EXECUTED_PARTIALLY_GENUINE_THIRD_INDEX_PROOF_CANDIDATE_LEAN_HOSTED_IN_PROGRESS_AT_CHECKPOINT",
+    "status": "CONTINUED_S058_ISOLATED_IN_MODULE_OPTIMIZED_CARD_CANDIDATE_UNVERIFIED",
     "closeout": "sessions/S058_CLOSEOUT.md",
     "branch": "diagnostic/s058-third-index-partition",
     "parent_s057_certified_sha": "dd8d9d65c07b624b3881872783cda747abd54caa",
     "structural_candidate_sha": "164c260c72b736e39ef53fefe748e13972e034ba",
     "numeric_pair_0_3_candidate_sha": "78f4132061e02f45e5d036138d2c5451712008ec",
-    "latest_candidate_sha": "fe381f194918dbeccd41236aa56071ebfc07fb42",
+    "latest_candidate_sha": "33992aaaf1a824d66e1d556b59f90e51672dad17",
     "lean_file": "S058.lean",
     "finite_checker": "scripts/verify_s058_third_shards.py",
     "new_lemmas": [
@@ -1803,7 +1803,7 @@
     "latest_strict_run": 40467973824,
     "lean_pass_observed": false,
     "independent_leanchecker_pass_observed": false,
-    "actual_s024_proof_replaced": false,
+    "actual_s024_proof_replaced": true,
     "mathematical_statements_changed": false,
     "expected_survivors": {
       "0_3": [
@@ -1843,6 +1843,26 @@
     },
     "runner_cost_authorized": false,
     "palomar_full_pass": false,
-    "next_session": "S059"
+    "next_session": "S059",
+    "continuation": {
+      "date": "2026-10-27",
+      "initial_runs": [
+        40467512305,
+        40467818226,
+        40467973824
+      ],
+      "initial_status": "FAILED_LEAN_UNKNOWN_IDENTIFIER_MODULE_PRIVATE_S024_DEFINITIONS",
+      "repair": "S058_MATH_MOVED_INTO_S024_PRIVATE_SCOPE_AND_0_3_ORIGINAL_STATEMENT_UNCHANGED",
+      "branch": "diagnostic/s058-third-index-partition",
+      "proof_integration_sha": "2bee190c7a4f5fb7d24f2194eeaac9554adc4583",
+      "profile_workflow_sha": "bf97640c30c2f62edf12d986ebc359ebe1c8273e",
+      "kernel_profile_sha": "f64e13a4de8f76bee0c34dfb47d320665124ce77",
+      "latest_source_sha": "33992aaaf1a824d66e1d556b59f90e51672dad17",
+      "cleaned_obsolete_standalone": true,
+      "hosted_profile_run": 40477691356,
+      "latest_hosted_run": 40478141116,
+      "hosted_status_at_checkpoint": "IN_PROGRESS_NO_LEAN_PROOF_PASS_CLAIM",
+      "full_palomar_gate": "OPEN_NO_32GB_APPROVAL"
+    }
   }
 }
