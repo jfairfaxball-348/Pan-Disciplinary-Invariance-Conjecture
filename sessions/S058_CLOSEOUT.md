@@ -60,3 +60,18 @@ Historical full unconditional flagship is certified at exact compact RC3 [strict
 ## Next action
 
 Run the full installed `research/NEXT_SESSION_PROMPT.md` **S059** on the next owner command. Prioritise the **first real Lean compiler failure**, if any, on the new combinatorial proof, then per-root independent kernel memory. Only after a verified resource win should the optimized proof be integrated into `S024.lean` and extended to (1,3)/(2,3). Do not treat a green outer diagnostic workflow as whole-flagship success.
+
+
+---
+
+## 27 October S058 continuation — real Lean failure identified and structurally repaired (CI PENDING)
+
+The S058 original standalone `S058.lean` did **not** Lean-compile on any of three hosted runs: [40467512305](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40467512305), [40467818226](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40467818226), [40467973824](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40467973824). Read actual logs: S024 `lake build Challenge PDIC S024 Solution` **PASS**, but Lean rejected S058 references to module-private `s027LaterIndexPoints`, `s027SecondIndexShard` and `s028SecondIndexSurvivors`. Printed `sorryAx` for unelaborated dependent S058 declarations is a **failure**, NOT a proof. No mathematical contradiction observed.
+
+Unlike exposing broad package internals, repaired experiment by moving the entire actual third-index sorted-minimum and original-predicate cardinal-one candidate into **the defining S024 module itself**, immediately after `s028SecondIndexSurvivors`. The **unchanged original** `s028_pair_0_3_survivor_card` theorem statement is now proved by exact candidate helper `s058_pair_0_3_card_optimized` in the test branch only, while the original full theorem and independent Challenge statements are byte-unchanged. Replaced CI to build `Challenge PDIC S024 Solution`, check original Solution axioms, run four original finite checks plus `verify_s058_third_shards.py`, and then measure genuinely independent exported optimized original (0,3), structural and whole-flagship kernel roots under exact S057 9 GiB / 150 s limit. Profile script reports internal exit codes faithfully rather than treating a green outer workflow as certification.
+
+Important isolated branch commits: `2bee190c7a4f5fb7d24f2194eeaac9554adc4583` (move mathematics into S024), `bf97640c30c2f62edf12d986ebc359ebe1c8273e` (source-matched CI), `f64e13a4de8f76bee0c34dfb47d320665124ce77` (independent root profiler) and `33992aaaf1a824d66e1d556b59f90e51672dad17` (remove obsolete non-compiling separate module file). None has been promoted to PR24/main.
+
+New exact-source hosted validation runs: [40477691356](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40477691356) at `f64e13a4` and [40478141116](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40478141116) at `33992aaa`, **IN PROGRESS as observed**. The completed early failed runs must never be counted as PASS, and the new integrated candidate remains **not Lean verified / not independently kernel verified** until exact logs show proof source & per-root checker exit 0. The full Palomar gate remains unchanged: **NOT PASSED**.
+
+**Continuation requirement:** First read actual `40478141116` compiler errors (or success). Fix further math/tactic failures in the same original-module branch, before claiming memory reductions or moving to other pairs. Updated S059 prompt contains these exact run IDs and latest source.
