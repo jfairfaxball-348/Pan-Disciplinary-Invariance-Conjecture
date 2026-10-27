@@ -8,7 +8,7 @@ folder = Path("diagnostics")
 names = ("PDIC.Vertex", "PDIC.spiderAdj", "PDIC.namedSpider",
          "PDIC.GraphMIS", "PDIC.CapPoint", "PDIC.IsAdmissibleCap",
          "PDIC.fourGraphMISFamily", "PDIC.graphMIS_exact_probability_for_cap")
-result = {"source": "pinned Lean 4.35.0-rc2 imported compiled Challenge/PDIC oleans", "constants": {}}
+result = {"source": "pinned Lean 4.35.0-rc3 full separately compiled Challenge/Solution ConstantInfo", "constants": {}}
 for name in names:
     a = (folder / f"s043-challenge-{name}.txt").read_text()
     b = (folder / f"s043-pdic-{name}.txt").read_text()

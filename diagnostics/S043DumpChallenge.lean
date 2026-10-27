@@ -1,4 +1,6 @@
-import Challenge
+module
+
+import all Challenge
 import Lean
 
 open Lean Elab Command

@@ -3,6 +3,12 @@ on:
   push:
     branches:
       - diagnostic/s060-aggregate-repair
+    paths:
+      - '**.lean'
+      - 'scripts/s060_kernel_memory.py'
+      - 'scripts/verify_s060_forbidden.py'
+      - 'diagnostics/**'
+      - '.github/workflows/s060-structural-repair.yml'
   workflow_dispatch:
 permissions:
   contents: read

@@ -1,4 +1,6 @@
-import Solution
+module
+
+import all Solution
 import Lean
 
 open Lean Elab Command
