@@ -1,10 +1,10 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
-  "date": "2026-10-26",
-  "last_completed_session": "S057",
-  "next_session": "S058",
+  "date": "2026-10-27",
+  "last_completed_session": "S058",
+  "next_session": "S059",
   "next_session_executed": false,
-  "phase": "S057_TWO_SYMBOLIC_ZERO_CARD_KERNEL_PASS__NEW_OPPOSITE_PAIR_SOURCE_CI_PENDING__S058_INSTALLED",
+  "phase": "S058_GENUINE_THIRD_INDEX_PROOF_CANDIDATE_CI_PENDING__S057_OPPOSITE_PAIR_KERNEL_PASS__PALOMAR_FULL_OPEN",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "NOT_REGISTERED_NO_FULL_PASS__S052_OFFICIAL_FULL_40307527534_OOM_COMPARATOR_PEAK_16137502720_B_SIX_OOM_KILLS__S056_VERIFIED_SYMBOLIC_PAIR_0_1_0_2_PASS_40405047962__FULL_KERNEL_9GIB_AS_BOUND_EXIT134__S057_NEW_OPPOSITE_PAIR_RUN_40414801128_IN_PROGRESS__32GB_NOT_AUTHORIZED",
+  "palomar": "NOT_REGISTERED_NO_FULL_PASS__S052_FULL_40307527534_COMPARATOR_CGROUP_OOM_16137502720B__S057_PAIR_1_2_STRICT_AND_INDEPENDENT_KERNEL_PASS_40414801128_155732KIB__S057_FULL_KERNEL_9GIB_AS_EXIT134__S058_NEW_THIRD_INDEX_PROOF_RUNS_PENDING__32GB_NOT_AUTHORIZED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -105,9 +105,9 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S058_STRICT_KERNEL_COMPILE_S057_THEN_RESOURCE_OPTIMIZE_RESIDUAL_POSITIVE_SHARDS",
+  "next_session_target": "S059_STRICT_LEAN_VERIFY_S058_THIRD_PARTITION_AND_OPTIMIZED_0_3_CERTIFICATE_THEN_INTEGRATE_AND_EXTEND",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
-  "next_session_target_installed": "S058",
+  "next_session_target_installed": "S059",
   "session_control": {
     "0": "r",
     "1": "e",
@@ -168,8 +168,8 @@
     "date": "2026-10-16"
   },
   "next_session_target_file": "research/NEXT_SESSION_PROMPT.md",
-  "next_session_target_installed_date": "2026-10-26",
-  "next_session_target_source": "S052_CLOSEOUT",
+  "next_session_target_installed_date": "2026-10-27",
+  "next_session_target_source": "S058_CLOSEOUT",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -1767,12 +1767,82 @@
     "candidate_proof_commit": "5b7929be21e010c1b0796eb018e1c1b554b01fe0",
     "candidate_head_sha": "dd8d9d65c07b624b3881872783cda747abd54caa",
     "candidate_strict_profile_run": "40414801128",
-    "candidate_strict_profile_observed": "IN_PROGRESS_UNVERIFIED_AT_S057_CLOSEOUT",
+    "candidate_strict_profile_observed": "COMPLETE_SUCCESS_STRICT_AND_FINITE_WITH_PER_ROOT_KERNEL_SUCCESS_EXCEPT_FULL_9GIB_AS_LIMIT",
     "candidate_change": "s029_pair_1_2_survivor_card zero of opposite genuine projective points",
     "candidate_theorem_statement_changed": false,
     "official_palomar_full_pass": false,
     "external_submission": false,
     "closeout_path": "sessions/S057_CLOSEOUT.md",
-    "next_prompt_path": "research/NEXT_SESSION_PROMPT.md"
+    "next_prompt_path": "research/NEXT_SESSION_PROMPT.md",
+    "candidate_pair_1_2_kernel": "PASS_EXIT_0_RSS_155732_KIB",
+    "candidate_pair_0_3_kernel": "PASS_EXIT_0_RSS_5804080_KIB",
+    "candidate_pair_1_3_kernel": "PASS_EXIT_0_RSS_5802020_KIB",
+    "candidate_pair_2_3_kernel": "PASS_EXIT_0_RSS_5822316_KIB",
+    "candidate_flagship_kernel": "NOT_PASS_EXIT_134_RSS_7098708_KIB_9GIB_AS"
+  },
+  "s058": {
+    "date": "2026-10-27",
+    "status": "EXECUTED_PARTIALLY_GENUINE_THIRD_INDEX_PROOF_CANDIDATE_LEAN_HOSTED_IN_PROGRESS_AT_CHECKPOINT",
+    "closeout": "sessions/S058_CLOSEOUT.md",
+    "branch": "diagnostic/s058-third-index-partition",
+    "parent_s057_certified_sha": "dd8d9d65c07b624b3881872783cda747abd54caa",
+    "structural_candidate_sha": "164c260c72b736e39ef53fefe748e13972e034ba",
+    "numeric_pair_0_3_candidate_sha": "78f4132061e02f45e5d036138d2c5451712008ec",
+    "latest_candidate_sha": "fe381f194918dbeccd41236aa56071ebfc07fb42",
+    "lean_file": "S058.lean",
+    "finite_checker": "scripts/verify_s058_third_shards.py",
+    "new_lemmas": [
+      "s058_three_index_subsets_split",
+      "s058_second_index_split",
+      "s058_second_survivors_split",
+      "s058_pair_0_3_third_table",
+      "s058_pair_0_3_card_optimized"
+    ],
+    "first_strict_run": 40467512305,
+    "numeric_strict_run": 40467818226,
+    "latest_strict_run": 40467973824,
+    "lean_pass_observed": false,
+    "independent_leanchecker_pass_observed": false,
+    "actual_s024_proof_replaced": false,
+    "mathematical_statements_changed": false,
+    "expected_survivors": {
+      "0_3": [
+        [
+          0,
+          3,
+          7,
+          10,
+          14
+        ]
+      ],
+      "1_3": [
+        [
+          1,
+          3,
+          6,
+          8,
+          13
+        ]
+      ],
+      "2_3": [
+        [
+          2,
+          3,
+          6,
+          7,
+          12
+        ],
+        [
+          2,
+          3,
+          8,
+          10,
+          15
+        ]
+      ]
+    },
+    "runner_cost_authorized": false,
+    "palomar_full_pass": false,
+    "next_session": "S059"
   }
 }
