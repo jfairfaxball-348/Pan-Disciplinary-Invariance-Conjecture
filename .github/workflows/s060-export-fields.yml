@@ -1,0 +1,45 @@
+name: 'PDIC S060 diagnose actual exported comparator fields'
+on:
+  push:
+    branches: [diagnostic/s060-comparator-fields]
+permissions:
+  contents: read
+jobs:
+  export-fields:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean and dependencies
+        run: |
+          set -euo pipefail
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build defining module and independent Challenge only
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+          mkdir -p s060-export-fields
+          lake build Challenge PDIC > s060-export-fields/build.log 2>&1 || { tail -n 100 s060-export-fields/build.log; exit 1; }
+      - name: Export actual complete declaration metadata
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import subprocess
+          from pathlib import Path
+          from scripts.s060_kernel_memory import BASE
+          names = ['PDIC.Vertex','PDIC.spiderAdj','PDIC.namedSpider','PDIC.GraphMIS','PDIC.CapPoint','PDIC.IsAdmissibleCap','PDIC.fourGraphMISFamily','PDIC.graphMIS_exact_probability_for_cap']
+          for mod in ['Challenge','PDIC']:
+              with Path(f's060-export-fields/{mod}.ndjson').open('wb') as out:
+                  subprocess.run(['lake','env','leanexport',mod,'--',*BASE,*names],stdout=out,check=True)
+          PY
+          lake env lean --run diagnostics/S060ExportCompare.lean s060-export-fields/Challenge.ndjson s060-export-fields/PDIC.ndjson | tee s060-export-fields/comparison.log
+      - name: Save bounded evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s060-comparator-fields
+          path: |
+            s060-export-fields/build.log
+            s060-export-fields/comparison.log
