@@ -1,4 +1,4 @@
-name: 'PDIC S058 third-index proof and kernel validation'
+name: 'PDIC S058 integrated third-index proof and kernel profile'
 on:
   push:
     branches:
@@ -24,28 +24,44 @@ jobs:
           set -euo pipefail
           lake update
           lake exe cache get
-      - name: Reject untrusted proof terms in third-index candidate
+      - name: Reject untrusted original package proof terms
         run: |
           set -euo pipefail
-          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' S058.lean; then
-            echo 'Untrusted S058 source'; exit 1
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' PDIC.lean S024.lean Solution.lean; then
+            echo 'Untrusted S058 package proof'; exit 1
           fi
-      - name: Compile base unchanged all-cap flagship and third-index mathematical partition
+      - name: Compile unchanged complete flagship and modified S024 proof
         run: |
           set -euo pipefail
           mkdir -p s058-evidence
           git rev-parse HEAD > s058-evidence/source-sha.txt
-          lake build Challenge PDIC S024 Solution 2>&1 | tee s058-evidence/build.log
-          lake env lean Solution.lean 2>&1 | tee s058-evidence/axioms.log
-          lake env lean S058.lean 2>&1 | tee s058-evidence/third-index.log
-          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s058-evidence/{axioms,third-index}.log; then
+          lake build Challenge PDIC S024 Solution > s058-evidence/build.log 2>&1 || {
+            tail -n 120 s058-evidence/build.log
             exit 1
+          }
+          lake env lean Solution.lean > s058-evidence/axioms.log 2>&1 || {
+            tail -n 90 s058-evidence/axioms.log
+            exit 1
+          }
+          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s058-evidence/{build,axioms}.log; then
+            echo 'Unapproved axiom'; exit 1
           fi
-      - name: Save isolated proof diagnostics
+          grep -F 'palomar_complete_probability_and_spider' s058-evidence/axioms.log | tail -n 1
+      - name: Independent finite original-predicate audits
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_s058_third_shards.py
+          python3 scripts/verify_s024_normal_form.py
+          python3 scripts/verify_s024_orbit.py
+          python3 scripts/verify_s025_basis.py
+          python3 scripts/verify_s023_all_caps.py
+      - name: Profile independent exported Lean kernel roots
+        run: bash scripts/s058_integrated_kernel_profile.sh
+      - name: Save exact-source proof and memory evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: s058-third-index-source-check
+          name: s058-integrated-third-index-evidence
           retention-days: 14
           if-no-files-found: warn
           path: s058-evidence/**
