@@ -4,7 +4,7 @@
   "last_completed_session": "S059",
   "next_session": "S060",
   "next_session_executed": false,
-  "phase": "S059_FIVE_MORE_GENUINE_POSITIVE_PAIR_SHARDS_COMMITTED_LEAN_HOSTED_PENDING_AND_FIRST_INDEX_PROFILER_RUNNING__FULL_FLAGSHIP_9GIB_BAD_ALLOC_OPEN",
+  "phase": "S059_READBACK_8_POSITIVE_PAIR_KERNEL_CHECKED__COMBINED_NORMALIZED_CARD_9GIB_AND_FULL_FLAGSHIP_11GIB_AS_BAD_ALLOC__TWO_NEW_ISOLATED_TESTS_RUNNING__S060_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "NOT_REGISTERED_NO_FULL_PASS__S052_40307527534_16GIB_COMPARATOR_OOM__S059_40495214089_STRICT_FULL_BUILD_AND_THREE_PAIRS_INDEPENDENT_KERNEL_PASS__FULL_FLAGSHIP_9GIB_AS_EXIT134__S059_REMAINING_FIVE_CANDIDATE_AND_ATTRIBUTION_PENDING__32GB_NOT_AUTHORIZED",
+  "palomar": "NOT_REGISTERED_NO_FULL_PASS__S052_STANDARD_16GIB_COMPARATOR_OOM__S059_ALL_8_INDIVIDUAL_POSITIVE_PAIR_KERNELS_PASS_BUT_NORMALIZED_AND_FULL_FLAGSHIP_AS_BAD_ALLOC__11GIB_AS_FLAGSHIP_EXIT134__32GB_NOT_AUTHORIZED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -1958,6 +1958,88 @@
     "registry_submitted": false,
     "paid_32Gib_authorized": false,
     "closeout": "sessions/S059_CLOSEOUT.md",
-    "next": "research/NEXT_SESSION_PROMPT.md"
+    "next": "research/NEXT_SESSION_PROMPT.md",
+    "readback": {
+      "date": "2026-10-27",
+      "five_pair_run": 40505373097,
+      "five_pair_sha": "df8692c7884742dfa2c3fefc24bd45fb8cf6547a",
+      "five_pair_strict_lean": "PASS",
+      "five_pair_finite": "PASS",
+      "new_independent_original_pair_roots": {
+        "pair_0_4": {
+          "rc": 0,
+          "rss_kib": 886808
+        },
+        "pair_0_5": {
+          "rc": 0,
+          "rss_kib": 723488
+        },
+        "pair_0_6": {
+          "rc": 0,
+          "rss_kib": 530724
+        },
+        "pair_1_4": {
+          "rc": 0,
+          "rss_kib": 888836
+        },
+        "pair_2_4": {
+          "rc": 0,
+          "rss_kib": 893388
+        }
+      },
+      "five_pair_full_flagship": {
+        "rc": 134,
+        "rss_kib": 7105396,
+        "vm_limit_gib": 9,
+        "error": "std::bad_alloc"
+      },
+      "attribution_run": 40505055650,
+      "attribution_sha": "3d1ca496cf196e391cdbd099fd71a0f31e7a6554",
+      "root_results": {
+        "first_0": {
+          "rc": 0,
+          "rss_kib": 3657092
+        },
+        "first_1": {
+          "rc": 0,
+          "rss_kib": 3657224
+        },
+        "first_2": {
+          "rc": 0,
+          "rss_kib": 3669208
+        },
+        "first_3": {
+          "rc": 0,
+          "rss_kib": 3663464
+        },
+        "normalized_card": {
+          "rc": 134,
+          "rss_kib": 7090948,
+          "vm_limit_gib": 9
+        },
+        "flagship": {
+          "rc": 134,
+          "rss_kib": 9197204,
+          "vm_limit_gib": 11
+        }
+      },
+      "interpretation": "ALL_ROOTS_INDIVIDUALLY_KERNEL_PASS_EXCEPT_COMBINED_NORMALIZED_CARD_AND_FLAGSHIP_BAD_ALLOC_AT_CAPPED_VIRTUAL_MEMORY",
+      "new_matched_run": {
+        "run": 40508917722,
+        "sha": "e2303b6dac6d0cd7ca3a12f0b1c30279e8d9011c",
+        "status_at_readback": "IN_PROGRESS"
+      },
+      "additional_positive_candidate": {
+        "branch": "diagnostic/s059-recovery-late-pairs",
+        "source_sha": "4a91ea2c3af6eaaf6b1f2212d9f325d081aff756",
+        "pairs": [
+          "(1,5)",
+          "(1,7)",
+          "(3,5)"
+        ],
+        "run": 40509171492,
+        "status_at_readback": "IN_PROGRESS_NOT_KERNEL_VERIFIED"
+      }
+    }
   }
 }
