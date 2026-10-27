@@ -17,7 +17,7 @@ base=(
 checker="$(lean --print-prefix)/bin/leanchecker"
 test -x "$checker"
 limit_bytes=$((9*1024*1024*1024))
-cases=(structural_third optimized_pair_0_3 original_pair_0_3 optimized_pair_1_3 original_pair_1_3 optimized_pair_2_3 original_pair_2_3 original_pair_0_4 original_pair_0_5 original_pair_0_6 original_pair_1_4 original_pair_2_4 flagship)
+cases=(structural_third optimized_pair_0_3 original_pair_0_3 optimized_pair_1_3 original_pair_1_3 optimized_pair_2_3 original_pair_2_3 original_pair_0_4 original_pair_0_5 original_pair_0_6 original_pair_1_4 original_pair_2_4 original_pair_1_5 original_pair_1_7 original_pair_3_5 flagship)
 for case_name in "${cases[@]}"; do
   roots=("${base[@]}")
   case "$case_name" in
@@ -45,6 +45,12 @@ for case_name in "${cases[@]}"; do
       roots+=("_private.S024.0.PDIC.s029_pair_1_4_survivor_card") ;;
     original_pair_2_4)
       roots+=("_private.S024.0.PDIC.s029_pair_2_4_survivor_card") ;;
+    original_pair_1_5)
+      roots+=("_private.S024.0.PDIC.s029_pair_1_5_survivor_card") ;;
+    original_pair_1_7)
+      roots+=("_private.S024.0.PDIC.s029_pair_1_7_survivor_card") ;;
+    original_pair_3_5)
+      roots+=("_private.S024.0.PDIC.s029_pair_3_5_survivor_card") ;;
     flagship)
       roots+=("PDIC.palomar_complete_probability_and_spider") ;;
   esac
