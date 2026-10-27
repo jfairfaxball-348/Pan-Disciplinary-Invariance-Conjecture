@@ -1,0 +1,78 @@
+name: 'PDIC S060 structural search and full independent roots'
+on:
+  push:
+    branches:
+      - diagnostic/s060-aggregate-repair
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  strict-repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install exact pinned Lean and Mathlib
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          cat lean-toolchain
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore pinned dependencies
+        run: |
+          lake update
+          lake exe cache get
+      - name: Compile original theorem and reject unapproved axioms
+        run: |
+          set -euo pipefail
+          mkdir -p s060-evidence/repaired
+          if grep -nE '(^|[^A-Za-z])(sorry|admit|native_decide)([^A-Za-z]|$)|^[[:space:]]*(axiom|constant)[[:space:]]' PDIC.lean S024.lean Solution.lean; then exit 1; fi
+          lake build Challenge PDIC S024 Solution > s060-evidence/repaired/build.log 2>&1 || {
+            tail -n 100 s060-evidence/repaired/build.log; exit 1;
+          }
+          lake env lean Solution.lean > s060-evidence/repaired/axioms.log
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          text = Path('s060-evidence/repaired/axioms.log').read_text()
+          assert 'PDIC.palomar_complete_probability_and_spider' in text
+          groups = re.findall(r'depends on axioms: \[([^\]]*)\]', text)
+          assert groups, text
+          for group in groups:
+              names = {s.strip() for s in group.split(',') if s.strip()}
+              assert names <= {'propext', 'Classical.choice', 'Quot.sound'}, names
+          PY
+      - name: Compare all eight independently compiled semantic constants
+        run: |
+          set -euo pipefail
+          lake env lean diagnostics/S043DumpChallenge.lean
+          lake env lean diagnostics/S043DumpPDIC.lean
+          python3 diagnostics/s043_compare.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          rows = json.loads(Path('diagnostics/S043_EXPORTED_CONST_DIFF.json').read_text())['constants']
+          assert len(rows) == 8
+          assert all(r['equal_repr'] for r in rows.values()), rows
+          PY
+      - name: Independent exact finite-predicate audits
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_s060_forbidden.py
+          python3 scripts/verify_s058_third_shards.py
+          python3 scripts/verify_s024_normal_form.py
+          python3 scripts/verify_s024_orbit.py
+          python3 scripts/verify_s025_basis.py
+          python3 scripts/verify_s023_all_caps.py
+      - name: Independently check complete normalized-card and flagship closures
+        run: python3 scripts/s060_kernel_memory.py --label repaired-hosted --cases normalized flagship --vm 9 --timeout 540
+      - name: Retain exact-source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s060-structural-search-evidence
+          retention-days: 14
+          path: |
+            s060-evidence/**
+            diagnostics/S043_EXPORTED_CONST_DIFF.json

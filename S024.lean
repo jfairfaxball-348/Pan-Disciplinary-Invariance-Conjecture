@@ -2885,37 +2885,209 @@ def s030_expected_first (i : Fin 17) : ℕ :=
   else if i = (3 : Fin 17) ∨ i = (4 : Fin 17) ∨ i = (8 : Fin 17) then 1
   else 0
 
+/-! S060: replace full point-powerset reductions in the aggregate proof
+with a sound, staged index search. Every genuine short-zero-free tail avoids
+54 independently checked local obstructions. The search prunes each partial
+list before adding another index, preserving the original predicate. -/
+
+theorem s060_short_free_mono {U V : Finset CapPoint} (hUV : U ⊆ V)
+    (hV : s027ShortZeroFree V = true) : s027ShortZeroFree U = true := by
+  unfold s027ShortZeroFree at hV ⊢
+  simp only [Bool.and_eq_true, decide_eq_true_eq] at hV ⊢
+  have hzero (n : ℕ)
+      (hn : ((V.powersetCard n).filter (fun s =>
+        (∑ p ∈ s, p) = (0 : CapPoint))).card = 0) :
+      ((U.powersetCard n).filter (fun s =>
+        (∑ p ∈ s, p) = (0 : CapPoint))).card = 0 := by
+    apply Finset.card_eq_zero.mpr
+    apply Finset.eq_empty_of_forall_notMem
+    intro T hT
+    obtain ⟨hT, hz⟩ := Finset.mem_filter.mp hT
+    have hmem : T ∈ (V.powersetCard n).filter (fun s =>
+        (∑ p ∈ s, p) = (0 : CapPoint)) :=
+      Finset.mem_filter.mpr ⟨Finset.powersetCard_mono hUV hT, hz⟩
+    rw [Finset.card_eq_zero.mp hn] at hmem
+    exact Finset.notMem_empty _ hmem
+  exact ⟨⟨hzero 1 hV.1.1, hzero 2 hV.1.2⟩, hzero 3 hV.2⟩
+
+def s060ForbiddenLists : List (List (Fin 17)) :=
+  [ [0, 1],
+  [0, 2],
+  [0, 16],
+  [1, 2],
+  [1, 15],
+  [2, 14],
+  [3, 4],
+  [3, 11],
+  [3, 16],
+  [4, 11],
+  [4, 15],
+  [5, 8],
+  [5, 12],
+  [5, 16],
+  [6, 10],
+  [6, 14],
+  [6, 15],
+  [6, 16],
+  [7, 9],
+  [7, 13],
+  [7, 15],
+  [8, 12],
+  [8, 14],
+  [9, 13],
+  [9, 14],
+  [10, 11],
+  [10, 12],
+  [10, 13],
+  [0, 3, 15],
+  [0, 5, 14],
+  [0, 6, 13],
+  [0, 7, 12],
+  [0, 9, 11],
+  [1, 4, 16],
+  [1, 5, 13],
+  [1, 6, 12],
+  [1, 7, 14],
+  [1, 8, 11],
+  [2, 3, 13],
+  [2, 4, 12],
+  [2, 6, 11],
+  [2, 8, 16],
+  [2, 9, 15],
+  [3, 5, 10],
+  [3, 6, 9],
+  [3, 7, 8],
+  [4, 5, 9],
+  [4, 6, 8],
+  [4, 7, 10],
+  [5, 6, 7],
+  [8, 9, 10],
+  [11, 12, 16],
+  [11, 13, 15],
+  [12, 13, 14] ]
+
+def s060AllowedList (I : List (Fin 17)) : Bool :=
+  !s060ForbiddenLists.any (fun B => B.all (fun b => I.contains b))
+
+def s060Step (S : List (List (Fin 17))) : List (List (Fin 17)) :=
+  S.flatMap (fun I =>
+    (((List.finRange 17).filter (fun j => I.all (fun k => decide (k < j)))).map
+      (fun j => j :: I)).filter s060AllowedList)
+
+def s060Layer : ℕ → List (List (Fin 17))
+  | 0 => [[]]
+  | n + 1 => s060Step (s060Layer n)
+
+def s060Allowed (I : Finset (Fin 17)) : Bool :=
+  !s060ForbiddenLists.any (fun B => decide (B.toFinset ⊆ I))
+
+theorem s060_allowedList_eq (L : List (Fin 17)) :
+    s060AllowedList L = s060Allowed L.toFinset := by
+  unfold s060AllowedList s060Allowed
+  apply congrArg Bool.not
+  apply congrArg (fun p => s060ForbiddenLists.any p)
+  funext B
+  apply Bool.eq_iff_iff.mpr
+  simp [List.all_eq_true, Finset.subset_iff]
+
+theorem s060_allowed_mono {I J : Finset (Fin 17)} (hIJ : I ⊆ J)
+    (hJ : s060Allowed J = true) : s060Allowed I = true := by
+  simp only [s060Allowed, Bool.not_eq_true', List.any_eq_false,
+    decide_eq_true_eq] at hJ ⊢
+  intro B hB hBI
+  exact hJ B hB (hBI.trans hIJ)
+
+theorem s060_layer_complete (n : ℕ) :
+    ∀ I : Finset (Fin 17), I.card = n → s060Allowed I = true →
+      ∃ L ∈ s060Layer n, L.toFinset = I := by
+  induction n with
+  | zero =>
+    intro I hcard _
+    have he : I = ∅ := Finset.card_eq_zero.mp hcard
+    subst I
+    exact ⟨[], by simp [s060Layer], by simp⟩
+  | succ n ih =>
+    intro I hcard hgood
+    have hne : I.Nonempty := Finset.card_pos.mp (by omega)
+    let j := I.max' hne
+    have hj : j ∈ I := Finset.max'_mem I hne
+    have hRcard : (I.erase j).card = n := by
+      rw [Finset.card_erase_of_mem hj, hcard]
+      omega
+    have hRgood := s060_allowed_mono (Finset.erase_subset j I) hgood
+    obtain ⟨L, hL, hLeq⟩ := ih (I.erase j) hRcard hRgood
+    have hJL : (j :: L).toFinset = I := by
+      simp only [List.toFinset_cons, hLeq, Finset.insert_erase hj]
+    refine ⟨j :: L, ?_, hJL⟩
+    change j :: L ∈ s060Step (s060Layer n)
+    apply List.mem_flatMap.mpr
+    refine ⟨L, hL, ?_⟩
+    apply List.mem_filter.mpr
+    constructor
+    · apply List.mem_map.mpr
+      refine ⟨j, List.mem_filter.mpr ⟨by simp, ?_⟩, rfl⟩
+      apply List.all_eq_true.mpr
+      intro k hk
+      apply decide_eq_true
+      have hkR : k ∈ I.erase j := by
+        rw [← hLeq]
+        exact List.mem_toFinset.mpr hk
+      obtain ⟨hkne, hkI⟩ := Finset.mem_erase.mp hkR
+      exact lt_of_le_of_ne (Finset.le_max' I k hkI) hkne
+    · rw [s060_allowedList_eq, hJL]
+      exact hgood
+
+set_option maxRecDepth 16384 in
+set_option maxHeartbeats 20000000 in
+theorem s060_forbidden_check :
+    (s060ForbiddenLists.all (fun B =>
+      !s027ShortZeroFree (s024BasisSet ∪ B.toFinset.image s027FreePointAt))) = true := by
+  decide +kernel
+
+theorem s060_forbidden_certified (B : List (Fin 17)) (hB : B ∈ s060ForbiddenLists) :
+    s027ShortZeroFree (s024BasisSet ∪ B.toFinset.image s027FreePointAt) = false := by
+  simpa only [Bool.not_eq_true'] using List.all_eq_true.mp s060_forbidden_check B hB
+
+theorem s060_survivor_allowed (I : Finset (Fin 17))
+    (hI : s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt) = true) :
+    s060Allowed I = true := by
+  simp only [s060Allowed, Bool.not_eq_true', List.any_eq_false, decide_eq_true_eq]
+  intro B hB hsub
+  have hmono : s024BasisSet ∪ B.toFinset.image s027FreePointAt ⊆
+      s024BasisSet ∪ I.image s027FreePointAt :=
+    Finset.union_subset_union (Finset.Subset.refl _)
+      (Finset.image_subset_image hsub)
+  have hgood := s060_short_free_mono hmono hI
+  rw [s060_forbidden_certified B hB] at hgood
+  contradiction
+
+def s060FastCandidates : Finset (Finset (Fin 17)) :=
+  ((s060Layer 5).map List.toFinset).toFinset
+
+theorem s060_survivors_subset_fast : s029IndexedSurvivors ⊆ s060FastCandidates := by
+  intro I hI
+  obtain ⟨hc, hf⟩ := Finset.mem_filter.mp hI
+  have hcard : I.card = 5 := (Finset.mem_powersetCard.mp hc).2
+  obtain ⟨L, hL, hLI⟩ := s060_layer_complete 5 I hcard (s060_survivor_allowed I hf)
+  exact List.mem_toFinset.mpr (List.mem_map.mpr ⟨L, hL, hLI⟩)
+
+set_option maxRecDepth 32768 in
+set_option maxHeartbeats 100000000 in
+theorem s060_fast_card : s060FastCandidates.card = 18 := by
+  decide +kernel
+
+#print axioms PDIC.s060_forbidden_certified
+#print axioms PDIC.s060_survivors_subset_fast
+#print axioms PDIC.s060_fast_card
+
 theorem s030_normalized_survivor_card :
     s027NormalizedAdmissibleTails.card = 18 := by
-  classical
-  have hfirst (i : Fin 17) :
-      (s027FirstIndexSurvivors i).card = s030_expected_first i := by
-    fin_cases i
-    · simpa [s030_expected_first] using s030_first_0_survivor_card
-    · simpa [s030_expected_first] using s030_first_1_survivor_card
-    · simpa [s030_expected_first] using s030_first_2_survivor_card
-    · simpa [s030_expected_first] using s030_first_3_survivor_card
-    · simpa [s030_expected_first] using (show (s027FirstIndexSurvivors (4 : Fin 17)).card = 1 from (by simpa only [s027FirstIndexSurvivors, s027MidFirstIndexSurvivors] using s027_mid_shard_4_survivor_card))
-    · simpa [s030_expected_first] using (show (s027FirstIndexSurvivors (5 : Fin 17)).card = 0 from (by simpa only [s027FirstIndexSurvivors, s027MidFirstIndexSurvivors] using s027_mid_shard_5_survivor_card))
-    · simpa [s030_expected_first] using (show (s027FirstIndexSurvivors (6 : Fin 17)).card = 0 from (by simpa only [s027FirstIndexSurvivors, s027MidFirstIndexSurvivors] using s027_mid_shard_6_survivor_card))
-    · simpa [s030_expected_first] using s027_shard_7_survivor_card
-    · simpa [s030_expected_first] using s027_shard_8_survivor_card
-    · simpa [s030_expected_first] using s027_shard_9_survivor_card
-    · simpa [s030_expected_first] using s027_shard_10_survivor_card
-    · simpa [s030_expected_first] using s027_shard_11_survivor_card
-    · simpa [s030_expected_first] using s027_shard_12_survivor_card
-    · simpa [s030_expected_first] using s027_shard_13_survivor_card
-    · simpa [s030_expected_first] using s027_shard_14_survivor_card
-    · simpa [s030_expected_first] using s027_shard_15_survivor_card
-    · simpa [s030_expected_first] using s027_shard_16_survivor_card
-  calc
-    s027NormalizedAdmissibleTails.card = s029IndexedSurvivors.card :=
-      s029_normalized_card_eq_indexed
-    _ = ∑ i : Fin 17, (s027FirstIndexSurvivors i).card :=
-      s029_indexed_card_eq_first_sum
-    _ = ∑ i : Fin 17, s030_expected_first i :=
-      Finset.sum_congr rfl (by intro i _; exact hfirst i)
-    _ = 18 := by decide +kernel
+  apply Nat.le_antisymm
+  · rw [s029_normalized_card_eq_indexed]
+    exact (Finset.card_le_card s060_survivors_subset_fast).trans_eq s060_fast_card
+  · have hsub := Finset.card_le_card s027_eighteen_tails_subset_filtered_candidates
+    have h18 : s025NormalizedTails.card = 18 := by decide +kernel
+    omega
 
 set_option maxRecDepth 16384 in
 set_option maxHeartbeats 20000000 in
