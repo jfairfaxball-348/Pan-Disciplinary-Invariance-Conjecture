@@ -1,0 +1,62 @@
+# PDIC S058 — sorted-third-index proof-memory experiment
+
+**27 October 2026. EXECUTED PARTIALLY.** This is a new substantive mathematical certificate-engineering trial, *not* a Palomar preflight PASS or completed proof-memory fix. S059 installed for exact-source Lean, independent kernel profiling and integration follow-through. No weakening, forced merge, registry submission, unapproved axioms or paid runner use.
+
+## Definitive inherited S057 evidence (observed in S058)
+
+At isolated proof SHA `dd8d9d65c07b624b3881872783cda747abd54caa`, the [completed S057 strict/profile run 40414801128](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40414801128) is **SUCCESS**: built `Solution` and `Challenge`, printed the original full theorem's only axioms `propext`, `Classical.choice`, `Quot.sound`, ran independent finite enumerators, and uploaded [artifact 12695043663](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40414801128). A workflow-wide SUCCESS does not by itself imply individual checker success.
+
+Each original-predicate per-root exported standalone Lean checker used identical 9 GiB *virtual-address-space* cap and 150s deadline:
+
+| Root | Export bytes | checker exit | RSS KiB | elapsed |
+| --- | ---: | ---: | ---: | --- |
+| pair 0–1 | 22,759,415 | 0 | 155,652 | 0:01.56 |
+| pair 0–2 | 22,759,426 | 0 | 155,920 | 0:01.50 |
+| pair 0–3 | 22,165,963 | 0 | 5,804,080 | 0:25.18 |
+| pair 1–2 | 22,753,477 | 0 | 155,732 | 0:01.56 |
+| pair 1–3 | 22,165,963 | 0 | 5,802,020 | 0:25.64 |
+| pair 2–3 | 22,165,971 | 0 | 5,822,316 | 0:25.85 |
+| complete flagship | 77,108,153 | 134 | 7,098,708 | 1:41.80 |
+
+The (1,2) zero-pair proof is **strict compiler PASS and individually independent kernel PASS**, and the full root still hits `std::bad_alloc` at 9 GiB address limit; neither a mathematical disproof nor standard-memory Palomar FULL PASS.
+
+## New genuine sorted-third-index mathematics
+
+Created isolated branch [diagnostic/s058-third-index-partition](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/diagnostic/s058-third-index-partition), starting from immutable S057 `dd8d9d65`, leaving unmerged PR #24 and the certified RC3 `ca4e6d7b` alone.
+
+The new `S058.lean` defines `s058LaterThird`, `s058ThirdIndexShard` and `s058ThirdIndexSurvivors` using the **same** original `s027ShortZeroFree (s024BasisSet ∪ I.image s027FreePointAt)` predicate. It supplies explicit sorted-minimum combinatorial proofs of:
+* `s058_three_index_subsets_split`: partition of all sorted residual triples into pieces with a fixed minimum `k`, whose residual search is `powersetCard 2`.
+* `s058_second_index_split`: transport that partition to the unchanged original pair shard.
+* `s058_second_survivors_split`: predicate-preserving identity for the union of genuine third-index surviving sets.
+
+On a second immutable candidate, `s058_pair_0_3_third_table` and `s058_pair_0_3_card_optimized` attempt a *new* proof of the exact unchanged (0,3) card-one statement using 17 third-index cases (only third `k=7` survives) in place of one enormous 286-candidate `decide +kernel`. At `k=4` the largest child has at most 66 candidate tails; children decrease thereafter. This is a real proof candidate, not a new mathematical assumption.
+
+Actual GitHub commits:
+* `0c74184d8fac60bced5856cb684e2f0e936ac531`: structural Lean candidates.
+* `164c260c72b736e39ef53fefe748e13972e034ba`: pinned-source CI workflow.
+* `78f4132061e02f45e5d036138d2c5451712008ec`: (0,3) third-table/card candidate.
+* `fe381f194918dbeccd41236aa56071ebfc07fb42`: standalone independent Python checker `scripts/verify_s058_third_shards.py`.
+
+The independent Python arithmetic reproduced the 17 pinned points, three canonical basis points, original one/two/three-point zero-sum conditions and gave exactly these positive survivors:
+* (0,3): `{0,3,7,10,14}` (minimum remaining index `k=7`);
+* (1,3): `{1,3,6,8,13}` (`k=6`);
+* (2,3): `{2,3,6,7,12}` and `{2,3,8,10,15}` (`k=6,8`).
+
+This **FINITE_CHECKED** analysis alone does **not** verify the new Lean candidate, its independent exported kernel closure or the eventual 16 GiB Comparator. The script is committed for reproducibility.
+
+## Hosted test visibility at closeout
+
+Three dedicated [S058 GitHub Actions runs](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/workflows/s058-third-index.yml) were started:
+* [40467512305](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40467512305), first three structural proofs, exact `164c260c`;
+* [40467818226](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40467818226), new card-one candidate, exact `78f41320`;
+* [40467973824](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40467973824), additional checked-in Python audit, exact `fe381f19`.
+
+These dedicated exact-source Lean workflows were **IN PROGRESS** at this S058 checkpoint; none is credited PASS here. Separate basic `finite-lead-check` workflows passed on earlier candidate commits, but they do not compile `S058.lean`. The dedicated workflow currently tests `lake build Challenge PDIC S024 Solution` and `lake env lean S058.lean` with `#print axioms`; it has *not yet* run separate `leanchecker --from-export` against the new optimized root. Do not count this as completed resource reduction.
+
+## Locked publication and verification gates
+
+Historical full unconditional flagship is certified at exact compact RC3 [strict 39774379133](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/39774379133), proof SHA `ca4e6d7bfd2f2e886720afc50e194d9e13942c5e`. Original theorem is not changed; genuine all-eight-cap 8! probability and named spider remain required. Latest official full [40307527534](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40307527534) failed Comparator due to 16 GiB cgroup OOM. **No Palomar FULL PASS, no registration, no permission to pay for 32 GiB, and no merge.** 
+
+## Next action
+
+Run the full installed `research/NEXT_SESSION_PROMPT.md` **S059** on the next owner command. Prioritise the **first real Lean compiler failure**, if any, on the new combinatorial proof, then per-root independent kernel memory. Only after a verified resource win should the optimized proof be integrated into `S024.lean` and extended to (1,3)/(2,3). Do not treat a green outer diagnostic workflow as whole-flagship success.
