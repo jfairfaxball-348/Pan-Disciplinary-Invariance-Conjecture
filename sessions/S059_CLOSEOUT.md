@@ -64,3 +64,42 @@ To measure whether the five verified pair optimizations now improve first-index 
 Also created an additional **isolated branch** `diagnostic/s059-recovery-late-pairs` and proved, as **UNVERIFIED LEAN CANDIDATES**, three further direct genuine sorted-third-index original-predicate certificates with unchanged theorem statements: pair (1,5) unique tail {1,5,6,9,11}, pair (1,7) unique tail {1,7,8,10,16}, and pair (3,5) unique tail {3,5,13,14,15}. Lean source commit `347e20a918eb1ab54245d708e1f974eba0b791b5`; expanded independent finite audit `6707f4df901dc8df20d8ef757700ac7767be5ec6`; independent root profiler `e985904adc9dd6f043f496be0488cb7096ff2bc3`; latest CI launch SHA `4a91ea2c3af6eaaf6b1f2212d9f325d081aff756`. Strict original flagship compiler, all original certificates, independent kernel roots and 9GiB virtual full flagship [run 40509171492](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40509171492) **IN PROGRESS**, not claimed verified. Both experiments are diagnostic; neither changes PR24, main proof or Palomar submission.
 
 Next actual step: retrieve 40508917722 and 40509171492 exact completed job logs, repair actual new Lean errors if found; compare first and combined 9GiB / whole flagship 11GiB roots on matching sources; only promote proof optimizations if real verifier PASS. **No Palomar FULL pass and no registration**.
+
+
+---
+
+## FINAL DEFINITIVE S059 CLOSEOUT: both later run failures retrieved, 27 October 2026
+
+**Owner instructed explicit session close and urgent deep root-cause repair in next S060. S059 is CLOSED.** The last two runs cited as pending above are now finished and **failed overall**, with the exact, reproducible interpretation below. The former provisional "IN PROGRESS" entries are retained only as chronology, superseded by this final record.
+
+### [S059 recovery #14, run 40509171492](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40509171492)
+
+Exact-source branch `diagnostic/s059-recovery-late-pairs`; immutable run SHA `4a91ea2c3af6eaaf6b1f2212d9f325d081aff756`. Strict exact `lake build Challenge PDIC S024 Solution` **PASS**; printed permitted axiom check **PASS**, rejection scan **PASS**, independent true finite-predicate audits **PASS**. Standalone `leanexport Solution` and real `leanchecker --from-export` of all tested **individual** optimized and original pair roots **PASS** under 9 GiB virtual-address-space limit. Newly tested named original positive roots:
+- (1,5) checker exit 0, peak 723,100 KiB RSS, exported 25,134,823 bytes;
+- (1,7) checker exit 0, peak 426,304 KiB RSS, exported 25,134,818 bytes;
+- (3,5) checker exit 0, peak 725,480 KiB RSS, exported 25,134,823 bytes.
+Earlier (0,3),(1,3),(2,3),(0,4),(0,5),(0,6),(1,4),(2,4) all also checker **exit 0**, peak each 0.5–1.1 million KiB. No original theorem statement changed or external axioms added. The **full original flagship** independently exported at **78,845,839 bytes** but Leanchecker **exit 134 `std::bad_alloc`**, max RSS **7,103,592 KiB**, 1:45.26, under 9 GiB virtual-address-space limit. Workflow correctly **FAILED** at full-root profile stage, not compilation.
+
+### [S060 five-pair matched memory diagnostic #2, run 40508917722](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40508917722)
+
+Exact-source branch `diagnostic/s059-remaining-positive-pairs`, immutable run SHA `e2303b6dac6d0cd7ca3a12f0b1c30279e8d9011c`. All six independent root jobs compiled original complete source successfully. Result per isolated process:
+| Kernel export root | AS limit | Result | Peak RSS (KiB) | Export (bytes) |
+|---|---:|---:|---:|---:|
+| `s030_first_0_survivor_card` | 9 GiB | 0 PASS | 1,096,208 | 26,803,914 |
+| `s030_first_1_survivor_card` | 9 GiB | 0 PASS | 2,685,920 | 26,496,404 |
+| `s030_first_2_survivor_card` | 9 GiB | 0 PASS | 2,692,340 | 26,368,200 |
+| `s030_first_3_survivor_card` | 9 GiB | 0 PASS | 3,663,360 | 25,878,240 |
+| **`s030_normalized_survivor_card`** | **9 GiB** | **134 bad_alloc** | **7,091,076** | **30,210,863** |
+| **`PDIC.palomar_complete_probability_and_spider`** | **11 GiB** | **134 bad_alloc** | **9,204,044** | **78,420,844** |
+
+**Empirical bottleneck:** after changing 11 individual genuine positive pair proof certificates, every isolated first-index theorem passes; the *combined* normalized card root itself still fails, before even asking the checker to verify the full flagship; the flagship separately fails at 11 GiB virtual AS. This strongly implicates cumulative independent-checker resource amplification from **assembling several large first-index closures**. It does **not** yet prove whether the kernel stores large cumulative dependencies, re-reduces proofs, duplicates terms in the aggregation theorem, or has an avoidable export/runner resource configuration problem. Those are hypotheses for falsifiable tests, not findings. S059's repeated pair optimizations were real but **did not change the combined pass/fail**.
+
+### Urgent mandatory next move
+
+The owner expressly requires **no further blind pair-by-pair optimization loops**. S060 must first discriminate two architectures with exact reproducible tests:
+1. Independently export and check the *set of existing first-index theorem constants together* (pairs 0+1, 0+1+2, 0+1+2+3), versus separately exporting/checking `s030_normalized_survivor_card` on the same source and VM budget. If grouped constants fail before aggregation, closure memory is cumulative; if the grouped constants pass and normalization fails, its expression/proof-term aggregation needs redesign. Profile actual virtual-size/RSS/time, not just process exit.
+2. Assess standard Palomar 16 GiB **cgroup/concurrent verifier** behavior separately from this 9/11 GiB **per-process virtual** diagnostic. Compare `leanchecker`, con-ron, NanoDa, comparator replay root/certificates; avoid prescribing new runner size or weakening theorem without evidence.
+3. Implement and hosted-verify a **structural repair** to exact original normalized-cardinality theorem/proof aggregation if indicated (balanced/count-sum helper lemmas, smaller independently checked factored closures, eliminating repeated definitional unfolding or changed export organisation) while preserving exact original semantics and theorem statement. Only pursue additional individual pair proofs if measured evidence demonstrates they are the culprit. No `sorry`, `admit`, `native_decide`, `Lean.ofReduceBool`, new axioms, or unproved theorem substitutions.
+4. Test full actual original flagship on an affordable standard runner, exact-source; a resource-limited fail is a fail regardless of successful Lean compilation. Do not submit to Palomar, merge PR24, register or spend for 32GiB without owner's authority.
+
+**The executable S060 prompt is installed at [research/NEXT_SESSION_PROMPT.md](../research/NEXT_SESSION_PROMPT.md), with these facts as authoritative. S060 is NOT executed by this closeout. No open S059 task remains assigned to its own session.**
