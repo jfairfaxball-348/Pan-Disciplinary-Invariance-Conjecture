@@ -34,3 +34,33 @@
 ## Next objective (S060 installed separately)
 
 Read **both** `40505055650` and `40505373097` first. If generated new Lean proof fails, correct the *first actual proof error*, rerun exact-source strict. If pass, compare five new individual root check RSS and flagship vs old baseline; the fully bounded 9GiB root must exit 0 (not merely compile). Use attribution to target remaining oversized actual pair cases, keep all eight-cap flagship theorem and independent Challenge byte-identical, and perform genuine eight ConstantInfo comparisons against Challenge. No real Palomar FULL until single-run standard-host memory feasibility demonstrated; no paid runner without owner authorization. No submission, registry, PR merge.
+
+
+## Failure-readback addendum — completed hosted runs after S059 closeout
+
+The owner reported failure of BOTH expected Actions runs; this is **verified against full actual job logs**. No new theorem/certificate rejection:
+
+**[40505373097](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40505373097)**, exact `df8692c7884742dfa2c3fefc24bd45fb8cf6547a`: pinned `lake build Challenge PDIC S024 Solution` PASS; independent finite original predicate PASS; all eight previously improved pair certificates individually independently Leanchecker PASS. Five **new** original named roots:
+- (0,4): 886808 KiB RSS, exit 0, 25,134,809 exported bytes;
+- (0,5): 723488 KiB, exit 0, 25,134,803 bytes;
+- (0,6): 530724 KiB, exit 0, 25,134,807 bytes;
+- (1,4): 888836 KiB, exit 0, 25,134,809 bytes;
+- (2,4): 893388 KiB, exit 0, 25,165,854 bytes.
+Full flagship in *same exact source* **exit 134 `std::bad_alloc`**, 7,105,396 KiB resident, 78,420,844 bytes, at 9 GiB virtual-address-space cap. Workflow **correctly FAILED** due to this nonzero independent full root, not the genuine individual proofs.
+
+**[40505055650](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40505055650)**, earlier exact `3d1ca496cf196e391cdbd099fd71a0f31e7a6554`:
+- First-index aggregation 0: checker exit 0, 3,657,092 KiB RSS, 26,376,237 exported bytes;
+- First-index aggregation 1: checker exit 0, 3,657,224 KiB RSS, 26,347,263 bytes;
+- First-index aggregation 2: checker exit 0, 3,669,208 KiB RSS, 26,188,450 bytes;
+- First-index aggregation 3: checker exit 0, 3,663,464 KiB RSS, 25,878,240 bytes;
+- **Combined `s030_normalized_survivor_card`**: checker **exit 134**, 7,090,948 KiB RSS, 29,516,053 bytes at 9 GiB *virtual* cap;
+- **Complete flagship**: checker **exit 134**, 9,197,204 KiB RSS, 77,694,488 exported bytes **even with increased 11 GiB virtual cap**.
+All exact-source `lake build Challenge PDIC S024 Solution` steps succeeded. So the actual blocker is the *combined* first-index closure and dependent full theorem, not an individual first-index theorem. Two failures are resource limits under different AS limits, not proof falsehood.
+
+### Further source experiments after reading these failures
+
+To measure whether the five verified pair optimizations now improve first-index and combined root closures, enabled the existing six-way exact-root profile on the full **five-positive-pair** source (`diagnostic/s059-remaining-positive-pairs`, SHA `e2303b6dac6d0cd7ca3a12f0b1c30279e8d9011c`), launched [40508917722](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40508917722). This was **IN PROGRESS** as observed, with no result at this checkpoint.
+
+Also created an additional **isolated branch** `diagnostic/s059-recovery-late-pairs` and proved, as **UNVERIFIED LEAN CANDIDATES**, three further direct genuine sorted-third-index original-predicate certificates with unchanged theorem statements: pair (1,5) unique tail {1,5,6,9,11}, pair (1,7) unique tail {1,7,8,10,16}, and pair (3,5) unique tail {3,5,13,14,15}. Lean source commit `347e20a918eb1ab54245d708e1f974eba0b791b5`; expanded independent finite audit `6707f4df901dc8df20d8ef757700ac7767be5ec6`; independent root profiler `e985904adc9dd6f043f496be0488cb7096ff2bc3`; latest CI launch SHA `4a91ea2c3af6eaaf6b1f2212d9f325d081aff756`. Strict original flagship compiler, all original certificates, independent kernel roots and 9GiB virtual full flagship [run 40509171492](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40509171492) **IN PROGRESS**, not claimed verified. Both experiments are diagnostic; neither changes PR24, main proof or Palomar submission.
+
+Next actual step: retrieve 40508917722 and 40509171492 exact completed job logs, repair actual new Lean errors if found; compare first and combined 9GiB / whole flagship 11GiB roots on matching sources; only promote proof optimizations if real verifier PASS. **No Palomar FULL pass and no registration**.
