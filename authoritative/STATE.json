@@ -4,7 +4,7 @@
   "last_completed_session": "S059",
   "next_session": "S060",
   "next_session_executed": true,
-  "phase": "S060_ACTIVE_STRUCTURAL_REPAIR__HOSTED_MATH_AND_EIGHT_CONSTANTS_PASS__CORRECTED_INDEPENDENT_ROOT_TESTS_RUNNING",
+  "phase": "S060_EXACT_COMPLETE_INDEPENDENT_FLAGSHIP_PASS__CAUSAL_MID4_FAILURE_IDENTIFIED__STANDARD_PALOMAR_FULL_RUNNING",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -2114,19 +2114,22 @@
   },
   "current_session": "S060",
   "s060": {
-    "status": "IN_PROGRESS",
+    "status": "IN_PROGRESS_FULL_PENDING",
     "proof_sha": "34c82f12c34911485f099f5d8e75672c7fbbb11f",
-    "latest_exact_source": "a77dcf5aa26dc3508c41628867f816910c5db3fe",
+    "latest_exact_source": "3ca0f229255733247ad960e0cb7cfd969f3269a1",
     "branch": "diagnostic/s060-aggregate-repair",
-    "strict_root_run": 40519106390,
+    "strict_root_run": 40521986655,
     "baseline_run": 40519114016,
     "original_full_build": "PASS_RUN_40517164085",
-    "eight_compiled_constants": "PASS_RUN_40517164085",
+    "eight_compiled_constants": "PASS_FULL_BODIES_RUN_40521986655",
     "finite_audits": "PASS",
-    "independent_full_root": "PENDING_NOT_PASS_CREDITED",
-    "official_palomar_full": "NOT_STARTED",
+    "independent_full_root": "PASS_EXIT_0_9GIB_AS_RSS_5950560_KIB",
+    "official_palomar_full": "RUNNING_40525316504",
     "registered": false,
     "paid_runner_authorized": false,
-    "progress": "sessions/S060_PROGRESS.md"
+    "progress": "sessions/S060_PROGRESS.md",
+    "normalized_root": "PASS_EXIT_0_9GIB_AS_RSS_1931696_KIB",
+    "causal_finding": "GROUPED_FIRST_0_1_2_3_PASS__ORIGINAL_MID4_ALONE_FAILS_9GIB_AS",
+    "palomar_full_sha": "e3cfe8d3a944689c9735db03ee9fab8f7689b831"
   }
 }

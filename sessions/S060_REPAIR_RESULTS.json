@@ -1,0 +1,26 @@
+[
+  {
+    "case": "normalized",
+    "export_rc": 0,
+    "export_bytes": 27584605,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 540,
+    "check_rc": 0,
+    "elapsed_seconds": 15.84,
+    "sampled_vm_kib": 4500816,
+    "sampled_rss_kib": 1931796,
+    "peak_rss_kib": 1931696
+  },
+  {
+    "case": "flagship",
+    "export_rc": 0,
+    "export_bytes": 76366160,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 540,
+    "check_rc": 0,
+    "elapsed_seconds": 262.19,
+    "sampled_vm_kib": 8695568,
+    "sampled_rss_kib": 5950680,
+    "peak_rss_kib": 5950560
+  }
+]

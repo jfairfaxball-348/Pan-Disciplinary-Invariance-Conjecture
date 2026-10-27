@@ -1,21 +1,20 @@
-# CURRENT S060 — ACTIVE STRUCTURAL REPAIR, 27 October 2026
+# S060 ACTIVE — COMPLETE INDEPENDENT ROOT PASS; STANDARD PALOMAR FULL RUNNING
 
-S060 is executing. The new genuine-predicate pruned index search is implemented;
-exact source 34c82f12c34911485f099f5d8e75672c7fbbb11f passed full original Lean
-compilation, approved axioms, eight compiled semantic ConstantInfo comparisons
-and every original/new finite audit in hosted 40517164085. That workflow failed
-BEFORE any independent root check on an optional missing cgroup metadata file.
-Corrected same-proof candidate a77dcf5aa26dc3508c41628867f816910c5db3fe is in
-40519106390; corrected baseline 1223596408540dbc98d35eb6f7570149a849d44c is in
-40519114016. Await actual normalized/full kernel verdicts; no Palomar FULL pass,
-no registration, no PR24 merge, no paid runner. Detailed current evidence:
-[sessions/S060_PROGRESS.md](sessions/S060_PROGRESS.md). Do not mistake the old
-metadata exception for a mathematical proof or memory verdict. S061 is not yet
-installed; finish this active S060 before closeout.
+Exact source **3ca0f229255733247ad960e0cb7cfd969f3269a1**, strict hosted
+[40521986655](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40521986655)
+**SUCCESS**: original complete Lean compilation, approved axioms, all eight full
+compiled semantic definitions, all finite audits, independently exported
+normalized-card and COMPLETE FLAGSHIP roots PASS under identical 9-GiB virtual
+cap. Normalized peak RSS 1,931,696 KiB; flagship 5,950,560 KiB. This is the first
+actual full-root independent PASS, not merely a leaf or build-only result.
+
+Causal baseline [40519114016](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40519114016): grouped first-index 0+1+2+3 PASS; original unprofiled mid4 ALONE FAILS at 9-GiB virtual cap. New staged hereditary-obstruction proof removes that costly point-enumeration dependency, preserving exact original statements and all protected files.
+
+**Still pending:** standard unpaid [Palomar FULL 40525316504](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40525316504), exact commit **e3cfe8d3a944689c9735db03ee9fab8f7689b831**, branch diagnostic/s060-palomar-standard-full. Read its actual final report; do not yet claim FULL acceptance or registration. No merge/PR24 promotion, paid resource or external submission. Resume this active S060 at that full run if interrupted; do not repeat old diagnostics. S061 not yet installed. Detailed chronology: [S060 progress](sessions/S060_PROGRESS.md); exact results [baseline](sessions/S060_BASELINE_RESULTS.json), [repair](sessions/S060_REPAIR_RESULTS.json).
 
 ---
 
-# URGENT CURRENT HANDOVER — S059 CLOSED, S060 INSTALLED NOT EXECUTED (27 October 2026)
+URGENT CURRENT HANDOVER — S059 CLOSED, S060 INSTALLED NOT EXECUTED (27 October 2026)
 
 The owner explicitly closed S059 after two further failed strict GitHub Actions runs. S060 MUST determine the actual combined-proof kernel-memory failure and implement a fix urgently. Authoritative executable work order: [S060 prompt](research/NEXT_SESSION_PROMPT.md). Grounded final evidence: [S059 closeout](sessions/S059_CLOSEOUT.md). Older pending claims below are superseded: both workflows have COMPLETED.
 

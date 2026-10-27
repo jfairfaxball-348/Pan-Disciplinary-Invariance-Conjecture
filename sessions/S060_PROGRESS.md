@@ -132,3 +132,86 @@ both `module` and `import all`, which passed the local full-body comparison.
 The module-header/import changes are only audit packaging, not a theorem fix.
 
 Corrected baseline run is 40519114016, SHA 1223596408540dbc98d35eb6f7570149a849d44c.
+
+
+## New complete classification argument: all three independent kernels PASS
+
+The local standalone point-soundness/count module exports the new complete
+classification argument and the official primitive roots; it does not claim
+full flagship verification. Results, serialized under the same pinned binaries:
+Leanchecker exit 0, 1,920,392 KiB RSS at 6-GiB virtual cap; NanoDa (official four
+threads/config/extensions/axioms) exit 0, 692,704 KiB at 6-GiB virtual cap;
+con-ron --jobs=2 initially hit the 6-GiB virtual cap (exit 134, 2,864,472 KiB RSS),
+then PASSED exit 0 under 9-GiB virtual cap at 3,217,668 KiB, accepting 6058
+declarations (--verified). The first con-ron cap failure is a resource-limited
+result, not a proof rejection. No official Palomar setting was changed.
+
+
+## Corrected transitive body audit and final same-proof run
+
+Run 40519106390 / a77dcf5 compiled the complete same S024 proof but failed the
+module-mode diagnostic: `import all Solution` alone retains hidden bodies for
+four definitions in its transitive defining module PDIC. This is visibility,
+not a changed or rejected definition: direct full compiled Challenge/PDIC bodies
+match for all eight. The diagnostic now imports BOTH `all PDIC` and `all Solution`.
+A module-mode transitive-re-export control with that import arrangement passed
+all eight full-body comparisons locally. No protected source was edited.
+
+Same mathematical proof at 3ca0f229255733247ad960e0cb7cfd969f3269a1 is executing
+strict run 40521986655. Root checks and finite audits now execute after successful
+strict compilation even if the independent definition-audit step fails; any
+failed audit still fails the overall workflow. This prevents diagnostic failures
+from suppressing the actual kernel measurements. Every gate remains required.
+
+
+## Definitive causal experiment completed: original mid4 alone fails
+
+Corrected original baseline run 40519114016 at immutable
+1223596408540dbc98d35eb6f7570149a849d44c completed. Original full compilation PASS;
+the workflow correctly FAILS because individual mid4, normalized and flagship
+independent roots fail. All cases used the same source, primitive roots, 300 s,
+9-GiB virtual cap and one independent checker process at a time.
+
+- Group {0,1}: PASS 1,594,084 KiB RSS, 123.33 s.
+- Group {0,1,2}: PASS 2,694,152 KiB RSS, 190.49 s.
+- Group {0,1,2,3}: PASS 3,666,220 KiB RSS, 238.18 s.
+- **Previously unprofiled original mid4: FAIL 134**, 7,105,928 KiB RSS,
+  sampled VmSize 9,437,072 KiB, 97.69 s, 22,160,441 exported bytes.
+- mid5 PASS, 6,345,200 KiB RSS, 36.32 s; mid6 PASS 2,917,752 KiB, 17.3 s.
+- normalized FAIL 134, 7,103,068 KiB RSS, same sampled VmSize, 97.53 s.
+- full flagship FAIL 134, 7,105,560 KiB RSS, same sampled VmSize, 99.8 s.
+- Fixed control PASS 114,672 KiB RSS, 0.2 s.
+
+This refutes the proposed need to repair assembly of the first four roots merely
+because they are combined: their joint closure passes. A single additional
+reachable certificate, s027_mid_shard_4_survivor_card, is independently sufficient
+to reproduce the failure; mid5 is also very costly. The old aggregate's failure
+is not evidence that Finset.sum_congr itself needs balancing. The new sound
+staged search eliminates the entire expensive point-enumeration certificate
+forest from the normalized and flagship dependency closures. Exact source and
+measurements are in sessions/S060_BASELINE_RESULTS.json and the hosted artifact.
+
+
+## COMPLETE EXACT-SOURCE INDEPENDENT ROOT PASS
+
+Run 40521986655 is SUCCESS at exact 3ca0f229255733247ad960e0cb7cfd969f3269a1.
+Original full Lean build, approved axioms, full-body eight compiled definitions,
+all original/new finite audits, and BOTH complete independently exported roots
+passed. One checker at a time, identical official primitive roots, 9-GiB virtual
+cap; no reduced theorem or skipped dependency closure:
+
+- normalized card: export 27,584,605 bytes; exit 0; peak RSS 1,931,696 KiB;
+  sampled VmSize 4,500,816 KiB; 15.84 s.
+- COMPLETE original flagship: export 76,366,160 bytes; exit 0; peak RSS
+  5,950,560 KiB; sampled VmSize 8,695,568 KiB; 262.19 s.
+
+Compare original same-cap baseline: normalized FAIL 134 at 7,103,068 KiB RSS;
+full flagship FAIL 134 at 7,105,560 KiB. Those failing peaks are capped values,
+not uncapped old requirements. No percentage reduction in intrinsic uncapped
+whole-proof demand is claimed. The pass/fail change under matched limits is real.
+
+The standard, unpaid Palomar FULL preflight is now launched from immutable
+ e3cfe8d3a944689c9735db03ee9fab8f7689b831 on diagnostic/s060-palomar-standard-full,
+with only its workflow added to the exact strict code candidate. No protected
+proof/Challenge/config/toolchain change. Pending official comparator/NanoDa/
+con-ron/Lean verdict: this launch is not yet a Palomar FULL PASS or registration.

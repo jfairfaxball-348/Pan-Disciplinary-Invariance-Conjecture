@@ -1,0 +1,42 @@
+{
+  "baseline": "4a91ea2c3af6eaaf6b1f2212d9f325d081aff756",
+  "mathematical_candidate": "34c82f12c34911485f099f5d8e75672c7fbbb11f",
+  "latest_pipeline_candidate": "3ca0f229255733247ad960e0cb7cfd969f3269a1",
+  "protected_files": {
+    "Challenge.lean": {
+      "unchanged": true,
+      "sha256": "c0e1571adc8046fe621256de943c190d0c67255c99081d4014a8cb52f206c7ae"
+    },
+    "PDIC.lean": {
+      "unchanged": true,
+      "sha256": "957e4b98b41991b19b803f0d9d7cbd3260c7cd48840348681d3827303638002a"
+    },
+    "Solution.lean": {
+      "unchanged": true,
+      "sha256": "8e0d79a051bc336cce71c7d08f89969813c6984ef6cc9ae89ef660ebe87fcb3a"
+    },
+    "comparator.json": {
+      "unchanged": true,
+      "sha256": "78d0ec3fe502b75a72edca5eec4d692d9ad6c79b25ecf22dfebbce23a379303f"
+    },
+    "lean-toolchain": {
+      "unchanged": true,
+      "sha256": "bc84812c94489d1e3e191baa1dc10d5eb684382d7fe9d2a5ab085e72c1c67e47"
+    },
+    "lake-manifest.json": {
+      "unchanged": true,
+      "sha256": "661e7775c2e9723d87cd24aed2b7d800fa1e0d682548604ca7fb4e648b2c2760"
+    },
+    "lakefile.toml": {
+      "unchanged": true,
+      "sha256": "7d00023c8805f0bc59367850cd54ec4f49987e7694b3cda15b7ff8605e349453"
+    },
+    "formalization.yaml": {
+      "unchanged": true,
+      "sha256": "4749d31c4c328d3071fb798d8fe9b82461d2b2ab5ea8998ee265e2004d1c9ad9"
+    }
+  },
+  "normalized_card_statement_unchanged": true,
+  "normalized_card_statement": "s027NormalizedAdmissibleTails.card = 18",
+  "s024_sha256": "4428f4849f628bca94960acb9fac056db9a0912d6a194ca5efbff987aa783a66"
+}
