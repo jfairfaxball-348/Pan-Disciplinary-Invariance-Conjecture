@@ -1,0 +1,39 @@
+name: 'PDIC S060 verify intervening classification and normal-form closures'
+on:
+  push:
+    branches:
+      - diagnostic/s060-wrapper-profiles
+permissions:
+  contents: read
+jobs:
+  exact-wrapper-profiles:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install exact pinned toolchain
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build the identical strictly verified mathematical source
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+          mkdir -p s060-evidence/wrappers-hosted
+          lake build Challenge PDIC S024 Solution > s060-evidence/wrappers-hosted/build.log 2>&1 || {
+            tail -n 90 s060-evidence/wrappers-hosted/build.log; exit 1;
+          }
+          lake env lean Solution.lean > s060-evidence/wrappers-hosted/axioms.log
+          if grep -E 'sorryAx|Lean.ofReduceBool|Lean.trustCompiler' s060-evidence/wrappers-hosted/axioms.log; then exit 1; fi
+      - name: Independently check intervening roots with official primitives
+        run: python3 scripts/s060_kernel_memory.py --label wrappers-hosted --cases classification normalform --vm 9 --timeout 540
+      - name: Retain exact memory and source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s060-wrapper-root-evidence
+          retention-days: 14
+          path: s060-evidence/**
