@@ -34,7 +34,9 @@ jobs:
               with Path(f's060-export-fields/{mod}.ndjson').open('wb') as out:
                   subprocess.run(['lake','env','leanexport',mod,'--',*BASE,*names],stdout=out,check=True)
           PY
-          lake env lean --run diagnostics/S060ExportCompare.lean s060-export-fields/Challenge.ndjson s060-export-fields/PDIC.ndjson | tee s060-export-fields/comparison.log
+          python3 scripts/s060_export_fields.py s060-export-fields/Challenge.ndjson s060-export-fields/PDIC.ndjson | tee s060-export-fields/serialized-fields.log
+          prefix="$(lean --print-prefix)"
+          lake env lean --load-dynlib "$prefix/lib/lean/libLake_shared.so" --run diagnostics/S060ExportCompare.lean s060-export-fields/Challenge.ndjson s060-export-fields/PDIC.ndjson | tee s060-export-fields/comparison.log
       - name: Save bounded evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -43,3 +45,5 @@ jobs:
           path: |
             s060-export-fields/build.log
             s060-export-fields/comparison.log
+            s060-export-fields/serialized-fields.json
+            s060-export-fields/serialized-fields.log
