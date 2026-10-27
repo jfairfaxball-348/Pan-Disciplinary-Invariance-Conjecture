@@ -4,7 +4,7 @@
   "last_completed_session": "S059",
   "next_session": "S060",
   "next_session_executed": false,
-  "phase": "S059_READBACK_8_POSITIVE_PAIR_KERNEL_CHECKED__COMBINED_NORMALIZED_CARD_9GIB_AND_FULL_FLAGSHIP_11GIB_AS_BAD_ALLOC__TWO_NEW_ISOLATED_TESTS_RUNNING__S060_INSTALLED",
+  "phase": "S059_CLOSED__11_ORIGINAL_PAIR_CERTIFICATES_INDEPENDENT_KERNEL_PASS__ALL_FIRST_INDEX_ROOTS_PASS__NORMALIZED_CARD_AND_FLAGSHIP_OOM__S060_URGENT_CAUSAL_STRUCTURAL_FIX_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "NOT_REGISTERED_NO_FULL_PASS__S052_STANDARD_16GIB_COMPARATOR_OOM__S059_ALL_8_INDIVIDUAL_POSITIVE_PAIR_KERNELS_PASS_BUT_NORMALIZED_AND_FULL_FLAGSHIP_AS_BAD_ALLOC__11GIB_AS_FLAGSHIP_EXIT134__32GB_NOT_AUTHORIZED",
+  "palomar": "NOT_REGISTERED_NO_FULL_PASS__S052_FULL_16GIB_CGROUP_OOM__S059_RECOVERY_40509171492_ALL_11_LEAF_KERNELS_PASS_BUT_FULL_9GIB_AS_BAD_ALLOC__S060_MEM_40508917722_NORMALIZED_9GIB_AND_FULL_11GIB_AS_BAD_ALLOC__NO_32GIB_AUTHORIZATION",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S060_RETRIEVE_LIVE_ROOT_LOCALIZATION_AND_FIVE_PAIR_LEAN_PLUS_CHECKER_THEN_FIX_FULL_FLAGSHIP_RESOURCE",
+  "next_session_target": "S060_URGENT_CAUSAL_ANALYSIS_AND_STRUCTURAL_REPAIR_OF_COMBINED_LEAN_KERNEL_MEMORY",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": "S060",
   "session_control": {
@@ -169,7 +169,7 @@
   },
   "next_session_target_file": "research/NEXT_SESSION_PROMPT.md",
   "next_session_target_installed_date": "2026-10-27",
-  "next_session_target_source": "S058_CLOSEOUT",
+  "next_session_target_source": "S059_FINAL_CLOSEOUT_WITH_TWO_COMPLETED_MEMORY_FAILURES",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -1892,7 +1892,7 @@
     }
   },
   "s059": {
-    "status": "COMPLETED_PARTIAL_WITH_TWO_HOSTED_VALIDATIONS_IN_PROGRESS",
+    "status": "CLOSED_WITH_FINAL_FAILURE_READBACK_AND_S060_URGENT_FIX_INSTALLED",
     "date": "2026-10-27",
     "baseline_sha": "4ad938ccd8bff906a60dbfa42ab88b3e50feaad2",
     "baseline_run": 40495214089,
@@ -1951,8 +1951,8 @@
       "run": 40505373097,
       "finite_run": 40505372954,
       "finite_status": "PASS",
-      "lean_status_at_closeout": "IN_PROGRESS_NOT_YET_CONFIRMED",
-      "full_kernel_status_at_closeout": "IN_PROGRESS_NOT_YET_CONFIRMED"
+      "lean_status_at_closeout": "PASS_VERIFIED_RUN_40505373097",
+      "full_kernel_status_at_closeout": "FAIL_BAD_ALLOC_FULL_FLAGSHIP"
     },
     "palomar_full": "NOT_VERIFIED",
     "registry_submitted": false,
@@ -2027,7 +2027,7 @@
       "new_matched_run": {
         "run": 40508917722,
         "sha": "e2303b6dac6d0cd7ca3a12f0b1c30279e8d9011c",
-        "status_at_readback": "IN_PROGRESS"
+        "status_at_readback": "COMPLETED_FAILURE_NORMALIZED_AND_FLAGSHIP_OOM"
       },
       "additional_positive_candidate": {
         "branch": "diagnostic/s059-recovery-late-pairs",
@@ -2038,8 +2038,78 @@
           "(3,5)"
         ],
         "run": 40509171492,
-        "status_at_readback": "IN_PROGRESS_NOT_KERNEL_VERIFIED"
+        "status_at_readback": "COMPLETED_STRICT_AND_ALL_INDIVIDUAL_PAIRS_PASS__FULL_FLAGSHIP_OOM"
       }
+    },
+    "latest_verdict": {
+      "recovery_run": 40509171492,
+      "recovery_sha": "4a91ea2c3af6eaaf6b1f2212d9f325d081aff756",
+      "recovery_build": "PASS",
+      "recovery_finite": "PASS",
+      "recovery_individual_original_pair_roots": "ALL_11_CHECKER_PASS",
+      "recovery_new_roots": {
+        "1_5": {
+          "rc": 0,
+          "rss_kib": 723100
+        },
+        "1_7": {
+          "rc": 0,
+          "rss_kib": 426304
+        },
+        "3_5": {
+          "rc": 0,
+          "rss_kib": 725480
+        }
+      },
+      "recovery_flagship_root": {
+        "exit_code": 134,
+        "error": "std::bad_alloc",
+        "rss_kib": 7103592,
+        "export_bytes": 78845839,
+        "as_limit_gib": 9,
+        "wall": "1:45.26"
+      },
+      "matched_memory_run": 40508917722,
+      "matched_memory_sha": "e2303b6dac6d0cd7ca3a12f0b1c30279e8d9011c",
+      "first_index_roots": {
+        "0": {
+          "rc": 0,
+          "rss_kib": 1096208
+        },
+        "1": {
+          "rc": 0,
+          "rss_kib": 2685920
+        },
+        "2": {
+          "rc": 0,
+          "rss_kib": 2692340
+        },
+        "3": {
+          "rc": 0,
+          "rss_kib": 3663360
+        }
+      },
+      "normalized_card_root": {
+        "exit_code": 134,
+        "error": "std::bad_alloc",
+        "rss_kib": 7091076,
+        "export_bytes": 30210863,
+        "as_limit_gib": 9
+      },
+      "whole_flagship_root": {
+        "exit_code": 134,
+        "error": "std::bad_alloc",
+        "rss_kib": 9204044,
+        "export_bytes": 78420844,
+        "as_limit_gib": 11
+      },
+      "causal_diagnosis": "COMBINED_FIRST_INDEX_CLOSURE_BOTTLENECK_LOCALIZED__WHETHER_JOINT_ENVIRONMENT_OR_AGGREGATOR_PROOF_TERM_CAUSES_AMPLIFICATION_NOT_YET_ESTABLISHED",
+      "branch_for_next_urgent_fix": "diagnostic/s059-recovery-late-pairs",
+      "next_session_target": "S060_FALSIFIABLE_COMBINED_ROOT_TESTS_AND_IMPLEMENTED_STRUCTURAL_AGGREGATION_FIX",
+      "full_palomar": "NOT_PASS",
+      "external_submission": false,
+      "paid_32gib_authorized": false,
+      "session_closed": true
     }
   }
 }
