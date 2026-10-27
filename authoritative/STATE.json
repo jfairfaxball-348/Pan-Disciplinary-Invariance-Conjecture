@@ -4,7 +4,7 @@
   "last_completed_session": "S058",
   "next_session": "S059",
   "next_session_executed": false,
-  "phase": "S058_GENUINE_THIRD_INDEX_PROOF_CANDIDATE_CI_PENDING__S057_OPPOSITE_PAIR_KERNEL_PASS__PALOMAR_FULL_OPEN",
+  "phase": "S058_OPTIMIZED_PAIR_0_3_STRICT_AND_INDEPENDENT_KERNEL_PASS_81PCT_MEMORY_CUT__FULL_FLAGSHIP_AS_LIMIT_OPEN__S059_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "NOT_REGISTERED_NO_FULL_PASS__S052_FULL_40307527534_COMPARATOR_CGROUP_OOM_16137502720B__S057_PAIR_1_2_STRICT_AND_INDEPENDENT_KERNEL_PASS_40414801128_155732KIB__S057_FULL_KERNEL_9GIB_AS_EXIT134__S058_NEW_THIRD_INDEX_PROOF_RUNS_PENDING__32GB_NOT_AUTHORIZED",
+  "palomar": "NOT_REGISTERED_NO_FULL_PASS__S052_40307527534_COMPARATOR_16GIB_CGROUP_OOM__S058_RUN_40491186731_STRICT_FULL_BUILD_PASS_0_3_INDEPENDENT_KERNEL_PASS_RSS_1096264KIB__FULL_FLAGSHIP_9GIB_AS_EXIT134_RSS_7099140KIB__32GB_NOT_AUTHORIZED",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -105,7 +105,7 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S059_STRICT_LEAN_VERIFY_S058_THIRD_PARTITION_AND_OPTIMIZED_0_3_CERTIFICATE_THEN_INTEGRATE_AND_EXTEND",
+  "next_session_target": "S059_COMPRESS_POSITIVE_PAIR_1_3_2_3_AND_MEASURE_COMPLETE_FLAGSHIP_EXPORTED_KERNEL",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
   "next_session_target_installed": "S059",
   "session_control": {
@@ -1782,13 +1782,13 @@
   },
   "s058": {
     "date": "2026-10-27",
-    "status": "CONTINUED_S058_ISOLATED_IN_MODULE_OPTIMIZED_CARD_CANDIDATE_UNVERIFIED",
+    "status": "EXECUTED_PARTIALLY__IN_MODULE_0_3_OPTIMIZATION_STRICT_AND_KERNEL_VERIFIED__FULL_FLAGSHIP_BOUNDED_RESOURCE_FAIL",
     "closeout": "sessions/S058_CLOSEOUT.md",
     "branch": "diagnostic/s058-third-index-partition",
     "parent_s057_certified_sha": "dd8d9d65c07b624b3881872783cda747abd54caa",
     "structural_candidate_sha": "164c260c72b736e39ef53fefe748e13972e034ba",
     "numeric_pair_0_3_candidate_sha": "78f4132061e02f45e5d036138d2c5451712008ec",
-    "latest_candidate_sha": "33992aaaf1a824d66e1d556b59f90e51672dad17",
+    "latest_candidate_sha": "621e553b06f1cc7e55c57b0b19f4cef4e111aa6e",
     "lean_file": "S058.lean",
     "finite_checker": "scripts/verify_s058_third_shards.py",
     "new_lemmas": [
@@ -1801,8 +1801,8 @@
     "first_strict_run": 40467512305,
     "numeric_strict_run": 40467818226,
     "latest_strict_run": 40467973824,
-    "lean_pass_observed": false,
-    "independent_leanchecker_pass_observed": false,
+    "lean_pass_observed": true,
+    "independent_leanchecker_pass_observed": true,
     "actual_s024_proof_replaced": true,
     "mathematical_statements_changed": false,
     "expected_survivors": {
@@ -1857,12 +1857,38 @@
       "proof_integration_sha": "2bee190c7a4f5fb7d24f2194eeaac9554adc4583",
       "profile_workflow_sha": "bf97640c30c2f62edf12d986ebc359ebe1c8273e",
       "kernel_profile_sha": "f64e13a4de8f76bee0c34dfb47d320665124ce77",
-      "latest_source_sha": "33992aaaf1a824d66e1d556b59f90e51672dad17",
+      "latest_source_sha": "621e553b06f1cc7e55c57b0b19f4cef4e111aa6e",
       "cleaned_obsolete_standalone": true,
-      "hosted_profile_run": 40477691356,
-      "latest_hosted_run": 40478141116,
-      "hosted_status_at_checkpoint": "IN_PROGRESS_NO_LEAN_PROOF_PASS_CLAIM",
-      "full_palomar_gate": "OPEN_NO_32GB_APPROVAL"
+      "hosted_profile_run": 40491186731,
+      "latest_hosted_run": 40491186731,
+      "hosted_status_at_checkpoint": "COMPLETE_SUCCESS_STRICT_COMPILER_AND_THREE_TARGETED_INDEPENDENT_KERNELS_PASS_FULL_FLAGSHIP_9GIB_AS_FAIL",
+      "full_palomar_gate": "OPEN_NO_32GB_APPROVAL",
+      "first_real_failure_fixed": true,
+      "conclusion": "ONE_VERIFIED_POSITIVE_SHARD_MEMORY_CUT_FURTHER_ROOT_COMPRESSION_REQUIRED"
+    },
+    "strict_pinned_run": 40491186731,
+    "full_flagship_checker_pass": false,
+    "new_theorem_claimed": false,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "optimization": {
+      "pair": "0_3",
+      "old_peak_rss_kib": 5804080,
+      "new_peak_rss_kib": 1096264,
+      "reduction_percent": 81.1,
+      "original_statement_unchanged": true,
+      "checker_exit": 0,
+      "third_partition_checker_exit": 0,
+      "third_partition_peak_rss_kib": 161920,
+      "full_flagship_checker_exit": 134,
+      "full_flagship_peak_rss_kib": 7099140,
+      "checker_limit_virtual_gib": 9,
+      "strict_run": 40491186731,
+      "evidence_artifact": 12730225421,
+      "eight_constantinfo_rechecked": false
     }
   }
 }
