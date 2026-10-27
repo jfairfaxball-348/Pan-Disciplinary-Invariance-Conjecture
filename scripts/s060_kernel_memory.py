@@ -84,6 +84,14 @@ def run_case(case, args, folder, checker):
     return row
 
 
+def read_optional(path):
+    # Standard hosted runners need not expose cgroupfs to ordinary jobs.
+    try:
+        return Path(path).read_text().strip()
+    except OSError:
+        return None
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--label', required=True)
@@ -99,7 +107,7 @@ def main():
     meta = {'git_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
             'source_status': subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=no'], text=True),
             'lean_version': subprocess.check_output(['lean', '--version'], text=True).strip(),
-            'cgroup_memory_max': Path('/sys/fs/cgroup/memory.max').read_text().strip(),
+            'cgroup_memory_max': read_optional('/sys/fs/cgroup/memory.max'),
             'sequential_checker_processes': 1}
     import hashlib
     meta['source_sha256'] = {f: hashlib.sha256(Path(f).read_bytes()).hexdigest()
