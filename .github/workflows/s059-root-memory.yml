@@ -1,0 +1,58 @@
+name: 'PDIC S059 isolate remaining full-kernel memory roots'
+on:
+  push:
+    branches:
+      - diagnostic/s058-third-index-partition
+    paths:
+      - '.github/workflows/s059-root-memory.yml'
+      - 'scripts/s059_root_memory_attribution.sh'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  genuine-root-profiles:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - case_name: first_0
+            vm: '9'
+          - case_name: first_1
+            vm: '9'
+          - case_name: first_2
+            vm: '9'
+          - case_name: first_3
+            vm: '9'
+          - case_name: normalized_card
+            vm: '9'
+          - case_name: flagship
+            vm: '11'
+    env:
+      CASE_SELECTION: ${{ matrix.case_name }}
+      VM_GIB: ${{ matrix.vm }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install exact pinned Lean
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          cat lean-toolchain
+          curl -sSf https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore exact pinned Mathlib cache
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Exact-source Lean compile and one independent kernel root profile
+        run: bash scripts/s059_root_memory_attribution.sh
+      - name: Preserve memory bottleneck evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s059-${{ matrix.case_name }}-vm${{ matrix.vm }}-evidence
+          retention-days: 14
+          if-no-files-found: warn
+          path: s059-memory-evidence/**
