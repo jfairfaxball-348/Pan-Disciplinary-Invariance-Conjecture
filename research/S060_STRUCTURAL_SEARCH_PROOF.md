@@ -52,3 +52,18 @@ and final kernel measurements are recorded in the S060 closeout and evidence.
 
 A successful small search certificate or Lean build alone is not full independent
 flagship verification, and neither replaces the standard Palomar FULL gate.
+
+
+## Measured whole-root consequence
+
+At matched 9-GiB virtual limits, original normalized-card replay failed at
+7,103,068 KiB capped RSS; repaired replay passes at 1,931,696 KiB. Complete
+flagship changes from failure to PASS at 5,950,560 KiB. Normalized export changes
+from 30,617,573 to 27,584,605 bytes; flagship from 78,845,839 to 76,366,160 bytes.
+The much larger replay improvement relative to serialized-byte reduction shows
+that export size alone is a poor proxy for this certificate's verification cost.
+The proof avoids replaying expensive point-set enumeration and performs the
+remaining finite search on compact index lists with early pruning. This
+experiment establishes the costly certificate as a sufficient failure source;
+it does not identify a single allocator instruction or measure the old uncapped
+maximum. Exact evidence is recorded in the S060 closeout.

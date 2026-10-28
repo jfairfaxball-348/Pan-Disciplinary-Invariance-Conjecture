@@ -1,10 +1,10 @@
 {
   "project": "Pan-Disciplinary-Invariance-Conjecture",
   "date": "2026-10-28",
-  "last_completed_session": "S059",
-  "next_session": "S060",
-  "next_session_executed": true,
-  "phase": "S060_INDEPENDENT_ROOT_AND_EXACT_METADATA_PASS__STANDARD_FULL_RUNNING",
+  "last_completed_session": "S060",
+  "next_session": "S061",
+  "next_session_executed": false,
+  "phase": "S060_STANDARD_FULL_PASS__OWNER_AUTHORIZED_REGISTRY_SUBMISSION_HANDOFF",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -15,7 +15,7 @@
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
   "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "NOT_REGISTERED_NO_FULL_PASS__S052_FULL_16GIB_CGROUP_OOM__S059_RECOVERY_40509171492_ALL_11_LEAF_KERNELS_PASS_BUT_FULL_9GIB_AS_BAD_ALLOC__S060_MEM_40508917722_NORMALIZED_9GIB_AND_FULL_11GIB_AS_BAD_ALLOC__NO_32GIB_AUTHORIZATION",
+  "palomar": "FULL_MECHANICAL_PASS_40656295590_EXACT_912b628e6df0f4881f56e8f341031ec8d99d4e9e__NOT_REGISTERED_NO_MERGE",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -2112,9 +2112,9 @@
       "session_closed": true
     }
   },
-  "current_session": "S060",
+  "current_session": "S060_CLOSED",
   "s060": {
-    "status": "ACTIVE_STANDARD_FULL_RUNNING",
+    "status": "CLOSED_FULL_MECHANICAL_PASS",
     "proof_sha": "34c82f12c34911485f099f5d8e75672c7fbbb11f",
     "latest_exact_source": "912b628e6df0f4881f56e8f341031ec8d99d4e9e",
     "branch": "diagnostic/s060-interface-standard-full",
@@ -2124,15 +2124,37 @@
     "eight_compiled_constants": "PASS_FULL_BODIES_RUN_40521986655",
     "finite_audits": "PASS",
     "independent_full_root": "PASS_EXIT_0_9GIB_AS_RSS_5950560_KIB",
-    "official_palomar_full": "RUNNING_40656295590",
+    "official_palomar_full": "PASS_COMPLETE_ALL_INTENDED_KERNELS_40656295590",
     "registered": false,
     "paid_runner_authorized": false,
     "progress": "sessions/S060_PROGRESS.md",
     "normalized_root": "PASS_EXIT_0_9GIB_AS_RSS_1931696_KIB",
     "causal_finding": "GROUPED_FIRST_0_1_2_3_PASS__ORIGINAL_MID4_ALONE_FAILS_9GIB_AS",
     "palomar_full_sha": "912b628e6df0f4881f56e8f341031ec8d99d4e9e",
-    "remaining_blocker": "Official FULL complete kernel suite verdict pending",
-    "actual_complete_metadata": "PASS_RUN_40655783353_SHA_5749ecfc",
-    "closeout": null
+    "remaining_blocker": null,
+    "actual_complete_metadata": "PASS_40655783353_ALL_8_CONSTANTINFO_AND_PINNED_COMPAREAT",
+    "closeout": "sessions/S060_CLOSEOUT.md",
+    "full_report": "sessions/S060_PALOMAR_FULL_PASS_REPORT.json",
+    "session_closed": true,
+    "proof_branch_merged": false,
+    "full_kernels": [
+      "con-ron --jobs=2",
+      "nanoda",
+      "Lean default"
+    ],
+    "comparator_peak_cgroup_bytes": 16151109632,
+    "comparator_memory_max_bytes": 16431086551,
+    "oom_kills": 0,
+    "full_run": 40656295590,
+    "next_session_target": "S061_ACTUAL_REGISTRY_SUBMISSION_REVIEW_REGISTRATION_FOLLOWTHROUGH",
+    "registry_submission_authorized_by_owner": true,
+    "registry_handoff": "FORM_VALUES_READY__BROWSER_CONTEXT_AND_AUTHENTICATED_GH_UNAVAILABLE"
+  },
+  "s061": {
+    "status": "INSTALLED_NOT_EXECUTED",
+    "prompt": "research/NEXT_SESSION_PROMPT.md",
+    "target": "REGISTRY_SUBMISSION_REVIEW_AND_OWNER_APPROVED_REGISTRATION",
+    "external_submission_authorized": true,
+    "public_registration_requires_returned_review_and_owner_decision": true
   }
 }

@@ -1,0 +1,73 @@
+{
+  "diagnostic_scope": "complete ConstantInfo from actual independent leanexport files, followed by pinned Lake.Check.compareAt; not full external kernel suite",
+  "before": {
+    "sha": "c4c8643d87d81913c449700546c163773665d13c",
+    "run": 40558867354,
+    "workflow_conclusion": "success_diagnostic_only",
+    "actual_compare": "FAIL",
+    "mismatch": "PDIC.namedSpider.hints",
+    "challenge_hint": "regular:1",
+    "solution_hint": "regular:5",
+    "type_equal_for_all": true,
+    "body_equal_for_all": true
+  },
+  "after": {
+    "sha": "5749ecfc2a11730cc6a603db89f5e1d3607822f8",
+    "run": 40655783353,
+    "workflow_conclusion": "success",
+    "actual_compare": "PASS",
+    "challenge_namedSpider_hint": "regular:1",
+    "solution_namedSpider_hint": "regular:1",
+    "constants": {
+      "PDIC.Vertex": {
+        "full_ConstantInfo_equal": true,
+        "type_equal": true,
+        "body_equal": true
+      },
+      "PDIC.spiderAdj": {
+        "full_ConstantInfo_equal": true,
+        "type_equal": true,
+        "body_equal": true
+      },
+      "PDIC.namedSpider": {
+        "full_ConstantInfo_equal": true,
+        "type_equal": true,
+        "body_equal": true
+      },
+      "PDIC.GraphMIS": {
+        "full_ConstantInfo_equal": true,
+        "type_equal": true,
+        "body_equal": true
+      },
+      "PDIC.CapPoint": {
+        "full_ConstantInfo_equal": true,
+        "type_equal": true,
+        "body_equal": true
+      },
+      "PDIC.IsAdmissibleCap": {
+        "full_ConstantInfo_equal": true,
+        "type_equal": true,
+        "body_equal": true
+      },
+      "PDIC.fourGraphMISFamily": {
+        "full_ConstantInfo_equal": true,
+        "type_equal": true,
+        "body_equal": true
+      },
+      "PDIC.graphMIS_exact_probability_for_cap": {
+        "full_ConstantInfo_equal": true,
+        "type_equal": true,
+        "body_equal": true
+      }
+    },
+    "error_is_fatal": true
+  },
+  "controlled_source_repair": {
+    "PDIC.lean": "Remove expose from spiderAdj; add directly proved public spiderAdj_explicit theorem",
+    "Solution.lean": "Use proved iff lemma in unchanged flagship statement adjacency proof"
+  },
+  "final_full_source_sha": "912b628e6df0f4881f56e8f341031ec8d99d4e9e",
+  "Challenge_modified": false,
+  "comparator_policy_modified": false,
+  "paid_resource": false
+}

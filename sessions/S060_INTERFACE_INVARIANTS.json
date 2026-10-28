@@ -32,5 +32,6 @@
     }
   },
   "PDIC_change": "remove adjacency expose attribute; add proved public iff lemma",
-  "Solution_change": "same statement, exact lemma applied in proof"
+  "Solution_change": "same statement, exact lemma applied in proof",
+  "final_full_source_sha": "912b628e6df0f4881f56e8f341031ec8d99d4e9e"
 }

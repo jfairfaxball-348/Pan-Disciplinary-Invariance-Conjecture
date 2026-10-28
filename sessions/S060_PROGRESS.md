@@ -249,3 +249,10 @@ The S053 `@[expose]` on `spiderAdj` changed the reducibility height of the later
 
 
 Candidate actual export comparison **PASS**, run 40655783353, exact 5749ecfc2a11730cc6a603db89f5e1d3607822f8. All eight complete ConstantInfo values match. Both namedSpider hints are now regular 1, and unchanged pinned Lake.Check.compareAt returns REAL_COMPARE PASS. This supports the visibility-height diagnosis. All six finite audit scripts rerun locally 28 October PASS (their older printed cautions about not yet formalizing the orbit are historical script text; current S024 strict full normal-form proof is independently verified as recorded above). The next official standard FULL uses this exact mathematical source plus only its invoking workflow.
+
+
+## Final official standard FULL PASS — S060 closed, 28 October 2026
+
+Owner reported all green; independently retrieved both final successful jobs and actual artifact 12803249160. Run 40656295590, exact 912b628e6df0f4881f56e8f341031ec8d99d4e9e: report status pass, stage complete, no errors or warnings. con-ron accepted 14757 declarations (--verified); con-ron, NanoDa and Lean default kernel all accept the original complete solution. Standard profile unchanged, no paid runner. Official comparator cgroup peak 16,151,109,632 bytes against 16,431,086,551-byte cap, no OOM events; narrow headroom recorded explicitly. Report saved verbatim. S060 closed, S061 installed only; no registry action or proof/PR24 merge.
+
+Owner then authorized moving directly to registry. No additional proof session is needed. Exact submission values are in the closeout. Registry browser connection unavailable; authenticated gh/gist path unavailable. Hand off human GitHub sign-in on the official submission site. S061 target updated to actual submission/review/registration follow-through, not another preliminary audit campaign.

@@ -1,0 +1,1573 @@
+{
+  "build_log_tail": "lassical.choice, Quot.sound]\ninfo: S024.lean:501:0: '_private.S024.0.PDIC.s025_admissible_has_linear_basis_map' depends on axioms: [propext, Classical.choice, Quot.sound]\nwarning: S024.lean:519:13: This simp argument is unused:\n  Matrix.toLinearEquiv'_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [Matrix.toLin'_apply]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\nwarning: S024.lean:519:42: This simp argument is unused:\n  Matrix.toLin'_apply\n\nHint: Omit it from the simp argument list.\n  [apply] simp only [Matrix.toLinearEquiv'_apply]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`\ninfo: S024.lean:522:0: '_private.S024.0.PDIC.s026_capBasisEquiv_basis_action' depends on axioms: [propext, Classical.choice, Quot.sound]\nwarning: S024.lean:544:29: Variable name `hf` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _hf\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\ninfo: S024.lean:591:0: '_private.S024.0.PDIC.s026_capBasisEquiv_inverse_basis_action' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: S024.lean:592:0: '_private.S024.0.PDIC.s026_basis_third_ne_zero_one' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:593:0: '_private.S024.0.PDIC.s026_admissible_normalized_anchors' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:673:0: '_private.S024.0.PDIC.s025_matrix_images_eq_normalized_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:674:0: '_private.S024.0.PDIC.s025_witness_matrices_nonsingular' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:767:0: '_private.S024.0.PDIC.s027_image_subset_no_short_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:768:0: '_private.S024.0.PDIC.s027_image_short_zero_free' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:821:0: '_private.S024.0.PDIC.s027_normalized_cap_image_in_filtered_candidates' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: S024.lean:822:0: '_private.S024.0.PDIC.s027_any_admissible_normalized_in_filtered_family' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: S024.lean:881:0: '_private.S024.0.PDIC.s027_eighteen_tails_free_domain_certificate' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: S024.lean:882:0: '_private.S024.0.PDIC.s027_eighteen_tails_short_zero_certificate' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: S024.lean:883:0: '_private.S024.0.PDIC.s027_eighteen_tails_subset_filtered_candidates' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: S024.lean:928:0: '_private.S024.0.PDIC.s027FreePointAt_injective' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:929:0: '_private.S024.0.PDIC.s027FreePointAt_image' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:993:0: '_private.S024.0.PDIC.s027_indexed_five_tails_eq_original' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1051:0: '_private.S024.0.PDIC.s027_five_index_tails_split_by_first' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1072:0: '_private.S024.0.PDIC.s027_shard_7_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1080:0: '_private.S024.0.PDIC.s027_shard_8_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1088:0: '_private.S024.0.PDIC.s027_shard_9_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1096:0: '_private.S024.0.PDIC.s027_shard_10_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1104:0: '_private.S024.0.PDIC.s027_shard_11_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1112:0: '_private.S024.0.PDIC.s027_shard_12_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1133:0: '_private.S024.0.PDIC.s027_mid_shard_4_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1141:0: '_private.S024.0.PDIC.s027_mid_shard_5_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1149:0: '_private.S024.0.PDIC.s027_mid_shard_6_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1237:0: '_private.S024.0.PDIC.s027_first_index_shard_second_split' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1250:0: '_private.S024.0.PDIC.s027_shard_13_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1258:0: '_private.S024.0.PDIC.s027_shard_14_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1266:0: '_private.S024.0.PDIC.s027_shard_15_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1274:0: '_private.S024.0.PDIC.s027_shard_16_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\nwarning: S024.lean:1319:31: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i\u0335f\u0335_\u0335p\u0335o\u0335s\u0335i\u0332t\u0332e\u0332_\u0332e\u0332q\u0332_\u0332l\u0332e\u0332f\u0332t\u0332\nwarning: S024.lean:1326:33: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i\u0335f\u0335_\u0335p\u0335o\u0335s\u0335i\u0332t\u0332e\u0332_\u0332e\u0332q\u0332_\u0332l\u0332e\u0332f\u0332t\u0332\nwarning: S024.lean:1356:35: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i\u0335f\u0335_\u0335p\u0335o\u0335s\u0335i\u0332t\u0332e\u0332_\u0332e\u0332q\u0332_\u0332l\u0332e\u0332f\u0332t\u0332\ninfo: S024.lean:1399:0: '_private.S024.0.PDIC.s058_three_index_subsets_split' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1400:0: '_private.S024.0.PDIC.s058_second_index_split' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1401:0: '_private.S024.0.PDIC.s058_second_survivors_split' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1424:0: '_private.S024.0.PDIC.s058_pair_0_3_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1449:0: '_private.S024.0.PDIC.s058_pair_0_3_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1459:0: '_private.S024.0.PDIC.s028_pair_0_3_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1467:0: '_private.S024.0.PDIC.s028_pair_0_9_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1475:0: '_private.S024.0.PDIC.s028_pair_0_10_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1483:0: '_private.S024.0.PDIC.s028_pair_0_11_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1491:0: '_private.S024.0.PDIC.s028_pair_0_12_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1499:0: '_private.S024.0.PDIC.s028_pair_1_9_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1507:0: '_private.S024.0.PDIC.s028_pair_1_10_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1515:0: '_private.S024.0.PDIC.s028_pair_1_11_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1523:0: '_private.S024.0.PDIC.s028_pair_2_10_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1531:0: '_private.S024.0.PDIC.s028_pair_2_11_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1539:0: '_private.S024.0.PDIC.s028_pair_3_9_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1572:0: '_private.S024.0.PDIC.s028_first_survivors_split' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1668:0: '_private.S024.0.PDIC.s027_image_orbit_of_tail_classification' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: S024.lean:1669:0: '_private.S024.0.PDIC.s027_classical_normal_form_of_tail_classification' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nwarning: S024.lean:1737:35: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i\u0335f\u0335_\u0335p\u0335o\u0335s\u0335i\u0332t\u0332e\u0332_\u0332e\u0332q\u0332_\u0332l\u0332e\u0332f\u0332t\u0332\ninfo: S024.lean:1765:0: '_private.S024.0.PDIC.s029_pair_0_1_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1789:0: '_private.S024.0.PDIC.s029_pair_0_2_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1803:0: '_private.S024.0.PDIC.s059_pair_0_4_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1819:0: '_private.S024.0.PDIC.s059_pair_0_4_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1827:0: '_private.S024.0.PDIC.s029_pair_0_4_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1841:0: '_private.S024.0.PDIC.s059_pair_0_5_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1857:0: '_private.S024.0.PDIC.s059_pair_0_5_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1865:0: '_private.S024.0.PDIC.s029_pair_0_5_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1879:0: '_private.S024.0.PDIC.s059_pair_0_6_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1895:0: '_private.S024.0.PDIC.s059_pair_0_6_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1903:0: '_private.S024.0.PDIC.s029_pair_0_6_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1911:0: '_private.S024.0.PDIC.s029_pair_0_7_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1919:0: '_private.S024.0.PDIC.s029_pair_0_8_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:1927:0: '_private.S024.0.PDIC.s029_pair_0_13_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\nwarning: S024.lean:1981:35: `if_pos` has been deprecated: Use `ite_eq_left` instead\n\nHint: Replace the deprecated name:\n  i\u0335f\u0335_\u0335p\u0335o\u0335s\u0335i\u0332t\u0332e\u0332_\u0332e\u0332q\u0332_\u0332l\u0332e\u0332f\u0332t\u0332\ninfo: S024.lean:2011:0: '_private.S024.0.PDIC.s029_pair_1_2_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2026:0: '_private.S024.0.PDIC.s059_pair_1_3_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2044:0: '_private.S024.0.PDIC.s059_pair_1_3_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2052:0: '_private.S024.0.PDIC.s029_pair_1_3_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2066:0: '_private.S024.0.PDIC.s059_pair_1_4_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2082:0: '_private.S024.0.PDIC.s059_pair_1_4_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2090:0: '_private.S024.0.PDIC.s029_pair_1_4_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2104:0: '_private.S024.0.PDIC.s059_recovery_1_5_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2121:0: '_private.S024.0.PDIC.s059_recovery_1_5_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2129:0: '_private.S024.0.PDIC.s029_pair_1_5_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2137:0: '_private.S024.0.PDIC.s029_pair_1_6_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2151:0: '_private.S024.0.PDIC.s059_recovery_1_7_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2168:0: '_private.S024.0.PDIC.s059_recovery_1_7_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2176:0: '_private.S024.0.PDIC.s029_pair_1_7_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2184:0: '_private.S024.0.PDIC.s029_pair_1_8_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2192:0: '_private.S024.0.PDIC.s029_pair_1_12_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2200:0: '_private.S024.0.PDIC.s029_pair_1_13_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2228:0: '_private.S024.0.PDIC.s059_pair_2_3_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2249:0: '_private.S024.0.PDIC.s059_pair_2_3_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2257:0: '_private.S024.0.PDIC.s029_pair_2_3_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2272:0: '_private.S024.0.PDIC.s059_pair_2_4_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2288:0: '_private.S024.0.PDIC.s059_pair_2_4_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2296:0: '_private.S024.0.PDIC.s029_pair_2_4_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2304:0: '_private.S024.0.PDIC.s029_pair_2_5_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2312:0: '_private.S024.0.PDIC.s029_pair_2_6_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2320:0: '_private.S024.0.PDIC.s029_pair_2_7_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2328:0: '_private.S024.0.PDIC.s029_pair_2_8_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2336:0: '_private.S024.0.PDIC.s029_pair_2_9_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2344:0: '_private.S024.0.PDIC.s029_pair_2_12_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2352:0: '_private.S024.0.PDIC.s029_pair_2_13_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2368:0: '_private.S024.0.PDIC.s029_pair_3_4_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2382:0: '_private.S024.0.PDIC.s059_recovery_3_5_third_table' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2399:0: '_private.S024.0.PDIC.s059_recovery_3_5_card_optimized' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2407:0: '_private.S024.0.PDIC.s029_pair_3_5_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2415:0: '_private.S024.0.PDIC.s029_pair_3_6_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2423:0: '_private.S024.0.PDIC.s029_pair_3_7_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2431:0: '_private.S024.0.PDIC.s029_pair_3_8_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2439:0: '_private.S024.0.PDIC.s029_pair_3_10_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2447:0: '_private.S024.0.PDIC.s029_pair_3_11_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2455:0: '_private.S024.0.PDIC.s029_pair_3_12_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2463:0: '_private.S024.0.PDIC.s029_pair_3_13_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\nwarning: S024.lean:2500:6: `simp` already closes the goal\n\nHint: Use `simp` instead of `simpa`:\n  [apply] simp [s027SecondIndexShard, hij] at hS\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\nwarning: S024.lean:2501:4: `simp` already closes the goal\n\nHint: Use `simp` instead of `simpa`:\n  [apply] simp at he\n\nNote: This linter can be disabled with `set_option linter.unnecessarySimpa false`\ninfo: S024.lean:2542:0: '_private.S024.0.PDIC.s029_second_index_le_every_later_member' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: S024.lean:2543:0: '_private.S024.0.PDIC.s029_second_index_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2544:0: '_private.S024.0.PDIC.s029_second_survivors_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2545:0: '_private.S024.0.PDIC.s029_first_survivors_card_eq_second_sum' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: S024.lean:2673:0: '_private.S024.0.PDIC.s029_indexed_survivors_image_eq_normalized' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: S024.lean:2674:0: '_private.S024.0.PDIC.s029_normalized_card_eq_indexed' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2675:0: '_private.S024.0.PDIC.s029_indexed_survivors_first_split' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2676:0: '_private.S024.0.PDIC.s029_first_index_le_every_member' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2677:0: '_private.S024.0.PDIC.s029_first_index_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2678:0: '_private.S024.0.PDIC.s029_first_survivors_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2679:0: '_private.S024.0.PDIC.s029_indexed_card_eq_first_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2770:0: '_private.S024.0.PDIC.s030_first_0_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2807:0: '_private.S024.0.PDIC.s030_first_1_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2844:0: '_private.S024.0.PDIC.s030_first_2_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:2881:0: '_private.S024.0.PDIC.s030_first_3_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:3079:0: '_private.S024.0.PDIC.s060_forbidden_certified' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:3080:0: '_private.S024.0.PDIC.s060_survivors_subset_fast' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:3081:0: '_private.S024.0.PDIC.s060_fast_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:3139:0: '_private.S024.0.PDIC.s030_normalized_survivor_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:3140:0: '_private.S024.0.PDIC.s030_explicit_eighteen_card' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:3141:0: '_private.S024.0.PDIC.s030_normalized_tail_classification' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:3142:0: '_private.S024.0.PDIC.admissibleCapImageOrbit_proved' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:3143:0: '_private.S024.0.PDIC.classicalCapNormalForm_proved' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: S024.lean:3144:0: 'PDIC.connected_graphMIS_complete_flagship_unconditional_all_caps' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n\u2139 [1845/1846] Built Solution (1.0s)\ninfo: Solution.lean:53:0: 'PDIC.palomar_complete_probability_and_spider' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1846 jobs).",
+  "bwrap_source_tag": "v0.12.0",
+  "challenge": {
+    "bytes": 6666,
+    "canonical_olean_sha256": "988f03ae8b6730dc34379c11bbfb5626a767b487e9205177d52589b85287e051",
+    "dependencies": [
+      {
+        "provenance": "allowlisted",
+        "repository": "leanprover-community/mathlib4"
+      }
+    ],
+    "direct_imports": [
+      "Mathlib.Algebra.Field.ZMod",
+      "Mathlib.Algebra.Order.Field.Rat",
+      "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+      "Mathlib.Data.Finset.Powerset",
+      "Mathlib.Data.Fintype.Perm",
+      "Mathlib.Data.ZMod.Basic",
+      "Mathlib.GroupTheory.Perm.Basic"
+    ],
+    "lines": 145,
+    "module": "Challenge",
+    "path": "Challenge.lean",
+    "sha256": "c0e1571adc8046fe621256de943c190d0c67255c99081d4014a8cb52f206c7ae",
+    "transitive_source_count": 8,
+    "trust_level": "high",
+    "untrusted_sources": []
+  },
+  "checked_at": "2026-10-28T08:57:46Z",
+  "classification": {
+    "arxiv": [
+      {
+        "code": "math.CO",
+        "name": "Combinatorics"
+      }
+    ],
+    "msc2020": [
+      {
+        "code": "05C69",
+        "name": "Vertex subsets with special properties (dominating sets, independent sets, cliques, etc.)"
+      },
+      {
+        "code": "05C80",
+        "name": "Random graphs (graph-theoretic aspects)"
+      }
+    ]
+  },
+  "comparator": {
+    "challenge_module": "Challenge",
+    "definition_names": [],
+    "path": "comparator.json",
+    "permitted_axioms": [
+      "propext",
+      "Quot.sound",
+      "Classical.choice"
+    ],
+    "sha256": "78d0ec3fe502b75a72edca5eec4d692d9ad6c79b25ecf22dfebbce23a379303f",
+    "solution_module": "Solution",
+    "theorem_names": [
+      "PDIC.palomar_complete_probability_and_spider"
+    ]
+  },
+  "comparator_log_tail": "Running con-ron kernel on solution\ncon-ron: accepted 14757 declarations (--verified)\ncon-ron kernel accepts the solution\nRunning nanoda kernel on solution\nnanoda kernel accepts the solution\nRunning Lean default kernel on solution\nLean default kernel accepts the solution\nYour solution is okay!\n\ncon-ron: 1 inductive blocks modelled in-process: Lean.Syntax (30 generated records, checked by the fold as declarations and not counted as records of the file)",
+  "errors": [],
+  "existing_id": null,
+  "formalization": {
+    "automation_method_count": 1,
+    "path": "formalization.yaml",
+    "project_name": "Zero-Sum Quartet Incidence and Sharp Maximal-Independent-Set Witnesses on Eight Vertices",
+    "review_status": "self-assessed",
+    "sha256": "4749d31c4c328d3071fb798d8fe9b82461d2b2ab5ea8998ee265e2004d1c9ad9",
+    "source_count": 1
+  },
+  "kernels": [
+    {
+      "argv": [
+        "/home/runner/.elan/toolchains/leanprover--lean4---v4.35.0-rc3/bin/nanoda_bin"
+      ],
+      "name": "nanoda"
+    },
+    {
+      "argv": [
+        "/home/runner/.elan/toolchains/leanprover--lean4---v4.35.0-rc3/bin/con-ron",
+        "--jobs=2"
+      ],
+      "name": "con-ron"
+    }
+  ],
+  "lake_manifest": {
+    "path": "lake-manifest.json",
+    "sha256": "661e7775c2e9723d87cd24aed2b7d800fa1e0d682548604ca7fb4e648b2c2760"
+  },
+  "lakefile": {
+    "format": "toml",
+    "path": "lakefile.toml",
+    "sha256": "7d00023c8805f0bc59367850cd54ec4f49987e7694b3cda15b7ff8605e349453"
+  },
+  "lean_toolchain": "leanprover/lean4:v4.35.0-rc3",
+  "lean_toolchain_path": "lean-toolchain",
+  "license": {
+    "declared_identifier": "Apache-2.0",
+    "detected_identifier": "Apache-2.0",
+    "path": "LICENSE",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "mathlib_cache": {
+    "available": true,
+    "required": true
+  },
+  "mathlib_toolchain": [
+    {
+      "revision": "c55e6e786f49471c72fbddbec5415808896aec1e",
+      "toolchain": "leanprover/lean4:v4.35.0-rc3"
+    }
+  ],
+  "orcid_validation": {
+    "checked_at": "2026-10-28T08:23:03Z",
+    "records": [],
+    "registry": "https://orcid.org",
+    "schema_version": 1
+  },
+  "phase": "verification",
+  "project_dependencies": [
+    {
+      "name": "mathlib",
+      "repository": "leanprover-community/mathlib4",
+      "revision": "c55e6e786f49471c72fbddbec5415808896aec1e",
+      "url": "https://github.com/leanprover-community/mathlib4.git"
+    },
+    {
+      "name": "plausible",
+      "repository": "leanprover-community/plausible",
+      "revision": "fb13df72ecefd8ddbf9291021d7f33a8673eb57b",
+      "url": "https://github.com/leanprover-community/plausible"
+    },
+    {
+      "name": "LeanSearchClient",
+      "repository": "leanprover-community/LeanSearchClient",
+      "revision": "29ff470276c725ae01505d55b17148c18fc7dfd3",
+      "url": "https://github.com/leanprover-community/LeanSearchClient"
+    },
+    {
+      "name": "importGraph",
+      "repository": "leanprover-community/import-graph",
+      "revision": "7e81a29bda33a6b257bd37557a6aa6aebe175d96",
+      "url": "https://github.com/leanprover-community/import-graph"
+    },
+    {
+      "name": "proofwidgets",
+      "repository": "leanprover-community/ProofWidgets4",
+      "revision": "c643bbb3c24f8a25f9c14e3a6b1ceb13d01f3de1",
+      "url": "https://github.com/leanprover-community/ProofWidgets4"
+    },
+    {
+      "name": "aesop",
+      "repository": "leanprover-community/aesop",
+      "revision": "a90fbf7b02ff06a0deebf74088dff9e5fe02c9ea",
+      "url": "https://github.com/leanprover-community/aesop"
+    },
+    {
+      "name": "Qq",
+      "repository": "leanprover-community/quote4",
+      "revision": "37b0ba0b26109cf9f9c541f0f9557e50cfa1a3b9",
+      "url": "https://github.com/leanprover-community/quote4"
+    },
+    {
+      "name": "batteries",
+      "repository": "leanprover-community/batteries",
+      "revision": "3b7c8101932390d60e92a3f3d917901d5b5a773b",
+      "url": "https://github.com/leanprover-community/batteries"
+    },
+    {
+      "name": "Cli",
+      "repository": "leanprover/lean4-cli",
+      "revision": "843844fa601dd56767b1eb22b7ada5b64d5e567a",
+      "url": "https://github.com/leanprover/lean4-cli"
+    }
+  ],
+  "protected_config": "{\n  \"challenge_module\": \"PalomarCanonical360ae418c734e6dc819fab9f.Challenge\",\n  \"definition_names\": [],\n  \"external_kernels\": {\n    \"con-ron\": [\n      \"/home/runner/.elan/toolchains/leanprover--lean4---v4.35.0-rc3/bin/con-ron\",\n      \"--jobs=2\"\n    ],\n    \"nanoda\": [\n      \"/home/runner/.elan/toolchains/leanprover--lean4---v4.35.0-rc3/bin/nanoda_bin\"\n    ]\n  },\n  \"permitted_axioms\": [\n    \"propext\",\n    \"Quot.sound\",\n    \"Classical.choice\"\n  ],\n  \"solution_module\": \"Solution\",\n  \"theorem_names\": [\n    \"PDIC.palomar_complete_probability_and_spider\"\n  ]\n}\n",
+  "protected_config_sha256": "4342f8f5e7a10341d8d9ad6f5cf743cc96cb22b35bf22ae99fcdd75b1945f9dc",
+  "provenance": {
+    "mathematical_sources": [
+      {
+        "authors": [
+          {
+            "name": "John Fairfax-Ball"
+          }
+        ],
+        "location": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/blob/93065b9e67bc9692b4f19be41f69b0918d8eda8b/paper/PDIC_S003R8_DRAFT.tex",
+        "note": "Author's unpublished proof draft; priority and novelty have not been established. Earlier conditional classification wording in the draft is superseded by the proved all-cap theorem.",
+        "relationship": "formalizes",
+        "title": "Zero-Sum Quartet Incidence and Sharp Maximal-Independent-Set Witnesses on Eight Vertices (working manuscript)",
+        "type": "working manuscript"
+      }
+    ],
+    "related_formalizations": [],
+    "repository_role": "substantive-development",
+    "responsible_maintainers": [
+      {
+        "name": "John Fairfax-Ball"
+      }
+    ],
+    "result_origin": "source-based"
+  },
+  "resource_usage": [
+    {
+      "elapsed_seconds": 0.02,
+      "max_rss_kib": 13316,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-initial",
+      "returncode": 0,
+      "system_cpu_seconds": 0.024,
+      "user_cpu_seconds": 0.026,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 55613000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 8814592,
+      "phase": "confinement-initial:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.041,
+      "max_rss_kib": 13328,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-initial",
+      "returncode": 0,
+      "system_cpu_seconds": 0.026,
+      "user_cpu_seconds": 0.046,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 79066000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 13422592,
+      "phase": "confinement-initial:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.02,
+      "max_rss_kib": 13356,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-initial",
+      "returncode": 1,
+      "system_cpu_seconds": 0.018,
+      "user_cpu_seconds": 0.033,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 56384000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "1",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 8773632,
+      "phase": "confinement-initial:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "failed",
+      "systemd_result": "exit-code"
+    },
+    {
+      "elapsed_seconds": 0.04,
+      "max_rss_kib": 13492,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-initial",
+      "returncode": 0,
+      "system_cpu_seconds": 0.022,
+      "user_cpu_seconds": 0.05,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 78624000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 13701120,
+      "phase": "confinement-initial:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.041,
+      "max_rss_kib": 13328,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-initial",
+      "returncode": 1,
+      "system_cpu_seconds": 0.028,
+      "user_cpu_seconds": 0.044,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 79159000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "1",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 13529088,
+      "phase": "confinement-initial:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "failed",
+      "systemd_result": "exit-code"
+    },
+    {
+      "elapsed_seconds": 0.04,
+      "max_rss_kib": 13328,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-initial",
+      "returncode": 1,
+      "system_cpu_seconds": 0.027,
+      "user_cpu_seconds": 0.046,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 77855000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "1",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 13463552,
+      "phase": "confinement-initial:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "failed",
+      "systemd_result": "exit-code"
+    },
+    {
+      "elapsed_seconds": 0.038,
+      "max_rss_kib": 13492,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-initial",
+      "returncode": 1,
+      "system_cpu_seconds": 0.03,
+      "user_cpu_seconds": 0.041,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 76841000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "1",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 12754944,
+      "phase": "confinement-initial:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "failed",
+      "systemd_result": "exit-code"
+    },
+    {
+      "elapsed_seconds": 0.059,
+      "max_rss_kib": 27188,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "source-requirements",
+      "returncode": 0,
+      "system_cpu_seconds": 0.036,
+      "user_cpu_seconds": 0.055,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 97502000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 28102656,
+      "phase": "source-requirements:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.233,
+      "max_rss_kib": 78248,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "comparator-preflight",
+      "returncode": 0,
+      "system_cpu_seconds": 0.112,
+      "user_cpu_seconds": 0.151,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 269599000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 80388096,
+      "phase": "comparator-preflight:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.383,
+      "max_rss_kib": 351984,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "comparator-preflight",
+      "returncode": 0,
+      "system_cpu_seconds": 0.149,
+      "user_cpu_seconds": 0.267,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 422295000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 360693760,
+      "phase": "comparator-preflight:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.217,
+      "max_rss_kib": 78232,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "comparator-preflight",
+      "returncode": 0,
+      "system_cpu_seconds": 0.107,
+      "user_cpu_seconds": 0.141,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 255394000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 80371712,
+      "phase": "comparator-preflight:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.369,
+      "max_rss_kib": 351900,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "comparator-preflight",
+      "returncode": 0,
+      "system_cpu_seconds": 0.146,
+      "user_cpu_seconds": 0.255,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 407637000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 360607744,
+      "phase": "comparator-preflight:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.236,
+      "max_rss_kib": 77996,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "comparator-preflight",
+      "returncode": 0,
+      "system_cpu_seconds": 0.121,
+      "user_cpu_seconds": 0.148,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 276760000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 80130048,
+      "phase": "comparator-preflight:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.365,
+      "max_rss_kib": 351904,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "comparator-preflight",
+      "returncode": 0,
+      "system_cpu_seconds": 0.154,
+      "user_cpu_seconds": 0.245,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 405430000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 360611840,
+      "phase": "comparator-preflight:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 6.989,
+      "max_rss_kib": 147352,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "comparator-preflight",
+      "returncode": 0,
+      "system_cpu_seconds": 0.108,
+      "user_cpu_seconds": 6.979,
+      "workspace_disk_peak_bytes": 4096
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 7093802000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 151150592,
+      "phase": "comparator-preflight:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.135,
+      "max_rss_kib": 32104,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "comparator-preflight",
+      "returncode": 1,
+      "system_cpu_seconds": 0.034,
+      "user_cpu_seconds": 0.136,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 175761000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "1",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 33136640,
+      "phase": "comparator-preflight:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "failed",
+      "systemd_result": "exit-code"
+    },
+    {
+      "elapsed_seconds": 6.948,
+      "max_rss_kib": 146828,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "comparator-preflight",
+      "returncode": 1,
+      "system_cpu_seconds": 0.118,
+      "user_cpu_seconds": 6.894,
+      "workspace_disk_peak_bytes": 4096
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 7018065000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "1",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 150368256,
+      "phase": "comparator-preflight:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "failed",
+      "systemd_result": "exit-code"
+    },
+    {
+      "elapsed_seconds": 1.903,
+      "max_rss_kib": 144008,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "module-resolution",
+      "returncode": 0,
+      "system_cpu_seconds": 0.422,
+      "user_cpu_seconds": 1.558,
+      "workspace_disk_peak_bytes": 8192
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 1986065000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 147726336,
+      "phase": "module-resolution:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.061,
+      "max_rss_kib": 23348,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "module-resolution",
+      "returncode": 0,
+      "system_cpu_seconds": 0.036,
+      "user_cpu_seconds": 0.056,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 98760000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 24170496,
+      "phase": "module-resolution:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 50.672,
+      "max_rss_kib": 8550536,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "trusted-cache",
+      "returncode": 0,
+      "system_cpu_seconds": 48.433,
+      "user_cpu_seconds": 81.338,
+      "workspace_disk_peak_bytes": 7929151488
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 129777309000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 8755765248,
+      "phase": "trusted-cache:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 5.027,
+      "max_rss_kib": 268864,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "trusted-cache",
+      "returncode": 0,
+      "system_cpu_seconds": 3.466,
+      "user_cpu_seconds": 5.545,
+      "workspace_disk_peak_bytes": 1507328
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 9018461000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 275578880,
+      "phase": "trusted-cache:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 2.526,
+      "max_rss_kib": 145284,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "trusted-cache",
+      "returncode": 0,
+      "system_cpu_seconds": 0.643,
+      "user_cpu_seconds": 1.86,
+      "workspace_disk_peak_bytes": 737280
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 2509065000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 149032960,
+      "phase": "trusted-cache:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.954,
+      "max_rss_kib": 207308,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "canonical-challenge",
+      "returncode": 0,
+      "system_cpu_seconds": 0.302,
+      "user_cpu_seconds": 0.872,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 1179912000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 212545536,
+      "phase": "canonical-challenge:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.055,
+      "max_rss_kib": 23272,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "canonical-challenge",
+      "returncode": 0,
+      "system_cpu_seconds": 0.036,
+      "user_cpu_seconds": 0.05,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 92673000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 24092672,
+      "phase": "canonical-challenge:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.054,
+      "max_rss_kib": 23328,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "canonical-challenge",
+      "returncode": 0,
+      "system_cpu_seconds": 0.028,
+      "user_cpu_seconds": 0.058,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 92355000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 24150016,
+      "phase": "canonical-challenge:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.016,
+      "max_rss_kib": 13492,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-final",
+      "returncode": 0,
+      "system_cpu_seconds": 0.018,
+      "user_cpu_seconds": 0.03,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 54039000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 8773632,
+      "phase": "confinement-final:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.036,
+      "max_rss_kib": 13312,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-final",
+      "returncode": 0,
+      "system_cpu_seconds": 0.027,
+      "user_cpu_seconds": 0.041,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 73131000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 13160448,
+      "phase": "confinement-final:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.016,
+      "max_rss_kib": 13492,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-final",
+      "returncode": 1,
+      "system_cpu_seconds": 0.018,
+      "user_cpu_seconds": 0.03,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 53522000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "1",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 8781824,
+      "phase": "confinement-final:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "failed",
+      "systemd_result": "exit-code"
+    },
+    {
+      "elapsed_seconds": 0.037,
+      "max_rss_kib": 13492,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-final",
+      "returncode": 0,
+      "system_cpu_seconds": 0.024,
+      "user_cpu_seconds": 0.045,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 74076000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 13447168,
+      "phase": "confinement-final:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.037,
+      "max_rss_kib": 13356,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-final",
+      "returncode": 0,
+      "system_cpu_seconds": 0.026,
+      "user_cpu_seconds": 0.042,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 74208000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 13443072,
+      "phase": "confinement-final:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 0.038,
+      "max_rss_kib": 13492,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-final",
+      "returncode": 1,
+      "system_cpu_seconds": 0.027,
+      "user_cpu_seconds": 0.043,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 76340000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "1",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 13705216,
+      "phase": "confinement-final:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "failed",
+      "systemd_result": "exit-code"
+    },
+    {
+      "elapsed_seconds": 0.038,
+      "max_rss_kib": 13328,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-final",
+      "returncode": 1,
+      "system_cpu_seconds": 0.027,
+      "user_cpu_seconds": 0.042,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 75878000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "1",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 13697024,
+      "phase": "confinement-final:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "failed",
+      "systemd_result": "exit-code"
+    },
+    {
+      "elapsed_seconds": 0.034,
+      "max_rss_kib": 13356,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 1,
+      "phase": "confinement-final",
+      "returncode": 1,
+      "system_cpu_seconds": 0.029,
+      "user_cpu_seconds": 0.038,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 72314000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "1",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 12902400,
+      "phase": "confinement-final:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "failed",
+      "systemd_result": "exit-code"
+    },
+    {
+      "elapsed_seconds": 1.276,
+      "max_rss_kib": 109680,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "candidate-configuration",
+      "returncode": 0,
+      "system_cpu_seconds": 0.621,
+      "user_cpu_seconds": 0.713,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 1339687000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 112574464,
+      "phase": "candidate-configuration:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 1.26,
+      "max_rss_kib": 109152,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "candidate-configuration",
+      "returncode": 0,
+      "system_cpu_seconds": 0.59,
+      "user_cpu_seconds": 0.727,
+      "workspace_disk_peak_bytes": 0
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 1324985000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 112033792,
+      "phase": "candidate-configuration:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 2.067,
+      "max_rss_kib": 480088,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "challenge-export",
+      "returncode": 0,
+      "system_cpu_seconds": 0.509,
+      "user_cpu_seconds": 1.572,
+      "workspace_disk_peak_bytes": 23740416
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 2086090000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 491872256,
+      "phase": "challenge-export:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 694.048,
+      "max_rss_kib": 11982996,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "solution-build",
+      "returncode": 0,
+      "system_cpu_seconds": 21.473,
+      "user_cpu_seconds": 692.878,
+      "workspace_disk_peak_bytes": 13402112
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 714359829000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 12270604288,
+      "phase": "solution-build:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 7.901,
+      "max_rss_kib": 1483864,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "solution-export",
+      "returncode": 0,
+      "system_cpu_seconds": 0.996,
+      "user_cpu_seconds": 4.326,
+      "workspace_disk_peak_bytes": 65503232
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 5329419000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 1519480832,
+      "phase": "solution-export:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    },
+    {
+      "elapsed_seconds": 1062.292,
+      "max_rss_kib": 15772556,
+      "memory_source": "cgroup",
+      "peak_tasks_observed": 3,
+      "phase": "comparator",
+      "returncode": 0,
+      "system_cpu_seconds": 106.953,
+      "user_cpu_seconds": 1419.426,
+      "workspace_disk_peak_bytes": 61440
+    },
+    {
+      "cpu_max_applied": false,
+      "cpu_usage_nanoseconds": 1526393672000,
+      "deadline_fired": false,
+      "exec_main_code": "1",
+      "exec_main_status": "0",
+      "memory_events": {
+        "oom": 0,
+        "oom_kill": 0
+      },
+      "memory_peak_bytes": 16151109632,
+      "phase": "comparator:cgroup",
+      "pids_events_max": 0,
+      "rlimits_applied": {
+        "FSIZE": 1099511627776,
+        "NOFILE": 65536
+      },
+      "supervisor": "cgroup",
+      "supervisor_timeout": false,
+      "systemd_active_state": "inactive",
+      "systemd_result": "success"
+    }
+  ],
+  "schema_version": 2,
+  "solution": {
+    "module": "Solution",
+    "path": "Solution.lean",
+    "sha256": "a1c3d678526e614860f2940a4141a1bfa8fe7c8462f8930da8b8cc750a415446"
+  },
+  "source": {
+    "bytes": 1139055,
+    "commit": "912b628e6df0f4881f56e8f341031ec8d99d4e9e",
+    "repository": "jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture",
+    "repository_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture",
+    "tree_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/912b628e6df0f4881f56e8f341031ec8d99d4e9e"
+  },
+  "source_requirements": {
+    "files_checked": 7,
+    "header_parser": "lean --deps-json",
+    "maximum_lines": 10000,
+    "module_required": true,
+    "schema_version": 1
+  },
+  "stage": "complete",
+  "status": "pass",
+  "submission": {
+    "authorization": {
+      "relationship": "maintainer"
+    },
+    "requested_paths": {
+      "comparator_config_path": "comparator.json",
+      "formalization_metadata_path": "formalization.yaml",
+      "project_path": ""
+    },
+    "submission_id": "pdics0600002"
+  },
+  "tool_digests": {
+    "bwrap": "70ea95963a9a4692700646fb27f354b55fa50bd309ab92f7b8da7bcceb65c0db",
+    "con-ron": "4e5616d94374cae37324dad2594f6230c2bb2297240249fc78ff508f3bc5acef",
+    "lake": "8ba83c98f76562d03b8dbc33f1057151ba6cbb121679dde76b2260ccc90495e1",
+    "lean": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanchecker": "9e36e955a251b1313c8eb5b7fa101282d51df109d34d8bb7c1cfdf51985aba29",
+    "leanexport": "c5bc1a10a21e22cbb3671d65987cdef2076833b14182d823ccb2153adf2fa954",
+    "nanoda_bin": "8241c5e6baa29490aa118d382f97961b208ae730fdb96545c2abed74c9ece5a8"
+  },
+  "toolchain_commit": "470d5ce1400764999581fd26d5d72b00d990b0f4",
+  "verification_profile": {
+    "id": "palomar-standard-v1",
+    "limits": {
+      "execution_budget_seconds": 19800,
+      "file_size_max_bytes": 1099511627776,
+      "job_timeout_minutes": 350,
+      "memory_high_percent": 95,
+      "memory_max_percent": 98,
+      "minimum_host_memory_bytes": 15032385536,
+      "minimum_workspace_free_bytes": 21474836480,
+      "open_files_max": 1048576,
+      "tasks_max": 32768
+    },
+    "observed_host": {
+      "architecture": "x86_64",
+      "effective_cpus": 4.0,
+      "memory_bytes": 16766414848,
+      "memory_high_bytes": 15928094105,
+      "memory_max_bytes": 16431086551,
+      "workspace_free_bytes": 115108900864
+    },
+    "runner": {
+      "architecture": "x86_64",
+      "label": "ubuntu-24.04",
+      "provider": "github-hosted"
+    },
+    "sha256": "94fcd7906a1b6c076c0036d742e1c5add8625e49bb474818ec8924576dbf0caa",
+    "trusted_tools": {
+      "bwrap_source_tag": "v0.12.0",
+      "toolchain_floor": "v4.35.0-rc2"
+    }
+  },
+  "warnings": [],
+  "workflow_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40656295590",
+  "execution_profile": "palomar-standard-v1"
+}
