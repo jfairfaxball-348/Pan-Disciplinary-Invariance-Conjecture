@@ -1,120 +1,58 @@
 # Pan-Disciplinary Invariance Conjecture (PDIC)
 
-Connect finite-group zero-sum quartet geometry and maximal-independent-set statistics in a precise first paper. The project name is aspirational; literature priority remains unresolved.
+This repository studies zero-sum quartet incidence for eight-point caps in ℝₓ³ and maximal-independent-set statistics of connected eight-vertex graphs. The project name is historical and aspirational: the **specific first-paper theorem below is fully formalized**, not a claim to have resolved every possible broader pan-disciplinary invariance question. Originality and literature priority have not been established.
 
-**Current stage: S014 STRICT LEAN PASS** for the real quartet-index counting bridge and 576/16 regular stabilizers, including the genuine fixed-quartet-image fibre. [Exact source](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/95ef8f4886868f66edfbde90b34cc9e12fe6b463) · [Lean PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38949894336) · [finite PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38949894242). **S015 installed, not executed.** Genuine 2304/128 event totals, MIS factorial moments and the full first-paper probability law remain OPEN_IN_LEAN.
+## Current verification status — 28 October 2026
 
-## What is now strictly verified
+**COMPLETE: the unconditional first-paper probability law and sharp named-spider characterization are Lean-kernel verified and passed the standard full Palomar mechanical verifier.** The precise, independently specified Challenge and proved Solution were checked at immutable source commit [`912b628e6df0f4881f56e8f341031ec8d99d4e9e`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/912b628e6df0f4881f56e8f341031ec8d99d4e9e) on branch [`diagnostic/s060-interface-standard-full`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/tree/diagnostic/s060-interface-standard-full).
 
-At exact source [`ff864170834954ef2a286afe6a6b6577ec02f986`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/ff864170834954ef2a286afe6a6b6577ec02f986), [hosted Lean run 38914271558: PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38914271558), the public declaration `connected_unorderedCompatibleTripleCount_le_three` proves
+- **Full standard-profile verification: PASS** — [GitHub Actions run 40656295590](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40656295590). Comparator and the independent con-ron, NanoDa, and Lean default-kernel checks accepted the complete original flagship; all eight exported Challenge/Solution declaration comparisons passed. The report has no errors or warnings.
+- **Palomar submission mechanical verification: SUCCESS** — [submission run 40661719810](https://github.com/PalomarRegistry/PalomarSubmission/actions/runs/40661719810), with the Challenge-renderability check also passed on 28 October 2026. Mechanical verification is distinct from editorial acceptance or a public registry entry.
+- **Permitted axioms:** `propext`, `Classical.choice`, and `Quot.sound`; no `sorry` / `admit`, new axiom, weakened theorem, or replacement of kernel checking by a Python result.
+- **Registration:** not yet publicly registered as of this README update. A separate registration decision/process remains necessary. Palomar's mechanical checks do not constitute peer review or establish priority.
 
-    For every connected SimpleGraph (Fin 8), h(G) ≤ 3.
+The original complete source and configuration live at the immutable verified commit; this README correction is **documentation-only** and does not alter Lean source, the Challenge, Solution, comparator, metadata, or toolchain. The repository's default `main` contains historical documentation and is **not** a substitute for the verified source commit on the proof branch.
 
-Here h counts genuine **unordered sets of three** size-four maximal independent vertex sets: a disjoint complementary pair and a third set meeting each side in two vertices. Lean constructs the balanced side enumerations and an actual graph isomorphism to a 4×4 matrix graph; it proves the MIS/triple transport and h=B count equivalence. These are constructed proofs, not assumptions of the bound. All seven independent checkers pass and all audited axioms are standard.
+## Exact scope of the proved theorem
 
-[Proof scope and dependency chain](research/S007_UNORDERED_GRAPH_BRIDGE.md) · [S007 continuation closeout](sessions/S007_EXTENSION_CLOSEOUT.md) · [draft PR #4](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4).
+Let `G` be any **connected simple graph on eight vertices**, and let `f` be any **admissible eight-point cap in ℝₓ³**. Uniformly sample all **40,320 bijections** from the vertices to the cap, and let `N₀` count the size-four maximal independent vertex sets whose assigned labels sum to zero.
 
-**Canonical proof branch:** `session/s007-full-lean-flagship`. Main retains its historical S003R3 `PDIC.lean`; read the certified branch/commit, not main's old source. The temporary `session/s008-full-h-bridge` scaffold is superseded. S008 was executed on this canonical proof branch; its partial scope and current CI are documented below.
+Write `m` for the number of size-four maximal independent sets, `n₀` and `n₂` for their numbers of unordered pairs intersecting in zero and two vertices, and `h` for the number of compatible unordered triples. Define
 
-## Remaining mandatory Lean gate
+- `M₁ = 2m/35`
+- `M₂ = 2n₀/35 + n₂/315`
+- `M₃ = h/315`
 
-The manuscript's entire theorem remains the target. For a connected eight-vertex graph labelled uniformly by an admissible eight-cap, write m for the four-MIS count, n₀/n₂ for unordered pair overlap counts and h for compatible triples. Put M₁=2m/35, M₂=2n₀/35+n₂/315, M₃=h/315. The written theorem is
+The certified theorem gives all four exact probabilities:
 
-    Pr(N₀=0)=1−M₁+M₂−M₃;  Pr(N₀=1)=M₁−2M₂+3M₃;
-    Pr(N₀=2)=M₂−3M₃;     Pr(N₀=3)=M₃≤1/105,
+```text
+Pr(N₀ = 0) = 1 - M₁ + M₂ - M₃
+Pr(N₀ = 1) = M₁ - 2M₂ + 3M₃
+Pr(N₀ = 2) = M₂ - 3M₃
+Pr(N₀ = 3) = M₃ = h/315 ≤ 1/105
+```
 
-with equality precisely at the named spider S(2,2,2,1). The classical nine-cap classification is an explicitly cited external input to the written proof.
+Equality in the last inequality holds **if and only if** `G` is isomorphic to the named spider `S(2,2,2,1)`. In particular, `N₀ ≤ 3`. The theorem is **unconditional over all admissible caps**: the cap normal-form/orbit result is proved in Lean, not assumed as an external hypothesis.
 
-**Still open in Lean:** general cap-classification existence (to be supplied as an external hypothesis), permutation-event fibre counting and uniform event probabilities (despite a certified 40320 sample-space cardinality), moments, N₀≤3 and the single integrated four-term distribution. The canonical cap and invariance under a supplied invertible linear map are now Lean-verified. The **graph equality is now certified**, not an open candidate. Conditional rational moment inversion does not replace the probability model. The named spider retains legitimate 3+1 and 1+3 four-MIS.
+The Palomar target is `PDIC.palomar_complete_probability_and_spider` in [`Solution.lean`](Solution.lean), relying on the substantive [`S024.lean`](S024.lean) development. Its independent specification is [`Challenge.lean`](Challenge.lean); see [`comparator.json`](comparator.json) and [`formalization.yaml`](formalization.yaml). The target additionally certifies the explicit adjacency characterization of the named spider.
 
-## Next session and process
+## Remaining work (not open Lean obligations)
 
-[S013 executable prompt](research/NEXT_SESSION_PROMPT.md): certify the S012 candidate and prove actual permutation-event fibres, moments, connected `N₀≤3` and the integrated four-term law. [S011 closeout](sessions/S011_CLOSEOUT.md), [proof note](research/S011_CAP_LABELLING_PROOF.md). S013 is installed automatically; its execution requires a new owner instruction.
+**There is no outstanding formalization or full-mechanical-verification gate for the particular theorem stated above.** The earlier missing event counts, unordered factorial moments, unconditional cap classification, complete probability law, and sharp spider iff have all been discharged in the final checked proof.
 
-The full probability theorem and uniquely sharp named extremiser must both pass strict Lean before returning to Palomar preparation, unless the owner redirects. A narrower certificate is not project completion.
+Remaining project work is separate from theorem correctness: complete the registry's review/registration process; bring the working manuscript into line with the unconditional formal theorem; and, if desired, seek independent human mathematical review and assess novelty/priority. No arXiv or journal acceptance, public registry registration, or novel-priority claim is implied.
 
-## Evidence and history
+## Verification and research history
 
-| Milestone | Scope and evidence |
+| Milestone | Historical result |
 | --- | --- |
-| S001–S002 | Written quartet/probability/spider theorem, with explicit classical cap input |
-| S003R8 | Strict arbitrary Boolean-matrix count and extremal certificates; `1e4cadd580b385e0d8e69e836f3211129e705839`, run 38887318919 |
-| S003R9 | Actual matrixGraph/MIS counts, connected partition uniqueness, edge count and connected mixed bound; `402465f2330a275e04108169a6bfbb65e94e10b8`, run 38890367785 |
-| S004 | Primary-source novelty audit; classical cap/baton ingredients, exact combination potentially original but priority unresolved |
-| S005–S006 | Palomar reconnaissance and separate narrow package; no official full-mode verification or registration |
-| S007 initial | Unordered-triple structure; `d05fe1e71d054fe74a52a664112b6de436e999da`, run 38912238607 |
-| S007 continuation | Exact unordered count, constructed arbitrary-graph transport and h≤3; `ff864170834954ef2a286afe6a6b6577ec02f986`, run 38914271558 |
-| S008 partial | Actual named `SimpleGraph`, canonical 4×4 graph isomorphism, connectedness, and named h=3; STRICT LEAN PASS with all eight independent checkers; exact source `fc8581d0bd117cd66c4497fa16209e3480c65ec7`, [run 38918496261](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38918496261). Written arbitrary-pattern normalisation and 192 finite cases, **not** universal Lean iff. |
-| S009 source candidate | Unverified universal equality proof, runner exit 143; finite count not a Lean certificate |
-| **S010** | **Strict Lean PASS: h=3 iff named spider actual graph isomorphism**, source [`c8c64e5a2a98`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/c8c64e5a2a98ee359c79430293ca0738211b4215); [Lean 38928965168](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168); [finite 38928965172](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965172) |
+| S007–S010 (16 October) | Kernel-verified graph MIS incidence and named-spider extremal characterization |
+| S011–S017 (16 October) | Genuine cap-label permutation, stabilizer and event-fibre proof increments |
+| S018–S023 (17 October) | Unordered moments and canonical/conditional probability laws |
+| S024–S031 (17–18 October) | Unconditional all-cap normalization and complete flagship Lean theorem |
+| S039–S059 (19–27 October) | Diagnostic and repair work on independent exported verification and memory consumption |
+| **S060 (28 October)** | **Full original flagship independently checked; all declaration identities matched; standard Palomar FULL PASS at `912b628e`** |
 
-[Claims](research/CLAIMS.md) · [Roadmap](ROADMAP.md) · [Flagship statement](research/FLAGSHIP_THEOREM.md) · [Manuscript](paper/PDIC_S003R8_DRAFT.tex) · [Session control](research/NEXT_SESSION_PROMPT.md).
+These dated milestones are **historical snapshots**, not the current verification boundary. In particular, old session statements saying `OPEN_IN_LEAN`, `CI_PENDING`, or `Palomar blocked` describe their original dates and are superseded by the verified S060 result. The [previous README at the mechanically verified commit](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/blob/912b628e6df0f4881f56e8f341031ec8d99d4e9e/README.md) preserves the detailed earlier chronology; do not treat its dated work queue as current.
 
-No publication submission, Palomar registration, correspondence or PR merge has been performed. The manuscript is a research draft; its older formalisation-scope paragraphs must be updated at the manuscript stage. The full flagship is not yet end-to-end Lean verified.
-
-## S009 attempt and S010 closure (16 October 2026)
-
-S009's universal equality source remained unverified following runner shutdown. S010 replaced the expensive search by a small kernel-checked leaf certificate, explicit hub-row permutations, and kernel-checked matrix transpose. The public `connected_h_three_iff_namedSpider` is now **LEAN_KERNEL_VERIFIED**, exact source [`c8c64e5a2a98ee359c79430293ca0738211b4215`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/c8c64e5a2a98ee359c79430293ca0738211b4215), [Lean PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965168), [independent finite PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38928965172). See [full S010 proof note](research/S010_EQUALITY_KERNEL_CERTIFICATE.md). The *cap-labelled four-term probability law* and its all-cap transfer remain **OPEN_IN_LEAN**. [S011 is installed](research/NEXT_SESSION_PROMPT.md), not executed; no external submission or PR merge.
-
-## S011 cap and finite probability increment (16 October 2026)
-
-At [source e302e5f](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/e302e5f82434b3d8790c81506fe55062700e7a53), [strict hosted Lean PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38934564596), canonical F₃³ labels are injected and free of zero sums of sizes 1–3; four-sum zero iff the four canonical quartets; any supplied zero-fixing linear equivalence preserves these facts; real `Equiv.Perm (Fin 8)` has 40320 elements. Independent 40320-labelling enumeration checks 16-element fibres and the complete distributions for the spider and P8, but **universal Lean probability** is still pending. [Details](research/S011_CAP_LABELLING_PROOF.md). [S013 installed](research/NEXT_SESSION_PROMPT.md).
-
-**S011 final hosted proof head:** [7f7e32d](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/7f7e32dda87983c3df619481693af5a4baff5bfd), [Lean CI 38935115211 PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38935115211) including new ninth 8!-labelling checker and all eight earlier checkers; [finite CI 38935115324 PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38935115324). This certifies the typed cap bridge, **not** the complete probability theorem.
-
-
-## S012 source increment and S013 target (16 October 2026)
-
-S012 executed on proof [PR #4](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/pull/4). Candidate `PDIC.lean` source [4c68728834570cb436944c407d700487c6448002](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/4c68728834570cb436944c407d700487c6448002) adds actual permutation sum reindexing, canonical four-zero transport, a genuine finite probability definition, the random MIS count N₀, explicit conditional cap normal form, and connectedness obstructions for fixed and relabelled quartets. **S012 SOURCE_FORMALIZED only**: no fresh exact-source hosted strict CI response was available at session closeout, and local Lean was unavailable. Do not call new declarations kernel verified until independently compiled. Last fully certified proof baseline is [S011 7f7e32d / CI PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38935115211).
-
-The completed four-probability theorem still requires genuine N₀≤3 *cardinality*, 2304/128 Lean event fibres, graph-derived unordered moments, the integrated probability statement and all-cap conditional transfer. [S012 proof note](research/S012_PERMUTATION_AND_SUPPORT_PROOF.md) · [closeout](sessions/S012_CLOSEOUT.md) · [S013 installed, NOT executed](research/NEXT_SESSION_PROMPT.md). Novelty, Palomar registration and submission status remain unchanged.
-
-
-## S013 actual N₀ support certified; S014 installed (16 October 2026)
-
-At exact proof branch commit [`2a808e53cb7a763b54c53c4f06d12f7f64d3b113`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/2a808e53cb7a763b54c53c4f06d12f7f64d3b113), [strict hosted Lean PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169850), [all nine checkers PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169850), and [finite PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38945169844), `connected_labellingZeroMISCount_le_three` establishes the **actual** `N₀(e,G)≤3` for every connected eight-vertex `SimpleGraph` and genuine label permutation. The bridge uses real 4-MIS, typed F₃³ sums and connectedness, not a symbolic replacement. The 2304/128 fibre laws and true three factorial moments remain outside the Lean kernel certificate. [S013 proof note](research/S013_ACTUAL_N0_AND_EVENT_FIBRES.md) · [closeout](sessions/S013_CLOSEOUT.md) · [S014 installed](research/NEXT_SESSION_PROMPT.md). S014 is not executed. Main's historical `PDIC.lean` is still not the canonical Lean proof branch.
-
-
-## S014 regular-fibre advance and S015 handoff (16 October 2026)
-
-S014 PARTIAL PROOF INCREMENT: strict kernel PASS at 3d004c3378e3c4afd07343a2e9dcc5ca26475aeb, run 38948956267, for the exact 4!×4!=576 four/four-colour stabilizer. Later source 0ab79e8c9d9f5ef0fe111d69e6c87fa938d2b9bb adds the (2!)^4=16 ordered two-quartet-colour stabilizer; 3b8d2e3cd771f34ead2de9e6bf8bd72f3d55a585 additionally connects the 576-colour stabilizer to a fixed actual quartet image. At writing these later exact-source hosted Lean jobs are pending, so their status is SOURCE_FORMALIZED, not LEAN_KERNEL_VERIFIED. Full 2304/128 cap-zero event counts, actual MIS factorial moments and full four-term distribution are still OPEN_IN_LEAN. S015 installed, not executed.
-
-See [S014 mathematical proof note](research/S014_REGULAR_FIBRE_PROOF.md), [S014 closeout](sessions/S014_CLOSEOUT.md), and [S015 executable prompt](research/NEXT_SESSION_PROMPT.md). Historical "S013 installed" descriptions elsewhere above are session records, not current control. No Palomar or publication action was performed.
-
-
-### S014 final certificate update
-
-**Final strict verification update — 16 October 2026:** Lean source [`95ef8f4886868f66edfbde90b34cc9e12fe6b463`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/95ef8f4886868f66edfbde90b34cc9e12fe6b463) has [kernel workflow PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38949894336) and [finite evidence PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38949894242) at that exact SHA. The hosted kernel job succeeded at `lake build`, forbidden proof-hole scan, and all nine independent checkers. `#print axioms` reports only `propext`, `Classical.choice`, and `Quot.sound` for S014 declarations. The repaired `perm_finset_image_fixed_iff`, `canonicalFourBlockColour_comp_iff_image_fixed`, `canonicalQuartetImageStabilizer_card = 576`, and `canonicalTwoQuartetStabilizer_card = 16` are now **LEAN_KERNEL_VERIFIED**. Previous statements about these declarations' CI being pending describe an earlier checkpoint, not the final result. **2304/128 full events, moments and four-term law remain OPEN_IN_LEAN.**
-
-
-
-## S015 — true 2304 singleton cap-event candidate and S016 handoff (16 October 2026)
-
-S015 was executed on the canonical Lean proof branch, draft PR #4. The formal source now constructs true permutations between arbitrary four-sets, transports fixed image fibres, proves the actual image-stabilizer correspondence for two overlapping cap quartets, and derives a candidate theorem `canonicalCapF3_perm_singleton_event_card` counting **2304** permutations that make any prescribed four-subset have zero canonical F₃³ label-sum. The argument sums four disjoint actual image fibres of 576 permutations each rather than using a symbolic placeholder.
-
-**Verification boundary:** the updated source at [69de0c9e9963016ff5324545d55710619e8b8ead](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/69de0c9e9963016ff5324545d55710619e8b8ead) has [finite-check PASS 38959901752](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38959901752); its exact [strict Lean run 38959901730](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38959901730) was still running when this record was written. The new claim remains SOURCE_FORMALIZED / CI_UNVERIFIED until the exact-source strict kernel workflow succeeds. The last confirmed kernel certificate remains S014 at 95ef8f4 / run 38949894336. Full 128 pair/triple event counts, unordered graph-derived moments and the four-term law remain OPEN_IN_LEAN.
-
-[S015 closeout](sessions/S015_CLOSEOUT.md), [proof note](research/S015_SINGLETON_EVENT_PROOF.md), and [automatically installed S016 handoff](research/NEXT_SESSION_PROMPT.md). S016 is **not executed**. No merge, registration or publication; novelty remains unresolved.
-
-
-### S015 final certification — actual 2304 zero-sum singleton event
-
-**LEAN_KERNEL_VERIFIED** at [exact proof SHA `69de0c9e9963016ff5324545d55710619e8b8ead`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/69de0c9e9963016ff5324545d55710619e8b8ead); [strict hosted Lean run 38959901730 PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38959901730), [finite run 38959901752 PASS](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38959901752). Exact theorem `canonicalCapF3_perm_singleton_event_card`: for **each actual four-subset** of `Fin 8`, precisely **2304** of the actual **40320** canonical F₃³ cap label-permutations give zero sum, hence probability **2/35**. Supporting kernel-verified declarations identify the 16-element two-quartet image stabilizer, construct transitive permutations between arbitrary four-sets, transport image fibres to stabilizers, and prove that each of the four canonical quartet targets has exactly 576 preimages. The new declarations rely only on standard `propext`, `Classical.choice`, `Quot.sound`; source-hole scan and all nine independent checkers pass. This update supersedes earlier S015 `CI_UNVERIFIED` snapshots above.
-
-**Not yet fully formalised:** 128-permutation overlap-two pair/triple events, complementary-pair event, actual unordered graph-MIS factorial moments, or the single four-term probability law and spider-sharpness consequence. S016 is **installed, not executed**. The full flagship is still OPEN_IN_LEAN; external Palomar registration and publication remain paused and originality priority unconfirmed.
-
-
-## S016 — strict complementary-pair 2304 event and ordered 128-event proof attempt (16 October 2026)
-
-**LEAN_KERNEL_VERIFIED:** The genuine uniformly labelled disjoint four-set pair count `canonicalCapF3_perm_complementary_pair_event_card` is **2304 of 40320 = 2/35**, for every prescribed pair of disjoint four-sets, not merely a symbolic pair or spider case. [Exact proof `4b4b02aad5a8d1074288011976fc0c040622a4c0`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/4b4b02aad5a8d1074288011976fc0c040622a4c0), [strict Lean kernel PASS 38962481022](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38962481022), [finite PASS 38962480950](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38962480950). The proof reduces the joint event to the S015 singleton event using zero total cap sum and an actual equivalence of permutation subtypes; only standard axioms are printed.
-
-**SOURCE_FORMALIZED, CERTIFICATION PENDING:** S016 constructs eight explicit C4-quartet symmetries, translates real ordered pair-image fibres, and proposes the exact **128 of 40320 = 1/315** overlap-two event count for the **fixed canonical Q0/Q1 source**. Candidate proof-bearing source [`5dc78de0aad6fa1d19bcda72e7143386f222d617`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/5dc78de0aad6fa1d19bcda72e7143386f222d617); [strict Lean run 38963802011](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38963802011) must succeed before promotion. Earlier elaboration errors in the dependent-Sigma event equivalence were repaired in this candidate. **No claim that arbitrary-source overlap 128, compatible-triple 128, graph-derived moments or the complete four-probability flagship are kernel certified.**
-
-[S016 proof note](research/S016_PAIR_FIBRE_PROOF.md) · [S016 closeout](sessions/S016_CLOSEOUT.md) · [S017 installed for the next explicit owner session](research/NEXT_SESSION_PROMPT.md). S017 is **not executed**. Main's historic Lean file is not the certified proof branch; PR #4 remains unmerged. Full theorem and literary novelty still unresolved; no Palomar, arXiv or journal submission.
-
-
-### S016 final exact-source certification: canonical overlap-two 128
-
-**LEAN_KERNEL_VERIFIED** at source [`5dc78de0aad6fa1d19bcda72e7143386f222d617`](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/5dc78de0aad6fa1d19bcda72e7143386f222d617): [strict hosted Lean workflow **38963802011 PASS**](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38963802011), [independent finite **38963802113 PASS**](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/38963802113). Full pinned Lean build, hole scan and all nine independent checkers passed. The printed axioms for `quartet_ordered_overlap_two_orbit`, `perm_pair_image_fibre_card_eq_stabilizer`, `canonical_ordered_overlap_pair_image_fibre_card` and `canonicalCapF3_perm_canonical_overlap_pair_event_card` are only `propext`, `Classical.choice`, `Quot.sound`. Therefore the **specific prescribed canonical overlapping source pair Q0/Q1** has exactly **128** of the true 40320 cap-zero label permutations, probability **1/315**. Combined with S016's already certified general disjoint pair **2304/40320=2/35**, these are genuine numerical event-fibre Lean theorems, not solely finite checks. All prior S016 candidate/CI-pending descriptions above are historical snapshots superseded by this certificate.
-
-**Remaining:** promote 128 from the canonical source pair to arbitrary four-subset overlap-two pairs, prove compatible unordered triple 128, derive actual graph-MIS moments, and integrate the full flagship four-probability theorem with sharp spider iff. These remain **OPEN_IN_LEAN**. [S017 installed](research/NEXT_SESSION_PROMPT.md), NOT EXECUTED; no PR merge or Palomar/arXiv/journal submission.
+For underlying evidence, see [S060 closeout on the documentation branch](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/blob/main/sessions/S060_CLOSEOUT.md) and [the exact standard FULL run](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40656295590). The working manuscript is [`paper/PDIC_S003R8_DRAFT.tex`](paper/PDIC_S003R8_DRAFT.tex) and may contain older conditional wording; the checked Lean theorem and Palomar metadata take precedence for formal scope.
