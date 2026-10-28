@@ -1,6 +1,6 @@
 # Pan-Disciplinary Invariance Conjecture (PDIC)
 
-This repository studies zero-sum quartet incidence for eight-point caps in ℝₓ³ and maximal-independent-set statistics of connected eight-vertex graphs. The project name is historical and aspirational: the **specific first-paper theorem below is fully formalized**, not a claim to have resolved every possible broader pan-disciplinary invariance question. Originality and literature priority have not been established.
+This repository studies zero-sum quartet incidence for eight-point caps in F₃³ and maximal-independent-set statistics of connected eight-vertex graphs. The project name is historical and aspirational: the **specific first-paper theorem below is fully formalized**, not a claim to have resolved every possible broader pan-disciplinary invariance question. Originality and literature priority have not been established.
 
 ## Current verification status — 28 October 2026
 
@@ -15,7 +15,7 @@ The original complete source and configuration live at the immutable verified co
 
 ## Exact scope of the proved theorem
 
-Let `G` be any **connected simple graph on eight vertices**, and let `f` be any **admissible eight-point cap in ℝₓ³**. Uniformly sample all **40,320 bijections** from the vertices to the cap, and let `N₀` count the size-four maximal independent vertex sets whose assigned labels sum to zero.
+Let `G` be any **connected simple graph on eight vertices**, and let `f` be any **admissible eight-point cap in F₃³**. Uniformly sample all **40,320 bijections** from the vertices to the cap, and let `N₀` count the size-four maximal independent vertex sets whose assigned labels sum to zero.
 
 Write `m` for the number of size-four maximal independent sets, `n₀` and `n₂` for their numbers of unordered pairs intersecting in zero and two vertices, and `h` for the number of compatible unordered triples. Define
 
