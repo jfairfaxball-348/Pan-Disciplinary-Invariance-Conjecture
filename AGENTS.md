@@ -1,3 +1,13 @@
+# S061 MANUSCRIPT COMPLETED — S062 INDEPENDENT REVIEW INSTALLED, NOT EXECUTED
+
+28 October 2026. Owner invoked S061. The manuscript paper/PDIC_S003R8_DRAFT.tex now contains 11 original mathematically checked, cross-referenced TikZ figures in an eight-page A4 PDF; paper/check_figures.py reproduces canonical cap geometry, the spider and P8 comparison, and exact 40320-bijection event distributions for each. Local latexmk build PASS; final PDF rendered and pages inspected; no unresolved citations/references or overfull text. See sessions/S061_CLOSEOUT.md and paper/README.md. The PDF is a ChatGPT artifact, not stored in Git. The owner must approve final article content.
+
+S061 did NOT change the registered all-cap theorem, Lean proof or Challenge, and made no journal/arXiv submission, outside contact, proof branch merge or new priority claim. Certified original source 912b628e6df0f4881f56e8f341031ec8d99d4e9e and official standard FULL PASS 40656295590 remain immutable. The owner's supplied Palomar entry is PALOMAR-2026-10-28-000025 v1 (public URL https://palomar-registry.org/entry.html?id=PALOMAR-2026-10-28-000025&version=1). The exact webpage contents could not be independently inspected; novel priority remains unresolved. Authored AI disclosure is a proposed statement for human author review.
+
+**NEXT**: research/NEXT_SESSION_PROMPT.md installs S062 full critical manuscript/priority review. It is NOT executed. Execute only on the next explicit owner instruction; no external release without separate authorization. Older S061 "not executed" and "unregistered" instructions below are historical/superseded.
+
+---
+
 # S061 PAPER MANUSCRIPT INSTALLED — PALOMAR REGISTRATION REPORTED BY OWNER, NOT EXECUTED
 
 28 October 2026. The owner supplied Palomar registration **PALOMAR-2026-10-28-000025 v1**: https://palomar-registry.org/entry.html?id=PALOMAR-2026-10-28-000025&version=1. This supersedes the earlier S061 registry-submission prompt (never executed). The next explicitly invoked session is **S061: illustrated first-paper manuscript** under [the authoritative prompt](research/NEXT_SESSION_PROMPT.md) and [dated target](research/S061_ILLUSTRATED_MANUSCRIPT_TARGET.md). Start from the already-existing six-page, five-TikZ-figure LaTeX draft; add substantive, verified explanatory diagrams, figures and exact probability visualisations, build and inspect the PDF, preserve the registered theorem and explicitly unresolved priority. No new proof, registry submission, journal/arXiv submission or main proof-branch merge authorised. This **installation is not execution**.
