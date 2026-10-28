@@ -109,12 +109,24 @@ theorem canonical_four_zero_iff :
 
 /- The spider S(2,2,2,1): hub 0, neighbours 4,5,6,7,
    additional edges 1--6, 2--5, 3--4. -/
-@[expose] public def spiderAdj (u v : Vertex) : Bool :=
+public def spiderAdj (u v : Vertex) : Bool :=
   decide ((u.val = 0 ∧ (v.val = 4 ∨ v.val = 5 ∨ v.val = 6 ∨ v.val = 7)) ∨
           (v.val = 0 ∧ (u.val = 4 ∨ u.val = 5 ∨ u.val = 6 ∨ u.val = 7)) ∨
           (u.val = 1 ∧ v.val = 6) ∨ (u.val = 6 ∧ v.val = 1) ∨
           (u.val = 2 ∧ v.val = 5) ∨ (u.val = 5 ∧ v.val = 2) ∨
           (u.val = 3 ∧ v.val = 4) ∨ (u.val = 4 ∧ v.val = 3))
+
+
+/-- Public propositional interface without exposing the frozen adjacency definition. -/
+public theorem spiderAdj_explicit (u v : Vertex) :
+    spiderAdj u v = true ↔
+      ((u = 0 ∧ (v = 4 ∨ v = 5 ∨ v = 6 ∨ v = 7)) ∨
+       (v = 0 ∧ (u = 4 ∨ u = 5 ∨ u = 6 ∨ u = 7)) ∨
+       (u = 1 ∧ v = 6) ∨ (u = 6 ∧ v = 1) ∨
+       (u = 2 ∧ v = 5) ∨ (u = 5 ∧ v = 2) ∨
+       (u = 3 ∧ v = 4) ∨ (u = 4 ∧ v = 3)) := by
+  simp only [spiderAdj, decide_eq_true_eq, Fin.ext_iff]
+  rfl
 
 def IsMIS4 (adj : Vertex → Vertex → Bool) (s : Finset Vertex) : Prop :=
   s.card = 4 ∧

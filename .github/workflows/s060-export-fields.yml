@@ -1,7 +1,7 @@
 name: 'PDIC S060 diagnose actual exported comparator fields'
 on:
   push:
-    branches: [diagnostic/s060-comparator-fields]
+    branches: [diagnostic/s060-adjacency-interface]
 permissions:
   contents: read
 jobs:

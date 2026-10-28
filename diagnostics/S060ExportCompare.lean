@@ -40,4 +40,4 @@ public def main (args : List String) : IO Unit := do
       IO.println s!"  SOLUTION_VALUE {reprStr b.value?}"
   match Lake.Check.compareAt c s #[] #[] names with
   | .ok _ => IO.println "REAL_COMPARE PASS"
-  | .error e => IO.println s!"REAL_COMPARE FAIL {e}"
+  | .error e => throw <| IO.userError s!"REAL_COMPARE FAIL {e}"
