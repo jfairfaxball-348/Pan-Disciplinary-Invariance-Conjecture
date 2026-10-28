@@ -1,3 +1,5 @@
+> **28 October 2026 owner-reported update:** The formalisation has been registered at [Palomar **PALOMAR-2026-10-28-000025 v1**](https://palomar-registry.org/entry.html?id=PALOMAR-2026-10-28-000025&version=1). This repository's working manuscript still contains a stale link placeholder and October 18 draft metadata; **S061 is installed, not executed**, specifically to rewrite the paper, add substantive mathematics-verified figures and produce/inspect a new PDF. The draft has **not** been submitted to a journal/arXiv. Read [S061 instructions](../research/NEXT_SESSION_PROMPT.md). The older build/status notes below describe the S034 checkpoint only.
+
 # PDIC first-paper manuscript
 
 Current paper: [`PDIC_S003R8_DRAFT.tex`](PDIC_S003R8_DRAFT.tex), substantially revised during S034 (18 October 2026). Title: **Zero-Sum Quartet Incidence and Sharp Maximal-Independent-Set Witnesses on Eight Vertices**.

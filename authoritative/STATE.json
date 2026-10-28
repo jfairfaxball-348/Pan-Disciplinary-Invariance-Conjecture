@@ -4,7 +4,7 @@
   "last_completed_session": "S060",
   "next_session": "S061",
   "next_session_executed": false,
-  "phase": "S060_STANDARD_FULL_PASS__OWNER_AUTHORIZED_REGISTRY_SUBMISSION_HANDOFF",
+  "phase": "PALOMAR_OWNER_REPORTED_REGISTERED_V1__S061_ILLUSTRATED_FIRST_PAPER_MANUSCRIPT_INSTALLED",
   "first_paper_roadmap": [
     "S001-S002 written cap/graph/probability theorem with explicit classical input",
     "S003-S003R8 strict matrix semantics and extremal certificates",
@@ -14,8 +14,8 @@
   "new_theorem_claimed": false,
   "novelty_gate": "S004_SOURCE_COMPARISON_COMPLETED__CLASSICAL_NINE_CAP_AND_BATON_EXTREMISER__FIXED_SIZE_MIS_CLASSICAL__EXACT_H_CAP_COMBINATION_NOT_LOCATED_IN_ACCESSIBLE_SOURCES__PRIORITY_UNRESOLVED",
   "lean": "FULL_UNCONDITIONAL_ALL_CAP_FLAGSHIP_KERNEL_VERIFIED_EXACT_PROOF_SHA_09d9f392d20399c80f2c51e2f4979b78b412c4e2_S024_BLOB_4067aa1f0a978a1437fb25d1741bad9537112380_VALIDATION_RUN_39119264069_CANONICAL_RUN_39120877185",
-  "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__PALOMAR_LINK_PENDING__PRIORITY_UNRESOLVED",
-  "palomar": "FULL_MECHANICAL_PASS_40656295590_EXACT_912b628e6df0f4881f56e8f341031ec8d99d4e9e__NOT_REGISTERED_NO_MERGE",
+  "publication": "S034_SIX_PAGE_FIVE_FIGURE_WORKING_DRAFT_NOT_SUBMITTED__REGISTERED_FORMALIZATION_LINK_OWNER_PROVIDED__S061_ILLUSTRATED_MANUSCRIPT_INSTALLED__PRIORITY_UNRESOLVED",
+  "palomar": "OWNER_REPORTED_REGISTRATION_PALOMAR-2026-10-28-000025_V1__SOURCE_912b628e6df0f4881f56e8f341031ec8d99d4e9e__OFFICIAL_STANDARD_FULL_40656295590_PASS",
   "next_prompt": "research/NEXT_SESSION_PROMPT.md",
   "source": "PDIC.lean",
   "strict_hosted_ci": "S023_EXACT_SHA_1ae1e7eccb55893d1dee798c57ba2e2663f03090_LEAN_KERNEL_BUILD_HOLE_SCAN_STANDARD_AXIOMS_ALL_CHECKERS_SUCCESS",
@@ -105,9 +105,9 @@
   "s003r9_final_head_lean_run": "38890367785",
   "s003r9_final_head_finite_run": "38890368126",
   "s003r9_final_head_kernel_status": "PASS_EXACT_SHA_ALL_SIX_FINITE_STANDARD_AXIOMS_ONLY",
-  "next_session_target": "S060_URGENT_CAUSAL_ANALYSIS_AND_STRUCTURAL_REPAIR_OF_COMBINED_LEAN_KERNEL_MEMORY",
+  "next_session_target": "S061_ILLUSTRATED_FIRST_PAPER_MANUSCRIPT_WITH_MATHEMATICALLY_VERIFIED_FIGURES_AND_PDF",
   "next_session_status": "INSTALLED_NOT_EXECUTED",
-  "next_session_target_installed": "S060",
+  "next_session_target_installed": "S061",
   "session_control": {
     "0": "r",
     "1": "e",
@@ -168,8 +168,8 @@
     "date": "2026-10-16"
   },
   "next_session_target_file": "research/NEXT_SESSION_PROMPT.md",
-  "next_session_target_installed_date": "2026-10-27",
-  "next_session_target_source": "S059_FINAL_CLOSEOUT_WITH_TWO_COMPLETED_MEMORY_FAILURES",
+  "next_session_target_installed_date": "2026-10-28",
+  "next_session_target_source": "OWNER_REPORTED_PALOMAR-2026-10-28-000025_V1_AND_EXPLICIT_PAPER_WRITING_PIVOT",
   "s004_status": "COMPLETED_2026_10_16",
   "s004_target_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT_TARGET.md",
   "s004_audit_path": "research/S004_PRIOR_ART_NOVELTY_AUDIT.md",
@@ -230,7 +230,7 @@
   "s007_core_problem": "CONNECTED_EIGHT_VERTEX_UNORDERED_COMPATIBLE_TRIPLES_TO_MATRIX_GRAPH_COUNT_AND_NAMED_SPIDER_ISOMORPHISM",
   "flagship_kernel_status": "LEAN_KERNEL_VERIFIED_FULL_UNCONDITIONAL_ALL_ADMISSIBLE_EIGHT_CAPS_ALL_CONNECTED_EIGHT_VERTEX_GRAPHS_S031",
   "flagship_required_interfaces": [
-    "Full real sample space: 40320 bijective cap labellings, exact probabilities P0\u2013P3",
+    "Full real sample space: 40320 bijective cap labellings, exact probabilities P0–P3",
     "All admissible eight-caps: zero-fixing GL orbit and classical cap normal form are internally Lean-proved at verified S031 source",
     "Sharp bound P(N0=3)=h/315<=1/105 with equality precisely at named spider S(2,2,2,1); novelty and priority unresolved"
   ],
@@ -1120,7 +1120,7 @@
   "manuscript_source": "paper/PDIC_S003R8_DRAFT.tex",
   "manuscript_required_figures": 4,
   "manuscript_requested_output": "FULL_LATEX_MANUSCRIPT_WITH_MATHEMATICAL_VISUALS_AND_CHECKED_PDF_IF_BUILD_AVAILABLE",
-  "manuscript_palomar_link": "[PALOMAR REGISTRY LINK \u2014 PENDING]",
+  "manuscript_palomar_link": "[PALOMAR REGISTRY LINK — PENDING]",
   "palomar_registration_phase": "S038_DIAGNOSTIC_ONLY__S037_FULL_COMPARATOR_FAILED__UNREGISTERED",
   "palomar_registered": false,
   "manuscript_written_in_s034": true,
@@ -2112,7 +2112,7 @@
       "session_closed": true
     }
   },
-  "current_session": "S060_CLOSED",
+  "current_session": "S060_CLOSED__S061_PAPER_WRITING_READY",
   "s060": {
     "status": "CLOSED_FULL_MECHANICAL_PASS",
     "proof_sha": "34c82f12c34911485f099f5d8e75672c7fbbb11f",
@@ -2152,9 +2152,22 @@
   },
   "s061": {
     "status": "INSTALLED_NOT_EXECUTED",
+    "focus": "FIRST_PAPER_ILLUSTRATED_MANUSCRIPT",
     "prompt": "research/NEXT_SESSION_PROMPT.md",
-    "target": "REGISTRY_SUBMISSION_REVIEW_AND_OWNER_APPROVED_REGISTRATION",
-    "external_submission_authorized": true,
-    "public_registration_requires_returned_review_and_owner_decision": true
-  }
+    "target_file": "research/S061_ILLUSTRATED_MANUSCRIPT_TARGET.md",
+    "supersedes": "research/S061_VERIFIED_PACKAGE_HANDOFF_TARGET.md__REGISTRY_FOLLOW_THROUGH_NEVER_EXECUTED",
+    "registry_id": "PALOMAR-2026-10-28-000025",
+    "registry_version": 1,
+    "registry_url": "https://palomar-registry.org/entry.html?id=PALOMAR-2026-10-28-000025&version=1",
+    "owner_confirmed_registration": true,
+    "proof_package_sha": "912b628e6df0f4881f56e8f341031ec8d99d4e9e",
+    "source_paper": "paper/PDIC_S003R8_DRAFT.tex",
+    "existing_figures": 5,
+    "requested_visuals": "8_TO_12_SUBSTANTIVE_VERIFIED_ORIGINAL_FIGURES",
+    "paper_publication_status": "NOT_SUBMITTED"
+  },
+  "palomar_registry_entry_id": "PALOMAR-2026-10-28-000025",
+  "palomar_registry_version": 1,
+  "palomar_registry_url": "https://palomar-registry.org/entry.html?id=PALOMAR-2026-10-28-000025&version=1",
+  "palomar_registry_confirmation_basis": "OWNER_PROVIDED_PUBLIC_ENTRY_URL__INDEPENDENT_PAGE_CONTENT_TO_BE_VERIFIED_AT_S061_ENTRY_IF_ACCESSIBLE"
 }

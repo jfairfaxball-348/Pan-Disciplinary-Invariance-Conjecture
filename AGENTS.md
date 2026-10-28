@@ -1,3 +1,11 @@
+# S061 PAPER MANUSCRIPT INSTALLED — PALOMAR REGISTRATION REPORTED BY OWNER, NOT EXECUTED
+
+28 October 2026. The owner supplied Palomar registration **PALOMAR-2026-10-28-000025 v1**: https://palomar-registry.org/entry.html?id=PALOMAR-2026-10-28-000025&version=1. This supersedes the earlier S061 registry-submission prompt (never executed). The next explicitly invoked session is **S061: illustrated first-paper manuscript** under [the authoritative prompt](research/NEXT_SESSION_PROMPT.md) and [dated target](research/S061_ILLUSTRATED_MANUSCRIPT_TARGET.md). Start from the already-existing six-page, five-TikZ-figure LaTeX draft; add substantive, verified explanatory diagrams, figures and exact probability visualisations, build and inspect the PDF, preserve the registered theorem and explicitly unresolved priority. No new proof, registry submission, journal/arXiv submission or main proof-branch merge authorised. This **installation is not execution**.
+
+S060 official standard FULL passed for immutable source `912b628e6df0f4881f56e8f341031ec8d99d4e9e` ([run 40656295590](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40656295590)). Owner's public registration URL is recorded; inspect its contents in S061 if external access works. Older instructions below claiming no registry entry or directing S061 registry follow-through are historical and superseded.
+
+---
+
 # S060 CLOSED — OFFICIAL STANDARD FULL PASS; S061 INSTALLED, NOT EXECUTED
 
 28 October 2026. Original complete unconditional all-eight-cap probability-law and iff-spider flagship **PALOMAR FULL MECHANICAL PASS**, exact source **912b628e6df0f4881f56e8f341031ec8d99d4e9e** on `diagnostic/s060-interface-standard-full`, [official run 40656295590](https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40656295590). Actual report `status=pass, stage=complete`, no errors or warnings. con-ron accepts 14757 declarations (--verified), NanoDa and Lean default kernel also accept. Frozen Challenge/config/toolchain and approved three axioms preserved; no definition holes, paid resource or theorem weakening.
