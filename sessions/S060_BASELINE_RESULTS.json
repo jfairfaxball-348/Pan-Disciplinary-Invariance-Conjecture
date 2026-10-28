@@ -1,0 +1,110 @@
+[
+  {
+    "case": "control",
+    "export_rc": 0,
+    "export_bytes": 1014173,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 300,
+    "check_rc": 0,
+    "elapsed_seconds": 0.2,
+    "sampled_vm_kib": 2337868,
+    "sampled_rss_kib": 54636,
+    "peak_rss_kib": 114672
+  },
+  {
+    "case": "group01",
+    "export_rc": 0,
+    "export_bytes": 27598542,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 300,
+    "check_rc": 0,
+    "elapsed_seconds": 123.33,
+    "sampled_vm_kib": 4500752,
+    "sampled_rss_kib": 1594212,
+    "peak_rss_kib": 1594084
+  },
+  {
+    "case": "group012",
+    "export_rc": 0,
+    "export_bytes": 28059111,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 300,
+    "check_rc": 0,
+    "elapsed_seconds": 190.49,
+    "sampled_vm_kib": 5549456,
+    "sampled_rss_kib": 2694304,
+    "peak_rss_kib": 2694152
+  },
+  {
+    "case": "group0123",
+    "export_rc": 0,
+    "export_bytes": 28362153,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 300,
+    "check_rc": 0,
+    "elapsed_seconds": 238.18,
+    "sampled_vm_kib": 6598096,
+    "sampled_rss_kib": 3666372,
+    "peak_rss_kib": 3666220
+  },
+  {
+    "case": "mid4",
+    "export_rc": 0,
+    "export_bytes": 22160441,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 300,
+    "check_rc": 134,
+    "elapsed_seconds": 97.69,
+    "sampled_vm_kib": 9437072,
+    "sampled_rss_kib": 7106200,
+    "peak_rss_kib": 7105928
+  },
+  {
+    "case": "mid5",
+    "export_rc": 0,
+    "export_bytes": 22160441,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 300,
+    "check_rc": 0,
+    "elapsed_seconds": 36.32,
+    "sampled_vm_kib": 8695632,
+    "sampled_rss_kib": 6345264,
+    "peak_rss_kib": 6345200
+  },
+  {
+    "case": "mid6",
+    "export_rc": 0,
+    "export_bytes": 22160441,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 300,
+    "check_rc": 0,
+    "elapsed_seconds": 17.3,
+    "sampled_vm_kib": 5549456,
+    "sampled_rss_kib": 2917868,
+    "peak_rss_kib": 2917752
+  },
+  {
+    "case": "normalized",
+    "export_rc": 0,
+    "export_bytes": 30617573,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 300,
+    "check_rc": 134,
+    "elapsed_seconds": 97.53,
+    "sampled_vm_kib": 9437072,
+    "sampled_rss_kib": 7103532,
+    "peak_rss_kib": 7103068
+  },
+  {
+    "case": "flagship",
+    "export_rc": 0,
+    "export_bytes": 78845839,
+    "vm_limit_gib": 9,
+    "timeout_seconds": 300,
+    "check_rc": 134,
+    "elapsed_seconds": 99.8,
+    "sampled_vm_kib": 9437072,
+    "sampled_rss_kib": 7105748,
+    "peak_rss_kib": 7105560
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "base_sha": "c4c8643d87d81913c449700546c163773665d13c",
+  "candidate_sha": "5749ecfc2a11730cc6a603db89f5e1d3607822f8",
+  "unchanged_files": {
+    "Challenge.lean": {
+      "unchanged": true,
+      "sha256": "c0e1571adc8046fe621256de943c190d0c67255c99081d4014a8cb52f206c7ae"
+    },
+    "S024.lean": {
+      "unchanged": true,
+      "sha256": "4428f4849f628bca94960acb9fac056db9a0912d6a194ca5efbff987aa783a66"
+    },
+    "comparator.json": {
+      "unchanged": true,
+      "sha256": "78d0ec3fe502b75a72edca5eec4d692d9ad6c79b25ecf22dfebbce23a379303f"
+    },
+    "formalization.yaml": {
+      "unchanged": true,
+      "sha256": "4749d31c4c328d3071fb798d8fe9b82461d2b2ab5ea8998ee265e2004d1c9ad9"
+    },
+    "lean-toolchain": {
+      "unchanged": true,
+      "sha256": "bc84812c94489d1e3e191baa1dc10d5eb684382d7fe9d2a5ab085e72c1c67e47"
+    },
+    "lakefile.toml": {
+      "unchanged": true,
+      "sha256": "7d00023c8805f0bc59367850cd54ec4f49987e7694b3cda15b7ff8605e349453"
+    },
+    "lake-manifest.json": {
+      "unchanged": true,
+      "sha256": "661e7775c2e9723d87cd24aed2b7d800fa1e0d682548604ca7fb4e648b2c2760"
+    }
+  },
+  "PDIC_change": "remove adjacency expose attribute; add proved public iff lemma",
+  "Solution_change": "same statement, exact lemma applied in proof"
+}
