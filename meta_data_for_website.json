@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "title": "Zero-Sum Quartet Incidence and a Sharp Eight-Vertex Graph-Witness Law",
+  "slug": "pan-disciplinary-invariance-conjecture",
+  "status": "Paper prepared",
+  "headline": "An exact zero-sum maximal-independent-set witness-count law for eight-vertex graphs, with a sharp extremal spider.",
+  "year": 2026,
+  "date": "2026-10-28",
+  "description": "For every admissible eight-point cap in $\\mathbb{F}_3^3$ and every connected eight-vertex graph, the project determines the distribution of zero-sum four-vertex inclusion-maximal independent sets under all 40,320 uniformly chosen bijective labellings. The probability of exactly three witnesses is at most $1/105$, with equality precisely for the spider tree $S(2,2,2,1)$; the unconditional result is formalised in Lean 4. A checked, illustrated manuscript was prepared on 28 October 2026 but has not been submitted to arXiv or a journal, and mathematical novelty and priority relative to the full literature remain unresolved.",
+  "summary": "Writing $m$ for the number of four-vertex maximal independent sets, $n_0$ and $n_2$ for unordered pairs meeting in zero or two vertices, and $h$ for compatible triples, the binomial moments of the witness count are $M_1=2m/35$, $M_2=2n_0/35+n_2/315$ and $M_3=h/315$. Consequently $(P_0,P_1,P_2,P_3)=(1-M_1+M_2-M_3,\\,M_1-2M_2+3M_3,\\,M_2-3M_3,\\,M_3)$, with $P_3=h/315\\le 1/105$. The proof combines the classical classification of nine-point caps in $AG(3,3)$, an internal zero-fixing cap normal-form argument, finite quartet incidence, and a sharp graph structural bound; the repository contains the full Lean formalisation, a successful Palomar full verification run and an eight-page manuscript with eleven checked figures.",
+  "topics": [
+    "Finite geometry",
+    "Zero-sum combinatorics",
+    "Graph theory",
+    "Maximal independent sets",
+    "Probability",
+    "Lean 4",
+    "Formal verification"
+  ],
+  "github_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture",
+  "palomar_id": "PALOMAR-2026-10-28-000025",
+  "palomar_url": "https://palomar-registry.org/entry.html?id=PALOMAR-2026-10-28-000025&version=1",
+  "paper_url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/blob/main/paper/PDIC_S003R8_DRAFT.tex",
+  "formalisation_system": "Lean 4",
+  "verification": "The complete unconditional theorem passed pinned strict Lean kernel checking and the standard Palomar FULL preflight at exact proof-package commit 912b628e6df0f4881f56e8f341031ec8d99d4e9e (GitHub Actions run 40656295590, success, 28 October 2026). The repository records a Palomar v1 registration reported by the owner; its registry entry text was not independently readable in this audit. Independent exact checks cover the quartet incidence, spider/path examples and all 40,320 bijections for each example. Palomar verification is not journal peer review.",
+  "attribution": "John Fairfax-Ball is the project lead and named author of the manuscript. OpenAI ChatGPT substantially assisted mathematical investigation, Lean formalisation, verification engineering, manuscript preparation, diagrams and independent checks; the draft AI disclosure remains subject to the author's approval. Classical finite-geometry and graph-theoretic results used as inputs are attributed to their original authors.",
+  "original_source": "The key classical cap-classification input is M. Follett, K. Kalail, E. McMahon, C. Pelland and R. Won, “Partitions of AG(4,3) into maximal caps,” Discrete Mathematics 337 (2014), 1–8, doi:10.1016/j.disc.2014.08.002, Proposition 2.2, drawing on earlier work of Bose, Barlotti and Panella. Relevant graph literature includes J. Liu, “Maximal independent sets in bipartite graphs,” Journal of Graph Theory 17 (1993), 495–507, doi:10.1002/jgt.3190170407, and J. M. Nielsen, “On the Number of Maximal Independent Sets in a Graph,” BRICS RS-02-15 (2002). The repository's S004 prior-art audit is bounded and does not settle novelty.",
+  "featured": false,
+  "additional_links": [
+    {
+      "label": "Pinned Lean and Palomar proof package",
+      "url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/commit/912b628e6df0f4881f56e8f341031ec8d99d4e9e"
+    },
+    {
+      "label": "Successful standard Palomar FULL verification",
+      "url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/actions/runs/40656295590"
+    },
+    {
+      "label": "Prior-art and novelty audit",
+      "url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/blob/main/research/S004_PRIOR_ART_NOVELTY_AUDIT.md"
+    },
+    {
+      "label": "Exact manuscript figures and labelling checker",
+      "url": "https://github.com/jfairfaxball-348/Pan-Disciplinary-Invariance-Conjecture/blob/main/paper/check_figures.py"
+    }
+  ]
+}
